@@ -1,0 +1,226 @@
+/*******************************************
+ *   
+ *  Css Gerais
+ *
+ ******************************************/
+
+/******************************************* 
+ * Define o alinhamento pelo id 
+ *   
+ * Usado na classe Tabela
+ *******************************************/ 
+
+#center{
+    text-align: center;
+}
+
+#left{
+    text-align: left;
+}
+
+#right{
+    text-align: right;
+}
+
+#justify{
+    text-align: justify;
+}
+
+/*******************************************
+ * Muda fonte de um <p> pelo id
+ *******************************************/
+ 
+ p#f10{
+     font-size: 10px;   
+ }
+ 
+ p#f11{
+     font-size: 11px;   
+ }
+ 
+ p#f12{
+     font-size: 12px;   
+ }
+ 
+ p#f14{
+     font-size: 14px;   
+ }
+ 
+ p#f16{
+     font-size: 16px;   
+ }
+ 
+ p#f18{
+     font-size: 18px;   
+ }
+ 
+ p#f20{
+     font-size: 20px;   
+ }
+
+ 
+/*******************************************
+ * Footer
+ *******************************************/
+
+ footer {
+    font-size: 10px;
+    padding: 1px;   
+ }
+
+/**** Classes  ****/
+
+/*******************************************
+ *  Classe tabela
+ *******************************************/
+
+table.tabelaPadrao{
+    border-collapse: separate;
+    border-spacing: 2pt;
+    border-color: #007095;    
+    font-size: 12px;
+}
+
+table.tabelaPadrao th{
+    background-color: #02548b;
+    text-align: center;
+    font-weight: normal;
+    color: #fff;    
+}
+
+table.tabelaPadrao caption {
+    background-color: #e6e6e6;
+    font-weight: normal;
+    color: #02548b;
+    font-size: 16px;
+}
+
+table.tabelaPadrao tfoot td {
+    background-color: #02548b;
+    font-weight: normal;
+    color: #fff;
+}
+
+table.tabelaPadrao a{
+    text-decoration: none;
+    color: #fff;
+}
+
+table.tabelaPadrao td.zebrado1{
+   background-color: #FFF;
+   padding: 2px;
+ }
+ 
+table.tabelaPadrao td.zebrado0{
+   background-color: #D7D7D7;
+   padding: 2px;
+ }
+  
+/*******************************************
+ * Class Modelo
+ *******************************************/
+
+div#divHistorico{
+     display: none;
+ }
+
+ /*******************************************
+  * Classe Post it 
+  *******************************************/  
+ div.divPostit{
+    background: transparent url(postit.png) no-repeat 0 0;
+    top: 20%;
+    left: 50%;
+    width: 250px;
+    height: 250px;
+    padding: 30px 20px 20px 50px; 
+ }
+ 
+ div.divPostit p{
+     text-align: center;
+     font-size: 14px;
+     color: #076cba;
+ }
+ 
+ /*******************************************
+ * Classe Botão Gráfico
+ *******************************************/
+div.botaoGrafico{    
+    font-size: 11px;
+    text-align: center;
+    display: table;
+    width: 100%;
+}
+
+/*******************************************
+ * Class Fieldset
+ *******************************************/
+fieldset legend{
+    font-size: 13px;
+}
+
+/*******************************************
+ * Rotina de Documentação
+ *******************************************/
+
+pre {
+  width: 100%;
+  max-height: 400px;
+  color: #444;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  word-wrap: normal;
+  white-space: pre-wrap;
+  overflow: auto;
+  font-size: 14px;
+  border: 1px;
+}
+
+/*******************************************
+ * Função titulo
+ *******************************************/
+ div#titulo{     
+     background-color: #02548b;    
+     border: 1px solid #fff;
+     padding: 5px 5px 5px 0px;    
+     text-align: center;
+     color: #fff;
+     font-size: 14px;     
+     font-weight: normal;
+}
+
+/*******************************************
+ * Menu Vertical
+ *******************************************/
+ul.menuVertical li{ 
+    padding: 5px 0px 3px 0px;    
+    text-align: left;
+    font-size: 14px;
+    list-style-type: none;
+    margin: 0px 15px 0px 0px;
+}
+
+ul.menuVertical li#titulo{
+    padding: 5px 0px 3px 0px;
+    background-color: #076cba;
+    text-align: center;
+    font-size: 14px;
+    list-style-type: none;
+    margin: 0px 0px 15px -20px;
+}
+
+ul.menuVertical li#titulo a{
+    text-decoration:none;
+    color: #fff;
+}
+
+ul.menuVertical a { 
+    text-decoration:none;
+    color: #076cba;
+}
+
+ul.menuVertical li:hover{
+    background-color: #e9e9e9;
+    }

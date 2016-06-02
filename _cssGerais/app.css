@@ -1,0 +1,256 @@
+/**
+ *
+ * Altera Css do Foundation
+ *
+ */
+
+ /*******************************************
+ * Muda fonte pela classe
+ *******************************************/
+
+.size-12 { font-size: 12px; }
+     
+.size-14 { font-size: 14px; }
+     
+.size-16 { font-size: 16px; }
+      
+.size-18 { font-size: 18px; }
+
+.size-21 { font-size: 21px; }
+
+.size-24 { font-size: 24px; }
+
+.size-36 { font-size: 36px; }
+
+.size-48 { font-size: 48px; }
+
+.size-60 { font-size: 60px; }
+
+.size-72 { font-size: 72px; }
+
+/**  Top Bar  **/
+
+.top-bar {
+  padding: 0.2rem;
+  }
+  
+.top-bar::before, .top-bar::after {
+  content: ' ';
+  display: table; }
+
+.top-bar::after {
+  clear: both; }
+
+.top-bar,
+.top-bar ul {
+  background-color: #01558b;
+  font-size: 14px;
+  color: #FFF;
+  }
+
+.top-bar input {
+  width: 200px;
+  margin-right: 1rem; }
+
+.top-bar input.button {
+  width: auto; }
+
+.menu-text {
+  font-weight: normal;
+  font-size: 16px;
+}
+
+html{
+  margin: 10px;
+}
+
+pre, code {
+    display: block;
+    unicode-bidi: embed;
+    font-family: monospace;
+    white-space: pre;
+    
+    padding: 1em;
+    border-left: 11px solid #ccc;
+    overflow: auto;
+}
+	
+/********************************
+ *  Form
+ ********************************/
+form.formPadrao input:focus, 
+form.formPadrao select:focus, 
+form.formPadrao textarea:focus, 
+form.formPadrao input:focus{
+    background:#C6E2FF;
+}
+
+form.formPadrao label{
+   font-size: 13px;
+}
+
+/********************************
+ * Menu Bar
+ ********************************/
+
+#container > div {
+  display: flex;
+}
+
+
+#flex-start {
+  justify-content: flex-start;
+}
+
+#center {
+  justify-content: center;
+}
+
+#flex-end {
+  justify-content: flex-end;
+}
+
+#space-between {
+  justify-content: space-between;
+}
+
+#space-around {
+  justify-content: space-around;
+}
+
+/*******************************************
+ * Classe Relatorio
+ *******************************************/
+
+div#menuTopo{
+    border-bottom:#C0C0C0 solid 2px;
+    margin-bottom: 5px;
+}
+
+div#divRelatorio{
+    text-align: center;
+}
+
+div#divRelatorio hr{
+    margin: 0px;
+}
+
+p#pRelatorioTitulo{
+   text-align: center;
+   font-size: 22px;
+   color: #000;
+   margin: 0px;
+ }
+ 
+ p#pRelatorioSubtitulo{
+   text-align: center;
+   font-size: 14px;
+   color: #000;  
+   margin: 0px;
+ }
+ 
+ p#pRelatorioSubtotal{
+   text-align: right;
+   font-size: 10px;
+   color: #000;
+ }
+ 
+ p#pRelatorioSubgrupo{
+   text-align: center;
+   font-size: 14px;
+   color: #000;
+   margin: 0px;
+ }
+ 
+ p#pRelatorioLabel{
+   text-align: center;
+   font-size: 12px;
+   color: #000;
+ }
+ 
+ p#pRelatorioCabecalho{
+   text-align: center;
+   font-size: 12px;
+   color: #000;
+ }
+ 
+ p#pRelatorioNenhumItem{
+   text-align: center;
+   font-size: 12px;
+   color: #000;
+ }
+ 
+ p#pRelatorioTotal{
+   text-align: center;
+   font-size: 11px;
+   color: #000;
+ }
+ 
+ p#pRelatorioDataImpressao{
+   text-align: right;
+   font-size: 10px;
+   color: #000;
+   margin: 0px;
+   padding: 0em;
+ }
+ 
+ /*******************************************
+ * Tabela principal (corpo do relatório)
+ *******************************************/
+ 
+ table.tabelaRelatorio{
+     border-collapse: separate;
+     border-spacing: 1px;     
+     margin: 2px 1px 1px 1px;
+     width: 100%;  
+ }
+ 
+ table.tabelaRelatorio tr{
+     border-collapse: separate;
+     border-spacing: 1px;
+     background-color: #FFF;
+     text-align: center;
+ }
+ 
+ table.tabelaRelatorio th{
+   text-align: center;
+   padding: 0px 3px 0px 3px;
+   font-size: 12px;
+   font-weight: normal;
+   color: #000;
+   border-bottom:#C0C0C0 solid 2px;
+   border-top:#C0C0C0 solid 2px;
+ }
+ 
+ table.tabelaRelatorio td{
+   font-size: 12px;
+   padding: 0px 3px 0px 3px;
+   color: #000;
+   vertical-align: top;
+ }
+ 
+ table.tabelaRelatorio td.zebrado{
+   background-color: #CBCFD4;
+ }
+ 
+ table.tabelaRelatorio tfoot td{
+   text-align: right;
+   font-size: 11px;
+   border-top:#C0C0C0 solid 2px;
+   font-weight: normal;
+ }
+ 
+ table#subRelatorioGeral{
+     margin: 2px 2% 1px 2%;
+     width: 95%;
+ }
+ 
+ table#subRelatorioGeral th{
+     background-color: #98AFC7;     
+ } 
+ 
+ table.tabelaRelatorio hr{
+    color: #000;
+    background-color: #000;
+    height:1px;
+ }
