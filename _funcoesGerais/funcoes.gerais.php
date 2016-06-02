@@ -741,10 +741,10 @@ function mensagemAguarde()
 
 function formataMoeda($valor,$formato = 1)
 {	
-    if($formato == 1)
+    if($formato == 1){
         $moeda = number_format($valor, 2, ',', '.');
-    else
-    { 
+        $moeda = "R$ ".$moeda;
+    }else{ 
         $moeda = str_replace(".", "", $valor);
         $moeda = str_replace(",", ".", $moeda); 
     }
@@ -781,4 +781,4 @@ function formataNumLinha($numero){
     return $numero;    
 }
 
-
+###########################################################

@@ -294,7 +294,6 @@ class Modelo
             }
         }
         
-        
         # Se tiver paginação coloca o número da página no fieldset
         $texto = null;
         if($this->paginacao)
@@ -341,7 +340,41 @@ class Modelo
                 $anterior .= '&orderCampo='.$this->orderCampo;
                 $anterior .= '&orderTipo='.$this->orderTipo;
             }
-        }    
+        }
+        
+        # Botões de paginação
+        if($this->paginacao){
+            # Começa os botões de navegação
+            $div = new Div("paginacao");
+            $div->abre();
+            echo'<ul class="pagination text-center" role="navigation" aria-label="Pagination">';
+
+            # Botão Página Anterior
+            if($this->pagina == 1){
+                echo '<li class="pagination-previous disabled">Anterior<span class="show-for-sr">page</span></li>';
+            }else{
+                echo '<li class="pagination-previous"><a href="?paginacao='.$anterior.'" aria-label="Página anterior">Anterior</a></li>';
+            }
+
+            # Links para a página
+            for($pag = 1;$pag <= $totalPaginas; $pag++){
+                if($pag == $this->pagina){
+                    echo '<li class="current"><span class="show-for-sr">Página Atual</span> '.$pag.'</li>';
+                }else{
+                    $link = $this->paginacaoItens * ($pag-1);
+                    echo '<li><a href="?paginacao='.$link.'" aria-label="Pagina '.$pag.'">'.$pag.'</a></li>';
+                }
+            }
+
+            # Botão Próxima Página
+            if($this->pagina < $totalPaginas){
+                echo '<li class="pagination-next"><a href="?paginacao='.$proximo.'" aria-label="Próxima página">Próximo <span class="show-for-sr">page</span></a></li>';
+            }else{
+                echo '<li class="pagination-next disabled">Próximo <span class="show-for-sr">page</span></li>';
+            }
+            echo '</ul>';
+            $div->fecha();
+        }       
         
         # Topbar        
         $top = new TopBar($this->nome);
@@ -425,37 +458,6 @@ class Modelo
                 $tabela->set_textoRessaltado($this->parametroValue);
 
             $tabela->show();
-
-            # Botões de paginação
-            if($this->paginacao){
-                # Começa os botões de navegação
-                echo'<ul class="pagination text-center" role="navigation" aria-label="Pagination">';
-
-                # Botão Página Anterior
-                if($this->pagina == 1){
-                    echo '<li class="pagination-previous disabled">Anterior<span class="show-for-sr">page</span></li>';
-                }else{
-                    echo '<li class="pagination-previous"><a href="?paginacao='.$anterior.'" aria-label="Página anterior">Anterior</a></li>';
-                }
-
-                # Links para a página
-                for($pag = 1;$pag <= $totalPaginas; $pag++){
-                    if($pag == $this->pagina){
-                        echo '<li class="current"><span class="show-for-sr">Página Atual</span> '.$pag.'</li>';
-                    }else{
-                        $link = $this->paginacaoItens * ($pag-1);
-                        echo '<li><a href="?paginacao='.$link.'" aria-label="Pagina '.$pag.'">'.$pag.'</a></li>';
-                    }
-                }
-
-                # Botão Próxima Página
-                if($this->pagina < $totalPaginas){
-                    echo '<li class="pagination-next"><a href="?paginacao='.$proximo.'" aria-label="Próxima página">Próximo <span class="show-for-sr">page</span></a></li>';
-                }else{
-                    echo '<li class="pagination-next disabled">Próximo <span class="show-for-sr">page</span></li>';
-                }
-                echo '</ul>';
-            }       
             
             $grid->fechaColuna();
             $grid->fechaGrid();

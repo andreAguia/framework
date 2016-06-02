@@ -1,97 +1,85 @@
 /* 
- * FunÁıes em Javascript
+ * Fun√ß√µes em Javascript
  */
 
 
 /*
-* FunÁıes de abertura e fechamento (visivel ou n„o) de div
+* Fun√ß√µes de abertura e fechamento (visivel ou n√£o) de div
 *
-* Usado para exibir ou n„o uma div
+* Usado para exibir ou n√£o uma div
 */
 
 var aba = null;
 
-function fechaDivId(div)
-{
+function fechaDivId(div){
     document.getElementById(div).style.display = "none";
     aba=false;
 }
 
-function abreDivId(div)
-{ 
+function abreDivId(div){ 
     document.getElementById(div).style.display = "block";
     aba=true;
 }
 
-function abreFechaDivId(div)
-{
-    if(aba)
-    {
+function abreFechaDivId(div){
+    if(aba){
         fechaDivId(div);
-    }
-    else
-    {
+    }else{
         abreDivId(div);
     }
 }
 
 /*
-* FunÁıes para requisiÁ„o ajax de uma p·gina
+* Fun√ß√µes para requisi√ß√£o ajax de uma p√°gina
 *
-* Usado para carregar uma p·gina dentro de uma div
+* Usado para carregar uma p√°gina dentro de uma div
 */
 
-function createXMLHttpRequest() 
-{
+function createXMLHttpRequest(){
     var xmlHttp = false;
-    if(window.ActiveXObject)
-    {
+    if(window.ActiveXObject){
         xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    else if(window.XMLHttpRequest)
-    {
+    }else if(window.XMLHttpRequest){
         xmlHttp = new XMLHttpRequest();
+    }else{
+        alert("Atualize seu navegador! O navegador atual n√£o suporta AJAX!");
     }
-    else
-    {
-        alert("Atualize seu navegador! O navegador atual n„o suporta AJAX!");
-    }
-
     return xmlHttp;
 }
 
-function ajaxLoadPage(url, div, parametro)
-{
+function ajaxLoadPage(url, div, parametro){
     var xmlhttp = createXMLHttpRequest();
     
-    if(parametro != null)
+    if(parametro != null){
         url = url + parametro;
+    }
     
     xmlhttp.open("GET", url, true);
-    xmlhttp.onreadystatechange = function() 
-    {
-        if(xmlhttp.readyState == 4)
+    xmlhttp.onreadystatechange = function(){
+        if(xmlhttp.readyState == 4){
             document.getElementById(div).innerHTML = xmlhttp.responseText;
+        }
     }
     xmlhttp.send(null);
 }
 
 /*
-* funÁ„o de confirmaÁ„o do bot„o gr·fico
+* fun√ß√£o de confirma√ß√£o do bot√£o gr√°fico
 *
-* Usado na rotina do bot„o gr·fico quando o parametro de confirmaÁ„o est· true
+* Usado na rotina do bot√£o gr√°fico quando o parametro de confirma√ß√£o est√° true
 */
 
 function confirma(chamador,msg){
 	var opcao = confirm(msg);
-	if (opcao)
-		window.location = chamador;
+	if (opcao){
+            window.location = chamador;
+        }
 }
 
 /* 
- * FunÁ„o de contagem regressiva
+ * Fun√ß√£o de contagem regressiva
  * 
- * Usada na rotina de serviÁos para exibir o tempo restante para o refresh da p·gina
+ * Usada na rotina de servi√ßos para exibir o tempo restante para o refresh da p√°gina
  * 
  * @param   valor number  o valor a ser decrementado
  * @param   saida string  o id da div a ser impressa o velor
@@ -111,7 +99,7 @@ function contagemRegressiva(valor,saida){
 /*
 * Java Script da rotina de preenchimento de um input
 * 
-* Usado na rotina de notÌcias para transferir o nome do arquivo da figura para o campo do formul·rio
+* Usado na rotina de not√≠cias para transferir o nome do arquivo da figura para o campo do formul√°rio
 */
 
 function fillInput(input,valor){
@@ -119,13 +107,12 @@ function fillInput(input,valor){
  }
  
  /*
-* funÁ„o loadPage 
+* fun√ß√£o loadPage 
 * 
-* Carrega uma p·gina por jscript
+* Carrega uma p√°gina por jscript
 */
 
- function loadPage(url, target, parametros)
-{
+ function loadPage(url, target, parametros){
     if (parametros == undefined)
         parametros = 'menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600';
     
@@ -136,15 +123,13 @@ function fillInput(input,valor){
 }
 
 /*
-* funÁ„o pularCampo 
+* fun√ß√£o pularCampo 
 * 
-* habilita a passagem de um campo par outro quando o total de caracteres È atingido
+* habilita a passagem de um campo par outro quando o total de caracteres √© atingido
 */
 
-function pularCampo(origem, tamanho, destino)
-{
-    if(document.getElementById(origem).value.length == tamanho-1)
-    {
+function pularCampo(origem, tamanho, destino){
+    if(document.getElementById(origem).value.length == tamanho-1){
         document.getElementById(destino).focus();
     }
 }

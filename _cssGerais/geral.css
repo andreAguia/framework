@@ -122,7 +122,14 @@ table.tabelaPadrao td.zebrado0{
 
 div#divHistorico{
      display: none;
- }
+}
+ 
+div#paginacao{
+    position: absolute;
+    top: 80px;
+    left: 30%;
+    width: 40%;
+}
 
  /*******************************************
   * Classe Post it 
@@ -162,8 +169,7 @@ fieldset legend{
 /*******************************************
  * Rotina de Documentação
  *******************************************/
-
-pre {
+pre{
   width: 100%;
   max-height: 400px;
   color: #444;

@@ -282,7 +282,7 @@ class Form
                     }
 
                     if($fieldsetTag <> 'fecha'){
-                        echo '<div class="div'.$contador.'">';
+                        echo '<div class="div'.$contador.'">';  // para quando se quer ocultar um grupo de campos
 
                         echo '<fieldset class="fieldset">';
                         echo '<legend>'.$fieldsetTag.'</legend>';            

@@ -412,11 +412,11 @@ class Input
                 break;
 
            case "numero":
-                $mascara = str_repeat('9', $this->size);
+                #$mascara = str_repeat('9', $this->size);
                 echo ' size="'.$this->size.'"';
-                echo ' type="text"';
+                echo ' type="number"';
                 echo ' value="'.$this->valor.'"';                
-                echo ' onkeypress="mask(this, \''.$mascara.'\',1,this)';
+                #echo ' onkeypress="mask(this, \''.$mascara.'\',1,this)';
                 
                 # Verifica se está habilitado o pulo para o controle seguinte
                 if (!is_null($this->pularPara))
@@ -424,8 +424,8 @@ class Input
                 else
                     echo '"';
                 
-                echo ' onkeyup="mask(this, \''.$mascara.'\',1,this)" ';
-                echo ' onblur="mask(this, \''.$mascara.'\',1,this)" ';           
+                #echo ' onkeyup="mask(this, \''.$mascara.'\',1,this)" ';
+                #echo ' onblur="mask(this, \''.$mascara.'\',1,this)" ';           
                 echo '/>';
                 break;
             
