@@ -294,7 +294,7 @@ class Modelo
             }
         }
         
-        # Se tiver paginação coloca o número da página no fieldset
+        # Calculos da paginaçao
         $texto = null;
         if($this->paginacao)
         {
@@ -316,7 +316,7 @@ class Modelo
             $itemFinal = $totalRegistros;
 
             # Texto do fieldset
-            $texto = ' - Página: '.str_pad($this->pagina, 3, "0", STR_PAD_LEFT).' de '.str_pad($totalPaginas, 3, "0", STR_PAD_LEFT).' Páginas';
+            $texto = 'Página: '.$this->pagina.' de '.$totalPaginas;
         
             # Acrescenta a sql
             $this->selectLista.=' LIMIT '.$this->paginacaoInicial.','.$this->paginacaoItens;
@@ -429,7 +429,7 @@ class Modelo
 
             # coloca no rodapé a paginação (quando houver)
             if ($this->paginacao)
-                $tabela->set_footTexto($itemInicial.' a '.$itemFinal.' ('.str_pad($totalRegistros, 3, "0", STR_PAD_LEFT).' Registros)');
+                $tabela->set_footTexto($texto.' ('.$itemInicial.' a '.$itemFinal.' de '.$totalRegistros.' Registros)');
 
             # coloca o botão de editar (quando houver)
             if (!is_null($this->editarBotao))
