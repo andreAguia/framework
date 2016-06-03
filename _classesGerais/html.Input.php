@@ -173,13 +173,17 @@ class Input
             case "cep":    
             case "date":
             case "data":
-            case "hora":
-            case "moeda":
+            case "hora":            
             case "submit":
             case "reset":
             case "button":
             case "checkbox":
                 echo '<INPUT';
+                break;
+            case "moeda":
+                echo '<div class="input-group">';
+                echo '<span class="input-group-label">R$</span>';
+                echo '<input class="input-group-field"';
                 break;
             case "hidden":
                 echo '<INPUT';
@@ -440,12 +444,13 @@ class Input
                 echo '/>';
                 break;
 
-            case "moeda": # Não está em uso ainda
+            case "moeda":
                 echo ' size="'.($this->size).'"';
                 echo ' type="text"';
                 echo ' value="'.formataMoeda($this->valor).'"';                
                 echo ' onkeypress="return formatarMoeda(this,\'.\',\',\',event);" ';
-                echo '/>'; 
+                echo '/>';
+                echo '</div>';
                 break;
 
             case "password":

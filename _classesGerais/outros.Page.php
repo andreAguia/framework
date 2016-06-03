@@ -96,13 +96,10 @@ class Page
             echo '<title>'.$this->title.'</title>';
 
         # Java Script da máscara de entrada de dados
-        #echo'<script language="JavaScript" src="'.PASTA_FUNCOES.'mascara.js"></script>';
+        echo'<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'mascara.js"></script>';
 
         # Java Script da máscara de entrada de moeda
-        #echo'<script language="JavaScript" src="'.PASTA_FUNCOES.'mascaraMoeda.js"></script>';
-        
-        # Java Script do calendário Usado na rotina de solicitação de férias
-        #echo'<script language="JavaScript" src="'.PASTA_FUNCOES.'calendario.js"></script>';
+        echo'<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'mascaraMoeda.js"></script>';        
         
         # Java Script de várias funções
         echo'<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'funcoes.java.js"></script>';

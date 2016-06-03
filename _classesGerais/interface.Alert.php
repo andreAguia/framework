@@ -93,20 +93,6 @@ class Alert
         * @syntax $msg->show();
         */    
             
-        # Tamanho das colunas
-        $col1 = 2;
-        $col2 = 12-(2*$col1);
-        
-        # Limita o tamanho do alert
-        $grid = new Grid();
-        
-        # 1º coluna
-        $grid->abreColuna($col1);
-        $grid->fechaColuna();
-        
-        # 2º coluna
-        $grid->abreColuna($col2);
-        
         # Abre o Callout(div)
         if (is_null($this->id)){
             $callout = new Callout($this->tipo);
@@ -125,8 +111,7 @@ class Alert
         #echo '<span aria-hidden="true">&times;</span>';
         #echo '</button>';
         
-        p($this->mensagem,"center");
-        br();
+        p($this->mensagem);
 
         if(!is_null($this->page)){
             $okBotao = new Link("Ok",$this->page);
@@ -136,12 +121,5 @@ class Alert
         }
         
         $callout->fecha();
-        $grid->fechaColuna();
-        
-        # 3º coluna
-        $grid->abreColuna($col1);
-        $grid->fechaColuna();       
-        
-        $grid->fechaGrid();  
     }
 }

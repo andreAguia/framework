@@ -743,7 +743,6 @@ function formataMoeda($valor,$formato = 1)
 {	
     if($formato == 1){
         $moeda = number_format($valor, 2, ',', '.');
-        $moeda = "R$ ".$moeda;
     }else{ 
         $moeda = str_replace(".", "", $valor);
         $moeda = str_replace(",", ".", $moeda); 
@@ -779,6 +778,25 @@ function formataNumLinha($numero){
     $numero = str_repeat(" ",$quantidadeEspaco).$numero;
     
     return $numero;    
+}
+
+###########################################################
+
+/**
+ * @function callout
+ * 
+ * Alternativa a função alert e a classe callout. Exibe um painel com uma mensagem.
+ *
+ * @param $mensagem string null    A mensagem a ser exibida: secondary | primary | success | warning | alert 
+ * @param $tipo     string warning O tipo do callout: número da linha a ser formatada.
+ * 
+ * @syntax callout($mensagem, [$tipo]);
+ */
+
+function callout($mensagem, $tipo = "warning"){    
+    $alert = new Alert($mensagem);
+    $alert->set_tipo($tipo);
+    $alert->show();
 }
 
 ###########################################################

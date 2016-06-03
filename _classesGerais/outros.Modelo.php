@@ -137,9 +137,17 @@ class Modelo
     # Botões extra
     private $botaoListar;      # Array de objetos button para fazer um menu na rotina de listar
     
-    # Rotinas Extras
+    # Rotinas Extras - > rotina extra que aparecerá nas rotinas de listar e editar
     private $rotinaExtra = null;
     private $rotinaExtraParametro = null;
+    
+    # Rotinas Extras Editar - > rotina extra que aparecerá na rotina de editar
+    private $rotinaExtraEditar = null;
+    private $rotinaExtraEditarParametro = null;
+    
+    # Rotinas Extras Listar - > rotina extra que aparecerá na rotina de Lista
+    private $rotinaExtraListar = null;
+    private $rotinaExtraListarParametro = null;
     
     ###########################################################
 
@@ -291,6 +299,24 @@ class Modelo
             }else{
                $nomedafuncao = $this->rotinaExtra;
                $nomedafuncao($this->rotinaExtraParametro); 
+            }
+        }
+        
+        # Rotina Extra Listar
+        if(!is_null($this->rotinaExtraListar)){
+            # Verifica se é array. Mais de uma função
+            if(is_array($this->rotinaExtraListar)){
+                # quantidade de itens
+                $quantidade = count($this->rotinaExtraListar);
+
+                # Percorre o array executando as funções na ordem do array
+                for ($i = 0; $i < $quantidade; $i++) {
+                    $nomedafuncao = $this->rotinaExtraListar[$i];
+                    $nomedafuncao($this->rotinaExtraListarParametro[$i]);
+                }
+            }else{
+               $nomedafuncao = $this->rotinaExtraListar;
+               $nomedafuncao($this->rotinaExtraListarParametro); 
             }
         }
         
@@ -517,6 +543,24 @@ class Modelo
             }else{
                $nomedafuncao = $this->rotinaExtra;
                $nomedafuncao($this->rotinaExtraParametro); 
+            }
+        }
+        
+        # Rotina Extra Editar
+        if(!is_null($this->rotinaExtraEditar)){
+            # Verifica se é array. Mais de uma função
+            if(is_array($this->rotinaExtraEditar)){
+                # quantidade de itens
+                $quantidade = count($this->rotinaExtraEditar);
+
+                # Percorre o array executando as funções na ordem do array
+                for ($i = 0; $i < $quantidade; $i++) {
+                    $nomedafuncao = $this->rotinaExtraEditar[$i];
+                    $nomedafuncao($this->rotinaExtraEditarParametro[$i]);
+                }
+            }else{
+               $nomedafuncao = $this->rotinaExtraEditar;
+               $nomedafuncao($this->rotinaExtraEditarParametro); 
             }
         }
         
