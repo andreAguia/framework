@@ -752,7 +752,7 @@ class Modelo
 
     /**
     * método gravar
-    * M�todo de grava��o
+    * Método de gravação
     * 
     * @param $id                integer   id do registro a ser gravado (se update)
     *                                     se for nulo será insert

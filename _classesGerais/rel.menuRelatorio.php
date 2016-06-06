@@ -53,6 +53,11 @@ class menuRelatorio
         if($this->botaoVoltar <> null)
             botaoVoltar($this->botaoVoltar, 'Voltar','Volta para menu do servidor');
 
+        # Cria um grid para colocar o botão na lateral da tela
+        $grid = new Grid();
+        $grid->abreColuna(9);
+        
+        # Campos
         if(!is_null($this->formCampos))
         {
             # Abre a div		
@@ -91,6 +96,8 @@ class menuRelatorio
                     $controle->set_onChange($campo['onChange']);	 // onChange
                 if (isset($campo['fieldset']))
                     $controle->set_fieldset($campo['fieldset']);    // fieldse interno
+                if (isset($campo['col']))
+                    $controle->set_col($campo['col']);    // col
 
                 # Inlcui o valor padr�o (se tiver)
                 if(isset($campo['padrao']))
@@ -111,17 +118,7 @@ class menuRelatorio
             $formRelatorio->show();
 
             $divRelat->fecha();
-        }
-        
-        # Cria um grid para colocar o botão na lateral da tela
-        $grid = new Grid();
-        $grid->abreColuna(3);
-        
-        $grid->fechaColuna();
-        $grid->abreColuna(3);
-        
-        $grid->fechaColuna();
-        $grid->abreColuna(3);
+        } 
         
         $grid->fechaColuna();
         $grid->abreColuna(3);

@@ -206,13 +206,13 @@ class Relatorio
 
         # Exibe a segunda linha do Título do relatório
         if (!is_null($this->tituloLinha2)){
-            p($this->tituloLinha2,"pRelatorioSubtitulo");
+            p($this->tituloLinha2,"pRelatorioTitulo");
         }
             
 
         # Exibe a terceira linha do Título do relatório
         if (!is_null($this->tituloLinha3)){
-            p($this->tituloLinha3,"pRelatorioSubtitulo");
+            p($this->tituloLinha3,"pRelatorioTitulo");
         }            
 
         # Exibe o subtítulo (se houver))
