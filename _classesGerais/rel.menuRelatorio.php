@@ -86,20 +86,25 @@ class menuRelatorio
                     $controle->set_readonly($campo['readOnly']);	// readonly
                 if (isset($campo['disabled']))
                     $controle->set_disabled($campo['disabled']);	// disabled	
+                if (isset($campo['autofocus']))
+                    $controle->set_autofocus($campo['autofocus']);          // disabled
+                if (isset($campo['placeholder']))
+                    $controle->set_placeholder($campo['placeholder']);	// placeholder (dica dentro do controle)            
                 if (isset($campo['title']))
-                    $controle->set_title($campo['title']);			// title - dica do campo	
-                if (isset($campo['formRowspan']))
-                    $controle->set_formRowspan($campo['formRowspan']);	// rowspan	
-                if (isset($campo['formColspan']))
-                    $controle->set_formColspan($campo['formColspan']);	// colspan	
+                    $controle->set_title($campo['title']);		        // title - dica do campo
+                else
+                    $controle->set_title($campo['label']);
                 if (isset($campo['onChange']))
                     $controle->set_onChange($campo['onChange']);	 // onChange
                 if (isset($campo['fieldset']))
                     $controle->set_fieldset($campo['fieldset']);    // fieldse interno
                 if (isset($campo['col']))
-                    $controle->set_col($campo['col']);    // col
+                    $controle->set_col($campo['col']);                       // Tamanho da coluna
+                else
+                    $controle->set_col($this->CalculaTamanhoColuna($somaPorLinha[$campo['linha']], $sizeFormulario)); # Chama a rotina que transforma o tamanho das coluna para o formato do grid do Foundation
 
-                # Inlcui o valor padr�o (se tiver)
+
+                # Inlcui o valor padrão (se tiver)
                 if(isset($campo['padrao']))
                     $controle->set_valor($campo['padrao']);
 

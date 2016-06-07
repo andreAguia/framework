@@ -426,7 +426,7 @@ class Relatorio
                         }
                         
                         # Exibe o número de registros
-                        if ($this->subTotal){
+                        if (($this->subTotal) AND ($contador > 0)){
                             echo '<tfoot>';
                             echo '<tr><td colspan="'.($tamanhoLinha+1).'" title="Total de itens da tabela">';
                             $this->totalRegistro($subContador);
@@ -563,7 +563,7 @@ class Relatorio
             }
             
             # Exibe o número de registros
-            if ($this->subTotal){
+            if (($this->subTotal) AND ($contador > 0)){
                 echo '<tfoot>';
                 echo '<tr><td colspan="'.($tamanhoLinha+1).'" title="Total de itens da tabela">';
                 $this->totalRegistro($subContador);
@@ -587,7 +587,7 @@ class Relatorio
         echo '</table>';
         
         # Exibe a soma geral quando o somatório estiver habilitado
-        if((!is_null($this->colunaSomatorio)) AND ($contador <> 0))
+        if((!is_null($this->colunaSomatorio)) AND ($contador > 0))
         {
             # Inicia a tabela
             echo '<table class="tabelaRelatorio" border="0"';

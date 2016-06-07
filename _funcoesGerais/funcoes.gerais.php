@@ -793,10 +793,11 @@ function formataNumLinha($numero){
  * @syntax callout($mensagem, [$tipo]);
  */
 
-function callout($mensagem, $tipo = "warning"){    
-    $alert = new Alert($mensagem);
-    $alert->set_tipo($tipo);
-    $alert->show();
+function callout($mensagem, $tipo = "warning"){
+    $callout = new Callout($tipo);
+    $callout->abre();
+        p($mensagem);
+    $callout->fecha();
 }
 
 ###########################################################

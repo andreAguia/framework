@@ -73,10 +73,10 @@ class Page
         echo '<html class="no-js" lang="pt-br">';   # Abre a tag html e informa o idioma (html5)
 
         echo '<head>';
-        echo '<meta charset="utf-8" />';                                      # Código de caractere
+        echo '<meta charset="utf-8">';                                      # Código de caractere
         
         echo '<meta http-equiv="x-ua-compatible" content="ie=edge">';                   # Foundation
-        echo '<meta name="viewport" content="width=device-width, initial-scale=1.0" />';  # Foundation
+        echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';  # Foundation
         
         echo '<meta name="description" content="'.$this->description.'">';  # Descrição da página
         echo '<meta name="keywords" content="'.$this->keywords.'">';        # Palavras chave para motores de busca
@@ -110,9 +110,7 @@ class Page
 
         # Carrega o css
         echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'foundation.css" />';
-        echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'foundation-flex.css" />';
-        echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'foundation-icons.css" />';
-        echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'geral.css" />';
+        #echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'foundation.min.css" />';
         echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'app.css" />';
         echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'impressao.css" media="print"/>';
         
@@ -137,9 +135,11 @@ class Page
     public function terminaPagina()
     {
          # Java Script do Foundation
+        echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'jquery.js"></script>';
+        echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'what-input.js"></script>';
         echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'foundation.js"></script>';
-        echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'jquery.min.js"></script>';
-        echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'what-input.min.js"></script>';        
+        echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'foundation.min.js"></script>'; 
+        echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'app.js"></script>';
 
         echo '</body>';
         echo '<footer id="center">';        
@@ -148,6 +148,5 @@ class Page
 
         ob_end_flush();
     }
-
 }
 ?>

@@ -420,8 +420,10 @@ class Modelo
         # se o resultado for vazio exibe mensagem ao inves de montar a tabela
         if(count($result) == 0){
             br();
-            $p = new Alert('Nenhum item encontrado !!','center');
-            $p->show();
+            $callout = new Callout();
+            $callout->abre();
+                p('Nenhum item encontrado !!','center');
+            $callout->fecha();
         }
         else{
             # Monta a tabela

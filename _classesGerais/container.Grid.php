@@ -7,8 +7,6 @@ class Grid
   * 
   * @author André Águia (Alat) - alataguia@gmail.com
   * 
-  * @var private $center bool FALSE Informa se o grid é centralizado. O grid e não o conteúdo do grid. Aceita os valores: TRUE ou FALSE 
-  * 
   * @note Funciona a partir de uma sequencia de divs de forma similar às antigas estruturações por tabelas  
   * 
   * @example exemplo.grid.php
@@ -27,20 +25,6 @@ class Grid
      */    
     
     	echo "<div class='row'>";
-    }
-    
-###########################################################
-    
-    public function set_center($center = FALSE){
-    /**
-     * Informa se o grid será centralizado
-     * 
-     * @syntax $link->set_center($center);
-     * 
-     * @param $center bool FALSE Informa se o grid é centralizado. O grid e não o conteúdo do grid. Aceita os valores: TRUE ou FALSE 
-     */
-    
-        $this->center = $center;
     }
 
 ###########################################################
@@ -64,24 +48,12 @@ class Grid
             echo 'small-'.$small.' ';
         }
         
-        if($this->center){
-            echo 'small-centered';
-        }
-        
         if(!is_null($medium)){
             echo 'medium-'.$medium.' ';
         }
         
-        if($this->center){
-            echo 'medium-centered';
-        }
-        
         if(!is_null($large)){
             echo 'large-'.$large.' ';
-        }
-        
-        if($this->center){
-            echo 'large-centered';
         }
                
         echo 'columns">';
