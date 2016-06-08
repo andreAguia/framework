@@ -55,6 +55,10 @@ class Relatorio
     private $tituloLinha3 = NULL;
     private $subtitulo = NULL;
     private $tituloTabela = NULL;
+    
+    # Rotinas Extras
+    private $funcaoAntesTitulo = null;
+    private $funcaoAntesTituloParametro = null;
     private $objetoAntesTitulo = NULL;
     private $objetoDepoisTitulo = NULL;
 
@@ -194,9 +198,27 @@ class Relatorio
     
     private function exibeTitulo()
     {
-        # Exibe a mensagem antes do título (se houver))
+        # Objeto antes do título
         if (!is_null($this->objetoAntesTitulo)){
             $this->objetoAntesTitulo->show();
+        }
+        
+        # Função antes do título
+        if(!is_null($this->funcaoAntesTitulo)){
+            # Verifica se é array. Mais de uma função
+            if(is_array($this->funcaoAntesTitulo)){
+                # quantidade de itens
+                $quantidade = count($this->funcaoAntesTitulo);
+
+                # Percorre o array executando as funções na ordem do array
+                for ($i = 0; $i < $quantidade; $i++) {
+                    $nomedafuncao = $this->funcaoAntesTitulo[$i];
+                    $nomedafuncao($this->funcaoAntesTituloParametro[$i]);
+                }
+            }else{
+               $nomedafuncao = $this->funcaoAntesTitulo;
+               $nomedafuncao($this->funcaoAntesTituloParametro); 
+            }
         }
 
         # Exibe o Título do relatório
@@ -240,7 +262,7 @@ class Relatorio
     private function exibeLinhaInterna($tamanhoLinha)
     {
        echo '<tr><td colspan="'.$tamanhoLinha.'">';
-        #echo '<hr>';
+       hr();
        echo '</td></tr>';
     }
             
@@ -656,4 +678,3 @@ class Relatorio
         }
     }
 }
-?>

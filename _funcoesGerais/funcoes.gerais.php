@@ -319,58 +319,23 @@ function get_browserName(){
  * @note Está função deverá der removida pois o sistema já conta o array $mes iniciado na configuração do sistema que já fornece essa informação.
  */
 
-function get_nomeMes($mes){	
-	
-    switch ($mes){
-        case 1:
-            $mm = "Janeiro";
-            break;
+function get_nomeMes($numero){
+    
+# Cria array dos meses
+$mes = array(array("1","Janeiro"),
+         array("2","Fevereiro"),
+         array("3","Março"),
+         array("4","Abril"),
+         array("5","Maio"),
+         array("6","Junho"),
+         array("7","Julho"),
+         array("8","Agosto"),
+         array("9","Setembro"),
+         array("10","Outubro"),
+         array("11","Novembro"),
+         array("12","Dezembro"));
 
-        case 2:
-            $mm = "Fevereiro";
-            break;
-
-        case 3:
-            $mm = "Mar�o";
-            break;	
-
-        case 4:
-            $mm = "Abril";
-            break;
-
-        case 5:
-            $mm = "Maio";
-            break;
-
-        case 6:
-            $mm = "Junho";
-            break;	
-
-        case 7:
-            $mm = "Julho";
-            break;
-
-        case 8:
-            $mm = "Agosto";
-            break;
-
-        case 9:
-            $mm = "Setembro";
-            break;	
-
-        case 10:
-            $mm = "Outubro";
-            break;
-
-        case 11:
-            $mm = "Novembro";
-            break;
-
-        case 12:
-            $mm = "Dezembro";
-            break;	
-    }
-    return $mm;
+    return $mes[$numero-1][1];
 }
 
 ###########################################################

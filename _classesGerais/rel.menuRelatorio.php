@@ -99,10 +99,7 @@ class menuRelatorio
                 if (isset($campo['fieldset']))
                     $controle->set_fieldset($campo['fieldset']);    // fieldse interno
                 if (isset($campo['col']))
-                    $controle->set_col($campo['col']);                       // Tamanho da coluna
-                else
-                    $controle->set_col($this->CalculaTamanhoColuna($somaPorLinha[$campo['linha']], $sizeFormulario)); # Chama a rotina que transforma o tamanho das coluna para o formato do grid do Foundation
-
+                    $controle->set_col($campo['col']);
 
                 # Inlcui o valor padrão (se tiver)
                 if(isset($campo['padrao']))
