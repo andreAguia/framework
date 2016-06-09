@@ -13,18 +13,16 @@ class Grid
   */
 	
 
-    private $center = FALSE;
-    
 ###########################################################
     
-    public function __construct(){
+    public function __construct($align = NULL){
     /**
      * Inicia uma linha de uma grid. Similar a um table e tr juntos.
      * 
      * @syntax $grid = new Grid();     
      */    
     
-    	echo "<div class='row'>";
+    	echo '<div class="row">';
     }
 
 ###########################################################
@@ -35,7 +33,7 @@ class Grid
      * 
      * @note Cada grid tem a capacidade máxima de 12. Cada coluna poderá ter o tamanho entre 1 a 12 de forma que o somatório do tamanho das colunas seja 12. Cada coluna poderá ter um tamanho variável dependendo do tamanho da tela (responsivo) que é determinado pelos parâmetros $small, $medium e $large
      * 
-     * @param $small    string NULL O tamanho da coluna quando a tela for pequena
+     * @param $small string NULL O tamanho da coluna quando a tela for pequena
      * @param $medium   string NULL O tamanho da coluna quando a tela for media
      * @param $large    string NULL O tamanho da coluna quando a tela for grande
      * 
@@ -56,7 +54,8 @@ class Grid
             echo 'large-'.$large.' ';
         }
                
-        echo 'columns">';
+        echo 'columns"';
+        echo ">";
     }
 
 ###########################################################
@@ -67,7 +66,7 @@ class Grid
      * 
      * @syntax $grid->fechaColuna();
      */    
-    
+        
         echo '</div>';
     }
     

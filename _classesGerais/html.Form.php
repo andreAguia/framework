@@ -259,7 +259,7 @@ class Form
                         $fieldsetInterno->fecha();
                     }
 
-                    echo '<div class="div'.$contador.'">'; // duas linha a seguir colocadas depois
+                    echo '<div id="div'.$contador.'">'; // duas linha a seguir colocadas depois
                     
                     echo '<fieldset class="fieldset">';
                     echo '<legend>'.$fieldsetTag.'</legend>';
@@ -282,7 +282,7 @@ class Form
                     }
 
                     if($fieldsetTag <> 'fecha'){
-                        echo '<div class="div'.$contador.'">';  // para quando se quer ocultar um grupo de campos
+                        echo '<div id="div'.$contador.'">';  // para quando se quer ocultar um grupo de campos
 
                         echo '<fieldset class="fieldset">';
                         echo '<legend>'.$fieldsetTag.'</legend>';            

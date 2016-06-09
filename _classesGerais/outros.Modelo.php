@@ -130,9 +130,9 @@ class Modelo
 
     # Parâmetros pra a rotina de Log
     private $matricula = null;		    # matrícula do usuário logado
-    private $listaLog = 'listaLog.php';	# rotina externa para onde o botão levará
-    private $log = true;			    # Se grava ou não o log
-    private $logDescricao = true;		# Define se no log grava a atividade (descrição do que foi gravado)	
+    private $listaLog = 'listaLog.php';     # rotina externa para onde o botão levará
+    private $log = true;		    # Se grava ou não o log
+    private $logDescricao = true;           # Define se no log grava a atividade (descrição do que foi gravado)	
 
     # Botões extra
     private $botaoListar;      # Array de objetos button para fazer um menu na rotina de listar
