@@ -11,6 +11,8 @@ class Callout
      * @var private $id          string NULL      O id para o css
      * @var private $title       string NULL      O Texto para o evento mouseover
      * @var private $botaoFechar bool   FALSE     Se terá ou não botão de fechar
+     * @var private $botaoOk     string NULL      Se preenchido com o arquivo, um botão de Ok surgirá e ao ser pressionado carregará a página indicada
+     * @var private $onClick     string NULL      Se preenchido com o arquivo, um botão de Ok surgirá e ao ser pressionado executará o jscript indicado
      * 
      * @note Um painel onde a cor é definida pelo tipo do callout: secondary | primary | success | warning | alert
      * 
@@ -21,6 +23,8 @@ class Callout
     private $title = NULL;
     private $id = NULL;
     private $botaoFechar = FALSE;
+    private $botaoOk = NULL;
+    private $onClick = NULL;
 
 ###########################################################
 
@@ -68,6 +72,22 @@ class Callout
 
 ###########################################################
 
+    public function set_botaoOk($botaoOk = NULL,$onClick = NULL){
+    /**
+     * Informa se terá um botão de OK e qual página irá ser carregada após ser clicado
+     * 
+     * @syntax $callout->set_botaoOk($botaoOk,[$onClick]);
+     * 
+     * @param $botaoOk string NULL a página a ser carregada
+     * @param $onclick string NULL rotina em jscript a ser executada
+     */
+    
+        $this->botaoOk = $botaoOk;
+        $this->onClick = $onClick;
+    }
+
+###########################################################
+
 
     public function abre(){	
     /**
@@ -102,7 +122,18 @@ class Callout
      * 
      * @syntax $callout->fecha();
      */
-    
+        
+         if (!is_null($this->botaoOk)){
+            $link = new Button("OK",$this->botaoOk);
+            $link->show();
+        }
+        
+        if (!is_null($this->onClick)){
+            $link = new Button("OK");
+            $link->set_onClick($this->onClick);
+            $link->show();
+        }
+        
         echo '</div>';
     }
 }
