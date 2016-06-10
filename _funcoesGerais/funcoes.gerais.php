@@ -752,8 +752,8 @@ function formataNumLinha($numero){
  * 
  * Alternativa a função alert e a classe callout. Exibe um painel com uma mensagem.
  *
- * @param $mensagem string null    A mensagem a ser exibida: secondary | primary | success | warning | alert 
- * @param $tipo     string warning O tipo do callout: número da linha a ser formatada.
+ * @param $mensagem string null    A mensagem a ser exibida
+ * @param $tipo     string warning O tipo do callout: secondary | primary | success | warning | alert 
  * 
  * @syntax callout($mensagem, [$tipo]);
  */
@@ -763,6 +763,46 @@ function callout($mensagem, $tipo = "warning"){
     $callout->abre();
         p($mensagem);
     $callout->fecha();
+}
+
+###########################################################
+
+/**
+ * @function label
+ * 
+ * Cria uma mensagem com fundo colorido. Funcionalidade label do Foundation
+ *
+ * @param $mensagem string null    A mensagem a ser exibida: 
+ * @param $tipo     string warning O tipo: secondary | primary | success | warning | alert 
+ * 
+ * @syntax callout($mensagem, [$tipo]);
+ */
+
+function label($mensagem, $tipo = "warning", $id = null){
+    echo '<span class="'.$tipo.' label">';
+    p($mensagem,$id);
+    echo '</span>';
+}
+
+###########################################################
+
+/**
+ * @function badge
+ * 
+ * semelhante a função label mas com bordas arredondadas
+ *
+ * @note badge é indicado quando se quer chamar atenção para um ou dis caracteres no máximo. Os caracteres ficam dentro de um círculo. Com palavras o efeito não é bom.
+ * 
+ * @param $mensagem string null    A mensagem a ser exibida
+ * @param $tipo     string warning O tipo: secondary | primary | success | warning | alert 
+ * 
+ * @syntax callout($mensagem, [$tipo]);
+ */
+
+function badge($mensagem, $tipo = "warning", $id = null){
+    echo '<span class="'.$tipo.' badge">';
+    p($mensagem,$id);
+    echo '</span>';
 }
 
 ###########################################################

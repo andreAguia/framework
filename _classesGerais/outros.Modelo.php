@@ -23,13 +23,7 @@ class Modelo
     # botão de voltar do formulário
     private $voltarForm = '?';
     private $botaoVoltarForm = true;
-
-    # botão salvar
-    private $botaoSalvarGrafico = false;        # determina se o botão de salvar será gráfico(disquete) ou comum
-    private $botaoSalvarImagem = 'salvar.jpg';  # determina a imagem do botão
-    private $botaoSalvarLabel = 'Salvar';       # determina o label do botão Salvar
-    private $botaoSalvarId = null;              # id do botão salvar para o css
-
+    
     # botões Incluir e editar do list
     private $botaoIncluir = true;
     private $botaoEditar = true;    # esse flag é necessário pois o link de editar e incluir s�o os mesmos
@@ -664,8 +658,6 @@ class Modelo
             else
                 $sizeFormulario = $campo['size'];  // se for text area tira do array
 
-            
-
             # Inlcui o valor se for para editar (id <> null)
             if(($id <> null)and($this->selectEdita <> null))
             {
@@ -714,37 +706,22 @@ class Modelo
         if(($id <> null)and($this->selectEdita <> null))
         set_session('oldValue'.$this->tabela,$oldValue);
         
-        if($this->botaoSalvarGrafico)
-        {
-            # Botão salvar
-            $botao = new BotaoGrafico($this->botaoSalvarId);
-            $botao->set_label($this->botaoSalvarLabel);
-            $botao->set_title($this->botaoSalvarLabel);
-            $botao->set_image(PASTA_FIGURAS.$this->botaoSalvarImagem,35,35);
-            $botao->set_tipo('submit');
-            $botao->set_formName('form'.$this->id);            
-            $botao->set_tabindex($contador+1);
-            $botao->set_accessKey('S');
-            $botao->show();
-        }
-        else
-        {
-            # submit
-            $controle = new Input('submit','submit');
-            $controle->set_valor(' Salvar ');
-            $controle->set_size(20);
-            $controle->set_tabindex($contador+1);
-            $controle->set_accessKey('S');
-            $controle->set_fieldset('fecha');
-            $form->add_item($controle);
-        }
-        
+        # submit
+        $controle = new Input('submit','submit');
+        $controle->set_valor(' Salvar ');
+        $controle->set_size(20);
+        $controle->set_tabindex($contador+1);
+        $controle->set_accessKey('S');
+        $controle->set_fieldset('fecha');
+        $form->add_item($controle);
+                
         # Exibe o form 
         echo '<div class="callout secondary">';
-            $form->show();
-            p("Campos marcados com * são obrigatórios","right","size-12");
+            $form->show();            
         echo '</div>';
-        
+        echo '<div id="right">';
+        label("Campos marcados com * são obrigatórios","warning","f12");
+        echo '</div>';
         $grid->fechaColuna();
         $grid->fechaGrid();
         

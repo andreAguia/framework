@@ -11,13 +11,12 @@
  * 
  * Verifica se uma data é válida ou não retorna true or false
  * 
- * @param 	$data 		string	-> a data a ser validada
+ * @param $data string -> a data a ser validada
  */
 function validaData($data){
-    if(Valida::vazio($data))
-            return false;
-    else 
-    {	
+    if(Valida::vazio($data)){        
+        return false;
+    }else{	
         $dt1 = explode('/',$data);					// Separa a data
         return checkdate((int)$dt1[1],(int)$dt1[0],(int)$dt1[2]);	// valida
     }

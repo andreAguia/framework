@@ -25,7 +25,7 @@
 }
 
 /*******************************************
- * Muda fonte de um <p> pelo id
+ * Muda o tamanho da fonte de um <p> pelo id
  *******************************************/
  
  p#f10{
@@ -53,6 +53,38 @@
  }
  
  p#f20{
+     font-size: 20px;   
+ }
+ 
+ /*******************************************
+ * Muda o tamanho da fonte de um <p> pela classe
+ *******************************************/
+ 
+ p.f10{
+     font-size: 10px;   
+ }
+ 
+ p.f11{
+     font-size: 11px;   
+ }
+ 
+ p.f12{
+     font-size: 12px;   
+ }
+ 
+ p.f14{
+     font-size: 14px;   
+ }
+ 
+ p.f16{
+     font-size: 16px;   
+ }
+ 
+ p.f18{
+     font-size: 18px;   
+ }
+ 
+ p.f20{
      font-size: 20px;   
  }
  
@@ -251,6 +283,20 @@ form.formPadrao label{
      color: #fff;
      font-size: 14px;     
      font-weight: normal;
+}
+
+/*******************************************
+ * Função label
+ *******************************************/
+span.label p{
+    margin: 0px;
+}
+
+/*******************************************
+ * Função badge
+ *******************************************/
+span.badge p{
+    margin: 0px;
 }
 
 /**** Outros  ****/

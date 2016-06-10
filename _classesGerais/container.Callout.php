@@ -129,9 +129,12 @@ class Callout
         }
         
         if (!is_null($this->onClick)){
-            $link = new Button("OK");
-            $link->set_onClick($this->onClick);
-            $link->show();
+            $div = new Div("right");
+            $div->abre();
+                $link = new Button("OK");
+                $link->set_onClick($this->onClick);
+                $link->show();
+            $div->fecha();
         }
         
         echo '</div>';
