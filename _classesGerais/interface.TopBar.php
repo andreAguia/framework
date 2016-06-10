@@ -129,10 +129,8 @@ class TopBar
         echo '</div>';
 
         # Inicia o container da direita
-        echo '<div class="top-bar-right">';
-
-        echo '<ul class="menu">';        
-
+        echo '<div class="top-bar">';
+        echo '<ul class="menu">';
         
         if (!empty($this->link)){
             # verifica se tem link do lado direito
@@ -148,14 +146,12 @@ class TopBar
             }
         }
         
-
         # Exibe campo de pesquisa
-        if (!is_null($this->controleLabel)){            
-        
-        if($this->controleValor == '')
-            $placeholder = $this->controleLabel;
-        else
-            $placeholder = $this->controleValor;
+        if (!is_null($this->controleLabel)){
+            if($this->controleValor == '')
+                $placeholder = $this->controleLabel;
+            else
+                $placeholder = $this->controleValor;
 
             echo '<form method="POST" action="?fase=listar">';
             echo '<li><input size="50" type="search" placeholder="'.$placeholder.'" name="parametro" autofocus></li>';
