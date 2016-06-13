@@ -6,25 +6,18 @@
  
  ###########################################################
 
+function post($postName,$default=NULL){
 /**
- * @function post
- * 
  * Retorna o valor de um post
  * 
  * @syntax post($postName,$default);
  * 
+ * @note Teste de nota
+ * 
  * @param $postName string null Nome do post a ser lido.
  * @param $default  string null Valor retornado caso seja NULL.
- * 
- * @codeInicio * 
- * <?php
- * 
- * $default = "teste" ;
- * post("telerfone",$default);   
- * @codeFim
+ *  
  */
-
-function post($postName,$default=NULL){
 
     if(isset($_POST[$postName]))
         $value = $_POST[$postName];
@@ -36,9 +29,8 @@ function post($postName,$default=NULL){
 
 ###########################################################
 
+function get($getName,$default=NULL){
 /**
- * @function get
- * 
  * Retorna o valor de um get
  * 
  * @syntax get($getName,$default);
@@ -46,8 +38,6 @@ function post($postName,$default=NULL){
  * @param $getName string null Nome do get a ser lido.
  * @param $default string null Valor retornado caso seja NULL.
  */
-
-function get($getName,$default=NULL){
 
     if(isset($_GET[$getName]))
         $value = $_GET[$getName];
@@ -59,9 +49,8 @@ function get($getName,$default=NULL){
 
 ###########################################################
 
+function loadPage($url,$target=null,$parametros='menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600'){
 /**
- * @function loadPage
- * 
  * Chama outra página PHP
  * 
  * @syntax loadPage($url,$target,$parametros);
@@ -74,9 +63,7 @@ function get($getName,$default=NULL){
  * 
  * @note O valor padrão do parâmetro: parametro é: 'menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600'
  */
-
-function loadPage($url,$target=null,$parametros='menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600'){
-
+    
     if (is_null($target)){
         echo '<meta http-equiv="refresh" content="0; URL='.$url.'">';
     }
@@ -87,9 +74,8 @@ function loadPage($url,$target=null,$parametros='menubar=no,scrollbars=yes,locat
 
 ###########################################################
 
+function ajaxLoadPage($url=null,$div=null){
 /**
- * @function ajaxLoadPage
- * 
  * Abre um outra página php dentro de uma div sem faze reload da página inteira. Somente a div é atualizada.
  *  
  * @syntax ajaxLoadPage($url,$div);
@@ -98,15 +84,13 @@ function loadPage($url,$target=null,$parametros='menubar=no,scrollbars=yes,locat
  * @param $div string null O id da div onde a página será aberta.
  */
 
-function ajaxLoadPage($url=null,$div=null){
     echo "<script>ajaxloadPage('$url','$div','');</script>";	
 }
 
 ###########################################################
 
+function set_session($nome=null,$valor=NULL){
 /**
- * @function set_session
- * 
  * Escreve um valor em uma variável de sessão para ser usada em outras páginas sem a necessidade de repassá-la com post ou get.
  * 
  * @syntax set_session($nome,$valor);
@@ -117,15 +101,13 @@ function ajaxLoadPage($url=null,$div=null){
  * @param $valor string null O valor a ser inserido.
  */
 
-function set_session($nome=null,$valor=NULL){
     $_SESSION[$nome] = $valor;
 }
 
 ###########################################################
 
+function get_session($nome,$padrao=NULL){
 /**
- * @function get_session
- * 
  * Retorna uma string com o conteúdo da variável de sessao.
  * 
  * @syntax get_session($nome,$padrao);
@@ -136,7 +118,6 @@ function set_session($nome=null,$valor=NULL){
  * @param $padrao string O valor retornado caso seja NULL
  */
 
-function get_session($nome,$padrao=NULL){
     if(isset($_SESSION[$nome]))
         $valor = $_SESSION[$nome];
     else  
@@ -147,20 +128,18 @@ function get_session($nome,$padrao=NULL){
 
 ###########################################################
 
-/**
- * @function date_to_bd
- * 
- * Transforma uma data do formato brasileiro DD/MM/AAAA para o formato americano AAAA/MM/DD.
- * 
- * @syntax date_to_bd($data,$separador);
- * 
- * @note Muito utilizado para adaptar as data ao formato de gravação do banco de dados.
- * 
- * @param $data      date   null A data a ser transformada
- * @param $separador string /    O separador da data
- */
-
 function date_to_bd($data,$separador = '/'){
+   /**
+    * Transforma uma data do formato brasileiro DD/MM/AAAA para o formato americano AAAA/MM/DD.
+    * 
+    * @syntax date_to_bd($data,$separador);
+    * 
+    * @note Muito utilizado para adaptar as data ao formato de gravação do banco de dados.
+    * 
+    * @param $data      date   null A data a ser transformada
+    * @param $separador string /    O separador da data
+    */
+    
     if ((is_null($data)) or ($data == ''))
         return false;
     else{
@@ -172,9 +151,9 @@ function date_to_bd($data,$separador = '/'){
 
 ###########################################################
 
+function date_to_php($data,$separador = '-'){
+    
 /**
- * @function date_to_php
- * 
  * Transforma uma data do formato americano AAAA/MM/DD para o formato brasileiro DD/MM/AAAA.
  * 
  * @syntax date_to_php($data,$separador);
@@ -185,7 +164,7 @@ function date_to_bd($data,$separador = '/'){
  * @param $separador string -    O separador da data
  */
  
-function date_to_php($data,$separador = '-'){
+
     if((is_null($data)) or ($data == ""))
         return null;
     else{	
@@ -197,9 +176,9 @@ function date_to_php($data,$separador = '-'){
 
 ###########################################################
 
+function datetime_to_php($data,$separadorData = '-',$separadorHora = ':')
+{
 /**
- * @function datetime_to_php
- * 
  * Transforma uma data com hora do formato americano AAAA/MM/DD para o formato brasileiro DD/MM/AAAA.
  * 
  * @syntax datetime_to_php($data,$separadorData,$separadorHora);
@@ -211,8 +190,6 @@ function date_to_php($data,$separador = '-'){
  * @param $separadorHora string :    O separador da hora
  */
 
-function datetime_to_php($data,$separadorData = '-',$separadorHora = ':')
-{
     if(is_null($data) or ($data == ""))
         return null;
     else {	
@@ -227,9 +204,8 @@ function datetime_to_php($data,$separadorData = '-',$separadorHora = ':')
 
 ###########################################################
 
-/**
- * @function back
- * 
+function back($numPaginas){	
+    /**
  * Retorna um número de páginas a partir do histórico do browser.
  * 
  * @syntax back($numPaginas);
@@ -238,21 +214,20 @@ function datetime_to_php($data,$separadorData = '-',$separadorHora = ':')
  *   
  * @param $numPaginas integer null O número de páginas para voltar.
  */
-function back($numPaginas){	
+
     echo '<script>javascript:history.go(-'.$numPaginas.');</script>';
 }
 
 ###########################################################
 
+function get_so(){
 /**
- * @function get_so
- * 
  * Retorna string com o nome do Sistema Operacional.
  * 
  * @syntax get_so();
  */
 
-function get_so(){
+
     if(strstr($_SERVER['HTTP_USER_AGENT'], 'Linux'))
         return 'Linux';
     elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'Windows'))
@@ -263,15 +238,14 @@ function get_so(){
 
 ###########################################################
 
-/**
- * @function get_browser
- * 
+function get_browserName(){
+    /**
  * Retorna array com informações sobre o browser: [0] nome do btrowser [1] versão.
  * 
  * @syntax get_browser();
  */
 
-function get_browserName(){
+
     $var = $_SERVER['HTTP_USER_AGENT'];
     $info['browser'] = "OTHER";
     $info['version'] = "";
@@ -305,9 +279,9 @@ function get_browserName(){
 }
 	
 ###########################################################
+
+function get_nomeMes($numero){
 /**
- * @function get_nomeMes
- * 
  * Informa o nome do mês cujo número foi informado
  * 
  * @syntax get_nomeMes($mes);
@@ -319,7 +293,7 @@ function get_browserName(){
  * @note Está função deverá der removida pois o sistema já conta o array $mes iniciado na configuração do sistema que já fornece essa informação.
  */
 
-function get_nomeMes($numero){
+
     
 # Cria array dos meses
 $mes = array(array("1","Janeiro"),
@@ -340,9 +314,8 @@ $mes = array(array("1","Janeiro"),
 
 ###########################################################
 
+function retiraAspas($texto){	
 /**
- * @function retiraAspas
- * 
  * Retorna a string sem as aspas simples e duplas.
  * 
  * @syntax retiraAspas($texto);
@@ -356,7 +329,7 @@ $mes = array(array("1","Janeiro"),
  * @param $texto string null O texto a ser trabalhado.
  */
 
-function retiraAspas($texto){	
+
     $parametro = str_replace("'",'"',$texto);
     $parametro = str_replace('"','',$parametro);
     return $parametro;
@@ -364,9 +337,8 @@ function retiraAspas($texto){
 
 ###########################################################
 
+function get_bold($texto,$ressaltado){	
 /**
- * @function get_bold
- * 
  * Retorna uma string com uma parte em bold.
  * 
  * @syntax get_bold($texto, $ressaltado);
@@ -377,7 +349,7 @@ function retiraAspas($texto){
  * @param $ressaltado string null O texto menor a ser ressaltado em bold.
  */
 
-function get_bold($texto,$ressaltado){	
+
     # retira os acentos
     $ressaltado = strtoupper(retiraAcento($ressaltado));
     $texto = retiraAcento($texto);
@@ -399,9 +371,8 @@ function get_bold($texto,$ressaltado){
 
 ###########################################################
 
+function retiraAcento($texto){
 /**
- * @function retiraAcento
- * 
  * Retorna uma string sem acentos. Troca as letras acentuadas pela mesma letra sem acento.
  * 
  * @syntax retiraAcento($texto);
@@ -411,7 +382,7 @@ function get_bold($texto,$ressaltado){
  * @param $texto string O texto acentuado.
  */
 
-function retiraAcento($texto){
+
     $array1 = array(   "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�"
                      , "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�" );
     $array2 = array(   "a", "a", "a", "a", "a", "e", "e", "e", "e", "i", "i", "i", "i", "o", "o", "o", "o", "o", "u", "u", "u", "u", "c"
@@ -422,9 +393,8 @@ function retiraAcento($texto){
 
 ###########################################################
 
+function soNumeros($texto){    
 /**
- * @function soNumeros
- * 
  * Retorna somente os números de uma string
  * 
  * @syntax soNumeros($texto);
@@ -434,7 +404,7 @@ function retiraAcento($texto){
  * @param $texto string null O string a ser trabalhado.
  */
 
-function soNumeros($texto){    
+
     if(is_null($texto))
         return null;
     else
@@ -443,9 +413,8 @@ function soNumeros($texto){
 
 ###########################################################
 
+function abreDiv($nome){
 /**
- * @function abreDiv
- * 
  * Torna visível uma div que está oculta (abre).
  * 
  * @syntax abreDiv($nome);
@@ -453,15 +422,15 @@ function soNumeros($texto){
  * @param $nome string null O id da div a ser exibida.
  */
 
-function abreDiv($nome){	
+
     echo '<script>abreDiv("'.$nome.'");</script>';
+
 }
 
 ###########################################################
 
+function extenso($valor = 0, $maiusculas = false){ 
 /**
- * @function extenso
- * 
  * Retorna escrito por extenso o número fornecido.
  * 
  * @syntax extenso($valor, $maiusculas);
@@ -470,7 +439,7 @@ function abreDiv($nome){
  * @param $maiusculas boolean Quando true as primeiras letras são maiúsculas.
  */
 
-function extenso($valor = 0, $maiusculas = false){ 
+
     $singular = array("centavo", "real", "mil", "milh�o", "bilh�o", "trilh�o", "quatrilh�o"); 
     $plural = array("centavos", "reais", "mil", "milh�es", "bilh�es", "trilh�es","quatrilh�es"); 
 
@@ -524,9 +493,8 @@ function extenso($valor = 0, $maiusculas = false){
 
 ###########################################################
 
+function br($linhas = 1){	
 /**
- * @function br
- * 
  * Gera tantos saltos de linha quanto for o nímero fornecido.
  * 
  * @syntax br($linhas);
@@ -536,24 +504,23 @@ function extenso($valor = 0, $maiusculas = false){
  * @note Essa função apenas executa um echo <br/> quantas vezes for $linhas.
  */
 
-function br($linhas = 1){	
+
     for ($i = 1; $i <= $linhas; $i++){
         echo '<br />';
     }
 }
 
 ###########################################################
+function anti_injection($str){
 /**
- * @function anti_injection
- * 
- * Função que retira comandos sql de uma string
+  * Função que retira comandos sql de uma string
  *
  * @param $str string null a string a ser tratada
  * 
  * @note Ainda não está sendo usada. Verificar seu uso em todo get e post.
  */
 
-function anti_injection($str){
+
     // remove palavras que contenham sintaxe sql
     $sql = preg_replace(sql_regcase("/(from|select|insert|delete|where|drop table|show tables|#|\*|--|%|\\\\)/"),"",$str);
     return trim(strip_tags(addslashes($str)));
@@ -561,9 +528,8 @@ function anti_injection($str){
 
 ###########################################################
 
+function hr(){	
 /**
- * @function hr
- * 
  * Insere uma linha
  * 
  * @syntax hr();
@@ -571,15 +537,14 @@ function anti_injection($str){
  * @note Essa função apenas executa um echo <hr>
  */
 
-function hr(){	
+
     echo '<hr>';   
 }
 
 ###########################################################
 
+function alert($mensagem){   
 /** 
- * @function alert
- * 
  * Abre uma janela popup com uma mensagem de alert
  * 
  * @syntax alert($mensagem);
@@ -587,15 +552,14 @@ function hr(){
  * @param $mensagem string null A mensagem a ser exibida
  */
 
-function alert($mensagem){   
+
     echo '<script>alert("'.$mensagem.'");</script>'; 
 }
 
 ###########################################################
 
+function p($mensagem = NULL,$id = NULL,$class = NULL){
 /** 
- * @function p
- * 
  * Simula o comando P do HTLM
  * 
  * @syntax p($mensagem, [$id], [$class]);
@@ -605,7 +569,7 @@ function alert($mensagem){
  * @param $class    string NULL A classe para o css.
  */
 
-function p($mensagem = NULL,$id = NULL,$class = NULL){
+
     echo '<p';
 
     # id
@@ -625,16 +589,14 @@ function p($mensagem = NULL,$id = NULL,$class = NULL){
 
 ###########################################################
 
+function titulo($titulo = null,$title = null){
 /**
- * @function titulo
- * 
  * Exibe um título 
  * 
  * @param $titulo string NULL O Título a ser exibido
  */
 
-function titulo($titulo = null,$title = null){
-    
+   
     if(is_null($title))
         $title = $titulo;
 
@@ -648,16 +610,15 @@ function titulo($titulo = null,$title = null){
 
 ###########################################################
     
+function botaoVoltar($url,$label = 'Voltar',$title = 'Volta para a página anterior'){
 /**
- * funçao botaoVoltar
  * Rotina que exibe o botão de Voltar
  * 
  * @param   string	$url	url do botão
  * @param   string  $title  title para o botão
  */
 
-function botaoVoltar($url,$label = 'Voltar',$title = 'Volta para a página anterior')
-{
+
     # Botão voltar
     $grid = new Grid();
     $grid->abreColuna(12);
@@ -678,14 +639,13 @@ function botaoVoltar($url,$label = 'Voltar',$title = 'Volta para a página anter
 
 ###########################################################  
       
-function mensagemAguarde()
+function mensagemAguarde(){
 
 /**
 * função mensagemAguarde
 * Exibe uma mensagem de Aguarde
 * 
-*/    
-{
+*/
     # Exibe uma mensagem de aguarde
     $div = new Div("center");
     $div->abre();
@@ -696,6 +656,8 @@ function mensagemAguarde()
 }
 
 ###########################################################
+function formataMoeda($valor,$formato = 1)
+{
 /**
  * Função que retorna um valor no formato especificado
  * 
@@ -704,8 +666,7 @@ function mensagemAguarde()
  *                                       2 - formato americano para gravação no bd
  */
 
-function formataMoeda($valor,$formato = 1)
-{	
+	
     if($formato == 1){
         $moeda = number_format($valor, 2, ',', '.');
     }else{ 
@@ -718,9 +679,8 @@ function formataMoeda($valor,$formato = 1)
 
 ###########################################################
 
+function formataNumLinha($numero){
 /**
- * @function formataNumLinha
- * 
  * Formata o número da linha do código na rotina de exibição do código da documentação.
  *
  * @param $numero string null O número da linha a ser formatada.
@@ -728,7 +688,7 @@ function formataMoeda($valor,$formato = 1)
  * @syntax formataNumLinha($numero);
  */
 
-function formataNumLinha($numero){
+
     
     # Tamanho do numero
     $tamanho = strlen($numero);
@@ -747,9 +707,8 @@ function formataNumLinha($numero){
 
 ###########################################################
 
+function callout($mensagem, $tipo = "warning"){
 /**
- * @function callout
- * 
  * Alternativa a função alert e a classe callout. Exibe um painel com uma mensagem.
  *
  * @param $mensagem string null    A mensagem a ser exibida
@@ -758,7 +717,7 @@ function formataNumLinha($numero){
  * @syntax callout($mensagem, [$tipo]);
  */
 
-function callout($mensagem, $tipo = "warning"){
+
     $callout = new Callout($tipo);
     $callout->abre();
         p($mensagem);
@@ -767,9 +726,8 @@ function callout($mensagem, $tipo = "warning"){
 
 ###########################################################
 
+function label($mensagem, $tipo = "warning", $id = null){
 /**
- * @function label
- * 
  * Cria uma mensagem com fundo colorido. Funcionalidade label do Foundation
  *
  * @param $mensagem string null    A mensagem a ser exibida: 
@@ -778,7 +736,7 @@ function callout($mensagem, $tipo = "warning"){
  * @syntax callout($mensagem, [$tipo]);
  */
 
-function label($mensagem, $tipo = "warning", $id = null){
+
     echo '<span class="'.$tipo.' label">';
     p($mensagem,$id);
     echo '</span>';
@@ -786,9 +744,8 @@ function label($mensagem, $tipo = "warning", $id = null){
 
 ###########################################################
 
+function badge($mensagem, $tipo = "warning", $id = null){
 /**
- * @function badge
- * 
  * semelhante a função label mas com bordas arredondadas
  *
  * @note badge é indicado quando se quer chamar atenção para um ou dis caracteres no máximo. Os caracteres ficam dentro de um círculo. Com palavras o efeito não é bom.
@@ -799,7 +756,7 @@ function label($mensagem, $tipo = "warning", $id = null){
  * @syntax callout($mensagem, [$tipo]);
  */
 
-function badge($mensagem, $tipo = "warning", $id = null){
+
     echo '<span class="'.$tipo.' badge">';
     p($mensagem,$id);
     echo '</span>';

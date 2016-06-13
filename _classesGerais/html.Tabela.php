@@ -82,7 +82,7 @@ class Tabela
      *  
      * @param 	$nome	string	-> nome da classe da tabela para o css
      */
-    public function __construct($id = null,$class = 'tabelaPadrao')
+    public function __construct($id = null,$class = 'tabelaPadrao table-scroll')
     {
         $this->class = $class;
         $this->id = $id;
@@ -241,6 +241,7 @@ class Tabela
         }
                
         # Início da Tabela
+        echo '<div class="table-scroll">';
         echo '<table class="'.$this->class.'"';        
         
         # id
@@ -645,6 +646,7 @@ class Tabela
         
         echo '</tfoot>';
         echo '</table>';
+        echo '</div>';
     }
 }
 ?>

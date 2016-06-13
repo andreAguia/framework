@@ -120,12 +120,11 @@ class TopBar
                         echo '</li>';
                     }
                     $contadorEsquerdo++;
-                   
                 }
-                echo '</ul>';
             }
         }
         
+        echo '</ul>';
         echo '</div>';
 
         # Inicia o container da direita
@@ -154,12 +153,13 @@ class TopBar
                 $placeholder = $this->controleValor;
 
             echo '<form method="POST" action="?fase=listar">';
-            echo '<li><input size="50" type="search" placeholder="'.$placeholder.'" name="parametro" autofocus></li>';
+            echo '<li>';
+            echo '<input size="50" type="search" placeholder="'.$placeholder.'" name="parametro" autofocus>';
             #echo '<li><button type="button" class="small button">'.$this->controleLabel.'</button></li>';
+            echo '</li>';
             echo '</form>';
+            
         }
-        
-        echo '</ul>';
         echo '</ul>';
 
         echo '</div>';
