@@ -123,7 +123,7 @@ class Modelo
     private $campos = null;
 
     # Parâmetros pra a rotina de Log
-    private $matricula = null;		    # matrícula do usuário logado
+    private $idusuario = null;		    # Usuário logado
     private $listaLog = 'listaLog.php';     # rotina externa para onde o botão levará
     private $log = true;		    # Se grava ou não o log
     private $logDescricao = true;           # Define se no log grava a atividade (descrição do que foi gravado)	
@@ -512,7 +512,7 @@ class Modelo
         }
 
         # Botão histórico
-        if ($this->matricula == GOD){
+        if (Verifica::acesso($this->idusuario,1)){
             if ((!is_null($id)) AND ($this->botaoHistorico)){
                 $linkBotaoHistorico = new Button("Histórico");
                 $linkBotaoHistorico->set_title('Exibe o histórico');
