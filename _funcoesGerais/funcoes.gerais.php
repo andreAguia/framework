@@ -347,6 +347,7 @@ function get_bold($texto,$ressaltado){
  * 
  * @param $texto      string null O texto principal de onde se tirará o ressaltado.
  * @param $ressaltado string null O texto menor a ser ressaltado em bold.
+ * secondary | primary | success | warning | alert 
  */
 
 
@@ -360,10 +361,10 @@ function get_bold($texto,$ressaltado){
     
     # Faz o texto ressaltado ficar em bold no texto
     if($numPalavras == 1)
-        $texto = str_ireplace($ressaltado,'<B>'.$ressaltado.'</B>',$texto);
+        $texto = str_ireplace($ressaltado,'<span id="ressaltado" class="warning label">'.$ressaltado.'</span>',$texto);
     else{
         foreach ($palavras as $termos){
-            $texto = str_ireplace($termos,'<B>'.$termos.'</B>',$texto);             
+            $texto = str_ireplace($termos,'<span id="ressaltado" class="warning label">'.$termos.'</span>',$texto);             
         }
     }
     return $texto;

@@ -110,7 +110,7 @@ table.tabelaPadrao{
     border-collapse: separate;
     border-spacing: 2pt;
     border-color: #007095;    
-    font-size: 12px;
+    font-size: 13px;
     width: 100%;
 }
 
@@ -118,6 +118,7 @@ table.tabelaPadrao th{
     background-color: #02548b;
     text-align: center;
     font-weight: normal;
+    font-size: 13px;
     color: #fff;    
 }
 
@@ -147,6 +148,11 @@ table.tabelaPadrao td.zebrado1{
 table.tabelaPadrao td.zebrado0{
    background-color: #D7D7D7;
    padding: 2px;
+ }
+ 
+ span#ressaltado{
+     padding: 0px;
+     padding-top: 2px;
  }
   
 /*******************************************
