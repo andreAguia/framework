@@ -194,7 +194,7 @@ fieldset legend{
 .top-bar,
 .top-bar ul {
   background-color: #01558b;
-  font-size: 14px;
+  font-size: 14px; 
   color: #FFF;
   padding: 2px;
   }
@@ -220,7 +220,6 @@ form.formPadrao label{
 #container > div {
   display: flex;
 }
-
 
 #flex-start {
   justify-content: flex-start;
