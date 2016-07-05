@@ -924,7 +924,7 @@ class Modelo
                         $intra = new Intra();
                         $pessoal = new Pessoal();
                         $permissao = $intra->get_permissao($id);
-                        $atividade = 'Incluiu a permissão de: '.$permissao[1].' para a matrícula '.$permissao[0].' ('.$pessoal->get_nome($permissao[0]).')';
+                        $atividade = 'Incluiu a permissão de: '.$permissao[1].' para o usuario '.$permissao[0].' ('.$pessoal->get_nome($permissao[0]).')';
                     }					
                 }
                 else
@@ -937,7 +937,7 @@ class Modelo
                 
                 # grava se tiver atividades para serem gravadas
                 if (!is_null($atividade))
-                    $Objetolog->registraLog($this->matricula,$data,$atividade,$this->tabela,$id,$tipoLog);
+                    $Objetolog->registraLog($this->idUsuario,$data,$atividade,$this->tabela,$id,$tipoLog);
             }
 
             mensagemAguarde();
@@ -1016,7 +1016,7 @@ class Modelo
             {
                 $Objetolog = new Intra();
                 $data = date("Y-m-d H:i:s");
-                $Objetolog->registraLog($this->matricula,$data,$atividade,$this->tabela,$id);	
+                $Objetolog->registraLog($this->idUsuario,$data,$atividade,$this->tabela,$id);	
             }
         }
         loadPage ($this->linkListar);
