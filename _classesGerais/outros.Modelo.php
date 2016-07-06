@@ -26,8 +26,8 @@ class Modelo
     
     # botões Incluir e editar do list
     private $botaoIncluir = true;
-    private $botaoEditar = true;    # esse flag é necessário pois o link de editar e incluir s�o os mesmos
-                                    # e pode-se querer ter o bot�o incluir mas não o botão editar.   
+    private $botaoEditar = true;    # esse flag é necessário pois o link de editar e incluir são os mesmos
+                                    # e pode-se querer ter o botão incluir mas não o botão editar.   
 
     # botão de histórico
     private $botaoHistorico = true;

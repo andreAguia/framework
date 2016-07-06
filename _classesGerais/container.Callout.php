@@ -128,6 +128,12 @@ class Callout
             $link->show();
         }
         
+        if (is_null($this->botaoFechar)){
+            echo '<button class="close-button" aria-label="Dismiss alert" type="button" data-close>';
+            echo '<span aria-hidden="true">&times;</span>';
+            echo '</button>';
+        }
+        
         if (!is_null($this->onClick)){
             $div = new Div("right");
             $div->abre();
