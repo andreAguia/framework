@@ -671,10 +671,10 @@ class Relatorio
             if (!is_null($this->logDetalhe))
                 $atividade .= ' - '.$this->logDetalhe;
             
-            $matricula = get_session('intranet');
+            $idUsuario = get_session('idUsuario');  
             $Objetolog = new Intra();
             $data = date("Y-m-d H:i:s");
-            $Objetolog->registraLog($matricula,$data,$atividade,null,null,2);
+            $Objetolog->registraLog($idUsuario,$data,$atividade,null,null,4);
         }
     }
 }

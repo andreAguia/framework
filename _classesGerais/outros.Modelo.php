@@ -56,6 +56,7 @@ class Modelo
     private $label = null;
     private $width = null;	
     private $align = null;
+    private $zebrado = true;
     
     private $link = null;               # array de objetos link correspondente a coluna em que ele aparece
     private $linkCondicional = null;    # array com o valor que a coluna deve ter para ter o link
@@ -124,6 +125,7 @@ class Modelo
 
     # Parâmetros pra a rotina de Log
     private $idUsuario = null;		    # Usuário logado
+    private $idServidorPesquisado = null;   # Usado para informar qual servidor teve os dados alterados. Usado no sistema de pessoal 
     private $listaLog = 'listaLog.php';     # rotina externa para onde o botão levará
     private $log = true;		    # Se grava ou não o log
     private $logDescricao = true;           # Define se no log grava a atividade (descrição do que foi gravado)	
@@ -431,7 +433,8 @@ class Modelo
             $tabela->set_linkCondicionalOperador($this->linkCondicionalOperador);
             $tabela->set_funcao($this->function);
             $tabela->set_classe($this->classe);
-            $tabela->set_metodo($this->metodo);            
+            $tabela->set_metodo($this->metodo);   
+            $tabela->set_zebrado($this->zebrado);   
 
             # acrescenta uma coluna com um número de ordenação
             if ($this->numeroOrdem){
@@ -905,6 +908,9 @@ class Modelo
             # peça isso
             if(!$this->logDescricao)
                 $alteracoes = null;
+            
+            # Inicia o tipo de log
+            $tipoLog = null;
 
             # Grava no log a atividade
             if($this->log)
@@ -917,6 +923,7 @@ class Modelo
                 {
                     $atividade = 'Incluiu: '.$alteracoes;
                     $id = $objeto->get_lastId();
+                    $tipoLog = 1;
 
                     # Pega os dados caso seja tbpermissao
                     if($this->tabela == 'tbpermissao')
@@ -926,18 +933,14 @@ class Modelo
                         $permissao = $intra->get_permissao($id);
                         $atividade = 'Incluiu a permissão de: '.$permissao[1].' para o usuario '.$permissao[0].' ('.$pessoal->get_nome($permissao[0]).')';
                     }					
-                }
-                else
+                }else{
                     $atividade .= 'Alterou: '.$alteracoes;
-
-                # Verifica o tipo de log
-                $tipoLog = 0;
-                if(($this->classBd == 'Pessoal') OR ($this->classBd == 'pessoal'))
-                    $tipoLog = 3;
+                    $tipoLog = 2;
+                }
                 
                 # grava se tiver atividades para serem gravadas
                 if (!is_null($atividade))
-                    $Objetolog->registraLog($this->idUsuario,$data,$atividade,$this->tabela,$id,$tipoLog);
+                    $Objetolog->registraLog($this->idUsuario,$data,$atividade,$this->tabela,$id,$tipoLog,$this->idServidorPesquisado);
             }
 
             mensagemAguarde();
@@ -990,7 +993,7 @@ class Modelo
             {
                 $Objetolog = new Intra();
                 $data = date("Y-m-d H:i:s");
-                $Objetolog->registraLog($this->idUsuario,$data,$atividade,$this->tabela,$id);	
+                $Objetolog->registraLog($this->idUsuario,$data,$atividade,$this->tabela,$id,3,$this->idServidorPesquisado);
             }
         }
         loadPage ($this->linkListar);
