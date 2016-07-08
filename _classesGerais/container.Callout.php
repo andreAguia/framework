@@ -123,24 +123,32 @@ class Callout
      * @syntax $callout->fecha();
      */
         
-         if (!is_null($this->botaoOk)){
-            $link = new Button("OK",$this->botaoOk);
-            $link->show();
-        }
-        
+        # Exibe o botão de fechar        
         if (is_null($this->botaoFechar)){
             echo '<button class="close-button" aria-label="Dismiss alert" type="button" data-close>';
             echo '<span aria-hidden="true">&times;</span>';
             echo '</button>';
         }
         
+        # Exibe o botão para carregar uma página
+        if (!is_null($this->botaoOk)){ 
+            $grid = new Grid("center");
+            $grid->abreColuna(3);
+                $link = new Button("OK",$this->botaoOk);
+                $link->show();
+            $grid->fechaColuna();
+            $grid->fechaGrid();
+        }
+        
+        # Exibe o botão quando fot jscript
         if (!is_null($this->onClick)){
-            $div = new Div("right");
-            $div->abre();
+            $grid = new Grid("center");
+            $grid->abreColuna(3);
                 $link = new Button("OK");
                 $link->set_onClick($this->onClick);
                 $link->show();
-            $div->fecha();
+            $grid->fechaColuna();
+            $grid->fechaGrid();
         }
         
         echo '</div>';

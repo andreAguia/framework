@@ -796,7 +796,7 @@ class Modelo
             {
                 if ($valida->vazio($campoValor[$contador]))
                 {
-                    $msgErro.='O campo '.$campo['label'].' é obrigatório!<br />';
+                    $msgErro.='O campo '.$campo['label'].' é obrigatório!\n';
                     $erro = 1;
                 }
             }
@@ -816,7 +816,7 @@ class Modelo
                 if ($duplicatas > 0)
                 {
                     $erro = 1;
-                    $msgErro .= 'Já existe um registro com esse valor de '.$campo['label'].'!<br />';
+                    $msgErro .= 'Já existe um registro com esse valor de '.$campo['label'].'!\n';
                 }
             }
 
@@ -827,7 +827,7 @@ class Modelo
                 {
                     if (!$valida->cpf(soNumeros($campoValor[$contador])))
                     {		
-                        $msgErro.='CPF Inválido!<br />';
+                        $msgErro.='CPF Inválido!\n';
                         $erro = 1;
                     }
                 }
@@ -850,7 +850,7 @@ class Modelo
                 # verifica a validade da data
                 if (!validaData($campoValor[$contador]))
                 {
-                    $msgErro.='A '.$campo['label'].' não é válida!<br />';
+                    $msgErro.='A '.$campo['label'].' não é válida!\n';
                     $erro = 1;
                 }
                 else
@@ -882,7 +882,7 @@ class Modelo
         # Verifica se teve alterações em um editar       
         if (is_null($alteracoes))
         {
-            $msgErro.='Você não alterou nada! Vai gravar o que ?!<br />';
+            $msgErro.='Você não alterou nada! Vai gravar o que ?!\n';
             $erro = 1;
         }
 
@@ -944,35 +944,9 @@ class Modelo
 
             loadPage($this->linkListar);
             return true;
-        }
-        else
-        {
-            br(2);
-            # Limita o tamanho da tela
-            $grid = new Grid();
-            $grid->abreColuna(3);
-            
-            $grid->fechaColuna();
-            $grid->abreColuna(6);
-            
-            # painel usando o callout
-            $painel2 = new Callout();
-            $painel2->set_botaoOk(NULL,"history.go(-1)");
-            $painel2->abre();
-                p($msgErro);
-            $painel2->fecha();
-            
-            $grid->fechaColuna();
-            $grid->abreColuna(3);
-            
-            $grid->fechaColuna();
-            $grid->fechaGrid();
-            
-            # método antigo com jscript
-            #alert($msgErro);
-            #back(1);
-            
-            return false;
+        }else{
+            alert($msgErro);
+            back(1);
         }		   	
     }
 

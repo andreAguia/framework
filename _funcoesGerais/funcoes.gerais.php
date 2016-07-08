@@ -749,7 +749,7 @@ function badge($mensagem, $tipo = "warning", $id = null){
 /**
  * semelhante a função label mas com bordas arredondadas
  *
- * @note badge é indicado quando se quer chamar atenção para um ou dis caracteres no máximo. Os caracteres ficam dentro de um círculo. Com palavras o efeito não é bom.
+ * @note badge é indicado quando se quer chamar atenção para um ou dois caracteres no máximo. Os caracteres ficam dentro de um círculo. Com palavras o efeito não é bom.
  * 
  * @param $mensagem string null    A mensagem a ser exibida
  * @param $tipo     string warning O tipo: secondary | primary | success | warning | alert 
