@@ -379,7 +379,7 @@ class Relatorio
         $zebra = 1;		// contador do efeito zebrado no relatório
         $contador = 0;		// contador de registros
         $subContador = 0;	// contador de registros para grupo (zera a cada grupo)
-        $agrupa = '';      	// guarda o nome do grupo
+        $agrupa = '#';      	// guarda o nome do grupo
         $grupo = null;		// flag de agrupamento ou não
         $somatorio = 0;         // somatorio de colunas se houver
         $subSomatorio = 0;      // somatório do grupo
@@ -437,7 +437,7 @@ class Relatorio
                 # Verifica se tem agrupamento
                 if (!is_null($this->numGrupo)){
                     # Verifica se o valor na coluna de agrupamento é diferente da flag agrupa
-                    if (($agrupa <> $row[$this->numGrupo]) && ($agrupa <> "") && ($grupo)){
+                    if (($agrupa <> $row[$this->numGrupo]) && ($agrupa <> "#") && ($grupo)){
                         # linha
                         $this->exibeLinha($tamanhoLinha);
                         

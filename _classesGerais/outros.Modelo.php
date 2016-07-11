@@ -813,7 +813,9 @@ class Modelo
                     $result = $duplicidade->select("SELECT $this->idCampo FROM $this->tabela WHERE $campoNome[$contador] = '$campoValor[$contador]' AND $this->idCampo <> $id");
                 else
                     $result = $duplicidade->select("SELECT $this->idCampo FROM $this->tabela WHERE $campoNome[$contador] = '$campoValor[$contador]'"); // quando insert
-
+                 
+                echo "SELECT $this->idCampo FROM $this->tabela WHERE $campoNome[$contador] = '$campoValor[$contador]' AND $this->idCampo <> $id";br();
+                
                 $duplicatas = count($result);
 
                 if ($duplicatas > 0)
