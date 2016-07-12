@@ -713,12 +713,10 @@ function callout($mensagem, $tipo = "warning"){
  * Alternativa a função alert e a classe callout. Exibe um painel com uma mensagem.
  *
  * @param $mensagem string null    A mensagem a ser exibida
- * @param $tipo     string warning O tipo do callout: secondary | primary | success | warning | alert 
+ * @param $tipo     string warning O tipo do callout: secondary | primary | success | warning | alert
  * 
  * @syntax callout($mensagem, [$tipo]);
  */
-
-
     $callout = new Callout($tipo);
     $callout->abre();
         p($mensagem);
