@@ -149,4 +149,3 @@ class Page
         ob_end_flush();
     }
 }
-?>
