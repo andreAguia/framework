@@ -917,7 +917,7 @@ class Modelo
             # Grava no log a atividade
             if($this->log)
             {
-                $Objetolog = new Intra();
+                $intra = new Intra();
                 $data = date("Y-m-d H:i:s");
 
                 # preenche atividade de inclusão
@@ -930,10 +930,9 @@ class Modelo
                     # Pega os dados caso seja tbpermissao
                     if($this->tabela == 'tbpermissao')
                     {
-                        $intra = new Intra();
                         $pessoal = new Pessoal();
-                        $permissao = $intra->get_permissao($id);
-                        $atividade = 'Incluiu a permissão de: '.$permissao[1].' para o usuario '.$permissao[0].' ('.$pessoal->get_nome($permissao[0]).')';
+                        $permissao = $intra->get_permissao($id);             
+                        $atividade = "Incluiu a permissao $id ($permissao) ao servidor $this->idServidorPesquisado (".$pessoal->get_nome($this->idServidorPesquisado).")";
                     }					
                 }else{
                     $atividade .= 'Alterou: '.$alteracoes;
@@ -942,7 +941,7 @@ class Modelo
                 
                 # grava se tiver atividades para serem gravadas
                 if (!is_null($atividade))
-                    $Objetolog->registraLog($this->idUsuario,$data,$atividade,$this->tabela,$id,$tipoLog,$this->idServidorPesquisado);
+                    $intra->registraLog($this->idUsuario,$data,$atividade,$this->tabela,$id,$tipoLog,$this->idServidorPesquisado);
             }
 
             mensagemAguarde();
@@ -966,22 +965,16 @@ class Modelo
     
     public function excluir($id)
     {	
+        $intra = new Intra();
+        $data = date("Y-m-d H:i:s");
+        
         # Pega os dados caso seja tbpermissao
         if($this->tabela == 'tbpermissao')
         {
-            $intra = new Intra();
             $pessoal = new Pessoal();
-            $permissao = $intra->get_permissao($id);
-            $atividade = 'Exclui a permissao de: '.$permissao[1].' da matrícula '.$permissao[0].' ('.$pessoal->get_nome($permissao[0]).')';
-        }
-        elseif($this->tabela == 'tbmovimento')
-        {
-            $intra = new Intra();
-            $movimento = $intra->get_movimento($id);
-            $atividade = 'Excluiu o movimento '.$id.' da OS '.$movimento[1].' escrito pelo Técnico/Solicitante '.$movimento[0].' em '.datetime_to_php($movimento[2]);
-        }
-        else
-        {
+            $permissao = $intra->get_permissao($id);             
+            $atividade = "Exclui a permissao $id ($permissao) do servidor $this->idServidorPesquisado (".$pessoal->get_nome($this->idServidorPesquisado).")";
+        }else{
             $atividade = 'Excluiu';
         }
 
@@ -991,11 +984,8 @@ class Modelo
         $objeto->set_idCampo($this->idCampo);	# o nome do campo id
         if($objeto->excluir($id));
         {		
-            if($this->log)
-            {
-                $Objetolog = new Intra();
-                $data = date("Y-m-d H:i:s");
-                $Objetolog->registraLog($this->idUsuario,$data,$atividade,$this->tabela,$id,3,$this->idServidorPesquisado);
+            if($this->log){
+                $intra->registraLog($this->idUsuario,$data,$atividade,$this->tabela,$id,3,$this->idServidorPesquisado);
             }
         }
         loadPage ($this->linkListar);
