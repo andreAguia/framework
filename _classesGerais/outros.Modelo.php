@@ -94,10 +94,11 @@ class Modelo
     private $excluirBotao = null;
 
     # Parâmetros da paginação da listagem
-    private $paginacao = false;			# Flag que indica se ter� ou n�o pagina��o na lista
-    private $paginacaoItens = 5;		# Quantidade de registros por p�gina
-    private $paginacaoInicial = 0;		# 
+    private $paginacao = false;			# Flag que indica se terá ou não paginação na lista
+    private $paginacaoItens = 15;		# Quantidade de registros por página. 
+    private $paginacaoInicial = 0;		# A paginação inicial
     private $pagina = 1;			# Página atual
+    private $quantidadeMaxLinks = 10;           # Quantidade Máximo de links de paginação a ser exibido na página
     
     # Valores antes da atualização
     private $oldValue = null;
@@ -316,14 +317,14 @@ class Modelo
             }
         }
         
+        # Pega a quantidade de registros antes da paginação
+        $result = $objeto->select($this->selectLista);
+        $totalRegistros = count($result);
+                
         # Calculos da paginaçao
         $texto = null;
         if($this->paginacao)
         {
-            # Pega a quantidade de registros antes da paginação
-            $result = $objeto->select($this->selectLista);
-            $totalRegistros = count($result);
-
             # Calcula o total de páginas
             $totalPaginas = ceil($totalRegistros/$this->paginacaoItens);
 
@@ -368,7 +369,7 @@ class Modelo
         if($this->paginacao){
             # Começa os botões de navegação
             $div = new Div("paginacao");
-            $div->abre();
+            $div->abre();            
             echo'<ul class="pagination text-center" role="navigation" aria-label="Pagination">';
 
             # Botão Página Anterior
@@ -384,7 +385,41 @@ class Modelo
                     echo '<li class="current"><span class="show-for-sr">Página Atual</span> '.$pag.'</li>';
                 }else{
                     $link = $this->paginacaoItens * ($pag-1);
-                    echo '<li><a href="?paginacao='.$link.'" aria-label="Pagina '.$pag.'">'.$pag.'</a></li>';
+                
+                    if($totalPaginas > $this->quantidadeMaxLinks){
+                        switch ($pag) {
+                            case 1:
+                            case 2:
+                            case 3:     
+                                echo '<li><a href="?paginacao='.$link.'" aria-label="Pagina '.$pag.'">'.$pag.'</a></li>';
+                                break;
+                            case 4:
+                                if($this->pagina == 3){
+                                    echo '<li><a href="?paginacao='.$link.'" aria-label="Pagina '.$pag.'">'.$pag.'</a></li>';  
+                                }else{
+                                    echo '<li>...<li>';
+                                }
+                                break;
+                            case $this->pagina-1:
+                            case $this->pagina+1:    
+                                echo '<li><a href="?paginacao='.$link.'" aria-label="Pagina '.$pag.'">'.$pag.'</a><li>';
+                                break;
+                            case $totalPaginas-3:
+                                if($this->pagina == $this->pagina-4){
+                                    echo '<li><a href="?paginacao='.$link.'" aria-label="Pagina '.$pag.'">'.$pag.'</a></li>';  
+                                }else{
+                                    echo '<li>...<li>';
+                                }
+                                break;
+                            case $totalPaginas-2:
+                            case $totalPaginas-1:
+                            case $totalPaginas:
+                                echo '<li><a href="?paginacao='.$link.'" aria-label="Pagina '.$pag.'">'.$pag.'</a></li>';
+                                break;
+                        }                                
+                    }else{
+                        echo '<li><a href="?paginacao='.$link.'" aria-label="Pagina '.$pag.'">'.$pag.'</a></li>';
+                    }
                 }
             }
 
