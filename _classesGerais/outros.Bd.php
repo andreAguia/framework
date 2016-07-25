@@ -85,7 +85,7 @@ class Bd
                 $this->conn = new PDO("pgsql:dbname={$this->name};user={$this->user}; password={$this->pass};host=$this->host");
                 break;
             case 'mysql':
-                $this->conn = new PDO("mysql:host={$this->host};port=3306;dbname={$this->name}", $this->user, $this->pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+                $this->conn = new PDO("mysql:host={$this->host};port=3306;dbname={$this->name};charset=UTF8", $this->user, $this->pass);
                 break;
             case 'sqlite':
                 $this->conn = new PDO("sqlite:{$this->name}");
