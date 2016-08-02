@@ -249,17 +249,13 @@ class Form
     	foreach ($this->item as $objeto1){   
             # pega o texto do fieldset (se tiver)
             $fieldsetTag = $objeto1->get_fieldset();
-
+            
             if ($contador == 0){
                 $linhaAtual = $objeto1->get_linha();
                 
                 # fieldset interna
                 if(!is_null($fieldsetTag)){
-                    if($fieldsetAberto){
-                        $fieldsetInterno->fecha();
-                    }
-
-                    echo '<div id="div'.$contador.'">'; // duas linha a seguir colocadas depois
+                    echo '<div id="div'.$contador.'">'; // Essa div somente é valida par quando se quer ocu
                     
                     echo '<fieldset class="fieldset">';
                     echo '<legend>'.$fieldsetTag.'</legend>';

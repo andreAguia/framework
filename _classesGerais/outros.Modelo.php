@@ -849,7 +849,7 @@ class Modelo
                 else
                     $result = $duplicidade->select("SELECT $this->idCampo FROM $this->tabela WHERE $campoNome[$contador] = '$campoValor[$contador]'"); // quando insert
                  
-                echo "SELECT $this->idCampo FROM $this->tabela WHERE $campoNome[$contador] = '$campoValor[$contador]' AND $this->idCampo <> $id";br();
+                #echo "SELECT $this->idCampo FROM $this->tabela WHERE $campoNome[$contador] = '$campoValor[$contador]' AND $this->idCampo <> $id";br();
                 
                 $duplicatas = count($result);
 
@@ -1054,13 +1054,13 @@ class Modelo
         echo '<div class="callout" id="divHistorico">';
 
         $select = 'SELECT tblog.data,
-                          tblog.matricula,
-                          tbpessoa.nome,
+                          grh.tbpessoa.nome,
                           tblog.atividade,
                           tblog.idValor
-                     FROM intra.tblog 
-                LEFT JOIN pessoal.tbfuncionario ON intra.tblog.matricula = pessoal.tbfuncionario.matricula
-                LEFT JOIN pessoal.tbpessoa ON pessoal.tbfuncionario.idpessoa = pessoal.tbpessoa.idpessoa 
+                     FROM tblog 
+                     JOIN tbusuario ON(tblog.idUsuario = tbusuario.idUsuario)
+                     JOIN grh.tbservidor ON(tbusuario.idServidor = grh.tbservidor.idServidor)
+                     JOIN grh.tbpessoa ON (grh.tbservidor.idPessoa = grh.tbpessoa.idPessoa)
                     WHERE tblog.tabela="'.$this->tabela.'"
                       AND tblog.idValor='.$id.' 
                  ORDER BY tblog.data desc';
@@ -1071,10 +1071,10 @@ class Modelo
         $contadorHistorico = $intra->count($select); 
 
         # Parametros da tabela
-        $label = array("Data","Matrícula","Nome","Atividade","id");
-        $align = array("center","center","center","left");
-        $width = array(13,10,22,50,5);
-        $funcao = array ("datetime_to_php","dv");
+        $label = array("Data","Nome","Atividade","id");
+        $align = array("center","center","left");
+        $width = array(13,22,50,5);
+        $funcao = array ("datetime_to_php");
 
         # Monta a tabela
         $tabela = new Tabela();

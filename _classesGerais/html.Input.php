@@ -49,6 +49,7 @@ class Input
     # do form
     private $linha = false;     // informa a linha do controle
     private $fieldset = null;   // cria um fieldset dentro do form
+    private $fieldsetColunas = null;   // colunas do fieldset
     private $align = null;      // alinha o input
 
     ###########################################################
@@ -221,7 +222,7 @@ class Input
         # placeholder
         if(!is_null($this->placeholder))            
             echo ' placeholder="'.$this->placeholder.'"';
-
+        
         # onChange	
         if(!is_null($this->onChange))
             echo ' onchange="'.$this->onChange.'"';
@@ -346,10 +347,10 @@ class Input
                     echo ' value="'.$this->valor.'"'; 
 
                     # Verifica se está habilitado o pulo para o controle seguinte
-                    if (!is_null($this->pularPara))
+                    if (!is_null($this->pularPara)){
                        echo '; pularCampo(\''.$this->nome.'\','.$this->size.',\''.$this->pularPara.'\')"';
-                    else
-                        echo '"';       
+                    }
+                    
                     echo '/>';
                 }
                 else
