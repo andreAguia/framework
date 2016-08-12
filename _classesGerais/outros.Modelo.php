@@ -374,9 +374,9 @@ class Modelo
 
             # Botão Página Anterior
             if($this->pagina == 1){
-                echo '<li class="pagination-previous disabled">Anterior<span class="show-for-sr">page</span></li>';
+                echo '<li class="pagination-previous disabled"><span class="show-for-sr">page</span></li>';
             }else{
-                echo '<li class="pagination-previous"><a href="?paginacao='.$anterior.'" aria-label="Página anterior">Anterior</a></li>';
+                echo '<li class="pagination-previous"><a href="?paginacao='.$anterior.'" aria-label="Página anterior"></a></li>';
             }
 
             # Links para a página
@@ -389,12 +389,11 @@ class Modelo
                     if($totalPaginas > $this->quantidadeMaxLinks){
                         switch ($pag) {
                             case 1:
-                            case 2:
-                            case 3:     
+                            case 2:    
                                 echo '<li><a href="?paginacao='.$link.'" aria-label="Pagina '.$pag.'">'.$pag.'</a></li>';
                                 break;
-                            case 4:
-                                if($this->pagina == 3){
+                            case 3:
+                                if($this->pagina == 2){
                                     echo '<li><a href="?paginacao='.$link.'" aria-label="Pagina '.$pag.'">'.$pag.'</a></li>';  
                                 }else{
                                     echo '<li>...<li>';
@@ -404,14 +403,13 @@ class Modelo
                             case $this->pagina+1:    
                                 echo '<li><a href="?paginacao='.$link.'" aria-label="Pagina '.$pag.'">'.$pag.'</a><li>';
                                 break;
-                            case $totalPaginas-3:
+                            case $totalPaginas-2:
                                 if($this->pagina == $this->pagina-4){
                                     echo '<li><a href="?paginacao='.$link.'" aria-label="Pagina '.$pag.'">'.$pag.'</a></li>';  
                                 }else{
                                     echo '<li>...<li>';
                                 }
                                 break;
-                            case $totalPaginas-2:
                             case $totalPaginas-1:
                             case $totalPaginas:
                                 echo '<li><a href="?paginacao='.$link.'" aria-label="Pagina '.$pag.'">'.$pag.'</a></li>';
@@ -425,9 +423,9 @@ class Modelo
 
             # Botão Próxima Página
             if($this->pagina < $totalPaginas){
-                echo '<li class="pagination-next"><a href="?paginacao='.$proximo.'" aria-label="Próxima página">Próximo <span class="show-for-sr">page</span></a></li>';
+                echo '<li class="pagination-next"><a href="?paginacao='.$proximo.'" aria-label="Próxima página"><span class="show-for-sr">page</span></a></li>';
             }else{
-                echo '<li class="pagination-next disabled">Próximo <span class="show-for-sr">page</span></li>';
+                echo '<li class="pagination-next disabled"><span class="show-for-sr">page</span></li>';
             }
             echo '</ul>';
             $div->fecha();
@@ -444,7 +442,7 @@ class Modelo
         
         $top->show();
             
-        # Pega a quantidade de registros
+        # Pega a lista em definitivo
         $result = $objeto->select($this->selectLista);
         #echo $this->selectLista;
 

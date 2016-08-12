@@ -593,9 +593,9 @@ class Tabela
                             {
                                 if((!in_array($a,$colunasImagem)) and ($contadorRow == 0))
                                 {
-                                    if((!is_null($this->textoRessaltado)) AND ($this->textoRessaltado <> ""))
+                                    if((!is_null($this->textoRessaltado)) AND ($this->textoRessaltado <> "") AND ($a <> $colunaEdita))
                                     {
-                                        $row[$a] = get_bold($row[$a],$this->textoRessaltado);
+                                        #$row[$a] = get_bold($row[$a],$this->textoRessaltado);
                                         echo $row[$a];
                                     }
                                     else
@@ -608,7 +608,9 @@ class Tabela
                     }
                     elseif((!is_null($this->textoRessaltado)) AND ($this->textoRessaltado <> "")) # Verifica se tem negrito
                     {
-                        $row[$a] = get_bold($row[$a],$this->textoRessaltado);
+                        if($a <> $colunaEdita){
+                            $row[$a] = get_bold($row[$a],$this->textoRessaltado);
+                        }
                         echo $row[$a];
                     }
                      else

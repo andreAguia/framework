@@ -361,10 +361,10 @@ function get_bold($texto,$ressaltado){
     
     # Faz o texto ressaltado ficar em bold no texto
     if($numPalavras == 1)
-        $texto = str_ireplace($ressaltado,'<span id="ressaltado" class="warning label">'.$ressaltado.'</span>',$texto);
+        $texto = str_ireplace($ressaltado,"<span id='ressaltado' class='warning label'>$ressaltado</span>",$texto);
     else{
         foreach ($palavras as $termos){
-            $texto = str_ireplace($termos,'<span id="ressaltado" class="warning label">'.$termos.'</span>',$texto);             
+            $texto = str_ireplace($termos,"<span id='ressaltado' class='warning label'>$termos</span>",$texto);             
         }
     }
     return $texto;
