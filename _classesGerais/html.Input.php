@@ -341,8 +341,7 @@ class Input
 
             case "date":
             case "data":
-                if(HTML5)
-                {
+                if(HTML5){
                     echo ' type="date"';
                     echo ' value="'.$this->valor.'"'; 
 
@@ -352,9 +351,7 @@ class Input
                     }
                     
                     echo '/>';
-                }
-                else
-                {   # Rotina antiga com type text para browsers que não renderizam o html5 muito bem
+                }else{   # Rotina antiga com type text para browsers que não renderizam o html5 muito bem
                     $mascara = '99/99/9999';
                     echo ' size="'.($this->size).'"';                    
                     echo ' type="text"';

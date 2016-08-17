@@ -157,7 +157,7 @@ class Bd
      * @param $idCampo  string  id   Nome do campos chave da tabela
      * @param $alerta   bool    TRUE Se true informa com um alert se houve gravação com sucesso
      */
-    public function gravar($campos = NULL,$valor = NULL,$idValor = NULL,$tabela = NULL,$idCampo = NULL,$alerta = TRUE){
+    public function gravar($campos = NULL,$valor = NULL,$idValor = NULL,$tabela = NULL,$idCampo = NULL,$alerta = FALSE){
     	try {
             $this->conecta();
 
