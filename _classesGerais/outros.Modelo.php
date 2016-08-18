@@ -918,11 +918,10 @@ class Modelo
             include_once $validacaoExtra;
         
         # Verifica se teve alterações em um editar       
-        if (is_null($alteracoes))
-        {
-            $msgErro.='Você não alterou nada! Vai gravar o que ?!\n';
-            $erro = 1;
-        }
+        #if (is_null($alteracoes)){
+        #    $msgErro.='Você não alterou nada! Vai gravar o que ?!\n';
+        #    $erro = 1;
+        #}  // Alterado seguindo a idéia de que o silêncio é de ouro
 
         if ($erro == 0)
         {
