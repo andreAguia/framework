@@ -104,6 +104,7 @@ class Relatorio
     # do log
     private $log = true;                        // informa se gerará log ou não
     private $logDetalhe = null;                 // detalhamento do log
+    private $logServidor = null;                // o idServidor para quando o relatório for de um único seevidor
     
 ###########################################################
     
@@ -645,10 +646,13 @@ class Relatorio
             p('Total de Registros: '.$contador,'pRelatorioTotal');
             hr();
         }
-
+        
+        # Pega o usuário
+        $idUsuario = get_session('idUsuario');  
+        
         # Data da Impressão
         if ($this->dataImpressao){
-            p('Emitido em: '.date('d/m/Y - H:i:s'),'pRelatorioDataImpressao');
+            p('Emitido em: '.date('d/m/Y - H:i:s')." (".$idUsuario.")",'pRelatorioDataImpressao');
         }	
         
         # Fecha o grid
@@ -669,12 +673,11 @@ class Relatorio
                 $atividade .= ' - '.$this->subtitulo;
             
             if (!is_null($this->logDetalhe))
-                $atividade .= ' - '.$this->logDetalhe;
-            
-            $idUsuario = get_session('idUsuario');  
+                $atividade .= ' - '.$this->logDetalhe;            
+             
             $Objetolog = new Intra();
             $data = date("Y-m-d H:i:s");
-            $Objetolog->registraLog($idUsuario,$data,$atividade,null,null,4);
+            $Objetolog->registraLog($idUsuario,$data,$atividade,null,null,4,$this->logServidor);
         }
     }
 }

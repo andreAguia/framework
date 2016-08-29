@@ -559,7 +559,7 @@ function alert($mensagem){
 
 ###########################################################
 
-function p($mensagem = NULL,$id = NULL,$class = NULL){
+function p($mensagem = NULL,$id = NULL,$class = NULL,$title = null){
 /** 
  * Simula o comando P do HTLM
  * 
@@ -568,6 +568,7 @@ function p($mensagem = NULL,$id = NULL,$class = NULL){
  * @param $mensagem string NULL A mensagem a ser exibida.
  * @param $id       string NULL O id para o css.
  * @param $class    string NULL A classe para o css.
+ * @param $title    string NULL A title do texto.
  */
 
 
@@ -581,6 +582,11 @@ function p($mensagem = NULL,$id = NULL,$class = NULL){
     # class
     if (!is_null($class)){
         echo ' class="'.$class.'"';
+    }
+    
+    # title
+    if (!is_null($title)){
+        echo ' title="'.$title.'"';
     }
 
     echo '>';

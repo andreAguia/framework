@@ -79,7 +79,7 @@ class MenuGrafico
             # Cria uma grid
             $grid = new Grid();
             
-            # Calcula o tamanhoda coluna
+            # Calcula o tamanho da coluna
             $tamColuna = 12/$this->colunas;
             
             foreach ($this->item as $objeto)
@@ -89,6 +89,7 @@ class MenuGrafico
                 $objeto->show();
                 $grid->fechaColuna();
 
+                # Verifica se é fim da linha
                 if($contador == $this->colunas){
                     $grid->fechaGrid();
                     $grid = new Grid();

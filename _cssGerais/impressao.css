@@ -200,52 +200,7 @@ p.pMensagem{
     color: #000000;
  }
  
- div#divRelatorioDbv pre{
-     white-space: pre-wrap; /* for�a o salto de p�gina para um texto longo */
- }
- 
- fieldset#fieldsetRelatorioDbv{
-     color: #000000;
- }
- 
- fieldset#fieldsetRelatorioDbv legend{
-     color: #000000;
- }
- 
- table#relatorioDbv th{
-     font-size: 10px;
-     text-align: left;     
- }
- 
- p#pDbv{
-     color: #000000;
- }
- 
- p#pDbvAssinatura{
-     color: #000000;
-     text-align: center; 
- }
- 
- /* Termo de Abertura e Encerramento de Processo */
- p#tituloTermo{
-     color: #000000;
-     text-align: center;
-     font-size: 15px;
- }
- 
- p#textoTermo{
-     color: #000000;
-     text-align: justify;
-     font-size: 14px;
- }
- 
- p#dataTermo{
-     color: #000000;
-     text-align: center;
-     font-size: 14px;
- }
- 
- /* Relat�rio di�ria */
+/* Relatório diária */
  
  div#relatorioDiaria{
      margin: 10%;     
@@ -298,7 +253,7 @@ p.pMensagem{
      font-family: serif; 
  }
  
- /* Formul�rio de Avalia��o Funcional Geral */
+ /* Formulário de Avaliação Funcional Geral */
  
  p#pFAG{
      color: #000000;
@@ -352,7 +307,7 @@ p.pMensagem{
      
  }
  
- /* Ficha de Avalia��o Funcional (FAF) */
+ /* Ficha de Avaliação Funcional (FAF) */
  
  p#pFafItem{
      color: #000000;
@@ -414,7 +369,7 @@ p.pMensagem{
     height:20px;
  }
  
-  /* Folha de Presen�a */
+  /* Folha de Presença */
  
  table#tableFolhaPresenca {
      border: 1px solid black;
@@ -452,7 +407,7 @@ p.pMensagem{
      font-size: 10px;     
   }
   
-   /* CI Di�ria */
+   /* CI Diária */
  
  p#pDiaria{
      color: #000000;
@@ -493,7 +448,7 @@ p.pMensagem{
      font-size: 14px;
  }
  
- /* Ficha Cadastral */
+/* Ficha Cadastral */
  
  fieldset#fieldsetRelatorio legend{
     font-size: 10px;
@@ -508,30 +463,27 @@ table#relatorioFichaCadastral th{
     color: #000000;
 }
 
- /* Pasta do Servidor */
+/* Pasta do Servidor */
 
 table#tabelaCapaPasta{
-	position: relative;
-	left: 20%;
-	top: 30%;
-	width: 60%;
-	margin: 0;
-	padding: 5px;
+    position: absolute;
+    left: 20%;    
+    width: 60%;
 }
 
 table#tabelaCapaPasta td{	
-	color: #000000;	
+    color: #000000;	
 }
 
 td#capaNome {
-	text-align: left;
-        width: 30%;
-        font-size: 16px;
+    text-align: left;
+    width: 30%;
+    font-size: 16px;
 }
 
 td#capaItem {
-	text-align: left;
-        width: 70%;
-        font-size: 14px;
+    text-align: left;
+    width: 70%;
+    font-size: 14px;
 }
  

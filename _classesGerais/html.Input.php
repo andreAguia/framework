@@ -290,6 +290,7 @@ class Input
                     echo '>';
                 echo 'Não';
                 echo '</option>';
+                echo '</select>';
                 break;
                 
             case "combo":
@@ -297,31 +298,28 @@ class Input
                 echo '>';
                 foreach($this->array as $field)
                 {
-                    if ($field <> "")
+                    if (is_array($field))
                     {
-                        if (is_array($field))
-                        {
-                            echo '<option value="'.$field[0].'"';
-                            if ($field[0] == $this->valor)
-                                echo ' selected>';
-                            else
-                                echo '>';
-
-                            echo  $field[1];
-                            echo '</option>';	
-                        }
+                        echo '<option value="'.$field[0].'"';
+                        if ($field[0] == $this->valor)
+                            echo ' selected>';
                         else
-                        {
-                            echo ' <option value="'.$field.'"';
-                            if ($field == $this->valor)
-                                echo ' selected>';
-                            else
-                                echo '>';
+                            echo '>';
 
-                            echo  $field;
-                            echo '</option>';
+                        echo  $field[1];
+                        echo '</option>';	
+                    }
+                    else
+                    {
+                        echo ' <option value="'.$field.'"';
+                        if ($field == $this->valor)
+                            echo ' selected>';
+                        else
+                            echo '>';
 
-                        }
+                        echo  $field;
+                        echo '</option>';
+
                     }
                 }
 

@@ -9,9 +9,9 @@
 class menuRelatorio
  
 {
-    private $formCampos = null;         # array com campos para o formulario    
-    private $formLink = null;           # para onde vai o post
-    private $botaoVoltar = '?';         # define o link do bot�o voltar
+    private $formCampos = NULL;         # array com campos para o formulario    
+    private $formLink = NULL;           # para onde vai o post
+    private $botaoVoltar = NULL;         # define o link do bot�o voltar
 
     private $brHr = 1;                  # numeros de salto de linha antes do hr
                                         // usado quando se tem muitos controles e n�o se quer a 
@@ -50,13 +50,27 @@ class menuRelatorio
         $div->abre();
 
         # Botão voltar       
-        if($this->botaoVoltar <> null)
+        if($this->botaoVoltar <> NULL)
             botaoVoltar($this->botaoVoltar, 'Voltar','Volta para menu do servidor');
 
         # Cria um grid para colocar o botão na lateral da tela
-        $grid = new Grid();
-        $grid->abreColuna(9);
+        $grid = new Grid("right");
+        $grid->abreColuna(3);
         
+        # Botão imprimir 
+        $botao = new BotaoGrafico('botaoImprimir');
+        $botao->set_label('Imprimir');
+        $botao->set_title('Imprime o Relatório');
+        $botao->set_image(PASTA_FIGURAS_GERAIS.'relatorio.png');            
+        $botao->set_onClick("fechaDivId('menuTopo'); self.print(); abreDivId('menuTopo');");
+        $botao->show();
+        
+        $grid->fechaColuna();
+        $grid->fechaGrid();
+        
+        $grid = new Grid();
+        $grid->abreColuna(12);
+                
         # Campos
         if(!is_null($this->formCampos))
         {
@@ -121,17 +135,6 @@ class menuRelatorio
 
             $divRelat->fecha();
         } 
-        
-        $grid->fechaColuna();
-        $grid->abreColuna(3);
-    
-        # Botão imprimir 
-        $botao = new BotaoGrafico('botaoImprimir');
-        $botao->set_label('Imprimir');
-        $botao->set_title('Imprime o Relatório');
-        $botao->set_image(PASTA_FIGURAS_GERAIS.'relatorio.png');            
-        $botao->set_onClick("fechaDivId('menuTopo'); self.print(); abreDivId('menuTopo');");
-        $botao->show();
         
         $grid->fechaColuna();
         $grid->fechaGrid();
