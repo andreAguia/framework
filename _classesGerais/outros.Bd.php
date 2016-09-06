@@ -254,7 +254,7 @@ class Bd
             # Executa o sql
             $this->conn->exec($sql);
 
-            alert("Registro excluído com sucesso!");
+            # alert("Registro excluído com sucesso!"); //Silencio é de ouro
         }
 	    catch(PDOException $e){
             print "ERRO! ".$e->getMessage()."<br />";
