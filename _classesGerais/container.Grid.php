@@ -21,7 +21,7 @@ class Grid
      * 
      * @param $align string left O alinhamento do grid: center | left | right | justify | spaced
      * 
-     * @syntax $grid = new Grid($align);     
+     * @syntax $grid = new Grid([$align]);     
      */    
     
     	echo '<div class="row';
