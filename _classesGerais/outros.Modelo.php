@@ -243,6 +243,9 @@ class Modelo
     */
     public function listar()
     {
+        # Pega o time inicial
+        $time_start = microtime(true);
+        
         set_session('oldValue'.$this->tabela);
 
         # Limita o tamanho da tela
@@ -516,6 +519,13 @@ class Modelo
                 $tabela->set_textoRessaltado($this->parametroValue);
 
             $tabela->show();
+            
+            # Pega o time final
+            $time_end = microtime(true);
+            
+            # Calcula e exibe o tempo
+            $time = $time_end - $time_start;
+            p(number_format($time, 4, '.', ',')." segundos","right","f10");            
             
             $grid->fechaColuna();
             $grid->fechaGrid();

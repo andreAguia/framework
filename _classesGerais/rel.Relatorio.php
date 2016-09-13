@@ -466,7 +466,7 @@ class Relatorio
                 # Título do subgrupo (quando tiver)
                 if (($grupo) && (($agrupa == '') || ($agrupa <> $row[$this->numGrupo])))
                 {                
-                    if((isset($this->funcao[$this->numGrupo])) and ($this->funcao[$this->numGrupo]  <> null)){
+                    if((isset($this->funcao[$this->numGrupo])) and ($this->funcao[$this->numGrupo] <> null)){
                         $nomedafuncao = $this->funcao[$this->numGrupo];
                         p(' == '.$nomedafuncao($row[$this->numGrupo]).' == ',"pRelatorioSubgrupo");
                     }else{ 
