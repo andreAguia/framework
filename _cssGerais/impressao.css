@@ -366,7 +366,7 @@ p.pMensagem{
     color: #000000;
     font-size: 12px;
     text-align: center;
-    height:20px;
+    height:18px;
  }
  
   /* Folha de Presença */
@@ -383,7 +383,7 @@ p.pMensagem{
      font-size: 12px;
      text-align: center;
      border: 1px solid black;
-     height: 18px;
+     height: 20px;
  }
  
  table#tableFolhaPresenca td{
@@ -391,14 +391,14 @@ p.pMensagem{
      font-size: 12px;
      text-align: center;
      border: 1px solid black;
-     height: 18px;
+     height: 20px;
  }
  
  table#tableFolhaPresenca2 td{
      color: #000000;
      font-size: 12px;
      text-align: center;
-     height: 18px;
+     height: 20px;
  }
  
  p#pFolhaPresencaRodape{
@@ -486,4 +486,41 @@ td#capaItem {
     width: 70%;
     font-size: 14px;
 }
+
+/* Folha de Presença */
  
+ table#tableFolhaPresenca {
+     border: 1px solid black;
+     color: #000000;
+     border-collapse:collapse;
+     width: 100%;
+ }
+ 
+ table#tableFolhaPresenca th{
+     color: #000000;
+     font-size: 12px;
+     text-align: center;
+     border: 1px solid black;
+     height: 30px;
+ }
+ 
+ table#tableFolhaPresenca td{
+     color: #000000;
+     font-size: 12px;
+     text-align: center;
+     border: 1px solid black;
+     height: 30px;
+ }
+ 
+ table#tableFolhaPresenca2 td{
+     color: #000000;
+     font-size: 12px;
+     text-align: center;
+     height: 30px;
+ }
+ 
+ p#pFolhaPresencaRodape{
+     color: #000000;
+     text-align: left;
+     font-size: 10px;     
+  }

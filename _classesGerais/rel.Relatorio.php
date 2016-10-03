@@ -84,6 +84,7 @@ class Relatorio
     private $totalRegistro = true;		// se terá o número de registros no fim do relatório (e dos grupos))
     private $bordaInterna = false;		// Exibe ou não uma linha dentro da tabela entro os registros 
     private $dataImpressao = true;		// Exibe ou  não a Data de Impressão
+    private $espacamento = 0;                   // Epaçamento entre as linha. 0 - espacamento padrão
 
     private $cabecalhoRelatorio = true;         // Exibe ou não o cabeçalho do relatório
     private $botaoVoltar = null;		// Link do botão voltar
@@ -166,6 +167,8 @@ class Relatorio
         $governo = "Governo do Estado do Rio de Janeiro";
         $secretaria = "Secretaria de Estado de Ciência, Tecnologia e Inovação";
         $universidade = "Universidade Estadual do Norte Fluminense Darcy Ribeiro";
+        $diretoria = "Diretoria Geral de Administração";
+        $gerencia = "Gerência de Recursos Humanos";
         
         $cabec = new Div('center');
         $cabec->abre();
@@ -173,7 +176,7 @@ class Relatorio
             $imagem->show();
         $cabec->fecha();
         
-        p($governo."<br/>".$secretaria."<br/>".$universidade,"pRelatorioCabecalho");
+        p($governo."<br/>".$secretaria."<br/>".$universidade."<br/>".$diretoria." - ".$gerencia,"pRelatorioCabecalho");
     }
     
     ###########################################################
@@ -493,6 +496,13 @@ class Relatorio
                 $contador += 1;         
                 $subContador += 1; 
                 
+                # Espaçamento
+                if($this->espacamento > 0){
+                    for ($b = 0;$b < $this->espacamento;$b++){
+                        echo '<tr></tr>';
+                    }
+                }
+                
                 echo '<tr>';
 
                 # alterna o zebrado
@@ -549,6 +559,13 @@ class Relatorio
                     } 
                 } 
                 echo '</tr>';
+                
+                # Espaçamento
+                if($this->espacamento > 0){
+                    for ($b = 0;$b < $this->espacamento;$b++){
+                        echo '<tr></tr>';
+                    }
+                }
 
                 if($this->subRelatorio)
                 {                
@@ -643,6 +660,7 @@ class Relatorio
         
         # Total de Registros
         if ($this->totalRegistro){
+            hr();
             p('Total de Registros: '.$contador,'pRelatorioTotal');
             hr();
         }
