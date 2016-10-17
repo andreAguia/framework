@@ -469,12 +469,24 @@ class Relatorio
                 # Título do subgrupo (quando tiver)
                 if (($grupo) && (($agrupa == '') || ($agrupa <> $row[$this->numGrupo])))
                 {                
-                    if((isset($this->funcao[$this->numGrupo])) and ($this->funcao[$this->numGrupo] <> null)){
-                        $nomedafuncao = $this->funcao[$this->numGrupo];
-                        p(' == '.$nomedafuncao($row[$this->numGrupo]).' == ',"pRelatorioSubgrupo");
-                    }else{ 
-                        p(' == '.$row[$this->numGrupo].' == ',"pRelatorioSubgrupo");
+                    
+                    $textoSubitulo = $row[$this->numGrupo];
+                    
+                    # Coloca a classe (se tiver)
+                    if((isset($this->classe[$this->numGrupo])) and ($this->classe[$this->numGrupo] <> null)){
+                        $instancia = new $this->classe[$this->numGrupo]();
+                        $metodoClasse = $this->metodo[$this->numGrupo];
+                        $textoSubitulo = $instancia->$metodoClasse($row[$this->numGrupo]);
                     }
+
+                    # Coloca a função (se tiver)
+                    if((isset($this->funcao[$this->numGrupo])) and ($this->funcao[$this->numGrupo] <> null)){			
+                        $nomedafuncao = $this->funcao[$this->numGrupo];
+                        $textoSubitulo = $nomedafuncao($row[$this->numGrupo]);
+                    }
+                    
+                    # Exibe o subtitulo
+                    p(' == '.$textoSubitulo.' == ',"pRelatorioSubgrupo");
                     
                     # atualiza a variavel que guarda o nome do agrupamento atual
                     $agrupa = $row[$this->numGrupo];

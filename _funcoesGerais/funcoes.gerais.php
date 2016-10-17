@@ -563,7 +563,7 @@ function p($mensagem = NULL,$id = NULL,$class = NULL,$title = null){
 /** 
  * Simula o comando P do HTLM
  * 
- * @syntax p($mensagem, [$id], [$class]);
+ * @syntax p($mensagem, [$id], [$class], [$title]);
  * 
  * @param $mensagem string NULL A mensagem a ser exibida.
  * @param $id       string NULL O id para o css.
@@ -749,20 +749,22 @@ function label($mensagem, $tipo = "warning", $id = null){
 
 ###########################################################
 
-function badge($mensagem, $tipo = "warning", $id = null){
+function badge($mensagem, $tipo = "warning", $id = NULL, $title = NULL){
 /**
  * semelhante a função label mas com bordas arredondadas
  *
  * @note badge é indicado quando se quer chamar atenção para um ou dois caracteres no máximo. Os caracteres ficam dentro de um círculo. Com palavras o efeito não é bom.
  * 
- * @param $mensagem string null    A mensagem a ser exibida
- * @param $tipo     string warning O tipo: secondary | primary | success | warning | alert 
+ * @param $mensagem string NULL    A mensagem a ser exibida
+ * @param $tipo     string warning O tipo: secondary | primary | success | warning | alert
+ * @param $id       string NULL    O id para a função P usada na impressão da memsagem.
+ * @param $title    string NULL    Mensagem para o mouseover
  * 
- * @syntax callout($mensagem, [$tipo]);
+ * @syntax badge($mensagem, [$tipo], [$id], [$title]);
  */
 
 
-    echo '<span class="'.$tipo.' badge">';
+    echo '<span class="'.$tipo.' badge" title="'.$title.'">';
     p($mensagem,$id);
     echo '</span>';
 }

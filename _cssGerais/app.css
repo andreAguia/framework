@@ -30,6 +30,9 @@ html{
 /*******************************************
  * Muda o tamanho da fonte de um <p> pelo id
  *******************************************/
+p#f8{
+     font-size: 8px;   
+ }
  
  p#f10{
      font-size: 10px;   
@@ -165,9 +168,9 @@ div#divHistorico{
  
 div#paginacao{
     position: absolute;
-    top: 80px;
-    left: 25%;
-    width: 50%;
+    top: 90px;
+    left: 33%;
+    width: 34%;
 }
 
  /*******************************************

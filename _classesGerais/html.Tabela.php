@@ -196,7 +196,7 @@ class Tabela
 
     public function show()
     {
-        $zebra = 1;                             // contador do efeito zebrado
+        $zebra = 0;                             // contador do efeito zebrado
         $numRegistros = 0;				        // Contador de registros
         $numColunas = count($this->label);		// Calcula o número de colunas da tabela
         $numColunasOriginal = $numColunas;		// O número de colunas da tabela sem o edit, exclui, etc
