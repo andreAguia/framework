@@ -69,6 +69,7 @@ class Modelo
     private $numeroOrdem = false;           # Exibe (qualdo true) uma numera��o das colunas
     private $numeroOrdemTipo = 'c';         # Informa que a ordena��o ser� 'c' crescente ou 'd' decrescente
 
+    # Da função
     private $function = null;
  
     # da Classe
