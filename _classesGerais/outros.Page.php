@@ -104,6 +104,9 @@ class Page
         # Java Script de várias funções
         echo'<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'funcoes.java.js"></script>';
         
+        # Jquery
+        echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'jquery.js"></script>';
+        
         # Java Script Extra
         if(!is_null($this->jscript))
             echo $this->jscript;
@@ -135,7 +138,7 @@ class Page
     public function terminaPagina()
     {
          # Java Script do Foundation
-        echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'jquery.js"></script>';
+        
         echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'what-input.js"></script>';
         echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'foundation.js"></script>';
         echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'foundation.min.js"></script>'; 

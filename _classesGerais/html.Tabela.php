@@ -651,4 +651,3 @@ class Tabela
         echo '</div>';
     }
 }
-?>
