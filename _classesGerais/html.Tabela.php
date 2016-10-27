@@ -7,8 +7,7 @@
  * 
  * By Alat
  */
- 
- 
+  
 class Tabela
 {
     private $class;	          # class da Tabela
