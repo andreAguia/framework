@@ -66,8 +66,11 @@ Class Backup {
         $this->final = "-- UENF - Universidade do Norte Fluminense\n";
         $this->final .= "-- GRH - Gerência de Recursos Humanos\n";
         $this->final .= "-- Rotina de Backup de Sistema\n";
-        $this->final .= "-- Realizado em: ".date("d-m-Y, g:i a\n\n");
-        $this->final .= 'CREATE DATABASE ' . $this->dbName.";\n";
+        $this->final .= "-- Realizado em: ".date("d-m-Y, g:i a\n");
+        $this->final .= "\n--";
+        $this->final .= "\n--  Backup do Banco: ".$this->dbName;
+        $this->final .= "\n--\n\n";
+        $this->final .= 'CREATE DATABASE IF NOT EXISTS '.$this->dbName.";\n";
 
         if($this->host=='localhost'){
             // We have a little issue in unix systems when you set the host as localhost
@@ -126,18 +129,20 @@ Class Backup {
          */
     
         foreach ($this->tables as $tbl) {
-            $this->final .= "\n-----------------------------------------------------";
-            $this->final .= "\n----  Banco: ".$tbl['name'];
-            $this->final .= "\n-----------------------------------------------------";
+            $this->final .= "\n-- ---------------------------------------------------";
             $this->final .= "\n";
-            #$this->final .= '--CREATING TABLE '.$tbl['name']."\n";
-            $this->final .= $tbl['create'] . ";\n\n";
-            $this->final .= '--INSERTING DATA INTO '.$tbl['name']."\n";
-            $this->final .= $tbl['data']."\n";
+            $this->final .= "\n--";
+            $this->final .= "\n--  Estrutura da Tabela: ".$tbl['name'];
+            $this->final .= "\n--\n\n";
+            $this->final .= $tbl['create'] . ";\n";
+            $this->final .= "\n--";
+            $this->final .= "\n--  Extraindo dados da Tabela: ".$tbl['name'];
+            $this->final .= "\n--\n\n";
+            $this->final .= $tbl['data'];
         }
-        $this->final .= "\n-----------------------------------------------------";
-        $this->final .= "\n----   FIM DO ARQUIVO";
-        $this->final .= "\n-----------------------------------------------------";
+        $this->final .= "\n-- ---------------------------------------------------";
+        $this->final .= "\n--   FIM DO ARQUIVO";
+        $this->final .= "\n-- ---------------------------------------------------";
         
     }
     
