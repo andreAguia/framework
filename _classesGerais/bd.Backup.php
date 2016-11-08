@@ -34,10 +34,15 @@ Class Backup {
     private $handler;
     private $error = array();
     private $final;
+    private $relatorio;
+    private $numRegistros = 0;
+    private $numTotalRegistros = 0;
+    private $numTables = 0;
+    private $manual = TRUE;
     
 ###########################################################    
     
-    public function __construct($args){
+    public function __construct($dbName,$usuarioLogado = NULL, $manual = TRUE){
         /**
          * The main function
          * @method DBBackup
@@ -45,32 +50,47 @@ Class Backup {
          * @param Array $args{host, driver, user, password, database}
          * @example $db = new DBBackup(array('host'=>'my_host', 'driver'=>'bd_type(mysql)', 'user'=>'db_user', 'password'=>'db_password', 'database'=>'db_name'));
          */
-     
-        if(!$args['host']) $this->error[] = 'Parameter host missing';
-        if(!$args['user']) $this->error[] = 'Parameter user missing';
-        if(!isset($args['password'])) $this->error[] = 'Parameter password missing';
-        if(!$args['database']) $this->error[] = 'Parameter database missing';
-        if(!$args['driver']) $this->error[] = 'Parameter driver missing';
-
+        
+        if(!$dbName) $this->error[] = 'Parameter database missing';
+        
         if(count($this->error)>0){
             return;
         }
-
-        $this->host = $args['host'];
-        $this->driver = $args['driver'];
-        $this->user = $args['user'];
-        $this->password = $args['password'];
-        $this->dbName = $args['database'];
+        
+        $this->dbName = $dbName;
+        $this->manual = $manual;
 
         # Escreve na string o cabeçalho
         $this->final = "-- UENF - Universidade do Norte Fluminense\n";
         $this->final .= "-- GRH - Gerência de Recursos Humanos\n";
         $this->final .= "-- Rotina de Backup de Sistema\n";
-        $this->final .= "-- Realizado em: ".date("d-m-Y, g:i a\n");
+        
+        if($this->manual){
+            $this->final .= "-- Backup Manual\n";
+            $this->final .= "-- Realizado em: ".date("d-m-Y, g:i a")." pelo usuário: ".$usuarioLogado."\n";
+        }else{
+            $this->final .= "-- Backup Automático\n";
+            $this->final .= "-- Realizado em: ".date("d-m-Y, g:i a")."\n";
+        }
         $this->final .= "\n--";
         $this->final .= "\n--  Backup do Banco: ".$this->dbName;
         $this->final .= "\n--\n\n";
         $this->final .= 'CREATE DATABASE IF NOT EXISTS '.$this->dbName.";\n";
+        
+        # Escreve relatório
+        $this->relatorio = "-- UENF - Universidade do Norte Fluminense\n";
+        $this->relatorio .= "-- GRH - Gerência de Recursos Humanos\n";
+        $this->relatorio .= "-- Relatório de Backup de Sistema\n";
+        if($this->manual){
+            $this->relatorio .= "-- Backup Manual\n";
+            $this->relatorio .= "-- Realizado em: ".date("d-m-Y, g:i a")." pelo usuário: ".$usuarioLogado."\n";
+        }else{
+            $this->relatorio .= "-- Backup Automático\n";
+            $this->relatorio .= "-- Realizado em: ".date("d-m-Y, g:i a")."\n";
+        }
+        $this->relatorio .= "\n--  Backup do Banco: ".$this->dbName;    
+        $this->relatorio .= "\n-- ---------------------------------------------------";
+        
 
         if($this->host=='localhost'){
             // We have a little issue in unix systems when you set the host as localhost
@@ -85,7 +105,7 @@ Class Backup {
     
 ###########################################################    
     
-    public function backup($manual = FALSE){
+    public function backup(){
         
         /**
          * Call this function to get the database backup
@@ -97,23 +117,30 @@ Class Backup {
             return array('error'=>true, 'msg'=>$this->error);
         }else{
             # cria uma pasta para o backup
-            $pasta = $this->pastaDestino.'\\'.date('Y.m.d');
+            $pasta = $this->pastaDestino.'/'.date('Y.m.d');
             if(!file_exists($pasta))
                     mkdir($pasta);
             
             # Abre o arquivo texto com o nome do banco.txt
-            if($manual){
-                $back = fopen($pasta.'\\'.date('Y.m.d.H.i').'.M.'.$this->dbName.'.sql','w');
+            if($this->manual){
+                $nomeArquivo = $pasta.'/'.date('Y.m.d.H.i').'.M.'.$this->dbName;
             }else{
-                $back = fopen($pasta.'\\'.date('Y.m.d.H.i').'.A.'.$this->dbName.'.sql','w');
+                $nomeArquivo = $pasta.'/'.date('Y.m.d.H.i').'.A.'.$this->dbName;
             }
-                
             
-            # Escreve no arquivo
+            # Arquivo sql
+            $back = fopen($nomeArquivo.'.sql','w');    
+            
+            # Arquivo txt (relatório)
+            $rel = fopen($nomeArquivo.'.txt','w');    
+            
+            # Escreve nos arquivos
             fwrite($back,$this->final);
+            fwrite($rel,$this->relatorio);
 				
             # Fecha o arquivo
             fclose($back);
+            fclose($rel);
             
             #return array('error'=>false, 'msg'=>$this->final);
         }
@@ -129,6 +156,7 @@ Class Backup {
          */
     
         foreach ($this->tables as $tbl) {
+            # Arquivo sql
             $this->final .= "\n-- ---------------------------------------------------";
             $this->final .= "\n";
             $this->final .= "\n--";
@@ -139,10 +167,28 @@ Class Backup {
             $this->final .= "\n--  Extraindo dados da Tabela: ".$tbl['name'];
             $this->final .= "\n--\n\n";
             $this->final .= $tbl['data'];
+            
+            # arquivo txt (relatório)
+            
+            $this->relatorio .= "\n-- Tabela: ".$tbl['name'];
+            $tamanhoNome = strlen($tbl['name']);
+            if($tamanhoNome < 8){
+                $this->relatorio .= "\t";
+            }
+            
+            if($tamanhoNome < 16){
+                $this->relatorio .= "\t";
+            }
+            
+            $this->relatorio .= "\t- Registros copiados: ".$tbl['numReg'];
         }
         $this->final .= "\n-- ---------------------------------------------------";
         $this->final .= "\n--   FIM DO ARQUIVO";
         $this->final .= "\n-- ---------------------------------------------------";
+        
+        $this->relatorio .= "\n-- ---------------------------------------------------";
+        $this->relatorio .= "\n-- ".$this->numTables ." tabelas copiadas\t\t- Registros copiados: ".$this->numTotalRegistros;
+        $this->relatorio .= "\n-- ---------------------------------------------------";
         
     }
     
@@ -181,8 +227,12 @@ Class Backup {
                 $this->tables[$i]['name'] = $table[0];
                 $this->tables[$i]['create'] = $this->getColumns($table[0]);
                 $this->tables[$i]['data'] = $this->getData($table[0]);
+                $this->tables[$i]['numReg'] = $this->numRegistros;
+                $this->numTotalRegistros += $this->numRegistros;
+                $this->numRegistros = 0; // zera o contador de registro para a próxima tabela
                 $i++;
             }
+            $this->numTables = $i;
             unset($stmt);
             unset($tbs);
             unset($i);
@@ -234,6 +284,7 @@ Class Backup {
                         $value = htmlentities(addslashes($value));
                 }
                 $data .= 'INSERT INTO '. $tableName .' VALUES (\'' . implode('\',\'', $pieces) . '\');'."\n";
+                $this->numRegistros++;
             }
             return $data;
         } catch (PDOException $e){
