@@ -42,7 +42,7 @@ Class Backup {
     
 ###########################################################    
     
-    public function __construct($dbName,$usuarioLogado = NULL, $manual = TRUE){
+    public function __construct($dbName,$manual = TRUE,$usuarioLogado = NULL){
         /**
          * The main function
          * @method DBBackup
@@ -118,8 +118,9 @@ Class Backup {
         }else{
             # cria uma pasta para o backup
             $pasta = $this->pastaDestino.'/'.date('Y.m.d');
-            if(!file_exists($pasta))
+            if(!file_exists($pasta)){
                     mkdir($pasta);
+            }
             
             # Abre o arquivo texto com o nome do banco.txt
             if($this->manual){
