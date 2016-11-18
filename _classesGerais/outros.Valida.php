@@ -18,8 +18,7 @@ class Valida
      * @param  $var 	string	-> a variavel a ser validada
      * @return true or false
      */
-    static function vazio($var)
-    {
+    static function vazio($var){
             if (is_null($var) or ($var == ''))
                     return true;		
     }
@@ -33,8 +32,7 @@ class Valida
      * @return true or false
      */
 
-    static function cpf($cpf)
-    {
+    static function cpf($cpf){
         # Retira os caracteres . e -
         $cpf = str_replace('.', '', $cpf);      // retira o .
         $cpf = str_replace('-', '', $cpf);      // retira o -
@@ -128,8 +126,7 @@ class Valida
      * @return bool true caso seje válido, false caso não seje válido
      */
     
-    static function pis($pis)
-    {
+    static function pis($pis){
         $pis = preg_replace('/[^0-9]/', '', $pis);
         $digito = 0;
         
@@ -147,4 +144,3 @@ class Valida
 
     }
 }
-?>
