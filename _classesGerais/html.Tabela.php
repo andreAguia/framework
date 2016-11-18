@@ -608,7 +608,7 @@ class Tabela
                     elseif((!is_null($this->textoRessaltado)) AND ($this->textoRessaltado <> "")) # Verifica se tem negrito
                     {
                         if($a <> $colunaEdita){
-                            $row[$a] = get_bold($row[$a],$this->textoRessaltado);
+                            $row[$a] = bold($row[$a],$this->textoRessaltado);
                         }
                         echo $row[$a];
                     }

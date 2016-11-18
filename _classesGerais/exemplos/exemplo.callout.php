@@ -19,7 +19,7 @@ echo "Callout com tipo primary";
 $painel2 ->fecha();
 
 # Callout do tipo warning
-$painel3 = new Callout("warning ");
+$painel3 = new Callout("warning");
 $painel3->set_title('Painel com tipo warning ');
 $painel3->abre();
 
@@ -28,7 +28,7 @@ echo "Callout com tipo warning ";
 $painel3 ->fecha();
 
 # Callout do tipo alert
-$painel4 = new Callout("alert ");
+$painel4 = new Callout("alert");
 $painel4->set_title('Painel com tipo alert ');
 $painel4->abre();
 
@@ -37,7 +37,7 @@ echo "Callout com tipo alert ";
 $painel4 ->fecha();
 
 # Callout do tipo success 
-$painel5 = new Callout("success  ");
+$painel5 = new Callout("success");
 $painel5->set_title('Painel com tipo success  ');
 $painel5->abre();
 

@@ -1,21 +1,5 @@
  <?php
- /** 
- * @class Bd
- * 
- * Classe principal de acesso ao banco de dados
- * 
- * @author André Águia (Alat) - alataguia@gmail.com
- * 
- * @var private $host   string  NULL O Nome do Servidor
- * @var private $user   string  NULL O nome do usuário
- * @var private $pass   string  NULL A senha de conexão
- * @var private $name   string  NULL O nome do Banco de dados
- * @var private $type   string  NULL O SGBD
- * @var private $conn   object  NULL O objeto de conexão
- * @var private $lastId integer NULL O último id de uma inclusão
- */
-
-class Bd
+ class Bd
 {
     /**
      * Classe mãe de acesso so banco de dados
@@ -29,10 +13,9 @@ class Bd
      * @var private $pass   string NULL O password (senha) para o login no servidor de banco de dados
      * @var private $name   string NULL O nome do Banco de dados
      * @var private $type   string NULL O tipo do SGDB: pgsql | mysql | sqlite | ibase | oci8 | mssql
-     * @var private $conn   
+     * @var private $conn   object NULL O objeto de conexão
      * @var private $lastId string NULL Guarda o último id de uma gravação
-     * 
-     * @example exemplo.bd.php
+     *    
      */
     
     private $host = NULL;
@@ -107,9 +90,8 @@ class Bd
 	
 ###########################################################
     
+   public function select($select = NULL,$many = TRUE,$orderCampo = NULL,$orderTipo = NULL){
     /**
-     * @method select
-     * 
      * Retorna um array multidimenssional, se many is true, com os registros do banco de dados, ou um valor único dependendo do formato do campo no banco de dados, quando $many is false.
      * 
      * @syntax $bd->select(select, [$many], [$orderCampo], [$orderTipo]);
@@ -121,7 +103,7 @@ class Bd
      * @param $orderCampo   string NULL Define (se tiver) o campo do select de ordenação
      * @param $orderTipo    string NULL Define se a ordenação será ascendente ou descendente
      */    
-    public function select($select = NULL,$many = TRUE,$orderCampo = NULL,$orderTipo = NULL){
+    
     	try {
             $this->conecta();
 
@@ -143,9 +125,8 @@ class Bd
     
 ###########################################################
     
+    public function gravar($campos = NULL,$valor = NULL,$idValor = NULL,$tabela = NULL,$idCampo = NULL,$alerta = FALSE){
     /**
-     * @method gravar
-     * 
      * Grava no banco de dados
      *
      * @syntax $bd->gravar($campos, $valor, [$idValor], $tabela, [$idCampo], [$alerta]); 
@@ -157,7 +138,7 @@ class Bd
      * @param $idCampo  string  id   Nome do campos chave da tabela
      * @param $alerta   bool    TRUE Se true informa com um alert se houve gravação com sucesso
      */
-    public function gravar($campos = NULL,$valor = NULL,$idValor = NULL,$tabela = NULL,$idCampo = NULL,$alerta = FALSE){
+    
     	try {
             $this->conecta();
 
@@ -234,9 +215,8 @@ class Bd
     
 ###########################################################
     
+    public function excluir($idValor = NULL,$tabela = NULL,$idCampo = 'id'){
     /**
-     * @method excluir
-     * 
      * Exclui um registro do banco de dados
      *
      * @syntax $bd->excluir($idValor, $tabela, [$idCampo]); 
@@ -245,8 +225,7 @@ class Bd
      * @param $idValor integer NULL Valor do id
      * @param $idCampo string  id   Nome do campo id na tabela. Normalmente é 'id'
      */
-    
-    public function excluir($idValor = NULL,$tabela = NULL,$idCampo = 'id'){
+       
     	try {
             $this->conecta();
             $sql = 'DELETE FROM '.$tabela.' WHERE '.$idCampo.' = '.$idValor;	
@@ -264,9 +243,8 @@ class Bd
     
 ###########################################################
     
+    public function count($select){
     /**
-     * @method count
-     * 
      * Informa o número inteiro com a quantidade de rows de um select
      * 
      * @syntax $bd->count($select);
@@ -276,7 +254,7 @@ class Bd
      * @param $select string null O select do banco de dados
      */
     
-    public function count($select){
+    
     	try {
             $this->conecta();
 
@@ -296,25 +274,22 @@ class Bd
     
  ###########################################################
     
+    public function get_lastId(){
     /**
-     * @method get_lastId
-     * 
      * Informa o id da última gravação
      * 
      * @syntax $bd->get_lastId();
      * 
      * @return Inteiro com o id utilizado na última gravação
      */
-	 
-    public function get_lastId(){
+    
     	return $this->lastId;
     }
     
     ###########################################################
     
+    public function set_lastId($lastId){
     /**
-     * @method set_lastId
-     * 
      * Grava a variável lastId
      * 
      * @syntax $bd->set_lastId($lastId);
@@ -323,16 +298,13 @@ class Bd
      * 
      * @param $lastId integer null O número do id a ser gravado
      */
-	 
-    public function set_lastId($lastId){
-    	$this->lastId = $lastId;
+	$this->lastId = $lastId;
     }
     
     ###########################################################
     
+    public function update($sql = NULL){
     /**
-     * @method update
-     * 
      * Executa um update no banco de Dados
      * 
      * @note Essa função é usada para update de diversos registros ao mesmo tempo. Para update de apenas um registro recomenda-se o uso do método gravar.
@@ -341,9 +313,7 @@ class Bd
      * 
      * @param $sql string NULL O sql para o update
      */
-
-    public function update($sql = NULL){
-    	try {
+	try {
             # conecta
             $this->conecta();
             
