@@ -81,11 +81,12 @@ class MenuGrafico
             
             # Calcula o tamanho da coluna
             $tamColuna = 12/$this->colunas;
+            #$tamColuna = $this->colunas;
             
             foreach ($this->item as $objeto)
             {
                 $contador++;
-                $grid->abreColuna($tamColuna);
+                $grid->abreColuna("up-".$tamColuna);
                 $objeto->show();
                 $grid->fechaColuna();
 
@@ -96,7 +97,15 @@ class MenuGrafico
                     $contador = 0;
                 }
             }
-
+            
+            # Verifica se ficaram colunas vazias apos o menu
+            $colunasFaltantes = $this->colunas-$contador;
+            
+            # Preenche as colunas vazias com grids vazios para o menu ficar esteticamente bonito
+            for($i=0;$i<$colunasFaltantes;$i++){
+               $grid->abreColuna("up-".$tamColuna);
+               $grid->fechaColuna();
+            }
             $grid->fechaGrid();
         }
     }
