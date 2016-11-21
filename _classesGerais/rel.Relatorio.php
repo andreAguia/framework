@@ -35,6 +35,8 @@ class Relatorio
      * @var private $subClasseBd boll    TRUE Informa se a coluna agrupada será ocultada.
      * @var private $subJoin boll    TRUE Informa se a coluna agrupada será ocultada.
      * 
+     * @group outros
+     * @var private $linhaFinal boll FALSE Exibe ou não linha final da tabela.
      * 
      * @example exemplo.relatorio.php
      * 
@@ -106,6 +108,9 @@ class Relatorio
     private $log = true;                        // informa se gerará log ou não
     private $logDetalhe = null;                 // detalhamento do log
     private $logServidor = null;                // o idServidor para quando o relatório for de um único seevidor
+    
+    # Outros
+    private $linhaFinal = FALSE;                // Exibe linha final
     
 ###########################################################
     
@@ -623,6 +628,13 @@ class Relatorio
                 echo '</tfoot>';
                 $subContador = 0;   // Zera o contador de registro
             }
+            
+            if ($this->linhaFinal){
+                echo '<tfoot>';
+                echo '<tr><td colspan="'.($tamanhoLinha+1).'" title="Total de itens da tabela">';
+                echo '</td></tr>';
+                echo '</tfoot>';                             
+             }
 
             # Fecha a tabela
             echo '</table>';
@@ -673,8 +685,7 @@ class Relatorio
         # Total de Registros
         if ($this->totalRegistro){
             hr();
-            p('Total de Registros: '.$contador,'pRelatorioTotal');
-            hr();
+            p('Total de Registros: '.$contador,'pRelatorioTotal');            
         }
         
         # Pega o usuário
@@ -682,6 +693,8 @@ class Relatorio
         
         # Data da Impressão
         if ($this->dataImpressao){
+            br();
+            hr();
             p('Emitido em: '.date('d/m/Y - H:i:s')." (".$idUsuario.")",'pRelatorioDataImpressao');
         }	
         
