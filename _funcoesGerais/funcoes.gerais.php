@@ -607,14 +607,15 @@ function br($linhas = 1){
 ###########################################################
 function anti_injection($str){
 /**
-  * Função que retira comandos sql de uma string
+ * Função que retira comandos sql de uma string
  *
  * @param $str string null a string a ser tratada
  * 
+ * @return string sem comandos sql. Caso existam. 
+ * 
  * @note Ainda não está sendo usada. Verificar seu uso em todo get e post.
  */
-
-
+    
     // remove palavras que contenham sintaxe sql
     $sql = preg_replace(sql_regcase("/(from|select|insert|delete|where|drop table|show tables|#|\*|--|%|\\\\)/"),"",$str);
     return trim(strip_tags(addslashes($str)));
@@ -629,8 +630,9 @@ function hr(){
  * @syntax hr();
  * 
  * @note Essa função apenas executa um echo <hr>
+ * 
+ * @example exemplo.hr.php   
  */
-
 
     echo '<hr>';   
 }
@@ -643,9 +645,8 @@ function alert($mensagem){
  * 
  * @syntax alert($mensagem);
  * 
- * @param $mensagem string null A mensagem a ser exibida
+ * @param $mensagem string null A mensagem a ser exibida.
  */
-
 
     echo '<script>alert("'.$mensagem.'");</script>'; 
 }
@@ -654,7 +655,7 @@ function alert($mensagem){
 
 function p($mensagem = NULL,$id = NULL,$class = NULL,$title = null){
 /** 
- * Simula o comando P do HTML
+ * Simula o comando P do HTML com vantagens
  * 
  * @syntax p($mensagem, [$id], [$class], [$title]);
  * 
@@ -662,8 +663,9 @@ function p($mensagem = NULL,$id = NULL,$class = NULL,$title = null){
  * @param $id       string NULL O id para o css.
  * @param $class    string NULL A classe para o css.
  * @param $title    string NULL A title do texto.
+ * 
+ * @example exemplo.p.php    
  */
-
 
     echo '<p';
 
@@ -689,22 +691,25 @@ function p($mensagem = NULL,$id = NULL,$class = NULL,$title = null){
 
 ###########################################################
 
-function titulo($titulo = null,$title = null){
+function titulo($mensagem = null,$title = null){
 /**
- * Exibe um título 
+ * Exibe um texto centralizado dentro de um painel com fundo azul escuro. Utilizado para títulos de páginas.
+ * 
+ * @syntax titulo($mensagem, [$title]); 
  * 
  * @param $titulo string NULL O Título a ser exibido
+ * 
+ * @example exemplo.titulo.php     
  */
-
    
     if(is_null($title))
-        $title = $titulo;
+        $title = $mensagem;
 
     # cria a div
     $div = new Div("titulo");
     $div->set_title($title);
     $div->abre();
-        echo $titulo;
+        echo $mensagem;
     $div->fecha();
 }
 
@@ -714,10 +719,12 @@ function botaoVoltar($url,$label = 'Voltar',$title = 'Volta para a página anter
 /**
  * Rotina que exibe o botão de Voltar
  * 
- * @param   string	$url	url do botão
- * @param   string  $title  title para o botão
+ * @syntax botaoVoltar($url, [$label], [$title] );  
+ * 
+ * @param $url   string NULL     A url do botão
+ * @param $label string	'Voltar' O texto que aparecerá no botão
+ * @param $title string TEXTO    A mensagem no mouseover
  */
-
 
     # Botão voltar
     $grid = new Grid();
@@ -739,14 +746,17 @@ function botaoVoltar($url,$label = 'Voltar',$title = 'Volta para a página anter
 
 ###########################################################  
       
-function mensagemAguarde(){
+function aguarde(){
 
 /**
-* função mensagemAguarde
-* Exibe uma mensagem de Aguarde
-* 
-*/
-    # Exibe uma mensagem de aguarde
+ * Rotina que exibe uma animação sugerindo aguardar alguma tarefa ser concluída.
+ * 
+ * @syntax aguarde();
+ *  
+ * @example exemplo.aguarde.php  
+ */
+    
+    # Monta a div com a animação 
     $div = new Div("center");
     $div->abre();
         br();
@@ -756,24 +766,33 @@ function mensagemAguarde(){
 }
 
 ###########################################################
-function formataMoeda($valor,$formato = 1)
-{
+
+function formataMoeda($valor,$formato = 1){
 /**
  * Função que retorna um valor no formato especificado
  * 
- * @param   $valor      O valor a ser alterado
- * @param   $formato    o formato sendo: 1 - formato brasileiro 
- *                                       2 - formato americano para gravação no bd
+ * @syntax formataMoeda($valor,[$formato]);
+ * 
+ * @return string do valor em formato de moeda no padrão indicado no parâmetro $formato.
+ * 
+ * @note Observe que o formato do parâmetro valor será entendido como o formato inverso ao indicado no parâmetro formato.
+ * @note Assim quando não for informado o formato o sistema irá entender que o valor que será inserido é o formato americano e será transformado para o formato brasileiro.
+ * @note Da mesma forma que quando o parâmetro formato for informado com 2. Entender-se-á que o formato do parâmetro $valor é o brasileiro e será convertido para o formato americano.
+ * 
+ * @param $valor   string  NULL O valor a ser alterado
+ * @param $formato integer 1    O formato sendo: 1 - formato brasileiro | 2 - formato americano para gravação no bd
+ * 
+ * @example exemplo.formataMoeda.php  
  */
-
-	
-    if($formato == 1){
+    
+    if($formato == 1){ 
+        # Formato americano para o brasileiro
         $moeda = number_format($valor, 2, ',', '.');
     }else{ 
+        # Formato brasileiro para o americano
         $moeda = str_replace(".", "", $valor);
         $moeda = str_replace(",", ".", $moeda); 
-    }
-    
+    }    
     return $moeda;
 }
 
@@ -781,14 +800,14 @@ function formataMoeda($valor,$formato = 1)
 
 function formataNumLinha($numero){
 /**
- * Formata o número da linha do código na rotina de exibição do código da documentação.
- *
- * @param $numero string null O número da linha a ser formatada.
+ * Tabula a exibição de números Para exibição na rotina que lista códigos.
  * 
- * @syntax formataNumLinha($numero);
+ * @syntax formataNumLinha($numero); 
+ * 
+ * @param $numero string NULL O número da linha a ser formatada.
+ * 
+ * @note Um exemplo dessa formatação poderá ser vista clicando no botão código desta página.
  */
-
-
     
     # Tamanho do numero
     $tamanho = strlen($numero);
@@ -809,13 +828,20 @@ function formataNumLinha($numero){
 
 function callout($mensagem, $tipo = "warning"){
 /**
- * Alternativa a função alert e a classe callout. Exibe um painel com uma mensagem.
- *
+ * Exibe um painel contendo uma mensagem.
+ * 
+ * @note Essa função é uma alternativa a função alert e utiliza a classe homônima.
+ * @note Foi criada para facilitar o código quando se quer somente exibir uma mensagem dentro de um painel colorido.
+ * @note Utiliza a funcionalidade callout do Foundation
+ * 
  * @param $mensagem string null    A mensagem a ser exibida
  * @param $tipo     string warning O tipo do callout: secondary | primary | success | warning | alert
  * 
  * @syntax callout($mensagem, [$tipo]);
+ * 
+ * @example exemplo.callout.php 
  */
+    
     $callout = new Callout($tipo);
     $callout->abre();
         p($mensagem);
@@ -826,14 +852,17 @@ function callout($mensagem, $tipo = "warning"){
 
 function label($mensagem, $tipo = "warning", $id = null){
 /**
- * Cria uma mensagem com fundo colorido. Funcionalidade label do Foundation
+ * Cria uma mensagem com fundo colorido.
+ * 
+ * @note Utiliza a funcionalidade label do Foundation
  *
  * @param $mensagem string null    A mensagem a ser exibida: 
  * @param $tipo     string warning O tipo: secondary | primary | success | warning | alert 
  * 
  * @syntax callout($mensagem, [$tipo]);
+ * 
+ * @example exemplo.label.php  
  */
-
 
     echo '<span class="'.$tipo.' label">';
     p($mensagem,$id);
@@ -844,9 +873,11 @@ function label($mensagem, $tipo = "warning", $id = null){
 
 function badge($mensagem, $tipo = "warning", $id = NULL, $title = NULL){
 /**
- * semelhante a função label mas com bordas arredondadas
+ * Semelhante a função label mas com bordas arredondadas
  *
- * @note badge é indicado quando se quer chamar atenção para um ou dois caracteres no máximo. Os caracteres ficam dentro de um círculo. Com palavras o efeito não é bom.
+ * @note É indicado quando se quer chamar atenção para um ou dois caracteres no máximo. 
+ * @note Os caracteres ficam dentro de um círculo. Com palavras de mais de 2 caracteres o efeito não é bom.
+ * @note Utiliza a funcionalidade badge do Foundation 
  * 
  * @param $mensagem string NULL    A mensagem a ser exibida
  * @param $tipo     string warning O tipo: secondary | primary | success | warning | alert
@@ -854,8 +885,9 @@ function badge($mensagem, $tipo = "warning", $id = NULL, $title = NULL){
  * @param $title    string NULL    Mensagem para o mouseover
  * 
  * @syntax badge($mensagem, [$tipo], [$id], [$title]);
+ * 
+ * @example exemplo.badge.php 
  */
-
 
     echo '<span class="'.$tipo.' badge" title="'.$title.'">';
     p($mensagem,$id);
@@ -866,7 +898,11 @@ function badge($mensagem, $tipo = "warning", $id = NULL, $title = NULL){
 
 function span($mensagem, $id = null,$class = null){
 /**
- * Cria um span com umaa mensagem
+ * Cria um span com uma mensagem.
+ * 
+ * @note Função criada para facilitar a escrita do código.
+ * @note Apenas monta um elemento span com uma mensagem dentro.
+ * @note Só tem utilidade quando está vinculado a alguma formatação css.
  *
  * @param $mensagem string null    A mensagem a ser exibida: 
  * @param $id       string NULL    O id para o css.
@@ -894,3 +930,235 @@ function span($mensagem, $id = null,$class = null){
 }
 
 ###########################################################
+
+function validaData($data){
+/**
+ * Verifica se uma data é válida ou não retorna true or false
+ * 
+ * @return bool TRUE para datas válidas e FALSE para as inválidas.  
+ * 
+ * @param $data string NULL A data a ser validada no formato brasileiro
+ * 
+ * @note Essa função é uma melhoria da função checkdate do php.
+ * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /
+ * 
+ * @syntax validaData($data);
+ * 
+ * @example exemplo.validaData.php  
+ */
+
+    if(Valida::vazio($data)){        
+        return 0;
+    }else{	
+        $dt1 = explode('/',$data);					// Separa a data
+        return checkdate((int)$dt1[1],(int)$dt1[0],(int)$dt1[2]);	// valida
+    }
+}
+
+###########################################################
+
+function addDias($data,$dias,$inclusive = true){
+/**
+ * Adiciona dias a uma data
+ * 
+ * @param 	$data 		string	-> a data 
+ * @param 	$dias 		integer	-> os dias a serem adicionados
+ * @param 	$inclusive	bool	-> se inclui o primeiro dia ou não
+ * 
+ */
+
+        if($inclusive)
+                $dias--;
+
+        if(validaData($data))
+        {
+            $dia=substr($data,0,2);
+            $mes=substr($data,3,2);
+            $ano=substr($data,6,4);
+            $dataFinal = date('d/m/Y',mktime(24*$dias, 0, 0, $mes, $dia, $ano));
+            return $dataFinal;
+        }
+        else
+        { 
+            Alert::alert('Data Inválida');
+            return false;
+        }
+}
+
+###########################################################	
+
+function entre($data,$dtInicial,$dtFinal)
+{
+/**
+ * Verifica se a data está entre (inclusive) duas datas (um período)
+ * 
+ * @param 	$data 		string	-> a data a ser verificada
+ * @param 	$dtInicial	date	-> data inicial do período
+ * @param 	$dtFinal	date	-> data final do período
+ * 
+ */ 
+
+    if ((date_to_bd($data) < date_to_bd($dtInicial)) or (date_to_bd($data) > date_to_bd($dtFinal)))
+        return false;
+    else 
+        return true;						
+}
+
+###########################################################	
+function jaPassou($data){
+/**
+ * Verifica se a data já passou da data atual
+ * 
+ * @param 	$data 		string	-> a data a ser verificada 
+ */ 
+
+    if (date("Y/m/d") > date_to_bd($data))
+        return true;
+    else 
+        return false;
+
+}
+
+###########################################################	
+
+function dataDif($data1, $data2 = null){
+/**
+ * Informa em dias o período entre duas datas
+ *
+ * @param	$data1	string	-> data inicial do período
+ * @param 	$data2	string	-> data final do período. Se for nula usa a data de hoje.
+ * 
+ */ 
+
+    if($data2 == null)
+                $data2 = date("m/d/Y");  # Se for nula coloca a data atual
+
+        if($data1 == null)
+                return false;
+
+        $data1 = date_to_bd($data1);
+
+        $diferenca = round((strtotime($data2) - strtotime($data1)) / (24 * 60 * 60), 0);
+        return $diferenca;	       
+}
+
+
+###########################################################	
+
+function porExtenso($data){
+/**
+ * Método porExtenso
+ *  
+ * Exibe a data armazenada na classe na seguinte forma:
+ * DD, de MM de AAAA
+ * 
+ * @param	$data	string	A data a ser transformada
+ * @return	$string			A data por extenso 
+ * 
+ */ 
+        $dt1 = explode('/',$data);
+        switch ($dt1[1])
+        {
+                case 1:
+                        $mm = "Janeiro";
+                        break;
+
+                case 2:
+                        $mm = "Fevereiro";
+                        break;
+
+                case 3:
+                        $mm = "Março";
+                        break;	
+
+                case 4:
+                        $mm = "Abril";
+                        break;
+
+                case 5:
+                        $mm = "Maio";
+                        break;
+
+                case 6:
+                        $mm = "Junho";
+                        break;	
+
+                case 7:
+                        $mm = "Julho";
+                        break;
+
+                case 8:
+                        $mm = "Agosto";
+                        break;
+
+                case 9:
+                        $mm = "Setembro";
+                        break;	
+
+                case 10:
+                        $mm = "Outubro";
+                        break;
+
+                case 11:
+                        $mm = "Novembro";
+                        break;
+
+                case 12:
+                        $mm = "Dezembro";
+                        break;	
+        }		
+
+        $dt2 = $dt1[0].' de '.$mm.' de '.$dt1[2];
+        return $dt2;
+}
+
+###########################################################
+
+function addMeses($data,$meses){
+/**
+ * Método que adiciona meses a uma data
+ * 
+ * @param 	$data 		string	-> a data 
+ * @param 	$meses 		integer	-> os meses a serem adicionados
+ * 
+ */
+       if(validaData($data))
+        {
+            $dia=substr($data,0,2);
+            $mes=substr($data,3,2);
+            $ano=substr($data,6,4);
+            $dataFinal = date('d/m/Y',mktime(0, 0, 0, $mes+$meses, $dia, $ano));
+            return $dataFinal;
+        }
+        else
+        { 
+            alert('Data Inválida');
+            return false;
+        }
+}
+
+###########################################################
+
+function addAnos($data,$anos){
+/**
+ * Método que adiciona anos a uma data
+ * 
+ * @param 	$data 		string	-> a data 
+ * @param 	$anos 		integer	-> os meses a serem adicionados
+ * 
+ */
+		
+        if(validaData($data))
+        {
+            $dia=substr($data,0,2);
+            $mes=substr($data,3,2);
+            $ano=substr($data,6,4);
+            $dataFinal = date('d/m/Y',mktime(0, 0, 0, $mes, $dia, $ano+$anos));
+            return $dataFinal;
+        }
+        else
+        { 
+            alert('Data Inválida');
+            return false;
+        }
+}

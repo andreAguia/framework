@@ -134,6 +134,7 @@ class Modelo
 
     # Botões extra
     private $botaoListar;      # Array de objetos button para fazer um menu na rotina de listar
+    private $botaoEditarExtra; # Array de objetos button para fazer um menu na rotina de editar
     
     # Rotinas Extras - > rotina extra que aparecerá nas rotinas de listar e editar
     private $rotinaExtra = null;
@@ -556,6 +557,13 @@ class Modelo
             $linkBotaoVoltar->set_title('Volta para a página anterior');
             $linkBotaoVoltar->set_accessKey('V');
             $menu->add_link($linkBotaoVoltar,"left");
+        }
+        
+        # Inclui botões extras
+        if ($this->botaoEditarExtra){
+            foreach ($this->botaoEditarExtra as $botao){
+                $menu->add_link($botao,"right");
+            }
         }
 
         # Botão histórico
@@ -987,7 +995,7 @@ class Modelo
                     $intra->registraLog($this->idUsuario,$data,$atividade,$this->tabela,$id,$tipoLog,$this->idServidorPesquisado);
             }
 
-            mensagemAguarde();
+            aguarde();
 
             loadPage($this->linkListar);
             return true;
