@@ -37,7 +37,9 @@ class Button
     private $onClick = NULL;
         
     private $confirma = NULL;
-    private $accessKey = NULL; 
+    private $accessKey = NULL;
+    
+    private $imagem = NULL;
 
 ###########################################################
 
@@ -167,6 +169,20 @@ class Button
     
         $this->accessKey = $accessKey;
     }
+    
+###########################################################
+
+    public function set_imagem($imagem = NULL){
+    /**
+     * Informa uma imagem a ser exibida no botão junto ou ou inves do texto
+     * 
+     * @syntax $button->set_imagem($imagem);
+     * 
+     * @param $imagem string NULL O objeto imagem a ser inserido
+     */
+    
+        $this->imagem = $imagem;
+    }    
 
 ###########################################################
 
@@ -236,7 +252,16 @@ class Button
         }
         
         echo '>';
-        echo $this->label;
+        
+        if (!is_null($this->imagem)){
+            $this->imagem->show();
+        }
+        
+        if (!is_null($this->label)){
+            echo '<span>';
+            echo $this->label;
+            echo '</span>';
+        }        
         echo '</a>';
     }
 }

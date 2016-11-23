@@ -70,7 +70,7 @@ class Modelo
     private $numeroOrdemTipo = 'c';         # Informa que a ordena��o ser� 'c' crescente ou 'd' decrescente
 
     # Da função
-    private $function = null;
+    private $funcao = null;
  
     # da Classe
     private $classe = null;             # array de classes
@@ -133,7 +133,7 @@ class Modelo
     private $logDescricao = true;           # Define se no log grava a atividade (descrição do que foi gravado)	
 
     # Botões extra
-    private $botaoListar;      # Array de objetos button para fazer um menu na rotina de listar
+    private $botaoListarExtra; # Array de objetos button para fazer um menu na rotina de listar
     private $botaoEditarExtra; # Array de objetos button para fazer um menu na rotina de editar
     
     # Rotinas Extras - > rotina extra que aparecerá nas rotinas de listar e editar
@@ -226,14 +226,25 @@ class Modelo
     ###########################################################
         
     /**
-     * método add_botaoListar
+     * método set_botaoListarExtra
      * inclui um objeto (button ou link) na rotina listar (ao lado do botao voltar)
      * 
      * @param  $button    = objeto button
      */
-    public function add_botaoListar($button)
-    {
-       $this->botaoListar[] = $button; 
+    public function set_botaoListarExtra($button){
+       $this->botaoListarExtra = $button; 
+    }
+    
+    ###########################################################
+        
+    /**
+     * método set_funcao
+     * inclui um objeto (button ou link) na rotina listar (ao lado do botao voltar)
+     * 
+     * @param  $button    = objeto button
+     */
+    public function set_funcao($funcao){
+       $this->funcao = $funcao; 
     }
     
     ###########################################################
@@ -271,8 +282,8 @@ class Modelo
         $menu->add_link($linkBotaoVoltar,"left");
         
         # Inclui botões extras
-        if ($this->botaoListar){
-            foreach ($this->botaoListar as $botao){
+        if ($this->botaoListarExtra){
+            foreach ($this->botaoListarExtra as $botao){
                 $menu->add_link($botao,"right");
             }
         }
@@ -469,7 +480,7 @@ class Modelo
             $tabela->set_link($this->link);
             $tabela->set_linkCondicional($this->linkCondicional);
             $tabela->set_linkCondicionalOperador($this->linkCondicionalOperador);
-            $tabela->set_funcao($this->function);
+            $tabela->set_funcao($this->funcao);
             $tabela->set_classe($this->classe);
             $tabela->set_metodo($this->metodo);   
             $tabela->set_zebrado($this->zebrado);   
