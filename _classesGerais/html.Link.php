@@ -55,8 +55,8 @@ class Link
     /**
      * Constroi um link sem exibí-lo
      * 
-     * @param	$label	string	-> texto a ser exibido no link
-     * @param 	$url	string	-> a url do link
+     * @param $label string NULL O texto a ser exibido no link
+     * @param $url   string NULL A url do link
      * 
      * @syntax $link = new Link($label,[$url]);
      */
@@ -101,7 +101,7 @@ class Link
      * 
      * @syntax $link->set_title($title);
      * 
-     * @param $title string NULL O nome do id
+     * @param $title string NULL O texto do mouseover
      */
     
         $this->title = $title;
@@ -217,23 +217,19 @@ class Link
         if ($this->confirma <> null){  // com confirmação
             if(is_null($id)){	// Exibe ou não o id
                 echo " onclick='confirma(\"$this->url\",\"$this->confirma\")'";
-            }
-            else{
+            }else{
                 echo " onclick='confirma(\"$this->url$id\",\"$this->confirma\")'"; 	
             }
 
             echo ' href="#"';
-        }
-        else{	   // sem confirmação
+        }else{	   // sem confirmação
             if(is_null($this->onClick)){        
                 if(is_null($id)){	// Exibe ou não o id
                     echo ' href="'.$this->url.'"';
-                }
-                else{
+                }else{
                     echo ' href="'.$this->url.$id.'"';
                 }
-            }
-            else{
+            }else{
                 echo ' href="javascript:'.$this->onClick.'"';
             }
         }

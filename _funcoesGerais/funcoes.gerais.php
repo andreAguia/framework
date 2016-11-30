@@ -523,11 +523,11 @@ function abreDiv($nome){
 
 ###########################################################
 
-function extenso($valor = 0, $maiusculas = false){ 
+function moedaExtenso($valor = 0, $maiusculas = false){ 
 /**
  * Retorna escrito por extenso o número fornecido em valores monetários (REAIS).
  * 
- * @syntax extenso($valor, [$maiusculas]);
+ * @syntax moedaExtenso($valor, [$maiusculas]);
  * 
  * @return string Texto com o número em extenso em formato monetário.
  * 
@@ -536,7 +536,7 @@ function extenso($valor = 0, $maiusculas = false){
  * @param $valor      string  null O valor a ser transformado.
  * @param $maiusculas boolean Quando true as primeiras letras são maiúsculas.
  * 
- * @example exemplo.extenso.php  
+ * @example exemplo.moedaExtenso.php  
  */
 
     $singular = array("centavo", "real", "mil", "milh�o", "bilh�o", "trilh�o", "quatrilh�o"); 
@@ -669,9 +669,11 @@ function alert($mensagem){
 
 function p($mensagem = NULL,$id = NULL,$class = NULL,$title = null){
 /** 
- * Simula o comando P do HTML com vantagens
+ * Exibe uma mensagem.
  * 
  * @syntax p($mensagem, [$id], [$class], [$title]);
+ * 
+ * @note Essa função chama a tag p do html. 
  * 
  * @param $mensagem string NULL A mensagem a ser exibida.
  * @param $id       string NULL O id para o css.
@@ -1012,6 +1014,7 @@ function addDias($data = NULL,$dias = 0,$primeiroDia = TRUE){
  * 
  * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
  * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida. 
+ * @note Se o terceiro parâmetro estiver TRUE, o primeiro dia será contado, senão a contagem começará apartir do dia seguinte.
  * 
  * @param $data        string  NULL A data inicial 
  * @param $dias        integer 0    O número de dias a serem adicionados
@@ -1103,7 +1106,7 @@ function jaPassou($data){
 
 ###########################################################	
 
-function dataDif($dataInicial, $dataFinal = null){
+function dataDif($dataInicial, $dataFinal = NULL){
 /**
  * Informa, em dias, o período entre duas datas
  *
@@ -1124,10 +1127,7 @@ function dataDif($dataInicial, $dataFinal = null){
  */ 
     # Se for nula coloca a data atual
     if(is_null($dataFinal)){
-        $dataFinal = date("m/d/Y");
-    }else{
-        # Passa para o padrão americano
-        $dataFinal = date_to_bd($dataFinal);
+        $dataFinal = date("d/m/Y");
     }
 
     # Verifica a validade das datas
@@ -1135,6 +1135,7 @@ function dataDif($dataInicial, $dataFinal = null){
         
         # Passa para o padrão americano
         $dataInicial = date_to_bd($dataInicial);
+        $dataFinal = date_to_bd($dataFinal);
         
         # Calcula a diferença
         $diferenca = round((strtotime($dataFinal) - strtotime($dataInicial)) / (24 * 60 * 60), 0);
@@ -1147,96 +1148,77 @@ function dataDif($dataInicial, $dataFinal = null){
 
 ###########################################################	
 
-function porExtenso($data){
-/**
- * Método porExtenso
- *  
- * Exibe a data armazenada na classe na seguinte forma:
- * DD, de MM de AAAA
+function dataExtenso($data = NULL){
+/**  
+ * Exibe a ddata por extenso no formato [dia], de [mês] de [Ano]
  * 
- * @param	$data	string	A data a ser transformada
- * @return	$string			A data por extenso 
+ * @param $data	date NULL A data a ser transformada
+ *
+ * @return string A data por extenso no formato [dia], de [mês] de [Ano]
  * 
+ * @syntax dataExtenso([$data]);
+ * 
+ * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
+ * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
+ * @note Se a $data não for informada, a função pegará a data atual. 
+ * 
+ * @example exemplo.dataExtenso.php  
  */ 
-        $dt1 = explode('/',$data);
-        switch ($dt1[1])
-        {
-                case 1:
-                        $mm = "Janeiro";
-                        break;
+    
+    # Se for nula coloca a data atual
+    if(is_null($data)){
+        $data = date("d/m/Y");
+    }
 
-                case 2:
-                        $mm = "Fevereiro";
-                        break;
-
-                case 3:
-                        $mm = "Março";
-                        break;	
-
-                case 4:
-                        $mm = "Abril";
-                        break;
-
-                case 5:
-                        $mm = "Maio";
-                        break;
-
-                case 6:
-                        $mm = "Junho";
-                        break;	
-
-                case 7:
-                        $mm = "Julho";
-                        break;
-
-                case 8:
-                        $mm = "Agosto";
-                        break;
-
-                case 9:
-                        $mm = "Setembro";
-                        break;	
-
-                case 10:
-                        $mm = "Outubro";
-                        break;
-
-                case 11:
-                        $mm = "Novembro";
-                        break;
-
-                case 12:
-                        $mm = "Dezembro";
-                        break;	
-        }		
-
-        $dt2 = $dt1[0].' de '.$mm.' de '.$dt1[2];
-        return $dt2;
-}
+    # Verifica a validade da data
+    if(validaData($data)){
+        
+        # Divide a data em dia, mes e ano
+        $dt = explode('/',$data);
+        
+        # pega o mês
+        $mes = get_nomeMes($dt[1]);
+        
+        $dataExtenso =  $dt[0].' de '.$mes.' de '.$dt[2];
+      
+        return $dataExtenso;
+    }else{
+        alert('Data Inválida');
+        return FALSE;
+    }  
+}   
 
 ###########################################################
 
 function addMeses($data,$meses){
 /**
- * Método que adiciona meses a uma data
+ * Adiciona meses a uma data
  * 
- * @param 	$data 		string	-> a data 
- * @param 	$meses 		integer	-> os meses a serem adicionados
+ * @syntax addMeses($data,$meses); 
  * 
+ * @return date A data acrescida dos meses.
+ * 
+ * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
+ * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.  
+ * @note Se o parâmetro meses for negativo a data será retroagida.   
+ * 
+ * @param $data  string  NULL A data inicial 
+ * @param $meses integer NULL A quantidade de meses a serem adicionados
+ * 
+ * @example exemplo.addMeses.php  
  */
-       if(validaData($data))
-        {
-            $dia=substr($data,0,2);
-            $mes=substr($data,3,2);
-            $ano=substr($data,6,4);
-            $dataFinal = date('d/m/Y',mktime(0, 0, 0, $mes+$meses, $dia, $ano));
-            return $dataFinal;
-        }
-        else
-        { 
-            alert('Data Inválida');
-            return false;
-        }
+    
+    if(validaData($data)){
+        
+        # Divide a data em dia, mes e ano
+        $dt = explode('/',$data);
+        
+        $dataFinal = date('d/m/Y',mktime(0, 0, 0, $dt[1] + $meses, $dt[0], $dt[2]));
+        return $dataFinal;
+     }else{ 
+        alert('Data Inválida');
+        return false;
+    }
 }
 
 ###########################################################
@@ -1245,22 +1227,29 @@ function addAnos($data,$anos){
 /**
  * Método que adiciona anos a uma data
  * 
- * @param 	$data 		string	-> a data 
- * @param 	$anos 		integer	-> os meses a serem adicionados
+ * @syntax addAnos($data,$anos); 
  * 
+ * @return date A data acrescida dos anos.
+ * 
+ * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
+ * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.  
+ * @note Se o parâmetro $anos for negativo a data será retroagida.   
+ * 
+ * @param $data string  NULL A data inicial 
+ * @param $anos integer NULL A quantidade de anos a serem adicionados
+ * 
+ * @example exemplo.addAnos.php
  */
-		
-        if(validaData($data))
-        {
-            $dia=substr($data,0,2);
-            $mes=substr($data,3,2);
-            $ano=substr($data,6,4);
-            $dataFinal = date('d/m/Y',mktime(0, 0, 0, $mes, $dia, $ano+$anos));
-            return $dataFinal;
-        }
-        else
-        { 
-            alert('Data Inválida');
-            return false;
-        }
+        
+    if(validaData($data)){
+        
+        # Divide a data em dia, mes e ano
+        $dt = explode('/',$data);
+        
+        $dataFinal = date('d/m/Y',mktime(0, 0, 0, $dt[1], $dt[0], $dt[2]+$anos));
+        return $dataFinal;
+     }else{ 
+        alert('Data Inválida');
+        return false;
+    }
 }

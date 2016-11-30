@@ -101,7 +101,7 @@ class Relatorio
     private $brHr = 1;                          // quantidade de saltos de linha antes do hr do menu
     
     # especiais
-    private $linhaNomeColuna = true;            // exibe (ou não) a linha entre o nome das colunas
+    private $linhaNomeColuna = FALSE;            // exibe (ou não) a linha entre o nome das colunas
     private $id = null;                         // id do css para alterações
     
     # do log
@@ -263,12 +263,12 @@ class Relatorio
     ###########################################################
     
      /**
-      * Método exibeLinhaInterna
+      * Método exibeLinha
       * 
       * Exibe uma linha interna do relatório que separa os registros.
       */
     
-    private function exibeLinhaInterna($tamanhoLinha)
+    private function exibeLinha($tamanhoLinha)
     {
        echo '<tr><td colspan="'.$tamanhoLinha.'">';
        hr();
@@ -604,7 +604,7 @@ class Relatorio
                 }
 
                 if($this->bordaInterna)
-                   $this->exibeLinhaInterna($tamanhoLinha);
+                   $this->exibeLinha($tamanhoLinha);
             }
             echo '</tbody>';
 

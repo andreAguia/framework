@@ -1,84 +1,54 @@
  <?php
- /**
- * classe Menu
- * Monta um menu de opções
- * 
- * By Alat
- */
-class Menu
-{
-    private $item;  // Array de itens do menu
-    private $tipo;  // Array com o tipo de item (item ou titulo)
-    private $nome;  // Nome do menu para o css    
-
-    ###########################################################
-	
+ class Menu
+ {
     /**
-     * método construtor
-     * inicia um menu
+     * Monta um menu de opções
      * 
-     * @param  $name    = nome da classe e do id para estilo
+     * @author André Águia (Alat) - alataguia@gmail.com
+     * 
+     * @var private $item array  NULL Array de itens do menu
+     * @var private $tipo array  NULL Array com o tipo de cada item: Pode ser: link|titulo|linkWindow|linkAjax
+     * 
+     * @example exemplo.menu.php 
      */
-    public function __construct($nome)
-    {
-        $this->nome = $nome;
-    }
-    
-    ###########################################################
-	
-    /**
-    * Métodos get e set construídos de forma automática pelo 
-    * metodo mágico __call.
-    * Esse método cria um set e um get para todas as propriedades da classe.
-    * Um método existente tem prioridade sobre os métodos criados pelo __call.
-    * 
-    * O formato dos métodos devem ser:
-    * 	set_propriedade
-    * 	get_propriedade
-    * 
-    * @param 	$metodo		O nome do metodo
-    * @param 	$parametros	Os parâmetros inseridos  
-    */
-    public function __call ($metodo, $parametros)
-    {
-        ## Se for set, atribui um valor para a propriedade
-        if (substr($metodo, 0, 3) == 'set')
-        {
-            $var = substr($metodo, 4);
-            $this->$var = $parametros[0];
-        }
 
-        # Se for Get, retorna o valor da propriedade
-        #if (substr($metodo, 0, 3) == 'get')
-        #{
-        # $var = substr($metodo, 4);
-        #  return $this->$var;
-        #}
-    }
+    private $item;
+    private $tipo;
+
     ###########################################################
     
+    public function add_item($tipo = 'link',$label = NULL,$url = '#',$title = NULL,$accessKey = NULL,$target = NULL){
     /**
-     * método add_item
-     * 
      * Adiciona um item ao menu
      * 
-     * @param  $name    = nome da classe e do id para estilo
+     * @param $tipo      string link O tipo do item. Pode ser: link|titulo|linkWindow|linkAjax
+     * @param $label     string NULL O nome que vai aparecer no item
+     * @param $url       string # A url do link
+     * @param $title     string NULL O texto que irá aparecer no mouseover
+     * @param $accessKey string NULL A letra para o atalho do link
+     * @param $target    string NULL O nome da janela ou div quando é do tipo linkWindow ou linkAjax 
+     * 
+     * @note os tipos de item: titulo -> será exibido com título; link -> é um link normal que abrirá na mesma janela; linkWindow -> link que abrirá em uma janela. Normalmente usado em relatórios; linkAjax -> usado para chamar uma rotina a ser aberta dentro de uma div sem reload.
+     * 
+     * @syntax $menu->add_item($tipo,$label,[$url],[$title],[$accessKey],[$target]); 
      */
-    public function add_item($tipo='link',$label=null,$url=null,$title=null,$accessKey=null,$target=null)
-    {
+    
+        # title
+        if(is_null($title)){
+            $title = $label;
+        }
+        
         switch ($tipo)
         {
             case "titulo" :
                 # titulo
-                $titulo = new Link($label);
-                $titulo->set_title($title);
+                $link = new Link($label);
+                $link->set_title($title);
 
                 # Joga o objeto para o array
-                $this->item[] = $titulo;
+                $this->item[] = $link;
                 $this->tipo[] = 'titulo';
                 break;
-            
-            ####################################
             
             case "link" :
                 # Link 
@@ -89,9 +59,7 @@ class Menu
 
                 $this->item[] = $link;
                 $this->tipo[] = 'item';
-                break;      
-            
-            ####################################
+                break;
             
             case "linkWindow" :
                 # linkWindow
@@ -103,9 +71,7 @@ class Menu
                 # Joga o objeto para o array
                 $this->item[] = $linkWindow;
                 $this->tipo[] = 'item';
-                break;   
-            
-            ####################################
+                break; 
             
             case "linkAjax" :
                 # linkAjax
@@ -117,30 +83,26 @@ class Menu
 
                 $this->item[] = $linkAjax;
                 $this->tipo[] = 'item';
-                break;      
-            
+                break;
         }
     }
     
     ###########################################################
 	
-    /**
-     * método show
-     * 
-     * exibe o menu
-     * 
-     * @param  $name    = nome da classe e do id para estilo
-     */
-    
-    public function show()
-    {	
+    public function show(){
+        /**
+         * Exibe o menu
+         *
+         * @syntax $menu->show();
+         *
+         */
+
         # Inicia o contador
         $contador = 0;
-        
+
         # Começa
         echo "<ul class='menuVertical'>";
-        foreach ($this->item as $row)
-        {
+        foreach ($this->item as $row){
             if($this->tipo[$contador] == 'titulo'){
                 echo "<li id='titulo'>";
                 $row->show();
@@ -151,8 +113,7 @@ class Menu
                 echo "</li>";
             }
             $contador++;
-        }
-            
+        }   
         echo "</ul>";
     }
 }

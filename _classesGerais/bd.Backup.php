@@ -63,7 +63,9 @@ Class Backup
      * @note Importante ressaltar que a diferença entre o backup manual e o automático é que no manual existe um usuário que efetivamente executa a rotina e no automático é o sistema que executa esse backup.
      */
 
-        if(!$dbName) $this->error[] = 'Parameter database missing';
+        if(!$dbName){
+            $this->error[] = 'Parameter database missing';
+        }
 
         if(count($this->error)>0){
             return;

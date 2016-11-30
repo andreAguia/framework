@@ -319,7 +319,7 @@ ul.menuVertical li:hover{
  *******************************************/
 
 div#menuTopo{
-    border-bottom:#C0C0C0 solid 2px;
+    border-bottom:#000 solid 2px;
     margin-bottom: 5px;
 }
 
@@ -377,7 +377,7 @@ p#pRelatorioTitulo{
  }
  
  p#pRelatorioTotal{
-   text-align: center;
+   text-align: right;
    font-size: 11px;
    color: #000;
  }
@@ -414,8 +414,8 @@ p#pRelatorioTitulo{
    font-size: 12px;
    font-weight: normal;
    color: #000;
-   border-bottom:#C0C0C0 solid 2px;
-   border-top:#C0C0C0 solid 2px;
+   border-bottom:#000 solid 2px;
+   border-top:#000 solid 2px;
  }
  
  table.tabelaRelatorio td{
@@ -432,7 +432,7 @@ p#pRelatorioTitulo{
  table.tabelaRelatorio tfoot td{
    text-align: right;
    font-size: 11px;
-   border-top:#C0C0C0 solid 2px;
+   border-top:#000 solid 2px;
    font-weight: normal;
  }
  

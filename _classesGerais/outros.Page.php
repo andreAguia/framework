@@ -1,62 +1,59 @@
 <?php
- /**
- * classe Page
- * Define uma página web
- *
- * By Alat
- */
 class Page
 {
+ /**
+  * Inicia e termina uma página html
+  *
+  * @author André Águia (Alat) - alataguia@gmail.com
+  * 
+  * @group do atributos do config
+  * @var private $description string DESCRICAO      Descrição do site ou sistema.
+  * @var private $keywords    string PALAVRAS_CHAVE Palavras chave para site de busca.
+  * @var private $author      string AUTOR          Autor do Código.
+  * @var private $system      string SISTEMA        Nome do Sistema.
+  * @var private $version     string VERSAO         Versão do Sistema.
+  * @var private $title       string NULL           O title da página (mensagem do topo no browser)
+  * 
+  * @group do refresh
+  * @var private $refresh     bool    FALSE Se a página terá refresh automático
+  * @var private $refreshTime integer 30    Versão do Sistema.
+  * 
+  * @group do javaScript
+  * @var private $jscript    string NULL Acrescenta uma rotina jscript extra.
+  * @var private $bodyOnLoad string NULL Acrescenta rotina no onload do body.
+  */
+    
     # Atributos pegos do config
     private $description = DESCRICAO;       # Descrição do Site
     private $keywords = PALAVRAS_CHAVE;     # Palavras chave para site de busca
     private $author = AUTOR;                # Autor do Código
     private $system = SISTEMA;              # Nome do Sistema
     private $version = VERSAO;              # Versão do Sistema
+    private $title = NULL;                  # O title da página (mensagem do topo no browser)
 
     # refresh
-    private $refresh = false;   # Se a página terá refresh automático
-    private $refreshTime = 30;  # O tempo para esse refresh em segundos
+    private $refresh = FALSE;   # Se a página terá refresh automático
+    private $refreshTime = 30;  # O tempo para esse refresh em segundos    
 
-    # do título da página
-    private $title = null;      # Guarda o title da página (mensagem do topo no browser)
+    # javaScript
+    private $jscript = NULL;    # acrescenta uma rotina jscript extra;
+    private $bodyOnLoad = NULL; # acrescenta rotina no onload do body;
 
-    # javaScript extra
-    private $jscript = null;    # acrescenta uma rotina jscript extra;
-    private $bodyOnLoad = null; # acrescenta rotina no onload do body;
-
-    ###########################################################
-
+###########################################################
+    
+    public function set_title($title = NULL){
     /**
-     * Métodos get e set construídos de forma automática pelo 
-     * metodo mágico __call.
-     * Esse método cria um set e um get para todas as propriedades da classe.
-     * Um método existente tem prioridade sobre os métodos criados pelo __call.
+     * Informa o title da página
      * 
-     * O formato dos métodos devem ser:
-     * 	set_propriedade
-     * 	get_propriedade
+     * @syntax $page->set_title($title);
      * 
-     * @param 	$metodo		O nome do metodo
-     * @param 	$parametros	Os parâmetros inseridos  
+     * @param $title string NULL O title da página
      */
-    public function __call ($metodo, $parametros)
-    {
-        ## Se for set, atribui um valor para a propriedade
-        if (substr($metodo, 0, 3) == 'set')
-        {
-          $var = substr($metodo, 4);
-          $this->$var = $parametros[0];
-        }
+    
+        $this->title = $title;
+    }
 
-        # Se for Get, retorna o valor da propriedade
-        #if (substr($metodo, 0, 3) == 'get')
-        #{
-        # $var = substr($metodo, 4);
-        #  return $this->$var;
-        #}
-}
-    ###########################################################
+###########################################################
 
     /**
      * método iniciaPagina
