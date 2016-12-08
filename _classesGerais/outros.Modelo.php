@@ -814,9 +814,6 @@ class Modelo
         $alteracoes = null;	// informa as alteraçõs dos valores antigos com os novos
         $atividade = null;	// Variavel que informa ao log o que foi feito
 
-        # Instancia um objeto de validação
-        $valida = new Valida();
-
         # Pega o valor antigo
         $oldValue = get_session('oldValue'.$this->tabela);
 
@@ -860,7 +857,7 @@ class Modelo
             # verifica not null
             if ((isset($campo['required'])) and ($campo['required']))
             {
-                if ($valida->vazio($campoValor[$contador]))
+                if (vazio($campoValor[$contador]))
                 {
                     $msgErro.='O campo '.$campo['label'].' é obrigatório!\n';
                     $erro = 1;
@@ -893,7 +890,7 @@ class Modelo
             {
                 if(!is_null($campoValor[$contador]))
                 {
-                    if (!$valida->cpf(soNumeros($campoValor[$contador])))
+                    if (!validaCpf(soNumeros($campoValor[$contador])))
                     {		
                         $msgErro.='CPF Inválido!\n';
                         $erro = 1;
@@ -922,7 +919,7 @@ class Modelo
                     $erro = 1;
                 }
                 else
-                    $campoValor[$contador] = date_to_bd($campoValor[$contador]);	# passa a data para o formato de grava��o
+                    $campoValor[$contador] = date_to_bd($campoValor[$contador]);	# passa a data para o formato de gravação
             }
             
             # Passa o campo moeda para o formato americano (para o banco de dados)
@@ -1020,7 +1017,7 @@ class Modelo
 
     /**
     * método excluir
-    * M�todo de exclus�o de registro
+    * M�todo de exclusão de registro
     * 
     * @param $id	integer	- id da not�cia
     */

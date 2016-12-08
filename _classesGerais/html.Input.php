@@ -1,139 +1,230 @@
 <?php
+class Input
+{
  /**
-  * @class Input
-  * 
   * Cria um controle para um formulário
   * 
   * @author André Águia (Alat) - alataguia@gmail.com
+  * 
+  * @group do controle
+  * @var private $nome string NULL    O nome do controle
+  * @var private $tipo string 'texto' O tipo do controle: texto|numero|cpf|data|hora|cep|hidden|password|combo|checkbox|textarea|submit|reset|button
+  *
+  * @group do label
+  * @var private $label     string NULL    O label do controle
+  * @var private $tipoLabel string integer O tipo do label: 0 - sem label, 1 - label em cima, 2 - label do lado direito e 3 - label do lado esquerdo
+  *   
+  * @group do tamanho
+  * @var private $size      integer 0  O tamanho do controle
+  * @var private $maxlength integer 0  O tamanho máximo do valor do controle
+  * @var private $col       integer 12 Define, para o Grid do Foundation, o tamanho da coluna onde o controle se encontra (1 a 12)
+  * 
+  * @group das dicas
+  * @var private $title       string NULL  Informa texto a ser exibido no evento mouseover
+  * @var private $placeholder string NULL  Informa texto a ser exibido dentro do controle quando não tiver valor
+  * 
+  * @group outros
+  * @var private $readonly  bool    FALSE Informa se o controle será somente leitura
+  * @var private $disabled  bool    FALSE Informa se o controle será desabilitado. Se ficará oculto.
+  * @var private $valor     string  NULL  Informa o valor desse controle
+  * @var private $tabindex  integer NULL  Informa um número que ordena os controles dentro do form para a navegação pela tecla TAB.
+  * @var private $accessKey string  NULL  Informa uma letra de atalho para quando o controle for um botão.
+  * @var private $autofocus bool    FALSE Informa se o controle será o primeiro a receber foco quando a página carregar. Deve´se ter somente um controle com autofocus habilitado por página.
+  * @var private $required  string  FALSE Informa se o conterole deverá obrigatoriamente ser preenchido. Requerido. Not NULL
+  * @var private $array     array   NULL  Informa o array de valores para uma combo.
+  * 
+  * @group dos eventos
+  * @var private $onClick   string  NULL  Informa rotina do evento OnClick
+  * @var private $onChange  string  NULL  Informa rotina do evento OnChange
+  * @var private $pularPara string  NULL  Informa qual o controle pulara automaticamente o foco quando o campo estiver preenchido
+  * 
+  * @group do form
+  * @var private $linha    integer NULL Informa a linha do formulário onde o o controle ficará 
+  * @var private $fieldset string  NULL Texto do fieldset interno que começará antes desse controle 
+  * 
+  * @example exemplo.input.php
   */
-class Input
-{	
+	
     # do controle
-    private $nome;
+    private $nome = NULL;
     private $tipo = 'texto';
 
     # do label
-    private $label = null;
+    private $label = NULL;
     private $tipoLabel = 0;
 
     # do tamanho
     private $size = 0;
     private $maxlength = 0;
-    private $col = 12;              // Usado pela classe form para definir a 
-                                    // largura da coluna onde o controle está (de 1 a 12)
-                                    // de acordo com o grid o Foundation
-
-    # outros
-    private $readonly = false;
-    private $disabled = false;
-    private $valor = null;
-    private $title = null;
-    private $placeholder = null;
-    private $tabindex = null;    
-    private $tagHtml = false;
-    private $accessKey = null;
-    private $autofocus = false;     // determina se o focus será nesse input
-    private $required = false;      // requerido (not null)
+    private $col = 12; 
     
-    # especial
-    private $pularPara = null;     // informa qual o controle pulara automaticamente o foco 
-                                   // quando o campo estiver preenchido
-
-    # quando combo
-    private $array = null;
+    # da dica
+    private $title = NULL;
+    private $placeholder = NULL;
+    
+    # outros
+    private $readonly = FALSE;
+    private $disabled = FALSE;
+    private $valor = NULL;    
+    private $tabindex = NULL;    
+    private $tagHtml = FALSE;
+    private $accessKey = NULL;
+    private $autofocus = FALSE; 
+    private $required = FALSE;
+    private $array = NULL;
 
     # dos eventos
-    private $onClick = null;
-    private $onChange = null;
+    private $onClick = NULL;
+    private $onChange = NULL;
+    private $pularPara = NULL;
     
     # do form
-    private $linha = false;     // informa a linha do controle
-    private $fieldset = null;   // cria um fieldset dentro do form
-    private $fieldsetColunas = null;   // colunas do fieldset
-    private $align = null;      // alinha o input
+    private $linha = NULL;     // informa a linha do controle
+    private $fieldset = NULL;   // cria um fieldset dentro do form
 
-    ###########################################################
+###########################################################
 
+    public function __construct($nome,$tipo = "texto",$label = NULL,$tipoLabel = 0){
     /**
-    * @method construtor
-    * 
-    * cria um controle
-    * 
-    * @param    string  	nome       -> qual o nome do controle
-    * @param	string		tipo       -> qual o tipo do controle ('texto' | 'numero' | 'cpf' | 'data' | 'hora' | 'cep' | 'hidden' | 'password' | 'combo' | 'checkbox' | 'textarea' | 'submit' | 'reset' | 'button')
-    * @param    string  	label      -> texto do label
-    * @param	integer 	tipo_label -> (0 | 1 | 2 | 3)
-    *      		        0 - sem label
-    *			        1 - label em cima
-    *	 			2 - label do lado direito
-    *                           3 - label do lado esquerdo
-    */
+     * Cria um controle
+     * 
+     * @param $nome      string NULL    O nome do controle
+     * @param $tipo      string "texto" O tipo do controle: texto|numero|cpf|data|hora|cep|hidden|password|combo|checkbox|textarea|submit|reset|button
+     * @param $label     string NULL    O label do controle
+     * @param $tipoLabel string 0       O tipo do label: 0 - sem label, 1 - label em cima, 2 - label do lado direito e 3 - label do lado esquerdo 
+     * 
+     * @syntax $input = new Input($nome,[$tipo],[$label],[$tipoLabel]); 
+     */
     
-    public function __construct($nome,$tipo,$label = null,$tipo_label = 0)
-    {
         $this->nome = $nome;
         $this->tipo = $tipo;
         $this->label = $label;
-        $this->tipoLabel = $tipo_label;
+        $this->tipoLabel = $tipoLabel;
     }
-
-    ###########################################################
-
-    /**
-    * Métodos get e set construídos de forma automática pelo 
-    * metodo mágico __call.
-    * Esse método cria um set e um get para todas as propriedades da classe.
-    * Um método existente tem prioridade sobre os métodos criados pelo __call.
-    * 
-    * O formato dos métodos devem ser:
-    * 	set_propriedade
-    * 	get_propriedade
-    * 
-    * @param 	$metodo		O nome do metodo
-    * @param 	$parametros	Os parâmetros inseridos  
-    */
     
-    public function __call ($metodo, $parametros)
-    {
-        ## Se for set, atribui um valor para a propriedade
-        if (substr($metodo, 0, 3) == 'set')
-        {
-            $var = substr($metodo, 4);
-            $this->$var = $parametros[0];
-        }
-
-        # Se for Get, retorna o valor da propriedade
-        if (substr($metodo, 0, 3) == 'get')
-        {
-            $var = substr($metodo, 4);
-            return $this->$var;
-        }
-    }
-    ###########################################################
-
-    /**
-    * @method set_size
-    * 
-    * @param	integer		size    -> tamanho do input
-    * @param 	integer		maxlength -> quantidade máxima de caracteres que poderá ser digitado dentro do imput
-    */
+###########################################################
     
-    public function set_size($size,$maxlength = 0)
-    {
+    public function set_size($size,$maxlength = NULL){
+    /**
+     * Informa o tamanho do controle
+     * 
+     * @param $size      integer NULL O tamanho do input
+     * @param $maxlength integer NULL A quantidade máxima de caracteres que poderá ser digitado dentro do input
+     * 
+     * @syntax $input->set_size($size,[$maxlength]);  
+     */
+    
         $this->size = $size;
         $this->maxlength = $maxlength;
     }
-
-    ###########################################################
-
-    /**
-    * @method show
-    * 
-    * exibe o controle
-    */
     
-    public function show()
-    {
+###########################################################
+    
+    public function set_col($col = NULL){
+    /**
+     * Informa o tamanho da coluna do controle para o grid do Foundation
+     * 
+     * @param $col integer NULL O tamanho da coluna (1 a 12)
+     * 
+     * @syntax $input->set_col($col);  
+     */
+    
+        $this->col = $col;
+    }
+    
+###########################################################       
+
+    public function set_title($title = NULL){
+    /**
+     * Informa o texto no mouse over
+     * 
+     * @syntax $input->set_title($title);
+     * 
+     * @param $title string NULL O texto a ser exibido
+     */
+    
+        $this->title = $title;
+    }
+
+###########################################################       
+
+    public function set_placeholder($placeholder = NULL){
+    /**
+     * Informa o texto a ser exibido dentro do controle quando não tiver valor
+     * 
+     * @syntax $input->set_placeholder($placeholder);
+     * 
+     * @param $placeholder string NULL Informa texto a ser exibido dentro do controle quando não tiver valor
+     */
+    
+        $this->placeholder = $placeholder;
+    }    
+
+###########################################################       
+
+    public function set_readonly($readonly = FALSE){
+    /**
+     * Informa se o controle será somente leitura
+     * 
+     * @syntax $input->set_readonly($readonly);
+     * 
+     * @param $readonly string FALSE TRUE se for somente leitura ou FALSE se for habilitado para edição
+     */
+    
+        $this->readonly = $readonly;
+    }    
+
+###########################################################       
+
+    public function set_disabled($disabled = FALSE){
+    /**
+     * Informa se o controle será desabilitado. Se ficará oculto.
+     * 
+     * @syntax $input->set_disabled($disabled);
+     * 
+     * @param $disabled string FALSE TRUE se estiver desabilitado e oculto ou FALSE se for habilitado e visível
+     */
+    
+        $this->disabled = $disabled;
+    }    
+
+###########################################################       
+
+    public function set_valor($valor = NULL){
+    /**
+     * Informa o valor do controle
+     * 
+     * @syntax $input->set_valor($valor);
+     * 
+     * @param $valor string NULL O valor do controle
+     */
+    
+        $this->valor = $valor;
+    }    
+
+###########################################################       
+
+    public function set_tabindex($tabindex = NULL){
+    /**
+     * Informa um número que ordena os controles dentro do form para a navegação pela tecla TAB.
+     * 
+     * @syntax $input->set_tabindex($tabindex);
+     * 
+     * @param $tabindex integer NULL O número de ordem desse controle
+     */
+    
+        $this->tabindex = $tabindex;
+    }    
+
+###########################################################
+
+    public function show(){
+    /**
+     * Exibe o controle
+     * 
+     * @syntax $input->show(); 
+     */    
+    
         if ($this->tipo == "hidden")
             $this->tipoLabel = 0;
 
@@ -242,10 +333,6 @@ class Input
         # se for readonly	
         if ($this->readonly)
             echo ' class="readonly" readonly ';
-        
-        # se for textarea com html
-        #if ($this->tagHtml)                # A classe estava provocando erros
-        #    echo ' class="ckeditor" ';
 
         # se for disabled	
         if ($this->disabled)

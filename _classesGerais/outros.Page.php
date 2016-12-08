@@ -43,7 +43,7 @@ class Page
     
     public function set_title($title = NULL){
     /**
-     * Informa o title da página
+     * Informa o title da página, mensagem do topo no browser
      * 
      * @syntax $page->set_title($title);
      * 
@@ -54,15 +54,61 @@ class Page
     }
 
 ###########################################################
-
+    
+    public function set_refresh($refresh, $refreshTime = 30){
     /**
-     * método iniciaPagina
+     * Informa se a página terá atualização automática. 
      * 
-     * Inicia uma página
+     * @syntax $page->set_refresh($refresh, [$refreshTime]);
+     * 
+     * @param $refresh     bool    NULL Se a página possui ou não atualização automática (TRUE / FALSE)
+     * @param $refreshTime integer 30   Informa, em segundos, o tempo para ser atualizada.
      */
-    public function iniciaPagina()
-    {
-        # Inicia o buffer de sa�da
+    
+        $this->refresh = $refresh;
+        $this->refreshTime = $refreshTime;
+    }
+
+###########################################################
+    
+    public function set_jscript($jscript = NULL){
+    /**
+     * Informa a rotina jscript extra que será carregada junto com as outras rotinas js
+     * 
+     * @syntax $page->set_jscript($jscript);
+     * 
+     * @param $jscript string NULL Rotina jscript extra que será carregada junto com as outras rotinas js
+     */
+    
+        $this->set_jscript = $jscript;
+    }
+
+###########################################################
+    
+    public function set_bodyOnLoad($bodyOnLoad = NULL){
+    /**
+     * Informa a rotina a ser executada ao carregar o body
+     * 
+     * @syntax $page->set_bodyOnLoad($bodyOnLoad);
+     * 
+     * @param $bodyOnLoad string NULL Rotina a ser executada ao carregar o body
+     */
+    
+        $this->bodyOnLoad = $bodyOnLoad;
+    }
+
+###########################################################
+
+    public function iniciaPagina(){
+    /**
+     * Inicia a página
+     * 
+     * @note Rotina executa todas os comandos iniciais da página. Carrega os arquivos de estilo (CSS) e de jscript.
+     * 
+     * @syntax $page->iniciaPagina();
+     */
+    
+        # Inicia o buffer de saída
         ob_start();
 
         # Inicia a página
@@ -125,17 +171,17 @@ class Page
             echo '<body onload='.$this->bodyOnLoad.'>';
     }
 
-    ###########################################################
-     /**
-     * método terminaPagina
-     * 
-     * Termina e fecha a página
-     */
+###########################################################
     
-    public function terminaPagina()
-    {
-         # Java Script do Foundation
-        
+    public function terminaPagina(){
+    /**
+     * Termina a página
+     * 
+     * @note Rotina executa todas os comandos de fechamento da página.
+     * 
+     * @syntax $page->terminaPagina();
+     */
+        # Java Script do Foundation
         echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'what-input.js"></script>';
         echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'foundation.js"></script>';
         echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'foundation.min.js"></script>'; 
@@ -146,6 +192,7 @@ class Page
         echo '</footer>';
         echo '</html>';
 
+        # Termina o buffer de saída
         ob_end_flush();
     }
 }

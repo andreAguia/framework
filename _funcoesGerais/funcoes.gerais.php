@@ -1150,7 +1150,7 @@ function dataDif($dataInicial, $dataFinal = NULL){
 
 function dataExtenso($data = NULL){
 /**  
- * Exibe a ddata por extenso no formato [dia], de [mês] de [Ano]
+ * Exibe a data por extenso no formato [dia], de [mês] de [Ano]
  * 
  * @param $data	date NULL A data a ser transformada
  *
@@ -1225,7 +1225,7 @@ function addMeses($data,$meses){
 
 function addAnos($data,$anos){
 /**
- * Método que adiciona anos a uma data
+ * Função que adiciona anos a uma data
  * 
  * @syntax addAnos($data,$anos); 
  * 
@@ -1253,3 +1253,106 @@ function addAnos($data,$anos){
         return false;
     }
 }
+
+###########################################################
+
+function vazio($var){
+/**
+ * Verifica se o valor da variável é vazio ou nulo
+ * 
+ * @syntax vazio($var); 
+ * 
+ * @return TRUE or FALSE
+ * 
+ * @param $var 	string	NULL A variavel a ser validada
+ * 
+ * @note Observe que a função somente retornará TRUE se o valor for NULL ou "". Se houver algum outro dado será retornado FALSE
+ *  
+ * @example exemplo.vazio.php
+ */
+    if (is_null($var) or ($var == '')){
+        return true;		
+    }
+}
+
+###########################################################
+
+function validaCpf($cpf){
+/**
+ * Rotina de validação do CPF
+ * 
+ * @syntax validaCpf($cpf); 
+ * 
+ * @return TRUE or FALSE
+ * 
+ * @param $cpf 	string	NULL O CPF a ser validado
+ *   
+ * @example exemplo.validaCpf.php
+ */     
+    
+    # Retira os caracteres . e -
+    $cpf = str_replace('.', '', $cpf);      // retira o .
+    $cpf = str_replace('-', '', $cpf);      // retira o -
+
+    # Verifica se sobrou somente número
+    if(!is_numeric($cpf)){ 	// Verifica se é número
+            $status = FALSE;
+    }else{
+        # Verifica números que pelo padrão normal dão como válidos
+        if(($cpf == '11111111111') || ($cpf == '22222222222') || ($cpf == '33333333333') || ($cpf == '44444444444') ||
+           ($cpf == '55555555555') || ($cpf == '66666666666') || ($cpf == '77777777777') || ($cpf == '88888888888') ||
+           ($cpf == '99999999999') || ($cpf == '00000000000')){
+            $status = FALSE;
+        }else{
+            $dv_informado = substr($cpf, 9,2); // pega o digito verificador
+            
+            for($i=0; $i<=8; $i++){
+                $digito[$i] = substr($cpf, $i,1);
+            }
+
+            # CALCULA O VALOR DO 10º DIGITO DE VERIFICAÇÂO
+            $posicao = 10;
+            $soma = 0;
+
+            for($i=0; $i<=8; $i++){
+                $soma = $soma + $digito[$i] * $posicao;
+                $posicao = $posicao - 1;
+            }
+
+            $digito[9] = $soma % 11;
+
+            if($digito[9] < 2){
+                $digito[9] = 0;
+            }else{
+                $digito[9] = 11 - $digito[9];
+            }
+
+            # CALCULA O VALOR DO 11º DIGITO DE VERIFICAÇÃO
+            $posicao = 11;
+            $soma = 0;
+
+            for ($i=0; $i<=9; $i++){
+                $soma = $soma + $digito[$i] * $posicao;
+                $posicao = $posicao - 1;
+            }
+
+            $digito[10] = $soma % 11;
+
+            if ($digito[10] < 2){
+                $digito[10] = 0;
+            }else{
+                $digito[10] = 11 - $digito[10];
+            }
+
+            # VERIFICA SE O DV CALCULADO É IGUAL AO INFORMADO
+            $dv = $digito[9] * 10 + $digito[10];
+            if ($dv != $dv_informado){
+                $status = FALSE;
+            }else{
+                $status = TRUE;
+            }
+        }
+    }
+    return $status;	
+}
+###########################################################
