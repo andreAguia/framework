@@ -6,6 +6,11 @@ class Input
   * 
   * @author André Águia (Alat) - alataguia@gmail.com
   * 
+  * @note Quando o maxlength não é informado ele assume o valor da variavel size.
+  * @note Quando o controle for marcado como required, aparecerá um asterísco para informar que é obrigatório.
+  * @note As variaveis col e linha só funcionam quando são vinculas a um formulário.
+  * @note Quando o placeholder não é informado ele assume o valor do nome.
+  * 
   * @group do controle
   * @var private $nome string NULL    O nome do controle
   * @var private $tipo string 'texto' O tipo do controle: texto|numero|cpf|data|hora|cep|hidden|password|combo|checkbox|textarea|submit|reset|button
@@ -29,8 +34,8 @@ class Input
   * @var private $valor     string  NULL  Informa o valor desse controle
   * @var private $tabindex  integer NULL  Informa um número que ordena os controles dentro do form para a navegação pela tecla TAB.
   * @var private $accessKey string  NULL  Informa uma letra de atalho para quando o controle for um botão.
-  * @var private $autofocus bool    FALSE Informa se o controle será o primeiro a receber foco quando a página carregar. Deve´se ter somente um controle com autofocus habilitado por página.
-  * @var private $required  string  FALSE Informa se o conterole deverá obrigatoriamente ser preenchido. Requerido. Not NULL
+  * @var private $autofocus bool    FALSE Informa se o controle será o primeiro a receber foco quando a página carregar. Deverá se ter somente um controle com autofocus habilitado por página.
+  * @var private $required  bool    FALSE Informa se o conterole deverá obrigatoriamente ser preenchido. Requerido. Not NULL
   * @var private $array     array   NULL  Informa o array de valores para uma combo.
   * 
   * @group dos eventos
@@ -132,7 +137,21 @@ class Input
         $this->col = $col;
     }
     
-###########################################################       
+##########################################################       
+
+    public function get_col(){
+    /**
+     * Informa o valor da variavel col 
+     * 
+     * @syntax $input->get_col();
+     * 
+     * @return integer o Número da coluna desse controle
+     */
+    
+        return $this->col;
+    }    
+
+###########################################################            
 
     public function set_title($title = NULL){
     /**
@@ -216,11 +235,167 @@ class Input
         $this->tabindex = $tabindex;
     }    
 
+###########################################################       
+
+    public function set_accessKey($accessKey = NULL){
+    /**
+     * Informa uma letra de atalho para quando o controle for um botão.
+     * 
+     * @syntax $input->set_accessKey($accessKey);
+     * 
+     * @param $accessKey string NULL A letra para o atalho
+     */
+    
+        $this->accessKey = $accessKey;
+    }    
+
+###########################################################       
+
+    public function set_autofocus($autofocus = NULL){
+    /**
+     * Informa se o controle será o primeiro a receber foco quando a página carregar. Deverá se ter somente um controle com autofocus habilitado por página.
+     * 
+     * @syntax $input->set_autofocus($autofocus);
+     * 
+     * @param $accessKey bool FALSE A letra para o atalho
+     */
+    
+        $this->autofocus = $autofocus;
+    }    
+
+###########################################################       
+
+    public function set_required($required = NULL){
+    /**
+     * Informa se o conterole deverá obrigatoriamente ser preenchido. Requerido. Not NULL
+     * 
+     * @syntax $input->set_required($required);
+     * 
+     * @param $required bool FALSE Indica se é requerido TRUE ou não FALSE
+     */
+    
+        $this->required = $required;
+    }    
+
+###########################################################       
+
+    public function set_array($array = NULL){
+    /**
+     * Informa o array de valores para uma combo.
+     * 
+     * @syntax $input->set_array($array);
+     * 
+     * @param $array array NULL O array da combo.
+     */
+    
+        $this->array = $array;
+    }    
+
+###########################################################       
+
+    public function set_onClick($onClick = NULL){
+    /**
+     * Informa rotina do evento OnClick
+     * 
+     * @syntax $input->set_onClick($onClick);
+     * 
+     * @param $onClick string NULL A rotina a ser inserida
+     */
+    
+        $this->onClick = $onClick;
+    }    
+
+###########################################################       
+
+    public function set_onChange($onChange = NULL){
+    /**
+     * Informa rotina do evento onChange
+     * 
+     * @syntax $input->$onChange($onChange);
+     * 
+     * @param $onChange string NULL A rotina a ser inserida
+     */
+    
+        $this->onChange = $onChange;
+    }    
+
+###########################################################       
+
+    public function set_pularPara($pularPara = NULL){
+    /**
+     * Informa qual o controle pulara automaticamente o foco quando o campo estiver preenchido
+     * 
+     * @syntax $input->$onChange($pularPara);
+     * 
+     * @param $pularPara string NULL O nome do controle
+     */
+    
+        $this->pularPara = $pularPara;
+    }    
+
+###########################################################       
+
+    public function set_linha($linha = NULL){
+    /**
+     * Informa a linha do formulário onde o o controle ficará 
+     * 
+     * @syntax $input->set_linha($linha);
+     * 
+     * @param $linha integer NULL O número da linha
+     */
+    
+        $this->linha = $linha;
+    }    
+
+##########################################################       
+
+    public function get_linha(){
+    /**
+     * Informa o valor da variavel linha 
+     * 
+     * @syntax $input->get_linha();
+     * 
+     * @return integer o Número da linha desse controle
+     */
+    
+        return $this->linha;
+    }    
+
+###########################################################       
+
+    public function set_fieldset($fieldset = NULL){
+    /**
+     * Texto do fieldset interno que começará antes desse controle 
+     * 
+     * @syntax $input->set_fieldset($fieldset);
+     * 
+     * @param $fieldset integer NULL O texto
+     */
+    
+        $this->fieldset = $fieldset;
+    }    
+
+##########################################################       
+
+    public function get_fieldset(){
+    /**
+     * Informa o valor da variavel fieldset 
+     * 
+     * @syntax $input->get_fieldset();
+     * 
+     * @return string o texto do fieldset
+     */
+    
+        return $this->fieldset;
+    }    
+
 ###########################################################
 
-    public function show(){
+     public function show(){
     /**
      * Exibe o controle
+     * 
+     * @note As variáveis col, linha, fieldset só funcionam quando o controle está vinculado a um form. Então quando se vincula um conrole a um form o método show() não é digitado.
      * 
      * @syntax $input->show(); 
      */    
