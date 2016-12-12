@@ -503,7 +503,7 @@ class Modelo
 
             # coloca no rodapé a paginação (quando houver)
             if ($this->paginacao)
-                $tabela->set_footTexto($texto.' ('.$itemInicial.' a '.$itemFinal.' de '.$totalRegistros.' Registros)');
+                $tabela->set_rodape($texto.' ('.$itemInicial.' a '.$itemFinal.' de '.$totalRegistros.' Registros)');
 
             # coloca o botão de editar (quando houver)
             if (!is_null($this->editarBotao))

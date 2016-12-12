@@ -1,50 +1,50 @@
 <?php
 
-/**
- * classe Tabela
- * 
- * Classe para criação de tabelas
- * 
- * By Alat
- */
-  
 class Tabela
 {
-    private $class;	          # class da Tabela
-    private $id = null;           # id da tabela   
-    private $titulo = null;       # String Título que aparecerá no alto da tabela 
+   /**
+    * Classe para criação de tabelas
+    * 
+    * @author André Águia (Alat) - alataguia@gmail.com
+    * 
+    * @note Quando existe o rodapé o total de registros não é exibido
+    * 
+    * @example exemplo.tabela.php
+    */  
 
-    private $conteudo;	          # Array com o conteúdo da tabela principal
-    private $label = null;        # Array com o cabeçalho de cada coluna
-    private $align = null;        # Array com o alinhamento de cada coluna
-    private $width = null;        # Array com o tamanho de cada coluna em %
-	
-    private $totalRegistro = true; # true ou false informa se terá ou não total de registros
-    private $footTexto = null;     # Exibe uma mensagem no rodapé
-    private $idCampo = null;
+    # @group do css    
+    private $class;         // @var private $class string NULL A classe para o css    
+    private $id = NULL;     // @var private $id    string NULL O id para o css
     
-    # Link condicional
-    private $link = null;                   # array de objetos link correspondente a coluna em que ele aparece
-    private $linkCondicional = null;        # array com o valor que a coluna deve ter para ter o link
-    private $linkCondicionalOperador = '='; # operador da comparação. pode ser (=,<>, < ou >)
+    # @group da tabela
+    private $titulo = NULL;        // @var private $titulo        string NULL   Título que aparecerá no alto da tabela 
+    private $conteudo;             // @var private $conteudo      array  NULL   Array com o conteúdo da tabela principal
+    private $label = NULL;         // @var private $label         array  NULL   Array com o cabeçalho de cada coluna
+    private $align = NULL;         // @var private $align         array  center Array com o alinhamento de cada coluna: center | left | right
+    private $width = NULL;         // @var private $width         array  NULL   Array com o tamanho de cada coluna em %
+    private $rodape = NULL;        // @var private $rodape        string NULL   Exibe uma string no rodapé. O rodapé substituirá o total de regsitros.
+    private $zebrado = TRUE;       // @var private $zebrado       bool   TRUE   Informa se a tabela será zebrada
+    private $totalRegistro = TRUE; // @var private $totalRegistro bool   TRUE   Informa se terá ou não total de registros
     
+    # @group do número de ordem
+    private $numeroOrdem = FALSE;   // @var private $numeroOrdem     bool   FALSE  Exibe/Não exibe uma coluna com numeração de ordem das colunas    
+    private $numeroOrdemTipo = 'c'; // @var private $numeroOrdemTipo bool   'c'    Informa que a ordenação será 'c' crescente ou 'd' decrescente
     
-    private $numeroOrdem = false;       # Exibe (qualdo true) uma numeração das colunas
-    private $numeroOrdemTipo = 'c';     # Informa que a ordenação será 'c' crescente ou 'd' decrescente
-	
+    # @group do link
+    private $link = NULL;                   // @var private $link                    array NULL Array de objetos link correspondente a coluna em que ele aparece
+    private $linkCondicional = NULL;        // @var private $linkCondicional         array NULL array com o valor que a coluna deve ter para ter o link
+    private $linkCondicionalOperador = '='; // @var private $linkCondicionalOperador bool   'c'    operador da comparação. pode ser (=,<>, < ou >)
+    
     # Formatação condicional (exibe a tr com cor diferente dependendo de algum valor)
-    private $formatacaoCondicional = null;     
-    
+    private $formatacaoCondicional = null; 
+
     # Imagem Condicional (exibe um objeto imagem ao invés do valor dependendo de algum valor)
-    private $imagemCondicional = null;        
+    private $imagemCondicional = null;
     
-    private $funcao = null;             # array de funções
-    
-    private $zebrado = true;            # se a tabela será zebrado
-    
-    # da Classe
+    # das Classes e Funções
     private $classe = null;             # array de classes
     private $metodo = null;             # array de metodo das classes
+    private $funcao = null;             # array de funções
     
     # das rotinas de exclusão
     private $excluir = null;
@@ -73,7 +73,7 @@ class Tabela
 
     # outros
     private $textoRessaltado = null;	# string que será ressaltada no resultado da tabela (usado para resaltar pesquisas)
-
+    private $idCampo = null;
     ###########################################################
 
     /**
@@ -83,8 +83,8 @@ class Tabela
      */
     public function __construct($id = null,$class = 'tabelaPadrao table-scroll')
     {
-        $this->class = $class;
         $this->id = $id;
+        $this->class = $class;
     }
 
     ###########################################################
@@ -629,7 +629,7 @@ class Tabela
         echo '</tbody>';
         
         # Rotapé da Tabela
-        if (($this->totalRegistro) OR ($this->footTexto))
+        if (($this->totalRegistro) OR ($this->rodape))
         {
             echo '<tfoot>';
             if ($this->numeroOrdem)
@@ -637,10 +637,10 @@ class Tabela
             else    
                 echo '<tr><td colspan="'.($numColunas).'" title="Total de itens da tabela">';
 
-            if(is_null($this->footTexto))
+            if(is_null($this->rodape))
                 echo 'Total:   '.$numRegistros;
             else
-                echo $this->footTexto;
+                echo $this->rodape;
 
             echo '</td></tr>';
         }
