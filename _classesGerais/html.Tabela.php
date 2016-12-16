@@ -9,71 +9,104 @@ class Tabela
     * 
     * @note Quando existe o rodapé o total de registros não é exibido
     * 
+    * @group do css
+    * @var private $class string NULL A classe para o css
+    * @var private $id    string NULL O id para o css
+    * 
+    * @group da tabela
+    * @var private $titulo        string NULL   Título que aparecerá no alto da tabela 
+    * @var private $conteudo      array  NULL   Array com o conteúdo da tabela principal
+    * @var private $label         array  NULL   Array com o cabeçalho de cada coluna
+    * @var private $align         array  center Array com o alinhamento de cada coluna: center | left | right
+    * @var private $width         array  NULL   Array com o tamanho de cada coluna em %
+    * @var private $rodape        string NULL   Exibe uma string no rodapé. O rodapé substituirá o total de regsitros.
+    * @var private $zebrado       bool   TRUE   Informa se a tabela será zebrada
+    * @var private $totalRegistro bool   TRUE   Informa se terá ou não total de registros
+    * 
+    * @group do número de ordem
+    * @var private $numeroOrdem     bool   FALSE  Exibe/Não exibe uma coluna com numeração de ordem das colunas
+    * @var private $numeroOrdemTipo bool   'c'    Informa que a ordenação será 'c' crescente ou 'd' decrescente
+    * 
+    * @group do link
+    * @var private $link                    array NULL Array de objetos link correspondente a coluna em que ele aparece
+    * @var private $linkCondicional         array NULL array com o valor que a coluna deve ter para ter o link
+    * @var private $linkCondicionalOperador bool   'c'    operador da comparação. pode ser (=,<>, < ou >)
+    * 
+    * @group das classes e funções
+    * @var private $classe array NULL Array de classes.
+    * @var private $metodo array NULL Array de métodos da classe.
+    * @var private $funcao array NULL Array de funções.
+    * 
+    * @group condicional
+    * @var private $formatacaoCondicional array NULL Exibe a tr com cor diferente dependendo de algum valor
+    * @var private $imagemCondicional     array NULL Exibe um objeto imagem ao invés do valor dependendo de algum valor.
+    * 
+    * @group das rotinas de exclusão
+    * @var private $excluir  array NULL Exibe a tr com cor diferente dependendo de algum valor
+    * @var private $imagemCondicional     array NULL Exibe um objeto imagem ao invés do valor dependendo de algum valor.
     * @example exemplo.tabela.php
     */  
 
-    # @group do css    
-    private $class;         // @var private $class string NULL A classe para o css    
-    private $id = NULL;     // @var private $id    string NULL O id para o css
+    # do css    
+    private $class;
+    private $id = NULL;
     
-    # @group da tabela
-    private $titulo = NULL;        // @var private $titulo        string NULL   Título que aparecerá no alto da tabela 
-    private $conteudo;             // @var private $conteudo      array  NULL   Array com o conteúdo da tabela principal
-    private $label = NULL;         // @var private $label         array  NULL   Array com o cabeçalho de cada coluna
-    private $align = NULL;         // @var private $align         array  center Array com o alinhamento de cada coluna: center | left | right
-    private $width = NULL;         // @var private $width         array  NULL   Array com o tamanho de cada coluna em %
-    private $rodape = NULL;        // @var private $rodape        string NULL   Exibe uma string no rodapé. O rodapé substituirá o total de regsitros.
-    private $zebrado = TRUE;       // @var private $zebrado       bool   TRUE   Informa se a tabela será zebrada
-    private $totalRegistro = TRUE; // @var private $totalRegistro bool   TRUE   Informa se terá ou não total de registros
+    # da tabela
+    private $titulo = NULL;
+    private $conteudo;
+    private $label = NULL;
+    private $align = NULL;
+    private $width = NULL;
+    private $rodape = NULL;
+    private $zebrado = TRUE;
+    private $totalRegistro = TRUE;
     
-    # @group do número de ordem
-    private $numeroOrdem = FALSE;   // @var private $numeroOrdem     bool   FALSE  Exibe/Não exibe uma coluna com numeração de ordem das colunas    
-    private $numeroOrdemTipo = 'c'; // @var private $numeroOrdemTipo bool   'c'    Informa que a ordenação será 'c' crescente ou 'd' decrescente
+    # do número de ordem
+    private $numeroOrdem = FALSE;
+    private $numeroOrdemTipo = 'c';
     
-    # @group do link
-    private $link = NULL;                   // @var private $link                    array NULL Array de objetos link correspondente a coluna em que ele aparece
-    private $linkCondicional = NULL;        // @var private $linkCondicional         array NULL array com o valor que a coluna deve ter para ter o link
-    private $linkCondicionalOperador = '='; // @var private $linkCondicionalOperador bool   'c'    operador da comparação. pode ser (=,<>, < ou >)
-    
-    # Formatação condicional (exibe a tr com cor diferente dependendo de algum valor)
-    private $formatacaoCondicional = null; 
-
-    # Imagem Condicional (exibe um objeto imagem ao invés do valor dependendo de algum valor)
-    private $imagemCondicional = null;
+    # do link
+    private $link = NULL;
+    private $linkCondicional = NULL;
+    private $linkCondicionalOperador = '=';
     
     # das Classes e Funções
-    private $classe = null;             # array de classes
-    private $metodo = null;             # array de metodo das classes
-    private $funcao = null;             # array de funções
+    private $classe = NULL;
+    private $metodo = NULL;
+    private $funcao = NULL;
+    
+    # condicional
+    private $formatacaoCondicional = NULL;
+    private $imagemCondicional = NULL;
     
     # das rotinas de exclusão
-    private $excluir = null;
+    private $excluir = NULL;
     private $nomeColunaExcluir = 'Excluir';	    # Nome da Coluna
-    private $excluirCondicional = null;
-    private $excluirCondicao = null;
-    private $excluirColuna = null;
+    private $excluirCondicional = NULL;
+    private $excluirCondicao = NULL;
+    private $excluirColuna = NULL;
     private $excluirBotao = 'bullet_cross.png';	# Figura do botão
 
     # das rotinas de edição
-    private $editar = null;
+    private $editar = NULL;
     private $nomeColunaEditar = 'Editar';	# Nome da Coluna
-    private $editarCondicional = null;
-    private $editarCondicao = null;
-    private $editarColuna = null;
+    private $editarCondicional = NULL;
+    private $editarCondicao = NULL;
+    private $editarColuna = NULL;
     private $editarBotao = 'bullet_edit.png';	# Figura do botao
     
     # do form de check
-    private $check = false;
-    private $checkSubmit = null;
+    private $check = FALSE;
+    private $checkSubmit = NULL;
 
     # da ordenação
-    private $orderCampo = null;
-    private $orderTipo = null;
+    private $orderCampo = NULL;
+    private $orderTipo = NULL;
     private $orderChamador;
 
     # outros
-    private $textoRessaltado = null;	# string que será ressaltada no resultado da tabela (usado para resaltar pesquisas)
-    private $idCampo = null;
+    private $textoRessaltado = NULL;	# string que será ressaltada no resultado da tabela (usado para resaltar pesquisas)
+    private $idCampo = NULL;
     ###########################################################
 
     /**
