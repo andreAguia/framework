@@ -282,9 +282,9 @@ span.badge p{
  * Menu Vertical
  *******************************************/
 ul.menuVertical li{ 
-    padding: 5px 0px 3px 0px;    
+    padding: 2px 0px 2px 0px;    
     text-align: left;
-    font-size: 14px;
+    font-size: 12px;
     list-style-type: none;
     margin: 0px 15px 0px 0px;
 }
@@ -293,7 +293,7 @@ ul.menuVertical li#titulo{
     padding: 5px 0px 3px 0px;
     background-color: #076cba;
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
     list-style-type: none;
     margin: 0px 0px 15px -20px;
 }

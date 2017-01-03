@@ -50,19 +50,21 @@ class Link
 
 ###########################################################
 
-    public function __construct($label = NULL,$url = NULL){
+    public function __construct($label = NULL,$url = NULL, $title = NULL){
         
     /**
      * Constroi um link sem exibí-lo
      * 
      * @param $label string NULL O texto a ser exibido no link
      * @param $url   string NULL A url do link
+     * @param $title string NULL O texto a ser exibido no mouseover
      * 
-     * @syntax $link = new Link($label,[$url]);
+     * @syntax $link = new Link($label,[$url],[$title]);
      */
     
         $this->label = $label;
         $this->url = $url;
+        $this->title = $title;
     }
 
 ###########################################################

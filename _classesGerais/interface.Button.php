@@ -13,7 +13,7 @@ class Button
  * @var private $target string NULL Nome da div ou da janela onde o link será aberto.
  * 
  * @group do css
- * @var private $class string button A classe para o css.
+ * @var private $class string button A classe para o css. Define a cor do button.
  * @var private $id    string NULL   O id parra o css.
  * 
  * @group eventos
