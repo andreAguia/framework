@@ -80,7 +80,7 @@ class Page
      * @param $jscript string NULL Rotina jscript extra que será carregada junto com as outras rotinas js
      */
     
-        $this->set_jscript = $jscript;
+        $this->jscript = $jscript;
     }
 
 ###########################################################
@@ -151,8 +151,9 @@ class Page
         echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'jquery.js"></script>';
         
         # Java Script Extra
-        if(!is_null($this->jscript))
+        if(!is_null($this->jscript)){
             echo $this->jscript;
+        }
 
         # Carrega o css
         echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'foundation.css" />';
