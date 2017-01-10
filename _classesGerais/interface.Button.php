@@ -7,10 +7,11 @@ class Button
  * @author André Águia (Alat) - alataguia@gmail.com
  * 
  * @group do link
- * @var private $label  string NULL O texto a ser exibido no link.
- * @var private $url    string NULL A url do link.
- * @var private $title  string NULL Texto que irá aparecer no evento mouseover.
- * @var private $target string NULL Nome da div ou da janela onde o link será aberto.
+ * @var private $label    string NULL  O texto a ser exibido no link.
+ * @var private $url      string NULL  A url do link.
+ * @var private $title    string NULL  Texto que irá aparecer no evento mouseover.
+ * @var private $target   string NULL  Nome da div ou da janela onde o link será aberto.
+ * @var private $disabled bool   FALSE Informa se o botao estará ou não desabilitado
  * 
  * @group do css
  * @var private $class string button A classe para o css. Define a cor do button.
@@ -29,7 +30,8 @@ class Button
     private $label = NULL;
     private $url = NULL;
     private $title = NULL;
-    private $target = NULL;    
+    private $target = NULL;  
+    private $disabled = FALSE;
 
     private $class = 'button';
     private $id = NULL;
@@ -186,6 +188,20 @@ class Button
 
 ###########################################################
 
+    public function set_disabled($disabled = NULL){
+    /**
+     * Informa se o botão estará desabilitado
+     * 
+     * @syntax $button->set_disabled($disabled);
+     * 
+     * @param $disabled bool FALSE Informa se o botão estará desabilitado
+     */
+    
+        $this->disabled = $disabled;
+    }    
+
+###########################################################
+
     public function show($id = NULL){
     /**
      * Exibe o link
@@ -203,6 +219,10 @@ class Button
         }
 
         echo '<a';
+        
+         if ($this->disabled){
+            $this->class .= " disabled";
+        }
         
         if (!is_null($this->class)){
             echo ' class="'.$this->class.'"';
