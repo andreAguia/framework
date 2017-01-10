@@ -32,8 +32,7 @@ Class Backup
     private $host = "localhost";
     private $driver = "mysql";
     private $user = "root";
-    private $password = "";
-    #private $password = "DSvuEtwz6h9HfLCF";
+    private $password = "DSvuEtwz6h9HfLCF";
     private $dbName = NULL;
     private $pastaDestino = NULL;
 
