@@ -77,7 +77,7 @@ class Organograma
          
          # Percorre o array de dados
          foreach ($this->dados as $item){
-            echo "['$item[0]','','$item[2]'],";
+            echo "['$item[0]','$item[1]','$item[2]'],";
          }
             
          echo "]);";
