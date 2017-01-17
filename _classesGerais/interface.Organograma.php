@@ -13,10 +13,7 @@ class Organograma
  * @example exemplo.button.php
  */
 
-    private $dados = NULL;
-    private $tipo = NULL;
-    private $tresd = FALSE;
-    
+    private $dados = NULL;    
     private $idDiv = "org";
 
 ###########################################################

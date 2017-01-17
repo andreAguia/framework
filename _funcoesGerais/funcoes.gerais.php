@@ -85,7 +85,7 @@ function loadPage($url,$target=null,$parametros='menubar=no,scrollbars=yes,locat
 
 function ajaxLoadPage($url=null,$div=null){
 /**
- * Abre um outra página php dentro de uma div sem faze reload da página inteira. Somente a div é atualizada.
+ * Abre um outra página php dentro de uma div sem fazer reload da página inteira. Somente a div é atualizada.
  *  
  * @syntax ajaxLoadPage($url,$div);
  * 
