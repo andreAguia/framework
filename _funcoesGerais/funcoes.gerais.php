@@ -1277,6 +1277,26 @@ function vazio($var){
 
 ###########################################################
 
+function get_mac($ip){
+/**
+ * Informa o valor do número MAC de um IP
+ * 
+ * @syntax get_Mac($ip); 
+ * 
+ * @return string com o MAC do computador
+ * 
+ * @param $ip string NULL O IP do computador
+ */
+    $arp = NULL;
+    exec("arp ".$ip." -a",$arp);             // Executa o comando arp que pega na rede o mac de um ip
+    $posicao = strpos($arp[3], "-");        // Do texto extraído pega o numero mac pelo traço
+    $posicao = $posicao - 2;                // Volta 2 caracteres para pegar o início do mac
+    $mac = substr($arp[3], $posicao, 17);   // Extrai os 17 caracteres do mac
+    return $mac;
+}
+
+###########################################################
+
 function validaCpf($cpf){
 /**
  * Rotina de validação do CPF
