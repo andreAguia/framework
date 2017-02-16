@@ -56,7 +56,6 @@ class Modelo
     private $label = null;
     private $width = null;	
     private $align = null;
-    private $zebrado = true;
     
     private $link = null;               # array de objetos link correspondente a coluna em que ele aparece
     private $linkCondicional = null;    # array com o valor que a coluna deve ter para ter o link
@@ -482,8 +481,7 @@ class Modelo
             $tabela->set_linkCondicionalOperador($this->linkCondicionalOperador);
             $tabela->set_funcao($this->funcao);
             $tabela->set_classe($this->classe);
-            $tabela->set_metodo($this->metodo);   
-            $tabela->set_zebrado($this->zebrado);   
+            $tabela->set_metodo($this->metodo);  
 
             # acrescenta uma coluna com um número de ordenação
             if ($this->numeroOrdem){

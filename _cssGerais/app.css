@@ -141,6 +141,11 @@ table.tabelaPadrao tfoot td {
     color: #fff;
 }
 
+table.tabelaPadrao tr {
+    
+    padding: 1px;
+}
+
 table.tabelaPadrao a{
     text-decoration: none;
     color: #fff;
@@ -424,11 +429,7 @@ p#pRelatorioTitulo{
    color: #000;
    vertical-align: top;
  }
- 
- table.tabelaRelatorio td.zebrado{
-   background-color: #CBCFD4;
- }
- 
+  
  table.tabelaRelatorio tfoot td{
    text-align: right;
    font-size: 11px;

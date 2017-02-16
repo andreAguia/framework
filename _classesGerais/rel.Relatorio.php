@@ -81,8 +81,7 @@ class Relatorio
     private $colunaTexto = 1;                   // coluna onte o texto será exibido;
     private $funcaoSomatorio = null;            // se executa alguma função no somatório
     private $exibeSomatorioGeral = true;        // se exibe o somatório geral ou somente o parcial
-
-    private $zebrado = true;			// se o relatório será zebrado
+    
     private $totalRegistro = true;		// se terá o número de registros no fim do relatório (e dos grupos))
     private $bordaInterna = false;		// Exibe ou não uma linha dentro da tabela entro os registros 
     private $dataImpressao = true;		// Exibe ou  não a Data de Impressão
@@ -385,7 +384,6 @@ class Relatorio
      */
 
     function show(){
-        $zebra = 1;		// contador do efeito zebrado no relatório
         $contador = 0;		// contador de registros
         $subContador = 0;	// contador de registros para grupo (zera a cada grupo)
         $agrupa = '#';      	// guarda o nome do grupo
@@ -522,12 +520,6 @@ class Relatorio
                 
                 echo '<tr>';
 
-                # alterna o zebrado
-                if ($zebra == 1) 
-                    $zebra = 0;
-                else
-                    $zebra = 1;
-
                 # percorre as colunas
                 for ($a = 0;$a < $tamanho;$a += 1)
                 {
@@ -540,10 +532,6 @@ class Relatorio
                             echo ' id="'.$this->align[$a].'"';
                         else
                             echo ' id="center"';
-
-                        # zebrado (beta)
-                        if (($this->zebrado) && ($zebra == 1))
-                            echo ' class="zebrado"';
                         
                         # Coloca a classe (se tiver)
                         if((isset($this->classe[$a])) and ($this->classe[$a] <> null)) 			

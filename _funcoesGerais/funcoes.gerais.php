@@ -417,42 +417,23 @@ function bold($texto,$destaque){
  */
 
     # Coloca o destaque em maiúsculas
-    $destaqueMaiusculo = strtoupper($destaque);
+    $destaque = strtoupper($destaque);
     
-    # Cria 2 destaques: um com acento e outro sem
-    $destaqueComAcentos = $destaqueMaiusculo;
-    $destaqueSemAcentos = retiraAcento($destaqueMaiusculo);
-    
-    #$destaque = strtoupper(retiraAcento($destaque));
-    #$texto = retiraAcento($texto);
-    
-    # Verifica primeiro com acento    
+    # Retira o acento
+    $destaque = strtoupper(retiraAcento($destaque));
+     
     # Verifica se tem mais de uma palavra
-    $palavras = explode(" ", $destaqueComAcentos);  // separa as palavras e as coloca em um array
+    $palavras = explode(" ", $destaque);  // separa as palavras e as coloca em um array
     $numPalavras = count($palavras);
     
     # Faz o texto ressaltado ficar em bold no texto
     if($numPalavras == 1)
-        $texto = str_ireplace($destaqueComAcentos,"<span id='ressaltado' class='warning label'>$destaqueComAcentos</span>",$texto);
+        $texto = str_ireplace($destaque,"<span id='ressaltado' class='warning label'>$destaque</span>",$texto);
     else{
         foreach ($palavras as $termos){
             $texto = str_ireplace($termos,"<span id='ressaltado' class='warning label'>$termos</span>",$texto);             
         }
     }
-    
-    # Verifica agora sem acentos    
-    # Verifica se tem mais de uma palavra
-    $palavras = explode(" ", $destaqueSemAcentos);  // separa as palavras e as coloca em um array
-    $numPalavras = count($palavras);
-   
-    # Faz o texto ressaltado ficar em bold no texto
-    if($numPalavras == 1)
-        $texto = str_ireplace($destaqueSemAcentos,"<span id='ressaltado' class='warning label'>$destaqueSemAcentos</span>",$texto);
-    else{
-        foreach ($palavras as $termos){
-            $texto = str_ireplace($termos,"<span id='ressaltado' class='warning label'>$termos</span>",$texto);             
-        }
-    }    
     return $texto;
 }
 

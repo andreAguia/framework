@@ -19,8 +19,7 @@ class Tabela
     * @var private $label         array  NULL   Array com o cabeçalho de cada coluna
     * @var private $align         array  center Array com o alinhamento de cada coluna: center | left | right
     * @var private $width         array  NULL   Array com o tamanho de cada coluna em %
-    * @var private $rodape        string NULL   Exibe uma string no rodapé. O rodapé substituirá o total de regsitros.
-    * @var private $zebrado       bool   TRUE   Informa se a tabela será zebrada
+    * @var private $rodape        string NULL   Exibe uma string no rodapé. O rodapé substituirá o total de regsitros.    
     * @var private $totalRegistro bool   TRUE   Informa se terá ou não total de registros
     * 
     * @group do número de ordem
@@ -58,7 +57,6 @@ class Tabela
     private $align = NULL;
     private $width = NULL;
     private $rodape = NULL;
-    private $zebrado = TRUE;
     private $totalRegistro = TRUE;
     
     # do número de ordem
@@ -228,7 +226,6 @@ class Tabela
 
     public function show()
     {
-        $zebra = 0;                             // contador do efeito zebrado
         $numRegistros = 0;				        // Contador de registros
         $numColunas = count($this->label);		// Calcula o número de colunas da tabela
         $numColunasOriginal = $numColunas;		// O número de colunas da tabela sem o edit, exclui, etc
@@ -344,9 +341,6 @@ class Tabela
             $numOrdem = 1;  # Inicia o número de ordem quando tiver
         else
             $numOrdem = count($this->conteudo);  # Inicia o número de ordem quando tiver
-        
-        # Marca se a tr tem condicional para saber se poe ou não o zebrado
-        $temCondicional = FAlSE;
             
         foreach ($this->conteudo as $row)
         {
@@ -355,7 +349,6 @@ class Tabela
             # Formatação condicional
             if (!is_null($this->formatacaoCondicional))
             {
-                #$this->zebrado = false; // tira o zebrado quando se tem formatação condicional
                 $rowCondicional = $row;
                 for ($a = 0;$a < ($numColunasOriginal);$a ++)
                 {
@@ -385,46 +378,38 @@ class Tabela
                                 case '==':
                                     if($rowCondicional[$a] == $condicional['valor']){
                                         echo 'id="'.$condicional['id'].'"';
-                                        $temCondicional = TRUE;
                                     }
                                     break;
 
                                 case '<>':	
                                     if($rowCondicional[$a] <> $condicional['valor']){
                                         echo 'id="'.$condicional['id'].'"';
-                                        $temCondicional = TRUE;
                                     }
                                     break;
 
                                 case '>':	
                                     if($rowCondicional[$a] > $condicional['valor']){
                                         echo 'id="'.$condicional['id'].'"';
-                                        $temCondicional = TRUE;
                                     }
                                     break;
 
                                 case '<':	
                                     if($rowCondicional[$a] < $condicional['valor']){
                                         echo 'id="'.$condicional['id'].'"';
-                                        $temCondicional = TRUE;
                                     }
                                     break;
 
                                 case '>=':	
                                     if($rowCondicional[$a] >= $condicional['valor']){
                                         echo 'id="'.$condicional['id'].'"';
-                                        $temCondicional = TRUE;
                                     }
                                     break;
 
                                 case '<=':	
                                     if($rowCondicional[$a] <= $condicional['valor']){
                                         echo 'id="'.$condicional['id'].'"';
-                                        $temCondicional = TRUE;
                                     }
                                     break;
-                                default :
-                                    $temCondicional = FALSE;
                             }
                             
                         }		
@@ -434,20 +419,8 @@ class Tabela
         
             echo '>';// tr
             
-            if($this->numeroOrdem)
-            {
-                echo '<td id="center"';
-                
-                # zebrado
-                if(!$temCondicional){
-                    if (($this->zebrado) && ($zebra == 1)){
-                        echo ' class="zebrado1"';
-                    }
-                    if (($this->zebrado) && ($zebra == 0)){
-                        echo ' class="zebrado0"';
-                    }
-                }
-                echo'>'.$numOrdem.'</td>';            
+            if($this->numeroOrdem){
+                echo '<td id="center">'.$numOrdem.'</td>';            
             }
             
             if($this->numeroOrdemTipo == 'c')
@@ -472,13 +445,6 @@ class Tabela
                 else
                     echo ' id="center"';
                 
-                # zebrado (beta)
-                if(!$temCondicional){
-                if (($this->zebrado) && ($zebra == 1))
-                    echo ' class="zebrado1"';
-                if (($this->zebrado) && ($zebra == 0))
-                    echo ' class="zebrado0"';
-                }
                 echo '>';
                 
                 # colunas
@@ -650,11 +616,6 @@ class Tabela
                 }                
                 echo '</td>';
             }
-            # muda o zebrado
-            if ($zebra == 1) 
-                $zebra = 0;
-            else
-                $zebra = 1;
             
             echo '</tr>';
         }

@@ -2640,7 +2640,7 @@ table {
     background-color: #fefefe; }
   table caption {
     font-weight: bold;
-    padding: 0.5rem 0.625rem 0.625rem; }
+    padding: 0.2rem 0.2rem 0.2rem; }
   table thead,
   table tfoot {
     background: #f8f8f8;
@@ -2652,14 +2652,14 @@ table {
     table thead td,
     table tfoot th,
     table tfoot td {
-      padding: 0.5rem 0.625rem 0.625rem;
+      padding: 0.3rem 0.3rem 0.3rem;
       font-weight: bold;
       text-align: left; }
   table tbody tr:nth-child(even) {
-    background-color: #f1f1f1; }
+    background-color: #CBCFD4; }
   table tbody th,
   table tbody td {
-    padding: 0.5rem 0.625rem 0.625rem; }
+    padding: 0.2rem 0.2rem 0.2rem; }
 
 @media screen and (max-width: 63.9375em) {
   table.stack thead {
