@@ -446,7 +446,7 @@ class Relatorio
                     # Verifica se o valor na coluna de agrupamento é diferente da flag agrupa
                     if (($agrupa <> $row[$this->numGrupo]) && ($agrupa <> "#") && ($grupo)){
                         # linha
-                        $this->exibeLinha($tamanhoLinha);
+                        #$this->exibeLinha($tamanhoLinha);
                         
                         # Exibe o somatório quando estiver habilitado
                         if(!is_null($this->colunaSomatorio)){
