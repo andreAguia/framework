@@ -226,9 +226,9 @@ class Tabela
 
     public function show()
     {
-        $numRegistros = 0;				        // Contador de registros
-        $numColunas = count($this->label);		// Calcula o número de colunas da tabela
-        $numColunasOriginal = $numColunas;		// O número de colunas da tabela sem o edit, exclui, etc
+        $numRegistros = 0;                  // Contador de registros
+        $numColunas = count($this->label);  // Calcula o número de colunas da tabela
+        $numColunasOriginal = $numColunas;  // O número de colunas da tabela sem o edit, exclui, etc
         
         $colunaEdita = 999;
         $colunaExcluir = 999;
@@ -237,8 +237,7 @@ class Tabela
 
         # Quando existir rotina de editar
         # acrescenta colunas extras e calcula a posi��o na tabela
-        if($this->editar <> null)
-        {
+        if($this->editar <> null){
             $colunaEdita = $numColunas;
             $numColunas++;
             $this->label[$colunaEdita] = 'Rotina de edição de registro';
