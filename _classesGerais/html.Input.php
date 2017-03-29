@@ -6,11 +6,6 @@ class Input
   * 
   * @author André Águia (Alat) - alataguia@gmail.com
   * 
-  * @note Quando o maxlength não é informado ele assume o valor da variavel size.
-  * @note Quando o controle for marcado como required, aparecerá um asterísco para informar que é obrigatório.
-  * @note As variaveis col e linha só funcionam quando são vinculas a um formulário.
-  * @note Quando o placeholder não é informado ele assume o valor do nome.
-  * 
   * @group do controle
   * @var private $nome string NULL    O nome do controle
   * @var private $tipo string 'texto' O tipo do controle: texto|numero|cpf|data|hora|cep|hidden|password|combo|checkbox|textarea|submit|reset|button
@@ -115,6 +110,7 @@ class Input
      * 
      * @param $size      integer NULL O tamanho do input
      * @param $maxlength integer NULL A quantidade máxima de caracteres que poderá ser digitado dentro do input
+     * @note Quando o maxlength não é informado ele assume o valor da variavel size.
      * 
      * @syntax $input->set_size($size,[$maxlength]);  
      */
@@ -131,6 +127,8 @@ class Input
      * 
      * @param $col integer NULL O tamanho da coluna (1 a 12)
      * 
+     * @note As variaveis col e linha só funcionam quando são vinculas a um formulário.
+     * 
      * @syntax $input->set_col($col);  
      */
     
@@ -145,7 +143,9 @@ class Input
      * 
      * @syntax $input->get_col();
      * 
-     * @return integer o Número da coluna desse controle
+     * @note As variaveis col e linha só funcionam quando são vinculas a um formulário.
+     * 
+     * @return integer com o número da coluna desse controle
      */
     
         return $this->col;
@@ -172,6 +172,8 @@ class Input
      * Informa o texto a ser exibido dentro do controle quando não tiver valor
      * 
      * @syntax $input->set_placeholder($placeholder);
+     * 
+     * @note Quando o placeholder não é informado ele assume o valor do nome.
      * 
      * @param $placeholder string NULL Informa texto a ser exibido dentro do controle quando não tiver valor
      */
@@ -271,6 +273,8 @@ class Input
      * 
      * @syntax $input->set_required($required);
      * 
+     * @note Quando o controle for marcado como required, aparecerá um asterísco para informar que é obrigatório.
+     * 
      * @param $required bool FALSE Indica se é requerido TRUE ou não FALSE
      */
     
@@ -341,6 +345,8 @@ class Input
      * 
      * @syntax $input->set_linha($linha);
      * 
+     * @note As variaveis col e linha só funcionam quando são vinculas a um formulário.
+     * 
      * @param $linha integer NULL O número da linha
      */
     
@@ -354,6 +360,8 @@ class Input
      * Informa o valor da variavel linha 
      * 
      * @syntax $input->get_linha();
+     * 
+     * @note As variaveis col e linha só funcionam quando são vinculas a um formulário.
      * 
      * @return integer o Número da linha desse controle
      */
