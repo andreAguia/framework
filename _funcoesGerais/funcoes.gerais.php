@@ -427,13 +427,7 @@ function bold($texto,$destaque){
     $numPalavras = count($palavras);
     
     # Faz o texto ressaltado ficar em bold no texto
-    if($numPalavras == 1)
-        $texto = str_ireplace($destaque,"<span id='ressaltado' class='warning label'>$destaque</span>",$texto);
-    else{
-        foreach ($palavras as $termos){
-            $texto = str_ireplace($termos,"<span id='ressaltado' class='warning label'>$termos</span>",$texto);             
-        }
-    }
+    $texto = str_ireplace($destaque,"<span id='ressaltado' class='warning label'>$destaque</span>",$texto);
     return $texto;
 }
 
