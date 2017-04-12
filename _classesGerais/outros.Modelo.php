@@ -450,11 +450,15 @@ class Modelo
         $top = new TopBar($this->nome);
         $top->set_title($this->nome);
         
+        # Botão Incluir
+        #if ($this->botaoIncluir){
+        #    $top->add_link($linkBotaoIncluir,"right");
+        #}
+        
         # Coloca o campo de pesquisa (se tiver)
         if(!is_null($this->parametroLabel)){
             $top->add_pesquisa($this->parametroLabel, $this->parametroValue);
-        }       
-        
+        }
         $top->show();
             
         # Pega a lista em definitivo
