@@ -169,7 +169,6 @@ class Relatorio
     public function exibeCabecalho(){
                 
         $governo = "Governo do Estado do Rio de Janeiro";
-        $secretaria = "Secretaria de Estado de Ciência, Tecnologia e Inovação";
         $universidade = "Universidade Estadual do Norte Fluminense Darcy Ribeiro";
         $diretoria = "Diretoria Geral de Administração";
         $gerencia = "Gerência de Recursos Humanos";
@@ -180,7 +179,7 @@ class Relatorio
             $imagem->show();
         $cabec->fecha();
         
-        p($governo."<br/>".$secretaria."<br/>".$universidade."<br/>".$diretoria." - ".$gerencia,"pRelatorioCabecalho");
+        p($governo."<br/>".$universidade."<br/>".$diretoria." - ".$gerencia,"pRelatorioCabecalho");
     }
     
     ###########################################################
