@@ -147,6 +147,9 @@ class Modelo
     private $rotinaExtraListar = null;
     private $rotinaExtraListarParametro = null;
     
+    # Outros
+    private $exibeInfoObrigatoriedade = TRUE;
+    
     ###########################################################
 
     /**
@@ -787,9 +790,14 @@ class Modelo
         echo '<div class="callout secondary">';
             $form->show();            
         echo '</div>';
-        echo '<div id="right">';
-        label("Campos marcados com * são obrigatórios","warning","f12");
-        echo '</div>';
+        
+        # Exibe informação de obrigatoriedade de certos campos
+        if($this->exibeInfoObrigatoriedade){
+            echo '<div id="right">';
+            label("Campos marcados com * são obrigatórios","warning","f12");
+            echo '</div>';
+        }
+        
         $grid->fechaColuna();
         $grid->fechaGrid();
         
