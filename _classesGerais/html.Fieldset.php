@@ -19,7 +19,7 @@ class Fieldset
 
 ###########################################################    
 
-    public function __construct($legend = null,$id = null){
+    public function __construct($legend = NULL,$id = NULL){
     /**
      * Inicia a classe atribuindo um valor do legend e do id
      * 

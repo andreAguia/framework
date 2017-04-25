@@ -210,7 +210,7 @@ class Button
      */    
 
         # Rotina de atalho
-        if($this->accessKey<>null){			
+        if($this->accessKey<>NULL){			
             # Altera o label colocando o sublinhado na letra do atalho (se tiver)
             $atalho  = substr($this->label,0,stripos($this->label,$this->accessKey));
             $atalho .= '<B><U>'.$this->accessKey.'</U></B>';
@@ -239,7 +239,7 @@ class Button
         }
         
         # Verifica se tem confirmação
-        if ($this->confirma <> null){  // com confirmação
+        if ($this->confirma <> NULL){  // com confirmação
             if(is_null($id)){	// Exibe ou não o id
                 echo " onclick='confirma(\"$this->url\",\"$this->confirma\")'";
             }

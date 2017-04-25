@@ -81,8 +81,8 @@ class Organograma
          
          # Create the chart.
          echo "var chart = new google.visualization.OrgChart(document.getElementById('$this->idDiv'));";
-         # Draw the chart, setting the allowHtml option to true for the tooltips.
-         echo "chart.draw(data, {allowHtml:true});";
+         # Draw the chart, setting the allowHtml option to TRUE for the tooltips.
+         echo "chart.draw(data, {allowHtml:TRUE});";
          echo "}";
 
          echo "</script>";

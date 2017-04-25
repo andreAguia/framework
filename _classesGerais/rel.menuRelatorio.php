@@ -93,7 +93,7 @@ class menuRelatorio
                 else
                     $controle->set_size($campo['size']);			// tamanho do campos
                 if (isset($campo['required']))
-                    $controle->set_notnull($campo['required']);		// faz o controle exibir o *
+                    $controle->set_notNULL($campo['required']);		// faz o controle exibir o *
                 if (isset($campo['array']))
                     $controle->set_array($campo['array']);			// conteudo de uma combo
                 if (isset($campo['readOnly']))
@@ -125,7 +125,7 @@ class menuRelatorio
                 
                 # Coloca o foco no primeiro controle
                 if($contador == 1)
-                    $controle->set_autofocus(true);
+                    $controle->set_autofocus(TRUE);
 
                 $formRelatorio->add_item($controle);
 

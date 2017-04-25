@@ -16,8 +16,8 @@ function post($nome,$padrao=NULL){
  * 
  * @note Quando nenhum valor é retornado a função retorna o valor $padrao.
  * 
- * @param $nome   string null Nome do post a ser lido.
- * @param $padrao string null Valor retornado caso seja NULL.
+ * @param $nome   string NULL Nome do post a ser lido.
+ * @param $padrao string NULL Valor retornado caso seja NULL.
  * 
  * @example exemplo.post.php
  */
@@ -42,8 +42,8 @@ function get($nome,$padrao=NULL){
  * 
  * @note Quando nenhum valor é retornado a função retorna o valor $padrao. 
  * 
- * @param $nome   string null Nome do get a ser lido.
- * @param $padrao string null Valor retornado caso seja NULL.
+ * @param $nome   string NULL Nome do get a ser lido.
+ * @param $padrao string NULL Valor retornado caso seja NULL.
  * 
  * @example exemplo.get.php 
  */
@@ -58,7 +58,7 @@ function get($nome,$padrao=NULL){
 
 ###########################################################
 
-function loadPage($url,$target=null,$parametros='menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600'){
+function loadPage($url,$target=NULL,$parametros='menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600'){
 /**
  * Chama outra página PHP
  * 
@@ -66,8 +66,8 @@ function loadPage($url,$target=null,$parametros='menubar=no,scrollbars=yes,locat
  * 
  * @note Muito utilizada para a abertura da janela dos relatórios.
  *
- * @param $url          string null     A página a ser aberta.
- * @param $target       string null     Informa se abrirá em uma nova janela no browser.
+ * @param $url          string NULL     A página a ser aberta.
+ * @param $target       string NULL     Informa se abrirá em uma nova janela no browser.
  * @param $parametros   string videNota Parâmetros para o java script.
  * 
  * @note O valor padrão do parâmetro: parametro é: 'menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600'
@@ -83,7 +83,7 @@ function loadPage($url,$target=null,$parametros='menubar=no,scrollbars=yes,locat
 
 ###########################################################
 
-function ajaxLoadPage($url=null,$div=null){
+function ajaxLoadPage($url=NULL,$div=NULL){
 /**
  * Abre um outra página php dentro de uma div sem fazer reload da página inteira. Somente a div é atualizada.
  *  
@@ -91,8 +91,8 @@ function ajaxLoadPage($url=null,$div=null){
  * 
  * @note Esta rotina nada mais faz que chamar uma rotina homônima em jscript que efetivamente executa a rotina.
  *
- * @param $url string null A página que será carrregada.
- * @param $div string null O id da div onde a página será aberta.
+ * @param $url string NULL A página que será carrregada.
+ * @param $div string NULL O id da div onde a página será aberta.
  */
 
     echo "<script>ajaxloadPage('$url','$div','');</script>";	
@@ -100,7 +100,7 @@ function ajaxLoadPage($url=null,$div=null){
 
 ###########################################################
 
-function set_session($nome=null,$valor=NULL){
+function set_session($nome=NULL,$valor=NULL){
 /**
  * Escreve um valor em uma variável de sessão para ser usada em outras páginas sem a necessidade de repassá-la com post ou get.
  * 
@@ -108,8 +108,8 @@ function set_session($nome=null,$valor=NULL){
  *
  * @note Se a variável não existe ela será criada, se ela já existe o valor será atualizado.
  * 
- * @param $nome  string null O nome da variável se sessão a ser criada ou alterada.
- * @param $valor string null O valor a ser inserido.
+ * @param $nome  string NULL O nome da variável se sessão a ser criada ou alterada.
+ * @param $valor string NULL O valor a ser inserido.
  * 
  * @example exemplo.set_session.php 
  */
@@ -158,14 +158,14 @@ function date_to_bd($data,$separador = '/'){
     *  
     * @note Utilizado para converter as data ao formato de gravação do banco de dados.
     * 
-    * @param $data      date   null A data a ser transformada no formato DD/MM/AAAA
+    * @param $data      date   NULL A data a ser transformada no formato DD/MM/AAAA
     * @param $separador string /    O separador da data
     * 
     * @example exemplo.date_to_bd.php  
     */
     
     if ((is_null($data)) or ($data == '')){
-        return false;
+        return FALSE;
     }else{
         $dt1 = explode($separador,$data);
         $dt2 = $dt1[2].'/'.$dt1[1].'/'.$dt1[0];
@@ -190,7 +190,7 @@ function date_to_php($data,$separador = '-'){
  * @note Nessa função o separador padrão difere da função date_to_bd. Isso acontece porque - é o separador padrão do mysql. 
  * @note Interessante também observar que independente do separador de entrada o separador de saída será sempre o /
  *   
- * @param $data      date   null A data a ser transformada no formato AAAA-MM-DD
+ * @param $data      date   NULL A data a ser transformada no formato AAAA-MM-DD
  * @param $separador string -    O separador da data. 
  * 
  * @example exemplo.date_to_php.php   
@@ -198,7 +198,7 @@ function date_to_php($data,$separador = '-'){
  
 
     if((is_null($data)) or ($data == "")){
-        return null;
+        return NULL;
     }else{	
         $dt1 = explode($separador,$data);
         $dt2 = $dt1[2].'/'.$dt1[1].'/'.$dt1[0];
@@ -221,7 +221,7 @@ function datetime_to_php($data,$separadorData = '-',$separadorHora = ':')
  * 
  * @note Utilizado para recuperar datas com horas do banco de dados.
  *   
- * @param $data          date   null A data a ser transformada
+ * @param $data          date   NULL A data a ser transformada
  * @param $separadorData string -    O separador da data
  * @param $separadorHora string :    O separador da hora
  * 
@@ -229,7 +229,7 @@ function datetime_to_php($data,$separadorData = '-',$separadorHora = ':')
  */
 
     if(is_null($data) or ($data == "")){
-        return null;
+        return NULL;
     }else{
         # Separa data da hora
         $dt1 = explode($separadorData,$data);
@@ -251,7 +251,7 @@ function back($numPaginas){
  * 
  * @note Utilizado para voltar uma ou duas páginas anteriores e refazer alguma tarefa.
  *   
- * @param $numPaginas integer null O número de páginas para voltar.
+ * @param $numPaginas integer NULL O número de páginas para voltar.
  */
 
     echo '<script>javascript:history.go(-'.$numPaginas.');</script>';
@@ -341,7 +341,7 @@ function get_nomeMes($numero = NULL){
  * 
  * @return string com o nome do mês
  * 
- * @param $mes integer null Número inteiro entre 1 e 12 representando um mês do ano.
+ * @param $mes integer NULL Número inteiro entre 1 e 12 representando um mês do ano.
  * 
  * @note Está função deverá der removida pois o sistema já conta o array $mes iniciado na configuração do sistema que já fornece essa informação.
  * 
@@ -387,7 +387,7 @@ function retiraAspas($texto){
  * @note Esta função é o conjunto de 2 funções em php e foi criada para facilitar o código.
  * @note Função muito útil para se evitar problemas ao exibir textos.
  * 
- * @param $texto string null O texto a ser trabalhado.
+ * @param $texto string NULL O texto a ser trabalhado.
  * 
  * @example exemplo.retiraAspas.php  
  */
@@ -410,8 +410,8 @@ function bold($texto,$destaque){
  * @note Usado na rotina de pesquisa para destacar o item pesquisado.
  * @note Quando o trecho para destacar não possui acento e o texto principal possui a palavra não é destacada.
  * 
- * @param $texto    string null O texto principal de onde existe o trecho a ser destacado.
- * @param $destaque string null O trecho do texto principal a ser destacado.
+ * @param $texto    string NULL O texto principal de onde existe o trecho a ser destacado.
+ * @param $destaque string NULL O trecho do texto principal a ser destacado.
  * 
  * @example exemplo.bold.php 
  */
@@ -466,13 +466,13 @@ function soNumeros($texto){
  * 
  * @note Usado para garantir que somente número sejam digitados.
  *  
- * @param $texto string null O string a ser trabalhado.
+ * @param $texto string NULL O string a ser trabalhado.
  * 
  * @example exemplo.soNumeros.php  
  */
 
     if(is_null($texto)){
-        return null;
+        return NULL;
     }else{
         return preg_replace("/[^0-9]/", "",$texto);
     }
@@ -488,7 +488,7 @@ function abreDiv($nome){
  * 
  * @note Esta função apenas executa a função homônima em jscript
  *
- * @param $nome string null O id da div a ser exibida.
+ * @param $nome string NULL O id da div a ser exibida.
  * 
  * @deprecated
  */
@@ -498,7 +498,7 @@ function abreDiv($nome){
 
 ###########################################################
 
-function moedaExtenso($valor = 0, $maiusculas = false){ 
+function moedaExtenso($valor = 0, $maiusculas = FALSE){ 
 /**
  * Retorna escrito por extenso o número fornecido em valores monetários (REAIS).
  * 
@@ -508,8 +508,8 @@ function moedaExtenso($valor = 0, $maiusculas = false){
  * 
  * @note Usado para fornecer, por extenso, o valor monetário (dinheiro) de alguma transação.   
  * 
- * @param $valor      string  null O valor a ser transformado.
- * @param $maiusculas boolean Quando true as primeiras letras são maiúsculas.
+ * @param $valor      string  NULL O valor a ser transformado.
+ * @param $maiusculas boolean Quando TRUE as primeiras letras são maiúsculas.
  * 
  * @example exemplo.moedaExtenso.php  
  */
@@ -596,7 +596,7 @@ function anti_injection($str){
 /**
  * Função que retira comandos sql de uma string
  *
- * @param $str string null a string a ser tratada
+ * @param $str string NULL a string a ser tratada
  * 
  * @return string sem comandos sql. Caso existam. 
  * 
@@ -634,7 +634,7 @@ function alert($mensagem){
  * 
  * @syntax alert($mensagem);
  * 
- * @param $mensagem string null A mensagem a ser exibida.
+ * @param $mensagem string NULL A mensagem a ser exibida.
  */
 
     echo '<script>alert("'.$mensagem.'");</script>'; 
@@ -642,7 +642,7 @@ function alert($mensagem){
 
 ###########################################################
 
-function p($mensagem = NULL,$id = NULL,$class = NULL,$title = null){
+function p($mensagem = NULL,$id = NULL,$class = NULL,$title = NULL){
 /** 
  * Exibe uma mensagem.
  * 
@@ -682,7 +682,7 @@ function p($mensagem = NULL,$id = NULL,$class = NULL,$title = null){
 
 ###########################################################
 
-function titulo($mensagem = null,$title = null){
+function titulo($mensagem = NULL,$title = NULL){
 /**
  * Exibe um texto centralizado dentro de um painel com fundo azul escuro. Utilizado para títulos de páginas.
  * 
@@ -826,7 +826,7 @@ function callout($mensagem, $tipo = "warning"){
  * @note Foi criada para facilitar o código quando se quer somente exibir uma mensagem dentro de um painel colorido.
  * @note Utiliza a funcionalidade callout do Foundation
  * 
- * @param $mensagem string null    A mensagem a ser exibida
+ * @param $mensagem string NULL    A mensagem a ser exibida
  * @param $tipo     string warning O tipo do callout: secondary | primary | success | warning | alert
  * 
  * @syntax callout($mensagem, [$tipo]);
@@ -842,13 +842,13 @@ function callout($mensagem, $tipo = "warning"){
 
 ###########################################################
 
-function label($mensagem, $tipo = "warning", $id = null){
+function label($mensagem, $tipo = "warning", $id = NULL){
 /**
  * Cria uma mensagem com fundo colorido.
  * 
  * @note Utiliza a funcionalidade label do Foundation
  *
- * @param $mensagem string null    A mensagem a ser exibida: 
+ * @param $mensagem string NULL    A mensagem a ser exibida: 
  * @param $tipo     string warning O tipo: secondary | primary | success | warning | alert 
  * 
  * @syntax label($mensagem, [$tipo], [$id]);
@@ -925,7 +925,7 @@ function span($mensagem,$id = NULL,$class = NULL,$title = NULL){
 
 function validaData($data){
 /**
- * Verifica se uma data é válida ou não retorna true or false
+ * Verifica se uma data é válida ou não retorna TRUE or FALSE
  * 
  * @return bool TRUE (1) para datas válidas e FALSE (0) para as inválidas.
  * 
@@ -1192,7 +1192,7 @@ function addMeses($data,$meses){
         return $dataFinal;
      }else{ 
         alert('Data Inválida');
-        return false;
+        return FALSE;
     }
 }
 
@@ -1225,7 +1225,7 @@ function addAnos($data,$anos){
         return $dataFinal;
      }else{ 
         alert('Data Inválida');
-        return false;
+        return FALSE;
     }
 }
 
@@ -1246,7 +1246,7 @@ function vazio($var){
  * @example exemplo.vazio.php
  */
     if (is_null($var) or ($var == '')){
-        return true;		
+        return TRUE;		
     }
 }
 

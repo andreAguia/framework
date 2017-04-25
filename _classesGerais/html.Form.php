@@ -7,15 +7,15 @@ class Form
  * @author André Águia (Alat) - alataguia@gmail.com
  * 
  * @var private $class      string  formPadrao  A classe do form para o css e javaScript.
- * @var private $id         string  null        O id do form para o css.
- * @var private $submit     string  null        O arquivo que será direcionado após clicar no botão salvar.
- * @var private $title      string  null        Mensagem que será exibida no evento mouseover.
- * @var private $target     string  null        Indica se será aberto em outra janela.
+ * @var private $id         string  NULL        O id do form para o css.
+ * @var private $submit     string  NULL        O arquivo que será direcionado após clicar no botão salvar.
+ * @var private $title      string  NULL        Mensagem que será exibida no evento mouseover.
+ * @var private $target     string  NULL        Indica se será aberto em outra janela.
  * @var private $method     string  POST        Indica o método de envio do formulário. Valores possíveis: GET/POST.
- * @var private $file       boolean false       Se True informa que o formulário é para o envio de arquivos. Upload.
- * @var private $item[]     array   null        Array de objetos Input para inserir no formulário.
- * @var private $onSubmit   string  null        Acrescenta rotina jscript no evento onsubmit.
- * @var private $objeto     objeto  null        Insere um objeto (normalmente uma imagem) no form. Utilizado quando se quer exibir um objeto posicionado que se desloca quando se exibe o histórico.
+ * @var private $file       boolean FALSE       Se True informa que o formulário é para o envio de arquivos. Upload.
+ * @var private $item[]     array   NULL        Array de objetos Input para inserir no formulário.
+ * @var private $onSubmit   string  NULL        Acrescenta rotina jscript no evento onsubmit.
+ * @var private $objeto     objeto  NULL        Insere um objeto (normalmente uma imagem) no form. Utilizado quando se quer exibir um objeto posicionado que se desloca quando se exibe o histórico.
  * 
  * @note Um formulário é na verdade um container de objetos input. 
  * 
@@ -27,29 +27,29 @@ class Form
     private $id;
     private $submit;
     
-    private $title = null;
+    private $title = NULL;
     
-    private $target = null;
+    private $target = NULL;
     private $method = 'POST';
-    private $file = false;
+    private $file = FALSE;
     private $item;
 
     # eventos
-    private $onSubmit = null;
+    private $onSubmit = NULL;
     
     # especiais
-    private $objeto = null;
+    private $objeto = NULL;
 
 ###########################################################
                 
-    public function __construct($submit = null,$id = null){
+    public function __construct($submit = NULL,$id = NULL){
     /**
      * Inicia um formulário.
      * 
      * @syntax $form = new Form($submit,$id);
      * 
-     * @param $id string null id e nome do formulário (como ele será identificado pelo jascript.
-     * @param $submit string null arquivo em php para onde será redirecionado para o post.
+     * @param $id string NULL id e nome do formulário (como ele será identificado pelo jascript.
+     * @param $submit string NULL arquivo em php para onde será redirecionado para o post.
      */    
     
         $this->id = $id;
@@ -64,7 +64,7 @@ class Form
      * 
      * @syntax $form->set_class($class);
      * 
-     * @param $class string null O nome da classe.
+     * @param $class string NULL O nome da classe.
      */
         $this->class = $class;
     }
@@ -77,7 +77,7 @@ class Form
      * 
      * @syntax $form->set_id($id);
      * 
-     * @param $id string null O nome do id
+     * @param $id string NULL O nome do id
      * 
      * @note O id pode (e deve) ser informado no método construtor. O set_id é apenas uma opção para quando se tem a necessidade de se incluir ou alterar o id após a classe ter sido criada.
      */
@@ -93,7 +93,7 @@ class Form
      * 
      * @syntax $form->set_title($title);
      * 
-     * @param $title string null Mensagem que será exibida no evento mouseover
+     * @param $title string NULL Mensagem que será exibida no evento mouseover
      */
     
         $this->title = $title;
@@ -107,7 +107,7 @@ class Form
      * 
      * @syntax $form->set_target($target);
      * 
-     * @param $target string null Nome da janela em que a página solicitada será aberta.
+     * @param $target string NULL Nome da janela em que a página solicitada será aberta.
      */
     
         $this->target = $target;
@@ -131,11 +131,11 @@ class Form
 
     public function set_file($file){
     /**
-     * Se true informa que o formulário é para o envio de arquivos. Upload.
+     * Se TRUE informa que o formulário é para o envio de arquivos. Upload.
      * 
      * @syntax $form->set_file($file);
      * 
-     * @param $file boolean false Informa se é pora o envio de arquivo(true) ou não.
+     * @param $file boolean FALSE Informa se é pora o envio de arquivo(TRUE) ou não.
      */
     
         $this->file = $file;
@@ -149,7 +149,7 @@ class Form
      * 
      * @syntax $form->onSubmit($onSubmit);
      * 
-     * @param $onSubmit string null Rotina em javascript.
+     * @param $onSubmit string NULL Rotina em javascript.
      */
     
         $this->onSubmit = $onSubmit;
@@ -163,7 +163,7 @@ class Form
      * 
      * @syntax $form->add_item($objeto);
      * 
-     * @param $controle object null Objeto Input a ser inserido no Formulário
+     * @param $controle object NULL Objeto Input a ser inserido no Formulário
      * 
      */
     
@@ -176,7 +176,7 @@ class Form
     /**
      * Inclui um objeto após o formulário. O objeto mais comum é o objeto Imagem
      * 
-     * @param $imagem object null Objeto Imagem a ser inserido
+     * @param $imagem object NULL Objeto Imagem a ser inserido
      * 
      * @deprecated
      */
@@ -195,7 +195,7 @@ class Form
      */
     
     	# Verifica se tem um fieldset aberto
-        $fieldsetAberto = false;
+        $fieldsetAberto = FALSE;
         
         # Contador de controles
         $contador = 0;
@@ -259,7 +259,7 @@ class Form
                     
                     echo '<fieldset class="fieldset">';
                     echo '<legend>'.$fieldsetTag.'</legend>';
-                    $fieldsetAberto = true;
+                    $fieldsetAberto = TRUE;
                 }
 
                 echo '<div class="row">';
@@ -273,7 +273,7 @@ class Form
 
                     if($fieldsetAberto){
                         echo '</fieldset>';                           
-                        $fieldsetAberto = false;
+                        $fieldsetAberto = FALSE;
                         echo '</div>'; // para quando se quer ocultar um grupo de campos
                     }
 
@@ -282,7 +282,7 @@ class Form
 
                         echo '<fieldset class="fieldset">';
                         echo '<legend>'.$fieldsetTag.'</legend>';            
-                        $fieldsetAberto = true;
+                        $fieldsetAberto = TRUE;
                     }
                 }
 
@@ -306,7 +306,7 @@ class Form
                 
         if($fieldsetAberto){
             echo '</fieldset>';                           
-            $fieldsetAberto = false;
+            $fieldsetAberto = FALSE;
             echo '</div>'; // para quando se quer ocultar um grupo de campos
         }
       		      	

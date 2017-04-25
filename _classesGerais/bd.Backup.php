@@ -133,7 +133,7 @@ Class Backup
 
         //return $this->final;
         if(count($this->error)>0){
-            return array('error'=>true, 'msg'=>$this->error);
+            return array('error'=>TRUE, 'msg'=>$this->error);
         }else{
             # cria uma pasta para o backup
             $pasta = $this->pastaDestino.'/'.date('Y.m.d');
@@ -162,7 +162,7 @@ Class Backup
             fclose($back);
             fclose($rel);
 
-            #return array('error'=>false, 'msg'=>$this->final);
+            #return array('error'=>FALSE, 'msg'=>$this->final);
         }
     }
 
@@ -226,9 +226,9 @@ Class Backup
         try {
             $this->handler = new PDO($this->dsn, $this->user, $this->password);
         } catch (PDOException $e) {
-            $this->handler = null;
+            $this->handler = NULL;
             $this->error[] = $e->getMessage();
-            return false;
+            return FALSE;
         }
     }
 
@@ -260,11 +260,11 @@ Class Backup
             unset($tbs);
             unset($i);
 
-            return true;
+            return TRUE;
         } catch (PDOException $e) {
-            $this->handler = null;
+            $this->handler = NULL;
             $this->error[] = $e->getMessage();
-            return false;
+            return FALSE;
         }
 }
 
@@ -286,9 +286,9 @@ Class Backup
             $q[0][1] = preg_replace("/AUTO_INCREMENT=[\w]*./", '', $q[0][1]);
             return $q[0][1];
         } catch (PDOException $e){
-            $this->handler = null;
+            $this->handler = NULL;
             $this->error[] = $e->getMessage();
-            return false;
+            return FALSE;
         }
     }
 
@@ -317,9 +317,9 @@ Class Backup
             }
             return $data;
         } catch (PDOException $e){
-            $this->handler = null;
+            $this->handler = NULL;
             $this->error[] = $e->getMessage();
-            return false;
+            return FALSE;
         }
     }
 }

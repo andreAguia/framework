@@ -11,141 +11,141 @@
 class Modelo
 {
     # Nome do Modelo (aparecerá nos fildset e no caption da tabela)
-    private $nome = null;
+    private $nome = NULL;
     
     # id (para o fieldset) 
     private $id = 'Padrao';
 
     # botões de voltar da lista
-    private $botaoVoltarLista = true;
-    private $voltarLista = null;
+    private $botaoVoltarLista = TRUE;
+    private $voltarLista = NULL;
 
     # botão de voltar do formulário
     private $voltarForm = '?';
-    private $botaoVoltarForm = true;
+    private $botaoVoltarForm = TRUE;
     
     # botões Incluir e editar do list
-    private $botaoIncluir = true;
-    private $botaoEditar = true;    # esse flag é necessário pois o link de editar e incluir são os mesmos
+    private $botaoIncluir = TRUE;
+    private $botaoEditar = TRUE;    # esse flag é necessário pois o link de editar e incluir são os mesmos
                                     # e pode-se querer ter o botão incluir mas não o botão editar.   
 
     # botão de histórico
-    private $botaoHistorico = true;
+    private $botaoHistorico = TRUE;
 
     # campo de pesquisa de um parâmetro na rotina de listar
-    private $parametroLabel = null;
-    private $parametroValue = null;
+    private $parametroLabel = NULL;
+    private $parametroValue = NULL;
 
     # ordem da lista
-    private $orderCampo = null;
-    private $orderTipo = null;
-    private $orderChamador = null;
+    private $orderCampo = NULL;
+    private $orderTipo = NULL;
+    private $orderChamador = NULL;
 
     # select da lista
     private $selectLista;
     private $selectEdita;
     
     # Caminhos
-    private $linkEditar = null;
-    private $linkIncluir = null;
-    private $linkExcluir = null;
-    private $linkGravar = null;
-    private $linkListar = null;
+    private $linkEditar = NULL;
+    private $linkIncluir = NULL;
+    private $linkExcluir = NULL;
+    private $linkGravar = NULL;
+    private $linkListar = NULL;
 
     # Parametros da tabela
-    private $label = null;
-    private $width = null;	
-    private $align = null;
+    private $label = NULL;
+    private $width = NULL;	
+    private $align = NULL;
     
-    private $link = null;               # array de objetos link correspondente a coluna em que ele aparece
-    private $linkCondicional = null;    # array com o valor que a coluna deve ter para ter o link
-    private $imagemCondicional = null;    # array com a imagem condicional
-    private $linkImage = null;
-    private $linkTitle = null;
+    private $link = NULL;               # array de objetos link correspondente a coluna em que ele aparece
+    private $linkCondicional = NULL;    # array com o valor que a coluna deve ter para ter o link
+    private $imagemCondicional = NULL;    # array com a imagem condicional
+    private $linkImage = NULL;
+    private $linkTitle = NULL;
     private $linkCondicionalOperador = '='; # operador da compara��o. pode ser (=,<>, < ou >)
     
-    private $formatacaoCondicional = null;  # Array com uma formata��o condicional de cores
-    private $numeroOrdem = false;           # Exibe (qualdo true) uma numera��o das colunas
+    private $formatacaoCondicional = NULL;  # Array com uma formata��o condicional de cores
+    private $numeroOrdem = FALSE;           # Exibe (qualdo TRUE) uma numera��o das colunas
     private $numeroOrdemTipo = 'c';         # Informa que a ordena��o ser� 'c' crescente ou 'd' decrescente
 
     # Da função
-    private $funcao = null;
+    private $funcao = NULL;
  
     # da Classe
-    private $classe = null;             # array de classes
-    private $metodo = null;             # array de metodo das classes
+    private $classe = NULL;             # array de classes
+    private $metodo = NULL;             # array de metodo das classes
     
     # das rotinas de exclusão
-    private $excluirCondicional = null;	
-    private $excluirCondicao = null;		
-    private $excluirColuna = null;		
+    private $excluirCondicional = NULL;	
+    private $excluirCondicao = NULL;		
+    private $excluirColuna = NULL;		
 
     # das rotinas de edição
-    private $editarCondicional = null;	
-    private $editarCondicao = null;		
-    private $editarColuna = null;		
+    private $editarCondicional = NULL;	
+    private $editarCondicao = NULL;		
+    private $editarColuna = NULL;		
 
     # do título das colunas de link padrão
-    private $nomeColunaExcluir = null;
-    private $nomeColunaEditar = null;
+    private $nomeColunaExcluir = NULL;
+    private $nomeColunaEditar = NULL;
 
     # dos botões das colunas de editar e excluir
-    private $editarBotao = null;
-    private $excluirBotao = null;
+    private $editarBotao = NULL;
+    private $excluirBotao = NULL;
 
     # Parâmetros da paginação da listagem
-    private $paginacao = false;			# Flag que indica se terá ou não paginação na lista
+    private $paginacao = FALSE;			# Flag que indica se terá ou não paginação na lista
     private $paginacaoItens = 15;		# Quantidade de registros por página. 
     private $paginacaoInicial = 0;		# A paginação inicial
     private $pagina = 1;			# Página atual
     private $quantidadeMaxLinks = 10;           # Quantidade Máximo de links de paginação a ser exibido na página
     
     # Valores antes da atualização
-    private $oldValue = null;
+    private $oldValue = NULL;
 
     # Classe do banco de dados
-    private $classBd = null;
+    private $classBd = NULL;
 
     # Nome da tabela
-    private $tabela = null;	
+    private $tabela = NULL;	
 
     # Nome (e id) do Formulário para o css e jscript
     private $nomeForm = 'formPadrao';
 
     # Insere objeto (Imagem) para o form
-    private $objetoForm = null;
+    private $objetoForm = NULL;
 
     # Nome do campo id
-    private $idCampo = null;	
+    private $idCampo = NULL;	
 
     # Tipo de label do formulário
     private $formLabelTipo = 1;
 
     # Campos para o formulario
-    private $campos = null;
+    private $campos = NULL;
 
     # Parâmetros pra a rotina de Log
-    private $idUsuario = null;		    # Usuário logado
-    private $idServidorPesquisado = null;   # Usado para informar qual servidor teve os dados alterados. Usado no sistema de pessoal 
+    private $idUsuario = NULL;		    # Usuário logado
+    private $idServidorPesquisado = NULL;   # Usado para informar qual servidor teve os dados alterados. Usado no sistema de pessoal 
     private $listaLog = 'listaLog.php';     # rotina externa para onde o botão levará
-    private $log = true;		    # Se grava ou não o log
-    private $logDescricao = true;           # Define se no log grava a atividade (descrição do que foi gravado)	
+    private $log = TRUE;		    # Se grava ou não o log
+    private $logDescricao = TRUE;           # Define se no log grava a atividade (descrição do que foi gravado)	
 
     # Botões extra
     private $botaoListarExtra; # Array de objetos button para fazer um menu na rotina de listar
     private $botaoEditarExtra; # Array de objetos button para fazer um menu na rotina de editar
     
     # Rotinas Extras - > rotina extra que aparecerá nas rotinas de listar e editar
-    private $rotinaExtra = null;
-    private $rotinaExtraParametro = null;
+    private $rotinaExtra = NULL;
+    private $rotinaExtraParametro = NULL;
     
     # Rotinas Extras Editar - > rotina extra que aparecerá na rotina de editar
-    private $rotinaExtraEditar = null;
-    private $rotinaExtraEditarParametro = null;
+    private $rotinaExtraEditar = NULL;
+    private $rotinaExtraEditarParametro = NULL;
     
     # Rotinas Extras Listar - > rotina extra que aparecerá na rotina de Lista
-    private $rotinaExtraListar = null;
-    private $rotinaExtraListarParametro = null;
+    private $rotinaExtraListar = NULL;
+    private $rotinaExtraListarParametro = NULL;
     
     # Outros
     private $exibeInfoObrigatoriedade = TRUE;
@@ -259,7 +259,7 @@ class Modelo
     public function listar()
     {
         # Pega o time inicial
-        $time_start = microtime(true);
+        $time_start = microtime(TRUE);
         
         set_session('oldValue'.$this->tabela);
 
@@ -340,7 +340,7 @@ class Modelo
         $totalRegistros = count($result);
                 
         # Calculos da paginaçao
-        $texto = null;
+        $texto = NULL;
         if($this->paginacao)
         {
             # Calcula o total de páginas
@@ -539,7 +539,7 @@ class Modelo
             $tabela->show();
             
             # Pega o time final
-            $time_end = microtime(true);
+            $time_end = microtime(TRUE);
             
             # Calcula e exibe o tempo
             $time = $time_end - $time_start;
@@ -555,10 +555,10 @@ class Modelo
     /**
     * método editar (e incluir)
     * 
-    * @param $id integer id se for para update null se for para insert 
+    * @param $id integer id se for para update NULL se for para insert 
     */
 
-    public function editar($id = null)
+    public function editar($id = NULL)
     {
         # Limita o tamanho da tela
         $grid = new Grid();
@@ -641,7 +641,7 @@ class Modelo
             $this->exibeHistorico($id);        
         
         
-        if(($id <> null)and($this->selectEdita <> null))
+        if(($id <> NULL)and($this->selectEdita <> NULL))
         {	
             # Conecta com o banco de dados
             $objeto = new $this->classBd();
@@ -651,7 +651,7 @@ class Modelo
                 $objeto->set_tabela($this->tabela,$this->idCampo);
             
             # faz o select	
-            $row = $objeto->select($this->selectEdita,false);
+            $row = $objeto->select($this->selectEdita,FALSE);
         }  
 
         $form = new Form($this->linkGravar.'&id='.$id,$this->nomeForm);
@@ -665,7 +665,7 @@ class Modelo
         # para adaptar a grid do frame Foundation
         $linhaAtual = 0;            // zera a flag da linha atual
         $somatorioSize = 0;         // somatorio temporário de uma determinada linha
-        $somaPorLinha[] = null;     // Array com o somatório por linha
+        $somaPorLinha[] = NULL;     // Array com o somatório por linha
         foreach ($this->campos as $campo)
         {
             # pega o tamanho de um controle (input)
@@ -729,8 +729,8 @@ class Modelo
             else
                 $sizeFormulario = $campo['size'];  // se for text area tira do array
 
-            # Inlcui o valor se for para editar (id <> null)
-            if(($id <> null)and($this->selectEdita <> null))
+            # Inlcui o valor se for para editar (id <> NULL)
+            if(($id <> NULL)and($this->selectEdita <> NULL))
             {
                 # se tiver criptografia, descriptograva para exibi��o
                 if((isset($campo['encode'])) AND ($campo['encode']))
@@ -754,7 +754,7 @@ class Modelo
                 }
                 else // se aceitar tags html
                 {
-                    if((isset($campo['tagHtml'])) AND ($campo['tagHtml'] == true))
+                    if((isset($campo['tagHtml'])) AND ($campo['tagHtml'] == TRUE))
                     {
                         $valorCampo = $row[$campo['nome']];
                         $valorControle = htmlentities($valorCampo);
@@ -774,7 +774,7 @@ class Modelo
         }
 
         # Passa por session os valores antigos
-        if(($id <> null)and($this->selectEdita <> null))
+        if(($id <> NULL)and($this->selectEdita <> NULL))
         set_session('oldValue'.$this->tabela,$oldValue);
         
         # submit
@@ -814,15 +814,15 @@ class Modelo
     * @param $validacaoExtra    string   rotina externa extra de validação
     */
     
-    public function gravar($id = null,$validacaoExtra = null)
+    public function gravar($id = NULL,$validacaoExtra = NULL)
     {	
         # Variáveis sobre um erro fatal (que não pode prosseguir com ele)
         $erro = 0;		    // flag de erro: 1 - tem erro; 0 - não tem	
-        $msgErro = null; 	// repositório de mensagens de erro
+        $msgErro = NULL; 	// repositório de mensagens de erro
 
         $contador = 0;		// contador para os arrays $campo_nome e $campo_valor
-        $alteracoes = null;	// informa as alteraçõs dos valores antigos com os novos
-        $atividade = null;	// Variavel que informa ao log o que foi feito
+        $alteracoes = NULL;	// informa as alteraçõs dos valores antigos com os novos
+        $atividade = NULL;	// Variavel que informa ao log o que foi feito
 
         # Pega o valor antigo
         $oldValue = get_session('oldValue'.$this->tabela);
@@ -862,9 +862,9 @@ class Modelo
             
             # passa para nulo os campos vazios
             if ($campoValor[$contador] == "")
-             $campoValor[$contador] = null;
+             $campoValor[$contador] = NULL;
 
-            # verifica not null
+            # verifica not NULL
             if ((isset($campo['required'])) and ($campo['required']))
             {
                 if (vazio($campoValor[$contador]))
@@ -879,7 +879,7 @@ class Modelo
             {
                 # Pega duplicados
                 $duplicidade = new $this->classBd();
-                if ((isset($id)) and ($id <> null))
+                if ((isset($id)) and ($id <> NULL))
                     $result = $duplicidade->select("SELECT $this->idCampo FROM $this->tabela WHERE $campoNome[$contador] = '$campoValor[$contador]' AND $this->idCampo <> $id");
                 else
                     $result = $duplicidade->select("SELECT $this->idCampo FROM $this->tabela WHERE $campoNome[$contador] = '$campoValor[$contador]'"); // quando insert
@@ -975,13 +975,13 @@ class Modelo
             $objeto->gravar($campoNome,$campoValor,$id);
 
             # Após a verificação se não alterou nada
-            # passa a $alteracao para null caso lodDescricao 
+            # passa a $alteracao para NULL caso lodDescricao 
             # peça isso
             if(!$this->logDescricao)
-                $alteracoes = null;
+                $alteracoes = NULL;
             
             # Inicia o tipo de log
-            $tipoLog = null;
+            $tipoLog = NULL;
 
             # Grava no log a atividade
             if($this->log)
@@ -1016,7 +1016,7 @@ class Modelo
             aguarde();
 
             loadPage($this->linkListar);
-            return true;
+            return TRUE;
         }else{
             alert($msgErro);
             back(1);
@@ -1083,7 +1083,7 @@ class Modelo
     * @param  $id o id para se exibir o histórico
     */
     
-    public function exibeHistorico($id = null)
+    public function exibeHistorico($id = NULL)
     {
         echo '<div class="callout" id="divHistorico">';
 

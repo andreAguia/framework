@@ -298,7 +298,7 @@ class BotaoGrafico
 ###########################################################
 
  
-    public function show($valorId = null){
+    public function show($valorId = NULL){
     /**
      * Exibe o botão
      * 
@@ -351,7 +351,7 @@ class BotaoGrafico
         switch ($this->tipo){
             case "link":
                 if (!is_null($this->url)){
-                    if ((isset($this->confirma)) && ($this->confirma <> null)){
+                    if ((isset($this->confirma)) && ($this->confirma <> NULL)){
                         echo " onclick='confirma(\"$this->url\",\"$this->confirma\")' />";
                     }
                     else{
@@ -388,7 +388,7 @@ class BotaoGrafico
                 break;	
 
             case "submit":	
-                echo " onclick=\"document.$this->formName.submit();return false;\" />";
+                echo " onclick=\"document.$this->formName.submit();return FALSE;\" />";
                 break;	
         }
                 

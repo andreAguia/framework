@@ -36,7 +36,7 @@ class Grid
 
 ###########################################################
 
-    public function abreColuna($small = null,$medium = null, $large = null){	
+    public function abreColuna($small = NULL,$medium = NULL, $large = NULL){	
     /**
      * Inicia uma coluna de uma grid. Similar a um td.
      * 

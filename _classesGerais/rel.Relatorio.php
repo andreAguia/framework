@@ -59,8 +59,8 @@ class Relatorio
     private $tituloTabela = NULL;
     
     # Rotinas Extras
-    private $funcaoAntesTitulo = null;
-    private $funcaoAntesTituloParametro = null;
+    private $funcaoAntesTitulo = NULL;
+    private $funcaoAntesTituloParametro = NULL;
     private $objetoAntesTitulo = NULL;
     private $objetoDepoisTitulo = NULL;
 
@@ -76,44 +76,44 @@ class Relatorio
     private $subJoin = NULL;			// posição no array do join no primeiro relatório    
 
     # do somatório
-    private $colunaSomatorio = null;            // coluna que terá somatório (por enquanto uma por relatório)
+    private $colunaSomatorio = NULL;            // coluna que terá somatório (por enquanto uma por relatório)
     private $textoSomatorio = 'Total:';         // texto a ser exibido na linha de totalização
     private $colunaTexto = 1;                   // coluna onte o texto será exibido;
-    private $funcaoSomatorio = null;            // se executa alguma função no somatório
-    private $exibeSomatorioGeral = true;        // se exibe o somatório geral ou somente o parcial
+    private $funcaoSomatorio = NULL;            // se executa alguma função no somatório
+    private $exibeSomatorioGeral = TRUE;        // se exibe o somatório geral ou somente o parcial
     
-    private $totalRegistro = true;		// se terá o número de registros no fim do relatório (e dos grupos))
-    private $bordaInterna = false;		// Exibe ou não uma linha dentro da tabela entro os registros 
-    private $dataImpressao = true;		// Exibe ou  não a Data de Impressão
+    private $totalRegistro = TRUE;		// se terá o número de registros no fim do relatório (e dos grupos))
+    private $bordaInterna = FALSE;		// Exibe ou não uma linha dentro da tabela entro os registros 
+    private $dataImpressao = TRUE;		// Exibe ou  não a Data de Impressão
     private $espacamento = 0;                   // Epaçamento entre as linha. 0 - espacamento padrão
 
-    private $cabecalhoRelatorio = true;         // Exibe ou não o cabeçalho do relatório
-    private $botaoVoltar = null;		// Link do botão voltar
+    private $cabecalhoRelatorio = TRUE;         // Exibe ou não o cabeçalho do relatório
+    private $botaoVoltar = NULL;		// Link do botão voltar
 
-    private $mensagemNenhumRegistro = true;	// Exibe ou não a mensagem de quando não tem registro a ser exibido
+    private $mensagemNenhumRegistro = TRUE;	// Exibe ou não a mensagem de quando não tem registro a ser exibido
 
     # do menu do relatório
-    private $menuRelatorio = true;		// se coloca ou não o menu relatório
-    private $formCampos = null;	 		// array com campos para o formulario
-    private $formFocus = null;   		// Campos a receber foco no form
-    private $formLink = null;	 		// para onde vai o post
+    private $menuRelatorio = TRUE;		// se coloca ou não o menu relatório
+    private $formCampos = NULL;	 		// array com campos para o formulario
+    private $formFocus = NULL;   		// Campos a receber foco no form
+    private $formLink = NULL;	 		// para onde vai o post
     private $brHr = 1;                          // quantidade de saltos de linha antes do hr do menu
     
     # especiais
     private $linhaNomeColuna = FALSE;            // exibe (ou não) a linha entre o nome das colunas
-    private $id = null;                         // id do css para alterações
+    private $id = NULL;                         // id do css para alterações
     
     # do log
-    private $log = true;                        // informa se gerará log ou não
-    private $logDetalhe = null;                 // detalhamento do log
-    private $logServidor = null;                // o idServidor para quando o relatório for de um único seevidor
+    private $log = TRUE;                        // informa se gerará log ou não
+    private $logDetalhe = NULL;                 // detalhamento do log
+    private $logServidor = NULL;                // o idServidor para quando o relatório for de um único seevidor
     
     # Outros
     private $linhaFinal = FALSE;                // Exibe linha final
     
 ###########################################################
     
-    public function __construct($id = null){
+    public function __construct($id = NULL){
     /**
      * Inicia o relatório
      * 
@@ -175,7 +175,7 @@ class Relatorio
         
         $cabec = new Div('center');
         $cabec->abre();
-            $imagem = new Imagem(PASTA_FIGURAS.'brasao.gif',null,50,80);
+            $imagem = new Imagem(PASTA_FIGURAS.'brasao.gif',NULL,50,80);
             $imagem->show();
         $cabec->fecha();
         
@@ -386,7 +386,7 @@ class Relatorio
         $contador = 0;		// contador de registros
         $subContador = 0;	// contador de registros para grupo (zera a cada grupo)
         $agrupa = '#';      	// guarda o nome do grupo
-        $grupo = null;		// flag de agrupamento ou não
+        $grupo = NULL;		// flag de agrupamento ou não
         $somatorio = 0;         // somatorio de colunas se houver
         $subSomatorio = 0;      // somatório do grupo
 
@@ -395,9 +395,9 @@ class Relatorio
         
         # Alimenta a flag de grupo
         if (is_null($this->numGrupo))
-            $grupo = false;
+            $grupo = FALSE;
         else            
-            $grupo = true;
+            $grupo = TRUE;
         
         # Tira uma coluna da linha quando tiver agrupamento com ocultação da culuna
         if(($grupo) && ($this->ocultaGrupo))
@@ -475,14 +475,14 @@ class Relatorio
                     $textoSubitulo = $row[$this->numGrupo];
                     
                     # Coloca a classe (se tiver)
-                    if((isset($this->classe[$this->numGrupo])) and ($this->classe[$this->numGrupo] <> null)){
+                    if((isset($this->classe[$this->numGrupo])) and ($this->classe[$this->numGrupo] <> NULL)){
                         $instancia = new $this->classe[$this->numGrupo]();
                         $metodoClasse = $this->metodo[$this->numGrupo];
                         $textoSubitulo = $instancia->$metodoClasse($row[$this->numGrupo]);
                     }
 
                     # Coloca a função (se tiver)
-                    if((isset($this->funcao[$this->numGrupo])) and ($this->funcao[$this->numGrupo] <> null)){			
+                    if((isset($this->funcao[$this->numGrupo])) and ($this->funcao[$this->numGrupo] <> NULL)){			
                         $nomedafuncao = $this->funcao[$this->numGrupo];
                         $textoSubitulo = $nomedafuncao($row[$this->numGrupo]);
                     }
@@ -527,13 +527,13 @@ class Relatorio
                         echo '<td';
 
                         # alinhamento
-                        if((isset($this->align[$a])) and ($this->align[$a] <> null)) 
+                        if((isset($this->align[$a])) and ($this->align[$a] <> NULL)) 
                             echo ' id="'.$this->align[$a].'"';
                         else
                             echo ' id="center"';
                         
                         # Coloca a classe (se tiver)
-                        if((isset($this->classe[$a])) and ($this->classe[$a] <> null)) 			
+                        if((isset($this->classe[$a])) and ($this->classe[$a] <> NULL)) 			
                         {
                             $instancia = new $this->classe[$a]();
                             $metodoClasse = $this->metodo[$a];
@@ -541,7 +541,7 @@ class Relatorio
                         }
 
                         # Coloca a função (se tiver)
-                        if((isset($this->funcao[$a])) and ($this->funcao[$a] <> null)) 			
+                        if((isset($this->funcao[$a])) and ($this->funcao[$a] <> NULL)) 			
                         {
                             $nomedafuncao = $this->funcao[$a];
                             $row[$a] = $nomedafuncao($row[$a]);
@@ -580,10 +580,10 @@ class Relatorio
                     $result = $subBd->select($subSelect);		  	
 
                     $nomeClasse = $this->subRelatorio;
-                    $nomeClasse->set_cabecalhoRelatorio(false);
-                    $nomeClasse->set_menuRelatorio(false);
+                    $nomeClasse->set_cabecalhoRelatorio(FALSE);
+                    $nomeClasse->set_menuRelatorio(FALSE);
                     $nomeClasse->set_conteudo($result);
-                    $nomeClasse->set_dataImpressao(false);
+                    $nomeClasse->set_dataImpressao(FALSE);
 
                     echo '<tr><td colspan="'.$tamanhoLinha.'">';
                     $nomeClasse->show();
@@ -707,7 +707,7 @@ class Relatorio
              
             $Objetolog = new Intra();
             $data = date("Y-m-d H:i:s");
-            $Objetolog->registraLog($idUsuario,$data,$atividade,null,null,4,$this->logServidor);
+            $Objetolog->registraLog($idUsuario,$data,$atividade,NULL,NULL,4,$this->logServidor);
         }
     }
 }

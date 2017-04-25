@@ -150,7 +150,7 @@ class Chart
                   title: '',";
          
          if($this->tresd){
-             echo "is3D: true,";                
+             echo "is3D: TRUE,";                
          }
          
          if($this->pieHole){

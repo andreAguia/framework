@@ -112,7 +112,7 @@ class Tabela
      *  
      * @param 	$nome	string	-> nome da classe da tabela para o css
      */
-    public function __construct($id = null,$class = 'tabelaPadrao table-scroll')
+    public function __construct($id = NULL,$class = 'tabelaPadrao table-scroll')
     {
         $this->id = $id;
         $this->class = $class;
@@ -159,7 +159,7 @@ class Tabela
      * @param 	$width	array	-> array com o tamanho de cada coluna em %
      * @param 	$align	array	-> array com o alinhamento da coluna pode ser center, left, right ou justify
      */
-    public function set_cabecalho($label = null,$width = null,$align = null)
+    public function set_cabecalho($label = NULL,$width = NULL,$align = NULL)
     {
         $this->label = $label;
         $this->width = $width;
@@ -237,7 +237,7 @@ class Tabela
 
         # Quando existir rotina de editar
         # acrescenta colunas extras e calcula a posi��o na tabela
-        if($this->editar <> null){
+        if($this->editar <> NULL){
             $colunaEdita = $numColunas;
             $numColunas++;
             $this->label[$colunaEdita] = 'Rotina de edição de registro';
@@ -245,7 +245,7 @@ class Tabela
 
         # Quando existir rotina de excluir
         # acrescenta colunas extras e calcula a posição na tabela
-        if($this->excluir <> null)
+        if($this->excluir <> NULL)
         {
             $colunaExcluir = $numColunas;
             $numColunas++;
@@ -254,14 +254,14 @@ class Tabela
 
         # Quando existir rotina de excluir condicional
         # acrescenta colunas extras e calcula a posição na tabela
-        if($this->excluirCondicional <> null)
+        if($this->excluirCondicional <> NULL)
         {
             $colunaExcluirCondicional = $numColunas;
             $numColunas++;   
             $this->label[$colunaExcluirCondicional] = 'Rotina de exclusão de registro';
         }
 
-        if($this->editarCondicional <> null)
+        if($this->editarCondicional <> NULL)
         {
             $colunaEditarCondicional = $numColunas;
             $numColunas++;  
@@ -313,15 +313,15 @@ class Tabela
             echo '<th title="'.$this->label[$a].'">';
 
             # colunas
-            if(($this->editar <> null) and ($a == $colunaEdita))			// coluna de editar
+            if(($this->editar <> NULL) and ($a == $colunaEdita))			// coluna de editar
                 echo $this->nomeColunaEditar.'</th>';
-            elseif(($this->excluir <> null) and ($a == $colunaExcluir))	// coluna de excluir
+            elseif(($this->excluir <> NULL) and ($a == $colunaExcluir))	// coluna de excluir
                 echo $this->nomeColunaExcluir.'</th>';
-            elseif(($this->excluirCondicional <> null) and ($a == $colunaExcluirCondicional))	// coluna de excluir_condicional
+            elseif(($this->excluirCondicional <> NULL) and ($a == $colunaExcluirCondicional))	// coluna de excluir_condicional
                 echo $this->nomeColunaExcluir.'</th>';
-            elseif(($this->editarCondicional <> null) and ($a == $colunaEditarCondicional))	// coluna de excluir_condicional
+            elseif(($this->editarCondicional <> NULL) and ($a == $colunaEditarCondicional))	// coluna de excluir_condicional
                 echo $this->nomeColunaEditar.'</th>';	
-            elseif($this->orderCampo <> null)							// coloca um link no cabe�alho da coluna para ordenamento (quando tiver ordenamento)
+            elseif($this->orderCampo <> NULL)							// coloca um link no cabe�alho da coluna para ordenamento (quando tiver ordenamento)
             {	
                 $link = new Link($this->label[$a],$this->orderChamador.'&orderCampo='.($a+1).'&orderTipo='.$this->orderTipo);
                 $link->show();
@@ -357,14 +357,14 @@ class Tabela
                         {
                             # somente para nivel de comparação
                             # Coloca a função (se tiver)
-                            if((isset($this->funcao[$a])) and ($this->funcao[$a] <> null)) 			
+                            if((isset($this->funcao[$a])) and ($this->funcao[$a] <> NULL)) 			
                             {
                                 $nomedafuncao = $this->funcao[$a];
                                 $rowCondicional[$a] = $nomedafuncao($row[$a]);
                             }
                             
                             # Coloca a classe (se tiver)
-                            if((isset($this->classe[$a])) and ($this->classe[$a] <> null)) 			
+                            if((isset($this->classe[$a])) and ($this->classe[$a] <> NULL)) 			
                             {
                                 $instancia = new $this->classe[$a]();
                                 $metodoClasse = $this->metodo[$a];
@@ -439,7 +439,7 @@ class Tabela
                 echo '<td';
                 
                 # alinhamento
-                if((isset($this->align[$a])) and ($this->align[$a] <> null)) 
+                if((isset($this->align[$a])) and ($this->align[$a] <> NULL)) 
                     echo ' id="'.$this->align[$a].'"';
                 else
                     echo ' id="center"';
@@ -448,14 +448,14 @@ class Tabela
                 
                 # colunas
                 # Botão editar
-                if(($this->editar <> null) and ($a == $colunaEdita)){	
+                if(($this->editar <> NULL) and ($a == $colunaEdita)){	
                     $botao = new BotaoGrafico();
                     $botao->set_url($this->editar.'&id='.$id);
                     $botao->set_image(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
                     $botao->set_title($this->nomeColunaEditar.': '.$row[0]);
                     $botao->show();                    
                 }
-                elseif(($this->excluir <> null) and ($a == $colunaExcluir))	// coluna de excluir
+                elseif(($this->excluir <> NULL) and ($a == $colunaExcluir))	// coluna de excluir
                 {
                     $botao = new BotaoGrafico();
                     $botao->set_url($this->excluir.'&id='.$id);
@@ -470,7 +470,7 @@ class Tabela
                     
                     #$link->show();
                 }						
-                elseif(($this->excluirCondicional <> null) and ($a == $colunaExcluirCondicional))	// coluna de excluir_condicional
+                elseif(($this->excluirCondicional <> NULL) and ($a == $colunaExcluirCondicional))	// coluna de excluir_condicional
                 {
                     if($row[$this->excluirColuna] == $this->excluirCondicao)
                     {
@@ -481,7 +481,7 @@ class Tabela
                         $link->show();
                     }
                 }
-                elseif(($this->editarCondicional <> null) and ($a == $colunaEditarCondicional))	// coluna de editar_condicional
+                elseif(($this->editarCondicional <> NULL) and ($a == $colunaEditarCondicional))	// coluna de editar_condicional
                 {
                     if($row[$this->editarColuna] == $this->editarCondicao){
                         $link = new Link('Editar',$this->editarCondicional.'&id='.$id);
@@ -492,14 +492,14 @@ class Tabela
                 }
 
                 # Coloca a função (se tiver)
-                if((isset($this->funcao[$a])) and ($this->funcao[$a] <> null)) 			
+                if((isset($this->funcao[$a])) and ($this->funcao[$a] <> NULL)) 			
                 {
                     $nomedafuncao = $this->funcao[$a];
                     $row[$a] = $nomedafuncao($row[$a]);
                 }
                 
                 # Coloca a classe (se tiver)
-                if((isset($this->classe[$a])) and ($this->classe[$a] <> null)) 			
+                if((isset($this->classe[$a])) and ($this->classe[$a] <> NULL)) 			
                 {
                     $instancia = new $this->classe[$a]();
                     $metodoClasse = $this->metodo[$a];
@@ -507,13 +507,13 @@ class Tabela
                 }
                 
                 # Coloca o link (se tiver)
-                if((isset($this->linkCondicional[$a])) and ($this->linkCondicional[$a] <> null))
+                if((isset($this->linkCondicional[$a])) and ($this->linkCondicional[$a] <> NULL))
                 {
                     if($this->linkCondicionalOperador == '=')
                     {
                         if($this->linkCondicional[$a] == $row[$a])
                         {
-                            if((isset($this->link[$a])) and ($this->link[$a] <> null)) 
+                            if((isset($this->link[$a])) and ($this->link[$a] <> NULL)) 
                                 $this->link[$a]->show($id);
                         }
                     }
@@ -522,19 +522,19 @@ class Tabela
                     {
                         if($this->linkCondicional[$a] <> $row[$a])
                         {
-                            if((isset($this->link[$a])) and ($this->link[$a] <> null)) 
+                            if((isset($this->link[$a])) and ($this->link[$a] <> NULL)) 
                                 $this->link[$a]->show($id);
                         }
                     }
                 }
                 else
                 {
-                    if((isset($this->link[$a])) and ($this->link[$a] <> null)) 
+                    if((isset($this->link[$a])) and ($this->link[$a] <> NULL)) 
                         $this->link[$a]->show($id);
                 }
                 
                 # Se não é coluna de editar, nem de excluir, nem excluir condicional, nem de link etc
-                if (($a <> $colunaEdita) and ($a <> $colunaExcluir) and ($a <> $colunaExcluirCondicional) and ($a <> $colunaEditarCondicional)and ((!isset($this->link[$a])) or ($this->link[$a] == null)))
+                if (($a <> $colunaEdita) and ($a <> $colunaExcluir) and ($a <> $colunaExcluirCondicional) and ($a <> $colunaEditarCondicional)and ((!isset($this->link[$a])) or ($this->link[$a] == NULL)))
                 {   
                     # verifica se tem imagem condicional, se tiver exibe o gráfico ao invel do valor                
                     if (!is_null($this->imagemCondicional))

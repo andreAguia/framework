@@ -92,14 +92,14 @@
     
    public function select($select = NULL,$many = TRUE,$orderCampo = NULL,$orderTipo = NULL){
     /**
-     * Retorna um array multidimenssional, se many is true, com os registros do banco de dados, ou um valor único dependendo do formato do campo no banco de dados, quando $many is false.
+     * Retorna um array multidimenssional, se many is TRUE, com os registros do banco de dados, ou um valor único dependendo do formato do campo no banco de dados, quando $many is FALSE.
      * 
      * @syntax $bd->select(select, [$many], [$orderCampo], [$orderTipo]);
      * 
      * @note Os parâmetros $orderCampo e $orderTipo só estão presentes no método para serem usados na classes filhas em caso de herança. 
      *   
      * @param $select       string NULL O select do banco de dados
-     * @param $many         bool   TRUE Se true retorna uma array com vários registros, se falso retorna um array simples com apenas um registro
+     * @param $many         bool   TRUE Se TRUE retorna uma array com vários registros, se falso retorna um array simples com apenas um registro
      * @param $orderCampo   string NULL Define (se tiver) o campo do select de ordenação
      * @param $orderTipo    string NULL Define se a ordenação será ascendente ou descendente
      */    
@@ -112,7 +112,7 @@
             else	
                 $row = $this->conn->query($select)->fetch();
 
-            $this->conn = null;
+            $this->conn = NULL;
 
             return $row;
     	}
@@ -136,7 +136,7 @@
      * @param $idValor  integer NULL Se preenchido a gravação será update no id informado, se for nulo será insert
      * @param $tabela   string  NULL Nome da Tabela a ser gravada
      * @param $idCampo  string  id   Nome do campos chave da tabela
-     * @param $alerta   bool    TRUE Se true informa com um alert se houve gravação com sucesso
+     * @param $alerta   bool    TRUE Se TRUE informa com um alert se houve gravação com sucesso
      */
     
     	try {
@@ -162,7 +162,7 @@
                 foreach ($valor as $field){	
                     $a++;
                     if (is_null($field))
-                        $sql .= 'null';
+                        $sql .= 'NULL';
                     else {   
                         #$field = utf8_encode($field); // garante que ser� gravado em utf-8
                         $sql .= "'$field'";
@@ -185,7 +185,7 @@
                 if(is_array($campos)){
                     for ($a=0;$a<$contador;$a++){
                         if (is_null($valor[$a]))
-                            $sql .= $campos[$a]." = null,";
+                            $sql .= $campos[$a]." = NULL,";
                         else
                             $sql .= $campos[$a]." = '".$valor[$a]."',";
                     }
@@ -251,7 +251,7 @@
      * 
      * @return Inteiro com o número de linhas de um select
      * 
-     * @param $select string null O select do banco de dados
+     * @param $select string NULL O select do banco de dados
      */
     
     
@@ -261,7 +261,7 @@
             $row = $this->conn->query($select)->fetchall();
             $num_rows = $this->conn->query($select)->rowCount();	    	
 
-            $this->conn = null;
+            $this->conn = NULL;
 
 
             return $num_rows;
@@ -296,7 +296,7 @@
      * 
      * @note Essa função é usada na tabela de movimento que, sempre, faz duas gravações ao efetuar uma inclusão e usa esta função para resgatar o last id da primeira gravação
      * 
-     * @param $lastId integer null O número do id a ser gravado
+     * @param $lastId integer NULL O número do id a ser gravado
      */
 	$this->lastId = $lastId;
     }

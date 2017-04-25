@@ -465,7 +465,7 @@ class Input
                 $this->tipo = 'hidden';
                 break;	
             case "password":
-                echo '<INPUT onPaste="return false;"'; 
+                echo '<INPUT onPaste="return FALSE;"'; 
                 $this->tipo = 'password';
                 break;
             case "combo":
@@ -543,9 +543,9 @@ class Input
             
             case "simnao":
                 echo '>';
-                $this->array = array(array(null,""),array(true,"Sim"),array(false,"Não"));
+                $this->array = array(array(NULL,""),array(TRUE,"Sim"),array(FALSE,"Não"));
                             
-                echo '<option value="'.true.'"';
+                echo '<option value="'.TRUE.'"';
                 if ($this->valor)
                     echo ' selected>';
                 else
@@ -553,7 +553,7 @@ class Input
                 echo 'Sim';
                 echo '</option>';
                 
-                echo '<option value="'.false.'"';
+                echo '<option value="'.FALSE.'"';
                 if (!($this->valor))
                     echo ' selected>';
                 else
@@ -601,7 +601,7 @@ class Input
                 echo ' size="'.($this->size).'"';
                 #echo ' class="checkbox"';
                 echo ' value="'.$this->nome.'"';
-                if ($this->valor == $this->nome)	# se for true, ou seja valor igual a 1
+                if ($this->valor == $this->nome)	# se for TRUE, ou seja valor igual a 1
                     echo ' checked>';
                 else	
                     echo '>';                            

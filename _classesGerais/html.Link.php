@@ -39,7 +39,7 @@ class Link
     private $class = NULL;
     private $id = NULL;
     
-    private $janela = false;
+    private $janela = FALSE;
     private $janelaWidth = 750;
     private $janelaHeight = 600;
     
@@ -193,7 +193,7 @@ class Link
      */    
 
         # Rotina de atalho
-        if($this->accessKey<>null){			
+        if($this->accessKey<>NULL){			
             # Altera o label colocando o sublinhado na letra do atalho (se tiver)
             $atalho  = substr($this->label,0,stripos($this->label,$this->accessKey));
             $atalho .= '<B><U>'.$this->accessKey.'</U></B>';
@@ -216,7 +216,7 @@ class Link
         }
 
         # Verifica se tem confirmação
-        if ($this->confirma <> null){  // com confirmação
+        if ($this->confirma <> NULL){  // com confirmação
             if(is_null($id)){	// Exibe ou não o id
                 echo " onclick='confirma(\"$this->url\",\"$this->confirma\")'";
             }else{

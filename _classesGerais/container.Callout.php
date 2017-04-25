@@ -105,7 +105,7 @@ class Callout
         # Exibe o botão de fechar        
         if ($this->botaoFechar){
             echo '<button class="close-button" aria-label="Dismiss alert" type="button" data-close>';
-            echo '<span aria-hidden="true">&times;</span>';
+            echo '<span aria-hidden="TRUE">&times;</span>';
             echo '</button>';
         }        
         echo '</div>';
