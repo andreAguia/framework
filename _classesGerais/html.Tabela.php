@@ -105,6 +105,7 @@ class Tabela
     # outros
     private $textoRessaltado = NULL;	# string que será ressaltada no resultado da tabela (usado para resaltar pesquisas)
     private $idCampo = NULL;
+    private $nomeGetId = "id";          # Nome do get do id. 
     ###########################################################
 
     /**
@@ -450,7 +451,7 @@ class Tabela
                 # Botão editar
                 if(($this->editar <> NULL) and ($a == $colunaEdita)){	
                     $botao = new BotaoGrafico();
-                    $botao->set_url($this->editar.'&id='.$id);
+                    $botao->set_url($this->editar.'&'.$this->nomeGetId.'='.$id);
                     $botao->set_image(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
                     $botao->set_title($this->nomeColunaEditar.': '.$row[0]);
                     $botao->show();                    
@@ -458,7 +459,7 @@ class Tabela
                 elseif(($this->excluir <> NULL) and ($a == $colunaExcluir))	// coluna de excluir
                 {
                     $botao = new BotaoGrafico();
-                    $botao->set_url($this->excluir.'&id='.$id);
+                    $botao->set_url($this->excluir.'&'.$this->nomeGetId.'='.$id);
                     $botao->set_image(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
                     $botao->set_title($this->nomeColunaExcluir.': '.$row[0]);
                     $botao->set_confirma('Deseja mesmo excluir?');
@@ -474,7 +475,7 @@ class Tabela
                 {
                     if($row[$this->excluirColuna] == $this->excluirCondicao)
                     {
-                        $link = new Link('Excluir',$this->excluirCondicional.'&id='.$id);
+                        $link = new Link('Excluir',$this->excluirCondicional.'&'.$this->nomeGetId.'='.$id);
                         $link->set_image(PASTA_FIGURAS_GERAIS.$this->excluirBotao);
                         $link->set_title('Exclui: '.$row[0]);
                         $link->set_confirma('Deseja mesmo excluir?');
@@ -484,7 +485,7 @@ class Tabela
                 elseif(($this->editarCondicional <> NULL) and ($a == $colunaEditarCondicional))	// coluna de editar_condicional
                 {
                     if($row[$this->editarColuna] == $this->editarCondicao){
-                        $link = new Link('Editar',$this->editarCondicional.'&id='.$id);
+                        $link = new Link('Editar',$this->editarCondicional.'&'.$this->nomeGetId.'='.$id);
                         $link->set_image(PASTA_FIGURAS_GERAIS.$this->editarBotao);
                         $link->set_title($this->nomeColunaEditar.': '.$row[0]);
                         $link->show();

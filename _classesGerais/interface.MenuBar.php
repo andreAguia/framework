@@ -6,26 +6,31 @@ class MenuBar
      * 
      * @author André Águia (Alat) - alataguia@gmail.com
      * 
-     * @var private $link object NULL Array de objetos Link/Button a ser inseridos no menu
-     * @var private $link object NULL Array informando o lado do objeto. Pode ser: left ou right
+     * @var private $link   object NULL Array de objetos Link/Button a ser inseridos no menu
+     * @var private $link   object NULL Array informando o lado do objeto. Pode ser: left ou right
+     * @var private $classe string button-group string informando a classe do Menu. Usado pelo Foundation
      * 
      * @example exemplo.menubar.php
      */
        
     # do link (botao)
     private $link = NULL;
-    private $linkLado = NULL;    
+    private $linkLado = NULL; 
+    private $classe = "small button-group";
        
 ###########################################################
 
-    public function __construct(){
+    public function __construct($classe = "small button-group"){
         
     /**
      * Iniciar a classe
      * 
      * @syntax $menu = new menuBar();
+     * 
+     * @param string $classe Informa a classe para o css
      */   
        
+        $this->classe = $classe;
     }
 
 ###########################################################
@@ -60,7 +65,7 @@ class MenuBar
         echo '<div id="space-between">';
 
         # Inicia o container da esquerda
-        echo '<div class="button-group">';
+        echo '<div class="'.$this->classe.'">';
         
         # Verifica se tem botões para colocar na barra
         if (!empty($this->link)){
@@ -83,7 +88,7 @@ class MenuBar
         echo '</div>';
 
         # Inicia o container da direita
-        echo '<div class="button-group">';
+        echo '<div class="'.$this->classe.'">';
 
         # Verifica se tem botões para colocar na barra
         if (!empty($this->link)){

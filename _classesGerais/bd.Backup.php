@@ -76,7 +76,7 @@ Class Backup
         # Pega a pasta de backup
         $intra = new Intra();
         $pastaBackup = $intra->get_variavel('pastaBackup');
-        $this->pastaDestino = "../$pastaBackup/";
+        $this->pastaDestino = "../$pastaBackup";
 
         # Escreve na string o cabeçalho
         $this->final = "-- UENF - Universidade do Norte Fluminense\n";
@@ -161,7 +161,64 @@ Class Backup
             # Fecha o arquivo
             fclose($back);
             fclose($rel);
+            
+            # Envia o email com o arquivo (somente se for manual)
+            if($this->manual){
+                $mail = new PHPMailer();    // Inicia a classe PHPMailer
 
+                # Servidor de email
+                $mail->IsSMTP();                        // Define que a mensagem será SMTP
+                $mail->SMTPAuth = true;                 // Usa autenticação SMTP? (opcional)
+                $mail->SMTPSecure = 'ssl';              // SSL REQUERIDO pelo GMail
+                $mail->Host = 'smtp.gmail.com';         // SMTP utilizado
+                $mail->Port = 465;                      // A porta 587 deverá estar aberta em seu servidor
+                $mail->Username = 'alataguia@gmail.com';// Usuário do servidor SMTP
+                $mail->Password = '281298';             // Senha do servidor SMTP
+
+                # Remetente
+                $mail->From = "alataguia@gmail.com"; // Seu e-mail
+                $mail->FromName = "Sistema de Pessoal"; // Seu nome
+
+                # Destinatários
+                $mail->AddAddress('alataguia@gmail.com', 'Administrador do Sistema');
+                //$mail->AddAddress('ciclano@site.net');
+                //$mail->AddCC('ciclano@site.net', 'Ciclano'); // Copia
+                //$mail->AddBCC('fulano@dominio.com.br', 'Fulano da Silva'); // Cópia Oculta
+
+                # Mensagem
+                $mensagem = date("d-m-Y H:i:s");
+                $mensagem .= "<br/>";
+                $mensagem .= "Backup.";
+                $mensagem .= "<br/>";
+                $mensagem .= str_repeat("-", 80)."<br/>";
+                $mensagem .= "Não responda esse email.";
+                $mail->IsHTML(true); // Define que o e-mail será enviado como HTML
+                //$mail->CharSet = 'iso-8859-1'; // Charset da mensagem (opcional)
+                $mail->Subject  = "Alerta de Acesso"; // Assunto da mensagem
+                $mail->Body = $mensagem;
+                $mail->AltBody = "Este é o corpo da mensagem de teste, em Texto Plano! \r\n :)";
+                echo $nomeArquivo.".sql";
+                # Anexo
+                $mail->AddAttachment($nomeArquivo.".sql");  // Insere um anexo 
+                $mail->AddAttachment($nomeArquivo.".txt");  // Insere um anexo 
+                //$mail->AddAttachment("c:/temp/documento.pdf", "novo_nome.pdf");  // Insere um anexo
+
+                # Envia
+                $enviado = $mail->Send();
+
+                # Limpa os destinatários e os anexos
+                $mail->ClearAllRecipients();
+                $mail->ClearAttachments();
+
+                # Exibe uma mensagem de resultado
+                #if ($enviado) {
+                #     echo "E-mail enviado com sucesso!";
+                #}else{
+                #    echo "Não foi possível enviar o e-mail.";
+                #    echo "<b>Informações do erro:</b> " . $mail->ErrorInfo;
+                #}
+            }
+            
             #return array('error'=>FALSE, 'msg'=>$this->final);
         }
     }
@@ -210,7 +267,8 @@ Class Backup
         $this->relatorio .= "\n-- ---------------------------------------------------";
         $this->relatorio .= "\n-- ".$this->numTables ." tabelas copiadas\t\t- Registros copiados: ".$this->numTotalRegistros;
         $this->relatorio .= "\n-- ---------------------------------------------------";
-
+        
+        
     }
 
 ###########################################################   
