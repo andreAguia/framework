@@ -994,15 +994,7 @@ class Modelo
                 {
                     $atividade = 'Incluiu: '.$alteracoes;
                     $id = $objeto->get_lastId();
-                    $tipoLog = 1;
-
-                    # Pega os dados caso seja tbpermissao
-                    if($this->tabela == 'tbpermissao')
-                    {
-                        $pessoal = new Pessoal();
-                        $permissao = $intra->get_permissao($id);             
-                        $atividade = "Incluiu a permissao $id ($permissao) ao servidor $this->idServidorPesquisado (".$pessoal->get_nome($this->idServidorPesquisado).")";
-                    }					
+                    $tipoLog = 1;		
                 }else{
                     $atividade .= 'Alterou: '.$alteracoes;
                     $tipoLog = 2;
