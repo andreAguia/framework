@@ -1351,3 +1351,43 @@ function validaCpf($cpf){
     return $status;	
 }
 ###########################################################
+
+function idade($dataNascimento){
+/**
+ * Rotina que calcula a idade a partir de uma data de nascimento
+ * 
+ * @syntax idade($dataNascimento); 
+ * 
+ * @return integer 
+ * 
+ * @param $dataNascimento date	NULL A data de nascimento no formato dd/mm/aaaa
+ *   
+ * 
+ */     
+
+    # Verifica se data é válida
+    if(is_null($dataNascimento)){
+        alert("Data em branco");
+        return;
+    }else{
+        if (!validaData($dataNascimento)){
+            alert("Data inválida");
+        }else{
+            // Separa em dia, mês e ano
+            list($dia, $mes, $ano) = explode('/', $dataNascimento);
+
+            // Descobre que dia é hoje e retorna a unix timestamp
+            $hoje = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
+            // Descobre a unix timestamp da data de nascimento do fulano
+            $nascimento = mktime( 0, 0, 0, $mes, $dia, $ano);
+
+            // Depois apenas fazemos o cálculo já citado :)
+            $idade = floor((((($hoje - $nascimento) / 60) / 60) / 24) / 365.25);
+            return $idade;
+        }
+        
+    }
+        
+   
+    
+}
