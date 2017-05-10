@@ -733,7 +733,8 @@ class Input
                 echo ' value="'.$this->valor.'"';
                 echo ' class="button"';
                 echo ' accesskey="'.$this->accessKey.'"';
-                echo ' onclick="form.submit(); this.disabled=true;"';
+                #echo ' onclick="this.disabled=true;form.submit();"';
+                echo " onsubmit=\"if (this.getAttribute('submitted')) return false; this.setAttribute('submitted','true');\"";  // Tenta evitar duplo cliques
                 echo '/>';  
                 break;  	  	      		
 

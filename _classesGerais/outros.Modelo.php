@@ -990,8 +990,7 @@ class Modelo
                 $data = date("Y-m-d H:i:s");
 
                 # preenche atividade de inclusão
-                if (is_null($id) or ($id == ""))
-                {
+                if (is_null($id) or ($id == "")){
                     $atividade = 'Incluiu: '.$alteracoes;
                     $id = $objeto->get_lastId();
                     $tipoLog = 1;		
@@ -1001,8 +1000,9 @@ class Modelo
                 }
                 
                 # grava se tiver atividades para serem gravadas
-                if (!is_null($atividade))
+                if (!is_null($atividade)){
                     $intra->registraLog($this->idUsuario,$data,$atividade,$this->tabela,$id,$tipoLog,$this->idServidorPesquisado);
+                }
             }
 
             aguarde();
