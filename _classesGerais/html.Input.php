@@ -733,6 +733,7 @@ class Input
                 echo ' value="'.$this->valor.'"';
                 echo ' class="button"';
                 echo ' accesskey="'.$this->accessKey.'"';
+                echo ' onclick="form.submit(); this.disabled=true;"';
                 echo '/>';  
                 break;  	  	      		
 
