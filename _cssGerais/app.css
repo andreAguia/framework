@@ -296,16 +296,16 @@ ul.menuVertical li{
 
 ul.menuVertical li#titulo{
     padding: 5px 0px 3px 0px;
-    background-color: #076cba;
+    background-color: #e6e6e6;
     text-align: center;
-    font-size: 12px;
+    font-size: 16px;
     list-style-type: none;
     margin: 0px 0px 15px -20px;
 }
 
 ul.menuVertical li#titulo a{
     text-decoration:none;
-    color: #fff;
+    color: #02548b;
 }
 
 ul.menuVertical a { 
