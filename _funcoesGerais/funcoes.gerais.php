@@ -1385,9 +1385,62 @@ function idade($dataNascimento){
             $idade = floor((((($hoje - $nascimento) / 60) / 60) / 24) / 365.25);
             return $idade;
         }
-        
+    }
+}
+
+###########################################################
+
+function geraSenha($tamanho = 8, $maiusculas = TRUE, $numeros = TRUE, $simbolos = false){
+/**
+ * Rotina que gera uma senha forte
+ * 
+ * @author Thiago Belem <contato@thiagobelem.net>
+ * 
+ * @syntax geraSenha([$tamanho],[$maiusculas],[$numeros],[$simbolos]); 
+ * 
+ * @return Uma string contendo uma senha criada de forma aleatória
+ * 
+ * @param   $tamanho    integer  8      O tamanho da string gerada
+ * @param   $maiusculas boolean TRUE    Quando TRUE gera senha também com letras maiusculas.
+ * @param   $numeros    boolean TRUE    Quando TRUE gera senha também com números.
+ * @param   $simbolos   boolean FALSE   Quando TRUE gera senha também com símbolos.  
+ * 
+ */         
+    // Caracteres de cada tipo
+    $lmin = 'abcdefghijklmnopqrstuvwxyz';
+    $lmai = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $num = '1234567890';
+    $simb = '!@#$%*-';
+    
+    // Variáveis internas
+    $retorno = '';
+    $caracteres = '';
+    
+    // Agrupamos todos os caracteres que poderão ser utilizados
+    $caracteres .= $lmin;
+    
+    if ($maiusculas){
+        $caracteres .= $lmai;
+    }
+    
+    if ($numeros){
+        $caracteres .= $num;
+    }
+    
+    if ($simbolos){
+        $caracteres .= $simb;
     }
         
-   
+    // Calculamos o total de caracteres possíveis
+    $len = strlen($caracteres);
+    for ($n = 1; $n <= $tamanho; $n++) {
     
+        // Criamos um número aleatório de 1 até $len para pegar um dos caracteres
+        $rand = mt_rand(1, $len);
+    
+        // Concatenamos um dos caracteres na variável $retorno
+        $retorno .= $caracteres[$rand-1];
+    }
+    
+    return $retorno;
 }
