@@ -30,13 +30,13 @@ class Relatorio
      * @var private $ocultaGrupo bool    TRUE Informa se a coluna agrupada será ocultada.
      * 
      * @group do subrelatório
-     * @var private $subRelatorio object NULL Objeto relatório que será exibido como um subrelatório.
-     * @var private $subSelect boll    TRUE Informa se a coluna agrupada será ocultada.
-     * @var private $subClasseBd boll    TRUE Informa se a coluna agrupada será ocultada.
-     * @var private $subJoin boll    TRUE Informa se a coluna agrupada será ocultada.
+     * @var private $subRelatorio   object  NULL Objeto relatório que será exibido como um subrelatório.
+     * @var private $subSelect      bool    TRUE Informa se a coluna agrupada será ocultada.
+     * @var private $subClasseBd    bool    TRUE Informa se a coluna agrupada será ocultada.
+     * @var private $subJoin        bool    TRUE Informa se a coluna agrupada será ocultada.
      * 
      * @group outros
-     * @var private $linhaFinal boll FALSE Exibe ou não linha final da tabela.
+     * @var private $linhaFinal bool FALSE Exibe ou não linha final da tabela.
      * 
      * @example exemplo.relatorio.php
      * 
@@ -104,9 +104,9 @@ class Relatorio
     private $id = NULL;                         // id do css para alterações
     
     # do log
-    private $log = TRUE;                        // informa se gerará log ou não
-    private $logDetalhe = NULL;                 // detalhamento do log
-    private $logServidor = NULL;                // o idServidor para quando o relatório for de um único seevidor
+    private $log = TRUE;            // informa se gerará log ou não
+    private $logDetalhe = NULL;     // detalhamento do log
+    private $logServidor = NULL;    // o idServidor para quando o relatório for de um único seevidor
     
     # Outros
     private $linhaFinal = FALSE;                // Exibe linha final
@@ -693,17 +693,21 @@ class Relatorio
         $div->fecha();
         
         # Grava no log a atividade
-        if ($this->log)
-        {
-            $atividade = 'Visualizou o(a) '.$this->titulo;
-            if (!is_null($this->tituloLinha2))
-                $atividade .= ' - '.$this->tituloLinha2;
+        if ($this->log){
             
-            if (!is_null($this->subtitulo))
-                $atividade .= ' - '.$this->subtitulo;
+            if(is_null($this->logDetalhe)){
+                $atividade = 'Visualizou o(a) '.$this->titulo;
             
-            if (!is_null($this->logDetalhe))
-                $atividade .= ' - '.$this->logDetalhe;            
+                if (!is_null($this->tituloLinha2)){
+                    $atividade .= ' - '.$this->tituloLinha2;
+                }
+
+                if (!is_null($this->subtitulo)){
+                    $atividade .= ' - '.$this->subtitulo;
+                }
+            }else{
+                $atividade = $this->logDetalhe;   
+            }                         
              
             $Objetolog = new Intra();
             $data = date("Y-m-d H:i:s");
