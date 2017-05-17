@@ -438,17 +438,19 @@ class Input
 
         switch ($this->tipo)
         {
+            case "texto":
             case "processo":
             case "processoNovo":
-            case "texto":
             case "numero":
             case "patrimonio":
-            case "file":
             case "cpf":
             case "cep":    
             case "date":
             case "data":
-            case "hora":            
+            case "hora":        
+                echo '<INPUT autocomplete="on"';        // Habilita histórico
+                break;            
+            case "file":
             case "submit":
             case "reset":
             case "button":

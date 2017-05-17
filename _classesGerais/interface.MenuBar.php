@@ -16,11 +16,11 @@ class MenuBar
     # do link (botao)
     private $link = NULL;
     private $linkLado = NULL; 
-    private $classe = "small button-group";
+    private $classe = "button-group";
        
 ###########################################################
 
-    public function __construct($classe = "small button-group"){
+    public function __construct($classe = "button-group"){
         
     /**
      * Iniciar a classe
