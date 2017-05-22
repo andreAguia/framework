@@ -1444,3 +1444,32 @@ function geraSenha($tamanho = 8, $maiusculas = TRUE, $numeros = TRUE, $simbolos 
     
     return $retorno;
 }
+
+###########################################################
+
+function year($data){
+/**
+ * Função que retorna o ano de uma data
+ * 
+ * @syntax year($data); 
+ * 
+ * @return integer do ano da data fornecida.
+ * 
+ * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
+ * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.  
+ * 
+ * @param $data string  NULL A data a ser trabalhada
+ */
+        
+    if(validaData($data)){
+        
+        # Divide a data em dia, mes e ano
+        $dt = explode('/',$data);
+        return $dt[2];
+     }else{ 
+        alert('Data Inválida');
+        return FALSE;
+    }
+}
+
+###########################################################
