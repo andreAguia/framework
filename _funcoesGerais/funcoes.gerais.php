@@ -1473,3 +1473,30 @@ function year($data){
 }
 
 ###########################################################
+
+function createZip($path = 'arquivo.zip',$files = array()) {
+    
+/**
+ * Cria arquivos compactados .zip
+ * 
+ * @author Luiz Otávio Miranda <contato@todoespacoonline.com/w>
+ * @param string $path Caminho para o arquivo zip que será criado 
+ * @param array $files Arquivos que serão adicionados ao zip 
+ */
+
+    # Cria o arquivo .zip
+    $zip = new ZipArchive;
+    $zip->open( $path, ZipArchive::CREATE);
+
+    # Checa se o array não está vazio e adiciona os arquivos
+    if(!empty($files)){
+        # Loop do(s) arquivo(s) enviado(s) 
+        foreach($files as $file){
+            # Adiciona os arquivos ao zip criado
+            $zip->addFile($file,basename($file));
+        }
+    }
+
+    # Fecha o arquivo zip
+    $zip->close();
+}
