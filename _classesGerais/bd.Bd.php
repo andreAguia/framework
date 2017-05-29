@@ -164,7 +164,7 @@
                     if (is_null($field))
                         $sql .= 'NULL';
                     else {   
-                        #$field = utf8_encode($field); // garante que ser� gravado em utf-8
+                        #$field = utf8_encode($field); // garante que será gravado em utf-8
                         $sql .= "'$field'";
                     }
 
