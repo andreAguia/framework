@@ -341,8 +341,7 @@ class Modelo
                 
         # Calculos da paginaçao
         $texto = NULL;
-        if($this->paginacao)
-        {
+        if($this->paginacao){
             # Calcula o total de páginas
             $totalPaginas = ceil($totalRegistros/$this->paginacaoItens);
 
@@ -367,15 +366,13 @@ class Modelo
             $anterior = $this->paginacaoInicial - $this->paginacaoItens;
 
             # Acrescenta o parâmetro (se houver)
-            if(!is_null($this->parametroValue))
-            {
+            if(!is_null($this->parametroValue)){
                 $proximo .= '&parametro='.$this->parametroValue;
                 $anterior .= '&parametro='.$this->parametroValue;					
             }
 
             # Acrescenta a ordenação (se houver)
-            if(!is_null($this->orderCampo))
-            {
+            if(!is_null($this->orderCampo)){
                 $proximo .= '&orderCampo='.$this->orderCampo;
                 $proximo .= '&orderTipo='.$this->orderTipo;
                 $anterior .= '&orderCampo='.$this->orderCampo;
@@ -465,8 +462,8 @@ class Modelo
         $top->show();
             
         # Pega a lista em definitivo
-        $result = $objeto->select($this->selectLista);
         #echo $this->selectLista;
+        $result = $objeto->select($this->selectLista);
 
         # se o resultado for vazio exibe mensagem ao inves de montar a tabela
         if(count($result) == 0){

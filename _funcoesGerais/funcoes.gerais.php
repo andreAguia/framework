@@ -22,17 +22,29 @@ function post($nome,$padrao=NULL){
  * @example exemplo.post.php
  */
     
-    if(filter_has_var(INPUT_POST,$nome)){
-        $valor = filter_input(INPUT_POST,$nome);
+    if(isset($_POST[$nome])){        // Verifica se existe esse get (substitui o isset)
+        $valor = filter_input(INPUT_POST,$nome); // Pega o valor (substitui o $_post)
+        
+        # Força a ser nulo quando for ""
+        if(vazio($valor)){
+            $valor = NULL;
+        }
+        
+        # Retorna o valor padrão quando for nulo
+        if(is_null($valor)){
+            $valor = $padrao;
+        }
+        
+        return $valor;
     }else{
-        $valor = $padrao;
+        
+        return $padrao;
     }
-    return $valor;
 }
 
 ###########################################################
 
-function get($nome,$padrao=NULL){
+function get($nome,$padrao = NULL){
 /**
  * Retorna o valor de um get
  * 
@@ -48,12 +60,23 @@ function get($nome,$padrao=NULL){
  * @example exemplo.get.php 
  */
 
-    if(filter_has_var(INPUT_GET,$nome)){
-        $valor = filter_input(INPUT_GET,$nome);
+    if(isset($_GET[$nome])){        // Verifica se existe esse get (substitui o isset)
+        $valor = filter_input(INPUT_GET,$nome); // Pega o valor (substitui o $_get)
+        
+        # Força a ser nulo quando for ""
+        if(vazio($valor)){
+            $valor = NULL;
+        }
+        
+        # Retorna o valor padrão quando for nulo
+        if(is_null($valor)){
+            $valor = $padrao;
+        }
+        
+        return $valor;
     }else{
-        $valor = $padrao;
+        return $padrao;
     }
-    return $valor;
 }
 
 ###########################################################
@@ -100,7 +123,7 @@ function ajaxLoadPage($url=NULL,$div=NULL){
 
 ###########################################################
 
-function set_session($nome=NULL,$valor=NULL){
+function set_session($nome = NULL,$valor = NULL){
 /**
  * Escreve um valor em uma variável de sessão para ser usada em outras páginas sem a necessidade de repassá-la com post ou get.
  * 
@@ -119,7 +142,7 @@ function set_session($nome=NULL,$valor=NULL){
 
 ###########################################################
 
-function get_session($nome,$padrao=NULL){
+function get_session($nome,$padrao = NULL){
 /**
  * Retorna uma string com o conteúdo da variável de sessao.
  * 
@@ -137,11 +160,21 @@ function get_session($nome,$padrao=NULL){
 
     if(isset($_SESSION[$nome])){
         $valor = $_SESSION[$nome];
-    }else{  
-        $valor = $padrao;  
+        
+        # Força a ser nulo quando for ""
+        if(vazio($valor)){
+            $valor = NULL;
+        }
+        
+        # Retorna o valor padrão quando for nulo
+        if(is_null($valor)){
+            $valor = $padrao;
+        }
+        
+        return $valor;
+    }else{
+        return $padrao;
     }
-    
-    return $valor;
 }
 
 ###########################################################
@@ -1245,7 +1278,7 @@ function vazio($var){
  *  
  * @example exemplo.vazio.php
  */
-    if (is_null($var) or ($var == '')){
+    if(is_null($var) OR ($var == '')){
         return TRUE;		
     }
 }
