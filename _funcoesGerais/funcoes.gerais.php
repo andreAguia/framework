@@ -36,8 +36,7 @@ function post($nome,$padrao=NULL){
         }
         
         return $valor;
-    }else{
-        
+    }else{        
         return $padrao;
     }
 }
