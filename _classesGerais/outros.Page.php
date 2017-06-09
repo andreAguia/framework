@@ -25,7 +25,6 @@ class Page
     
     # Atributos pegos do config
     private $description = DESCRICAO;       # Descrição do Site
-    private $keywords = PALAVRAS_CHAVE;     # Palavras chave para site de busca
     private $author = AUTOR;                # Autor do Código
     private $system = SISTEMA;              # Nome do Sistema
     private $version = VERSAO;              # Versão do Sistema
@@ -122,7 +121,6 @@ class Page
         echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';  # Foundation
         
         echo '<meta name="description" content="'.$this->description.'">';  # Descrição da página
-        echo '<meta name="keywords" content="'.$this->keywords.'">';        # Palavras chave para motores de busca
         echo '<meta name="author" content="'.$this->author.'">';            # Autor da Página
         
         echo '<meta http-equiv="pragma" content="no-cache">';               # Obriga o Navegador a não usar cache
@@ -134,7 +132,7 @@ class Page
 
         # Título da página
         if(is_null($this->title))
-            echo '<title>'.$this->system.' - '.$this->version.'</title>';
+            echo '<title>'.$this->system.'</title>';
         else
             echo '<title>'.$this->title.'</title>';
 
