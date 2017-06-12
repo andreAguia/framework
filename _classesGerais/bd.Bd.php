@@ -229,11 +229,12 @@
     	try {
             $this->conecta();
             $sql = 'DELETE FROM '.$tabela.' WHERE '.$idCampo.' = '.$idValor;	
-
+            #echo $sql;
+            
             # Executa o sql
             $this->conn->exec($sql);
 
-            # alert("Registro excluído com sucesso!"); //Silencio é de ouro
+            #alert("Registro excluído com sucesso!"); //Silencio é de ouro
         }
 	    catch(PDOException $e){
             print "ERRO! ".$e->getMessage()."<br />";

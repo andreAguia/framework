@@ -268,6 +268,18 @@ form.formPadrao label{
 }
 
 /*******************************************
+ * Função tituloTable
+ *******************************************/
+ div#tituloTable{
+     background-color: #e6e6e6;
+     font-weight: normal;
+     color: #02548b;
+     font-size: 16px;
+     text-align: center;
+     padding: 5px 5px 5px 0px;
+}
+
+/*******************************************
  * Função label
  *******************************************/
 span.label p{

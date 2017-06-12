@@ -738,6 +738,31 @@ function titulo($mensagem = NULL,$title = NULL){
 }
 
 ###########################################################
+
+function tituloTable($mensagem = NULL,$title = NULL){
+/**
+ * Exibe um texto centralizado dentro de um painel com fundo igual ao titulo da tabela
+ * 
+ * @syntax titulo($mensagem, [$title]); 
+ * 
+ * @param $titulo string NULL O Título a ser exibido
+ * 
+ * @example exemplo.titulo.php     
+ */
+   
+    if(is_null($title)){
+        $title = $mensagem;
+    }
+
+    # cria a div
+    $div = new Div("tituloTable");
+    $div->set_title($title);
+    $div->abre();
+        echo $mensagem;
+    $div->fecha();
+}
+
+###########################################################
     
 function botaoVoltar($url,$label = 'Voltar',$title = 'Volta para a página anterior'){
 /**
