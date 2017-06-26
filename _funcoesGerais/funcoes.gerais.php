@@ -6,7 +6,7 @@
  
  ###########################################################
 
-function post($nome,$padrao=NULL){
+function post($nome,$padrao = NULL){
 /**
  * Retorna o valor de um post oriundo de um formulário
  * 
@@ -22,13 +22,21 @@ function post($nome,$padrao=NULL){
  * @example exemplo.post.php
  */
     
-    if(isset($_POST[$nome])){        // Verifica se existe esse get (substitui o isset)
-        $valor = filter_input(INPUT_POST,$nome); // Pega o valor (substitui o $_post)
+    # Verifica se o post existe
+    if(isset($_POST[$nome])){
+        # Pega o valor desse post
+        $valor = filter_input(INPUT_POST,$nome); // Substitui o $_post
         
+        ## Obs:
+        ## O código abaixo foi retirado pois na rotina de pesquisa de servidor 
+        ## e em outras rotinas de pesquisas é desejável o valor "" diferenciado
+        ## do valor nulo. Dessa forma essa "limpeza" de valor vazio foi retirada
+        ## da função post, mas continua na função get e get_session.
+         
         # Força a ser nulo quando for ""
-        if(vazio($valor)){
-            $valor = NULL;
-        }
+        #if(vazio($valor)){
+        #    $valor = NULL;
+        #}
         
         # Retorna o valor padrão quando for nulo
         if(is_null($valor)){
