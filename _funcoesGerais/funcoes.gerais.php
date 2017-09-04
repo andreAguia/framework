@@ -1505,8 +1505,7 @@ function geraSenha($tamanho = 8, $maiusculas = TRUE, $numeros = TRUE, $simbolos 
     
         // Concatenamos um dos caracteres na variável $retorno
         $retorno .= $caracteres[$rand-1];
-    }
-    
+    }    
     return $retorno;
 }
 
