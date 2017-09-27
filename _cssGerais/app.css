@@ -62,6 +62,14 @@ p#f8{
      font-size: 20px;   
  }
  
+ p#f22{
+     font-size: 22px;   
+ }
+ 
+ p#f24{
+     font-size: 24px;   
+ }
+ 
  /*******************************************
  * Muda o tamanho da fonte de um <p> pela classe
  *******************************************/
