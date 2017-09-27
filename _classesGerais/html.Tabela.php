@@ -101,7 +101,12 @@ class Tabela
     private $orderCampo = NULL;
     private $orderTipo = NULL;
     private $orderChamador;
-
+    
+    # do link no título
+    private $linkTitulo = NULL;
+    private $linkTituloImagem = NULL;
+    private $linkTituloTitle = NULL;
+     
     # outros
     private $textoRessaltado = NULL;	# string que será ressaltada no resultado da tabela (usado para resaltar pesquisas)
     private $idCampo = NULL;
@@ -293,8 +298,20 @@ class Tabela
         echo '<thead>';
         
         # título
-        if ($this->titulo)
-            echo '<caption>'.$this->titulo.'</caption>';
+        if ($this->titulo){
+            echo '<caption>';
+            echo $this->titulo;
+            
+            # Verifica se tem link no título
+            if(!is_null($this->linkTitulo)){
+                $botao = new BotaoGrafico("linkTituloTabela");
+                $botao->set_url($this->linkTitulo);
+                $botao->set_image(PASTA_FIGURAS.$this->linkTituloImagem,20,20);
+                $botao->set_title($this->linkTituloTitle);
+                $botao->show();
+            }
+            echo '</caption>';
+        }
 
         # ordem ascendente ou descendente?
         if($this->orderTipo == "asc")

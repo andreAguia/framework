@@ -173,6 +173,12 @@ table.tabelaPadrao td.zebrado0{
      padding: 0px;
      padding-top: 2px;
  }
+ 
+ input#linkTituloTabela{
+     position: float;
+     left: 33%;
+     top: 2px;
+ }
   
 /*******************************************
  * class Modelo
@@ -212,10 +218,12 @@ fieldset legend{
 
 .top-bar,
 .top-bar ul {
-  background-color: #01558b;
-  font-size: 14px; 
-  color: #FFF;
-  padding: 2px;
+    background-color: #02548b;   
+    text-align: left;
+    color: #fff;
+    font-size: 14px;     
+    font-weight: normal;
+    padding: 2px;
   }
   
 /********************************
