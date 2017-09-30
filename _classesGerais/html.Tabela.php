@@ -104,8 +104,6 @@ class Tabela
     
     # do link no título
     private $linkTitulo = NULL;
-    private $linkTituloImagem = NULL;
-    private $linkTituloTitle = NULL;
      
     # outros
     private $textoRessaltado = NULL;	# string que será ressaltada no resultado da tabela (usado para resaltar pesquisas)
@@ -300,16 +298,16 @@ class Tabela
         # título
         if ($this->titulo){
             echo '<caption>';
-            echo $this->titulo;
             
             # Verifica se tem link no título
             if(!is_null($this->linkTitulo)){
-                $botao = new BotaoGrafico("linkTituloTabela");
-                $botao->set_url($this->linkTitulo);
-                $botao->set_image(PASTA_FIGURAS.$this->linkTituloImagem,20,20);
-                $botao->set_title($this->linkTituloTitle);
-                $botao->show();
+                $link = new Link($this->titulo,$this->linkTitulo);
+                $link->set_id("linkTituloTabela");
+                $link->show();
+            }else{
+                echo $this->titulo;
             }
+            
             echo '</caption>';
         }
 
