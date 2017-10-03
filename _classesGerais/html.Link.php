@@ -28,6 +28,11 @@ class Link
      * @var private $confirma  string  NULL   Texto a ser exibido em uma janela confirmação em jscript. A rotina somente prosseguirá se o usuário pressionar sim.
      * @var private $accessKey string  NULL   Letra para se usar junto com a tecla ALT como atalho de acesso ao botão 
      * 
+     * @group da imagem
+     * @var private $image         string  "_semImagem.jpg" O caminho e o nome da Imagem a ser exibida
+     * @var private $imageWidth    integer 48               Largura da imagem
+     * @var private $imageHeight   integer 48               Altura da imagem
+     * 
      * @example exemplo.link.php
      */
 
@@ -47,6 +52,10 @@ class Link
         
     private $confirma = NULL;
     private $accessKey = NULL;
+    
+    private $image = NULL;
+    private $imageWidth = 48;
+    private $imageHeight = 48;    
 
 ###########################################################
 
@@ -184,6 +193,24 @@ class Link
     }
 
 ###########################################################
+    
+    public function set_image($image = NULL,$imageWidth = 48, $imageHeight = 48){
+    /**
+     * Define a imagem do botão
+     * 
+     * @syntax $botao->set_image($image,[$imageWidth],[$imgageHeight]); 
+     * 
+     * @param $image        string  NULL O caminho e o nome da Imagem a ser exibida
+     * @param $imageWidth   integer 48	 Largura da imagem
+     * @param $imageHeight  integer 48	 Altura da imagem
+     */
+    
+        $this->image = $image;
+        $this->imageWidth = $imageWidth;
+        $this->imageHeight = $imageHeight;        
+    }
+
+###########################################################
 
     public function show($id = NULL){
     /**
@@ -249,7 +276,13 @@ class Link
         }
         
         echo '>';
-        echo $this->label;
+        
+        if (!is_null($this->image)){
+            $figura = new Imagem($this->image,$this->title,$this->imageWidth,$this->imageHeight);
+            $figura->show();
+        }else{
+            echo $this->label;
+        }
         echo '</a>';
     }
 }

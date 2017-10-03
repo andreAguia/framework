@@ -104,6 +104,10 @@ class Tabela
     
     # do link no título
     private $linkTitulo = NULL;
+    private $linkTituloImage = PASTA_FIGURAS_GERAIS.'plus.png';
+    private $linkTituloImageWidth = 15;
+    private $linkTituloImageHeight = 15; 
+    private $linkTituloTitle = NULL;
      
     # outros
     private $textoRessaltado = NULL;	# string que será ressaltada no resultado da tabela (usado para resaltar pesquisas)
@@ -298,17 +302,16 @@ class Tabela
         # título
         if ($this->titulo){
             echo '<caption>';
+            echo $this->titulo;
             
             # Verifica se tem link no título
             if(!is_null($this->linkTitulo)){
-                $link = new Link($this->titulo,$this->linkTitulo);
-                $link->set_id("linkTituloTabela");
+                echo " ";
+                $link = new Link(" +",$this->linkTitulo);
+                $link->set_title($this->linkTituloTitle);
+                $link->set_image($this->linkTituloImage,$this->linkTituloImageWidth,$this->linkTituloImageHeight);
                 $link->show();
-            }else{
-                echo $this->titulo;
             }
-            
-            echo '</caption>';
         }
 
         # ordem ascendente ou descendente?
