@@ -14,6 +14,8 @@ class Chart
  */
 
     private $dados = NULL;
+    private $label = array("coluna1","coluna2");
+    private $title = NULL;
     private $tipo = NULL;
     private $tresd = FALSE;
     
@@ -39,6 +41,34 @@ class Chart
     
         $this->tipo = $tipo;
         $this->dados = $dados;
+    }
+
+###########################################################
+
+    public function set_title($title = NULL){
+    /**
+     * Informa label da colunas
+     * 
+     * @syntax $button->set_tresd($tresd);
+     * 
+     * @param $tresd bool NULL Informa se o gráfico será ou não em 3 dimensões
+     */
+    
+        $this->title = $title;
+    }
+
+###########################################################
+
+    public function set_label($label = NULL){
+    /**
+     * Informa label da colunas
+     * 
+     * @syntax $button->set_tresd($tresd);
+     * 
+     * @param $tresd bool NULL Informa se o gráfico será ou não em 3 dimensões
+     */
+    
+        $this->label = $label;
     }
 
 ###########################################################
@@ -133,8 +163,21 @@ class Chart
          $contador = 0;
          $numItens = count($this->dados);
          
-         echo "['Coluna1', 'Coluna2'],";
+         # Título das colunas (se precisar)
+         $textoColuna = "[";
          
+         # Percorre o label
+         foreach ($this->label as $titColuna){
+            $textoColuna .= "'$titColuna',";
+         }
+        
+         # Retira a última vírgula
+         $size = strlen($textoColuna);
+         $textoColuna = substr($textoColuna,0, $size-1); 
+        
+        $textoColuna .= "],";
+        echo $textoColuna;
+        
          # Percorre o array de dados
          foreach ($this->dados as $item){
              echo "['".$item[0]."',".$item[1]."]";
@@ -149,6 +192,10 @@ class Chart
          echo "var options = {
                   title: '',";
          
+         if(!is_null($this->title)){
+             echo "title: '$this->title',";             
+         }
+         
          if($this->tresd){
              echo "is3D: TRUE,";                
          }
@@ -158,16 +205,37 @@ class Chart
          }
          
          if(!$this->legend){
-             echo "legend: 'none',";                
+             echo "legend: { position: 'none' },";                
          }
-                   
+         
+         echo "hAxis: {title: '".$this->label[1]."'},";
+         echo "vAxis: {title: '".$this->label[0]."'},";
+         echo " histogram: {
+                bucketSize: 1,
+                maxNumBuckets: 1000,
+                minValue: 18,
+                maxValue: 100
+              }"; 
          echo "};";
-
-         echo "var chart = new google.visualization.".$this->tipo."Chart(document.getElementById('$this->idDiv'));
+         
+        switch ($this->tipo)
+        {   
+            case "Pie":
+                echo "var chart = new google.visualization.".$this->tipo."Chart(document.getElementById('$this->idDiv'));
                chart.draw(data, options);
               }
             </script>";
-          
+                break;
+            case "Histogram": 
+            case "BarChart":
+            case "ColumnChart":
+            case "LineChart":
+                echo "var chart = new google.visualization.".$this->tipo."(document.getElementById('$this->idDiv'));
+               chart.draw(data, options);
+              }
+            </script>";
+                break;
+        } 
             echo '<div id="'.$this->idDiv.'" style="width: '.$this->largura.'px; height: '.$this->altura.'px;"></div>';
      }
             

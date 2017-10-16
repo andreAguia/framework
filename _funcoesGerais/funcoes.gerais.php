@@ -1564,3 +1564,57 @@ function createZip($path = 'arquivo.zip',$files = array()) {
     # Fecha o arquivo zip
     $zip->close();
 }
+
+###########################################################
+#  Funções Estatísticas
+###########################################################
+
+/**
+ * Calcula a media de um array de numeros
+ * @param array $a Array de numeros
+ * @return number Retorna a media dos valores do array
+ */
+function media_aritmetica(array $a) {
+    return array_sum($a) / count($a);
+}
+
+###########################################################
+/**
+ * Obtem a maior valor de um array.
+ * @param array $a Array de numeros
+ * @return number o maior valor
+ */
+function maiorValor($array){
+    rsort($array);
+    return $array[0];
+}
+
+###########################################################
+/**
+ * Obtem o menor valor de um array.
+ * @param array $a Array de numeros
+ * @return number o maior valor
+ */
+function menorValor($array){
+    sort($array);
+    return $array[0];
+}
+
+###########################################################
+/**
+ * Obtem o menor valor de um array.
+ * @param array $a Array de numeros
+ * @return number o maior valor
+ */
+function arrayToString($array){
+    $resultado = NULL;
+    foreach ($array as $stringArray){
+        $resultado .= $stringArray.",";
+    }
+    
+    # Retira a última vírgula
+    $size = strlen($resultado);
+    $resultado = substr($resultado,0, $size-1);
+    
+    return $resultado;
+}
