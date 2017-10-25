@@ -485,7 +485,7 @@ class Modelo
             $tabela->set_linkCondicionalOperador($this->linkCondicionalOperador);
             $tabela->set_funcao($this->funcao);
             $tabela->set_classe($this->classe);
-            $tabela->set_metodo($this->metodo);  
+            $tabela->set_metodo($this->metodo);
 
             # acrescenta uma coluna com um número de ordenação
             if ($this->numeroOrdem){

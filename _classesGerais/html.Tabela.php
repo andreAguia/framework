@@ -43,6 +43,10 @@ class Tabela
     * @group das rotinas de exclusão
     * @var private $excluir  array NULL Exibe a tr com cor diferente dependendo de algum valor
     * @var private $imagemCondicional     array NULL Exibe um objeto imagem ao invés do valor dependendo de algum valor.
+    * 
+    * @group do rowspan
+    * @var private $rowspan array NULL Informa com TRUE ou FALSE qual coluna terá rolspan
+    * 
     * @example exemplo.tabela.php
     */  
 
@@ -223,8 +227,7 @@ class Tabela
      * @param 	$orderTipo		string -> pode ser 'asc' ou 'desc'. informa o tipo de ordena��o
      * @param 	$orderChamador	string -> 
      */
-    public function set_order($orderCampo,$orderTipo,$orderChamador)
-    {
+    public function set_order($orderCampo,$orderTipo,$orderChamador){
         $this->orderCampo = $orderCampo;
         $this->orderTipo = $orderTipo;
         $this->orderChamador = $orderChamador;
@@ -281,19 +284,21 @@ class Tabela
         echo '<table class="'.$this->class.'"';        
         
         # id
-        if(!is_null($this->id))
-            echo ' id="'.$this->id.'"';        
+        if(!is_null($this->id)){
+            echo ' id="'.$this->id.'"';
+        }
               
         echo '>';
         
         # Colunas
-        if($this->numeroOrdem)
+        if($this->numeroOrdem){
             echo '<col style="width:5%">';
+        }
 
-        for($a = 0;$a < $numColunas;$a += 1)
-        {
-            if(isset($this->width[$a]))
+        for($a = 0;$a < $numColunas;$a += 1){
+            if(isset($this->width[$a])){
                 echo '<col style="width:'.$this->width[$a].'%">';
+            }
         }
 
         # Cabeçalho
