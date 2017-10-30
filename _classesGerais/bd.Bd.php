@@ -107,10 +107,11 @@
     	try {
             $this->conecta();
 
-            if($many)
+            if ($many) {
                 $row = $this->conn->query($select)->fetchall();
-            else	
+            } else {
                 $row = $this->conn->query($select)->fetch();
+            }
 
             $this->conn = NULL;
 
@@ -161,9 +162,9 @@
 
                 foreach ($valor as $field){	
                     $a++;
-                    if (is_null($field))
+                    if (is_null($field)) {
                         $sql .= 'NULL';
-                    else {   
+                    } else {
                         #$field = utf8_encode($field); // garante que será gravado em utf-8
                         $sql .= "'$field'";
                     }
@@ -182,19 +183,21 @@
 
                 $contador = count($campos);
 
-                if(is_array($campos)){
-                    for ($a=0;$a<$contador;$a++){
-                        if (is_null($valor[$a]))
-                            $sql .= $campos[$a]." = NULL,";
-                        else
-                            $sql .= $campos[$a]." = '".$valor[$a]."',";
+                if (is_array($campos)) {
+                    for ($a = 0; $a < $contador; $a++) {
+                        if (is_null($valor[$a])) {
+                            $sql .= $campos[$a] . " = NULL,";
+                        } else {
+                            $sql .= $campos[$a] . " = '" . $valor[$a] . "',";
+                        }
                     }
-                    
+
                     # Retira o último ',' de $sql
-                    $sql = rtrim($sql,',');
+                    $sql = rtrim($sql, ',');
                 }
-                else 
-                    $sql .= $campos." = '".$valor."' ";
+                else {
+                    $sql .= $campos . " = '" . $valor . "' ";
+                }
 
                 $sql .= ' WHERE '.$idCampo.' = '.$idValor;		    		
             }
@@ -204,8 +207,9 @@
             $this->conn->exec($sql);
             $this->lastId = $this->conn->lastInsertId(); 
 
-            if($alerta)
-                alert("Registro salvo com sucesso!") ;
+            if ($alerta) {
+                alert("Registro salvo com sucesso!");
+            }
         }
 	    catch(PDOException $e){
             print "ERRO! ".$e->getMessage()."<br />";

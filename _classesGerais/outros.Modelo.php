@@ -56,6 +56,7 @@ class Modelo
     private $label = NULL;
     private $width = NULL;	
     private $align = NULL;
+    private $idTabela = NULL;
     
     private $link = NULL;               # array de objetos link correspondente a coluna em que ele aparece
     private $linkCondicional = NULL;    # array com o valor que a coluna deve ter para ter o link
@@ -268,9 +269,10 @@ class Modelo
         $grid->abreColuna(12);
         
         # Preenche a url do botão incluir se for nula ...
-        if (is_null($this->linkIncluir))
+        if (is_null($this->linkIncluir)) {
             $this->linkIncluir = $this->linkEditar;
-        
+        }
+
         # Conecta com o banco de dados
         $objeto = new $this->classBd();
 
@@ -352,8 +354,9 @@ class Modelo
             $itemFinal = $this->pagina * $this->paginacaoItens;
             $itemInicial = $itemFinal - $this->paginacaoItens+1;
 
-            if ($itemFinal > $totalRegistros)
-            $itemFinal = $totalRegistros;
+            if ($itemFinal > $totalRegistros) {
+                $itemFinal = $totalRegistros;
+            }
 
             # Texto do fieldset
             $texto = 'Página: '.$this->pagina.' de '.$totalPaginas;
@@ -477,6 +480,7 @@ class Modelo
             # Monta a tabela
             $tabela = new Tabela();
             $tabela->set_conteudo($result);
+            $tabela->set_id($this->idTabela);
             $tabela->set_label($this->label);
             $tabela->set_align($this->align);
             $tabela->set_width($this->width);
@@ -500,20 +504,24 @@ class Modelo
             $tabela->set_imagemCondicional($this->imagemCondicional);
 
             # se tem botão editar
-            if ($this->botaoEditar)
+            if ($this->botaoEditar) {
                 $tabela->set_editar($this->linkEditar);
+            }
 
             # coloca no rodapé a paginação (quando houver)
-            if ($this->paginacao)
-                $tabela->set_rodape($texto.' ('.$itemInicial.' a '.$itemFinal.' de '.$totalRegistros.' Registros)');
+            if ($this->paginacao) {
+                $tabela->set_rodape($texto . ' (' . $itemInicial . ' a ' . $itemFinal . ' de ' . $totalRegistros . ' Registros)');
+            }
 
             # coloca o botão de editar (quando houver)
-            if (!is_null($this->editarBotao))
+            if (!is_null($this->editarBotao)) {
                 $tabela->set_editarBotao($this->editarBotao);
+            }
 
             # coloca o botão de excluir (quando houver)
-            if (!is_null($this->excluirBotao))
+            if (!is_null($this->excluirBotao)) {
                 $tabela->set_excluirBotao($this->excluirBotao);
+            }
 
             $tabela->set_excluir($this->linkExcluir);
             $tabela->set_idCampo($this->idCampo);
@@ -523,15 +531,17 @@ class Modelo
 
             $tabela->set_editarCondicional($this->editarCondicional,$this->editarCondicao,$this->editarColuna);
 
-            if (!is_null($this->nomeColunaEditar))
+            if (!is_null($this->nomeColunaEditar)) {
                 $tabela->set_nomeColunaEditar($this->nomeColunaEditar);
+            }
 
             #$tabela->link_image = $this->link_image;
             #$tabela->link_title = $this->link_title;
 
             # informa para tabela se tem parametro para ser ressaltado na tabela
-            if(!is_null($this->parametroValue) or ($this->parametroValue == ""))
+            if (!is_null($this->parametroValue) or ( $this->parametroValue == "")) {
                 $tabela->set_textoRessaltado($this->parametroValue);
+            }
 
             $tabela->show();
             
@@ -634,19 +644,21 @@ class Modelo
         $top->show(); 
 
        # exibe (ocultamente) o histórico
-       if ((!is_null($id)) AND ($this->botaoHistorico))
-            $this->exibeHistorico($id);        
-        
-        
+       if ((!is_null($id)) AND ( $this->botaoHistorico)) {
+            $this->exibeHistorico($id);
+        }
+
+
         if(($id <> NULL)and($this->selectEdita <> NULL))
         {	
             # Conecta com o banco de dados
             $objeto = new $this->classBd();
 
             # Nas classes genéricas inclui o nome da tabela
-            if(!is_null($this->tabela))
-                $objeto->set_tabela($this->tabela,$this->idCampo);
-            
+            if (!is_null($this->tabela)) {
+                $objeto->set_tabela($this->tabela, $this->idCampo);
+            }
+
             # faz o select	
             $row = $objeto->select($this->selectEdita,FALSE);
         }  
@@ -654,10 +666,11 @@ class Modelo
         $form = new Form($this->linkGravar.'&id='.$id,$this->nomeForm);
         $form->set_id('form'.$this->id);
         
-        if($this->objetoForm)
+        if ($this->objetoForm) {
             $form->set_objeto($this->objetoForm);
+        }
 
-        
+
         # Rotina que faz o calculo do tamanho das colunas
         # para adaptar a grid do frame Foundation
         $linhaAtual = 0;            // zera a flag da linha atual
@@ -666,17 +679,20 @@ class Modelo
         foreach ($this->campos as $campo)
         {
             # pega o tamanho de um controle (input)
-            if($campo['tipo'] == 'textarea')
+            if ($campo['tipo'] == 'textarea') {
                 $sizeFormulario = $campo['size'][0];
-            else
-                $sizeFormulario = $campo['size'];  // se for text area tira do array
+            } else {
+                $sizeFormulario = $campo['size'];
+            }  // se for text area tira do array
 
 
             # Se a linha não mudou ou se for a primeira linha
-            if(($linhaAtual == $campo['linha']) OR ($linhaAtual == 0))
-                $somatorioSize += $sizeFormulario;   // acrescenta
-            else
-                $somatorioSize = $sizeFormulario;    // iniciar o somatório
+            if (($linhaAtual == $campo['linha']) OR ( $linhaAtual == 0)) {
+                $somatorioSize += $sizeFormulario;
+            }   // acrescenta
+            else {
+                $somatorioSize = $sizeFormulario;
+            }    // iniciar o somatório
 
             $somaPorLinha[$campo['linha']] = $somatorioSize; // atualiza a soma por linha
         }
@@ -689,50 +705,67 @@ class Modelo
             $controle->set_linha($campo['linha']);      // linha no form que vai ser colocado o controle
             $controle->set_tabindex($contador);		// tabulador (ordem de navega��o com a tecla tab)
             
-            if (isset($campo['size']))
-                $controle->set_size($campo['size']);                    // tamanho do campos
-            if (isset($campo['maxLength']))				// quantidade máxima de caracteres
-                $controle->set_size($campo['size'],$campo['maxLength']);
-            if (isset($campo['required']))
-                $controle->set_required($campo['required']);		 // faz o controle exibir o *
-            if (isset($campo['tagHtml']))
-                $controle->set_tagHtml($campo['tagHtml']);		 // faz o controle exibir o html
-            if (isset($campo['array']))
-                $controle->set_array($campo['array']);			 // conteudo de uma combo
-            if (isset($campo['readOnly']))
-                $controle->set_readonly($campo['readOnly']);	         // readonly
-            if (isset($campo['disabled']))
+            if (isset($campo['size'])) {
+                $controle->set_size($campo['size']);
+            }                    // tamanho do campos
+            if (isset($campo['maxLength'])) {    // quantidade máxima de caracteres
+                $controle->set_size($campo['size'], $campo['maxLength']);
+            }
+            if (isset($campo['required'])) {
+                $controle->set_required($campo['required']);
+            }   // faz o controle exibir o *
+            if (isset($campo['tagHtml'])) {
+                $controle->set_tagHtml($campo['tagHtml']);
+            }   // faz o controle exibir o html
+            if (isset($campo['array'])) {
+                $controle->set_array($campo['array']);
+            }    // conteudo de uma combo
+            if (isset($campo['readOnly'])) {
+                $controle->set_readonly($campo['readOnly']);
+            }          // readonly
+            if (isset($campo['disabled'])) {
                 $controle->set_disabled($campo['disabled']);
-            if (isset($campo['autofocus']))
-                $controle->set_autofocus($campo['autofocus']);          // disabled
-            if (isset($campo['placeholder']))
-                $controle->set_placeholder($campo['placeholder']);	// placeholder (dica dentro do controle)
-            if (isset($campo['title']))
-                $controle->set_title($campo['title']);		        // title - dica do campo
-            else
+            }
+            if (isset($campo['autofocus'])) {
+                $controle->set_autofocus($campo['autofocus']);
+            }          // disabled
+            if (isset($campo['placeholder'])) {
+                $controle->set_placeholder($campo['placeholder']);
+            } // placeholder (dica dentro do controle)
+            if (isset($campo['title'])) {
+                $controle->set_title($campo['title']);
+            }          // title - dica do campo
+            else {
                 $controle->set_title($campo['label']);
-            if (isset($campo['onChange']))
-                $controle->set_onChange($campo['onChange']);	        // onChange	
-            if (isset($campo['fieldset']))
-                $controle->set_fieldset($campo['fieldset']);            // fieldse interno
-            if (isset($campo['col']))
-                $controle->set_col($campo['col']);                       // Tamanho da coluna
-            else
-                $controle->set_col($this->CalculaTamanhoColuna($somaPorLinha[$campo['linha']], $sizeFormulario)); # Chama a rotina que transforma o tamanho das coluna para o formato do grid do Foundation
+            }
+            if (isset($campo['onChange'])) {
+                $controle->set_onChange($campo['onChange']);
+            }         // onChange	
+            if (isset($campo['fieldset'])) {
+                $controle->set_fieldset($campo['fieldset']);
+            }            // fieldse interno
+            if (isset($campo['col'])) {
+                $controle->set_col($campo['col']);
+            }                       // Tamanho da coluna
+            else {
+                $controle->set_col($this->CalculaTamanhoColuna($somaPorLinha[$campo['linha']], $sizeFormulario));
+            }# Chama a rotina que transforma o tamanho das coluna para o formato do grid do Foundation
 
             # pega o tamanho de um controle (input)
-            if($campo['tipo'] == 'textarea')
+            if ($campo['tipo'] == 'textarea') {
                 $sizeFormulario = $campo['size'][0];
-            else
-                $sizeFormulario = $campo['size'];  // se for text area tira do array
+            } else {
+                $sizeFormulario = $campo['size'];
+            }  // se for text area tira do array
 
             # Inlcui o valor se for para editar (id <> NULL)
             if(($id <> NULL)and($this->selectEdita <> NULL))
             {
                 # se tiver criptografia, descriptograva para exibi��o
-                if((isset($campo['encode'])) AND ($campo['encode']))
-                    $row[$campo['nome']] = base64_decode($row[$campo['nome']]);                
-                
+                if ((isset($campo['encode'])) AND ( $campo['encode'])) {
+                    $row[$campo['nome']] = base64_decode($row[$campo['nome']]);
+                }
+
                 # se for data coloca no formato brasileiro antes da exibi��o 
                 # somente se n�o usa o controle data html5
                 if(($campo['tipo'] == 'date') OR ($campo['tipo'] == 'data'))
@@ -751,29 +784,30 @@ class Modelo
                 }
                 else // se aceitar tags html
                 {
-                    if((isset($campo['tagHtml'])) AND ($campo['tagHtml'] == TRUE))
-                    {
+                    if ((isset($campo['tagHtml'])) AND ( $campo['tagHtml'] == TRUE)) {
                         $valorCampo = $row[$campo['nome']];
                         $valorControle = htmlentities($valorCampo);
                         $controle->set_valor($valorControle);
-                    }                        
-                    else                                   
+                    } else {
                         $controle->set_valor($row[$campo['nome']]);
+                    }
 
                     $oldValue[] = $row[$campo['nome']];
                 }
             }
-            elseif (isset($campo['padrao']))
+ elseif (isset($campo['padrao'])) {
                 $controle->set_valor($campo['padrao']);
+            }
 
             $form->add_item($controle);
             $contador++;	// incrementa o contador
         }
 
         # Passa por session os valores antigos
-        if(($id <> NULL)and($this->selectEdita <> NULL))
-        set_session('oldValue'.$this->tabela,$oldValue);
-        
+        if (($id <> NULL)and ( $this->selectEdita <> NULL)) {
+            set_session('oldValue' . $this->tabela, $oldValue);
+        }
+
         # submit
         $controle = new Input('submit','submit');
         $controle->set_valor(' Salvar ');
@@ -836,30 +870,33 @@ class Modelo
             #$campoValor[$contador] = addcslashes($campoValor[$contador],'"'); 
 
             # Apaga as tags de php e html
-            if ((isset($campo['tagHtml'])) and ($campo['tagHtml']))
-                $campoValor[$contador] = strip_tags($campoValor[$contador],TAGS);
-            else
+            if ((isset($campo['tagHtml'])) and ( $campo['tagHtml'])) {
+                $campoValor[$contador] = strip_tags($campoValor[$contador], TAGS);
+            } else {
                 $campoValor[$contador] = strip_tags($campoValor[$contador]);
+            }
 
             # Compara o valor antigo com o novo
             if($oldValue[$contador] <> $campoValor[$contador])
             {
                 # verifica se � html5 para formatar a data
-                if(HTML5)
-                {
+                if (HTML5) {
                     # verifica se é data
-                    if (($campo['tipo'] == 'date')or($campo['tipo'] == 'data'))
-                        $alteracoes.='['.$campo['label'].'] '.$oldValue[$contador].'->'.date_to_php($campoValor[$contador]).'; ';
-                    else
-                        $alteracoes.='['.$campo['label'].'] '.$oldValue[$contador].'->'.$campoValor[$contador].'; ';                    
+                    if (($campo['tipo'] == 'date')or ( $campo['tipo'] == 'data')) {
+                        $alteracoes .= '[' . $campo['label'] . '] ' . $oldValue[$contador] . '->' . date_to_php($campoValor[$contador]) . '; ';
+                    } else {
+                        $alteracoes .= '[' . $campo['label'] . '] ' . $oldValue[$contador] . '->' . $campoValor[$contador] . '; ';
+                    }
                 }
-                else
-                    $alteracoes.='['.$campo['label'].'] '.$oldValue[$contador].'->'.$campoValor[$contador].'; ';                
+                else {
+                    $alteracoes .= '[' . $campo['label'] . '] ' . $oldValue[$contador] . '->' . $campoValor[$contador] . '; ';
+                }
             }
             
             # passa para nulo os campos vazios
-            if ($campoValor[$contador] == "")
-             $campoValor[$contador] = NULL;
+            if ($campoValor[$contador] == "") {
+                $campoValor[$contador] = NULL;
+            }
 
             # verifica not NULL
             if ((isset($campo['required'])) and ($campo['required']))
@@ -876,10 +913,11 @@ class Modelo
             {
                 # Pega duplicados
                 $duplicidade = new $this->classBd();
-                if ((isset($id)) and ($id <> NULL))
+                if ((isset($id)) and ( $id <> NULL)) {
                     $result = $duplicidade->select("SELECT $this->idCampo FROM $this->tabela WHERE $campoNome[$contador] = '$campoValor[$contador]' AND $this->idCampo <> $id");
-                else
-                    $result = $duplicidade->select("SELECT $this->idCampo FROM $this->tabela WHERE $campoNome[$contador] = '$campoValor[$contador]'"); // quando insert
+                } else {
+                    $result = $duplicidade->select("SELECT $this->idCampo FROM $this->tabela WHERE $campoNome[$contador] = '$campoValor[$contador]'");
+                } // quando insert
                  
                 #echo "SELECT $this->idCampo FROM $this->tabela WHERE $campoNome[$contador] = '$campoValor[$contador]' AND $this->idCampo <> $id";br();
                 
@@ -908,25 +946,26 @@ class Modelo
             # validação dos campos tipo checkbox
             if ($campo['tipo'] == 'checkbox')
             {
-                if(isset($campoValor[$contador]))
-                $campoValor[$contador] = 1;
+                if (isset($campoValor[$contador])) {
+                    $campoValor[$contador] = 1;
+                }
             }
 
             # validação dos campos tipo data
             if ((($campo['tipo'] == 'date')or($campo['tipo'] == 'data'))and(!(is_null($campoValor[$contador]))))
             { 
                 # formata data quando vier de um controle html5 (vem yyyy/mm/dd)
-                if(HTML5)
+                if (HTML5) {
                     $campoValor[$contador] = date_to_php($campoValor[$contador]);
-                
-                # verifica a validade da data
-                if (!validaData($campoValor[$contador]))
-                {
-                    $msgErro.='A '.$campo['label'].' não é válida!\n';
-                    $erro = 1;
                 }
-                else
-                    $campoValor[$contador] = date_to_bd($campoValor[$contador]);	# passa a data para o formato de gravação
+
+                # verifica a validade da data
+                if (!validaData($campoValor[$contador])) {
+                    $msgErro .= 'A ' . $campo['label'] . ' não é válida!\n';
+                    $erro = 1;
+                } else {
+                    $campoValor[$contador] = date_to_bd($campoValor[$contador]);
+                } # passa a data para o formato de gravação
             }
             
             # Passa o campo moeda para o formato americano (para o banco de dados)
@@ -936,9 +975,10 @@ class Modelo
             }
        
             # se tiver criptografia, descriptograva para exibição
-            if((isset($campo['encode'])) AND ($campo['encode']))
+            if ((isset($campo['encode'])) AND ( $campo['encode'])) {
                 $campoValor[$contador] = base64_encode($campoValor[$contador]);
-            
+            }
+
             /*	
             # criptografa quando for password
             if ($campo['tipo'] == 'password')
@@ -948,9 +988,10 @@ class Modelo
             $contador++;
         }
         
-         if(!is_null($validacaoExtra))
+        if (!is_null($validacaoExtra)) {
             include_once $validacaoExtra;
-        
+        }
+
         # Verifica se teve alterações em um editar       
         #if (is_null($alteracoes)){
         #    $msgErro.='Você não alterou nada! Vai gravar o que ?!\n';
@@ -974,9 +1015,10 @@ class Modelo
             # Após a verificação se não alterou nada
             # passa a $alteracao para NULL caso lodDescricao 
             # peça isso
-            if(!$this->logDescricao)
+            if (!$this->logDescricao) {
                 $alteracoes = NULL;
-            
+            }
+
             # Inicia o tipo de log
             $tipoLog = NULL;
 
@@ -1040,8 +1082,7 @@ class Modelo
         $objeto = new $this->classBd();
         $objeto->set_tabela($this->tabela);		# a tabela
         $objeto->set_idCampo($this->idCampo);	# o nome do campo id
-        if($objeto->excluir($id));
-        {		
+        if($objeto->excluir($id)){		
             if($this->log){
                 $intra->registraLog($this->idUsuario,$data,$atividade,$this->tabela,$id,3,$this->idServidorPesquisado);
             }

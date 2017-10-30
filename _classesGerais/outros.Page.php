@@ -127,14 +127,16 @@ class Page
  
 
         # Se tiver refresh automático
-        if($this->refresh)
-            echo '<meta http-equiv="refresh" content="'.$this->refreshTime.'">';
+        if ($this->refresh) {
+            echo '<meta http-equiv="refresh" content="' . $this->refreshTime . '">';
+        }
 
         # Título da página
-        if(is_null($this->title))
-            echo '<title>'.$this->system.'</title>';
-        else
-            echo '<title>'.$this->title.'</title>';
+        if (is_null($this->title)) {
+            echo '<title>' . $this->system . '</title>';
+        } else {
+            echo '<title>' . $this->title . '</title>';
+        }
 
         # Java Script da máscara de entrada de dados
         echo'<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'mascara.js"></script>';

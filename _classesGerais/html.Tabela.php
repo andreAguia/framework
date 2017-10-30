@@ -649,15 +649,17 @@ class Tabela
         if (($this->totalRegistro) OR ($this->rodape))
         {
             echo '<tfoot>';
-            if ($this->numeroOrdem)
-                echo '<tr><td colspan="'.($numColunas+1).'" title="Total de itens da tabela">';
-            else    
-                echo '<tr><td colspan="'.($numColunas).'" title="Total de itens da tabela">';
+            if ($this->numeroOrdem) {
+                echo '<tr><td colspan="' . ($numColunas + 1) . '" title="Total de itens da tabela">';
+            } else {
+                echo '<tr><td colspan="' . ($numColunas) . '" title="Total de itens da tabela">';
+            }
 
-            if(is_null($this->rodape))
-                echo 'Total:   '.$numRegistros;
-            else
+            if (is_null($this->rodape)) {
+                echo 'Total:   ' . $numRegistros;
+            } else {
                 echo $this->rodape;
+            }
 
             echo '</td></tr>';
         }
