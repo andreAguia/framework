@@ -25,9 +25,10 @@ class Relatorio
      * @var private $objetoDepoisTitulo  string NULL o mesmo do acima mas esse é depois do titulo
      *
      * @group do agrupamento
-     * @var private $subTotal    bool    TRUE Informa se exibe ou não o subtotal de registros.
-     * @var private $numGrupo    integer NULL Se informado, indica qual o campo, na sequencia do array conteúdo, será agrupado.
-     * @var private $ocultaGrupo bool    TRUE Informa se a coluna agrupada será ocultada.
+     * @var private $subTotal       bool    TRUE  Informa se exibe ou não o subtotal de registros.
+     * @var private $numGrupo       integer NULL  Se informado, indica qual o campo, na sequencia do array conteúdo, será agrupado.
+     * @var private $ocultaGrupo    bool    TRUE  Informa se a coluna agrupada será ocultada.
+     * @var private $saltoAposGrupo bool    FALSE Informa se terá salto de página após o agrupamento.
      * 
      * @group do subrelatório
      * @var private $subRelatorio   object  NULL Objeto relatório que será exibido como um subrelatório.
@@ -68,6 +69,7 @@ class Relatorio
     private $subTotal = TRUE;
     private $numGrupo = NULL;
     private $ocultaGrupo = TRUE;
+    private $saltoAposGrupo = FALSE;
 			
     # do subrelatório
     private $subRelatorio = NULL;               // Objeto relatório que na verdade é um subrelatório
@@ -254,8 +256,9 @@ class Relatorio
         }
         
         # Exibe a mensagem depois do título (se houver))
-        if (!is_null($this->objetoDepoisTitulo))
+        if (!is_null($this->objetoDepoisTitulo)){
             $this->objetoDepoisTitulo->show();
+        }
     }
     
     ###########################################################
@@ -320,7 +323,7 @@ class Relatorio
       */
     
     private function totalRegistro($totalRegistros){
-        echo $totalRegistros.' registros';
+        p($totalRegistros.' registros',"pRelatorioTotal");
     }
     ###########################################################
     
@@ -346,8 +349,9 @@ class Relatorio
         for($a = 0;$a < $tamanho;$a += 1){
             if(isset($this->width[$a]))         // verifica se foi definido um tamanho
             {                                   // verifica se a coluna não foi ocultada para agrupamento
-                if ((!$grupo) || (($grupo) && ($a <> $this->numGrupo)) || (($grupo) && (!$this->ocultaGrupo)))
+                if ((!$grupo) || (($grupo) && ($a <> $this->numGrupo)) || (($grupo) && (!$this->ocultaGrupo))){
                     echo '<col style="width:'.$this->width[$a].'%">';
+                }
             }
         }
 
@@ -394,16 +398,18 @@ class Relatorio
         $tamanho = count($this->label);
         
         # Alimenta a flag de grupo
-        if (is_null($this->numGrupo))
+        if (is_null($this->numGrupo)){
             $grupo = FALSE;
-        else            
+        }else{
             $grupo = TRUE;
+        }
         
         # Tira uma coluna da linha quando tiver agrupamento com ocultação da culuna
-        if(($grupo) && ($this->ocultaGrupo))
+        if(($grupo) && ($this->ocultaGrupo)){
             $tamanhoLinha = $tamanho-1;
-        else
+        }else{
             $tamanhoLinha = $tamanho;
+        }
 
         # Abre uma classe de menu do relatório
         if ($this->menuRelatorio){
@@ -433,11 +439,9 @@ class Relatorio
         $this->exibeTitulo();
         
         # Começa o conteúdo do relatório
-        if(!is_null($this->conteudo))
-        {
+        if(!is_null($this->conteudo)){
             # Percorre os registros
-            foreach ($this->conteudo as $row)
-            {
+            foreach ($this->conteudo as $row){
                 # Como a flag agrupa é mudada no início do loop verifica-se 
                 # a colocação do total do agrupamento anterior
                 # Verifica se tem agrupamento
@@ -453,24 +457,38 @@ class Relatorio
                             $subSomatorio = 0;  // Zera o somatório
                         }
                         
+                        # Fecha a tabela
+                        echo '<tfoot>';
+                        echo '<tr><td colspan="'.($tamanhoLinha+1).'" title="Total de itens da tabela">';
+                        echo '</td></tr>';
+                        echo '</tfoot>';
+                        echo '</table>';
+                        
+                        
                         # Exibe o número de registros
                         if (($this->subTotal) AND ($contador > 0)){
-                            echo '<tfoot>';
-                            echo '<tr><td colspan="'.($tamanhoLinha+1).'" title="Total de itens da tabela">';
+                            #echo '<tfoot>';
+                            #echo '<tr><td colspan="'.($tamanhoLinha+1).'" title="Total de itens da tabela">';
                             $this->totalRegistro($subContador);
-                            echo '</td></tr>';
-                            echo '</tfoot>';
+                            #echo '</td></tr>';
+                            #echo '</tfoot>';
                             $subContador = 0;   // Zera o contador de registro
                         }
                         
-                        # Fecha a tabela
-                        echo '</table>';
+                        # Salta página quando o salto depois de um agrupamento estiver habilitado
+                        if($this->saltoAposGrupo){
+                            echo "<div style='page-break-before:always;'> </div>";
+                            
+                            # Exibe o cabeçalho
+                            if($this->cabecalhoRelatorio){
+                                $this->exibeCabecalho();
+                            }
+                        }
                     }
                 }
 
                 # Título do subgrupo (quando tiver)
-                if (($grupo) && (($agrupa == '') || ($agrupa <> $row[$this->numGrupo])))
-                {                
+                if (($grupo) && (($agrupa == '') || ($agrupa <> $row[$this->numGrupo]))){                
                     
                     $textoSubitulo = $row[$this->numGrupo];
                     
@@ -498,8 +516,7 @@ class Relatorio
                 }
 
                 # Nome das colunas (labels)
-                if ($subContador == 0)
-                {
+                if ($subContador == 0){
                     $this->exibeCabecalhoTabela($tamanhoLinha,$tamanho,$grupo);
                     
                      # começa o corpo da tabela
@@ -520,29 +537,26 @@ class Relatorio
                 echo '<tr>';
 
                 # percorre as colunas
-                for ($a = 0;$a < $tamanho;$a += 1)
-                {
-                    if ((!$grupo) || (($grupo) && ($a <> $this->numGrupo)) || (($grupo) && (!$this->ocultaGrupo)))
-                    {
+                for ($a = 0;$a < $tamanho;$a += 1){
+                    if ((!$grupo) || (($grupo) && ($a <> $this->numGrupo)) || (($grupo) && (!$this->ocultaGrupo))){
                         echo '<td';
 
                         # alinhamento
-                        if((isset($this->align[$a])) and ($this->align[$a] <> NULL)) 
+                        if((isset($this->align[$a])) and ($this->align[$a] <> NULL)){ 
                             echo ' id="'.$this->align[$a].'"';
-                        else
+                        }else{
                             echo ' id="center"';
+                        }
                         
                         # Coloca a classe (se tiver)
-                        if((isset($this->classe[$a])) and ($this->classe[$a] <> NULL)) 			
-                        {
+                        if((isset($this->classe[$a])) and ($this->classe[$a] <> NULL)){
                             $instancia = new $this->classe[$a]();
                             $metodoClasse = $this->metodo[$a];
                             $row[$a] = $instancia->$metodoClasse($row[$a]);
                         }
 
                         # Coloca a função (se tiver)
-                        if((isset($this->funcao[$a])) and ($this->funcao[$a] <> NULL)) 			
-                        {
+                        if((isset($this->funcao[$a])) and ($this->funcao[$a] <> NULL)){
                             $nomedafuncao = $this->funcao[$a];
                             $row[$a] = $nomedafuncao($row[$a]);
                         }
@@ -551,10 +565,8 @@ class Relatorio
                         echo $row[$a];
 
                         # soma o valor quando o somatório estiver habilitado
-                        if(!is_null($this->colunaSomatorio))
-                        {
-                            if($a == $this->colunaSomatorio)
-                            {
+                        if(!is_null($this->colunaSomatorio)){
+                            if($a == $this->colunaSomatorio){
                                 $somatorio +=$row[$a];
                                 $subSomatorio +=$row[$a];
                             }
@@ -571,8 +583,7 @@ class Relatorio
                     }
                 }
 
-                if($this->subRelatorio)
-                {                
+                if($this->subRelatorio){                
                     $nomeClasseBd = $this->subClasseBd;
                     $subBd = new $nomeClasseBd();
                     $subSelect = $this->subSelect;
@@ -590,42 +601,41 @@ class Relatorio
                     echo '</td></tr>';
                 }
 
-                if($this->bordaInterna)
+                if($this->bordaInterna){
                    $this->exibeLinha($tamanhoLinha);
+                }
             }
             echo '</tbody>';
 
             # linha
-            if($this->linhaNomeColuna)
+            if($this->linhaNomeColuna){
                 $this->exibeLinha($tamanhoLinha);
+            }
+            
+            # Fecha a tabela
+            echo '<tfoot>';
+            echo '<tr><td colspan="'.($tamanhoLinha+1).'" title="Total de itens da tabela">';
+            echo '</td></tr>';
+            echo '</tfoot>';
+            echo '</table>';
             
             # Exibe a soma quando o somatório estiver habilitado
-            if((!is_null($this->colunaSomatorio)) AND ($contador <> 0))
-            {
+            if((!is_null($this->colunaSomatorio)) AND ($contador <> 0)){
                 $this->exibeSomatorio($tamanhoLinha,$subSomatorio);
                 $subSomatorio = 0;  // Zera o somatório
             }
             
             # Exibe o número de registros
             if (($this->subTotal) AND ($contador > 0)){
-                echo '<tfoot>';
-                echo '<tr><td colspan="'.($tamanhoLinha+1).'" title="Total de itens da tabela">';
                 $this->totalRegistro($subContador);
-                echo '</td></tr>';
-                echo '</tfoot>';
                 $subContador = 0;   // Zera o contador de registro
             }
             
             if ($this->linhaFinal){
-                echo '<tfoot>';
-                echo '<tr><td colspan="'.($tamanhoLinha+1).'" title="Total de itens da tabela">';
-                echo '</td></tr>';
-                echo '</tfoot>';                             
+                hr();                             
              }
 
-            # Fecha a tabela
-            echo '</table>';
-            #br();
+            
                        
             # Exibe a informação de que não tem nenhum resgistro
             if (($contador == 0) AND ($this->mensagemNenhumRegistro)){
@@ -650,18 +660,16 @@ class Relatorio
             echo '>';
 
             # informa o tamanho das colunas (width)
-            for($a = 0;$a < $tamanho;$a += 1)
-            {
-                if(isset($this->width[$a]))         // verifica se foi definido um tamanho
-                {                                   // verifica se a coluna não foi ocultada para agrupamento
-                    if ((!$grupo) || (($grupo) && ($a <> $this->numGrupo)) || (($grupo) && (!$this->ocultaGrupo)))
+            for($a = 0;$a < $tamanho;$a += 1){
+                if(isset($this->width[$a])){       // verifica se foi definido um tamanho
+                    if ((!$grupo) || (($grupo) && ($a <> $this->numGrupo)) || (($grupo) && (!$this->ocultaGrupo))){ // verifica se a coluna não foi ocultada para agrupamento 
                         echo '<col style="width:'.$this->width[$a].'%">';
+                    }
                 }
             }       
             
             # Exibe o somatório
-            if($this->exibeSomatorioGeral)
-            {
+            if($this->exibeSomatorioGeral){
                 $this->exibeLinha($tamanhoLinha);
                 $this->textoSomatorio .= ' (Geral)';
                 $this->exibeSomatorio($tamanhoLinha,$somatorio);

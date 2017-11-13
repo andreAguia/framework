@@ -1618,3 +1618,21 @@ function arrayToString($array){
     
     return $resultado;
 }
+
+###########################################################
+/**
+ * Informa o dia da dsemana de uma data
+ * @param date $data data a ser examinada no formato YYYY/mm/dd
+ * @return string com o dia da semana 
+ */
+function diaSemana($data){
+    
+    # Array com os dias da semana
+    $dia = array('Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado');
+
+    # Variavel que recebe o dia da semana (0 = Domingo, 1 = Segunda ...)
+    $numero = date('w', strtotime($data));
+
+    # Retorna o dia da semana com o Array
+    return $dia[$numero];
+}
