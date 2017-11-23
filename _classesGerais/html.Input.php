@@ -440,8 +440,7 @@ class Input
         }	
 
 
-        switch ($this->tipo)
-        {
+        switch ($this->tipo){
             case "texto":
             case "processo":
             case "processoNovo":
