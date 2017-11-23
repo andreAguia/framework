@@ -408,22 +408,26 @@ class Input
      * @syntax $input->show(); 
      */    
     
-        if ($this->tipo == "hidden")
+    if ($this->tipo == "hidden") {
             $this->tipoLabel = 0;
+        }
 
-        if ($this->tipo == "checkbox")
-            $this->tipoLabel = 3;	
+        if ($this->tipo == "checkbox") {
+            $this->tipoLabel = 3;
+        }
 
         switch ($this->tipoLabel)
         {
             case 1:
                 echo '<label for="'.$this->nome.'">';   
                 echo $this->label;
-                if ($this->required)
-                    echo ' * ';	
+                if ($this->required) {
+                    echo ' * ';
+                }
 
-                if ($this->tagHtml)
-                    echo ' (html) ';	
+                if ($this->tagHtml) {
+                    echo ' (html) ';
+                }
 
                 echo '</label>';
                 break;
@@ -480,48 +484,57 @@ class Input
         }
 
         # tabulação
-        if(!is_null($this->tabindex))
-            echo ' tabindex="'.$this->tabindex.'"';
-        
+        if (!is_null($this->tabindex)) {
+            echo ' tabindex="' . $this->tabindex . '"';
+        }
+
         # focus
-        if($this->autofocus)
+        if ($this->autofocus) {
             echo ' autofocus';
-        
+        }
+
         # required
-        if($this->required)
+        if ($this->required) {
             echo ' required';
+        }
 
         # title
-        if(!is_null($this->title))
-            echo ' title="'.$this->title.'"';
-        
+        if (!is_null($this->title)) {
+            echo ' title="' . $this->title . '"';
+        }
+
         # placeholder
-        if(!is_null($this->placeholder))            
-            echo ' placeholder="'.$this->placeholder.'"';
-        
+        if (!is_null($this->placeholder)) {
+            echo ' placeholder="' . $this->placeholder . '"';
+        }
+
         # onChange	
-        if(!is_null($this->onChange))
-            echo ' onchange="'.$this->onChange.'"';
+        if (!is_null($this->onChange)) {
+            echo ' onchange="' . $this->onChange . '"';
+        }
 
         # Máximo de caracteres		
-        if (($this->maxlength == 0) and ($this->tipo <> 'textarea'))
-        {	
+        if (($this->maxlength == 0) and ($this->tipo <> 'textarea')){	
             # Coloca o maxlengh = 10 quando data
-            if ($this->tipo == 'date')
+            if ($this->tipo == 'date') {
                 echo ' maxlength="10"';
-            else if($this->tipo <> "hidden")
-                echo ' maxlength="'.$this->size.'"';
+            } else if ($this->tipo <> "hidden") {
+                echo ' maxlength="' . $this->size . '"';
+            }
         }
-        else if(($this->tipo <> 'textarea') AND ($this->tipo <> 'checkbox'))
-            echo ' maxlength="'.$this->maxlength.'"';
+        else if (($this->tipo <> 'textarea') AND ( $this->tipo <> 'checkbox')) {
+            echo ' maxlength="' . $this->maxlength . '"';
+        }
 
         # se for readonly	
-        if ($this->readonly)
+        if ($this->readonly) {
             echo ' class="readonly" readonly ';
+        }
 
         # se for disabled	
-        if ($this->disabled)
-            echo ' class="disabled" disabled ';    	
+        if ($this->disabled) {
+            echo ' class="disabled" disabled ';
+        }
 
         # dados do input
         echo ' name="'.$this->nome.'"'; # nome do controle (deve ser o mesmo que o do banco de dados)
@@ -754,8 +767,8 @@ class Input
                 echo ' type="button"';
                 echo ' value="'.$this->valor.'"';
                 #echo ' name="'.$this->nome.'"';
-                #echo ' id="'.$this->nome.'"';
-                echo ' onClick="'.$this->onclick.'"';
+                echo ' class="button"';
+                echo ' onClick="'.$this->onClick.'"';
                 echo ' accesskey="'.$this->accessKey.'"';
                 echo '/>';  
                 break;      

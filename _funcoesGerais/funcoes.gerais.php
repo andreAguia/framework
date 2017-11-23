@@ -1636,3 +1636,35 @@ function diaSemana($data){
     # Retorna o dia da semana com o Array
     return $dia[$numero];
 }
+
+###########################################################
+/**
+ * Informa o dia da dsemana de uma data
+ * @param date $data data a ser examinada no formato YYYY/mm/dd
+ * @return string com o dia da semana 
+ */
+function iframe($url,$altura = "100%",$largura = "100%"){
+    
+   echo '<iframe src="'.$url.'" height="'.$altura.'" width="'.$largura.'" style="border:none;"></iframe>';
+}
+
+###########################################################
+/**
+ * retorna array com o feed de noticias
+ * @param string $feed A url do feede do rss
+ * @return objeto com os itens do feed
+ */
+function feed($feed){
+    
+    # permite requisições a urls externas
+    ini_set('allow_url_fopen', 1);
+    ini_set('allow_url_include', 1);
+
+    # leitura do feed
+    $rss = simplexml_load_file($feed);
+
+    # retorna
+    if($rss){
+        return $rss;
+    }
+}

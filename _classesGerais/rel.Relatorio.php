@@ -87,7 +87,7 @@ class Relatorio
     private $totalRegistro = TRUE;		// se terá o número de registros no fim do relatório (e dos grupos))
     private $bordaInterna = FALSE;		// Exibe ou não uma linha dentro da tabela entro os registros 
     private $dataImpressao = TRUE;		// Exibe ou  não a Data de Impressão
-    private $espacamento = 0;                   // Epaçamento entre as linha. 0 - espacamento padrão
+    private $espacamento = 0;                   // Espaçamento entre as linha. 0 - espacamento padrão
 
     private $cabecalhoRelatorio = TRUE;         // Exibe ou não o cabeçalho do relatório
     private $botaoVoltar = NULL;		// Link do botão voltar
@@ -102,16 +102,18 @@ class Relatorio
     private $brHr = 1;                          // quantidade de saltos de linha antes do hr do menu
     
     # especiais
-    private $linhaNomeColuna = FALSE;            // exibe (ou não) a linha entre o nome das colunas
+    private $linhaNomeColuna = FALSE;           // exibe (ou não) a linha entre o nome das colunas
     private $id = NULL;                         // id do css para alterações
     
     # do log
     private $log = TRUE;            // informa se gerará log ou não
     private $logDetalhe = NULL;     // detalhamento do log
-    private $logServidor = NULL;    // o idServidor para quando o relatório for de um único seevidor
+    private $logServidor = NULL;    // o idServidor para quando o relatório for de um único servidor
     
     # Outros
-    private $linhaFinal = FALSE;                // Exibe linha final
+    private $linhaFinal = FALSE;        // Exibe linha final
+    private $funcaoFinalGrupo = NULL;           // Executa uma rotina ao fim de cada agrupamento na forma de função
+    private $funcaoFinalGrupoParametro = NULL;  // Usado na escala anual de férias para exibir texto.
     
 ###########################################################
     
@@ -143,8 +145,7 @@ class Relatorio
      * @param 	$metodo		O nome do metodo
      * @param 	$parametros	Os parâmetros inseridos  
      */
-    public function __call ($metodo, $parametros)
-    {
+    public function __call ($metodo, $parametros){
         ## Se for set, atribui um valor para a propriedade
         if (substr($metodo, 0, 3) == 'set')
         {
@@ -191,8 +192,7 @@ class Relatorio
      * 
      * @param 	$numGrupo		numero da coluna do agrupamento
      */
-    function set_numGrupo($numGrupo = NULL,$ocultaGrupo = TRUE)
-    {
+    function set_numGrupo($numGrupo = NULL,$ocultaGrupo = TRUE){
         $this->numGrupo = $numGrupo;
         $this->ocultaGrupo = $ocultaGrupo;
     }
@@ -205,8 +205,7 @@ class Relatorio
       * Exibe o título do relatório
       */
     
-    private function exibeTitulo()
-    {
+    private function exibeTitulo(){
         # Objeto antes do título
         if (!is_null($this->objetoAntesTitulo)){
             $this->objetoAntesTitulo->show();
@@ -269,8 +268,7 @@ class Relatorio
       * Exibe uma linha interna do relatório que separa os registros.
       */
     
-    private function exibeLinha($tamanhoLinha)
-    {
+    private function exibeLinha($tamanhoLinha){
        echo '<tr><td colspan="'.$tamanhoLinha.'">';
        hr();
        echo '</td></tr>';
@@ -284,8 +282,7 @@ class Relatorio
       * Exibe o somatório de uma coluna no fim do relatório ou de um agrupamento
       */
     
-    private function exibeSomatorio($tamanho,$subSomatorio)
-    {        
+    private function exibeSomatorio($tamanho,$subSomatorio){        
         echo '<tr>';
         if(is_null($this->numGrupo))
             $this->colunaSomatorio++;
@@ -333,8 +330,7 @@ class Relatorio
       * Exibe o cabeçalho da tabela
       */
     
-    private function exibeCabecalhoTabela($tamanhoLinha,$tamanho,$grupo)
-    {        
+    private function exibeCabecalhoTabela($tamanhoLinha,$tamanho,$grupo){        
         # Inicia a tabela
         echo '<table class="tabelaRelatorio" border="0"';
 
@@ -467,12 +463,27 @@ class Relatorio
                         
                         # Exibe o número de registros
                         if (($this->subTotal) AND ($contador > 0)){
-                            #echo '<tfoot>';
-                            #echo '<tr><td colspan="'.($tamanhoLinha+1).'" title="Total de itens da tabela">';
                             $this->totalRegistro($subContador);
-                            #echo '</td></tr>';
-                            #echo '</tfoot>';
                             $subContador = 0;   // Zera o contador de registro
+                        }
+                        
+                        # Executa a rotina no final de um grupo na forma de função
+                        # Função antes do título
+                        if(!is_null($this->funcaoFinalGrupo)){
+                            # Verifica se é array. Mais de uma função
+                            if(is_array($this->funcaoFinalGrupo)){
+                                # quantidade de itens
+                                $quantidade = count($this->funcaoFinalGrupo);
+
+                                # Percorre o array executando as funções na ordem do array
+                                for ($i = 0; $i < $quantidade; $i++) {
+                                    $nomedafuncao = $this->funcaoFinalGrupo[$i];
+                                    $nomedafuncao($this->funcaoFinalGrupoParametro[$i]);
+                                }
+                            }else{
+                               $nomedafuncao = $this->funcaoFinalGrupo;
+                               $nomedafuncao($this->funcaoFinalGrupoParametro); 
+                            }
                         }
                         
                         # Salta página quando o salto depois de um agrupamento estiver habilitado
@@ -483,6 +494,9 @@ class Relatorio
                             if($this->cabecalhoRelatorio){
                                 $this->exibeCabecalho();
                             }
+                            
+                            # Exibe o título do Relatório
+                            $this->exibeTitulo();
                         }
                     }
                 }
@@ -654,8 +668,9 @@ class Relatorio
             echo '<table class="tabelaRelatorio" border="0"';
 
             # id da classe (se houver)
-            if (!is_null($this->id))
-                echo ' id="'.$this->id.'"';
+            if (!is_null($this->id)) {
+                echo ' id="' . $this->id . '"';
+            }
 
             echo '>';
 

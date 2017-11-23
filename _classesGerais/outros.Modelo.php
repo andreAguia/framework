@@ -35,6 +35,10 @@ class Modelo
     # campo de pesquisa de um parâmetro na rotina de listar
     private $parametroLabel = NULL;
     private $parametroValue = NULL;
+    
+    # Top bar
+    private $topBarListar = TRUE;  # Exibe ou  não a top bar na rotina de lista
+    private $topBarIncluir = TRUE;  # Exibe ou  não a top bar na rotina de inclusão
 
     # ordem da lista
     private $orderCampo = NULL;
@@ -44,6 +48,10 @@ class Modelo
     # select da lista
     private $selectLista;
     private $selectEdita;
+    
+    # Tempo de pesquisa
+    private $exibeTempoPesquisa = TRUE;
+    
     
     # Caminhos
     private $linkEditar = NULL;
@@ -84,7 +92,8 @@ class Modelo
     # das rotinas de edição
     private $editarCondicional = NULL;	
     private $editarCondicao = NULL;		
-    private $editarColuna = NULL;		
+    private $editarColuna = NULL;	
+    private $botaoCancelaEdita = NULL;
 
     # do título das colunas de link padrão
     private $nomeColunaExcluir = NULL;
@@ -280,10 +289,12 @@ class Modelo
         $menu = new MenuBar();
         
         # Botão voltar
-        $linkBotaoVoltar = new Button("Voltar",$this->voltarLista);
-        $linkBotaoVoltar->set_title('Volta para a página anterior');
-        $linkBotaoVoltar->set_accessKey('V');
-        $menu->add_link($linkBotaoVoltar,"left");
+        if($this->botaoVoltarLista){
+            $linkBotaoVoltar = new Button("Voltar",$this->voltarLista);
+            $linkBotaoVoltar->set_title('Volta para a página anterior');
+            $linkBotaoVoltar->set_accessKey('V');
+            $menu->add_link($linkBotaoVoltar,"left");
+        }
         
         # Inclui botões extras
         if ($this->botaoListarExtra){
@@ -449,20 +460,22 @@ class Modelo
             $div->fecha();
         }       
         
-        # Topbar        
-        $top = new TopBar($this->nome);
-        $top->set_title($this->nome);
+        # Topbar
+        if($this->topBarListar){
+            $top = new TopBar($this->nome);
+            $top->set_title($this->nome);
         
-        # Botão Incluir
-        #if ($this->botaoIncluir){
-        #    $top->add_link($linkBotaoIncluir,"right");
-        #}
-        
-        # Coloca o campo de pesquisa (se tiver)
-        if(!is_null($this->parametroLabel)){
-            $top->add_pesquisa($this->parametroLabel, $this->parametroValue);
+            # Botão Incluir
+            #if ($this->botaoIncluir){
+            #    $top->add_link($linkBotaoIncluir,"right");
+            #}
+
+            # Coloca o campo de pesquisa (se tiver)
+            if(!is_null($this->parametroLabel)){
+                $top->add_pesquisa($this->parametroLabel, $this->parametroValue);
+            }
+            $top->show();
         }
-        $top->show();
             
         # Pega a lista em definitivo
         #echo $this->selectLista;
@@ -549,8 +562,10 @@ class Modelo
             $time_end = microtime(TRUE);
             
             # Calcula e exibe o tempo
-            $time = $time_end - $time_start;
-            p(number_format($time, 4, '.', ',')." segundos","right","f10");            
+            if($this->exibeTempoPesquisa){
+                $time = $time_end - $time_start;
+                p(number_format($time, 4, '.', ',')." segundos","right","f10");
+            }
             
             $grid->fechaColuna();
             $grid->fechaGrid();
@@ -565,8 +580,7 @@ class Modelo
     * @param $id integer id se for para update NULL se for para insert 
     */
 
-    public function editar($id = NULL)
-    {
+    public function editar($id = NULL) {
         # Limita o tamanho da tela
         $grid = new Grid();
         $grid->abreColuna(12);
@@ -590,13 +604,15 @@ class Modelo
         }
 
         # Botão histórico
-        if (Verifica::acesso($this->idUsuario,1)){
-            if ((!is_null($id)) AND ($this->botaoHistorico)){
-                $linkBotaoHistorico = new Button("Histórico");
-                $linkBotaoHistorico->set_title('Exibe o histórico');
-                $linkBotaoHistorico->set_onClick("abreFechaDivId('divHistorico');");
-                $linkBotaoHistorico->set_accessKey('H');
-                $menu->add_link($linkBotaoHistorico,"right");
+        if($this->botaoHistorico){
+            if (Verifica::acesso($this->idUsuario,1)){
+                if (!is_null($id)){
+                    $linkBotaoHistorico = new Button("Histórico");
+                    $linkBotaoHistorico->set_title('Exibe o histórico');
+                    $linkBotaoHistorico->set_onClick("abreFechaDivId('divHistorico');");
+                    $linkBotaoHistorico->set_accessKey('H');
+                    $menu->add_link($linkBotaoHistorico,"right");
+                }
             }
         }
 
@@ -638,24 +654,25 @@ class Modelo
             }
         }
         
-        # Topbar        
-        $top = new TopBar($this->nome);
-        $top->set_title($this->nome);
-        $top->show(); 
-
-       # exibe (ocultamente) o histórico
-       if ((!is_null($id)) AND ( $this->botaoHistorico)) {
-            $this->exibeHistorico($id);
+        # Topbar 
+        if ($this->topBarIncluir){
+            $top = new TopBar($this->nome);
+            $top->set_title($this->nome);
+            $top->show(); 
         }
 
+       # exibe (ocultamente) o histórico
+       if ((!is_null($id)) AND ($this->botaoHistorico)){
+            $this->exibeHistorico($id);
+       }
 
-        if(($id <> NULL)and($this->selectEdita <> NULL))
-        {	
+
+        if(($id <> NULL)and($this->selectEdita <> NULL)){	
             # Conecta com o banco de dados
             $objeto = new $this->classBd();
 
             # Nas classes genéricas inclui o nome da tabela
-            if (!is_null($this->tabela)) {
+            if (!is_null($this->tabela)){
                 $objeto->set_tabela($this->tabela, $this->idCampo);
             }
 
@@ -666,7 +683,7 @@ class Modelo
         $form = new Form($this->linkGravar.'&id='.$id,$this->nomeForm);
         $form->set_id('form'.$this->id);
         
-        if ($this->objetoForm) {
+        if ($this->objetoForm){
             $form->set_objeto($this->objetoForm);
         }
 
@@ -676,8 +693,7 @@ class Modelo
         $linhaAtual = 0;            // zera a flag da linha atual
         $somatorioSize = 0;         // somatorio temporário de uma determinada linha
         $somaPorLinha[] = NULL;     // Array com o somatório por linha
-        foreach ($this->campos as $campo)
-        {
+        foreach ($this->campos as $campo){
             # pega o tamanho de um controle (input)
             if ($campo['tipo'] == 'textarea') {
                 $sizeFormulario = $campo['size'][0];
@@ -699,8 +715,7 @@ class Modelo
 
         $contador = 1;	// Contador para a tabulação do formulário
 
-        foreach ($this->campos as $campo)
-        {
+        foreach ($this->campos as $campo){
             $controle = new Input($campo['nome'],$campo['tipo'],$campo['label'],$this->formLabelTipo); 
             $controle->set_linha($campo['linha']);      // linha no form que vai ser colocado o controle
             $controle->set_tabindex($contador);		// tabulador (ordem de navega��o com a tecla tab)
@@ -746,8 +761,7 @@ class Modelo
             }            // fieldse interno
             if (isset($campo['col'])) {
                 $controle->set_col($campo['col']);
-            }                       // Tamanho da coluna
-            else {
+            }else{    // Tamanho da coluna
                 $controle->set_col($this->CalculaTamanhoColuna($somaPorLinha[$campo['linha']], $sizeFormulario));
             }# Chama a rotina que transforma o tamanho das coluna para o formato do grid do Foundation
 
@@ -794,8 +808,7 @@ class Modelo
 
                     $oldValue[] = $row[$campo['nome']];
                 }
-            }
- elseif (isset($campo['padrao'])) {
+            } elseif (isset($campo['padrao'])) {
                 $controle->set_valor($campo['padrao']);
             }
 
@@ -814,13 +827,28 @@ class Modelo
         $controle->set_size(20);
         $controle->set_tabindex($contador+1);
         $controle->set_accessKey('S');
-        $controle->set_fieldset('fecha');
+        $controle->set_linha($linhaAtual+1);
+        $controle->set_col(3);
         $form->add_item($controle);
+        
+        # cancelar
+        if(!is_null($this->botaoCancelaEdita)){
+            $controle = new Input('cancela','button');
+            $controle->set_valor(' Cancelar ');
+            $controle->set_size(20);
+            $controle->set_onClick("$this->botaoCancelaEdita");
+            $controle->set_tabindex($contador+2);
+            $controle->set_fieldset('fecha');
+            $controle->set_linha($linhaAtual+1);
+            $controle->set_col(3);
+            $form->add_item($controle);
+        }
                 
-        # Exibe o form 
-        echo '<div class="callout secondary">';
+        # Exibe o form
+        $box = new Callout();
+        $box->abre();        
             $form->show();            
-        echo '</div>';
+        $box->fecha();
         
         # Exibe informação de obrigatoriedade de certos campos
         if($this->exibeInfoObrigatoriedade){
@@ -1063,19 +1091,21 @@ class Modelo
     * @param $id	integer	- id da not�cia
     */
     
-    public function excluir($id)
-    {	
-        $intra = new Intra();
-        $data = date("Y-m-d H:i:s");
+    public function excluir($id){
         
         # Pega os dados caso seja tbpermissao
-        if($this->tabela == 'tbpermissao')
-        {
-            $pessoal = new Pessoal();
-            $permissao = $intra->get_permissao($id);             
-            $atividade = "Exclui a permissao $id ($permissao) do servidor $this->idServidorPesquisado (".$pessoal->get_nome($this->idServidorPesquisado).")";
-        }else{
-            $atividade = 'Excluiu';
+        if($this->log){
+            $intra = new Intra();
+            $data = date("Y-m-d H:i:s");
+        
+            if($this->tabela == 'tbpermissao')
+            {
+                $pessoal = new Pessoal();
+                $permissao = $intra->get_permissao($id);             
+                $atividade = "Exclui a permissao $id ($permissao) do servidor $this->idServidorPesquisado (".$pessoal->get_nome($this->idServidorPesquisado).")";
+            }else{
+                $atividade = 'Excluiu';
+            }
         }
 
         # Conecta com o banco de dados
@@ -1099,8 +1129,7 @@ class Modelo
     * @param  $controle    = objeto controle
     */
     
-    public function add_objeto($imagem)
-    {
+    public function add_objeto($imagem){
         $this->objetoForm[] = $imagem; 
     }
 

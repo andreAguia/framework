@@ -40,6 +40,20 @@ class Callout
     
 ###########################################################
 
+    public function set_id($id = NULL){
+    /**
+     * Informa o id da div para o css
+     * 
+     * @syntax $callout->set_id($id);
+     * 
+     * @param $id string NULL O nome do id
+     */
+    
+        $this->id = $id;
+    }
+
+###########################################################
+
     public function set_title($title = NULL){
     /**
      * Informa o texto no mouse over
