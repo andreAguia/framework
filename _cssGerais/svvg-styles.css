@@ -28,24 +28,24 @@
 
 .svTitle {
     font-family: Roboto,sans-serif;
-	font-weight: normal;
-	margin: 0;
-	padding: 0.5em;
+    font-weight: normal;
+    margin: 0;
+    padding: 0.5em;
     color: #444;
 }
 
 .adCenter {
-	margin:0 auto;
-	max-width:800px;
+    margin:0 auto;
+    max-width:800px;
 }
 #svBox{
-	max-width:800px;
-	font-family: 'Roboto', serif;
+    max-width:800px;
+    font-family: 'Roboto', serif;
     margin:0 auto;
-	position:relative;
-	padding: 10px;
-    background-color: rgba(0, 0, 0, 0.3);
+    position:relative;
+    padding: 2px;
 }
+
 #svList {
     list-style: none;
     margin: 0 auto;
@@ -100,18 +100,7 @@
     filter:alpha(opacity=0);/*For IE6 - IE8*/
     transition:all 0.6s;
 }
-.ytVideo .sv-overlay {
-    background: #3DC0F1 url("../images/youtube.png") no-repeat center 20%;
-	background-size: 35px auto;
-}
-.vimeoVideo .sv-overlay {
-    background: #3DC0F1 url("../images/vimeo.png") no-repeat center 20%;
-	background-size: 30px auto;
-}
-.dailyMVideo .sv-overlay {
-    background: #3DC0F1 url("../images/dailyMotion.png") no-repeat center 20%;
-	background-size: 30px auto;
-}
+
 #svList li:hover .sv-overlay {
     opacity:0.8;
 }
@@ -136,7 +125,7 @@
     filter:alpha(opacity=0);/*For older IE*/
     transform:translateY(-20px);
     transition:all .3s;
-	max-height: 65px;
+    max-height: 65px;
     overflow: hidden;
 }
 #svList li:hover .sv-text {
@@ -146,8 +135,8 @@
 
 .infoBox {
     clear: both;
-	background-color: #fff;
-	padding: 0 10px;
+    background-color: #fff;
+    padding: 0 10px;
 }
 
 
@@ -166,7 +155,7 @@
 }
 .closeUiBtn:hover {
     color: #f5f5f5;
-	background-color: #730f0f;
+    background-color: #730f0f;
 }
 
 .svThumb, .closeUiBtn {cursor:pointer;}
@@ -175,10 +164,10 @@
 
 /* jQuery 9000 Media Queries */
 .mQuery900 #svList li {
-	width:25%;
+    width:25%;
 }
 .mQuery900 .svTitle {
-	font-size: 1.5em;
+    font-size: 1.5em;
 }
 
 

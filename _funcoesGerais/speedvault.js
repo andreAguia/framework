@@ -13,11 +13,7 @@ $(document).ready(function() {
 	var $svThumb = $('.svThumb');
 	
     $('#svList').wrapAll('<div id="svBox"></div>');
-	$('#svBox').prepend('<div class="svPlayer">\
-	<div class="infoBox">\
-	<div class="nowPlaying"></div>\
-	</div>\
-	</div>');
+	$('#svBox').prepend('<div class="svPlayer"><div class="infoBox"><div class="nowPlaying"></div></div></div>');
 	
 	$svThumb.wrapInner('<div class="sv-text"></div>');
 	$svThumb.prepend('<span class="sv-overlay"></span>');
@@ -40,7 +36,7 @@ $(document).ready(function() {
     $('.ytVideo').each(function() {
         var $videoID = $(this).attr('data-videoID'),
         $txt = $(this).text(),
-        $ytVideo = $('<div class="meuVideo"> <iframe width="560" height="315" src="https://www.youtube.com/embed/' + $videoID + '?showinfo=1&autoplay=1&rel=0" frameborder="0" allowfullscreen></iframe> </div>'),
+        $ytVideo = $('<div class="meuVideo"> <iframe width="560" height="315" src="https://www.youtube.com/embed/' + $videoID + '?showinfo=1&autoplay=1&rel=0" frameborder="0" allowfullscreen></iframe></div>'),
         $ytThumb = $('<img src="https://img.youtube.com/vi/' + $videoID + '/mqdefault.jpg" data-anchor="svBox"/>');
         
 		$(this).prepend($ytThumb);
@@ -56,7 +52,7 @@ $(document).ready(function() {
     $('.vimeoVideo').each(function() {
         var $videoID = $(this).attr('data-videoID'),
         $txt = $(this).text(),
-        $vimeoVideo = $('<div class="meuVideo"> <iframe src="https://player.vimeo.com/video/' + $videoID + '?title=1&byline=1&portrait=1&badge=1&autoplay=1" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> </div>'),
+        $vimeoVideo = $('<div class="meuVideo><iframe src="https://player.vimeo.com/video/' + $videoID + '?title=1&byline=1&portrait=1&badge=1&autoplay=1" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>'),
         $thisElHack = this;
 		
         $.getJSON('https://vimeo.com/api/v2/video/' + $videoID + '.json?callback=?', {
@@ -78,7 +74,7 @@ $(document).ready(function() {
     $('.dailyMVideo').each(function() {
         var $videoID = $(this).attr('data-videoID'),
         $txt = $(this).text(),
-        $dailyMVideo = $('<div class="meuVideo"> <iframe frameborder="0" width="640" height="360" src="//www.dailymotion.com/embed/video/' + $videoID + '?autoplay=1" allowfullscreen></iframe> </div>'),
+        $dailyMVideo = $('<div class="meuVideo"> <iframe frameborder="0" width="640" height="360" src="//www.dailymotion.com/embed/video/' + $videoID + '?autoplay=1" allowfullscreen></iframe></div>'),
         $thisElHack = this;
 		
         $.getJSON('https://api.dailymotion.com/video/' + $videoID + '?fields=id,thumbnail_url', function(data) {
