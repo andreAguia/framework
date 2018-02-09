@@ -133,3 +133,14 @@ function pularCampo(origem, tamanho, destino){
         document.getElementById(destino).focus();
     }
 }
+
+/*
+* função delay 
+* 
+* cria um dalay de alguns milisegundos
+*/
+
+function delay(ms) {
+    ms += new Date().getTime();
+    while (new Date() < ms){}
+ }
