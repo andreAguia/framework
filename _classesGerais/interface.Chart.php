@@ -23,8 +23,8 @@ class Chart
     private $pieHole = FALSE;
     private $legend = TRUE;
     
-    private $largura = 800;
-    private $altura = 400;
+    private $largura = '100%';
+    private $altura = '100%';
 
 ###########################################################
 
@@ -41,6 +41,7 @@ class Chart
     
         $this->tipo = $tipo;
         $this->dados = $dados;
+        echo '<script type="text/javascript" src="'.PASTA_FUNCOES_GERAIS.'/loader.js"></script>';
     }
 
 ###########################################################
