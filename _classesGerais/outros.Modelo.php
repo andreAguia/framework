@@ -1074,7 +1074,7 @@ class Modelo
 
             aguarde();
 
-            #loadPage($this->linkListar);
+            loadPage($this->linkListar);
             return TRUE;
         }else{
             alert($msgErro);

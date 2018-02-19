@@ -104,17 +104,16 @@
      * @param $orderTipo    string NULL Define se a ordenação será ascendente ou descendente
      */    
     
-    	try {
+    	try{
             $this->conecta();
 
-            if ($many) {
+            if ($many){
                 $row = $this->conn->query($select)->fetchall();
-            } else {
+            }else{
                 $row = $this->conn->query($select)->fetch();
             }
 
             $this->conn = NULL;
-
             return $row;
     	}
     	catch(PDOException $e){
@@ -207,7 +206,7 @@
             $this->conn->exec($sql);
             $this->lastId = $this->conn->lastInsertId(); 
 
-            if ($alerta) {
+            if($alerta){
                 alert("Registro salvo com sucesso!");
             }
         }
