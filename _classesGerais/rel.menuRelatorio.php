@@ -19,7 +19,7 @@ class menuRelatorio
     ###########################################################
 
     /**
-    * M�todos get e set constru�dos de forma autom�tica pelo 
+    * Métodos get e set constru�dos de forma autom�tica pelo 
     * metodo m�gico __call.
     * Esse m�todo cria um set e um get para todas as propriedades da classe.
     * Um m�todo existente tem prioridade sobre os m�todos criados pelo __call.

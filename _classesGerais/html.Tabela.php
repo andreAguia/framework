@@ -181,7 +181,7 @@ class Tabela
     ###########################################################
 
     /**
-     * M�todo set_excluirCondicional
+     * Método set_excluirCondicional
      * 
      * Define uma condi��o para exibir ou n�o a op��o de exclus�o
      * Usado na rotina de f�rias para colocar a op��o de exclus�o 
@@ -201,7 +201,7 @@ class Tabela
     ###########################################################
 
     /**
-     * M�todo set_editarCondicional
+     * Método set_editarCondicional
      * 
      * Define uma condi��o para exibir ou n�o a op��o de edi��o
      * Usado na rotina de servi�o para exibir a edi��o aos usu�rios 
@@ -221,7 +221,7 @@ class Tabela
     ###########################################################
 
     /**
-     * M�todo set_order
+     * Método set_order
      * 
      * @param 	$orderCampo 	integer -> coluna da tabela onde ser� ordenado 
      * @param 	$orderTipo		string -> pode ser 'asc' ou 'desc'. informa o tipo de ordena��o
@@ -516,15 +516,13 @@ class Tabela
                 }
 
                 # Coloca a função (se tiver)
-                if((isset($this->funcao[$a])) and ($this->funcao[$a] <> NULL)) 			
-                {
+                if((isset($this->funcao[$a])) and ($this->funcao[$a] <> NULL)){
                     $nomedafuncao = $this->funcao[$a];
                     $row[$a] = $nomedafuncao($row[$a]);
                 }
                 
                 # Coloca a classe (se tiver)
-                if((isset($this->classe[$a])) and ($this->classe[$a] <> NULL)) 			
-                {
+                if((isset($this->classe[$a])) and ($this->classe[$a] <> NULL)){
                     $instancia = new $this->classe[$a]();
                     $metodoClasse = $this->metodo[$a];
                     $row[$a] = $instancia->$metodoClasse($row[$a]);
@@ -561,23 +559,18 @@ class Tabela
                 if (($a <> $colunaEdita) and ($a <> $colunaExcluir) and ($a <> $colunaExcluirCondicional) and ($a <> $colunaEditarCondicional)and ((!isset($this->link[$a])) or ($this->link[$a] == NULL)))
                 {   
                     # verifica se tem imagem condicional, se tiver exibe o gráfico ao invel do valor                
-                    if (!is_null($this->imagemCondicional))
-                    {
+                    if (!is_null($this->imagemCondicional)){
                         # pega as colunas que possuem imagens 
                         $colunasImagem = array();
-                        foreach ($this->imagemCondicional as $condicionalColuna)
-                        { 
+                        foreach ($this->imagemCondicional as $condicionalColuna){ 
                             array_push($colunasImagem,$condicionalColuna['coluna']);
                         }
 
                         $contadorRow = 0;   // evita que o texto seja escrito mais de uma vez
 
-                        foreach ($this->imagemCondicional as $condicionalImagem)
-                        { 
-                            if($a == $condicionalImagem['coluna'])
-                            {
-                                switch ($condicionalImagem['operador'])
-                                {
+                        foreach ($this->imagemCondicional as $condicionalImagem){ 
+                            if($a == $condicionalImagem['coluna']){
+                                switch ($condicionalImagem['operador']){
                                     case '=':
                                     case '==':
                                         if($row[$a] == $condicionalImagem['valor'])

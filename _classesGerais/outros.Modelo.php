@@ -1086,7 +1086,7 @@ class Modelo
 
     /**
     * método excluir
-    * M�todo de exclusão de registro
+    * Método de exclusão de registro
     * 
     * @param $id	integer	- id da not�cia
     */
