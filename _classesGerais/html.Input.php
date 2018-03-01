@@ -509,7 +509,7 @@ class Input
 
         # onChange	
         if (!is_null($this->onChange)) {
-            echo ' onchange="' . $this->onChange . '"';
+            echo ' onchange="'.$this->onChange.'"';
         }
 
         # Máximo de caracteres		
