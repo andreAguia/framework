@@ -419,7 +419,7 @@ class Input
         switch ($this->tipoLabel)
         {
             case 1:
-                echo '<label for="'.$this->nome.'">';   
+                echo '<label id="label'.$this->nome.'" for="'.$this->nome.'">';   
                 echo $this->label;
                 if ($this->required) {
                     echo ' * ';
@@ -433,7 +433,7 @@ class Input
                 break;
 
             case 2:
-                echo '<label for="'.$this->nome.'">';   
+                echo '<label id="label'.$this->nome.'" for="'.$this->nome.'">';   
                 echo $this->label;
                 echo '</label>';
                 break;
