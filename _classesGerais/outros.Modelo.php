@@ -878,7 +878,7 @@ class Modelo
         # Variáveis sobre um erro fatal (que não pode prosseguir com ele)
         $erro = 0;		    // flag de erro: 1 - tem erro; 0 - não tem	
         $msgErro = NULL; 	// repositório de mensagens de erro
-
+        
         $contador = 0;		// contador para os arrays $campo_nome e $campo_valor
         $alteracoes = NULL;	// informa as alteraçõs dos valores antigos com os novos
         $atividade = NULL;	// Variavel que informa ao log o que foi feito

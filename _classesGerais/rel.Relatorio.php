@@ -36,6 +36,10 @@ class Relatorio
      * @var private $subClasseBd    bool    TRUE Informa se a coluna agrupada será ocultada.
      * @var private $subJoin        bool    TRUE Informa se a coluna agrupada será ocultada.
      * 
+     * @group do número de ordem
+     * @var private $numeroOrdem     bool   FALSE  Exibe/Não exibe uma coluna com numeração de ordem das colunas
+     * @var private $numeroOrdemTipo bool   'c'    Informa que a ordenação será 'c' crescente ou 'd' decrescente
+     * 
      * @group outros
      * @var private $linhaFinal bool FALSE Exibe ou não linha final da tabela.
      * 
@@ -58,6 +62,10 @@ class Relatorio
     private $tituloLinha3 = NULL;
     private $subtitulo = NULL;
     private $tituloTabela = NULL;
+    
+    # do número de ordem
+    private $numeroOrdem = FALSE;
+    private $numeroOrdemTipo = 'c';
     
     # Rotinas Extras
     private $funcaoAntesTitulo = NULL;
@@ -147,8 +155,7 @@ class Relatorio
      */
     public function __call ($metodo, $parametros){
         ## Se for set, atribui um valor para a propriedade
-        if (substr($metodo, 0, 3) == 'set')
-        {
+        if (substr($metodo, 0, 3) == 'set'){
             $var = substr($metodo, 4);
             $this->$var = $parametros[0];
         }
@@ -269,9 +276,16 @@ class Relatorio
       */
     
     private function exibeLinha($tamanhoLinha){
-       echo '<tr><td colspan="'.$tamanhoLinha.'">';
-       hr();
-       echo '</td></tr>';
+        
+        # Verifica se tem coluna para numero de ordem
+        if($this->numeroOrdem){
+            $tamanhoLinha++;
+        }
+        
+        # Monta a linha
+        echo '<tr><td colspan="'.$tamanhoLinha.'">';
+        hr();
+        echo '</td></tr>';
     }
             
     ###########################################################
@@ -287,8 +301,7 @@ class Relatorio
         if(is_null($this->numGrupo))
             $this->colunaSomatorio++;
         
-        for($i = 1; $i<=$tamanho; $i++)
-        {            
+        for($i = 1; $i<=$tamanho; $i++){            
             if($i == $this->colunaTexto)
                 echo '<td>'.$this->textoSomatorio.'</td>';
             elseif($i == $this->colunaSomatorio)
@@ -340,6 +353,11 @@ class Relatorio
         }
 
         echo '>';
+        
+        # Colunas
+        if($this->numeroOrdem){
+            echo '<col style="width:5%">';
+        }
 
         # informa o tamanho das colunas (width)
         for($a = 0;$a < $tamanho;$a += 1){
@@ -362,6 +380,11 @@ class Relatorio
         }
 
         echo '<tr>';
+        
+        # Reserva uma coluna para o número de ordem (se tiver)
+        if($this->numeroOrdem){
+            echo '<th title="Número de Ordem" id="numeroOrdem">#</th>';
+        }
 
         for ($a = 0;$a < $tamanho;$a += 1){
             if ((!$grupo) || (($grupo) && ($a <> $this->numGrupo)) || (($grupo) && (!$this->ocultaGrupo))){
@@ -389,6 +412,12 @@ class Relatorio
         $grupo = NULL;		// flag de agrupamento ou não
         $somatorio = 0;         // somatorio de colunas se houver
         $subSomatorio = 0;      // somatório do grupo
+        
+        # Linha de ordem (se tiver)
+        if($this->numeroOrdemTipo == 'c')
+            $numOrdem = 1;  # Inicia o número de ordem quando tiver
+        else
+            $numOrdem = count($this->conteudo);  # Inicia o número de ordem quando tiver
 
         # Pega o tamanho da tabela
         $tamanho = count($this->label);
@@ -436,6 +465,7 @@ class Relatorio
         
         # Começa o conteúdo do relatório
         if(!is_null($this->conteudo)){
+            
             # Percorre os registros
             foreach ($this->conteudo as $row){
                 # Como a flag agrupa é mudada no início do loop verifica-se 
@@ -535,7 +565,9 @@ class Relatorio
                     
                      # começa o corpo da tabela
                      echo '<tbody>';
-                }               
+                }
+                
+                
                 
                 # Incrementa contadores
                 $contador += 1;         
@@ -549,6 +581,15 @@ class Relatorio
                 }
                 
                 echo '<tr>';
+                
+                if($this->numeroOrdem){
+                    echo '<td id="center">'.$numOrdem.'</td>';            
+                }
+
+                if($this->numeroOrdemTipo == 'c')
+                    $numOrdem++;    # incrementa o número de ordem
+                else
+                    $numOrdem--;    # decrementa o número de ordem
 
                 # percorre as colunas
                 for ($a = 0;$a < $tamanho;$a += 1){

@@ -256,8 +256,7 @@ class Tabela
 
         # Quando existir rotina de excluir
         # acrescenta colunas extras e calcula a posição na tabela
-        if($this->excluir <> NULL)
-        {
+        if($this->excluir <> NULL){
             $colunaExcluir = $numColunas;
             $numColunas++;
             $this->label[$colunaExcluir] = 'Rotina de exclusão de registro';
@@ -265,15 +264,13 @@ class Tabela
 
         # Quando existir rotina de excluir condicional
         # acrescenta colunas extras e calcula a posição na tabela
-        if($this->excluirCondicional <> NULL)
-        {
+        if($this->excluirCondicional <> NULL){
             $colunaExcluirCondicional = $numColunas;
             $numColunas++;   
             $this->label[$colunaExcluirCondicional] = 'Rotina de exclusão de registro';
         }
 
-        if($this->editarCondicional <> NULL)
-        {
+        if($this->editarCondicional <> NULL){
             $colunaEditarCondicional = $numColunas;
             $numColunas++;  
             $this->label[$colunaEditarCondicional] = 'Rotina de Edição de registro';
@@ -329,11 +326,11 @@ class Tabela
         echo '<tr>';
                         
         # Reserva uma coluna para o número de ordem (se tiver)
-        if($this->numeroOrdem)
+        if($this->numeroOrdem){
             echo '<th title="Número de Ordem" id="numeroOrdem">#</th>';
+        }
 
-        for($a = 0;$a < $numColunas;$a += 1)
-        {        
+        for($a = 0;$a < $numColunas;$a += 1){        
             echo '<th title="'.$this->label[$a].'">';
 
             # colunas
@@ -360,6 +357,7 @@ class Tabela
         # Corpo da Tabela
         echo '<tbody>';
         
+        # Coluna de ordem
         if($this->numeroOrdemTipo == 'c')
             $numOrdem = 1;  # Inicia o número de ordem quando tiver
         else
