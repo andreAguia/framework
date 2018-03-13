@@ -784,25 +784,20 @@ class Modelo
                 # somente se n�o usa o controle data html5
                 if(($campo['tipo'] == 'date') OR ($campo['tipo'] == 'data'))
                 {
-                    if(HTML5)
-                    {
+                    if(HTML5){
                         $controle->set_valor($row[$campo['nome']]); 
                         $oldValue[] = $row[$campo['nome']];
-                    }
-                    else
-                    {
+                    }else{
                         $controle->set_valor(date_to_php($row[$campo['nome']])); // se for data passa para o formato dd/mm/aaaa
                         $oldValue[] = date_to_php($row[$campo['nome']]);
                     }
                         
-                }
-                else // se aceitar tags html
-                {
+                }else{ // se aceitar tags html
                     if ((isset($campo['tagHtml'])) AND ( $campo['tagHtml'] == TRUE)) {
                         $valorCampo = $row[$campo['nome']];
                         $valorControle = htmlentities($valorCampo);
                         $controle->set_valor($valorControle);
-                    } else {
+                    }else{
                         $controle->set_valor($row[$campo['nome']]);
                     }
 
@@ -827,7 +822,7 @@ class Modelo
         $controle->set_size(20);
         $controle->set_tabindex($contador+1);
         $controle->set_accessKey('S');
-        $controle->set_linha($linhaAtual+1);
+        $controle->set_linha($linhaAtual+2);
         $controle->set_col(3);
         $form->add_item($controle);
         

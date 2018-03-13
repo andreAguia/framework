@@ -211,8 +211,7 @@ class Form
         # id e Nome do form (coloco o nome e o id igual para evitar problemas no jscript)
         if(!is_null($this->id)){
             echo ' id="'.$this->id.'" name="'.$this->id.'"';
-        }
-        else{
+        }else{
             echo ' name="'.$this->class.'"';
         }
             

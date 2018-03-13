@@ -580,10 +580,8 @@ class Input
             case "combo":
                 #echo ' size="'.($this->size).'"';
                 echo '>';
-                foreach($this->array as $field)
-                {
-                    if (is_array($field))
-                    {
+                foreach($this->array as $field){
+                    if (is_array($field)){
                         echo '<option value="'.$field[0].'"';
                         if ($field[0] == $this->valor)
                             echo ' selected>';
@@ -592,9 +590,7 @@ class Input
 
                         echo  $field[1];
                         echo '</option>';	
-                    }
-                    else
-                    {
+                    }else{
                         echo ' <option value="'.$field.'"';
                         if ($field == $this->valor)
                             echo ' selected>';
