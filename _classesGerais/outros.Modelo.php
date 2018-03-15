@@ -8,8 +8,7 @@
  * By Alat
  */
  
-class Modelo
-{
+class Modelo{
     # Nome do Modelo (aparecerá nos fildset e no caption da tabela)
     private $nome = NULL;
     
@@ -87,12 +86,14 @@ class Modelo
     # das rotinas de exclusão
     private $excluirCondicional = NULL;	
     private $excluirCondicao = NULL;		
-    private $excluirColuna = NULL;		
+    private $excluirColuna = NULL;
+    private $excluirOperador = "==";
 
     # das rotinas de edição
     private $editarCondicional = NULL;	
     private $editarCondicao = NULL;		
-    private $editarColuna = NULL;	
+    private $editarColuna = NULL;
+    private $editarOperador = "==";
     private $botaoCancelaEdita = NULL;
 
     # do título das colunas de link padrão
@@ -207,11 +208,12 @@ class Modelo
     * @param 	$excluirColuna		 integer -> n�mero da coluna cujo valor ser� comparado
     */
     
-    public function set_excluirCondicional($excluirCondicional,$excluirCondicao,$excluirColuna)
+    public function set_excluirCondicional($excluirCondicional,$excluirCondicao,$excluirColuna,$excluirOperador = NULL)
     {
         $this->excluirCondicional = $excluirCondicional;
         $this->excluirCondicao = $excluirCondicao;
         $this->excluirColuna = $excluirColuna;
+        $this->excluirOperador = $excluirOperador;
     }
 
     ###########################################################
@@ -228,11 +230,12 @@ class Modelo
     * @param 	$editarColuna	   integer -> número da coluna cujo valor será comparado
     */
     
-    public function set_editarCondicional($editarCondicional,$editarCondicao,$editarColuna)
+    public function set_editarCondicional($editarCondicional,$editarCondicao,$editarColuna,$editarOperador = NULL)
     {
         $this->editarCondicional = $editarCondicional;
         $this->editarCondicao = $editarCondicao;
         $this->editarColuna = $editarColuna;
+        $this->editarOperador = $editarOperador;
     }
 
     ###########################################################
@@ -540,9 +543,9 @@ class Modelo
             $tabela->set_idCampo($this->idCampo);
             $tabela->set_order($this->orderCampo,$this->orderTipo,$this->orderChamador);
 
-            $tabela->set_excluirCondicional($this->excluirCondicional,$this->excluirCondicao,$this->excluirColuna);
-
-            $tabela->set_editarCondicional($this->editarCondicional,$this->editarCondicao,$this->editarColuna);
+            $tabela->set_editarCondicional($this->editarCondicional,$this->editarCondicao,$this->editarColuna,$this->editarOperador);
+            
+            $tabela->set_excluirCondicional($this->excluirCondicional,$this->excluirCondicao,$this->excluirColuna,$this->excluirOperador);
 
             if (!is_null($this->nomeColunaEditar)) {
                 $tabela->set_nomeColunaEditar($this->nomeColunaEditar);

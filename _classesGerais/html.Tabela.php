@@ -87,6 +87,7 @@ class Tabela
     private $excluirCondicional = NULL;
     private $excluirCondicao = NULL;
     private $excluirColuna = NULL;
+    private $excluirOperador = "==";
     private $excluirBotao = 'bullet_cross.png';	# Figura do botão
 
     # das rotinas de edição
@@ -95,6 +96,7 @@ class Tabela
     private $editarCondicional = NULL;
     private $editarCondicao = NULL;
     private $editarColuna = NULL;
+    private $editarOperador = "==";
     private $editarBotao = 'bullet_edit.png';	# Figura do botao
     
     # do form de check
@@ -191,11 +193,12 @@ class Tabela
      * @param 	$excluirCondicao	 string -> valor que exibe o bot�o de exclus�o
      * @param 	$excluirColuna		 integer -> n�mero da coluna cujo valor ser� comparado
      */
-    public function set_excluirCondicional($excluirCondicional,$excluirCondicao,$excluirColuna)
+    public function set_excluirCondicional($excluirCondicional,$excluirCondicao,$excluirColuna,$excluirOperador)
     {
         $this->excluirCondicional = $excluirCondicional;
         $this->excluirCondicao = $excluirCondicao;
         $this->excluirColuna = $excluirColuna;
+        $this->excluirOperador = $excluirOperador;
     }
 
     ###########################################################
@@ -211,11 +214,12 @@ class Tabela
      * @param 	$editarCondicao	 string -> valor que exibe o bot�o de editar
      * @param 	$editarColuna		 integer -> n�mero da coluna cujo valor ser� comparado
      */
-    public function set_editarCondicional($editarCondicional,$editarCondicao,$editarColuna)
+    public function set_editarCondicional($editarCondicional,$editarCondicao,$editarColuna,$editarOperador)
     {
         $this->editarCondicional = $editarCondicional;
         $this->editarCondicao = $editarCondicao;
         $this->editarColuna = $editarColuna;
+        $this->editarOperador = $editarOperador;
     }
     
     ###########################################################
@@ -260,21 +264,21 @@ class Tabela
             $colunaExcluir = $numColunas;
             $numColunas++;
             $this->label[$colunaExcluir] = 'Rotina de exclusão de registro';
-        }	
-
-        # Quando existir rotina de excluir condicional
-        # acrescenta colunas extras e calcula a posição na tabela
-        if($this->excluirCondicional <> NULL){
-            $colunaExcluirCondicional = $numColunas;
-            $numColunas++;   
-            $this->label[$colunaExcluirCondicional] = 'Rotina de exclusão de registro';
         }
-
+        
+        # Editar condicional
         if($this->editarCondicional <> NULL){
             $colunaEditarCondicional = $numColunas;
             $numColunas++;  
             $this->label[$colunaEditarCondicional] = 'Rotina de Edição de registro';
         }
+
+        # Excluir condicional
+        if($this->excluirCondicional <> NULL){
+            $colunaExcluirCondicional = $numColunas;
+            $numColunas++;   
+            $this->label[$colunaExcluirCondicional] = 'Rotina de exclusão de registro';
+        }        
                
         # Início da Tabela
         echo '<div class="table-scroll">';
@@ -456,8 +460,7 @@ class Tabela
                 $id = $row["$this->idCampo"]; 
 
             # percorre as colunas 
-            for ($a = 0;$a < ($numColunas);$a ++)
-            {
+            for ($a = 0;$a < ($numColunas);$a ++){
                 echo '<td';
                 
                 # alinhamento
@@ -492,24 +495,51 @@ class Tabela
                     
                     #$link->show();
                 }						
-                elseif(($this->excluirCondicional <> NULL) and ($a == $colunaExcluirCondicional))	// coluna de excluir_condicional
-                {
-                    if($row[$this->excluirColuna] == $this->excluirCondicao)
-                    {
-                        $link = new Link('Excluir',$this->excluirCondicional.'&'.$this->nomeGetId.'='.$id);
-                        $link->set_image(PASTA_FIGURAS_GERAIS.$this->excluirBotao);
-                        $link->set_title('Exclui: '.$row[0]);
-                        $link->set_confirma('Deseja mesmo excluir?');
-                        $link->show();
-                    }
-                }
                 elseif(($this->editarCondicional <> NULL) and ($a == $colunaEditarCondicional))	// coluna de editar_condicional
                 {
-                    if($row[$this->editarColuna] == $this->editarCondicao){
-                        $link = new Link('Editar',$this->editarCondicional.'&'.$this->nomeGetId.'='.$id);
-                        $link->set_image(PASTA_FIGURAS_GERAIS.$this->editarBotao);
-                        $link->set_title($this->nomeColunaEditar.': '.$row[0]);
-                        $link->show();
+                    # Se o operador for igual
+                    if($this->editarOperador == "=="){                    
+                        if($row[$this->editarColuna] == $this->editarCondicao){
+                            $link = new Link('Editar',$this->editarCondicional.'&'.$this->nomeGetId.'='.$id);
+                            $link->set_image(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
+                            $link->set_title($this->nomeColunaEditar.': '.$row[0]);
+                            $link->show();
+                        }
+                    }
+                    
+                    # Se o operador for diferente
+                    if(($this->editarOperador == "<>") OR ($this->editarOperador == "!=")){          
+                        if($row[$this->editarColuna] <> $this->editarCondicao){
+                            $link = new Link('Editar',$this->editarCondicional.'&'.$this->nomeGetId.'='.$id);
+                            $link->set_image(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
+                            $link->set_title($this->nomeColunaEditar.': '.$row[0]);
+                            $link->show();
+                        }
+                    }
+                    
+                }
+                elseif(($this->excluirCondicional <> NULL) AND ($a == $colunaExcluirCondicional))	// coluna de excluir_condicional
+                {
+                    # Se o operador for igual
+                    if($this->excluirOperador == "=="){ 
+                        if($row[$this->excluirColuna] == $this->excluirCondicao){
+                            $link = new Link('Excluir',$this->excluirCondicional.'&'.$this->nomeGetId.'='.$id);
+                            $link->set_image(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
+                            $link->set_title('Exclui: '.$row[0]);
+                            $link->set_confirma('Deseja mesmo excluir?');
+                            $link->show();
+                        }
+                    }
+                    
+                    # Se o operador for diferente
+                    if(($this->excluirOperador == "<>") OR ($this->excluirOperador == "!=")){ 
+                        if($row[$this->excluirColuna] <> $this->excluirCondicao){
+                            $link = new Link('Excluir',$this->excluirCondicional.'&'.$this->nomeGetId.'='.$id);
+                            $link->set_image(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
+                            $link->set_title('Exclui: '.$row[0]);
+                            $link->set_confirma('Deseja mesmo excluir?');
+                            $link->show();
+                        }
                     }
                 }
 
