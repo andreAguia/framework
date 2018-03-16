@@ -803,7 +803,7 @@ function botaoVoltar($url,$label = 'Voltar',$title = 'Volta para a página anter
 
 ###########################################################  
       
-function aguarde(){
+function aguarde($texto = NULL){
 
 /**
  * Rotina que exibe uma animação sugerindo aguardar alguma tarefa ser concluída.
@@ -819,6 +819,11 @@ function aguarde(){
         br();
         $Imagem = new Imagem(PASTA_FIGURAS_GERAIS.'carregando.gif','Aguarde',90,90);
         $Imagem->show();
+        
+        if(!is_null($texto)){
+            br(2);
+            p($texto,"center");
+        }
     $div->fecha();
 }
 
