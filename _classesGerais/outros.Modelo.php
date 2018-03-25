@@ -208,8 +208,7 @@ class Modelo{
     * @param 	$excluirColuna		 integer -> n�mero da coluna cujo valor ser� comparado
     */
     
-    public function set_excluirCondicional($excluirCondicional,$excluirCondicao,$excluirColuna,$excluirOperador = NULL)
-    {
+    public function set_excluirCondicional($excluirCondicional,$excluirCondicao,$excluirColuna,$excluirOperador = NULL){
         $this->excluirCondicional = $excluirCondicional;
         $this->excluirCondicao = $excluirCondicao;
         $this->excluirColuna = $excluirColuna;
@@ -464,6 +463,7 @@ class Modelo{
         }       
         
         # Topbar
+        if(!is_null($this->parametroLabel)){
         if($this->topBarListar){
             $top = new TopBar($this->nome);
             $top->set_title($this->nome);
@@ -478,6 +478,7 @@ class Modelo{
                 $top->add_pesquisa($this->parametroLabel, $this->parametroValue);
             }
             $top->show();
+        }
         }
             
         # Pega a lista em definitivo
@@ -495,6 +496,9 @@ class Modelo{
         else{
             # Monta a tabela
             $tabela = new Tabela();
+            if(is_null($this->parametroLabel)){
+                $tabela->set_titulo($this->nome);
+            }
             $tabela->set_conteudo($result);
             $tabela->set_id($this->idTabela);
             $tabela->set_label($this->label);
@@ -659,9 +663,10 @@ class Modelo{
         
         # Topbar 
         if ($this->topBarIncluir){
-            $top = new TopBar($this->nome);
-            $top->set_title($this->nome);
-            $top->show(); 
+            titulo($this->nome);
+            #$top = new TopBar($this->nome);
+            #$top->set_title($this->nome);
+            #$top->show(); 
         }
 
        # exibe (ocultamente) o histórico
