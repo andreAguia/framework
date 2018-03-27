@@ -268,8 +268,7 @@ class Modelo{
     * Exibe os registros em uma tabela
     * 
     */
-    public function listar()
-    {
+    public function listar(){
         # Pega o time inicial
         $time_start = microtime(TRUE);
         
@@ -460,25 +459,21 @@ class Modelo{
             }
             echo '</ul>';
             $div->fecha();
-        }       
-        
-        # Topbar
-        if(!is_null($this->parametroLabel)){
-        if($this->topBarListar){
-            $top = new TopBar($this->nome);
-            $top->set_title($this->nome);
-        
-            # Botão Incluir
-            #if ($this->botaoIncluir){
-            #    $top->add_link($linkBotaoIncluir,"right");
-            #}
-
-            # Coloca o campo de pesquisa (se tiver)
-            if(!is_null($this->parametroLabel)){
-                $top->add_pesquisa($this->parametroLabel, $this->parametroValue);
-            }
-            $top->show();
         }
+        
+        # Campo de Pesquisa
+        if(!is_null($this->parametroLabel)){
+            $form = new Form('?fase=listar');
+
+            $controle = new Input("parametro","texto",$this->parametroLabel,1);
+            $controle->set_size(50);
+            $controle->set_valor($this->parametroValue);
+            $controle->set_autofocus(TRUE);
+            $controle->set_onChange('formPadrao.submit();');
+            $controle->set_linha(1);
+            $controle->set_col(6);
+            $form->add_item($controle);
+            $form->show();
         }
             
         # Pega a lista em definitivo
@@ -496,9 +491,7 @@ class Modelo{
         else{
             # Monta a tabela
             $tabela = new Tabela();
-            if(is_null($this->parametroLabel)){
-                $tabela->set_titulo($this->nome);
-            }
+            $tabela->set_titulo($this->nome);
             $tabela->set_conteudo($result);
             $tabela->set_id($this->idTabela);
             $tabela->set_label($this->label);
