@@ -586,10 +586,11 @@ class Relatorio
                     echo '<td id="center">'.$numOrdem.'</td>';            
                 }
 
-                if($this->numeroOrdemTipo == 'c')
+                if($this->numeroOrdemTipo == 'c'){
                     $numOrdem++;    # incrementa o número de ordem
-                else
+                }else{
                     $numOrdem--;    # decrementa o número de ordem
+                }
 
                 # percorre as colunas
                 for ($a = 0;$a < $tamanho;$a += 1){
