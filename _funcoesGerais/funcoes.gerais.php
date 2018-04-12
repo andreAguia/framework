@@ -208,7 +208,7 @@ function date_to_bd($data,$separador = '/'){
         return FALSE;
     }else{
         $dt1 = explode($separador,$data);
-        $dt2 = $dt1[2].'/'.$dt1[1].'/'.$dt1[0];
+        $dt2 = intval($dt1[2]).'/'.intval($dt1[1]).'/'.intval($dt1[0]);
         return $dt2;
     }
 }
@@ -1027,7 +1027,7 @@ function validaData($data){
             
             # prevenindo Notice: Undefined offset: 2
             # caso informe data com uma única barra (/)
-            $ano = isset($partes[2]) ? $partes[2] : 0;
+            $ano = intval(isset($partes[2]) ? $partes[2] : 0);
  
             if(strlen($ano) < 4){
                 return 1;
@@ -1182,9 +1182,17 @@ function dataDif($dataInicial, $dataFinal = NULL){
         $dataInicial = date_to_bd($dataInicial);
         $dataFinal = date_to_bd($dataFinal);
         
-        # Calcula a diferença
-        $diferenca = round((strtotime($dataFinal) - strtotime($dataInicial)) / (24 * 60 * 60), 0);
-        return $diferenca;
+        # Cria um timestamp
+        $time_inicial = strtotime($dataInicial);
+        $time_final = strtotime($dataFinal);
+        
+        # Calcula a diferença de segundos entre as duas datas:
+        $diferenca = $time_final - $time_inicial;
+        
+        # Calcula a diferença de dias
+        $dias = (int)floor( $diferenca / (60 * 60 * 24));
+        
+        return $dias;
     }else{
         alert('Data Inválida');
         return FALSE;
