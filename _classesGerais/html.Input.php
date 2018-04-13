@@ -416,8 +416,12 @@ class Input
             $this->tipoLabel = 3;
         }
 
-        switch ($this->tipoLabel)
-        {
+        #  Tipo do label: 
+        #  0 - sem label, 
+        #  1 - label em cima, 
+        #  2 - label do lado direito 
+        #  3 - label do lado esquerdo
+        switch ($this->tipoLabel){
             case 1:
                 echo '<label id="label'.$this->nome.'" for="'.$this->nome.'">';   
                 echo $this->label;
@@ -539,8 +543,7 @@ class Input
         echo ' name="'.$this->nome.'"'; # nome do controle (deve ser o mesmo que o do banco de dados)
         echo ' id="'.$this->nome.'"';
         
-        switch ($this->tipo)
-        {	
+        switch ($this->tipo){	
             case "textarea":
                 echo ' cols="'.$this->size[0].'"';
                 echo ' rows="'.$this->size[1].'"';
@@ -793,8 +796,7 @@ class Input
                 break;
         }		
 
-        switch ($this->tipoLabel)
-        {
+        switch ($this->tipoLabel){
             case 3:
                 echo '<label id="checkbox" for="'.$this->nome.'">';   
                 echo $this->label;
