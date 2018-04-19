@@ -414,13 +414,16 @@ class Relatorio
         $subSomatorio = 0;      // somatório do grupo
         
         # Linha de ordem (se tiver)
-        if($this->numeroOrdemTipo == 'c')
+        if($this->numeroOrdemTipo == 'c'){
             $numOrdem = 1;  # Inicia o número de ordem quando tiver
-        else
+        }else{
             $numOrdem = count($this->conteudo);  # Inicia o número de ordem quando tiver
+        }
 
         # Pega o tamanho da tabela
-        $tamanho = count($this->label);
+        if(!vazio($this->label)){
+            $tamanho = count($this->label);
+        }
         
         # Alimenta a flag de grupo
         if (is_null($this->numGrupo)){
@@ -430,10 +433,12 @@ class Relatorio
         }
         
         # Tira uma coluna da linha quando tiver agrupamento com ocultação da culuna
-        if(($grupo) && ($this->ocultaGrupo)){
-            $tamanhoLinha = $tamanho-1;
-        }else{
-            $tamanhoLinha = $tamanho;
+        if(!vazio($this->label)){
+            if(($grupo) && ($this->ocultaGrupo)){
+                $tamanhoLinha = $tamanho-1;
+            }else{
+                $tamanhoLinha = $tamanho;
+            }
         }
 
         # Abre uma classe de menu do relatório
