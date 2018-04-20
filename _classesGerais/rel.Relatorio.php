@@ -298,31 +298,32 @@ class Relatorio
     
     private function exibeSomatorio($tamanho,$subSomatorio){        
         echo '<tr>';
-        if(is_null($this->numGrupo))
+        if(is_null($this->numGrupo)){
             $this->colunaSomatorio++;
+        }
         
         for($i = 1; $i<=$tamanho; $i++){            
-            if($i == $this->colunaTexto)
+            if($i == $this->colunaTexto){
                 echo '<td>'.$this->textoSomatorio.'</td>';
-            elseif($i == $this->colunaSomatorio)
-            {
-                if(is_null($this->funcaoSomatorio))
+            }elseif($i == $this->colunaSomatorio){
+                if(is_null($this->funcaoSomatorio)){
                     echo '<td>'.$subSomatorio.'</td>';                
-                else
-                {
+                }else{
                     $nomedafuncao = $this->funcaoSomatorio;
                     $subSomatorio = $nomedafuncao($subSomatorio);
                     echo '<td>'.$subSomatorio.'</td>';
                 }
             }
-            else
+            else{
                 echo '<td></td>';
+            }
         }        
         echo '</tr>';
 
         # linha
-        if($this->linhaNomeColuna)
+        if($this->linhaNomeColuna){
             $this->exibeLinha($tamanho);
+        }
     }
     ###########################################################
     
