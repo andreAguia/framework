@@ -27,6 +27,26 @@ html{
     text-align: justify;
 }
 
+/******************************************* 
+ * Define o alinhamento pela classe
+ *******************************************/ 
+
+.center{
+    text-align: center;
+}
+
+.left{
+    text-align: left;
+}
+
+.right{
+    text-align: right;
+}
+
+.justify{
+    text-align: justify;
+}
+
 /*******************************************
  * Muda o tamanho da fonte de um <p> pelo id
  *******************************************/

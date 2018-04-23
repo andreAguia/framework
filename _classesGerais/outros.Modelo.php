@@ -923,18 +923,15 @@ class Modelo{
             }
 
             # verifica not NULL
-            if ((isset($campo['required'])) and ($campo['required']))
-            {
-                if (vazio($campoValor[$contador]))
-                {
+            if ((isset($campo['required'])) and ($campo['required'])){
+                if (vazio($campoValor[$contador])){
                     $msgErro.='O campo '.$campo['label'].' é obrigatório!\n';
                     $erro = 1;
                 }
             }
 
             # verifica se é 'unique' -> único valor no campo nessa tabela
-            if ((isset($campo['unique'])) and ($campo['unique']))
-            {
+            if ((isset($campo['unique'])) and ($campo['unique'])){
                 # Pega duplicados
                 $duplicidade = new $this->classBd();
                 if ((isset($id)) and ( $id <> NULL)) {
@@ -947,20 +944,16 @@ class Modelo{
                 
                 $duplicatas = count($result);
 
-                if ($duplicatas > 0)
-                {
+                if ($duplicatas > 0){
                     $erro = 1;
                     $msgErro .= 'Já existe um registro com esse valor de '.$campo['label'].'!\n';
                 }
             }
 
             # verifica a validade do cpf
-            if ($campo['tipo'] == 'cpf')
-            {
-                if(!is_null($campoValor[$contador]))
-                {
-                    if (!validaCpf(soNumeros($campoValor[$contador])))
-                    {		
+            if ($campo['tipo'] == 'cpf'){
+                if(!is_null($campoValor[$contador])){
+                    if (!validaCpf(soNumeros($campoValor[$contador]))){		
                         $msgErro.='CPF Inválido!\n';
                         $erro = 1;
                     }

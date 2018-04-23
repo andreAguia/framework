@@ -573,8 +573,6 @@ class Relatorio
                      echo '<tbody>';
                 }
                 
-                
-                
                 # Incrementa contadores
                 $contador += 1;         
                 $subContador += 1; 
