@@ -1681,3 +1681,14 @@ function feed($feed){
         return $rss;
     }
 }
+
+###########################################################
+/**
+ * retorna a codificação da string informada
+ * @param string $feed A string a ser analisada
+ * @return UTF-8 ou ISO-8859-1
+ */
+
+function codificacao($string) {
+    return mb_detect_encoding($string.'x', 'UTF-8, ISO-8859-1');
+}
