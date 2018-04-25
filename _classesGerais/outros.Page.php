@@ -115,7 +115,7 @@ class Page
         echo '<html class="no-js" lang="pt-br">';   # Abre a tag html e informa o idioma (html5)
 
         echo '<head>';
-        echo '<meta charset="utf-8">';                                      # Código de caractere
+        echo '<meta charset="utf-8" />';               # Código de caractere
         
         echo '<meta http-equiv="x-ua-compatible" content="ie=edge">';                   # Foundation
         echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';  # Foundation
