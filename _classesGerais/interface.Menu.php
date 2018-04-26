@@ -38,8 +38,7 @@
             $title = $label;
         }
         
-        switch ($tipo)
-        {
+        switch ($tipo){
             case "titulo" :
                 # titulo
                 $link = new Link($label);

@@ -361,7 +361,7 @@ span.badge p{
 ul.menuVertical li{ 
     padding: 2px 0px 2px 0px;    
     text-align: left;
-    font-size: 12px;
+    font-size: 14px;
     list-style-type: none;
     margin: 0px 15px 0px 0px;
 }
@@ -385,9 +385,10 @@ ul.menuVertical a {
     color: #076cba;
 }
 
-ul.menuVertical li:hover{
-    background-color: #e9e9e9;
-    }
+ul.menuVertical a:hover {
+    font-size: 15px;
+    color: darkgray;
+}
 
 /**** Relatório  ****/
     
