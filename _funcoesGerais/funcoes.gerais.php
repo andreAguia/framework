@@ -652,9 +652,11 @@ function anti_injection($str){
 
 ###########################################################
 
-function hr(){	
+function hr($id = NULL){	
 /**
  * Insere uma linha
+ * 
+ * @param $id string NULL a id do hr para o css
  * 
  * @syntax hr();
  * 
@@ -663,7 +665,13 @@ function hr(){
  * @example exemplo.hr.php   
  */
 
-    echo '<hr>';   
+    echo '<hr';
+    
+    if(!is_null($id)){
+        echo ' id="'.$id.'"';
+    }
+    
+    echo '>';
 }
 
 ###########################################################

@@ -193,6 +193,30 @@ class Relatorio
     }
     
     ###########################################################
+    
+    /**
+     * Método exibeCabecalho
+     * 
+     * Exibe o cabeçalho
+     */
+    
+    public function exibeCabecalhoVelho(){
+                
+        $governo = "Governo do Estado do Rio de Janeiro";
+        $universidade = "Fundação Estadual Norte Fluminense";
+        $diretoria = "Diretoria de Planejamento Administração e Finanças";
+        $gerencia = "Gerência de Recursos Humanos";
+        
+        $cabec = new Div('center');
+        $cabec->abre();
+            $imagem = new Imagem(PASTA_FIGURAS.'brasao.gif',NULL,50,80);
+            $imagem->show();
+        $cabec->fecha();
+        
+        p($governo."<br/>".$universidade."<br/>".$diretoria." - ".$gerencia,"pRelatorioCabecalho");
+    }
+    
+    ###########################################################
 
     /**
      * Método set_numGrupo
@@ -455,7 +479,11 @@ class Relatorio
 
         # Exibe o cabeçalho
         if($this->cabecalhoRelatorio){
-            $this->exibeCabecalho();
+            if($this->titulo == 'Avaliação Funcional Anual'){
+                $this->exibeCabecalhoVelho();
+            }else{
+                $this->exibeCabecalho();
+            }            
         }
         
         # Abre a div do relatório
