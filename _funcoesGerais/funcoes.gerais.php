@@ -1036,12 +1036,20 @@ function validaData($data){
             # prevenindo Notice: Undefined offset: 2
             # caso informe data com uma única barra (/)
             $ano = intval(isset($partes[2]) ? $partes[2] : 0);
+            
+            if($mes == "00"){
+                return FALSE;    
+            }
+            
+             if($dia == "00"){
+                return FALSE;    
+            }
  
             if(strlen($ano) < 4){
-                return 1;
+                return TRUE;
             }else{
                 # verifica se a data é válida
-                if(checkdate($mes, $dia, $ano)) {
+                if(checkdate($mes, $dia, $ano)){
                     return TRUE;
                 }else{
                     return FALSE;
