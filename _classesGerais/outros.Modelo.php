@@ -27,7 +27,8 @@ class Modelo{
     private $botaoIncluir = TRUE;
     private $botaoEditar = TRUE;    # esse flag é necessário pois o link de editar e incluir são os mesmos
                                     # e pode-se querer ter o botão incluir mas não o botão editar.   
-
+    private $botaoExcluir = TRUE;
+    
     # botão de histórico
     private $botaoHistorico = TRUE;
 
@@ -50,7 +51,6 @@ class Modelo{
     
     # Tempo de pesquisa
     private $exibeTempoPesquisa = TRUE;
-    
     
     # Caminhos
     private $linkEditar = NULL;
@@ -100,7 +100,8 @@ class Modelo{
     private $nomeColunaExcluir = NULL;
     private $nomeColunaEditar = NULL;
 
-    # dos botões das colunas de editar e excluir
+    # Define uma nova figura para os botões.
+    # Deixndo nulo serã exibido a figura padrão
     private $editarBotao = NULL;
     private $excluirBotao = NULL;
 
@@ -520,23 +521,27 @@ class Modelo{
             if ($this->botaoEditar) {
                 $tabela->set_editar($this->linkEditar);
             }
+            
+            # se tem botão excluir
+            if ($this->botaoExcluir) {
+                $tabela->set_excluir($this->linkExcluir);
+            }
 
             # coloca no rodapé a paginação (quando houver)
             if ($this->paginacao) {
                 $tabela->set_rodape($texto . ' (' . $itemInicial . ' a ' . $itemFinal . ' de ' . $totalRegistros . ' Registros)');
             }
 
-            # coloca o botão de editar (quando houver)
+            # Muda a imagem do botão editar
             if (!is_null($this->editarBotao)) {
                 $tabela->set_editarBotao($this->editarBotao);
             }
 
-            # coloca o botão de excluir (quando houver)
+            # Muda a imagem do botão excluir
             if (!is_null($this->excluirBotao)) {
                 $tabela->set_excluirBotao($this->excluirBotao);
             }
 
-            $tabela->set_excluir($this->linkExcluir);
             $tabela->set_idCampo($this->idCampo);
             $tabela->set_order($this->orderCampo,$this->orderTipo,$this->orderChamador);
 
