@@ -629,7 +629,7 @@ a {
 
 hr {
   clear: both;
-  max-width: 95rem;
+  max-width: 80rem;
   height: 0;
   margin: 1.25rem auto;
   border-top: 0;
@@ -3245,21 +3245,21 @@ html.is-reveal-open body {
   @media print, screen and (min-width: 40em) {
     .reveal {
       width: 600px;
-      max-width: 95rem; } }
+      max-width: 80rem; } }
   .reveal.collapse {
     padding: 0; }
   @media print, screen and (min-width: 40em) {
     .reveal.tiny {
       width: 30%;
-      max-width: 95rem; } }
+      max-width: 80rem; } }
   @media print, screen and (min-width: 40em) {
     .reveal.small {
       width: 50%;
-      max-width: 95rem; } }
+      max-width: 80rem; } }
   @media print, screen and (min-width: 40em) {
     .reveal.large {
       width: 90%;
-      max-width: 95rem; } }
+      max-width: 80rem; } }
   .reveal.full {
     top: 0;
     left: 0;
@@ -3297,7 +3297,7 @@ table {
     border: 1px solid #f1f1f1;
     background-color: #fefefe; }
   table caption {
-    padding: 0.4rem 0.4rem 0.4rem;
+    padding: 0.5rem 0.625rem 0.625rem;
     font-weight: bold; }
   table thead {
     background: #f8f8f8;
@@ -3312,12 +3312,12 @@ table {
   table thead td,
   table tfoot th,
   table tfoot td {
-    padding: 0.4rem 0.4rem 0.4rem;
+    padding: 0.5rem 0.625rem 0.625rem;
     font-weight: bold;
     text-align: left; }
   table tbody th,
   table tbody td {
-    padding: 0.3rem 0.3rem 0.3rem; }
+    padding: 0.5rem 0.625rem 0.625rem; }
   table tbody tr:nth-child(even) {
     border-bottom: 0;
     background-color: #f1f1f1; }
@@ -3695,7 +3695,7 @@ a.thumbnail {
     bottom: 0; }
 
 .row {
-  max-width: 95rem;
+  max-width: 80rem;
   margin-right: auto;
   margin-left: auto;
   display: -ms-flexbox;

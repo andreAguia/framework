@@ -41,8 +41,9 @@
         switch ($tipo){
             case "titulo" :
                 # titulo
-                $link = new Link($label);
+                $link = new Link($label,$url);
                 $link->set_title($title);
+                $link->set_target($target);
 
                 # Joga o objeto para o array
                 $this->item[] = $link;

@@ -150,6 +150,9 @@ class Page
         # Jquery
         echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'jquery.js"></script>';
         
+        # Foundation
+        echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'foundation.js"></script>';
+        
         # Java Script Extra
         if(!is_null($this->jscript)){
             echo $this->jscript;
@@ -157,10 +160,8 @@ class Page
 
         # Carrega o css
         echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'foundation.css" />';
-        #echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'foundation.min.css" />';
         echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'app.css" />';
         echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'impressao.css" media="print"/>';
-        
         echo '<link rel="stylesheet" href="'.PASTA_ESTILOS.'estilos.css" />';
         
         echo '<link rel="shortcut icon" href="'.PASTA_FIGURAS.'uenf.gif" />';

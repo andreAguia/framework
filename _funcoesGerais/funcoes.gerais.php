@@ -208,7 +208,7 @@ function date_to_bd($data,$separador = '/'){
         return FALSE;
     }else{
         $dt1 = explode($separador,$data);
-        $dt2 = intval($dt1[2]).'/'.intval($dt1[1]).'/'.intval($dt1[0]);
+        $dt2 = $dt1[2].'/'.$dt1[1].'/'.$dt1[0];
         return $dt2;
     }
 }
@@ -920,7 +920,7 @@ function callout($mensagem, $tipo = "warning"){
 
 ###########################################################
 
-function label($mensagem, $tipo = "warning", $id = NULL){
+function label($mensagem, $tipo = "warning", $id = NULL,$title = NULL){
 /**
  * Cria uma mensagem com fundo colorido.
  * 
@@ -928,13 +928,15 @@ function label($mensagem, $tipo = "warning", $id = NULL){
  *
  * @param $mensagem string NULL    A mensagem a ser exibida: 
  * @param $tipo     string warning O tipo: secondary | primary | success | warning | alert 
+ * @param $id       string NULL    O id para o css 
+ * @param $title    string NULL    O texto para o mouseover 
  * 
- * @syntax label($mensagem, [$tipo], [$id]);
+ * @syntax label($mensagem, [$tipo], [$id], [$title]);
  * 
  * @example exemplo.label.php  
  */
 
-    span($mensagem,$id,$tipo.' label');
+    span($mensagem,$id,$tipo.' label',$title);
 }
 
 ###########################################################
@@ -973,8 +975,9 @@ function span($mensagem,$id = NULL,$class = NULL,$title = NULL){
  * @param $mensagem string NULL    A mensagem a ser exibida: 
  * @param $id       string NULL    O id para o css.
  * @param $class    string NULL    A classe para o css. 
+ * @param $title    string NULL    O title para o mouseover. 
  * 
- * @syntax span($mensagem, [$id], [$class]);
+ * @syntax span($mensagem, [$id], [$class], [title]);
  */
 
     echo '<span';
@@ -1166,6 +1169,36 @@ function jaPassou($data){
 }
 
 ###########################################################	
+
+function eHoje($data){
+/**
+ * Verifica se a data é hoje
+ * 
+ * @syntax eHoje($data);
+ * 
+ * @category Data
+ * 
+ * @return bool TRUE para confirmar e FALSE para negar
+ * 
+ * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
+ * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
+ * 
+ * @param $data      date NULL A data a ser verificada.
+ * 
+ */ 
+    if(validaData($data)){
+        if(date("Y/m/d") == date_to_bd($data)){
+            return TRUE;
+        }else{ 
+            return FALSE;
+        }
+    }else{ 
+        alert('Data Inválida');
+        return FALSE;
+    }    						
+}
+
+###########################################################		
 
 function dataDif($dataInicial, $dataFinal = NULL){
 /**

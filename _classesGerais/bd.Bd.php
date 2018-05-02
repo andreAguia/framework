@@ -168,8 +168,9 @@
                         $sql .= "'$field'";
                     }
 
-                    if ($a < $count)
-                        $sql .= ",";	
+                    if ($a < $count){
+                        $sql .= ",";
+                    }
                 }
 
                 #$sql = trim($sql,","); # Retira o último ',' de $sql (não funcionou !!)
@@ -180,9 +181,8 @@
                 # Atualiza registro (update)    	}
                 $sql = 'UPDATE '.$tabela.' SET ';
 
-                $contador = count($campos);
-
                 if (is_array($campos)) {
+                    $contador = count($campos);
                     for ($a = 0; $a < $contador; $a++) {
                         if (is_null($valor[$a])) {
                             $sql .= $campos[$a] . " = NULL,";
