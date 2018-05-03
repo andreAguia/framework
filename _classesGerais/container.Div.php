@@ -2,7 +2,7 @@
 
 class Div
 {    
-    /**
+   /**
     * Cria um container div
     * 
     * @author André Águia (Alat) - alataguia@gmail.com
@@ -11,12 +11,16 @@ class Div
     * @var private $id    string NULL O id para o css
     * @var private $title string NULL Texto para o evento mouseover
     * 
+    * @group eventos
+    * @var private $onClick string NULL A rotina jscript a ser executada no evento onclick.
+    * 
     * @example exemplo.div.php
     */
     
     private $class = NULL;
     private $id = NULL;
     private $title = NULL;
+    private $onClick = NULL;
 
 ###########################################################
 
@@ -50,6 +54,20 @@ class Div
 
 ###########################################################
 
+    public function set_onClick($onClick = NULL){
+    /**
+     * Informa a rotina jscript a ser executada no evento onclick.
+     * 
+     * @syntax $div->set_onClick($onClick);
+     * 
+     * @param $onClick string NULL A rotina jscript a ser executada no evento onclick.
+     */
+    
+        $this->onClick = $onClick;
+    }
+
+###########################################################
+
     public function abre(){	
     /**
      * Inicia a abertura da div para inserção do conteúdo
@@ -60,18 +78,21 @@ class Div
         # abre a div 
         echo '<div';
         
-        if (!is_null($this->id)){
+        if(!is_null($this->id)){
             echo ' id="'.$this->id.'"';
         }
         
-        if (!is_null($this->class)){
+        if(!is_null($this->class)){
             echo ' class="'.$this->class.'"';
         }
         
-        if (!is_null($this->title)){
+        if(!is_null($this->title)){
             echo ' title="'.$this->title.'"';
         }
         
+        if(is_null($this->onClick)){     
+            echo ' onclick="'.$this->onClick.'"';
+        }
         echo '>';
     }
 
