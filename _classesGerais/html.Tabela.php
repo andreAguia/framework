@@ -193,8 +193,7 @@ class Tabela
      * @param 	$excluirCondicao	 string -> valor que exibe o bot�o de exclus�o
      * @param 	$excluirColuna		 integer -> n�mero da coluna cujo valor ser� comparado
      */
-    public function set_excluirCondicional($excluirCondicional,$excluirCondicao,$excluirColuna,$excluirOperador)
-    {
+    public function set_excluirCondicional($excluirCondicional,$excluirCondicao,$excluirColuna,$excluirOperador) {
         $this->excluirCondicional = $excluirCondicional;
         $this->excluirCondicao = $excluirCondicao;
         $this->excluirColuna = $excluirColuna;
@@ -214,8 +213,7 @@ class Tabela
      * @param 	$editarCondicao	 string -> valor que exibe o bot�o de editar
      * @param 	$editarColuna		 integer -> n�mero da coluna cujo valor ser� comparado
      */
-    public function set_editarCondicional($editarCondicional,$editarCondicao,$editarColuna,$editarOperador)
-    {
+    public function set_editarCondicional($editarCondicional,$editarCondicao,$editarColuna,$editarOperador){
         $this->editarCondicional = $editarCondicional;
         $this->editarCondicao = $editarCondicao;
         $this->editarColuna = $editarColuna;
@@ -239,8 +237,7 @@ class Tabela
 
     ###########################################################
 
-    public function show()
-    {
+    public function show(){
         $numRegistros = 0;                  // Contador de registros
         $numColunas = count($this->label);  // Calcula o número de colunas da tabela
         $numColunasOriginal = $numColunas;  // O número de colunas da tabela sem o edit, exclui, etc
@@ -350,9 +347,9 @@ class Tabela
             {	
                 $link = new Link($this->label[$a],$this->orderChamador.'&orderCampo='.($a+1).'&orderTipo='.$this->orderTipo);
                 $link->show();
-            }
-            else
+            }else{
                 echo $this->label[$a].'</th>';
+            }
         } // for
 
         echo '</tr>';
@@ -372,33 +369,26 @@ class Tabela
             echo '<tr ';  
             
             # Formatação condicional
-            if (!is_null($this->formatacaoCondicional))
-            {
+            if (!is_null($this->formatacaoCondicional)){
                 $rowCondicional = $row;
-                for ($a = 0;$a < ($numColunasOriginal);$a ++)
-                {
-                    foreach ($this->formatacaoCondicional as $condicional)
-                    {
-                        if($a == $condicional['coluna'])
-                        {
+                for ($a = 0;$a < ($numColunasOriginal);$a ++){
+                    foreach ($this->formatacaoCondicional as $condicional){
+                        if($a == $condicional['coluna']){
                             # somente para nivel de comparação
                             # Coloca a função (se tiver)
-                            if((isset($this->funcao[$a])) and ($this->funcao[$a] <> NULL)) 			
-                            {
+                            if((isset($this->funcao[$a])) and ($this->funcao[$a] <> NULL)){
                                 $nomedafuncao = $this->funcao[$a];
                                 $rowCondicional[$a] = $nomedafuncao($row[$a]);
                             }
                             
                             # Coloca a classe (se tiver)
-                            if((isset($this->classe[$a])) and ($this->classe[$a] <> NULL)) 			
-                            {
+                            if((isset($this->classe[$a])) and ($this->classe[$a] <> NULL)){
                                 $instancia = new $this->classe[$a]();
                                 $metodoClasse = $this->metodo[$a];
                                 $rowCondicional[$a] = $instancia->$metodoClasse($row[$a]);
                             }
                             
-                            switch ($condicional['operador'])
-                            {
+                            switch ($condicional['operador']){
                                 case '=':
                                 case '==':
                                     if($rowCondicional[$a] == $condicional['valor']){
@@ -464,10 +454,11 @@ class Tabela
                 echo '<td';
                 
                 # alinhamento
-                if((isset($this->align[$a])) and ($this->align[$a] <> NULL)) 
+                if((isset($this->align[$a])) and ($this->align[$a] <> NULL)){ 
                     echo ' id="'.$this->align[$a].'"';
-                else
+                }else{
                     echo ' id="center"';
+                }
                 
                 echo '>';
                 

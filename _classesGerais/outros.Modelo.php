@@ -779,8 +779,7 @@ class Modelo{
             }  // se for text area tira do array
 
             # Inlcui o valor se for para editar (id <> NULL)
-            if(($id <> NULL)and($this->selectEdita <> NULL))
-            {
+            if(($id <> NULL)and($this->selectEdita <> NULL)){
                 # se tiver criptografia, descriptograva para exibi��o
                 if ((isset($campo['encode'])) AND ( $campo['encode'])) {
                     $row[$campo['nome']] = base64_decode($row[$campo['nome']]);
@@ -788,8 +787,7 @@ class Modelo{
 
                 # se for data coloca no formato brasileiro antes da exibi��o 
                 # somente se n�o usa o controle data html5
-                if(($campo['tipo'] == 'date') OR ($campo['tipo'] == 'data'))
-                {
+                if(($campo['tipo'] == 'date') OR ($campo['tipo'] == 'data')){
                     if(HTML5){
                         $controle->set_valor($row[$campo['nome']]); 
                         $oldValue[] = $row[$campo['nome']];
@@ -939,7 +937,8 @@ class Modelo{
             if ((isset($campo['unique'])) and ($campo['unique'])){
                 # Pega duplicados
                 $duplicidade = new $this->classBd();
-                if ((isset($id)) and ( $id <> NULL)) {
+                
+                if ((isset($id)) and ($id <> NULL)) {
                     $result = $duplicidade->select("SELECT $this->idCampo FROM $this->tabela WHERE $campoNome[$contador] = '$campoValor[$contador]' AND $this->idCampo <> $id");
                 } else {
                     $result = $duplicidade->select("SELECT $this->idCampo FROM $this->tabela WHERE $campoNome[$contador] = '$campoValor[$contador]'");
