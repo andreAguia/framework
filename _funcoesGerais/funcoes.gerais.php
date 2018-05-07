@@ -473,6 +473,25 @@ function bold($texto,$destaque){
 
 ###########################################################
 
+function del($texto){	
+/**
+ * Retorna uma string com um trecho em tachado (del em html).
+ * 
+ * @syntax del($texto, $destaque);
+ *
+ * @return string do texto tachado
+ * 
+ * @param $texto    string NULL O a ser tachado
+ * 
+ * @example exemplo.del.php 
+ */
+
+    $texto = "<del>".$texto."</del";
+    return $texto;
+}
+
+###########################################################
+
 function retiraAcento($texto){
 /**
  * Retorna uma string sem acentos.
