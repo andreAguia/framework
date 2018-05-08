@@ -1019,8 +1019,7 @@ class Modelo{
         #    $erro = 1;
         #}  // Alterado seguindo a idéia de que o silêncio é de ouro
 
-        if ($erro == 0)
-        {
+        if ($erro == 0){
             # Conecta com o banco de dados
             $objeto = new $this->classBd();
 
