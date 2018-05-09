@@ -364,8 +364,7 @@ class Tabela
         else
             $numOrdem = count($this->conteudo);  # Inicia o número de ordem quando tiver
             
-        foreach ($this->conteudo as $row)
-        {
+        foreach ($this->conteudo as $row){
             echo '<tr ';  
             
             # Formatação condicional
