@@ -463,27 +463,29 @@ class Tabela
                 
                 # colunas
                 # Botão editar
-                if(($this->editar <> NULL) and ($a == $colunaEdita)){	
-                    $botao = new BotaoGrafico();
-                    $botao->set_url($this->editar.'&'.$this->nomeGetId.'='.$id);
-                    $botao->set_image(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
-                    $botao->set_title($this->nomeColunaEditar.': '.$row[0]);
-                    $botao->show();                    
+                if(($this->editar <> NULL) and ($a == $colunaEdita)){
+                    $link = new Link(NULL,$this->editar.'&'.$this->nomeGetId.'='.$id,$this->nomeColunaEditar.': '.$row[0]);
+                    $link->set_image(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
+                    $link->show();     
+                    
+                    #$botao = new BotaoGrafico();
+                    #$botao->set_url($this->editar.'&'.$this->nomeGetId.'='.$id);
+                    #$botao->set_image(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
+                    #$botao->set_title($this->nomeColunaEditar.': '.$row[0]);
+                    #$botao->show();                    
                 }
                 elseif(($this->excluir <> NULL) and ($a == $colunaExcluir))	// coluna de excluir
                 {
-                    $botao = new BotaoGrafico();
-                    $botao->set_url($this->excluir.'&'.$this->nomeGetId.'='.$id);
-                    $botao->set_image(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
-                    $botao->set_title($this->nomeColunaExcluir.': '.$row[0]);
-                    $botao->set_confirma('Deseja mesmo excluir?');
-                    $botao->show();
+                    $link = new Link(NULL,$this->excluir.'&'.$this->nomeGetId.'='.$id,$this->nomeColunaExcluir.': '.$row[0]);
+                    $link->set_image(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
+                    $link->show(); 
                     
-                    #$link = new Link('Excluir',$this->excluir.'&id='.$id);
-                    #$link->set_image(PASTA_FIGURAS_GERAIS.$this->excluirBotao);
-                    #$link->set_title($this->nomeColunaExcluir.': '.$row[0]);
-                    
-                    #$link->show();
+                    #$botao = new BotaoGrafico();
+                    #$botao->set_url($this->excluir.'&'.$this->nomeGetId.'='.$id);
+                    #$botao->set_image(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
+                    #$botao->set_title($this->nomeColunaExcluir.': '.$row[0]);
+                    #$botao->set_confirma('Deseja mesmo excluir?');
+                    #$botao->show();                    
                 }						
                 elseif(($this->editarCondicional <> NULL) and ($a == $colunaEditarCondicional))	// coluna de editar_condicional
                 {

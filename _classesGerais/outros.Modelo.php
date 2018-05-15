@@ -484,6 +484,7 @@ class Modelo{
         # se o resultado for vazio exibe mensagem ao inves de montar a tabela
         if(count($result) == 0){
             br();
+            tituloTable($this->nome);
             $callout = new Callout();
             $callout->abre();
                 p('Nenhum item encontrado !!','center');
