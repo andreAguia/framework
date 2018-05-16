@@ -478,6 +478,7 @@ class Tabela
                 {
                     $link = new Link(NULL,$this->excluir.'&'.$this->nomeGetId.'='.$id,$this->nomeColunaExcluir.': '.$row[0]);
                     $link->set_image(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
+                    $link->set_confirma('Deseja mesmo excluir?');
                     $link->show(); 
                     
                     #$botao = new BotaoGrafico();
