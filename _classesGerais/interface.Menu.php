@@ -50,6 +50,17 @@
                 $this->tipo[] = 'titulo';
                 break;
             
+            case "titulo1" :
+                # titulo
+                $link = new Link($label,$url);
+                $link->set_title($title);
+                $link->set_target($target);
+
+                # Joga o objeto para o array
+                $this->item[] = $link;
+                $this->tipo[] = 'titulo1';
+                break;
+            
             case "link" :
                 # Link 
                 $link = new Link($label,$url);
@@ -103,15 +114,24 @@
         # Começa
         echo "<ul class='menuVertical'>";
         foreach ($this->item as $row){
-            if($this->tipo[$contador] == 'titulo'){
-                echo "<li id='titulo'>";
-                $row->show();
-                echo "</li>";
-            }else{
-                echo "<li class='menuVertical'>";
-                $row->show();
-                echo "</li>";
-            }
+            switch ($this->tipo[$contador]){
+                case "titulo" :
+                    echo "<li id='titulo'>";
+                    $row->show();
+                    echo "</li>";
+                    break;
+                
+                case "titulo1" :
+                    echo "<li id='titulo1'>";
+                    $row->show();
+                    echo "</li>";
+                    break;
+                
+                default :
+                    echo "<li class='menuVertical'>";
+                    $row->show();
+                    echo "</li>";
+                }
             $contador++;
         }   
         echo "</ul>";
