@@ -1043,9 +1043,9 @@ class Modelo{
             # Inicia o tipo de log
             $tipoLog = NULL;
 
+            /*
             # Grava no log a atividade
-            if($this->log)
-            {
+            if($this->log){
                 $intra = new Intra();
                 $data = date("Y-m-d H:i:s");
 
@@ -1064,6 +1064,8 @@ class Modelo{
                     $intra->registraLog($this->idUsuario,$data,$atividade,$this->tabela,$id,$tipoLog,$this->idServidorPesquisado);
                 }
             }
+             * 
+             */
 
             aguarde();
 

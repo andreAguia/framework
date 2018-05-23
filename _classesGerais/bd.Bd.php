@@ -176,8 +176,7 @@
                 #$sql = trim($sql,","); # Retira o último ',' de $sql (não funcionou !!)
                 $sql .=')';
 
-            }	
-            else {
+            }else{
                 # Atualiza registro (update)    	}
                 $sql = 'UPDATE '.$tabela.' SET ';
 
@@ -193,14 +192,13 @@
 
                     # Retira o último ',' de $sql
                     $sql = rtrim($sql, ',');
-                }
-                else {
+                }else{
                     $sql .= $campos . " = '" . $valor . "' ";
                 }
 
                 $sql .= ' WHERE '.$idCampo.' = '.$idValor;		    		
             }
-            #echo $sql.'<br />';
+            #alert($sql);
 
             # Executa o sql
             $this->conn->exec($sql);
