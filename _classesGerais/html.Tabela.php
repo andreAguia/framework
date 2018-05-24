@@ -119,6 +119,7 @@ class Tabela
     private $textoRessaltado = NULL;	# string que será ressaltada no resultado da tabela (usado para resaltar pesquisas)
     private $idCampo = NULL;
     private $nomeGetId = "id";          # Nome do get do id. 
+    private $scroll = TRUE;             # Habilita ou não o scrool horizontal da tabela
     ###########################################################
 
     /**
@@ -278,7 +279,11 @@ class Tabela
         }        
                
         # Início da Tabela
-        echo '<div class="table-scroll">';
+        if($this->scroll){
+            echo '<div class="table-scroll">';
+        }
+        
+        # Iniciando a tabela
         echo '<table class="'.$this->class.'"';        
         
         # id
@@ -680,6 +685,10 @@ class Tabela
         
         echo '</tfoot>';
         echo '</table>';
-        echo '</div>';
+        
+        if($this->scroll){
+            echo '</div>';
+        }
+        
     }
 }
