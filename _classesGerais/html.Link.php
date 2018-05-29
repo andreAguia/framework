@@ -237,29 +237,31 @@ class Link
         if (!is_null($this->id)){
             echo ' id="'.$this->id.'"';
         }
-
-        if($this->janela){
-            $this->set_onClick("window.open('$this->url$id','_blank','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=$this->janelaWidth,height=$this->janelaHeight')");
-        }
-
-        # Verifica se tem confirmação
-        if ($this->confirma <> NULL){  // com confirmação
-            if(is_null($id)){	// Exibe ou não o id
-                echo " onclick='confirma(\"$this->url\",\"$this->confirma\")'";
-            }else{
-                echo " onclick='confirma(\"$this->url$id\",\"$this->confirma\")'"; 	
+        
+        if(!is_null($this->url)){
+            if($this->janela){
+                $this->set_onClick("window.open('$this->url$id','_blank','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=$this->janelaWidth,height=$this->janelaHeight')");
             }
 
-            echo ' href="#"';
-        }else{	   // sem confirmação
-            if(is_null($this->onClick)){        
+            # Verifica se tem confirmação
+            if ($this->confirma <> NULL){  // com confirmação
                 if(is_null($id)){	// Exibe ou não o id
-                    echo ' href="'.$this->url.'"';
+                    echo " onclick='confirma(\"$this->url\",\"$this->confirma\")'";
                 }else{
-                    echo ' href="'.$this->url.$id.'"';
+                    echo " onclick='confirma(\"$this->url$id\",\"$this->confirma\")'"; 	
                 }
-            }else{
-                echo ' href="javascript:'.$this->onClick.'"';
+
+                echo ' href="#"';
+            }else{	   // sem confirmação
+                if(is_null($this->onClick)){        
+                    if(is_null($id)){	// Exibe ou não o id
+                        echo ' href="'.$this->url.'"';
+                    }else{
+                        echo ' href="'.$this->url.$id.'"';
+                    }
+                }else{
+                    echo ' href="javascript:'.$this->onClick.'"';
+                }
             }
         }
             
