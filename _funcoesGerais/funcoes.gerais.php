@@ -1702,6 +1702,25 @@ function arrayToString($array){
 
 ###########################################################
 /**
+ * Preenche um array numérico com uma faixa de valores
+ * @param integer $valorInicial Valor Inicial
+ * @param integer $valorFinal   Valor Inicial
+ * @return array com os valores preenchidos
+ */
+function arrayPreenche($valorInicial,$valorFinal){
+    # Inicia o array de retorno
+    $resultado = array();
+    
+    # Preenche com os valores informados
+    for ($i = $valorInicial; $i <= $valorFinal; $i++) {
+        $resultado[] = $i;
+    }
+    
+    return $resultado;
+}
+
+###########################################################
+/**
  * Informa o dia da dsemana de uma data
  * @param date $data data a ser examinada no formato YYYY/mm/dd
  * @return string com o dia da semana 
