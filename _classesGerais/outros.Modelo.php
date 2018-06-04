@@ -873,8 +873,7 @@ class Modelo{
     * @param $validacaoExtra    string   rotina externa extra de validação
     */
     
-    public function gravar($id = NULL,$validacaoExtra = NULL)
-    {	
+    public function gravar($id = NULL,$validacaoExtra = NULL){	
         # Variáveis sobre um erro fatal (que não pode prosseguir com ele)
         $erro = 0;		    // flag de erro: 1 - tem erro; 0 - não tem	
         $msgErro = NULL; 	// repositório de mensagens de erro
@@ -1043,7 +1042,6 @@ class Modelo{
             # Inicia o tipo de log
             $tipoLog = NULL;
 
-            /*
             # Grava no log a atividade
             if($this->log){
                 $intra = new Intra();
@@ -1064,9 +1062,7 @@ class Modelo{
                     $intra->registraLog($this->idUsuario,$data,$atividade,$this->tabela,$id,$tipoLog,$this->idServidorPesquisado);
                 }
             }
-             * 
-             */
-
+            
             aguarde();
 
             loadPage($this->linkListar);
