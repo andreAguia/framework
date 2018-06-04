@@ -238,8 +238,8 @@ class Link
             echo ' id="'.$this->id.'"';
         }
         
-        if(!is_null($this->url)){
-            if($this->janela){
+        if((!is_null($this->url)) OR (!is_null($this->onClick))){
+            if($this->janela){ 
                 $this->set_onClick("window.open('$this->url$id','_blank','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=$this->janelaWidth,height=$this->janelaHeight')");
             }
 
