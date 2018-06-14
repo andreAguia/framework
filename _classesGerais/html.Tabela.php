@@ -88,7 +88,7 @@ class Tabela
     private $excluirCondicao = NULL;
     private $excluirColuna = NULL;
     private $excluirOperador = "==";
-    private $excluirBotao = 'bullet_cross.png';	# Figura do botão
+    private $excluirBotao = 'lixo.png';	# Figura do botão
 
     # das rotinas de edição
     private $editar = NULL;

@@ -230,8 +230,7 @@ class Modelo{
     * @param 	$editarColuna	   integer -> número da coluna cujo valor será comparado
     */
     
-    public function set_editarCondicional($editarCondicional,$editarCondicao,$editarColuna,$editarOperador = NULL)
-    {
+    public function set_editarCondicional($editarCondicional,$editarCondicao,$editarColuna,$editarOperador = NULL){
         $this->editarCondicional = $editarCondicional;
         $this->editarCondicao = $editarCondicao;
         $this->editarColuna = $editarColuna;

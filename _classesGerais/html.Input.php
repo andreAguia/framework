@@ -445,9 +445,9 @@ class Input
 
 
         switch ($this->tipo){
-            case "texto":
             case "processo":
             case "processoNovo":
+            case "texto":
             case "numero":
             case "patrimonio":
             case "cpf":
@@ -563,18 +563,20 @@ class Input
                 $this->array = array(array(NULL,""),array(TRUE,"Sim"),array(FALSE,"Não"));
                             
                 echo '<option value="'.TRUE.'"';
-                if ($this->valor)
+                if ($this->valor){
                     echo ' selected>';
-                else
+                }else{
                     echo '>';
+                }
                 echo 'Sim';
                 echo '</option>';
                 
                 echo '<option value="'.FALSE.'"';
-                if (!($this->valor))
+                if (!($this->valor)){
                     echo ' selected>';
-                else
+                }else{
                     echo '>';
+                }
                 echo 'Não';
                 echo '</option>';
                 echo '</select>';
@@ -680,7 +682,7 @@ class Input
                 echo ' onkeypress="mask(this, \''.$mascara.'\',3,this)" ';
                 echo ' onkeyup="mask(this, \''.$mascara.'\',3,this)" ';
                 echo ' onblur="mask(this, \''.$mascara.'\',3,this)" ';          
-                echo '/>';
+                echo '/>';                
                 break;
 
             case "cpf":
