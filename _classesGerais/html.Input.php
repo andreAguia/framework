@@ -441,8 +441,7 @@ class Input
                 echo $this->label;
                 echo '</label>';
                 break;
-        }	
-
+        }
 
         switch ($this->tipo){
             case "processo":
@@ -462,6 +461,7 @@ class Input
             case "reset":
             case "button":
             case "checkbox":
+            case "radio":    
                 echo '<INPUT';
                 break;
             case "moeda":
@@ -621,6 +621,17 @@ class Input
                 else	
                     echo '>';                            
                 break;
+            
+            #<INPUT TYPE="radio" NAME="OPCAO" VALUE="op1" CHECKED> opção1   
+            case "radio":
+                echo ' type="'.$this->tipo.'"';
+                echo ' nome="'.$this->nome.'"';
+                echo ' value="'.$this->valor.'"';
+                if ($this->valor == $this->nome)	# se for TRUE, ou seja valor igual a 1
+                    echo ' checked>';
+                else	
+                    echo '>';                            
+                break;    
 
             case "date":
             case "data":
