@@ -120,6 +120,7 @@ class Tabela
     private $idCampo = NULL;
     private $nomeGetId = "id";          # Nome do get do id. 
     private $scroll = TRUE;             # Habilita ou não o scrool horizontal da tabela
+    
     ###########################################################
 
     /**
@@ -127,8 +128,7 @@ class Tabela
      *  
      * @param 	$nome	string	-> nome da classe da tabela para o css
      */
-    public function __construct($id = NULL,$class = 'tabelaPadrao table-scroll')
-    {
+    public function __construct($id = NULL,$class = 'tabelaPadrao table-scroll'){
         $this->id = $id;
         $this->class = $class;
     }
@@ -149,8 +149,7 @@ class Tabela
      * @param 	$metodo		O nome do metodo
      * @param 	$parametros	Os parâmetros inseridos  
      */
-    public function __call ($metodo, $parametros)
-    {
+    public function __call ($metodo, $parametros){
         ## Se for set, atribui um valor para a propriedade
         if (substr($metodo, 0, 3) == 'set')
         {
@@ -174,8 +173,7 @@ class Tabela
      * @param 	$width	array	-> array com o tamanho de cada coluna em %
      * @param 	$align	array	-> array com o alinhamento da coluna pode ser center, left, right ou justify
      */
-    public function set_cabecalho($label = NULL,$width = NULL,$align = NULL)
-    {
+    public function set_cabecalho($label = NULL,$width = NULL,$align = NULL){
         $this->label = $label;
         $this->width = $width;
         $this->align = $align;

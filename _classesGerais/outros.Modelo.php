@@ -885,8 +885,7 @@ class Modelo{
         $oldValue = get_session('oldValue'.$this->tabela);
 
         # percorre os dados digitados validando
-        foreach ($this->campos as $campo)
-        {		
+        foreach ($this->campos as $campo){		
             # passa o nome dos campos para o array de gravação
             $campoNome[$contador] = addslashes($campo['nome']);  // nome do campo no banco
             $campoValor[$contador] = post($campo['nome']);	     // array dos valores
@@ -964,16 +963,14 @@ class Modelo{
             }
 
             # validação dos campos tipo checkbox
-            if ($campo['tipo'] == 'checkbox')
-            {
+            if ($campo['tipo'] == 'checkbox'){
                 if (isset($campoValor[$contador])) {
                     $campoValor[$contador] = 1;
                 }
             }
 
             # validação dos campos tipo data
-            if ((($campo['tipo'] == 'date')or($campo['tipo'] == 'data'))and(!(is_null($campoValor[$contador]))))
-            { 
+            if ((($campo['tipo'] == 'date')or($campo['tipo'] == 'data'))and(!(is_null($campoValor[$contador])))) { 
                 # formata data quando vier de um controle html5 (vem yyyy/mm/dd)
                 if (HTML5) {
                     $campoValor[$contador] = date_to_php($campoValor[$contador]);
@@ -989,8 +986,7 @@ class Modelo{
             }
             
             # Passa o campo moeda para o formato americano (para o banco de dados)
-            if (($campo['tipo'] == 'moeda')and(!(is_null($campoValor[$contador]))))
-            {
+            if (($campo['tipo'] == 'moeda')and(!(is_null($campoValor[$contador])))) {
                 $campoValor[$contador] = formataMoeda($campoValor[$contador],2);	
             }
        

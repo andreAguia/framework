@@ -13,6 +13,7 @@ class Input
   * @group do label
   * @var private $label     string NULL    O label do controle
   * @var private $tipoLabel string integer O tipo do label: 0 - sem label, 1 - label em cima, 2 - label do lado direito e 3 - label do lado esquerdo
+  * @var private $inLine    string NULL    Um texto que aparece em frente do input (Zurb Foundation)
   *   
   * @group do tamanho
   * @var private $size      integer 0  O tamanho do controle
@@ -32,6 +33,7 @@ class Input
   * @var private $autofocus bool    FALSE Informa se o controle será o primeiro a receber foco quando a página carregar. Deverá se ter somente um controle com autofocus habilitado por página.
   * @var private $required  bool    FALSE Informa se o conterole deverá obrigatoriamente ser preenchido. Requerido. Not NULL
   * @var private $array     array   NULL  Informa o array de valores para uma combo.
+  * @var private $id        string  NULL  Informa o id do input para o css ou jscript
   * 
   * @group dos eventos
   * @var private $onClick   string  NULL  Informa rotina do evento OnClick
@@ -42,6 +44,9 @@ class Input
   * @var private $linha    integer NULL Informa a linha do formulário onde o o controle ficará 
   * @var private $fieldset string  NULL Texto do fieldset interno que começará antes desse controle 
   * 
+  * @group do ratio e checkbox
+  * @var private $checked   bool   FALSE Informa se o radio ou o checkbox está ticado
+  *  
   * @example exemplo.input.php
   */
 	
@@ -52,6 +57,7 @@ class Input
     # do label
     private $label = NULL;
     private $tipoLabel = 0;
+    private $inLine = NULL;
 
     # do tamanho
     private $size = 0;
@@ -72,7 +78,10 @@ class Input
     private $autofocus = FALSE; 
     private $required = FALSE;
     private $array = NULL;
-
+    
+    private $id = NULL;
+    private $class = NULL;
+    
     # dos eventos
     private $onClick = NULL;
     private $onChange = NULL;
@@ -81,6 +90,9 @@ class Input
     # do form
     private $linha = NULL;     // informa a linha do controle
     private $fieldset = NULL;   // cria um fieldset dentro do form
+    
+    # do ratio ou do checkbos
+    private $checked = FALSE;
 
 ###########################################################
 
@@ -121,6 +133,34 @@ class Input
     
 ###########################################################
     
+    public function set_id($id){
+    /**
+     * Informa o id para o css ou jscript
+     * 
+     * @param $id      string NULL O id do input
+     * 
+     * @syntax $input->set_id($id);  
+     */
+    
+        $this->id = $id;
+    }
+    
+###########################################################
+    
+    public function set_inLine($inLine){
+    /**
+     * Informa um texto para o inline 
+     * 
+     * @param $inLine string NULL O texto para o inLine
+     * 
+     * @syntax $input->set_inLine($inLine);  
+     */
+    
+        $this->inLine = $inLine;
+    }
+    
+###########################################################
+    
     public function set_col($col = NULL){
     /**
      * Informa o tamanho da coluna do controle para o grid do Foundation
@@ -136,6 +176,20 @@ class Input
     }
     
 ##########################################################       
+
+    public function set_checked($checked){
+    /**
+     * Informa o valor da variavel checked 
+     * 
+     * @syntax $input->set_checked();
+     * 
+     * @note A variavel checked só funciona no radio e no checkbox.
+     */
+    
+        $this->checked = $checked;
+    }    
+
+###########################################################                   
 
     public function get_col(){
     /**
@@ -412,7 +466,7 @@ class Input
             $this->tipoLabel = 0;
         }
 
-        if ($this->tipo == "checkbox") {
+        if (($this->tipo == "checkbox") OR ($this->tipo == "radio")) {
             $this->tipoLabel = 3;
         }
 
@@ -442,10 +496,38 @@ class Input
                 echo '</label>';
                 break;
         }
+        
+        if (!is_null($this->inLine)){
+            echo '<div';
+            
+            if (!is_null($this->id)) {
+                echo ' id="div'.$this->id.'"';
+            }else{
+                echo ' id="div'.$this->nome.'"';
+            }
+            
+            echo ' class="input-group">';
+            
+            echo '<span ';
+            
+            if (!is_null($this->id)) {
+                echo ' id="span'.$this->id.'"';
+            }else{
+                echo ' id="span'.$this->nome.'"';
+            }
+            
+            echo ' class="input-group-label">';
+            echo $this->inLine;
+            echo '</span>';
+            
+            $this->class = "input-group-field";
+        }
 
         switch ($this->tipo){
             case "processo":
             case "processoNovo":
+            case "processoReduzido":
+            case "processoNovoReduzido":    
             case "texto":
             case "numero":
             case "patrimonio":
@@ -485,7 +567,18 @@ class Input
                 echo '<textarea';	
                 break;
         }
-
+        
+        # id
+        if (!is_null($this->id)) {
+            echo ' id="' . $this->id . '"';
+        }else{
+            echo ' id="'.$this->nome.'"';
+        }
+        
+        # class
+        if (!is_null($this->class)) {
+            echo ' class="' . $this->class . '"';
+        }
         # tabulação
         if (!is_null($this->tabindex)) {
             echo ' tabindex="' . $this->tabindex . '"';
@@ -541,7 +634,7 @@ class Input
 
         # dados do input
         echo ' name="'.$this->nome.'"'; # nome do controle (deve ser o mesmo que o do banco de dados)
-        echo ' id="'.$this->nome.'"';
+        
         
         switch ($this->tipo){	
             case "textarea":
@@ -616,10 +709,11 @@ class Input
                 echo ' size="'.($this->size).'"';
                 #echo ' class="checkbox"';
                 echo ' value="'.$this->nome.'"';
-                if ($this->valor == $this->nome)	# se for TRUE, ou seja valor igual a 1
+                if ($this->valor == $this->nome){	# se for TRUE, ou seja valor igual a 1
                     echo ' checked>';
-                else	
-                    echo '>';                            
+                }else{	
+                    echo '>';
+                }
                 break;
             
             #<INPUT TYPE="radio" NAME="OPCAO" VALUE="op1" CHECKED> opção1   
@@ -627,10 +721,11 @@ class Input
                 echo ' type="'.$this->tipo.'"';
                 echo ' nome="'.$this->nome.'"';
                 echo ' value="'.$this->valor.'"';
-                if ($this->valor == $this->nome)	# se for TRUE, ou seja valor igual a 1
+                if ($this->checked){
                     echo ' checked>';
-                else	
-                    echo '>';                            
+                }else{	
+                    echo '>';
+                }
                 break;    
 
             case "date":
@@ -653,10 +748,11 @@ class Input
                     echo ' onkeypress="mask(this, \''.$mascara.'\',1,this)';
 
                     # Verifica se está habilitado o pulo para o controle seguinte
-                    if (!is_null($this->pularPara))
+                    if (!is_null($this->pularPara)){
                        echo '; pularCampo(\''.$this->nome.'\','.$this->size.',\''.$this->pularPara.'\')"';
-                    else
+                    }else{
                         echo '"';
+                    }
 
                     echo ' onkeyup="mask(this, \''.$mascara.'\',1,this)" ';
                     echo ' onblur="mask(this, \''.$mascara.'\',1,this)" ';          
@@ -684,9 +780,31 @@ class Input
                 echo ' onblur="mask(this, \''.$mascara.'\',3,this)" ';          
                 echo '/>';
                 break; 
+            
+            case "processoReduzido":
+                $mascara = '99/999999/9999';
+                echo ' size="'.($this->size).'"';
+                echo ' type="text"';
+                echo ' value="'.$this->valor.'"';
+                echo ' onkeypress="mask(this, \''.$mascara.'\',3,this)" ';
+                echo ' onkeyup="mask(this, \''.$mascara.'\',3,this)" ';
+                echo ' onblur="mask(this, \''.$mascara.'\',3,this)" ';          
+                echo '/>';
+                break; 
              
             case "processoNovo":
                 $mascara = 'E-99/999/999999/9999';
+                echo ' size="'.($this->size).'"';
+                echo ' type="text"';
+                echo ' value="'.$this->valor.'"';
+                echo ' onkeypress="mask(this, \''.$mascara.'\',3,this)" ';
+                echo ' onkeyup="mask(this, \''.$mascara.'\',3,this)" ';
+                echo ' onblur="mask(this, \''.$mascara.'\',3,this)" ';          
+                echo '/>';                
+                break;
+            
+            case "processoNovoReduzido":
+                $mascara = '99/999/999999/9999';
                 echo ' size="'.($this->size).'"';
                 echo ' type="text"';
                 echo ' value="'.$this->valor.'"';
@@ -715,11 +833,11 @@ class Input
                 #echo ' onkeypress="mask(this, \''.$mascara.'\',1,this)';
                 
                 # Verifica se está habilitado o pulo para o controle seguinte
-                if (!is_null($this->pularPara))
+                if (!is_null($this->pularPara)){
                     echo '; pularCampo(\''.$this->nome.'\','.$this->size.',\''.$this->pularPara.'\')"';
-                else
+                }else{
                     echo '"';
-                
+                }
                 #echo ' onkeyup="mask(this, \''.$mascara.'\',1,this)" ';
                 #echo ' onblur="mask(this, \''.$mascara.'\',1,this)" ';           
                 echo '/>';
@@ -801,17 +919,22 @@ class Input
                 echo ' value="'.$this->valor.'"';
                 
                 # Verifica se está habilitado o pulo para o controle seguinte
-                if (!is_null($this->pularPara))
+                if (!is_null($this->pularPara)){
                     echo 'onkeypress="pularCampo(\''.$this->nome.'\','.$this->size.',\''.$this->pularPara.'\')"';
+                }
                           
                 echo ' onFocus="this.select();"';
                 echo '/>';
                 break;
-        }		
+        }	
+        
+        if (!is_null($this->inLine)){
+            echo '</div>';
+        }
 
         switch ($this->tipoLabel){
             case 3:
-                echo '<label id="checkbox" for="'.$this->nome.'">';   
+                echo '<label id="label'.$this->nome.'" for="'.$this->nome.'">';   
                 echo $this->label;
                 echo '</label>';
                 break;
