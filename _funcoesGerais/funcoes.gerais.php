@@ -416,6 +416,55 @@ function get_nomeMes($numero = NULL){
 
 ###########################################################
 
+function get_nomeMesAno($mesAno){
+/**
+ * Retorna o nome do mês e ano informando a string no formato MM/AAAA
+ * 
+ * @syntax get_nomeMesAno([$mesAno]);
+ * 
+ * @category Data
+ * 
+ * @return string com o nome do mês / ano
+ * 
+ * @param $mesAno string NULL string no formato MM/AAAA
+ * 
+ * @note Está função foi criada para rotina da área de férias por ano de fruição.
+ * 
+ * @example exemplo.get_nomeMesAno.php  
+ */
+    
+    # Divide o mes e ano
+    $partes = explode("/",$mesAno);
+    
+    # Pega os valores 
+    $numero = $partes[0];
+    $ano = $partes[1];
+    
+    # Valida o número do mês
+    if(($numero > 12) OR ($numero < 1)){
+        return "ERRO !! - Mês Inexistente";
+    }else{
+        # Cria array dos meses
+        $mes = array(
+               array("1","Janeiro"),
+               array("2","Fevereiro"),
+               array("3","Março"),
+               array("4","Abril"),
+               array("5","Maio"),
+               array("6","Junho"),
+               array("7","Julho"),
+               array("8","Agosto"),
+               array("9","Setembro"),
+               array("10","Outubro"),
+               array("11","Novembro"),
+               array("12","Dezembro"));
+
+        return $mes[$numero-1][1]." / ".$ano;
+    }
+}
+
+###########################################################
+
 function retiraAspas($texto){	
 /**
  * Retorna a string sem as aspas simples e duplas.
