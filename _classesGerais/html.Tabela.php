@@ -338,16 +338,15 @@ class Tabela
             echo '<th title="'.$this->label[$a].'">';
 
             # colunas
-            if(($this->editar <> NULL) and ($a == $colunaEdita))			// coluna de editar
+            if(($this->editar <> NULL) and ($a == $colunaEdita)){			// coluna de editar
                 echo $this->nomeColunaEditar.'</th>';
-            elseif(($this->excluir <> NULL) and ($a == $colunaExcluir))	// coluna de excluir
+            }elseif(($this->excluir <> NULL) and ($a == $colunaExcluir)){	// coluna de excluir
                 echo $this->nomeColunaExcluir.'</th>';
-            elseif(($this->excluirCondicional <> NULL) and ($a == $colunaExcluirCondicional))	// coluna de excluir_condicional
+            }elseif(($this->excluirCondicional <> NULL) and ($a == $colunaExcluirCondicional)){	// coluna de excluir_condicional
                 echo $this->nomeColunaExcluir.'</th>';
-            elseif(($this->editarCondicional <> NULL) and ($a == $colunaEditarCondicional))	// coluna de excluir_condicional
-                echo $this->nomeColunaEditar.'</th>';	
-            elseif($this->orderCampo <> NULL)							// coloca um link no cabe�alho da coluna para ordenamento (quando tiver ordenamento)
-            {	
+            }elseif(($this->editarCondicional <> NULL) and ($a == $colunaEditarCondicional)){	// coluna de excluir_condicional
+                echo $this->nomeColunaEditar.'</th>';
+            }elseif($this->orderCampo <> NULL){		// coloca um link no cabe�alho da coluna para ordenamento (quando tiver ordenamento)
                 $link = new Link($this->label[$a],$this->orderChamador.'&orderCampo='.($a+1).'&orderTipo='.$this->orderTipo);
                 $link->show();
             }else{
@@ -362,11 +361,12 @@ class Tabela
         echo '<tbody>';
         
         # Coluna de ordem
-        if($this->numeroOrdemTipo == 'c')
+        if($this->numeroOrdemTipo == 'c'){
             $numOrdem = 1;  # Inicia o número de ordem quando tiver
-        else
+        }else{
             $numOrdem = count($this->conteudo);  # Inicia o número de ordem quando tiver
-            
+        }
+        
         foreach ($this->conteudo as $row){
             echo '<tr ';  
             
@@ -440,16 +440,18 @@ class Tabela
                 echo '<td id="center">'.$numOrdem.'</td>';            
             }
             
-            if($this->numeroOrdemTipo == 'c')
+            if($this->numeroOrdemTipo == 'c'){
                 $numOrdem++;    # incrementa o número de ordem
-            else
+            }else{
                 $numOrdem--;    # decrementa o número de ordem
+            }
             
             $numRegistros ++;
 
             # Pega o id do Banco de dados
-            if(isset($this->idCampo))
+            if(isset($this->idCampo)){
                 $id = $row["$this->idCampo"]; 
+            }
 
             # percorre as colunas 
             for ($a = 0;$a < ($numColunas);$a ++){
@@ -553,35 +555,29 @@ class Tabela
                 }
                 
                 # Coloca o link (se tiver)
-                if((isset($this->linkCondicional[$a])) and ($this->linkCondicional[$a] <> NULL))
-                {
-                    if($this->linkCondicionalOperador == '=')
-                    {
-                        if($this->linkCondicional[$a] == $row[$a])
-                        {
+                if((isset($this->linkCondicional[$a])) and ($this->linkCondicional[$a] <> NULL)){
+                    if($this->linkCondicionalOperador == '='){
+                        if($this->linkCondicional[$a] == $row[$a]){
                             if((isset($this->link[$a])) and ($this->link[$a] <> NULL)) 
                                 $this->link[$a]->show($id);
                         }
                     }
                     
-                    if($this->linkCondicionalOperador == '<>')
-                    {
-                        if($this->linkCondicional[$a] <> $row[$a])
-                        {
-                            if((isset($this->link[$a])) and ($this->link[$a] <> NULL)) 
+                    if($this->linkCondicionalOperador == '<>'){
+                        if($this->linkCondicional[$a] <> $row[$a]){
+                            if((isset($this->link[$a])) and ($this->link[$a] <> NULL)){ 
                                 $this->link[$a]->show($id);
+                            }
                         }
                     }
-                }
-                else
-                {
-                    if((isset($this->link[$a])) and ($this->link[$a] <> NULL)) 
+                }else{
+                    if((isset($this->link[$a])) and ($this->link[$a] <> NULL)){
                         $this->link[$a]->show($id);
+                    }
                 }
                 
                 # Se não é coluna de editar, nem de excluir, nem excluir condicional, nem de link etc
-                if (($a <> $colunaEdita) and ($a <> $colunaExcluir) and ($a <> $colunaExcluirCondicional) and ($a <> $colunaEditarCondicional)and ((!isset($this->link[$a])) or ($this->link[$a] == NULL)))
-                {   
+                if (($a <> $colunaEdita) and ($a <> $colunaExcluir) and ($a <> $colunaExcluirCondicional) and ($a <> $colunaEditarCondicional)and ((!isset($this->link[$a])) or ($this->link[$a] == NULL))){
                     # verifica se tem imagem condicional, se tiver exibe o gráfico ao invel do valor                
                     if (!is_null($this->imagemCondicional)){
                         # pega as colunas que possuem imagens 
@@ -626,58 +622,48 @@ class Tabela
                                             $condicionalImagem['imagem']->show();
                                         break;
                                 }
-                            }
-                            else
-                            {
-                                if((!in_array($a,$colunasImagem)) and ($contadorRow == 0))
-                                {
-                                    if((!is_null($this->textoRessaltado)) AND ($this->textoRessaltado <> "") AND ($a <> $colunaEdita))
-                                    {
+                            }else{
+                                if((!in_array($a,$colunasImagem)) and ($contadorRow == 0)){
+                                    if((!is_null($this->textoRessaltado)) AND ($this->textoRessaltado <> "") AND ($a <> $colunaEdita)){
                                         #$row[$a] = get_bold($row[$a],$this->textoRessaltado);
                                         echo $row[$a];
-                                    }
-                                    else
+                                    }else{
                                         echo $row[$a];
-                                    
+                                    }
                                     $contadorRow++;
                                 }
                             }
                         }                            
-                    }
-                    elseif((!is_null($this->textoRessaltado)) AND ($this->textoRessaltado <> "")) # Verifica se tem negrito
-                    {
+                    }elseif((!is_null($this->textoRessaltado)) AND ($this->textoRessaltado <> "")){ # Verifica se tem negrito
                         if($a <> $colunaEdita){
                             $row[$a] = bold($row[$a],$this->textoRessaltado);
                         }
                         echo $row[$a];
-                    }
-                     else
+                    }else{
                          echo $row[$a];
+                    }
                 }                
                 echo '</td>';
             }
-            
             echo '</tr>';
         }
 
         echo '</tbody>';
         
         # Rotapé da Tabela
-        if (($this->totalRegistro) OR ($this->rodape))
-        {
+        if (($this->totalRegistro) OR ($this->rodape)){
             echo '<tfoot>';
             if ($this->numeroOrdem) {
                 echo '<tr><td colspan="' . ($numColunas + 1) . '" title="Total de itens da tabela">';
-            } else {
+            }else{
                 echo '<tr><td colspan="' . ($numColunas) . '" title="Total de itens da tabela">';
             }
 
             if (is_null($this->rodape)) {
                 echo 'Total:   ' . $numRegistros;
-            } else {
+            }else{
                 echo $this->rodape;
             }
-
             echo '</td></tr>';
         }
         
@@ -686,7 +672,6 @@ class Tabela
         
         if($this->scroll){
             echo '</div>';
-        }
-        
+        }        
     }
 }
