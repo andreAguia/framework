@@ -47,6 +47,14 @@ class Processo {
                 $partes[1] = str_pad($partes[1], 6, "0", STR_PAD_LEFT); 
                 $ano = $partes[2];
             }
+            
+            # Retira pontos
+            $partes[0] = str_replace(".","",$partes[0]);
+            $partes[1] = str_replace(".","",$partes[1]);
+            
+            if($this->tipoProcesso == 1){
+                $partes[2] = str_replace(".","",$partes[2]);
+            }
 
             # Verifica o ano
             if(strlen($ano) == 2){
@@ -79,8 +87,8 @@ class Processo {
             }
             
             # Passa o E para maiúscula se não tiver
-            $partes[0] = strtoupper($partes[0]);
-
+            $partes[0] = strtoupper($partes[0]);          
+            
             # Acerta o processo
             $processo = $partes[0]."/".$partes[1];
             if($this->tipoProcesso == 1){
