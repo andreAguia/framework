@@ -1828,3 +1828,85 @@ function feed($feed){
 function codificacao($string) {
     return mb_detect_encoding($string.'x', 'UTF-8, ISO-8859-1');
 }
+
+###########################################################
+
+function dias_to_diasMesAno($dias){
+
+/**
+ * retorna a codificação da string informada
+ * @param integer NULL O número de dias a ser calculado
+ * @return UTF-8 ou ISO-8859-1
+ */
+
+    # Inicia as variáveis
+    $anos = 0;
+    $meses = 0;
+    $dias = abs($dias); // retira o sinal de dias
+    $texto = NULL;
+
+    # Calcula os anos
+    if($dias > 364){
+        $anos = intval($dias/365);      // Divide para descobrir a quantidade de anos
+        $resto = resto($dias,365);      // Pega o resto para calcular os meses e dias
+        $dias = $resto;                 // Passa o resto para variável $dias
+    }
+    
+    # Calcula os meses
+    if($dias > 29){
+        $meses = intval($dias/30);          // Divide para descobrir a quantidade de meses
+        $resto = resto($dias,30);          // Pega o resto para calcular os dias
+        $dias = $resto;                     // Passa o resto para variável $dias
+    }
+    
+    # Monta o texto de retorno
+    # Anos
+    if($anos > 0){
+        $texto = $anos." anos";
+        
+        # Verifica se tem vírgula
+        if(($meses > 0) AND ($dias > 0)){
+            $texto .= ", ";
+        }
+        
+        # Verifica se tem o 'e'
+        if(($meses == 0) AND ($dias > 0)){
+            $texto .= " e ";
+        }
+    }
+    
+    # Meses
+    if($meses > 0){
+        $texto .= $meses." meses";
+        
+        # Verifica se tem o 'e'
+        if($dias > 0){
+            $texto .= " e ";
+        }
+    }
+    
+    # Dias
+    if($dias > 0){
+        $texto .= $dias." dias";
+    }
+    
+    return $texto;
+}
+
+###########################################################
+
+function resto($dividendo,$divisor){
+
+/**
+ * retorna o resto da divisão de 2 números inteiros
+ * @param integer NULL O $dividendo
+ * @param integer NULL O $divisor
+ * @return integer o resto da divisão
+ */
+    
+    $resultado = intval($dividendo/$divisor);
+    $valor = $resultado * $divisor;
+    $resto = $dividendo - $valor;
+    
+    return $resto;
+}
