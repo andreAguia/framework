@@ -1910,3 +1910,29 @@ function resto($dividendo,$divisor){
     
     return $resto;
 }
+
+###########################################################
+
+function trataNulo($valor){
+
+/**
+ * retorna o caractere - quando for nulo ou zero
+ * @param  mixed O valor a ser conferido
+ * @return mixed O valor ou - quando o valor for zero ou nullo
+ */
+    
+    # Inicia a variável de retorno
+    $retorno = $valor;
+            
+    # Verifica se é nulo
+    if(is_null($valor)){
+        $retorno = "--";
+    }
+    
+    # Verifica se é 0
+    if($valor == 0){
+        $retorno = "--";
+    }
+    
+    return $retorno;
+}
