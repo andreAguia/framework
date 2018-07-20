@@ -527,7 +527,8 @@ class Input
             case "processo":
             case "processoNovo":
             case "processoReduzido":
-            case "processoNovoReduzido":    
+            case "processoNovoReduzido":
+            case "processoNovissimo":    
             case "texto":
             case "numero":
             case "patrimonio":
@@ -911,7 +912,8 @@ class Input
                 echo ' onFocus="this.select();"';
                 echo '/>';
                 break;
-
+            
+            case "processoNovissimo":
             default:
                 echo ' size="'.($this->size).'"';
                 echo ' type="text"';
@@ -943,5 +945,4 @@ class Input
 
 ###########################################################
 
-}			   
-?>
+}

@@ -305,7 +305,7 @@ class Modelo{
         }
 
         # Botão incluir
-         if ($this->botaoIncluir){
+        if ($this->botaoIncluir){
             $linkBotaoIncluir = new Button("Incluir",$this->linkIncluir);
             $linkBotaoIncluir->set_title('Incluir um Registro');
             $linkBotaoIncluir->set_accessKey('I');
@@ -922,6 +922,8 @@ class Modelo{
             if ($campoValor[$contador] == "") {
                 $campoValor[$contador] = NULL;
             }
+            
+######################### Require #########################            
 
             # verifica not NULL
             if ((isset($campo['required'])) and ($campo['required'])){
@@ -930,6 +932,8 @@ class Modelo{
                     $erro = 1;
                 }
             }
+            
+######################### Unique #########################            
 
             # verifica se é 'unique' -> único valor no campo nessa tabela
             if ((isset($campo['unique'])) and ($campo['unique'])){
@@ -951,6 +955,8 @@ class Modelo{
                     $msgErro .= 'Já existe um registro com esse valor de '.$campo['label'].'!\n';
                 }
             }
+            
+######################### CPF #########################
 
             # verifica a validade do cpf
             if ($campo['tipo'] == 'cpf'){
@@ -961,6 +967,99 @@ class Modelo{
                     }
                 }
             }
+            
+######################### Processo #########################
+            
+            # Verifica e transforma o número de processo
+            if ($campo['tipo'] == 'processoNovissimo'){
+                if(!is_null($campoValor[$contador])){
+                    
+                    $processo = $campoValor[$contador];
+                    
+                    # Verifica se o número de barra 
+                    $contraBarra = substr_count($processo, '/');
+
+                    # Retorna falso se for menor que 1 ou maior que 3
+                    if(($contraBarra < 2) OR ($contraBarra > 3)){
+                        $msgErro.='O '.$campo['label'].' está com o formato errado!\n';
+                        $erro = 1;
+                    }else{
+                        # Divide o processo em partes
+                        $partes = explode("/",$processo);
+
+                        # Preenche com zero a esquerda
+                        if($contraBarra == 3){
+                            $partes[0] = str_pad($partes[0], 2, "0", STR_PAD_LEFT); 
+                            $partes[1] = str_pad($partes[1], 3, "0", STR_PAD_LEFT); 
+                            $partes[2] = str_pad($partes[2], 6, "0", STR_PAD_LEFT); 
+                            $ano = $partes[3];
+                        }elseif($contraBarra == 2){
+                            $partes[0] = str_pad($partes[0], 2, "0", STR_PAD_LEFT);
+                            $partes[1] = str_pad($partes[1], 6, "0", STR_PAD_LEFT); 
+                            $ano = $partes[2];
+                        }
+
+                        # Retira pontos
+                        $partes[0] = str_replace(".","",$partes[0]);
+                        $partes[1] = str_replace(".","",$partes[1]);
+
+                        if($contraBarra == 3){
+                            $partes[2] = str_replace(".","",$partes[2]);
+                        }
+                        
+                        # Verifica o E-
+                        $partes[0] = str_replace(".","",$partes[0]);    
+                        $partes[1] = str_replace(".","",$partes[1]);
+                        $tamParte0 = strlen($partes[0]);    // Verifica o tamanho da parte 0
+
+                        # Verifica o ano
+                        if(strlen($ano) == 2){
+                            if($ano > 70){
+                                $ano = "19".$ano;
+                            }else{
+                                $ano = "20".$ano;
+                            }
+                        }            
+
+                        # Ano com 3 números
+                        if((strlen($ano) == 3) OR (strlen($ano) == 1)){
+                            $msgErro.='O ano deve ter 4 dígitos!\n';
+                            $erro = 1;
+                        }
+
+                        # Ano com 4 números
+                        if(strlen($ano) == 4){
+                            # Ano futuro
+                            if($ano > date('Y')){
+                                $msgErro.='O processo não pode ter ano futuro!\n';
+                                $erro = 1;
+                            }
+
+                            # Ano muito antigo
+                            if($ano < '1960'){
+                                $msgErro.= 'Não se pode cadastrar processo anteriores a 1970!\n';
+                                $erro = 1;
+                            }
+                        }
+                        
+                        # Passa o E para maiúscula se não tiver
+                        $partes[0] = strtoupper($partes[0]);          
+
+                        # Acerta o processo
+                        $processo = $partes[0]."/".$partes[1];
+                        if($contraBarra == 3){
+                            $processo .= "/".$partes[2]."/".$ano;
+                        }elseif($contraBarra == 2){
+                            $processo .= "/".$ano;
+                        }
+                        
+                        # Passa o número acertado para a variavel
+                        $campoValor[$contador] = $processo;
+                    }
+                }
+            }
+            
+######################### Checkbox #########################
 
             # validação dos campos tipo checkbox
             if ($campo['tipo'] == 'checkbox'){
@@ -968,6 +1067,8 @@ class Modelo{
                     $campoValor[$contador] = 1;
                 }
             }
+            
+######################### Data #########################            
 
             # validação dos campos tipo data
             if ((($campo['tipo'] == 'date')or($campo['tipo'] == 'data'))and(!(is_null($campoValor[$contador])))) { 
@@ -985,10 +1086,14 @@ class Modelo{
                 } # passa a data para o formato de gravação
             }
             
+######################### Moeda #########################            
+            
             # Passa o campo moeda para o formato americano (para o banco de dados)
             if (($campo['tipo'] == 'moeda')and(!(is_null($campoValor[$contador])))) {
                 $campoValor[$contador] = formataMoeda($campoValor[$contador],2);	
             }
+            
+######################### Encode #########################
        
             # se tiver criptografia, descriptograva para exibição
             if ((isset($campo['encode'])) AND ( $campo['encode'])) {
