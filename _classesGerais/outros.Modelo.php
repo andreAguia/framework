@@ -902,8 +902,7 @@ class Modelo{
             }
 
             # Compara o valor antigo com o novo
-            if($oldValue[$contador] <> $campoValor[$contador])
-            {
+            if($oldValue[$contador] <> $campoValor[$contador]){
                 # verifica se � html5 para formatar a data
                 if (HTML5) {
                     # verifica se é data
@@ -971,48 +970,134 @@ class Modelo{
 ######################### Processo #########################
             
             # Verifica e transforma o número de processo
-            if ($campo['tipo'] == 'processoNovissimo'){
+            if ($campo['tipo'] == 'processo'){
                 if(!is_null($campoValor[$contador])){
                     
-                    $processo = $campoValor[$contador];
+                    # Preenche a variável de trabalho retirando os espaços
+                    $processo = trim($campoValor[$contador]);
                     
-                    # Verifica se o número de barra 
+                    # Verifica se o número de barras
+                    # (para saber se o processo é o atual ou o antigo) 
                     $contraBarra = substr_count($processo, '/');
 
-                    # Retorna falso se for menor que 1 ou maior que 3
+                    # Retorna erro se for menor que 1 ou maior que 3
                     if(($contraBarra < 2) OR ($contraBarra > 3)){
                         $msgErro.='O '.$campo['label'].' está com o formato errado!\n';
                         $erro = 1;
-                    }else{
+                    }else{ // Só continua se estiver ok
                         # Divide o processo em partes
                         $partes = explode("/",$processo);
 
-                        # Preenche com zero a esquerda
-                        if($contraBarra == 3){
-                            $partes[0] = str_pad($partes[0], 2, "0", STR_PAD_LEFT); 
-                            $partes[1] = str_pad($partes[1], 3, "0", STR_PAD_LEFT); 
-                            $partes[2] = str_pad($partes[2], 6, "0", STR_PAD_LEFT); 
-                            $ano = $partes[3];
-                        }elseif($contraBarra == 2){
-                            $partes[0] = str_pad($partes[0], 2, "0", STR_PAD_LEFT);
-                            $partes[1] = str_pad($partes[1], 6, "0", STR_PAD_LEFT); 
-                            $ano = $partes[2];
-                        }
-
                         # Retira pontos
-                        $partes[0] = str_replace(".","",$partes[0]);
-                        $partes[1] = str_replace(".","",$partes[1]);
-
-                        if($contraBarra == 3){
-                            $partes[2] = str_replace(".","",$partes[2]);
+                        for ($i = 0; $i <= $contraBarra; $i++) {
+                            $partes[$i] = str_replace(".","",$partes[$i]);
                         }
                         
-                        # Verifica o E-
-                        $partes[0] = str_replace(".","",$partes[0]);    
-                        $partes[1] = str_replace(".","",$partes[1]);
-                        $tamParte0 = strlen($partes[0]);    // Verifica o tamanho da parte 0
+                        # Analisa as partes
+                        # Parte 0 
+                        $tamParte = strlen($partes[0]);    // Verifica o tamanho da parte 0
+                        
+                        # Se é menor que 2 ou maior que 4
+                        if(($tamParte < 2) OR ($tamParte > 4)){
+                            $msgErro.='O '.$campo['label'].' está com o formato errado!\n';
+                            $erro = 1;
+                        }else{
+                            # Coloca o e em maíusculo quando minusculo 
+                            $partes[0] = strtoupper($partes[0]);
+                            
+                            # Se é número faltando preencher o E-
+                            if(($tamParte == 2) AND (is_numeric($partes[0]))){
+                                $partes[0] = "E-".$partes[0];
+                            }
+                            
+                            # Dá erro quando tamanho for 3
+                            if($tamParte == 3){
+                                # Verifica se esqueceu o -
+                                if(strpos($partes[0],"-") === FALSE){
+                                    $primeira = substr($partes[0],0,1);
+                                    $resto = substr($partes[0],1,2);
+                                    
+                                    if(!is_numeric($primeira)){
+                                        $partes[0] = $primeira."-".$resto;
+                                    }
+                                }else{
+                                    $msgErro.='O '.$campo['label'].' está com o formato errado!\n';
+                                    $erro = 1;
+                                }
+                            }
+                        }   
+                        
+                        # Parte 1 
+                        $tamParte = strlen($partes[1]);    // Verifica o tamanho da parte 1
+                        
+                        # Verifica se é somente número
+                        if(!is_numeric($partes[1])){
+                            $msgErro.='O '.$campo['label'].' está com o formato errado!\n';
+                            $erro = 1;
+                        }
+                        
+                        # Verifica o tamanho no formato atual de processo
+                        if(($contraBarra == 3) AND ($tamParte > 3)){
+                            $msgErro.='O '.$campo['label'].' está com o formato errado!\n';
+                            $erro = 1;
+                        }
+                        
+                        # Verifica o tamanho no formato antigo de processo
+                        if(($contraBarra == 2) AND ($tamParte > 6)){
+                            $msgErro.='O '.$campo['label'].' está com o formato errado!\n';
+                            $erro = 1;
+                        }
+                        
+                        # Parte 2
+                        $tamParte = strlen($partes[2]);    // Verifica o tamanho da parte 2
+                        
+                        # Verifica se é somente número
+                        if(!is_numeric($partes[2])){
+                            $msgErro.='O '.$campo['label'].' está com o formato errado!\n';
+                            $erro = 1;
+                        }
+                         
+                        # Verifica o tamanho no formato atual de processo
+                        if(($contraBarra == 3) AND ($tamParte > 6)){
+                            $msgErro.='O '.$campo['label'].' está com o formato errado!\n';
+                            $erro = 1;
+                        }
+                        
+                        # Verifica o tamanho no formato antigo de processo
+                        if(($contraBarra == 2) AND ($tamParte > 4)){
+                            $msgErro.='O '.$campo['label'].' está com o formato errado!\n';
+                            $erro = 1;
+                        }
+                        
+                        # Parte 3
+                        if($contraBarra == 3){
+                            $tamParte = strlen($partes[3]);    // Verifica o tamanho da parte 3
+                            
+                            # Verifica se é somente número
+                            if(!is_numeric($partes[3])){
+                                $msgErro.='O '.$campo['label'].' está com o formato errado!\n';
+                                $erro = 1;
+                            }
+                            
+                            # Verifica o tamanho no formato atual de processo
+                            if($tamParte > 4){
+                                $msgErro.='O '.$campo['label'].' está com o formato errado!\n';
+                                $erro = 1;
+                            }
+                        }
+                        
+                        # Preenche com zero a esquerda
+                        if($contraBarra == 3){  // processo atual
+                            $partes[0] = str_pad($partes[0], 2, "0", STR_PAD_LEFT); 
+                            $partes[1] = str_pad($partes[1], 3, "0", STR_PAD_LEFT); 
+                            $partes[2] = str_pad($partes[2], 6, "0", STR_PAD_LEFT);
+                        }elseif($contraBarra == 2){ // processo antigo
+                            $partes[0] = str_pad($partes[0], 2, "0", STR_PAD_LEFT);
+                            $partes[1] = str_pad($partes[1], 6, "0", STR_PAD_LEFT);
+                        }
 
                         # Verifica o ano
+                        $ano = $partes[$contraBarra];
                         if(strlen($ano) == 2){
                             if($ano > 70){
                                 $ano = "19".$ano;
@@ -1023,7 +1108,7 @@ class Modelo{
 
                         # Ano com 3 números
                         if((strlen($ano) == 3) OR (strlen($ano) == 1)){
-                            $msgErro.='O ano deve ter 4 dígitos!\n';
+                            $msgErro.='O ano está errado!\n';
                             $erro = 1;
                         }
 
@@ -1041,11 +1126,8 @@ class Modelo{
                                 $erro = 1;
                             }
                         }
-                        
-                        # Passa o E para maiúscula se não tiver
-                        $partes[0] = strtoupper($partes[0]);          
 
-                        # Acerta o processo
+                        # Finaliza juntando as partes
                         $processo = $partes[0]."/".$partes[1];
                         if($contraBarra == 3){
                             $processo .= "/".$partes[2]."/".$ano;
@@ -1201,7 +1283,7 @@ class Modelo{
 
         # Conecta com o banco de dados
         $objeto = new $this->classBd();
-        $objeto->set_tabela($this->tabela);		# a tabela
+        $objeto->set_tabela($this->tabela);	# a tabela
         $objeto->set_idCampo($this->idCampo);	# o nome do campo id
         if($objeto->excluir($id)){		
             if($this->log){

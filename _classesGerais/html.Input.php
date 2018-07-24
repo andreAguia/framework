@@ -38,7 +38,6 @@ class Input
   * @group dos eventos
   * @var private $onClick   string  NULL  Informa rotina do evento OnClick
   * @var private $onChange  string  NULL  Informa rotina do evento OnChange
-  * @var private $pularPara string  NULL  Informa qual o controle pulara automaticamente o foco quando o campo estiver preenchido
   * 
   * @group do form
   * @var private $linha    integer NULL Informa a linha do formulário onde o o controle ficará 
@@ -85,7 +84,6 @@ class Input
     # dos eventos
     private $onClick = NULL;
     private $onChange = NULL;
-    private $pularPara = NULL;
     
     # do form
     private $linha = NULL;     // informa a linha do controle
@@ -377,21 +375,7 @@ class Input
         $this->onChange = $onChange;
     }    
 
-###########################################################       
-
-    public function set_pularPara($pularPara = NULL){
-    /**
-     * Informa qual o controle pulara automaticamente o foco quando o campo estiver preenchido
-     * 
-     * @syntax $input->$onChange($pularPara);
-     * 
-     * @param $pularPara string NULL O nome do controle
-     */
-    
-        $this->pularPara = $pularPara;
-    }    
-
-###########################################################       
+########################################################### 
 
     public function set_linha($linha = NULL){
     /**
@@ -525,10 +509,6 @@ class Input
 
         switch ($this->tipo){
             case "processo":
-            case "processoNovo":
-            case "processoReduzido":
-            case "processoNovoReduzido":
-            case "processoNovissimo":    
             case "texto":
             case "numero":
             case "patrimonio":
@@ -733,13 +713,7 @@ class Input
             case "data":
                 if(HTML5){
                     echo ' type="date"';
-                    echo ' value="'.$this->valor.'"'; 
-
-                    # Verifica se está habilitado o pulo para o controle seguinte
-                    if (!is_null($this->pularPara)){
-                       echo '; pularCampo(\''.$this->nome.'\','.$this->size.',\''.$this->pularPara.'\')"';
-                    }
-                    
+                    echo ' value="'.$this->valor.'"';                    
                     echo '/>';
                 }else{   # Rotina antiga com type text para browsers que não renderizam o html5 muito bem
                     $mascara = '99/99/9999';
@@ -747,14 +721,6 @@ class Input
                     echo ' type="text"';
                     echo ' value="'.$this->valor.'"';               
                     echo ' onkeypress="mask(this, \''.$mascara.'\',1,this)';
-
-                    # Verifica se está habilitado o pulo para o controle seguinte
-                    if (!is_null($this->pularPara)){
-                       echo '; pularCampo(\''.$this->nome.'\','.$this->size.',\''.$this->pularPara.'\')"';
-                    }else{
-                        echo '"';
-                    }
-
                     echo ' onkeyup="mask(this, \''.$mascara.'\',1,this)" ';
                     echo ' onblur="mask(this, \''.$mascara.'\',1,this)" ';          
                     echo '/>';
@@ -772,49 +738,12 @@ class Input
                 break;
 
             case "processo":
-                $mascara = 'E-99/999999/9999';
                 echo ' size="'.($this->size).'"';
                 echo ' type="text"';
                 echo ' value="'.$this->valor.'"';
-                echo ' onkeypress="mask(this, \''.$mascara.'\',3,this)" ';
-                echo ' onkeyup="mask(this, \''.$mascara.'\',3,this)" ';
-                echo ' onblur="mask(this, \''.$mascara.'\',3,this)" ';          
                 echo '/>';
                 break; 
             
-            case "processoReduzido":
-                $mascara = '99/999999/9999';
-                echo ' size="'.($this->size).'"';
-                echo ' type="text"';
-                echo ' value="'.$this->valor.'"';
-                echo ' onkeypress="mask(this, \''.$mascara.'\',3,this)" ';
-                echo ' onkeyup="mask(this, \''.$mascara.'\',3,this)" ';
-                echo ' onblur="mask(this, \''.$mascara.'\',3,this)" ';          
-                echo '/>';
-                break; 
-             
-            case "processoNovo":
-                $mascara = 'E-99/999/999999/9999';
-                echo ' size="'.($this->size).'"';
-                echo ' type="text"';
-                echo ' value="'.$this->valor.'"';
-                echo ' onkeypress="mask(this, \''.$mascara.'\',3,this)" ';
-                echo ' onkeyup="mask(this, \''.$mascara.'\',3,this)" ';
-                echo ' onblur="mask(this, \''.$mascara.'\',3,this)" ';          
-                echo '/>';                
-                break;
-            
-            case "processoNovoReduzido":
-                $mascara = '99/999/999999/9999';
-                echo ' size="'.($this->size).'"';
-                echo ' type="text"';
-                echo ' value="'.$this->valor.'"';
-                echo ' onkeypress="mask(this, \''.$mascara.'\',3,this)" ';
-                echo ' onkeyup="mask(this, \''.$mascara.'\',3,this)" ';
-                echo ' onblur="mask(this, \''.$mascara.'\',3,this)" ';          
-                echo '/>';                
-                break;
-
             case "cpf":
                 $mascara = '999.999.999-99';
                 echo ' size="'.($this->size).'"';
@@ -827,20 +756,9 @@ class Input
                 break;
 
            case "numero":
-                #$mascara = str_repeat('9', $this->size);
                 echo ' size="'.$this->size.'"';
                 echo ' type="number"';
-                echo ' value="'.$this->valor.'"';                
-                #echo ' onkeypress="mask(this, \''.$mascara.'\',1,this)';
-                
-                # Verifica se está habilitado o pulo para o controle seguinte
-                if (!is_null($this->pularPara)){
-                    echo '; pularCampo(\''.$this->nome.'\','.$this->size.',\''.$this->pularPara.'\')"';
-                }else{
-                    echo '"';
-                }
-                #echo ' onkeyup="mask(this, \''.$mascara.'\',1,this)" ';
-                #echo ' onblur="mask(this, \''.$mascara.'\',1,this)" ';           
+                echo ' value="'.$this->valor.'"'; 
                 echo '/>';
                 break;
             
@@ -913,18 +831,10 @@ class Input
                 echo '/>';
                 break;
             
-            case "processoNovissimo":
             default:
                 echo ' size="'.($this->size).'"';
                 echo ' type="text"';
-                #echo ' value="'.htmlspecialchars($this->valor).'"'; # retirado pois deu problemas com acentos
-                echo ' value="'.$this->valor.'"';
-                
-                # Verifica se está habilitado o pulo para o controle seguinte
-                if (!is_null($this->pularPara)){
-                    echo 'onkeypress="pularCampo(\''.$this->nome.'\','.$this->size.',\''.$this->pularPara.'\')"';
-                }
-                          
+                echo ' value="'.$this->valor.'"';                          
                 echo ' onFocus="this.select();"';
                 echo '/>';
                 break;
