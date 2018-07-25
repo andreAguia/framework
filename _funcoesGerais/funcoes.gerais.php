@@ -208,7 +208,7 @@ function date_to_bd($data,$separador = '/'){
         return FALSE;
     }else{
         $dt1 = explode($separador,$data);
-        $dt2 = $dt1[2].'/'.$dt1[1].'/'.$dt1[0];
+        $dt2 = $dt1[2].'-'.$dt1[1].'-'.$dt1[0];
         return $dt2;
     }
 }
@@ -1862,32 +1862,17 @@ function dias_to_diasMesAno($dias){
     # Monta o texto de retorno
     # Anos
     if($anos > 0){
-        $texto = $anos." anos";
-        
-        # Verifica se tem vírgula
-        if(($meses > 0) AND ($dias > 0)){
-            $texto .= ", ";
-        }
-        
-        # Verifica se tem o 'e'
-        if(($meses == 0) AND ($dias > 0)){
-            $texto .= " e ";
-        }
+        $texto = $anos."a ";
     }
     
     # Meses
     if($meses > 0){
-        $texto .= $meses." meses";
-        
-        # Verifica se tem o 'e'
-        if($dias > 0){
-            $texto .= " e ";
-        }
+        $texto .= $meses."m ";
     }
     
     # Dias
     if($dias > 0){
-        $texto .= $dias." dias";
+        $texto .= $dias."d ";
     }
     
     return $texto;

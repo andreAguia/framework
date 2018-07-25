@@ -785,17 +785,10 @@ class Modelo{
                     $row[$campo['nome']] = base64_decode($row[$campo['nome']]);
                 }
 
-                # se for data coloca no formato brasileiro antes da exibi��o 
-                # somente se n�o usa o controle data html5
+                # Data
                 if(($campo['tipo'] == 'date') OR ($campo['tipo'] == 'data')){
-                    if(HTML5){
-                        $controle->set_valor($row[$campo['nome']]); 
-                        $oldValue[] = $row[$campo['nome']];
-                    }else{
-                        $controle->set_valor(date_to_php($row[$campo['nome']])); // se for data passa para o formato dd/mm/aaaa
-                        $oldValue[] = date_to_php($row[$campo['nome']]);
-                    }
-                        
+                    $controle->set_valor($row[$campo['nome']]); 
+                    $oldValue[] = $row[$campo['nome']];
                 }else{ // se aceitar tags html
                     if ((isset($campo['tagHtml'])) AND ( $campo['tagHtml'] == TRUE)) {
                         $valorCampo = $row[$campo['nome']];
@@ -903,16 +896,10 @@ class Modelo{
 
             # Compara o valor antigo com o novo
             if($oldValue[$contador] <> $campoValor[$contador]){
-                # verifica se � html5 para formatar a data
-                if (HTML5) {
-                    # verifica se é data
-                    if (($campo['tipo'] == 'date')or ( $campo['tipo'] == 'data')) {
-                        $alteracoes .= '[' . $campo['label'] . '] ' . $oldValue[$contador] . '->' . date_to_php($campoValor[$contador]) . '; ';
-                    } else {
-                        $alteracoes .= '[' . $campo['label'] . '] ' . $oldValue[$contador] . '->' . $campoValor[$contador] . '; ';
-                    }
-                }
-                else {
+                # formata a data
+                if (($campo['tipo'] == 'date')or ( $campo['tipo'] == 'data')) {
+                    $alteracoes .= '[' . $campo['label'] . '] ' . $oldValue[$contador] . '->' . date_to_php($campoValor[$contador]) . '; ';
+                } else {
                     $alteracoes .= '[' . $campo['label'] . '] ' . $oldValue[$contador] . '->' . $campoValor[$contador] . '; ';
                 }
             }
@@ -1154,11 +1141,9 @@ class Modelo{
 
             # validação dos campos tipo data
             if ((($campo['tipo'] == 'date')or($campo['tipo'] == 'data'))and(!(is_null($campoValor[$contador])))) { 
-                # formata data quando vier de um controle html5 (vem yyyy/mm/dd)
-                if (HTML5) {
-                    $campoValor[$contador] = date_to_php($campoValor[$contador]);
-                }
-
+                # formata data quando vier de um controle (vem yyyy/mm/dd)
+                $campoValor[$contador] = date_to_php($campoValor[$contador]);
+                
                 # verifica a validade da data
                 if (!validaData($campoValor[$contador])) {
                     $msgErro .= 'A ' . $campo['label'] . ' não é válida!\n';

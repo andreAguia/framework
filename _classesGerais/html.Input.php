@@ -711,20 +711,9 @@ class Input
 
             case "date":
             case "data":
-                if(HTML5){
-                    echo ' type="date"';
-                    echo ' value="'.$this->valor.'"';                    
-                    echo '/>';
-                }else{   # Rotina antiga com type text para browsers que não renderizam o html5 muito bem
-                    $mascara = '99/99/9999';
-                    echo ' size="'.($this->size).'"';                    
-                    echo ' type="text"';
-                    echo ' value="'.$this->valor.'"';               
-                    echo ' onkeypress="mask(this, \''.$mascara.'\',1,this)';
-                    echo ' onkeyup="mask(this, \''.$mascara.'\',1,this)" ';
-                    echo ' onblur="mask(this, \''.$mascara.'\',1,this)" ';          
-                    echo '/>';
-                }                
+                echo ' type="date"';
+                echo ' value="'.$this->valor.'"';                    
+                echo '/>';      
                 break; 
 
             case "hora":
