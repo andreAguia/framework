@@ -188,7 +188,7 @@ function get_session($nome,$padrao = NULL){
 
 function date_to_bd($data,$separador = '/'){
    /**
-    * Transforma uma data do formato brasileiro DD/MM/AAAA para o formato americano AAAA/MM/DD.
+    * Transforma uma data do formato brasileiro DD/MM/AAAA para o formato americano AAAA-MM-DD.
     * 
     * @syntax date_to_bd($data,[$separador]);
     * 
@@ -197,6 +197,7 @@ function date_to_bd($data,$separador = '/'){
     * @category Data
     *  
     * @note Utilizado para converter as data ao formato de gravação do banco de dados.
+    * @note Interessante também observar que independente do separador de entrada o separador de saída será sempre o -
     * 
     * @param $data      date   NULL A data a ser transformada no formato DD/MM/AAAA
     * @param $separador string /    O separador da data
@@ -215,10 +216,9 @@ function date_to_bd($data,$separador = '/'){
 
 ###########################################################
 
-function date_to_php($data,$separador = '-'){
-    
+function date_to_php($data,$separador = '-'){    
 /**
- * Transforma uma data do formato americano AAAA_MM_DD para o formato brasileiro DD/MM/AAAA.
+ * Transforma uma data do formato americano AAAA-MM-DD para o formato brasileiro DD/MM/AAAA.
  * 
  * @syntax date_to_php($data,[$separador]);
  * 
@@ -236,7 +236,6 @@ function date_to_php($data,$separador = '-'){
  * @example exemplo.date_to_php.php   
  */
  
-
     if((is_null($data)) or ($data == "")){
         return NULL;
     }else{	
@@ -248,8 +247,7 @@ function date_to_php($data,$separador = '-'){
 
 ###########################################################
 
-function datetime_to_php($data,$separadorData = '-',$separadorHora = ':')
-{
+function datetime_to_php($data,$separadorData = '-',$separadorHora = ':'){
 /**
  * Transforma uma data com hora do formato americano AAAA/MM/DD HH:MM:SS para o formato brasileiro DD/MM/AAAA HH:MM:SS.
  * 
