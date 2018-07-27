@@ -736,8 +736,7 @@ class Relatorio
         echo '</table>';
         
         # Exibe a soma geral quando o somatório estiver habilitado
-        if((!is_null($this->colunaSomatorio)) AND ($contador > 0))
-        {
+        if((!is_null($this->colunaSomatorio)) AND ($contador > 0)){
             # Inicia a tabela
             echo '<table class="tabelaRelatorio" border="0"';
 
