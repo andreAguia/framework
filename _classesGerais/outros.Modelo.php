@@ -610,8 +610,8 @@ class Modelo{
 
         # Botão histórico
         if($this->botaoHistorico){
-            if (Verifica::acesso($this->idUsuario,1)){
-                if (!is_null($id)){
+            if(Verifica::acesso($this->idUsuario,1)){
+                if(!is_null($id)){
                     $linkBotaoHistorico = new Button("Histórico");
                     $linkBotaoHistorico->set_title('Exibe o histórico');
                     $linkBotaoHistorico->set_onClick("abreFechaDivId('divHistorico');");
@@ -659,19 +659,18 @@ class Modelo{
             }
         }
         
+        # exibe (ocultamente) o histórico
+        if ((!is_null($id)) AND ($this->botaoHistorico)){
+            $this->exibeHistorico($id);
+        }
+       
         # Topbar 
         if ($this->topBarIncluir){
-            titulo($this->nome);
+            tituloTable($this->nome);
             #$top = new TopBar($this->nome);
             #$top->set_title($this->nome);
             #$top->show(); 
         }
-
-       # exibe (ocultamente) o histórico
-       if ((!is_null($id)) AND ($this->botaoHistorico)){
-            $this->exibeHistorico($id);
-       }
-
 
         if(($id <> NULL)and($this->selectEdita <> NULL)){	
             # Conecta com o banco de dados
@@ -896,9 +895,10 @@ class Modelo{
 
             # Compara o valor antigo com o novo
             if($oldValue[$contador] <> $campoValor[$contador]){
+                
                 # formata a data
-                if (($campo['tipo'] == 'date')or ( $campo['tipo'] == 'data')) {
-                    $alteracoes .= '[' . $campo['label'] . '] ' . $oldValue[$contador] . '->' . date_to_php($campoValor[$contador]) . '; ';
+                if (($campo['tipo'] == 'date') OR ( $campo['tipo'] == 'data')) {
+                    $alteracoes .= '[' . $campo['label'] . '] ' . date_to_php($oldValue[$contador]) . '->' . date_to_php($campoValor[$contador]) . '; ';
                 } else {
                     $alteracoes .= '[' . $campo['label'] . '] ' . $oldValue[$contador] . '->' . $campoValor[$contador] . '; ';
                 }
@@ -1300,43 +1300,50 @@ class Modelo{
     * @param  $id o id para se exibir o histórico
     */
     
-    public function exibeHistorico($id = NULL)
-    {
-        echo '<div class="callout" id="divHistorico">';
+    public function exibeHistorico($id = NULL){
+        echo '<div id="divHistorico">';
 
-        $select = 'SELECT tblog.data,
-                          grh.tbpessoa.nome,
-                          tblog.atividade,
-                          tblog.idValor
+        $select = 'SELECT data,
+                          usuario,
+                          atividade,
+                          idValor
                      FROM tblog 
-                     JOIN tbusuario ON(tblog.idUsuario = tbusuario.idUsuario)
-                     JOIN grh.tbservidor ON(tbusuario.idServidor = grh.tbservidor.idServidor)
-                     JOIN grh.tbpessoa ON (grh.tbservidor.idPessoa = grh.tbpessoa.idPessoa)
-                    WHERE tblog.tabela="'.$this->tabela.'"
-                      AND tblog.idValor='.$id.' 
-                 ORDER BY tblog.data desc';
-                 
+                     LEFT JOIN tbusuario USING (idUsuario)
+                    WHERE tabela="'.$this->tabela.'"
+                      AND idValor='.$id.' 
+                 ORDER BY data desc';
+        
         # Conecta com o banco de dados
         $intra = new Intra();
         $result = $intra->select($select);
         $contadorHistorico = $intra->count($select); 
+        
+        if($contadorHistorico > 0){
+            
+            # Parametros da tabela
+            $label = array("Data","Usuário","Atividade");
+            $align = array("center","center","left");
+            $funcao = array ("datetime_to_php");
 
-        # Parametros da tabela
-        $label = array("Data","Nome","Atividade","id");
-        $align = array("center","center","left");
-        $width = array(13,22,50,5);
-        $funcao = array ("datetime_to_php");
+            # Monta a tabela
+            $tabela = new Tabela();
+            $tabela->set_conteudo($result);
+            $tabela->set_label($label);
+            $tabela->set_align($align);
+            $tabela->set_funcao($funcao);
+            $tabela->set_titulo('Histórico de Alterações');
 
-        # Monta a tabela
-        $tabela = new Tabela();
-        $tabela->set_conteudo($result);
-        $tabela->set_label($label);
-        $tabela->set_align($align);
-        $tabela->set_width($width);
-        $tabela->set_funcao($funcao);
-        $tabela->set_titulo('Histórico de Alterações');
-
-        $tabela->show();
+            $tabela->show();
+        }else{
+            tituloTable('Histórico de Alterações');
+            
+            $box = new Callout();
+            $box->abre();
+            
+            p('Nenhum item encontrado !!','center');
+            
+            $box->fecha();
+        }
         
         echo '</div>';
     }
