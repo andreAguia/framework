@@ -1913,7 +1913,7 @@ function trataNulo($valor){
     }
     
     # Verifica se é 0
-    if($valor == 0){
+    if((is_numeric($valor)) AND ($valor == 0)){
         $retorno = "--";
     }
     
