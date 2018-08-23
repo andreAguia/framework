@@ -1653,8 +1653,7 @@ function year($data){
  * @param $data string  NULL A data a ser trabalhada
  */
         
-    if(validaData($data)){
-        
+    if(validaData($data)){        
         # Divide a data em dia, mes e ano
         $dt = explode('/',$data);
         return $dt[2];
@@ -1665,6 +1664,59 @@ function year($data){
 }
 
 ###########################################################
+
+function day($data){
+    /**
+     * Função que retorna o dia de uma data
+     * 
+     * @syntax day($data); 
+     * 
+     * @return integer do dia da data fornecida.
+     * 
+     * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
+     * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.  
+     * 
+     * @param $data string  NULL A data a ser trabalhada
+     */
+           
+        if(validaData($data)){            
+            # Divide a data em dia, mes e ano
+            $dt = explode('/',$data);
+            return $dt[0];
+         }else{ 
+            alert('Data Inválida');
+            return FALSE;
+        }
+    }
+    
+###########################################################
+
+function month($data){
+    /**
+     * Função que retorna o mês de uma data
+     * 
+     * @syntax month($data); 
+     * 
+     * @return integer do mês da data fornecida.
+     * 
+     * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
+     * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.  
+     * 
+     * @param $data string  NULL A data a ser trabalhada
+     */
+            
+        if(validaData($data)){            
+            # Divide a data em dia, mes e ano
+            $dt = explode('/',$data);
+            return $dt[1];
+         }else{ 
+            alert('Data Inválida');
+            return FALSE;
+        }
+    }
+    
+###########################################################
+    
 
 function createZip($path = 'arquivo.zip',$files = array()) {
     
