@@ -532,7 +532,6 @@ class Relatorio
                         }
                         
                         # Executa a rotina no final de um grupo na forma de função
-                        # Função antes do título
                         if(!is_null($this->funcaoFinalGrupo)){
                             # Verifica se é array. Mais de uma função
                             if(is_array($this->funcaoFinalGrupo)){
@@ -718,12 +717,28 @@ class Relatorio
                 $this->totalRegistro($subContador);
                 $subContador = 0;   // Zera o contador de registro
             }
+
+            # Executa a rotina no final de um grupo na forma de função
+            if(!is_null($this->funcaoFinalGrupo)){
+                # Verifica se é array. Mais de uma função
+                if(is_array($this->funcaoFinalGrupo)){
+                    # quantidade de itens
+                    $quantidade = count($this->funcaoFinalGrupo);
+
+                    # Percorre o array executando as funções na ordem do array
+                    for ($i = 0; $i < $quantidade; $i++) {
+                        $nomedafuncao = $this->funcaoFinalGrupo[$i];
+                        $nomedafuncao($this->funcaoFinalGrupoParametro[$i]);
+                    }
+                }else{
+                   $nomedafuncao = $this->funcaoFinalGrupo;
+                   $nomedafuncao($this->funcaoFinalGrupoParametro); 
+                }
+            }
             
             if ($this->linhaFinal){
                 hr();                             
-             }
-
-            
+            }
                        
             # Exibe a informação de que não tem nenhum resgistro
             if (($contador == 0) AND ($this->mensagemNenhumRegistro)){
@@ -747,7 +762,7 @@ class Relatorio
 
             echo '>';
 
-            # informa o tamanho das colunas (width)
+            # Informa o tamanho das colunas (width)
             for($a = 0;$a < $tamanho;$a += 1){
                 if(isset($this->width[$a])){       // verifica se foi definido um tamanho
                     if ((!$grupo) || (($grupo) && ($a <> $this->numGrupo)) || (($grupo) && (!$this->ocultaGrupo))){ // verifica se a coluna não foi ocultada para agrupamento 
