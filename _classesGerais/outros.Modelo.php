@@ -161,6 +161,7 @@ class Modelo{
     
     # Outros
     private $exibeInfoObrigatoriedade = TRUE;
+    private $comGridLista = TRUE;
     
     ###########################################################
 
@@ -178,11 +179,9 @@ class Modelo{
     * @param 	$parametros	Os par�metros inseridos  
     */
     
-    public function __call ($metodo, $parametros)
-    {
+    public function __call ($metodo, $parametros){
         ## Se for set, atribui um valor para a propriedade
-        if (substr($metodo, 0, 3) == 'set')
-        {
+        if (substr($metodo, 0, 3) == 'set'){
             $var = substr($metodo, 4);
             $this->$var = $parametros[0];
         }
@@ -275,8 +274,10 @@ class Modelo{
         set_session('oldValue'.$this->tabela);
 
         # Limita o tamanho da tela
-        $grid = new Grid();
-        $grid->abreColuna(12);
+        if($this->comGridLista){
+            $grid = new Grid();
+            $grid->abreColuna(12);
+        }
         
         # Preenche a url do botão incluir se for nula ...
         if (is_null($this->linkIncluir)) {
@@ -287,31 +288,33 @@ class Modelo{
         $objeto = new $this->classBd();
 
         # Cria um menu
-        $menu = new MenuBar();
-        
-        # Botão voltar
-        if($this->botaoVoltarLista){
-            $linkBotaoVoltar = new Button("Voltar",$this->voltarLista);
-            $linkBotaoVoltar->set_title('Volta para a página anterior');
-            $linkBotaoVoltar->set_accessKey('V');
-            $menu->add_link($linkBotaoVoltar,"left");
-        }
-        
-        # Inclui botões extras
-        if ($this->botaoListarExtra){
-            foreach ($this->botaoListarExtra as $botao){
-                $menu->add_link($botao,"right");
-            }
-        }
+        if(($this->botaoVoltarLista) OR ($this->botaoListarExtra) OR ($this->botaoIncluir)){
+            $menu = new MenuBar();
 
-        # Botão incluir
-        if ($this->botaoIncluir){
-            $linkBotaoIncluir = new Button("Incluir",$this->linkIncluir);
-            $linkBotaoIncluir->set_title('Incluir um Registro');
-            $linkBotaoIncluir->set_accessKey('I');
-            $menu->add_link($linkBotaoIncluir,"right");
-        } 
-        $menu->show(); 
+            # Botão voltar
+            if($this->botaoVoltarLista){
+                $linkBotaoVoltar = new Button("Voltar",$this->voltarLista);
+                $linkBotaoVoltar->set_title('Volta para a página anterior');
+                $linkBotaoVoltar->set_accessKey('V');
+                $menu->add_link($linkBotaoVoltar,"left");
+            }
+
+            # Inclui botões extras
+            if ($this->botaoListarExtra){
+                foreach ($this->botaoListarExtra as $botao){
+                    $menu->add_link($botao,"right");
+                }
+            }
+
+            # Botão incluir
+            if ($this->botaoIncluir){
+                $linkBotaoIncluir = new Button("Incluir",$this->linkIncluir);
+                $linkBotaoIncluir->set_title('Incluir um Registro');
+                $linkBotaoIncluir->set_accessKey('I');
+                $menu->add_link($linkBotaoIncluir,"right");
+            } 
+            $menu->show();
+        }
         
         # Rotina Extra
         if(!is_null($this->rotinaExtra)){
@@ -572,8 +575,10 @@ class Modelo{
                 p(number_format($time, 4, '.', ',')." segundos","right","f10");
             }
             
-            $grid->fechaColuna();
-            $grid->fechaGrid();
+            if($this->comGridLista){
+                $grid->fechaColuna();
+                $grid->fechaGrid();
+            }
         }       
     }
 
