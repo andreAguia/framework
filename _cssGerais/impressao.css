@@ -535,4 +535,27 @@ td#capaItem {
      color: #000000;
      text-align: left;
      font-size: 10px;     
-  }
+ }
+ 
+ /* Ato de Nomeacao */
+ 
+p#preambulo{
+     text-align: justify;
+     margin-left: 10em;
+}
+
+p#principal{
+     text-align: justify;
+     text-indent: 10em;
+}
+
+p#reitor{
+     text-align: center;
+}
+
+p#rodape{
+     text-align: center;
+     padding: 0px;
+     margin: 0px;
+     font-size: 10px;
+}
