@@ -1215,7 +1215,7 @@ class Modelo{
             $tipoLog = NULL;
 
             # Grava no log a atividade
-            if($this->log){
+            if(($this->log) AND (!is_null($alteracoes))){
                 $intra = new Intra();
                 $data = date("Y-m-d H:i:s");
 
