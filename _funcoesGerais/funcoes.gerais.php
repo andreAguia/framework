@@ -1328,16 +1328,10 @@ function dataExtenso($data = NULL){
  * 
  * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
  * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
- * @note Se a $data não for informada, a função pegará a data atual. 
  * 
  * @example exemplo.dataExtenso.php  
  */ 
     
-    # Se for nula coloca a data atual
-    if(is_null($data)){
-        $data = date("d/m/Y");
-    }
-
     # Verifica a validade da data
     if(validaData($data)){
         
@@ -1370,16 +1364,10 @@ function dataExtenso2($data = NULL){
  * 
  * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
  * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
- * @note Se a $data não for informada, a função pegará a data atual. 
  * 
  * @example exemplo.dataExtenso.php  
  */ 
     
-    # Se for nula coloca a data atual
-    if(is_null($data)){
-        $data = date("d/m/Y");
-    }
-
     # Verifica a validade da data
     if(validaData($data)){
         
