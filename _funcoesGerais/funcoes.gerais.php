@@ -980,7 +980,7 @@ function callout($mensagem, $tipo = "warning"){
     
     $callout = new Callout($tipo);
     $callout->abre();
-        p($mensagem);
+        p($mensagem,"funcaoCallout");
     $callout->fecha();
 }
 
