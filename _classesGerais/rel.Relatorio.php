@@ -74,7 +74,7 @@ class Relatorio
     private $objetoDepoisTitulo = NULL;
 
     # do agrupamento
-    private $subTotal = FALSE;
+    private $subTotal = TRUE;
     private $numGrupo = NULL;
     private $ocultaGrupo = TRUE;
     private $saltoAposGrupo = FALSE;
@@ -88,7 +88,7 @@ class Relatorio
     # do somatório
     private $colunaSomatorio = NULL;            // coluna que terá somatório (por enquanto uma por relatório)
     private $textoSomatorio = 'Total:';         // texto a ser exibido na linha de totalização
-    private $colunaTexto = 1;                   // coluna onte o texto será exibido;
+    private $colunaTexto = 0;                   // coluna onte o texto será exibido;
     private $funcaoSomatorio = NULL;            // se executa alguma função no somatório
     private $exibeSomatorioGeral = TRUE;        // se exibe o somatório geral ou somente o parcial
     
@@ -268,8 +268,7 @@ class Relatorio
         # Exibe a segunda linha do Título do relatório
         if (!is_null($this->tituloLinha2)){
             p($this->tituloLinha2,"pRelatorioTitulo");
-        }
-            
+        }   
 
         # Exibe a terceira linha do Título do relatório
         if (!is_null($this->tituloLinha3)){
@@ -321,30 +320,46 @@ class Relatorio
       */
     
     private function exibeSomatorio($tamanho,$subSomatorio){  
-        # linha
+        # Exibe uma linha
         $this->exibeLinha($tamanho);
         
+        # Inicia a linha
         echo '<tr>';
-        if(is_null($this->numGrupo)){
-            $this->colunaSomatorio++;
-        }
-        
-        for($i = 1; $i<=$tamanho; $i++){            
+                        
+        # Percorre as colunas da tabela para chegar a coluna do somatório
+        for($i = 0; $i<$tamanho; $i++){
+            
+            # Verifica se é a coluna onde terá o texto padrão a primeira coluna
             if($i == $this->colunaTexto){
                 echo '<td>'.$this->textoSomatorio.'</td>';
-            }elseif($i == $this->colunaSomatorio){
-                if(is_null($this->funcaoSomatorio)){
-                    echo '<td>'.$subSomatorio.'</td>';                
-                }else{
-                    $nomedafuncao = $this->funcaoSomatorio;
-                    $subSomatorio = $nomedafuncao($subSomatorio);
-                    echo '<td>'.$subSomatorio.'</td>';
+            } 
+            
+            if(is_array($this->colunaSomatorio)){
+                # Em desenvolvimento
+                # Quando pronto possibilitará somatório 
+                # em mais de uma coluna
+            }else{
+                # Se for a coluna do somatório exibe o somatório
+                if($i == $this->colunaSomatorio){                
+                    # Se tiver função no somatório executa
+                    if(is_null($this->funcaoSomatorio)){
+                        echo '<td>'.$subSomatorio.'</td>';                
+                    } # Senão exibe o somatório
+                    else{
+                        $nomedafuncao = $this->funcaoSomatorio;
+                        $subSomatorio = $nomedafuncao($subSomatorio);
+                        echo '<td>'.$subSomatorio.'</td>';
+                    }
                 }
             }
-            else{
+            
+            # Senão exibe coluna em branco
+            if(($i <> $this->colunaTexto) AND ($i <> $this->colunaSomatorio)){ 
                 echo '<td></td>';
             }
-        }        
+        }
+
+        # Fecha a linha
         echo '</tr>';
     }
     ###########################################################
@@ -369,6 +384,11 @@ class Relatorio
     private function exibeCabecalhoTabela($tamanhoLinha,$tamanho,$grupo){        
         # Inicia a tabela
         echo '<table class="tabelaRelatorio" border="0"';
+        
+        # Redefine algumas variáveis
+        if(is_null($this->numGrupo)){
+            $this->subTotal = FALSE;
+        }
 
         # id da tabela (se houver)
         if (!is_null($this->id)){
@@ -517,7 +537,7 @@ class Relatorio
                         
                         # Fecha a tabela
                         echo '<tfoot>';
-                        echo '<tr><td colspan="'.($tamanhoLinha+1).'" title="Total de itens da tabela">';
+                        echo '<tr><td colspan="'.($tamanhoLinha).'" title="Total de itens da tabela">';
                         echo '</td></tr>';
                         echo '</tfoot>';
                         echo '</table>';
@@ -706,7 +726,7 @@ class Relatorio
             
             # Fecha a tabela
             echo '<tfoot>';
-            echo '<tr><td colspan="'.($tamanhoLinha+1).'" title="Total de itens da tabela">';
+            echo '<tr><td colspan="'.($tamanhoLinha).'" title="Total de itens da tabela">';
             echo '</td></tr>';
             echo '</tfoot>';
             echo '</table>';

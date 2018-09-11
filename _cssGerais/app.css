@@ -376,10 +376,11 @@ span.badge p{
 /*******************************************
  * Menu Vertical
  *******************************************/
+
 ul.menuVertical li{ 
     padding: 2px 0px 2px 0px;    
     text-align: left;
-    font-size: 14px;
+    font-size: 13px;
     list-style-type: none;
     margin: 0px 15px 0px 0px;
 }
@@ -414,6 +415,58 @@ ul.menuVertical a {
 
 ul.menuVertical a:hover {
     color: darkgray;
+}
+
+/*******************************************
+ * Menu Horizontal
+ *******************************************/
+
+ul.menuHorizontal li{ 
+    padding: 0px 10px 0px 10px;    
+    text-align: center;
+    font-size: 14px;
+    list-style-type: none;
+    margin: 0px 0px 0px 0px;
+    display: inline;
+    border-left: 1px #02548b solid;
+}
+
+ul.menuHorizontal li#titulo{
+    padding: 5px 0px 3px 0px;
+    background-color: #e6e6e6;
+    text-align: center;
+    font-size: 16px;
+    list-style-type: none;
+    margin: 0px 0px 15px -20px;
+}
+
+li#titulo1{
+    padding: 0px 0px 2px;
+    text-align: left;
+    font-size: 16px;
+    list-style-type: none;
+    margin: 0px;
+    
+}
+
+ul.menuHorizontal li#titulo a{
+    text-decoration:none;
+    color: #02548b;
+}
+
+ul.menuHorizontal a { 
+    text-decoration:none;
+    color: #076cba;
+    
+}
+
+ul.menuHorizontal a:hover {
+    color: darkgray;
+}
+
+ul.menuHorizontal {
+    text-align: right;
+    
 }
 
 /**** Relatório  ****/

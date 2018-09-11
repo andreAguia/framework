@@ -1,21 +1,38 @@
  <?php
- class Menu
- {
+ class Menu{
     /**
      * Monta um menu de opções
      * 
      * @author André Águia (Alat) - alataguia@gmail.com
      * 
-     * @var private $item array  NULL Array de itens do menu
-     * @var private $tipo array  NULL Array com o tipo de cada item: Pode ser: link|titulo|linkWindow|linkAjax
+     * @var private $item    array   NULL     Array de itens do menu
+     * @var private $tipo    array   NULL     Array com o tipo de cada item: Pode ser: link|titulo|linkWindow|linkAjax
+     * @var private $formato string  vertical stringo com o formato do menu. Pode ser: vertical|horizontal
      * 
      * @example exemplo.menu.php 
      */
 
     private $item;
     private $tipo;
+    private $formato = "vertical";
 
-    ###########################################################
+    ###########################################################    
+
+    public function __construct($formato = NULL){
+    /**
+     * Inicia a classe atribuindo um valor do formato do menu
+     * 
+     * @param $formato string  vertical stringo com o formato do menu. Pode ser: vertical|horizontal
+     * 
+     * @syntax $field = new Menu([$formato]);
+     */
+    
+    	if(!is_null($formato)){
+             $this->formato = $formato;        
+        }       
+    }
+    
+###########################################################
     
     public function add_item($tipo = 'link',$label = NULL,$url = '#',$title = NULL,$accessKey = NULL,$target = NULL){
     /**
@@ -112,7 +129,13 @@
         $contador = 0;
 
         # Começa
-        echo "<ul class='menuVertical'>";
+        if($this->formato == 'vertical'){
+            $classe = 'menuVertical';
+        }else{
+            $classe = 'menuHorizontal';
+        }
+        
+        echo "<ul class='$classe'>";
         foreach ($this->item as $row){
             switch ($this->tipo[$contador]){
                 case "titulo" :
@@ -128,7 +151,7 @@
                     break;
                 
                 default :
-                    echo "<li class='menuVertical'>";
+                    echo "<li class='$classe'>";
                     $row->show();
                     echo "</li>";
                 }
