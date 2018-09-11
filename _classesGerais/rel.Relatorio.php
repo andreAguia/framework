@@ -74,7 +74,7 @@ class Relatorio
     private $objetoDepoisTitulo = NULL;
 
     # do agrupamento
-    private $subTotal = TRUE;
+    private $subTotal = FALSE;
     private $numGrupo = NULL;
     private $ocultaGrupo = TRUE;
     private $saltoAposGrupo = FALSE;
@@ -320,7 +320,10 @@ class Relatorio
       * Exibe o somatório de uma coluna no fim do relatório ou de um agrupamento
       */
     
-    private function exibeSomatorio($tamanho,$subSomatorio){        
+    private function exibeSomatorio($tamanho,$subSomatorio){  
+        # linha
+        $this->exibeLinha($tamanho);
+        
         echo '<tr>';
         if(is_null($this->numGrupo)){
             $this->colunaSomatorio++;
@@ -343,11 +346,6 @@ class Relatorio
             }
         }        
         echo '</tr>';
-
-        # linha
-        if($this->linhaNomeColuna){
-            $this->exibeLinha($tamanho);
-        }
     }
     ###########################################################
     
@@ -692,6 +690,13 @@ class Relatorio
                    $this->exibeLinha($tamanhoLinha);
                 }
             }
+            
+            # Exibe a soma quando o somatório estiver habilitado
+            if((!is_null($this->colunaSomatorio)) AND ($contador <> 0)){
+                $this->exibeSomatorio($tamanhoLinha,$subSomatorio);
+                $subSomatorio = 0;  // Zera o somatório
+            }
+            
             echo '</tbody>';
 
             # linha
@@ -705,12 +710,6 @@ class Relatorio
             echo '</td></tr>';
             echo '</tfoot>';
             echo '</table>';
-            
-            # Exibe a soma quando o somatório estiver habilitado
-            if((!is_null($this->colunaSomatorio)) AND ($contador <> 0)){
-                $this->exibeSomatorio($tamanhoLinha,$subSomatorio);
-                $subSomatorio = 0;  // Zera o somatório
-            }
             
             # Exibe o número de registros
             if (($this->subTotal) AND ($contador > 0)){
@@ -750,35 +749,7 @@ class Relatorio
         
         echo '</table>';
         
-        # Exibe a soma geral quando o somatório estiver habilitado
-        if((!is_null($this->colunaSomatorio)) AND ($contador > 0)){
-            # Inicia a tabela
-            echo '<table class="tabelaRelatorio" border="0"';
-
-            # id da classe (se houver)
-            if (!is_null($this->id)) {
-                echo ' id="' . $this->id . '"';
-            }
-
-            echo '>';
-
-            # Informa o tamanho das colunas (width)
-            for($a = 0;$a < $tamanho;$a += 1){
-                if(isset($this->width[$a])){       // verifica se foi definido um tamanho
-                    if ((!$grupo) || (($grupo) && ($a <> $this->numGrupo)) || (($grupo) && (!$this->ocultaGrupo))){ // verifica se a coluna não foi ocultada para agrupamento 
-                        echo '<col style="width:'.$this->width[$a].'%">';
-                    }
-                }
-            }       
-            
-            # Exibe o somatório
-            if($this->exibeSomatorioGeral){
-                $this->exibeLinha($tamanhoLinha);
-                $this->textoSomatorio .= ' (Geral)';
-                $this->exibeSomatorio($tamanhoLinha,$somatorio);
-            }
-            echo '</table>';
-        }      
+        
         
         # Total de Registros
         if ($this->totalRegistro){
