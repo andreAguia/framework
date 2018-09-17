@@ -1849,7 +1849,7 @@ function year($data){
  * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
  * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.  
  * 
- * @param $data string  NULL A data a ser trabalhada
+ * @param $data data NULL A data a ser trabalhada
  */
         
     if(validaData($data)){        
@@ -1875,7 +1875,7 @@ function day($data){
      * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
      * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.  
      * 
-     * @param $data string  NULL A data a ser trabalhada
+     * @param $data data NULL A data a ser trabalhada
      */
            
         if(validaData($data)){            
@@ -1901,7 +1901,7 @@ function month($data){
      * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
      * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.  
      * 
-     * @param $data string  NULL A data a ser trabalhada
+     * @param $data data NULL A data a ser trabalhada
      */
             
         if(validaData($data)){            
