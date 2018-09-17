@@ -1420,7 +1420,6 @@ function dataExtenso2($data = NULL){
 ###########################################################
 
 function numero_to_letra($number) {
-
 /**  
  * Converte um numero para palavra (exenso)
  * 
@@ -1916,16 +1915,17 @@ function month($data){
     }
     
 ###########################################################
-    
 
-function createZip($path = 'arquivo.zip',$files = array()) {
-    
+function createZip($path = 'arquivo.zip',$files = array()) {    
 /**
  * Cria arquivos compactados .zip
  * 
- * @author Luiz Otávio Miranda <contato@todoespacoonline.com/w>
- * @param string $path Caminho para o arquivo zip que será criado 
- * @param array $files Arquivos que serão adicionados ao zip 
+ * @syntax createZip($path, files);  
+ * 
+ * @author Luiz Otávio Miranda <contato@todoespacoonline.com>
+ * 
+ * @param $path  string arquivo.zip Caminho e o nome do arquivo zip que será criado 
+ * @param $files array  NULL        Arquivos que serão adicionados ao zip 
  */
 
     # Cria o arquivo .zip
@@ -1949,46 +1949,63 @@ function createZip($path = 'arquivo.zip',$files = array()) {
 #  Funções Estatísticas
 ###########################################################
 
+function media_aritmetica(array $valores) {
 /**
  * Calcula a media de um array de numeros
- * @param array $a Array de numeros
- * @return number Retorna a media dos valores do array
+ * 
+ * @syntax media_aritmetica($valores);  
+ *  
+ * @param $valores array Array de numeros
+ * @return number A media dos valores do array
  */
-function media_aritmetica(array $a) {
-    return array_sum($a) / count($a);
+
+    return array_sum($valores) / count($valores);
 }
 
 ###########################################################
+
+function maiorValor(array $valores){
 /**
  * Obtem a maior valor de um array.
- * @param array $a Array de numeros
- * @return number o maior valor
+ * 
+ * @syntax maiorValor($valores);
+ *  
+ * @param $valores array NULL Array de numeros
+ * @return number O maior valor do array
  */
-function maiorValor($array){
-    rsort($array);
-    return $array[0];
+
+    rsort($valores);
+    return $valores[0];
 }
 
 ###########################################################
+
+function menorValor(array $valores){
 /**
  * Obtem o menor valor de um array.
- * @param array $a Array de numeros
- * @return number o maior valor
+ * 
+ * @syntax menorValor($valores);
+ * 
+ * @param $valores array NULL Array de numeros
+ * @return number O menor valor do array
  */
-function menorValor($array){
-    sort($array);
-    return $array[0];
+
+    sort($valores);
+    return $valores[0];
 }
 
 ###########################################################
+
+function arrayToString($valores){
 /**
- * Obtem o menor valor de um array.
- * @param array $a Array de numeros
- * @return number o maior valor
+ * Transforma um array em uma string com os valores separados por vírgula
+ * 
+ * @param $valores array NULL Array de valores
+ * @return string dos valores separados por vírgulas
  */
-function arrayToString($array){
+
     $resultado = NULL;
-    foreach ($array as $stringArray){
+    foreach ($valores as $stringArray){
         $resultado .= $stringArray.",";
     }
     
@@ -2000,13 +2017,16 @@ function arrayToString($array){
 }
 
 ###########################################################
+
+function arrayPreenche($valorInicial,$valorFinal){
 /**
  * Preenche um array numérico com uma faixa de valores
- * @param integer $valorInicial Valor Inicial
- * @param integer $valorFinal   Valor Inicial
+ * 
+ * @param $valorInicial integer NULL Valor Numérico Inicial
+ * @param $valorFinal   integer NULL Valor Numérico Final
  * @return array com os valores preenchidos
  */
-function arrayPreenche($valorInicial,$valorFinal){
+
     # Inicia o array de retorno
     $resultado = array();
     
@@ -2019,15 +2039,25 @@ function arrayPreenche($valorInicial,$valorFinal){
 }
 
 ###########################################################
+
+function diaSemana($data){
 /**
  * Informa o dia da dsemana de uma data
- * @param date $data data a ser examinada no formato YYYY/mm/dd
+ * 
+ * @param $data data NULL Data a ser examinada
  * @return string com o dia da semana 
+ * 
+ * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
+ * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
+ * 
+ * @syntax diaSemana($data);
  */
-function diaSemana($data){
     
     # Array com os dias da semana
     $dia = array('Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado');
+
+    # Passa para o formato americano
+    $data = date_to_bd($data);
 
     # Variavel que recebe o dia da semana (0 = Domingo, 1 = Segunda ...)
     $numero = date('w', strtotime($data));
@@ -2037,45 +2067,17 @@ function diaSemana($data){
 }
 
 ###########################################################
-/**
- * Informa o dia da dsemana de uma data
- * @param date $data data a ser examinada no formato YYYY/mm/dd
- * @return string com o dia da semana 
- */
-function iframe($url,$altura = "100%",$largura = "100%"){
-    
-   echo '<iframe src="'.$url.'" height="'.$altura.'" width="'.$largura.'" style="border:none;"></iframe>';
-}
-
-###########################################################
-/**
- * retorna array com o feed de noticias
- * @param string $feed A url do feede do rss
- * @return objeto com os itens do feed
- */
-function feed($feed){
-    
-    # permite requisições a urls externas
-    ini_set('allow_url_fopen', 1);
-    ini_set('allow_url_include', 1);
-
-    # leitura do feed
-    $rss = simplexml_load_file($feed);
-
-    # retorna
-    if($rss){
-        return $rss;
-    }
-}
-
-###########################################################
-/**
- * retorna a codificação da string informada
- * @param string $feed A string a ser analisada
- * @return UTF-8 ou ISO-8859-1
- */
 
 function codificacao($string) {
+/**
+ * Retorna a codificação da string informada
+ * 
+ * @param $string string NULL A string a ser analisada
+ * @return string UTF-8 ou ISO-8859-1
+ * 
+ * @syntax codificacao($string); 
+ */
+
     return mb_detect_encoding($string.'x', 'UTF-8, ISO-8859-1');
 }
 
@@ -2084,9 +2086,12 @@ function codificacao($string) {
 function dias_to_diasMesAno($dias){
 
 /**
- * retorna a codificação da string informada
- * @param integer NULL O número de dias a ser calculado
- * @return UTF-8 ou ISO-8859-1
+ * Transforma uma quantidade grande de dias em dias meses e anos
+ * 
+ * @param $dias integer NULL O número de dias a ser calculado
+ * @return string com os dias meses e anos calculados
+ * 
+ * @syntax dias_to_diasMesAno($dias);  
  */
 
     # Inicia as variáveis
@@ -2133,10 +2138,13 @@ function dias_to_diasMesAno($dias){
 function resto($dividendo,$divisor){
 
 /**
- * retorna o resto da divisão de 2 números inteiros
- * @param integer NULL O $dividendo
- * @param integer NULL O $divisor
+ * Retorna o resto da divisão de 2 números inteiros
+ * 
+ * @param $dividendo integer NULL O dividendo
+ * @param $divisor   integer NULL O divisor
  * @return integer o resto da divisão
+ * 
+ * @syntax resto($dividendo,$divisor);
  */
     
     $resultado = intval($dividendo/$divisor);
@@ -2148,12 +2156,16 @@ function resto($dividendo,$divisor){
 
 ###########################################################
 
-function trataNulo($valor){
+function trataNulo($valor,$caractere = "--"){
 
 /**
- * retorna o caractere - quando for nulo ou zero
- * @param  mixed O valor a ser conferido
- * @return mixed O valor ou - quando o valor for zero ou nullo
+ * Transforma o valor NULL ou zero em outro caractere
+ * 
+ * @param  $valor     mixed  NULL O valor a ser conferido
+ * @param  $caractere string --   A string a ser exibida caso o valor informado for zero ou nullo
+ * @return mixed O valor ou -- quando o valor for zero ou nullo
+ * 
+ * @syntax trataNulo($valor,[$caractere]); 
  */
     
     # Inicia a variável de retorno
@@ -2161,12 +2173,12 @@ function trataNulo($valor){
             
     # Verifica se é nulo
     if(is_null($valor)){
-        $retorno = "--";
+        $retorno = caractere;
     }
     
     # Verifica se é 0
     if((is_numeric($valor)) AND ($valor == 0)){
-        $retorno = "--";
+        $retorno = caractere;
     }
     
     return $retorno;
