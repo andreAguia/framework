@@ -2173,12 +2173,12 @@ function trataNulo($valor,$caractere = "--"){
             
     # Verifica se é nulo
     if(is_null($valor)){
-        $retorno = caractere;
+        $retorno = $caractere;
     }
     
     # Verifica se é 0
     if((is_numeric($valor)) AND ($valor == 0)){
-        $retorno = caractere;
+        $retorno = $caractere;
     }
     
     return $retorno;
