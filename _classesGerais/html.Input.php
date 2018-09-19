@@ -513,6 +513,7 @@ class Input
             case "numero":
             case "patrimonio":
             case "cpf":
+            case "email":
             case "cep":    
             case "date":
             case "data":
@@ -633,28 +634,22 @@ class Input
                 break;
             
             case "simnao":
-                echo '>';
-                $this->array = array(array(NULL,""),array(TRUE,"Sim"),array(FALSE,"Não"));
+                $this->array = array(array(TRUE,"Sim"),array(FALSE,"Não"));
                             
-                echo '<option value="'.TRUE.'"';
-                if ($this->valor){
-                    echo ' selected>';
-                }else{
-                    echo '>';
+                echo '>';
+                foreach($this->array as $field){
+                    echo '<option value="'.$field[0].'"';
+                    if ($field[0] == $this->valor){
+                        echo ' selected>';
+                    }else{
+                        echo '>';
+                    }
+                    echo  $field[1];
+                    echo '</option>';
                 }
-                echo 'Sim';
-                echo '</option>';
-                
-                echo '<option value="'.FALSE.'"';
-                if (!($this->valor)){
-                    echo ' selected>';
-                }else{
-                    echo '>';
-                }
-                echo 'Não';
-                echo '</option>';
+
                 echo '</select>';
-                break;
+                break;	
                 
             case "combo":
                 #echo ' size="'.($this->size).'"';

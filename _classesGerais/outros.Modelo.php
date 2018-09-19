@@ -959,6 +959,21 @@ class Modelo{
                 }
             }
             
+
+######################### EMAIL #########################
+            
+            # verifica a validade do email
+            if ($campo['tipo'] == 'email'){
+                $email = $campoValor[$contador];
+                
+                if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                    $msgErro.='Email Inválido!\n';
+                    $erro = 1;
+                    
+                }
+                
+            }
+            
 ######################### Processo #########################
             
             # Verifica e transforma o número de processo
