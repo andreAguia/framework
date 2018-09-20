@@ -303,11 +303,11 @@ class Form{
 
         echo '</div>';
                 
-        if($fieldsetAberto){
-            echo '</fieldset>';                           
-            $fieldsetAberto = FALSE;
-            echo '</div>'; // para quando se quer ocultar um grupo de campos
-        }
+        #if($fieldsetAberto){
+        #    echo '</fieldset>';                           
+        #    $fieldsetAberto = FALSE;
+        #    echo '</div>'; // para quando se quer ocultar um grupo de campos
+        #}
       		      	
     	echo '</form>';  
         

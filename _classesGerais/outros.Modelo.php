@@ -704,6 +704,7 @@ class Modelo{
         $somatorioSize = 0;         // somatorio temporário de uma determinada linha
         $somaPorLinha[] = NULL;     // Array com o somatório por linha
         foreach ($this->campos as $campo){
+            
             # pega o tamanho de um controle (input)
             if ($campo['tipo'] == 'textarea') {
                 $sizeFormulario = $campo['size'][0];
@@ -723,12 +724,15 @@ class Modelo{
             $somaPorLinha[$campo['linha']] = $somatorioSize; // atualiza a soma por linha
         }
 
-        $contador = 1;	// Contador para a tabulação do formulário
+        $contador = 1;          // Contador para a tabulação do formulário
+        $ultimoFieldset = NULL; // Verifica se ultimo fieldset foi o de fechar
 
         foreach ($this->campos as $campo){
             $controle = new Input($campo['nome'],$campo['tipo'],$campo['label'],$this->formLabelTipo); 
             $controle->set_linha($campo['linha']);      // linha no form que vai ser colocado o controle
-            $controle->set_tabindex($contador);		// tabulador (ordem de navega��o com a tecla tab)
+            $linhaAtual = $campo['linha'];
+            
+            $controle->set_tabindex($contador);		// tabulador (ordem de navegaçao com a tecla tab)
             
             if (isset($campo['size'])) {
                 $controle->set_size($campo['size']);
@@ -768,6 +772,7 @@ class Modelo{
             }         // onChange	
             if (isset($campo['fieldset'])) {
                 $controle->set_fieldset($campo['fieldset']);
+                $ultimoFieldset = $campo['fieldset']; // Conta os fieldset usados
             }            // fieldse interno
             if (isset($campo['col'])) {
                 $controle->set_col($campo['col']);
@@ -825,6 +830,11 @@ class Modelo{
         $controle->set_accessKey('S');
         $controle->set_linha($linhaAtual+2);
         $controle->set_col(3);
+        
+        # Verifica se tem fieldset aberto e fecha
+        if($ultimoFieldset <> "fecha"){
+            $controle->set_fieldset("fecha");
+        }
         $form->add_item($controle);
         
         # cancelar

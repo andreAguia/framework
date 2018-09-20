@@ -2185,3 +2185,31 @@ function trataNulo($valor,$caractere = "--"){
 }
 
 ###########################################################
+
+function ePar($valor){
+
+/**
+ * TVerifica se numero e par
+ * 
+ * @param  $valor INTEGER NULL O valor a ser conferido
+ * @return true ou false
+ * 
+ * @syntax ePar($valor); 
+ */
+    
+    # Garante que e inteiro
+    $valor = intval($valor);
+    
+    # Inicia a variável de retorno
+    $retorno = NULL;
+            
+    if($valor % 2 == 0){
+        $retorno = TRUE;
+    } else {
+        $retorno = FALSE;
+    }
+    
+    return $retorno;
+}
+
+###########################################################
