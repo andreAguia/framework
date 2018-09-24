@@ -494,14 +494,10 @@ class Relatorio
             $menuRelatorio->set_brHr($this->brHr);
             $menuRelatorio->show();
         }
-
+        
         # Exibe o cabeçalho
         if($this->cabecalhoRelatorio){
-            if($this->titulo == 'Avaliação Funcional Anual'){
-                $this->exibeCabecalhoVelho();
-            }else{
-                $this->exibeCabecalho();
-            }            
+            $this->exibeCabecalho();
         }
         
         # Abre a div do relatório
