@@ -517,7 +517,9 @@ class Input
             case "cep":    
             case "date":
             case "data":
-            case "hora":        
+            case "hora": 
+            case "telefone":  
+            case "celular":      
                 echo '<INPUT autocomplete="on"';        // Habilita histórico
                 break;            
             case "file":
@@ -712,6 +714,29 @@ class Input
                 break; 
 
             case "hora":
+                $mascara = '99:99';
+                echo ' size="'.($this->size).'"';
+                echo ' type="text"';
+                echo ' value="'.$this->valor.'"';
+                echo ' onkeypress="mask(this, \''.$mascara.'\',1,this)" ';
+                echo ' onkeyup="mask(this, \''.$mascara.'\',1,this)" ';
+                echo ' onblur="mask(this, \''.$mascara.'\',1,this)" ';          
+                echo '/>';
+                break;
+            
+            case "telefone":
+                $mascara = '9999-9999';
+                echo ' size="'.($this->size).'"';
+                echo ' type="text"';
+                echo ' value="'.$this->valor.'"';
+                echo ' onkeypress="mask(this, \''.$mascara.'\',1,this)" ';
+                echo ' onkeyup="mask(this, \''.$mascara.'\',1,this)" ';
+                echo ' onblur="mask(this, \''.$mascara.'\',1,this)" ';          
+                echo '/>';
+                break;
+            
+            case "celular":
+                $mascara = '99999-9999';
                 echo ' size="'.($this->size).'"';
                 echo ' type="text"';
                 echo ' value="'.$this->valor.'"';
