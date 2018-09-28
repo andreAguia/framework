@@ -660,7 +660,7 @@ class Tabela
             }
 
             if (is_null($this->rodape)) {
-                echo 'Total:   ' . $numRegistros;
+                echo 'Total de Registros:   ' . $numRegistros;
             }else{
                 echo $this->rodape;
             }
