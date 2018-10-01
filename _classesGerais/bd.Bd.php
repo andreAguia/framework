@@ -198,7 +198,7 @@
 
                 $sql .= ' WHERE '.$idCampo.' = '.$idValor;		    		
             }
-            alert($sql);
+            #alert($sql);
 
             # Executa o sql
             $this->conn->exec($sql);
