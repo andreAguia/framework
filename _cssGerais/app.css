@@ -394,12 +394,12 @@ ul.menuVertical li#titulo{
     margin: 0px 0px 15px -20px;
 }
 
-li#titulo1{
-    padding: 0px 0px 2px;
+ul.menuVertical li#titulo1{
+    padding: 10px 0px 2px;
     text-align: left;
     font-size: 16px;
     list-style-type: none;
-    margin: 0px;
+    margin: px;
     border-bottom: 1px #D7D7D7 solid;
 }
 
