@@ -395,12 +395,11 @@ ul.menuVertical li#titulo{
 }
 
 ul.menuVertical li#titulo1{
-    padding: 10px 0px 2px;
+    padding: 8px 0px 2px;
     text-align: left;
-    font-size: 16px;
+    font-size: 14px;
     list-style-type: none;
-    margin: px;
-    border-bottom: 1px #D7D7D7 solid;
+    border-bottom: 2px #D7D7D7 solid;
 }
 
 ul.menuVertical li#titulo a{
