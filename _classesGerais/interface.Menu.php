@@ -93,9 +93,17 @@
                 # linkWindow
                 $linkWindow = new Link($label);
                 $linkWindow->set_title($title);
-                $linkWindow->set_onClick("window.open('".$url."','_blank','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600');");
+                
                 #$linkWindow->set_cursor('pointer');
-
+                
+                # Resolvendo o bug do firefox que ia para uma pagina em branco
+                #  toda vez que se abria-se um relatorio
+                if(BROWSER_NAME == "FIREFOX"){
+                    $linkWindow->set_onClick("window.open('".$url."','_blank','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600');history.go(1);");                  
+                }else{
+                    $linkWindow->set_onClick("window.open('".$url."','_blank','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600');");
+                }
+                
                 # Joga o objeto para o array
                 $this->item[] = $linkWindow;
                 $this->tipo[] = 'item';
