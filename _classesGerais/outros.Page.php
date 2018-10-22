@@ -37,6 +37,10 @@ class Page
     # javaScript
     private $jscript = NULL;    # acrescenta uma rotina jscript extra;
     private $bodyOnLoad = NULL; # acrescenta rotina no onload do body;
+    
+    # jquery
+    private $ready = NULL;      # inicia a rotina quando a tela começa a carregar (DOM ready)
+    private $onLoad = NULL;     # inicia a rotina quando toda a página terminar de carregar
 
 ###########################################################
     
@@ -97,6 +101,34 @@ class Page
     }
 
 ###########################################################
+    
+    public function set_ready($ready = NULL){
+    /**
+     * Executa rotina ao iniciar a página (carregar o DOM) utilizando o jquery
+     * 
+     * @syntax $page->set_ready($ready);
+     * 
+     * @param $ready string NULL Rotina a ser executada 
+     */
+    
+        $this->ready = $ready;
+    }
+
+###########################################################
+    
+    public function set_onLoad($onLoad = NULL){
+    /**
+     * Executa rotina quando toda a página for carregada utilizando o jquery
+     * 
+     * @syntax $page->set_onLoad($onLoad);
+     * 
+     * @param $onLoad string NULL Rotina a ser executada
+     */
+    
+        $this->onLoad = $onLoad;
+    }
+
+###########################################################
 
     public function iniciaPagina(){
     /**
@@ -124,7 +156,6 @@ class Page
         echo '<meta name="author" content="'.$this->author.'">';            # Autor da Página
         
         echo '<meta http-equiv="pragma" content="no-cache">';               # Obriga o Navegador a não usar cache
- 
 
         # Se tiver refresh automático
         if ($this->refresh) {
@@ -156,6 +187,26 @@ class Page
         # Java Script Extra
         if(!is_null($this->jscript)){
             echo $this->jscript;
+        }
+        
+        # Jquery ready - executa no início do carregamento da página
+        if(!is_null($this->ready)){
+            echo "<script language='JavaScript'>   
+            $(document).ready(function(){
+                ".$this->ready."  
+            });
+            </script>
+            ";
+        }
+        
+        # Jquery load - executa somente depois de toda a página carregada
+        if(!is_null($this->onLoad)){
+            echo "<script language='JavaScript'>   
+            $(windows).load(function(){
+                ".$this->onLoad."  
+            });
+            </script>
+            ";
         }
 
         # Carrega o css
