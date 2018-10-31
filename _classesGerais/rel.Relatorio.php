@@ -123,6 +123,9 @@ class Relatorio
     private $funcaoFinalGrupo = NULL;           // Executa uma rotina ao fim de cada agrupamento na forma de função
     private $funcaoFinalGrupoParametro = NULL;  // Usado na escala anual de férias para exibir texto.
     
+    private $funcaoFinalRelatorio = NULL;           // Executa uma rotina ao fim do Relatorio
+    private $funcaoFinalRelatorioParametro = NULL;  
+    
 ###########################################################
     
     public function __construct($id = NULL){
@@ -765,12 +768,30 @@ class Relatorio
         
         echo '</table>';
         
-        
+                
         
         # Total de Registros
         if ($this->totalRegistro){
             hr();
             p('Total de Registros: '.$contador,'pRelatorioTotal');            
+        }
+        
+        # Executa a rotina no final de um grupo na forma de função
+        if(!is_null($this->funcaoFinalRelatorio)){
+            # Verifica se é array. Mais de uma função
+            if(is_array($this->funcaoFinalRelatorio)){
+                # quantidade de itens
+                $quantidade = count($this->funcaoFinalRelatorio);
+
+                # Percorre o array executando as funções na ordem do array
+                for ($i = 0; $i < $quantidade; $i++) {
+                    $nomedafuncao = $this->funcaoFinalRelatorio[$i];
+                    $nomedafuncao($this->funcaoFinalRelatorioParametro[$i]);
+                }
+            }else{
+               $nomedafuncao = $this->funcaoFinalRelatorio;
+               $nomedafuncao($this->funcaoFinalRelatorioParametro); 
+            }
         }
         
         # Pega o usuário

@@ -659,19 +659,21 @@ class Input
                 foreach($this->array as $field){
                     if (is_array($field)){
                         echo '<option value="'.$field[0].'"';
-                        if ($field[0] == $this->valor)
+                        if ($field[0] == $this->valor){
                             echo ' selected>';
-                        else
+                        }else{
                             echo '>';
+                        }
 
                         echo  $field[1];
                         echo '</option>';	
                     }else{
                         echo ' <option value="'.$field.'"';
-                        if ($field == $this->valor)
+                        if ($field == $this->valor){
                             echo ' selected>';
-                        else
+                        }else{
                             echo '>';
+                        }
 
                         echo  $field;
                         echo '</option>';
