@@ -2213,3 +2213,29 @@ function ePar($valor){
 }
 
 ###########################################################
+
+function primeiraLetraMaiuscula($texto){
+
+/**
+ * Passa o texto para minusculas com a primeira letra de cada palavra em maiusculas
+ * 
+ * @param  $texto STRING NULL O texto a ser transformado
+ * @return string O texto modificado
+ * 
+ * @syntax primeiraLetraMaiuscula($texto); 
+ */
+    
+    # Passa para a utf-8
+    mb_internal_encoding('UTF-8');
+    $texto = utf8_encode($texto);
+    
+    # Passa para minusculas
+    $texto = mb_strtolower($texto);
+    
+    # Passa as primeiras letras para maiusculas
+    $texto = ucwords($texto);
+    
+    return $texto;
+}
+
+###########################################################
