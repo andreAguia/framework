@@ -913,6 +913,7 @@ class Modelo{
                 
                 # formata a data
                 if (($campo['tipo'] == 'date') OR ( $campo['tipo'] == 'data')) {
+                    
                     $alteracoes .= '[' . $campo['label'] . '] ' . date_to_php($oldValue[$contador]) . '->' . date_to_php($campoValor[$contador]) . '; ';
                 } else {
                     $alteracoes .= '[' . $campo['label'] . '] ' . $oldValue[$contador] . '->' . $campoValor[$contador] . '; ';

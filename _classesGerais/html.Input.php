@@ -710,7 +710,15 @@ class Input
 
             case "date":
             case "data":
-                echo ' type="date"';
+                $mascara = '99/99/9999';
+                if(BROWSER_NAME == "CHROME"){
+                    echo ' type="date"';
+                }else{
+                    echo ' type="text"';
+                    echo ' onkeypress="mask(this, \''.$mascara.'\',1,this)" ';
+                    echo ' onkeyup="mask(this, \''.$mascara.'\',1,this)" ';
+                    echo ' onblur="mask(this, \''.$mascara.'\',1,this)" ';       
+                }
                 echo ' value="'.$this->valor.'"';                    
                 echo '/>';      
                 break; 

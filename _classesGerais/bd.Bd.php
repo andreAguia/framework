@@ -69,6 +69,7 @@
                 break;
             case 'mysql':
                 $this->conn = new PDO("mysql:host={$this->host};port=3306;dbname={$this->name};charset=UTF8", $this->user, $this->pass);
+                $this->conn->exec("SET sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));");
                 break;
             case 'sqlite':
                 $this->conn = new PDO("sqlite:{$this->name}");
