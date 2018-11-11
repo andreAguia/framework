@@ -53,9 +53,9 @@ class BotaoGrafico
     
     private $formName = 'padrao';       
 
-    private $image = "_semImagem.jpg";
-    private $imageWidth = 48;
-    private $imageHeight = 48;    
+    private $imagem = "_semImagem.jpg";
+    private $imagemWidth = 48;
+    private $imagemHeight = 48;    
 
     private $confirma = NULL;    
     private $tabIndex = NULL;
@@ -175,20 +175,20 @@ class BotaoGrafico
 
 ###########################################################
     
-    public function set_image($image = NULL,$imageWidth = 48, $imageHeight = 48){
+    public function set_imagem($image = NULL,$imageWidth = 48, $imageHeight = 48){
     /**
      * Define a imagem do botão
      * 
-     * @syntax $botao->set_image($image,[$imageWidth],[$imgageHeight]); 
+     * @syntax $botao->set_imagem($image,[$imageWidth],[$imgageHeight]); 
      * 
-     * @param $image        string  NULL O caminho e o nome da Imagem a ser exibida
-     * @param $imageWidth   integer 48	 Largura da imagem
-     * @param $imageHeight  integer 48	 Altura da imagem
+     * @param $imagem        string  NULL O caminho e o nome da Imagem a ser exibida
+     * @param $imagemWidth   integer 48	 Largura da imagem
+     * @param $imagemHeight  integer 48	 Altura da imagem
      */
     
-        $this->image = $image;
-        $this->imageWidth = $imageWidth;
-        $this->imageHeight = $imageHeight;        
+        $this->imagem = $image;
+        $this->imagemWidth = $imageWidth;
+        $this->imagemHeight = $imageHeight;        
     }
 
 ###########################################################
@@ -321,7 +321,7 @@ class BotaoGrafico
         $div->abre();
         
         # coloca a imagem
-        echo "<input type=\"image\" src=\"$this->image\" width=\"$this->imageWidth\" height=\"$this->imageHeight\" title=\"$this->title\"";
+        echo "<input type=\"image\" src=\"$this->imagem\" width=\"$this->imagemWidth\" height=\"$this->imagemHeight\" title=\"$this->title\"";
 
         # id
         if(!is_null($this->id)){

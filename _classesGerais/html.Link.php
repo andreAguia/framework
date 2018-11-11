@@ -29,9 +29,9 @@ class Link
      * @var private $accessKey string  NULL   Letra para se usar junto com a tecla ALT como atalho de acesso ao botão 
      * 
      * @group da imagem
-     * @var private $image         string  "_semImagem.jpg" O caminho e o nome da Imagem a ser exibida
-     * @var private $imageWidth    integer 48               Largura da imagem
-     * @var private $imageHeight   integer 48               Altura da imagem
+     * @var private $imagem         string  "_semImagem.jpg" O caminho e o nome da Imagem a ser exibida
+     * @var private $imagemWidth    integer 48               Largura da imagem
+     * @var private $imagemHeight   integer 48               Altura da imagem
      * 
      * @example exemplo.link.php
      */
@@ -44,18 +44,14 @@ class Link
     private $class = NULL;
     private $id = NULL;
     
-    private $janela = FALSE;
-    private $janelaWidth = 750;
-    private $janelaHeight = 600;
-    
     private $onClick = NULL;
         
     private $confirma = NULL;
     private $accessKey = NULL;
     
-    private $image = NULL;
-    private $imageWidth = 48;
-    private $imageHeight = 48;    
+    private $imagem = NULL;
+    private $imagemWidth = 48;
+    private $imagemHeight = 48;    
 
 ###########################################################
 
@@ -74,6 +70,20 @@ class Link
         $this->label = $label;
         $this->url = $url;
         $this->title = $title;
+    }
+
+###########################################################
+    
+    public function set_url($url = NULL){
+    /**
+     * Informa a url
+     * 
+     * @syntax $link->set_url($url);
+     * 
+     * @param $url string NULL O caminho do link do link
+     */
+    
+        $this->url = $url;
     }
 
 ###########################################################
@@ -134,24 +144,6 @@ class Link
 
 ###########################################################
 
-    public function set_janela($janela = NULL,$janelaWidth = 750,$janelaHeight = 600){
-    /**
-     * Indica se o link abrirá uma janela. Usado nas rotinas de relatórios.
-     * 
-     * @syntax $link->set_janela($janela,[$janelaWidth], [$janelaHeight]);
-     * 
-     * @param $janela       boolean NULL Indica se o link abrirá uma janela. Usado nas rotinas de relatórios.
-     * @param $janelaWidth  integer 750  A largura da janela
-     * @param $janelaHeight integer 600  A altura da janela 
-     */
-    
-        $this->janela = $janela;
-        $this->janelaWidth = $janelaWidth;
-        $this->janelaHeight = $janelaHeight;
-    }
-
-###########################################################
-
     public function set_onClick($onClick = NULL){
     /**
      * Informa a rotina jscript a ser executada no evento onclick.
@@ -194,20 +186,20 @@ class Link
 
 ###########################################################
     
-    public function set_image($image = NULL,$imageWidth = 48, $imageHeight = 48){
+    public function set_imagem($imagem = NULL,$imagemWidth = 48, $imagemHeight = 48){
     /**
      * Define a imagem do botão
      * 
-     * @syntax $botao->set_image($image,[$imageWidth],[$imgageHeight]); 
+     * @syntax $botao->set_imagem($imagem,[$imagemWidth],[$imgagemHeight]); 
      * 
-     * @param $image        string  NULL O caminho e o nome da Imagem a ser exibida
-     * @param $imageWidth   integer 48	 Largura da imagem
-     * @param $imageHeight  integer 48	 Altura da imagem
+     * @param $imagem        string  NULL O caminho e o nome da Imagem a ser exibida
+     * @param $imagemWidth   integer 48	 Largura da imagem
+     * @param $imagemHeight  integer 48	 Altura da imagem
      */
     
-        $this->image = $image;
-        $this->imageWidth = $imageWidth;
-        $this->imageHeight = $imageHeight;        
+        $this->imagem = $imagem;
+        $this->imagemWidth = $imagemWidth;
+        $this->imagemHeight = $imagemHeight;        
     }
 
 ###########################################################
@@ -219,7 +211,7 @@ class Link
      * @param  $id integer NULL	Usado em links em tabelas para acrescentar o id do registro a url
      */    
 
-        # Rotina de atalho
+        # Atalho
         if($this->accessKey<>NULL){			
             # Altera o label colocando o sublinhado na letra do atalho (se tiver)
             $atalho  = substr($this->label,0,stripos($this->label,$this->accessKey));
@@ -228,29 +220,63 @@ class Link
             $this->label = $atalho;
         }
 
+        # Começa o link
         echo '<a';
         
-        if (!is_null($this->class)){
+        # class
+        if(!is_null($this->class)){
             echo ' class="'.$this->class.'"';
         }
         
-        if (!is_null($this->id)){
+        # id
+        if(!is_null($this->id)){
             echo ' id="'.$this->id.'"';
         }
         
-        if((!is_null($this->url)) OR (!is_null($this->onClick))){
-            if($this->janela){ 
-                $this->set_onClick("window.open('$this->url$id','_blank','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=$this->janelaWidth,height=$this->janelaHeight')");
+        # target
+        if (!is_null($this->target)){
+            if($this->target == '_blank'){
+                echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=900,height=600');\" ";
+                $this->url = "#";
+            }else{
+                echo ' target="'.$this->target.'"';
+            }
+        }
+        
+        # Verifica se tem confirmação
+        if ($this->confirma <> NULL){  // com confirmação
+            if(is_null($id)){	// Exibe ou não o id
+                echo " onclick='confirma(\"$this->url\",\"$this->confirma\")'";
+            }
+            else{
+                echo " onclick='confirma(\"$this->url$id\",\"$this->confirma\")'"; 	
             }
 
+            echo ' href="#"';
+        }else{	   // sem confirmação
+            if(is_null($this->onClick)){        
+                if(is_null($id)){	// Exibe ou não o id
+                    echo ' href="'.$this->url.'"';
+                }
+                else{
+                    echo ' href="'.$this->url.$id.'"';
+                }
+            }
+            else{
+                echo ' href="javascript:'.$this->onClick.'"';
+            }
+        }
+        
+        # o destino
+        if((!is_null($this->url)) OR (!is_null($this->onClick))){
+
             # Verifica se tem confirmação
-            if ($this->confirma <> NULL){  // com confirmação
+            if($this->confirma <> NULL){  // com confirmação
                 if(is_null($id)){	// Exibe ou não o id
                     echo " onclick='confirma(\"$this->url\",\"$this->confirma\")'";
                 }else{
                     echo " onclick='confirma(\"$this->url$id\",\"$this->confirma\")'"; 	
                 }
-
                 echo ' href="#"';
             }else{	   // sem confirmação
                 if(is_null($this->onClick)){        
@@ -265,7 +291,7 @@ class Link
             }
         }
             
-        if (!is_null($this->accessKey)){
+        if(!is_null($this->accessKey)){
             echo ' accesskey="'.$this->accessKey.'"';
         }
 
@@ -273,18 +299,23 @@ class Link
             echo ' title="'.$this->title.'"';
         }
         
-        if (!is_null($this->target)){
-            echo ' target="'.$this->target.'"';
-        }
-        
         echo '>';
         
-        if (!is_null($this->image)){
-            $figura = new Imagem($this->image,$this->title,$this->imageWidth,$this->imageHeight);
-            $figura->show();
-        }else{
-            echo $this->label;
+        # imagem
+        if(!is_null($this->imagem)){
+            if(is_object($this->imagem)){
+                $this->imagem->show(); 
+            }else{
+                $figura = new Imagem($this->imagem,$this->title,$this->imagemWidth,$this->imagemHeight);
+                $figura->show();
+            }
         }
+        
+        if (!is_null($this->label)){
+            echo '<span>';
+            echo $this->label;
+            echo '</span>';
+        }        
         echo '</a>';
     }
 }

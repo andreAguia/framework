@@ -209,79 +209,14 @@ class Button
      * @param  $id integer NULL	Usado em links em tabelas para acrescentar o id do registro a url
      */    
 
-        # Rotina de atalho
-        if($this->accessKey<>NULL){			
-            # Altera o label colocando o sublinhado na letra do atalho (se tiver)
-            $atalho  = substr($this->label,0,stripos($this->label,$this->accessKey));
-            $atalho .= '<B><U>'.$this->accessKey.'</U></B>';
-            $atalho .= substr($this->label,stripos($this->label,$this->accessKey)+1);
-            $this->label = $atalho;
-        }
-
-        echo '<a';
-        
-         if ($this->disabled){
-            $this->class .= " disabled";
-        }
-        
-        if (!is_null($this->class)){
-            echo ' class="'.$this->class.'"';
-        }
-        
-        if (!is_null($this->id)){
-            echo ' id="'.$this->id.'"';
-        }
-        
-        if (!is_null($this->target)){
-            echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600');\" ";
-            $this->url = "#";
-            #echo ' target="'.$this->target.'"';
-        }
-        
-        # Verifica se tem confirmação
-        if ($this->confirma <> NULL){  // com confirmação
-            if(is_null($id)){	// Exibe ou não o id
-                echo " onclick='confirma(\"$this->url\",\"$this->confirma\")'";
-            }
-            else{
-                echo " onclick='confirma(\"$this->url$id\",\"$this->confirma\")'"; 	
-            }
-
-            echo ' href="#"';
-        }
-        else{	   // sem confirmação
-            if(is_null($this->onClick)){        
-                if(is_null($id)){	// Exibe ou não o id
-                    echo ' href="'.$this->url.'"';
-                }
-                else{
-                    echo ' href="'.$this->url.$id.'"';
-                }
-            }
-            else{
-                echo ' href="javascript:'.$this->onClick.'"';
-            }
-        }
-          
-        if (!is_null($this->accessKey)){
-            echo ' accesskey="'.$this->accessKey.'"';
-        }
-
-        if (!is_null($this->title)){
-            echo ' title="'.$this->title.'"';
-        }
-        
-        echo '>';
-        
-        if (!is_null($this->imagem)){
-            $this->imagem->show();
-        }
-        
-        if (!is_null($this->label)){
-            echo '<span>';
-            echo $this->label;
-            echo '</span>';
-        }        
-        echo '</a>';
+        $link = new Link($this->label, $this->url, $this->title);
+        $link->set_class($this->class);
+        $link->set_id($this->id);
+        $link->set_target($this->target);
+        $link->set_onClick($this->onClick);
+        $link->set_accessKey($this->accessKey);
+        $link->set_confirma($this->confirma);
+        $link->set_imagem($this->imagem);
+        $link->show();
     }
 }

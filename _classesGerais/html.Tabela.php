@@ -110,9 +110,9 @@ class Tabela
     
     # do link no título
     private $linkTitulo = NULL;
-    private $linkTituloImage = PASTA_FIGURAS_GERAIS.'plus.png';
-    private $linkTituloImageWidth = 15;
-    private $linkTituloImageHeight = 15; 
+    private $linkTituloImagem = PASTA_FIGURAS_GERAIS.'plus.png';
+    private $linkTituloImagemWidth = 15;
+    private $linkTituloImagemHeight = 15; 
     private $linkTituloTitle = NULL;
      
     # outros
@@ -315,7 +315,7 @@ class Tabela
                 echo " ";
                 $link = new Link(" +",$this->linkTitulo);
                 $link->set_title($this->linkTituloTitle);
-                $link->set_image($this->linkTituloImage,$this->linkTituloImageWidth,$this->linkTituloImageHeight);
+                $link->set_imagem($this->linkTituloImagem,$this->linkTituloImagemWidth,$this->linkTituloImagemHeight);
                 $link->show();
             }
         }
@@ -470,25 +470,25 @@ class Tabela
                 # Botão editar
                 if(($this->editar <> NULL) and ($a == $colunaEdita)){
                     $link = new Link(NULL,$this->editar.'&'.$this->nomeGetId.'='.$id,$this->nomeColunaEditar.': '.$row[0]);
-                    $link->set_image(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
+                    $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
                     $link->show();     
                     
                     #$botao = new BotaoGrafico();
                     #$botao->set_url($this->editar.'&'.$this->nomeGetId.'='.$id);
-                    #$botao->set_image(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
+                    #$botao->set_imagem(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
                     #$botao->set_title($this->nomeColunaEditar.': '.$row[0]);
                     #$botao->show();                    
                 }
                 elseif(($this->excluir <> NULL) and ($a == $colunaExcluir))	// coluna de excluir
                 {
                     $link = new Link(NULL,$this->excluir.'&'.$this->nomeGetId.'='.$id,$this->nomeColunaExcluir.': '.$row[0]);
-                    $link->set_image(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
+                    $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
                     $link->set_confirma('Deseja mesmo excluir?');
                     $link->show(); 
                     
                     #$botao = new BotaoGrafico();
                     #$botao->set_url($this->excluir.'&'.$this->nomeGetId.'='.$id);
-                    #$botao->set_image(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
+                    #$botao->set_imagemm(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
                     #$botao->set_title($this->nomeColunaExcluir.': '.$row[0]);
                     #$botao->set_confirma('Deseja mesmo excluir?');
                     #$botao->show();                    
@@ -499,7 +499,7 @@ class Tabela
                     if($this->editarOperador == "=="){                    
                         if($row[$this->editarColuna] == $this->editarCondicao){
                             $link = new Link('Editar',$this->editarCondicional.'&'.$this->nomeGetId.'='.$id);
-                            $link->set_image(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
+                            $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
                             $link->set_title($this->nomeColunaEditar.': '.$row[0]);
                             $link->show();
                         }
@@ -509,7 +509,7 @@ class Tabela
                     if(($this->editarOperador == "<>") OR ($this->editarOperador == "!=")){          
                         if($row[$this->editarColuna] <> $this->editarCondicao){
                             $link = new Link('Editar',$this->editarCondicional.'&'.$this->nomeGetId.'='.$id);
-                            $link->set_image(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
+                            $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
                             $link->set_title($this->nomeColunaEditar.': '.$row[0]);
                             $link->show();
                         }
@@ -522,7 +522,7 @@ class Tabela
                     if($this->excluirOperador == "=="){ 
                         if($row[$this->excluirColuna] == $this->excluirCondicao){
                             $link = new Link('Excluir',$this->excluirCondicional.'&'.$this->nomeGetId.'='.$id);
-                            $link->set_image(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
+                            $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
                             $link->set_title('Exclui: '.$row[0]);
                             $link->set_confirma('Deseja mesmo excluir?');
                             $link->show();
@@ -533,7 +533,7 @@ class Tabela
                     if(($this->excluirOperador == "<>") OR ($this->excluirOperador == "!=")){ 
                         if($row[$this->excluirColuna] <> $this->excluirCondicao){
                             $link = new Link('Excluir',$this->excluirCondicional.'&'.$this->nomeGetId.'='.$id);
-                            $link->set_image(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
+                            $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
                             $link->set_title('Exclui: '.$row[0]);
                             $link->set_confirma('Deseja mesmo excluir?');
                             $link->show();

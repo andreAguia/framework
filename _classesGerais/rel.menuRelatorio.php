@@ -62,7 +62,7 @@ class menuRelatorio
                 $botao = new BotaoGrafico('botaoImprimir');
                 $botao->set_label('Imprimir');
                 $botao->set_title('Imprime o Relatório');
-                $botao->set_image(PASTA_FIGURAS_GERAIS.'relatorio.png');            
+                $botao->set_imagem(PASTA_FIGURAS_GERAIS.'relatorio.png');            
                 $botao->set_onClick("fechaDivId('menuTopo'); self.print(); abreDivId('menuTopo');");
                 $botao->show();
 
