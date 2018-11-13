@@ -91,6 +91,9 @@ class Input
     
     # do ratio ou do checkbos
     private $checked = FALSE;
+    
+    # Rotinas para modificar valores digitados antes da gravaçao
+    private $plm = FALSE;     # Primeira Letra Maiusculas - Habilita, se TRUE, a converter o digitado a minusculas com as primeiras letras de cada palavra maiusculas.
 
 ###########################################################
 
@@ -435,7 +438,22 @@ class Input
         return $this->fieldset;
     }    
 
-###########################################################
+##########################################################       
+
+    public function set_plm($plm){
+    /**
+     * Habilita, se TRUE, a converter o digitado a minusculas com as primeiras letras de cada palavra maiusculas.
+     * 
+     * @syntax $input->set_plm($plm);
+     * 
+     * @param $plm BOLL FALSE TRUE ou False - Habilita ou nao o plm
+     */
+    
+        $this->plm = $plm;
+    }    
+
+
+##########################################################       
 
      public function show(){
     /**
@@ -469,6 +487,10 @@ class Input
 
                 if ($this->tagHtml) {
                     echo ' (html) ';
+                }
+                
+                if ($this->plm) {
+                    echo ' (Aa) ';
                 }
 
                 echo '</label>';

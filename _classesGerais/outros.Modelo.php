@@ -168,15 +168,15 @@ class Modelo{
     /**
     * Métodos get e set construídos de forma automática pelo 
     * metodo mágico __call.
-    * Esse m�todo cria um set e um get para todas as propriedades da classe.
-    * Um m�todo existente tem prioridade sobre os métodos criados pelo __call.
+    * Esse metodo cria um set e um get para todas as propriedades da classe.
+    * Um metodo existente tem prioridade sobre os métodos criados pelo __call.
     * 
     * O formato dos métodos devem ser:
     * 	set_propriedade
     * 	get_propriedade
     * 
     * @param 	$metodo		O nome do metodo
-    * @param 	$parametros	Os par�metros inseridos  
+    * @param 	$parametros	Os parametros inseridos  
     */
     
     public function __call ($metodo, $parametros){
@@ -203,9 +203,9 @@ class Modelo{
     * Usado na rotina de férias para colocar a opção de exclusão 
     * somente nas férias com status de solicitada.
     * 
-    * @param 	$excluirCondicional string -> url para a rotina de exclus�o
-    * @param 	$excluirCondicao	 string -> valor que exibe o bot�o de exclus�o
-    * @param 	$excluirColuna		 integer -> n�mero da coluna cujo valor ser� comparado
+    * @param 	$excluirCondicional string -> url para a rotina de exclusao
+    * @param 	$excluirCondicao	 string -> valor que exibe o botao de exclusao
+    * @param 	$excluirColuna		 integer -> numero da coluna cujo valor sera comparado
     */
     
     public function set_excluirCondicional($excluirCondicional,$excluirCondicao,$excluirColuna,$excluirOperador = NULL){
@@ -706,21 +706,19 @@ class Modelo{
         foreach ($this->campos as $campo){
             
             # pega o tamanho de um controle (input)
-            if ($campo['tipo'] == 'textarea') {
+            if($campo['tipo'] == 'textarea') {
                 $sizeFormulario = $campo['size'][0];
-            } else {
+            }else{
                 $sizeFormulario = $campo['size'];
             }  // se for text area tira do array
 
 
             # Se a linha não mudou ou se for a primeira linha
-            if (($linhaAtual == $campo['linha']) OR ( $linhaAtual == 0)) {
+            if(($linhaAtual == $campo['linha']) OR ( $linhaAtual == 0)) {
                 $somatorioSize += $sizeFormulario;
-            }   // acrescenta
-            else {
+            }else{   // acrescenta
                 $somatorioSize = $sizeFormulario;
             }    // iniciar o somatório
-
             $somaPorLinha[$campo['linha']] = $somatorioSize; // atualiza a soma por linha
         }
 
@@ -734,51 +732,80 @@ class Modelo{
             
             $controle->set_tabindex($contador);		// tabulador (ordem de navegaçao com a tecla tab)
             
+            # Tamanho com input
             if (isset($campo['size'])) {
                 $controle->set_size($campo['size']);
-            }                    // tamanho do campos
-            if (isset($campo['maxLength'])) {    // quantidade máxima de caracteres
+            }
+            
+            # Quantidade máxima de caracteres
+            if (isset($campo['maxLength'])) { 
                 $controle->set_size($campo['size'], $campo['maxLength']);
             }
+            
+            # Se e requerido. Faz o controle exibir o *
             if (isset($campo['required'])) {
                 $controle->set_required($campo['required']);
-            }   // faz o controle exibir o *
+            }
+            
+            # Transforma o digitado em minusculas e primeira letra maiusculas
+            if (isset($campo['plm'])) {
+                $controle->set_plm($campo['plm']);
+            }
+            
+            # Faz o controle exibir o html
             if (isset($campo['tagHtml'])) {
                 $controle->set_tagHtml($campo['tagHtml']);
-            }   // faz o controle exibir o html
+            }
+            
+            # Conteudo de uma combo
             if (isset($campo['array'])) {
                 $controle->set_array($campo['array']);
-            }    // conteudo de uma combo
+            }
+            
+            # Somente leitura
             if (isset($campo['readOnly'])) {
                 $controle->set_readonly($campo['readOnly']);
-            }          // readonly
+            }
+            
+            # Desabilitado
             if (isset($campo['disabled'])) {
                 $controle->set_disabled($campo['disabled']);
             }
+            
+            # Foco automatico
             if (isset($campo['autofocus'])) {
                 $controle->set_autofocus($campo['autofocus']);
-            }          // disabled
+            }
+            
+            # Marca dagua o input
             if (isset($campo['placeholder'])) {
                 $controle->set_placeholder($campo['placeholder']);
-            } // placeholder (dica dentro do controle)
+            } 
+            
+            # texto no mouseover
             if (isset($campo['title'])) {
                 $controle->set_title($campo['title']);
-            }          // title - dica do campo
-            else {
+            }else {
                 $controle->set_title($campo['label']);
             }
+            
+            # Evento onchange
             if (isset($campo['onChange'])) {
                 $controle->set_onChange($campo['onChange']);
-            }         // onChange	
+            }
+            
+            # Fieldset
             if (isset($campo['fieldset'])) {
                 $controle->set_fieldset($campo['fieldset']);
                 $ultimoFieldset = $campo['fieldset']; // Conta os fieldset usados
-            }            // fieldse interno
+            }
+            
+            # Tamanho do grid da coluna
             if (isset($campo['col'])) {
                 $controle->set_col($campo['col']);
-            }else{    // Tamanho da coluna
+            }else{
                 $controle->set_col($this->CalculaTamanhoColuna($somaPorLinha[$campo['linha']], $sizeFormulario));
-            }# Chama a rotina que transforma o tamanho das coluna para o formato do grid do Foundation
+            }
 
             # pega o tamanho de um controle (input)
             if ($campo['tipo'] == 'textarea') {
@@ -859,7 +886,9 @@ class Modelo{
         # Exibe informação de obrigatoriedade de certos campos
         if($this->exibeInfoObrigatoriedade){
             echo '<div id="right">';
-            label("Campos marcados com * são obrigatórios","warning","f12");
+            label("Campos marcados com * são obrigatórios","warning","f11");
+            br();
+            label("Campos marcados com (Aa) são passados para minusculas com primeira letra de cada palavra em maiusculas.","warning","f11");
             echo '</div>';
         }
         
@@ -1182,18 +1211,27 @@ class Modelo{
                     $campoValor[$contador] = date_to_bd($campoValor[$contador]);
                 } # passa a data para o formato de gravação
             }
+
+######################### PLM #########################            
+
+            # passa pra plm quando estiver true
+            if((isset($campo['plm'])) AND ($campo['plm'])) {    
+                
+                # formata data quando vier de um controle (vem yyyy/mm/dd)
+                $campoValor[$contador] = plm($campoValor[$contador]);
+            }            
             
 ######################### Moeda #########################            
             
             # Passa o campo moeda para o formato americano (para o banco de dados)
-            if (($campo['tipo'] == 'moeda')and(!(is_null($campoValor[$contador])))) {
+            if(($campo['tipo'] == 'moeda')and(!(is_null($campoValor[$contador])))) {
                 $campoValor[$contador] = formataMoeda($campoValor[$contador],2);	
             }
             
 ######################### Encode #########################
        
             # se tiver criptografia, descriptograva para exibição
-            if ((isset($campo['encode'])) AND ( $campo['encode'])) {
+            if((isset($campo['encode'])) AND ($campo['encode'])) {
                 $campoValor[$contador] = base64_encode($campoValor[$contador]);
             }
 
