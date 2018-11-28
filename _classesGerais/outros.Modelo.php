@@ -1015,6 +1015,10 @@ class Modelo{
             
 ######################### Processo #########################
             
+            /*
+             * Retirado para abrigar processo com formatos estranhos
+             
+
             # Verifica e transforma o número de processo
             if ($campo['tipo'] == 'processo'){
                 if(!is_null($campoValor[$contador])){
@@ -1186,6 +1190,8 @@ class Modelo{
                     }
                 }
             }
+             * 
+             */
             
 ######################### Checkbox #########################
 
