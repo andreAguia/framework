@@ -240,9 +240,9 @@ class Page
      */
         # Java Script do Foundation
         #echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'what-input.js"></script>';
-        #echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'foundation.js"></script>';
-        echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'foundation.min.js"></script>'; 
-        echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'app.js"></script>';
+        echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'foundation.js"></script>';
+        #echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'foundation.min.js"></script>'; 
+        #echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'app.js"></script>';
 
         echo '</body>';
         echo '<footer id="center">';        
