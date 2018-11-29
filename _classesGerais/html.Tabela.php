@@ -321,10 +321,11 @@ class Tabela
         }
 
         # ordem ascendente ou descendente?
-        if($this->orderTipo == "asc")
+        if ($this->orderTipo == "asc") {
             $this->orderTipo = "desc";
-        else
+        } else {
             $this->orderTipo = "asc";
+        }
 
         # cabeçalho das colunas
         echo '<tr>';
