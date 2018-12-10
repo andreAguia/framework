@@ -469,6 +469,58 @@ ul.menuVertical a:hover {
     color: darkgray;
 }
 
+/***/
+ul.menuVertical2 {
+    margin: 10px 0px 0px 20px;
+}
+
+ul.menuVertical2 li{ 
+    padding: 1px 0px 1px 0px;    
+    text-align: left;
+    font-size: 13px;
+    list-style-type: none;
+    margin: 0px 0px 0px -20px;
+}
+
+ul.menuVertical2 li#titulo{
+    padding: 4px 0px 4px 0px;
+    background-color: #fff;
+    text-align: center;
+    font-size: 16px;
+    list-style-type: none;
+    margin: 0px 0px 0px -20px;
+}
+
+ul.menuVertical2 li#titulo1{
+    padding: 8px 0px 2px;
+    text-align: left;
+    font-size: 14px;
+    list-style-type: none;
+    border-bottom: 2px #D7D7D7 solid;
+}
+
+ul.menuVertical2 a {    
+    background-color: #eee;     /* Grey background color */
+    color: black;               /* Black text color */
+    display: block;             /* Make the links appear below each other */
+    padding:10px;               /* Add some padding */
+    text-decoration: none;      /* Remove underline from links */
+}
+
+ul.menuVertical2 li#titulo a{
+    text-decoration:none;
+    color: #02548b;
+}
+
+ul.menuVertical2 li hover{
+    color: #fff;
+    background-color: #bababa;
+}
+
+ul.menuVertical2 a:hover {
+    color: #fff;
+    background-color: #bababa;
+}
 /*******************************************
  * Menu Horizontal
  *******************************************/

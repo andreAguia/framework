@@ -7,28 +7,28 @@
      * 
      * @var private $item    array   NULL     Array de itens do menu
      * @var private $tipo    array   NULL     Array com o tipo de cada item: Pode ser: link|titulo|linkWindow|linkAjax
-     * @var private $formato string  vertical stringo com o formato do menu. Pode ser: vertical|horizontal
+     * @var private $classe  string  menuVertical classe para o css
      * 
      * @example exemplo.menu.php 
      */
 
     private $item;
     private $tipo;
-    private $formato = "vertical";
+    private $classe = "menuVertical";
 
     ###########################################################    
 
-    public function __construct($formato = NULL){
+    public function __construct($classe = "menuVertical"){
     /**
      * Inicia a classe atribuindo um valor do formato do menu
      * 
-     * @param $formato string  vertical stringo com o formato do menu. Pode ser: vertical|horizontal
+     * @param $classe string  menuVertical stringo classe para o css
      * 
-     * @syntax $field = new Menu([$formato]);
+     * @syntax $field = new Menu([$classe]);
      */
     
-    	if(!is_null($formato)){
-             $this->formato = $formato;        
+    	if(!is_null($classe)){
+             $this->classe = $classe;        
         }       
     }
     
@@ -135,15 +135,8 @@
 
         # Inicia o contador
         $contador = 0;
-
-        # Começa
-        if($this->formato == 'vertical'){
-            $classe = 'menuVertical';
-        }else{
-            $classe = 'menuHorizontal';
-        }
         
-        echo "<ul class='$classe'>";
+        echo "<ul class='$this->classe'>";
         foreach ($this->item as $row){
             switch ($this->tipo[$contador]){
                 case "titulo" :
@@ -159,7 +152,7 @@
                     break;
                 
                 default :
-                    echo "<li class='$classe'>";
+                    echo "<li class='$this->classe'>";
                     $row->show();
                     echo "</li>";
                 }
