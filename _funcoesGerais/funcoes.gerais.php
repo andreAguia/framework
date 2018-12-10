@@ -2239,3 +2239,21 @@ function plm($texto){
 }
 
 ###########################################################
+
+function vazioPraNulo($valor = NULL){
+
+/**
+ * Passa o valor informado para nulo quando for vazio ou retorna a string enviada
+ * 
+ * @param  $valor STRING NULL a string a ser tratada
+ * @return string a string ou nulo
+ * 
+ * @syntax vazioPraNulo($valor); 
+ */
+    
+    if ($valor == "") {
+        $valor = NULL;
+    }
+    
+    return $valor;
+}

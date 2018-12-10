@@ -949,9 +949,7 @@ class Modelo{
             }
             
             # passa para nulo os campos vazios
-            if ($campoValor[$contador] == "") {
-                $campoValor[$contador] = NULL;
-            }
+            $campoValor[$contador] = vazioPraNulo($campoValor[$contador]);
             
 ######################### Require #########################            
 
