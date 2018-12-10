@@ -182,7 +182,7 @@ class Page
         echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'jquery.js"></script>';
         
         # Foundation
-        echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'foundation.js"></script>';
+        #echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'foundation.js"></script>';
         
         # Java Script Extra
         if(!is_null($this->jscript)){
