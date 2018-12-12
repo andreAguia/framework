@@ -318,6 +318,8 @@ class Tabela
                 $link->set_imagem($this->linkTituloImagem,$this->linkTituloImagemWidth,$this->linkTituloImagemHeight);
                 $link->show();
             }
+            
+            echo '</caption>';
         }
 
         # ordem ascendente ou descendente?
