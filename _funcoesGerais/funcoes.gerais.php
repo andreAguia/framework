@@ -866,7 +866,9 @@ function botaoVoltar($url,$label = 'Voltar',$title = 'Volta para a página anter
     $linkBotaoVoltar = new Button($label);
     $linkBotaoVoltar->set_title($title);
     $linkBotaoVoltar->set_url($url);
-    $linkBotaoVoltar->set_accessKey('V');
+    if($label == 'Voltar'){
+        $linkBotaoVoltar->set_accessKey('V');
+    }
     $menu->add_link($linkBotaoVoltar,"left");
 
     $menu->show();        

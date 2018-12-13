@@ -48,7 +48,7 @@ class Form{
      * 
      * @syntax $form = new Form($submit,$id);
      * 
-     * @param $id string NULL id e nome do formulário (como ele será identificado pelo jascript.
+     * @param $id string NULL id e nome do formulário (como ele será identificado pelo jascript.)
      * @param $submit string NULL arquivo em php para onde será redirecionado para o post.
      */    
     
