@@ -491,6 +491,13 @@ ul.menuVertical2 li#titulo{
     margin: 0px 0px 0px -20px;
 }
 
+ul.menuVertical2 li#titulo a {    
+    background-color: #e6e6e6;   
+    display: block;             
+    padding:10px;               
+    text-decoration: none;      
+}
+
 ul.menuVertical2 li#titulo1{
     padding: 8px 0px 2px;
     text-align: left;
@@ -503,7 +510,7 @@ ul.menuVertical2 a {
     background-color: #eee;     /* Grey background color */
     color: black;               /* Black text color */
     display: block;             /* Make the links appear below each other */
-    padding:10px;               /* Add some padding */
+    padding: 8px;               /* Add some padding */
     text-decoration: none;      /* Remove underline from links */
 }
 
@@ -514,7 +521,7 @@ ul.menuVertical2 li#titulo a{
 
 ul.menuVertical2 li hover{
     color: #fff;
-    background-color: #bababa;
+    background-color: darkgray;
 }
 
 ul.menuVertical2 a:hover {
