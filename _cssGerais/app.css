@@ -55,6 +55,10 @@ html{
      font-size: 8px;   
  }
  
+ #f9{
+     font-size: 9px;   
+ }
+ 
  #f10{
      font-size: 10px;   
  }
@@ -448,7 +452,7 @@ ul.menuVertical li#titulo{
 }
 
 ul.menuVertical li#titulo1{
-    padding: 8px 0px 2px;
+    padding: 3px 0px 2px;
     text-align: left;
     font-size: 14px;
     list-style-type: none;
