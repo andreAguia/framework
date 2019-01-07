@@ -149,7 +149,7 @@
                 $sql = 'INSERT INTO '.$tabela.' (';
 
                 $count = count($campos);
-                $a = 0;	// usado para resolver um curioso problema com o rtrim que n�o funcionou
+                $a = 0;	// usado para resolver um curioso problema com o rtrim que não funcionou
 
                 foreach ($campos as $field){
                     $sql .= $field.',';

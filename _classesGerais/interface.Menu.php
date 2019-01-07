@@ -78,12 +78,36 @@
                 $this->tipo[] = 'titulo1';
                 break;
             
+            case "titulo2" :
+                # titulo
+                $link = new Link($label,$url);
+                $link->set_title($title);
+                $link->set_target($target);
+                $link->set_id('titulo2');
+
+                # Joga o objeto para o array
+                $this->item[] = $link;
+                $this->tipo[] = 'titulo2';
+                break;
+            
             case "link" :
                 # Link 
                 $link = new Link($label,$url);
                 $link->set_title($title);
                 $link->set_target($target);
                 $link->set_accessKey($accessKey);
+
+                $this->item[] = $link;
+                $this->tipo[] = 'item';
+                break;
+            
+            case "sublink" :
+                # Link 
+                $link = new Link($label,$url);
+                $link->set_title($title);
+                $link->set_target($target);
+                $link->set_accessKey($accessKey);
+                $link->set_id('sublink');
 
                 $this->item[] = $link;
                 $this->tipo[] = 'item';
@@ -147,6 +171,12 @@
                 
                 case "titulo1" :
                     echo "<li id='titulo1'>";
+                    $row->show();
+                    echo "</li>";
+                    break;
+                
+                case "titulo2" :
+                    echo "<li id='titulo2'>";
                     $row->show();
                     echo "</li>";
                     break;
