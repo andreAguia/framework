@@ -1284,6 +1284,7 @@ function dataDif($dataInicial, $dataFinal = NULL){
  * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
  * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
  * @note Se o parâmetro $dataFimal não for informado, a função pegará a data atual.
+ * @note Essa função funciona com diária de um hotel, não considera a data final (ou inicial). Se não seseja dessa forma acrescente +1 ao resultado.
  * 
  * @example exemplo.dataDif.php 
  */ 

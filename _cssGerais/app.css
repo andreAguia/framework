@@ -466,17 +466,26 @@ ul.menuVertical li#titulo2{
     font-size: 14px;
     list-style-type: none;
     margin: 0px 0px 0px -5px;
-    
 }
 
-ul.menuVertical li#titulo a{
+ul.menuVertical li#titulo1 a{
     text-decoration:none;
     color: #02548b;
 }
 
+ul.menuVertical li#titulo2 a{
+    text-decoration:none;
+    color: #02548b;
+}
+
+ul.menuVertical li#titulo a{
+    text-decoration:none;
+    color: #8a8a8a;
+}
+
 ul.menuVertical a { 
     text-decoration:none;
-    color: #076cba;
+    color: #1a1010;
 }
 
 ul.menuVertical a:hover {
