@@ -485,7 +485,7 @@ ul.menuVertical li#titulo a{
 
 ul.menuVertical a { 
     text-decoration:none;
-    color: #1a1010;
+    color: #02548b;
 }
 
 ul.menuVertical a:hover {
@@ -555,7 +555,7 @@ ul.menuVertical2 a:hover {
 a#sublink{
     font-size: 11px;
     margin-left: 12px;
-    color: #8a8a8a;
+    color: #02548b;
 }
 /*******************************************
  * Menu Horizontal

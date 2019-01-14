@@ -41,6 +41,9 @@ class Page
     # jquery
     private $ready = NULL;      # inicia a rotina quando a tela começa a carregar (DOM ready)
     private $onLoad = NULL;     # inicia a rotina quando toda a página terminar de carregar
+    
+    # css
+    private $css = "foundation";    #escolhe qual framework css vai carregar: foundation ou w3c
 
 ###########################################################
     
@@ -210,7 +213,12 @@ class Page
         }
 
         # Carrega o css
-        echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'foundation.css" />';
+        if($this->css == "foundation"){
+            echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'foundation.css" />';
+            echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'foundation-icons.css" />';
+        }else{
+            echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'w3c.css" />';
+        }
         echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'app.css" />';
         echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'impressao.css" media="print"/>';
         echo '<link rel="stylesheet" href="'.PASTA_ESTILOS.'estilos.css" />';
