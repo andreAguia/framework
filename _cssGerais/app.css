@@ -228,6 +228,19 @@ table.tabelaPadrao td.zebrado0{
      color: #02548b;
      font-size: 16px;
  }
+ 
+ /*******************************************
+ * class titleBar
+ *******************************************/
+ 
+ div.title-bar{
+     background-color: #02548b;
+ }
+ 
+ div.title-bar-title{
+     font-weight: normal;
+     padding-left: 10px;
+ }
   
 /*******************************************
  * class Modelo
