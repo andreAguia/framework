@@ -566,9 +566,10 @@ ul.menuVertical2 a:hover {
 }
 
 a#sublink{
-    font-size: 11px;
-    margin-left: 12px;
+    font-size: 10px;
+    margin-left: 10px;
     color: #02548b;
+    margin: 0px;
 }
 /*******************************************
  * Menu Horizontal
