@@ -643,7 +643,7 @@ class Tabela
                         }
                         echo $row[$a];
                     }else{
-                         echo $row[$a];
+                        echo $row[$a];
                     }
                 }                
                 echo '</td>';
