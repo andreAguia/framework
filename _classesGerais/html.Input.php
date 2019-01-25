@@ -33,6 +33,8 @@ class Input
   * @var private $autofocus bool    FALSE Informa se o controle será o primeiro a receber foco quando a página carregar. Deverá se ter somente um controle com autofocus habilitado por página.
   * @var private $required  bool    FALSE Informa se o conterole deverá obrigatoriamente ser preenchido. Requerido. Not NULL
   * @var private $array     array   NULL  Informa o array de valores para uma combo.
+  * @var private $datalist  array   NULL  Informa o array de valore para o datalist de um controle de texto 
+  * 
   * @var private $id        string  NULL  Informa o id do input para o css ou jscript
   * 
   * @group dos eventos
@@ -77,6 +79,7 @@ class Input
     private $autofocus = FALSE; 
     private $required = FALSE;
     private $array = NULL;
+    private $datalist = NULL;
     
     private $id = NULL;
     private $class = NULL;
@@ -455,6 +458,21 @@ class Input
 
 ##########################################################       
 
+    public function set_datalist($datalist){
+    /**
+     * Informa uma lista de valores para o datalist do contrle
+     * 
+     * @syntax $input->set_datalist($datalist);
+     * 
+     * @param $datalist array NULL informa a lista de valores
+     */
+    
+        $this->datalist = $datalist;
+    }    
+
+
+##########################################################              
+
      public function show(){
     /**
      * Exibe o controle
@@ -641,6 +659,10 @@ class Input
         # dados do input
         echo ' name="'.$this->nome.'"'; # nome do controle (deve ser o mesmo que o do banco de dados)
         
+        # Verifica se tem datalist
+        if (!is_null($this->datalist)) {
+            echo ' list="lista'.$this->nome.'"';
+        }
         
         switch ($this->tipo){	
             case "textarea":
@@ -883,6 +905,20 @@ class Input
                 echo $this->label;
                 echo '</label>';
                 break;
+        }
+        
+        # Coloca a lista quando tem datalist
+        if (!is_null($this->datalist)) {
+            
+            echo '<datalist id="lista'.$this->nome.'">';
+            foreach($this->datalist as $field){
+                if (is_array($field)){
+                    echo ' <option value="'.$field[0].'">';
+                }else{
+                    echo ' <option value="'.$field.'">';
+                }
+            }
+            echo '</datalist>';
         }
     }
 
