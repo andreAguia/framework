@@ -112,8 +112,9 @@ class UploadImage
             list($largura, $altura, $tipo, $atributo) = getimagesize($destino);
 
             // testa se é preciso redimensionar a imagem
-            if(($largura > $this->largura) || ($altura > $this->altura))
+            if(($largura > $this->largura) || ($altura > $this->altura)){
                 $this->redimensionar($largura, $altura, $tipo, $destino);
+            }
         }
     }                       
 }

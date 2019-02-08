@@ -1225,7 +1225,7 @@ function jaPassou($data){
  * @example exemplo.jaPassou.php 
  */ 
     if(validaData($data)){
-        if(date("Y/m/d") > date_to_bd($data)){
+        if(date("Y-m-d") > date_to_bd($data)){
             return TRUE;
         }else{ 
             return FALSE;
