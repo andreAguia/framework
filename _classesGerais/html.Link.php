@@ -14,7 +14,7 @@ class Link
      * 
      * @group do css
      * @var private $class string NULL A classe para o css.
-     * @var private $label string NULL O texto a ser exibido no link.
+     * @var private $id    string NULL O id para o css.
      * 
      * @group da janela
      * @var private $janela       boolean FALSE Indica se o link abrirá uma janela. Usado nas rotinas de relatórios.
