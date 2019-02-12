@@ -575,6 +575,11 @@ class Input
                 echo '<span class="input-group-label">R$</span>';
                 echo '<input class="input-group-field"';
                 break;
+            case "pesquisa":
+                echo '<div class="input-group">';
+                echo '<span class="input-group-label"><i class="fi-magnifying-glass"></i></span>';
+                echo '<input class="input-group-field"';
+                break;
             case "hidden":
                 echo '<INPUT';
                 $this->tipo = 'hidden';
@@ -833,6 +838,14 @@ class Input
                 echo ' type="text"';
                 echo ' value="'.formataMoeda($this->valor).'"';                
                 echo ' onkeypress="return formatarMoeda(this,\'.\',\',\',event);" ';
+                echo '/>';
+                echo '</div>';
+                break;
+            
+            case "pesquisa":
+                echo ' size="'.($this->size).'"';
+                echo ' type="text"';
+                echo ' value="'.$this->valor.'"';
                 echo '/>';
                 echo '</div>';
                 break;
