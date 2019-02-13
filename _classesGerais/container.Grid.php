@@ -40,13 +40,15 @@ class Grid
     /**
      * Inicia uma coluna de uma grid. Similar a um td.
      * 
-     * @note Cada grid tem a capacidade máxima de 12. Cada coluna poderá ter o tamanho entre 1 a 12 de forma que o somatório do tamanho das colunas seja 12. Cada coluna poderá ter um tamanho variável dependendo do tamanho da tela (responsivo) que é determinado pelos parâmetros $small, $medium e $large
+     * @note Cada grid tem a capacidade máxima de 12 colunas.
+     * @note Cada coluna poderá ter o tamanho entre 1 a 12 de forma que o somatório do tamanho das colunas seja 12.
+     * @note Cada coluna poderá ter um tamanho variável dependendo do tamanho da tela (responsivo) que é determinado pelos parâmetros $small, $medium e $large
      * 
      * @param $small  string NULL O tamanho da coluna quando a tela for pequena
      * @param $medium string NULL O tamanho da coluna quando a tela for media
      * @param $large  string NULL O tamanho da coluna quando a tela for grande
      * 
-     * @syntax $grid->abreColuna($small,$medium,$large);
+     * @syntax $grid->abreColuna($small,[$medium],[$large]);
      */    
     
         echo '<div class="';
