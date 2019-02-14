@@ -286,7 +286,7 @@ class Modelo{
 
         # Conecta com o banco de dados
         $objeto = new $this->classBd();
-
+        
         # Cria um menu
         if(($this->botaoVoltarLista) OR ($this->botaoListarExtra) OR ($this->botaoIncluir)){
             $menu = new MenuBar();
@@ -297,6 +297,22 @@ class Modelo{
                 $linkBotaoVoltar->set_title('Volta para a página anterior');
                 $linkBotaoVoltar->set_accessKey('V');
                 $menu->add_link($linkBotaoVoltar,"left");
+            }
+            
+            # Campo de Pesquisa
+            if(!is_null($this->parametroLabel)){
+                $form = new Form('?fase=listar');
+
+                $controle = new Input("parametro","pesquisa");
+                $controle->set_size(50);
+                $controle->set_placeholder($this->parametroLabel);
+                $controle->set_valor($this->parametroValue);
+                $controle->set_autofocus(TRUE);
+                $controle->set_onChange('formPadrao.submit();');
+                $controle->set_id("controlePesquisa");
+                $controle->set_col(8);
+                $form->add_item($controle);
+                $menu->add_link($form,"left");
             }
 
             # Inclui botões extras
@@ -462,21 +478,6 @@ class Modelo{
             }
             echo '</ul>';
             $div->fecha();
-        }
-        
-        # Campo de Pesquisa
-        if(!is_null($this->parametroLabel)){
-            $form = new Form('?fase=listar');
-
-            $controle = new Input("parametro","texto",$this->parametroLabel,1);
-            $controle->set_size(50);
-            $controle->set_valor($this->parametroValue);
-            $controle->set_autofocus(TRUE);
-            $controle->set_onChange('formPadrao.submit();');
-            $controle->set_linha(1);
-            $controle->set_col(6);
-            $form->add_item($controle);
-            $form->show();
         }
             
         # Pega a lista em definitivo

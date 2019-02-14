@@ -265,6 +265,14 @@ div#paginacao{
     width: 34%;
 }
 
+input#controlePesquisa{
+    margin-bottom: 0px; 
+}
+
+div#pesquisa{
+    margin-bottom: 0px;
+    margin-left: 5px;    
+}
  /*******************************************
  * classe BotaoGrafico
  *******************************************/

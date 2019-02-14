@@ -576,7 +576,7 @@ class Input
                 echo '<input class="input-group-field"';
                 break;
             case "pesquisa":
-                echo '<div class="input-group">';
+                echo '<div class="input-group" id="pesquisa">';
                 echo '<span class="input-group-label"><i class="fi-magnifying-glass"></i></span>';
                 echo '<input class="input-group-field"';
                 break;
@@ -599,7 +599,7 @@ class Input
         
         # id
         if (!is_null($this->id)) {
-            echo ' id="' . $this->id . '"';
+            echo ' id="'.$this->id.'"';
         }else{
             echo ' id="'.$this->nome.'"';
         }
@@ -846,6 +846,7 @@ class Input
                 echo ' size="'.($this->size).'"';
                 echo ' type="text"';
                 echo ' value="'.$this->valor.'"';
+                echo ' onFocus="this.select();"';
                 echo '/>';
                 echo '</div>';
                 break;
