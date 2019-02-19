@@ -267,6 +267,7 @@ class Modelo{
     * Exibe os registros em uma tabela
     * 
     */
+    
     public function listar(){
         # Pega o time inicial
         $time_start = microtime(TRUE);
@@ -1304,7 +1305,7 @@ class Modelo{
             }
             
             aguarde();
-
+            
             loadPage($this->linkListar);
             return TRUE;
         }else{
