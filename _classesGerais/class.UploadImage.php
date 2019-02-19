@@ -102,9 +102,7 @@ class UploadImage
         if (! move_uploaded_file($this->arquivo['tmp_name'], $destino)){
             if ($this->arquivo['error'] == 1) {
                 return "Tamanho excede o permitido";
-            } else {
-                return "Erro " . $this->arquivo['error'];
-            }
+            } 
         }
 
         if ($this->ehImagem($extensao)){                                             
