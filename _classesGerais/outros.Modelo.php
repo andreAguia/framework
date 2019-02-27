@@ -9,6 +9,7 @@
  */
  
 class Modelo{
+    
     # Nome do Modelo (aparecerá nos fildset e no caption da tabela)
     private $nome = NULL;
     
@@ -587,12 +588,13 @@ class Modelo{
     ###########################################################
 
     /**
-    * método editar (e incluir)
-    * 
-    * @param $id integer id se for para update NULL se for para insert 
-    */
+     * método editar (e incluir)
+     * 
+     * @param $id        integer NULL  id se for para update NULL se for para insert 
+     * @param $bloqueado bool    FALSE Se está bloqueado para edução ou não  
+     */
 
-    public function editar($id = NULL) {
+    public function editar($id = NULL, $bloqueado = FALSE) {
         # Limita o tamanho da tela
         $grid = new Grid();
         $grid->abreColuna(12);
@@ -628,7 +630,9 @@ class Modelo{
             }
         }
 
-        $menu->show();
+        if(($this->botaoVoltarForm) OR ($this->botaoEditarExtra) OR ($this->botaoHistorico)){
+            $menu->show();
+        }
         
         # Rotina Extra
         if(!is_null($this->rotinaExtra)){
@@ -774,6 +778,19 @@ class Modelo{
                 $controle->set_disabled($campo['disabled']);
             }
             
+            # Bloqueia quando for $bloqueado for TRUE
+            if ($bloqueado){
+                $controle->set_readonly(TRUE);
+                $controle->set_disabled(TRUE);
+                $this->exibeInfoObrigatoriedade = FALSE;
+                
+                if (isset($campo['bloqueadoEsconde'])) {
+                    if($campo['bloqueadoEsconde']){
+                        continue;
+                    }
+                }
+            }
+            
             # Foco automatico
             if (isset($campo['autofocus'])) {
                 $controle->set_autofocus($campo['autofocus']);
@@ -851,20 +868,24 @@ class Modelo{
             set_session('oldValue' . $this->tabela, $oldValue);
         }
 
-        # submit
-        $controle = new Input('submit','submit');
-        $controle->set_valor(' Salvar ');
-        $controle->set_size(20);
-        $controle->set_tabindex($contador+1);
-        $controle->set_accessKey('S');
-        $controle->set_linha($linhaAtual+2);
-        $controle->set_col(3);
+        # Botão Salva quando não está bloqueado
+        if (!$bloqueado){
+            $controle = new Input('submit','submit');
+            $controle->set_valor(' Salvar ');
+            $controle->set_size(20);
+            $controle->set_tabindex($contador+1);
+            $controle->set_accessKey('S');
+            $controle->set_linha($linhaAtual+2);
+            $controle->set_col(3);
         
-        # Verifica se tem fieldset aberto e fecha
-        if($ultimoFieldset <> "fecha"){
-            $controle->set_fieldset("fecha");
+        
+            # Verifica se tem fieldset aberto e fecha
+            if($ultimoFieldset <> "fecha"){
+                $controle->set_fieldset("fecha");
+            }
+                
+            $form->add_item($controle);
         }
-        $form->add_item($controle);
         
         # cancelar
         if(!is_null($this->botaoCancelaEdita)){

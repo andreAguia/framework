@@ -80,6 +80,7 @@ class Input
     private $required = FALSE;
     private $array = NULL;
     private $datalist = NULL;
+    private $bloqueadoEsconde = FALSE;  // Esconde o controle quando o forma está bloqueado
     
     private $id = NULL;
     private $class = NULL;
@@ -471,7 +472,22 @@ class Input
     }    
 
 
-##########################################################              
+##########################################################       
+
+    public function set_bloqueadoEsconde($bloqueadoEsconde){
+    /**
+     * Esconde, se TRUE, o controle quando o from estiver bloqueado para edição
+     * 
+     * @syntax $input->set_bloqueadoEsconde($bloqueadoEsconde);
+     * 
+     * @param $bloqueadoEsconde BOLL FALSE TRUE ou False - Esconde o não o controle
+     */
+    
+        $this->bloqueadoEsconde = $bloqueadoEsconde;
+    }    
+
+
+##########################################################                     
 
      public function show(){
     /**
