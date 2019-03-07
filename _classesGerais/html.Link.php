@@ -236,7 +236,7 @@ class Link
         # target
         if (!is_null($this->target)){
             if($this->target == '_blank'){
-                echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=900,height=600');\" ";
+                echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=1000,height=700');\" ";
                 $this->url = "#";
             }else{
                 echo ' target="'.$this->target.'"';
