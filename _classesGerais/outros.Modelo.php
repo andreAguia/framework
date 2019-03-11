@@ -778,6 +778,11 @@ class Modelo{
                 $controle->set_disabled($campo['disabled']);
             }
             
+            # datalist
+            if (isset($campo['datalist'])) {
+                $controle->set_datalist($campo['datalist']);
+            }
+            
             # Bloqueia quando for $bloqueado for TRUE
             if ($bloqueado){
                 $controle->set_readonly(TRUE);
