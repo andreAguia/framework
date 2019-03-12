@@ -1,6 +1,7 @@
 <?php
 
-class Form{
+class Form
+{
 /** 
  * Monta um formulário.
  * 

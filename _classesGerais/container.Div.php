@@ -11,7 +11,6 @@ class Div
     * @var private $id    string NULL O id para o css
     * @var private $title string NULL Texto para o evento mouseover
     * 
-    * @group eventos
     * @var private $onClick string NULL A rotina jscript a ser executada no evento onclick.
     * 
     * @example exemplo.div.php

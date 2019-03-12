@@ -9,11 +9,9 @@ class Tabela
     * 
     * @note Quando existe o rodapé o total de registros não é exibido
     * 
-    * @group do css
     * @var private $class string NULL A classe para o css
     * @var private $id    string NULL O id para o css
     * 
-    * @group da tabela
     * @var private $titulo        string NULL   Título que aparecerá no alto da tabela 
     * @var private $conteudo      array  NULL   Array com o conteúdo da tabela principal
     * @var private $label         array  NULL   Array com o cabeçalho de cada coluna
@@ -22,29 +20,23 @@ class Tabela
     * @var private $rodape        string NULL   Exibe uma string no rodapé. O rodapé substituirá o total de regsitros.    
     * @var private $totalRegistro bool   TRUE   Informa se terá ou não total de registros
     * 
-    * @group do número de ordem
     * @var private $numeroOrdem     bool   FALSE  Exibe/Não exibe uma coluna com numeração de ordem das colunas
     * @var private $numeroOrdemTipo bool   'c'    Informa que a ordenação será 'c' crescente ou 'd' decrescente
     * 
-    * @group do link
     * @var private $link                    array NULL Array de objetos link correspondente a coluna em que ele aparece
     * @var private $linkCondicional         array NULL array com o valor que a coluna deve ter para ter o link
     * @var private $linkCondicionalOperador bool   'c'    operador da comparação. pode ser (=,<>, < ou >)
     * 
-    * @group das classes e funções
     * @var private $classe array NULL Array de classes.
     * @var private $metodo array NULL Array de métodos da classe.
     * @var private $funcao array NULL Array de funções.
     * 
-    * @group condicional
     * @var private $formatacaoCondicional array NULL Exibe a tr com cor diferente dependendo de algum valor
     * @var private $imagemCondicional     array NULL Exibe um objeto imagem ao invés do valor dependendo de algum valor.
     * 
-    * @group das rotinas de exclusão
     * @var private $excluir  array NULL Exibe a tr com cor diferente dependendo de algum valor
     * @var private $imagemCondicional     array NULL Exibe um objeto imagem ao invés do valor dependendo de algum valor.
     * 
-    * @group do rowspan
     * @var private $rowspan array NULL Informa com TRUE ou FALSE qual coluna terá rolspan
     * 
     * @example exemplo.tabela.php
@@ -204,7 +196,7 @@ class Tabela
     /**
      * Método set_editarCondicional
      * 
-     * Define uma condi��o para exibir ou n�o a op��o de edi��o
+     * Define uma condição para exibir ou n�o a op��o de edi��o
      * Usado na rotina de servi�o para exibir a edi��o aos usu�rios 
      * comuns somente das OS desse mesmo usu�rio.
      * 
@@ -224,6 +216,8 @@ class Tabela
     /**
      * Método set_order
      * 
+     * Define a ordem da tabela
+     * 
      * @param 	$orderCampo 	integer -> coluna da tabela onde ser� ordenado 
      * @param 	$orderTipo		string -> pode ser 'asc' ou 'desc'. informa o tipo de ordena��o
      * @param 	$orderChamador	string -> 
@@ -235,6 +229,11 @@ class Tabela
     }
 
     ###########################################################
+    /**
+     * Método show
+     * 
+     * Exibe a tabela
+     */
 
     public function show(){
         $numRegistros = 0;                  // Contador de registros
