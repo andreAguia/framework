@@ -9,9 +9,8 @@ html{
 }
 
 header{
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
-
 
  /******************************************* 
  * Define o alinhamento pelo id
@@ -292,7 +291,12 @@ div.botaoGrafico{
  * class Fieldset
  *******************************************/
 fieldset legend{
-    font-size: 13px;
+    font-size: 12px;
+}
+
+fieldset.fieldset{
+    padding: 10px 10px 10px 15px;
+    margin: 5px;
 }
 
 /*******************************************
@@ -320,7 +324,7 @@ form.formPadrao input:focus{
 }
 
 form.formPadrao label{
-   font-size: 13px;
+   font-size: 12px;
 }
 
 /* upload */
