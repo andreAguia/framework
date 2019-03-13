@@ -701,7 +701,7 @@ class Input
                 break;
             
             case "simnao":
-                $this->array = array(array(NULL,NULL),array(1,"Sim"),array(0,"Não"));
+                $this->array = array(array(1,"Sim"),array(0,"Não"));
                             
                 echo '>';
                 foreach($this->array as $field){

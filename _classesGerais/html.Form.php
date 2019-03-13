@@ -255,7 +255,7 @@ class Form
                 
                 # fieldset interna
                 if(!is_null($fieldsetTag)){
-                    echo '<div id="div'.$contador.'">'; // Essa div somente é valida par quando se quer ocu
+                    echo '<div id="div'.$contador.'">'; // Essa div somente é valida par quando se quer ocultar todo o conteúdo do fieldset
                     
                     echo '<fieldset class="fieldset">';
                     echo '<legend>'.$fieldsetTag.'</legend>';
