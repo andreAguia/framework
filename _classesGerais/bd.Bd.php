@@ -1,5 +1,5 @@
  <?php
- class Bd
+ abstract class Bd
 {
     /**
      * Classe mãe de acesso so banco de dados
@@ -91,18 +91,16 @@
 	
 ###########################################################
     
-   public function select($select = NULL,$many = TRUE,$orderCampo = NULL,$orderTipo = NULL){
+   public function select($select = NULL,$many = TRUE){
     /**
      * Retorna um array multidimenssional, se many is TRUE, com os registros do banco de dados, ou um valor único dependendo do formato do campo no banco de dados, quando $many is FALSE.
      * 
-     * @syntax $bd->select(select, [$many], [$orderCampo], [$orderTipo]);
+     * @syntax $bd->select($select, [$many]);
      * 
      * @note Os parâmetros $orderCampo e $orderTipo só estão presentes no método para serem usados na classes filhas em caso de herança. 
      *   
      * @param $select       string NULL O select do banco de dados
      * @param $many         bool   TRUE Se TRUE retorna uma array com vários registros, se falso retorna um array simples com apenas um registro
-     * @param $orderCampo   string NULL Define (se tiver) o campo do select de ordenação
-     * @param $orderTipo    string NULL Define se a ordenação será ascendente ou descendente
      */    
     
     	try{
