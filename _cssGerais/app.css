@@ -269,6 +269,7 @@ div#paginacao{
     width: 34%;
 }
 
+select#controlePesquisa,
 input#controlePesquisa{
     margin-bottom: 0px; 
 }
