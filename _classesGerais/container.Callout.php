@@ -7,20 +7,15 @@ class Callout
      * 
      * @author André Águia (Alat) - alataguia@gmail.com
      * 
-     * @var private $tipo        string secondary O tipo do alert (callout): secondary | primary | success | warning | alert
-     * @var private $id          string NULL      O id para o css
-     * @var private $title       string NULL      O Texto para o evento mouseover
-     * @var private $botaoFechar bool   FALSE     Se terá ou não botão de fechar
-     * 
      * @note Um painel onde a cor é definida pelo tipo do callout: secondary | primary | success | warning | alert
      * 
      * @example exemplo.callout.php
      */
     
-    private $tipo = NULL;
-    private $title = NULL;
-    private $id = NULL;
-    private $botaoFechar = FALSE;
+    private $tipo = "secondary";    // string O tipo do alert (callout): secondary | primary | success | warning | alert
+    private $title = NULL;          // string O Texto para o evento mouseover
+    private $id = NULL;             // string O id para o css
+    private $botaoFechar = FALSE;   // bool   Se terá ou não botão de fechar
 
 ###########################################################
 

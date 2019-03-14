@@ -1,46 +1,35 @@
- <?php
- abstract class Bd
+<?php
+abstract class Bd
 {
     /**
-     * Classe mãe de acesso so banco de dados
+     * Classe mãe de acesso ao banco de dados
      * 
      * @author André Águia (Alat) - alataguia@gmail.com
      * 
      * @note Todas as outras classes que acessam os banco de dados devem herdar da classe Bd
-     * 
-     * @var private $host   string NULL O nome do servidor
-     * @var private $user   string NULL O nome do usuário para o login no servidor de banco de dados
-     * @var private $pass   string NULL O password (senha) para o login no servidor de banco de dados
-     * @var private $name   string NULL O nome do Banco de dados
-     * @var private $type   string NULL O tipo do SGDB: pgsql | mysql | sqlite | ibase | oci8 | mssql
-     * @var private $conn   object NULL O objeto de conexão
-     * @var private $lastId string NULL Guarda o último id de uma gravação
-     *    
      */
     
-    private $host = NULL;
-    private $user = NULL;
-    private $pass = NULL;
-    private $name = NULL;
-    private $type = NULL;		
-    private $conn = NULL;
-    private $lastId = NULL;
+    private $host = NULL;   // string O nome do servidor
+    private $user = NULL;   // string O nome do usuário para o login no servidor de banco de dados
+    private $pass = NULL;   // string O password (senha) para o login no servidor de banco de dados
+    private $name = NULL;   // string O nome do Banco de dados
+    private $type = NULL;   // string O tipo do SGDB: pgsql | mysql | sqlite | ibase | oci8 | mssql
+    private $conn = NULL;   // object O objeto de conexão
+    private $lastId = NULL; // string Guarda o último id de uma gravação
 	
 ###########################################################
                 
-    public function __construct($host = NULL,$user = NULL,$pass = NULL,$name = NULL,$type = NULL){
+    public function __construct($host = NULL,   // string O nome do servidor
+                                $user = NULL,   // string O nome do usuário para o login no servidor de banco de dados
+                                $pass = NULL,   // string O password (senha) para o login no servidor de banco de dados
+                                $name = NULL,   // string O nome do Banco de dados
+                                $type = NULL){  // string O tipo do SGDB: pgsql | mysql | sqlite | ibase | oci8 | mssql
     /**
      * Inicia a classe informando os dados da conexão
      *  
      * Preenche as variáveis de conexão
      * 
      * @syntax $bd = new Bd($host,$user,$pass,$name,$type);
-     * 
-     * @param $host string NULL O Nome do Servidor
-     * @param $user string NULL O nome do usuário
-     * @param $pass string NULL A senha de conexão
-     * @param $name string NULL O nome do Banco de dados
-     * @param $type string NULL O SGDB: pgsql | mysql | sqlite | ibase | oci8 | mssql
      * 
      * @example exemplo.bd.construtor.php
      */
