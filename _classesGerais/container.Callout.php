@@ -19,12 +19,10 @@ class Callout
 
 ###########################################################
 
-    public function __construct($tipo = "secondary", $id = NULL){
+    public function __construct($tipo = "secondary",    // string O tipo do alert (callout): secondary | primary | success | warning | alert
+                                $id = NULL){            // string O id para o css
     /**
      * Inicia o Callout informando o tipo
-     * 
-     * @param $tipo  string secondary O tipo do alert (callout): secondary | primary | success | warning | alert
-     * @param $id    string NULL      O id para o css
      * 
      * @syntax $callout = new Callout([$tipo],[$id]);
      */
@@ -35,13 +33,11 @@ class Callout
     
 ###########################################################
 
-    public function set_id($id = NULL){
+    public function set_id($id = NULL){ // string O nome do id
     /**
      * Informa o id da div para o css
      * 
      * @syntax $callout->set_id($id);
-     * 
-     * @param $id string NULL O nome do id
      */
     
         $this->id = $id;
@@ -49,13 +45,11 @@ class Callout
 
 ###########################################################
 
-    public function set_title($title = NULL){
+    public function set_title($title = NULL){ // string O texto a ser exibido
     /**
      * Informa o texto no mouse over
      * 
      * @syntax $callout->set_title($title);
-     * 
-     * @param $title string NULL O texto a ser exibido
      */
     
         $this->title = $title;
@@ -63,13 +57,11 @@ class Callout
 
 ###########################################################
 
-    public function set_botaoFechar($botaoFechar = FALSE){
+    public function set_botaoFechar($botaoFechar = FALSE){ // bool Exibe ou não o botão
     /**
      * Informa se terá um botão de fechar o callout
      * 
      * @syntax $callout->set_botaoFechar($botaoFechar);
-     * 
-     * @param $botaoFechar bool FALSE TRUE/FALSE Exibe ou não o botão
      */
     
         $this->botaoFechar = $botaoFechar;

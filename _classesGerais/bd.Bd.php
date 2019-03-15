@@ -80,16 +80,14 @@ abstract class Bd
 	
 ###########################################################
     
-   public function select($select = NULL,$many = TRUE){
+   public function select($select = NULL,   // string O select do banco de dados
+                          $many = TRUE){    // boll   Se TRUE retorna uma array com vários registros, se falso retorna um array simples com apenas um registro
     /**
      * Retorna um array multidimenssional, se many is TRUE, com os registros do banco de dados, ou um valor único dependendo do formato do campo no banco de dados, quando $many is FALSE.
      * 
      * @syntax $bd->select($select, [$many]);
      * 
      * @note Os parâmetros $orderCampo e $orderTipo só estão presentes no método para serem usados na classes filhas em caso de herança. 
-     *   
-     * @param $select       string NULL O select do banco de dados
-     * @param $many         bool   TRUE Se TRUE retorna uma array com vários registros, se falso retorna um array simples com apenas um registro
      */    
     
     	try{
@@ -113,18 +111,16 @@ abstract class Bd
     
 ###########################################################
     
-    public function gravar($campos = NULL,$valor = NULL,$idValor = NULL,$tabela = NULL,$idCampo = NULL,$alerta = FALSE){
+    public function gravar($campos = NULL,      // array   Array com o nome dos campos a serem gravados
+                           $valor = NULL,       // array   Array com os valores a serem gravados na sequencia identica ao array de campos
+                           $idValor = NULL,     // string  Se preenchido a gravação será update no id informado, se for nulo será insert
+                           $tabela = NULL,      // string  O Nome da Tabela a ser gravada
+                           $idCampo = NULL,     // string  O Nome do campo chave da tabela
+                           $alerta = FALSE){    // bool    Exibe o não um alert informando se houve gravação com sucesso
     /**
      * Grava no banco de dados
      *
-     * @syntax $bd->gravar($campos, $valor, [$idValor], $tabela, [$idCampo], [$alerta]); 
-     * 
-     * @param $campos   array   NULL Array com o nome dos campos a serem gravados
-     * @param $valor    array   NULL Array com os valores a serem gravados na sequencia identica ao array de campos
-     * @param $idValor  integer NULL Se preenchido a gravação será update no id informado, se for nulo será insert
-     * @param $tabela   string  NULL Nome da Tabela a ser gravada
-     * @param $idCampo  string  id   Nome do campos chave da tabela
-     * @param $alerta   bool    TRUE Se TRUE informa com um alert se houve gravação com sucesso
+     * @syntax $bd->gravar($campos, $valor, [$idValor], $tabela, [$idCampo], [$alerta]);
      */
     
     	try {
@@ -204,15 +200,13 @@ abstract class Bd
     
 ###########################################################
     
-    public function excluir($idValor = NULL,$tabela = NULL,$idCampo = 'id'){
+    public function excluir($idValor = NULL,    // integer O id a ser excluído
+                            $tabela = NULL,     // string  O nome da tabela
+                            $idCampo = NULL){   // string  O nome do campo id nessa tabela
     /**
      * Exclui um registro do banco de dados
      *
-     * @syntax $bd->excluir($idValor, $tabela, [$idCampo]); 
-     * 
-     * @param $tabela  string  NULL Informa a tabela
-     * @param $idValor integer NULL Valor do id
-     * @param $idCampo string  id   Nome do campo id na tabela. Normalmente é 'id'
+     * @syntax $bd->excluir($idValor, $tabela, [$idCampo]);
      */
        
     	try {
@@ -233,18 +227,15 @@ abstract class Bd
     
 ###########################################################
     
-    public function count($select){
+    public function count($select){     // string O select que será contado os registros
     /**
      * Informa o número inteiro com a quantidade de rows de um select
      * 
      * @syntax $bd->count($select);
      * 
      * @return Inteiro com o número de linhas de um select
-     * 
-     * @param $select string NULL O select do banco de dados
      */
-    
-    
+        
     	try {
             $this->conecta();
 
@@ -278,30 +269,26 @@ abstract class Bd
     
     ###########################################################
     
-    public function set_lastId($lastId){
+    public function set_lastId($lastId){ // integer O número do id a ser gravado
     /**
      * Grava a variável lastId
      * 
      * @syntax $bd->set_lastId($lastId);
      * 
      * @note Essa função é usada na tabela de movimento que, sempre, faz duas gravações ao efetuar uma inclusão e usa esta função para resgatar o last id da primeira gravação
-     * 
-     * @param $lastId integer NULL O número do id a ser gravado
      */
 	$this->lastId = $lastId;
     }
     
     ###########################################################
     
-    public function update($sql = NULL){
+    public function update($sql = NULL){    // string O sql para o update
     /**
      * Executa um update no banco de Dados
      * 
      * @note Essa função é usada para update de diversos registros ao mesmo tempo. Para update de apenas um registro recomenda-se o uso do método gravar.
      * 
-     * @deprecated  
-     * 
-     * @param $sql string NULL O sql para o update
+     * @deprecated 
      */
 	try {
             # conecta
