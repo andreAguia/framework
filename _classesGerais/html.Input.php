@@ -81,6 +81,7 @@ class Input
     private $array = NULL;
     private $datalist = NULL;
     private $bloqueadoEsconde = FALSE;  // Esconde o controle quando o forma está bloqueado
+    private $pesquisa = FALSE;          // exibe um gráfico com lupa antes do controle
     
     private $id = NULL;
     private $class = NULL;
@@ -480,14 +481,29 @@ class Input
      * 
      * @syntax $input->set_bloqueadoEsconde($bloqueadoEsconde);
      * 
-     * @param $bloqueadoEsconde BOLL FALSE TRUE ou False - Esconde o não o controle
+     * @param $bloqueadoEsconde bool FALSE TRUE ou False - Esconde o não o controle
      */
     
         $this->bloqueadoEsconde = $bloqueadoEsconde;
     }    
 
 
-##########################################################                     
+##########################################################       
+
+    public function set_pesquisa($pesquisa){
+    /**
+     * Exibe, se TRUE, o uma lupa decorativa na frente do controle
+     * 
+     * @syntax $input->set_pesquisa($pesquisa);
+     * 
+     * @param $pesquisa bool FALSE TRUE ou False - Exibe ou não a lupa
+     */
+    
+        $this->pesquisa = $pesquisa;
+    }    
+
+
+##########################################################                                       
 
      public function show(){
     /**
@@ -575,8 +591,14 @@ class Input
             case "data":
             case "hora": 
             case "telefone":  
-            case "celular":      
-                echo '<INPUT autocomplete="on"';        // Habilita histórico
+            case "celular":
+                if($this->pesquisa){
+                    echo '<div class="input-group" id="pesquisa">';
+                    echo '<span class="input-group-label"><i class="fi-magnifying-glass"></i></span>';
+                    echo '<input class="input-group-field"';
+                }else{
+                    echo '<INPUT autocomplete="on"';        // Habilita histórico
+                }
                 break;            
             case "file":
             case "submit":
@@ -591,11 +613,6 @@ class Input
                 echo '<span class="input-group-label">R$</span>';
                 echo '<input class="input-group-field"';
                 break;
-            case "pesquisa":
-                echo '<div class="input-group" id="pesquisa">';
-                echo '<span class="input-group-label"><i class="fi-magnifying-glass"></i></span>';
-                echo '<input class="input-group-field"';
-                break;
             case "hidden":
                 echo '<INPUT';
                 $this->tipo = 'hidden';
@@ -606,7 +623,13 @@ class Input
                 break;
             case "combo":
             case "simnao":
-                echo '<select';	
+                if($this->pesquisa){
+                    echo '<div class="input-group" id="pesquisa">';
+                    echo '<span class="input-group-label"><i class="fi-magnifying-glass"></i></span>';
+                    echo '<select class="input-group-field"';
+                }else{
+                    echo '<select';	
+                }
                 break;			
             case "textarea":
                 echo '<textarea';	
@@ -722,6 +745,7 @@ class Input
                 #echo ' size="'.($this->size).'"';
                 echo '>';
                 foreach($this->array as $field){
+                    print_r($this->array);
                     if (is_array($field)){
                         echo '<option value="'.$field[0].'"';
                         if($field[0] == $this->valor){
@@ -856,15 +880,6 @@ class Input
                 echo '/>';
                 echo '</div>';
                 break;
-            
-            case "pesquisa":
-                echo ' size="'.($this->size).'"';
-                echo ' type="text"';
-                echo ' value="'.$this->valor.'"';
-                echo ' onFocus="this.select();"';
-                echo '/>';
-                echo '</div>';
-                break;
 
             case "password":
                 echo ' size="'.($this->size).'"';
@@ -922,8 +937,14 @@ class Input
                 echo ' onFocus="this.select();"';
                 echo '/>';
                 break;
-        }	
+        }
         
+        # Fecha a div da pesquisa
+        if($this->pesquisa){
+            echo '</div>';
+        }
+        
+        # Fecha a div interna
         if (!is_null($this->inLine)){
             echo '</div>';
         }

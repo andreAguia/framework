@@ -36,6 +36,9 @@ class Modelo{
     # campo de pesquisa de um parâmetro na rotina de listar
     private $parametroLabel = NULL;
     private $parametroValue = NULL;
+    private $tipoCampoPesquisa = "texto";   // tipo do campo
+    private $arrayPesquisa = NULL;          // Array quando combo
+    private $exibeTextoRessaltado = TRUE;   // Exibe texto ressaltado quando TRUE
     
     # Top bar
     private $topBarListar = TRUE;  # Exibe ou  não a top bar na rotina de lista
@@ -305,14 +308,24 @@ class Modelo{
             if(!is_null($this->parametroLabel)){
                 $form = new Form('?fase=listar');
 
-                $controle = new Input("parametro","pesquisa");
+                $controle = new Input("parametro",$this->tipoCampoPesquisa);
                 $controle->set_size(50);
                 $controle->set_placeholder($this->parametroLabel);
                 $controle->set_valor($this->parametroValue);
                 $controle->set_autofocus(TRUE);
                 $controle->set_onChange('formPadrao.submit();');
                 $controle->set_id("controlePesquisa");
+                $controle->set_pesquisa(TRUE);
                 $controle->set_col(8);
+                
+                # Oculta o texto ressaltado quando for combo
+                if($this->tipoCampoPesquisa == "combo"){
+                    $this->exibeTextoRessaltado = FALSE;
+                }
+                # Envia o array quando é combo
+                if(!is_null($this->arrayPesquisa)){
+                    $controle->set_array($this->arrayPesquisa);
+                }
                 $form->add_item($controle);
                 $menu->add_link($form,"left");
             }
@@ -564,9 +577,10 @@ class Modelo{
 
             # informa para tabela se tem parametro para ser ressaltado na tabela
             if (!is_null($this->parametroValue) or ( $this->parametroValue == "")) {
-                $tabela->set_textoRessaltado($this->parametroValue);
+                if($this->exibeTextoRessaltado){
+                    $tabela->set_textoRessaltado($this->parametroValue);
+                }
             }
-
             $tabela->show();
             
             # Pega o time final
