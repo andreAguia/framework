@@ -630,7 +630,8 @@ class Input
                 }else{
                     echo '<select';	
                 }
-                break;			
+                break;
+            case "editor":
             case "textarea":
                 echo '<textarea';	
                 break;
@@ -641,6 +642,7 @@ class Input
             echo ' id="'.$this->id.'"';
         }else{
             echo ' id="'.$this->nome.'"';
+            $this->id = $this->nome;
         }
         
         # class
@@ -678,15 +680,15 @@ class Input
         }
 
         # Máximo de caracteres		
-        if (($this->maxlength == 0) and ($this->tipo <> 'textarea')){	
+        if (($this->maxlength == 0) AND ($this->tipo <> 'textarea') AND ($this->tipo <> 'editor')){	
             # Coloca o maxlengh = 10 quando data
             if ($this->tipo == 'date') {
                 echo ' maxlength="10"';
-            } else if ($this->tipo <> "hidden") {
+            } elseif ($this->tipo <> "hidden") {
                 echo ' maxlength="' . $this->size . '"';
             }
         }
-        else if (($this->tipo <> 'textarea') AND ( $this->tipo <> 'checkbox')) {
+        else if (($this->tipo <> 'textarea') AND ( $this->tipo <> 'checkbox') AND ( $this->tipo <> 'editor')) {
             echo ' maxlength="' . $this->maxlength . '"';
         }
 
@@ -709,12 +711,21 @@ class Input
         }
         
         switch ($this->tipo){	
-            case "textarea":
+            case "textarea": 
                 echo ' cols="'.$this->size[0].'"';
                 echo ' rows="'.$this->size[1].'"';
                 echo '>';
                 echo $this->valor;
                 echo '</textarea> ';
+                break;
+            
+            case "editor":    
+                echo ' cols="'.$this->size[0].'"';
+                echo ' rows="'.$this->size[1].'"';
+                echo '>';
+                echo $this->valor;
+                echo '</textarea> ';
+                echo "<script>CKEDITOR.replace( '$this->id' )</script>";
                 break;
 
             case "hidden":
