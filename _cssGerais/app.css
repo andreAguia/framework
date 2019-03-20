@@ -210,24 +210,10 @@ table.tabelaPadrao tfoot td {
     color: #fff;
 }
 
-table.tabelaPadrao tr {
-    padding: 1px;
-}
-
 table.tabelaPadrao a{
     text-decoration: none;
     color: #fff;
 }
-
-table.tabelaPadrao td.zebrado1{
-   background-color: #FFF;
-   padding: 2px;
- }
- 
-table.tabelaPadrao td.zebrado0{
-   background-color: #D7D7D7;
-   padding: 2px;
- }
  
  span#ressaltado{
      padding: 0px;
