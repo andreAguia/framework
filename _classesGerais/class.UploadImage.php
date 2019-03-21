@@ -2,7 +2,7 @@
 class UploadImage
 {
 /**
- * Inicia e termina uma página html
+ * Upload uma Imagem
  *
  * @author Marco Antoni <marquinho9.10@gmail.com>
  * 
