@@ -459,6 +459,8 @@ span.badge p{
  * Menu Vertical
  *******************************************/
 
+/* Tema Padrão */
+
 ul.menuVertical li{ 
     padding: 1px 0px 1px 0px;    
     text-align: left;
@@ -485,17 +487,17 @@ ul.menuVertical li#titulo1{
     margin: 0px 0px 0px -10px;
 }
 
+ul.menuVertical li#titulo1 a{
+    text-decoration:none;
+    color: #02548b;
+}
+
 ul.menuVertical li#titulo2{
     padding: 3px 0px 2px;
     text-align: left;
     font-size: 14px;
     list-style-type: none;
     margin: 0px 0px 0px -5px;
-}
-
-ul.menuVertical li#titulo1 a{
-    text-decoration:none;
-    color: #02548b;
 }
 
 ul.menuVertical li#titulo2 a{
@@ -517,7 +519,8 @@ ul.menuVertical a:hover {
     color: darkgray;
 }
 
-/***/
+/* Tema Alternativo */
+
 ul.menuVertical2 {
     margin: 10px 0px 0px 20px;
 }
@@ -583,6 +586,41 @@ a#sublink{
     color: #02548b;
     margin: 0px;
 }
+
+/* Tema Menu Servidor */
+
+ul.menuServidor li{ 
+    padding: 1px 0px 1px 0px;    
+    text-align: left;
+    font-size: 13px;
+    list-style-type: none;
+    margin: 0px 15px 0px 2px;
+}
+
+ul.menuServidor li#titulo{
+    padding: 5px 0px 5px 0px;
+    margin: 0px 0px 10px -10px;
+    border-bottom:#000 solid thin;
+    text-align: left;
+    font-size: 16px;    
+    font-weight: bold;
+    list-style-type: none;    
+}
+
+ul.menuServidor li#subTitulo{
+    padding: 3px 0px 2px;
+    text-align: left;
+    font-size: 15px;
+    list-style-type: none;
+    border-bottom: 2px #D7D7D7 solid;
+    margin: 0px 0px 0px -10px;
+}
+
+ul.menuServidor a { 
+    text-decoration:none;
+    color: #02548b;
+}
+
 /*******************************************
  * Menu Horizontal
  *******************************************/
