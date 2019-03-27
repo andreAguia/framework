@@ -598,6 +598,24 @@ class Modelo{
             }
         }       
     }
+    
+    ###########################################################
+
+    /**
+     * método ver
+     * 
+     * @param $id        integer NULL  id se for para update NULL se for para insert
+     */
+
+    public function ver($id = NULL) {
+        
+        # Cria o botão Editar
+        $botaoEditar = new Button("Editar","?fase=editar&id=$id");
+        $botaoEditar->set_title("Editar");
+        $this->botaoEditarExtra[] = $botaoEditar;
+            
+        $this::editar($id,TRUE);
+    }
 
     ###########################################################
 
@@ -605,7 +623,7 @@ class Modelo{
      * método editar (e incluir)
      * 
      * @param $id        integer NULL  id se for para update NULL se for para insert 
-     * @param $bloqueado bool    FALSE Se está bloqueado para edução ou não  
+     * @param $bloqueado bool    FALSE Se está bloqueado para edição ou não  
      */
 
     public function editar($id = NULL, $bloqueado = FALSE) {

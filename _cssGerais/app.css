@@ -593,7 +593,7 @@ ul.menuServidor li{
     padding: 1px 0px 1px 0px;    
     text-align: left;
     font-size: 13px;
-    list-style-type: none;
+    list-style-type:square;
     margin: 0px 15px 0px 2px;
 }
 
@@ -619,6 +619,16 @@ ul.menuServidor li#subTitulo{
 ul.menuServidor a { 
     text-decoration:none;
     color: #02548b;
+}
+
+div#ajustaMenuServidor{
+    height: 230px;
+}
+
+div#figuraMenuServidor{
+    float: right;
+    margin-top: -10px;
+    margin-right: 0px;
 }
 
 /*******************************************
