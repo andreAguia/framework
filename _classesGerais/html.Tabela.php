@@ -391,42 +391,42 @@ class Tabela
                                 $metodoClasse = $this->metodo[$a];
                                 $rowCondicional[$a] = $instancia->$metodoClasse($row[$a]);
                             }
-                            
+                            #echo "->".$condicional['valor'];
                             switch ($condicional['operador']){
                                 case '=':
                                 case '==':
                                     if($rowCondicional[$a] == $condicional['valor']){
-                                        echo 'id="'.$condicional['id'].'"';
+                                        echo ' id="'.$condicional['id'].'"';
                                     }
                                     break;
 
                                 case '<>':	
                                     if($rowCondicional[$a] <> $condicional['valor']){
-                                        echo 'id="'.$condicional['id'].'"';
+                                        echo ' id="'.$condicional['id'].'"';
                                     }
                                     break;
 
                                 case '>':	
                                     if($rowCondicional[$a] > $condicional['valor']){
-                                        echo 'id="'.$condicional['id'].'"';
+                                        echo ' id="'.$condicional['id'].'"';
                                     }
                                     break;
 
                                 case '<':	
                                     if($rowCondicional[$a] < $condicional['valor']){
-                                        echo 'id="'.$condicional['id'].'"';
+                                        echo ' id="'.$condicional['id'].'"';
                                     }
                                     break;
 
                                 case '>=':	
                                     if($rowCondicional[$a] >= $condicional['valor']){
-                                        echo 'id="'.$condicional['id'].'"';
+                                        echo ' id="'.$condicional['id'].'"';
                                     }
                                     break;
 
                                 case '<=':	
                                     if($rowCondicional[$a] <= $condicional['valor']){
-                                        echo 'id="'.$condicional['id'].'"';
+                                        echo ' id="'.$condicional['id'].'"';
                                     }
                                     break;
                             }

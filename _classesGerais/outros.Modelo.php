@@ -657,6 +657,7 @@ class Modelo{
                     $linkBotaoHistorico->set_title('Exibe o histórico');
                     $linkBotaoHistorico->set_onClick("abreFechaDivId('divHistorico');");
                     $linkBotaoHistorico->set_accessKey('H');
+                    $linkBotaoHistorico->set_class('success button');
                     $menu->add_link($linkBotaoHistorico,"right");
                 }
             }
