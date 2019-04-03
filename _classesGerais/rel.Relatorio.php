@@ -180,6 +180,24 @@ class Relatorio
      */
     
     public function exibeCabecalho(){
+        
+        $cabec = new Div('center');
+        $cabec->abre();
+            $imagem = new Imagem(PASTA_FIGURAS.'cabecalho2019.png',NULL,2395,284);
+            $imagem->show();
+        $cabec->fecha();
+        br();
+    }
+    
+    ###########################################################
+    
+    /**
+     * Método exibeCabecalho
+     * 
+     * Exibe o cabeçalho
+     */
+    
+    public function exibeCabecalhoVelho1(){
                 
         $governo = "Governo do Estado do Rio de Janeiro";
         $universidade = "Universidade Estadual do Norte Fluminense Darcy Ribeiro";
@@ -203,7 +221,7 @@ class Relatorio
      * Exibe o cabeçalho
      */
     
-    public function exibeCabecalhoVelho(){
+    public function exibeCabecalhoVelho2(){
                 
         $governo = "Governo do Estado do Rio de Janeiro";
         $universidade = "Fundação Estadual Norte Fluminense";
