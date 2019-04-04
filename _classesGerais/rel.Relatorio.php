@@ -186,7 +186,6 @@ class Relatorio
             $imagem = new Imagem(PASTA_FIGURAS.'cabecalho2019.png',NULL,2395,284);
             $imagem->show();
         $cabec->fecha();
-        br();
     }
     
     ###########################################################
