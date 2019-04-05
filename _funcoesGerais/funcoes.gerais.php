@@ -1640,7 +1640,7 @@ function vazio($var){
  *  
  * @example exemplo.vazio.php
  */
-    if(is_null($var) OR ($var == '')){
+    if(is_null($var) OR (trim($var) == '')){
         return TRUE;		
     }
 }
