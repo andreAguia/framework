@@ -163,6 +163,9 @@ class Modelo{
     private $rotinaExtraListar = NULL;
     private $rotinaExtraListarParametro = NULL;
     
+    # Menu Lateral
+    private $menuLateralEditar = NULL;      //  Objeto menu a ser inserido ao lado do formulário de edição
+    
     # Outros
     private $exibeInfoObrigatoriedade = TRUE;
     private $comGridLista = TRUE;
@@ -707,7 +710,17 @@ class Modelo{
         if ((!is_null($id)) AND ($this->botaoHistorico)){
             $this->exibeHistorico($id);
         }
-       
+        
+        if(!is_null($this->menuLateralEditar)){
+            $gridMenu = new Grid();
+            $gridMenu->abreColuna(3);
+            
+                $this->menuLateralEditar->show();
+                
+            $gridMenu->fechaColuna();
+            $gridMenu->abreColuna(9);
+        }
+                   
         # Topbar 
         if ($this->topBarIncluir){
             tituloTable($this->nome);
@@ -951,6 +964,11 @@ class Modelo{
             br();
             label("Campos marcados com (Aa) são passados para minusculas com primeira letra de cada palavra em maiusculas.","warning","f11");
             echo '</div>';
+        }
+        
+        if(!is_null($this->menuLateralEditar)){                
+            $gridMenu->fechaColuna();
+            $gridMenu->abreColuna(9);
         }
         
         $grid->fechaColuna();
