@@ -82,13 +82,15 @@ class Input
     private $datalist = NULL;
     private $bloqueadoEsconde = FALSE;  // Esconde o controle quando o forma está bloqueado
     private $pesquisa = FALSE;          // exibe um gráfico com lupa antes do controle
+    private $formation = NULL;
     
     private $id = NULL;
     private $class = NULL;
     
     # dos eventos
-    private $onClick = NULL;
-    private $onChange = NULL;
+    private $onClick = NULL;        // Evento ao clicar
+    private $onChange = NULL;       // Evento ao alterar. Obs não funciona corretamente em campos date
+    private $onBlur = NULL;         // Evento ao sair do controle
     
     # do form
     private $linha = NULL;     // informa a linha do controle
@@ -371,6 +373,20 @@ class Input
 
 ###########################################################       
 
+    public function set_onBlur($onBlur = NULL){
+    /**
+     * Informa rotina do evento onBlur
+     * 
+     * @syntax $input->set_onBlur($onBlur);
+     * 
+     * @param $onBlur string NULL A rotina a ser inserida
+     */
+    
+        $this->onBlur = $onBlur;
+    }    
+
+###########################################################         
+
     public function set_onChange($onChange = NULL){
     /**
      * Informa rotina do evento onChange
@@ -503,7 +519,22 @@ class Input
     }    
 
 
-##########################################################                                       
+##########################################################       
+
+    public function set_formation($formation){
+    /**
+     * Altera o atributo formation do controle
+     * 
+     * @syntax $input->set_formation($formation);
+     * 
+     * @param $formation texto NULL O valor a ser atribuído 
+     */
+    
+        $this->formation = $formation;
+    }    
+
+
+##########################################################                                         
 
      public function show(){
     /**
@@ -673,10 +704,20 @@ class Input
         if (!is_null($this->placeholder)) {
             echo ' placeholder="' . $this->placeholder . '"';
         }
+        
+        # formation
+        if (!is_null($this->formation)) {
+            echo ' formation="' . $this->formation . '"';
+        }
 
         # onChange	
         if (!is_null($this->onChange)) {
             echo ' onchange="'.$this->onChange.'"';
+        }
+        
+        # onBlur	
+        if (!is_null($this->onBlur)) {
+            echo ' onblur="'.$this->onBlur.'"';
         }
 
         # Máximo de caracteres		
