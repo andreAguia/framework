@@ -257,6 +257,7 @@ class Relatorio
       */
     
     private function exibeTitulo(){
+        
         # Objeto antes do título
         if (!is_null($this->objetoAntesTitulo)){
             $this->objetoAntesTitulo->show();

@@ -112,6 +112,7 @@ class Tabela
     private $idCampo = NULL;
     private $nomeGetId = "id";          # Nome do get do id. 
     private $scroll = TRUE;             # Habilita ou não o scrool horizontal da tabela
+    private $rowspan = NULL;            # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
     
     ###########################################################
 
@@ -156,6 +157,7 @@ class Tabela
         #  return $this->$var;
         #}
     }
+    
     ###########################################################
 
     /**
@@ -176,7 +178,7 @@ class Tabela
     /**
      * Método set_excluirCondicional
      * 
-     * Define uma condi��o para exibir ou n�o a op��o de exclus�o
+     * Define uma condição para exibir ou n�o a op��o de exclus�o
      * Usado na rotina de f�rias para colocar a op��o de exclus�o 
      * somente nas f�rias com status de solicitada.
      * 
@@ -240,10 +242,29 @@ class Tabela
         $numColunas = count($this->label);  // Calcula o número de colunas da tabela
         $numColunasOriginal = $numColunas;  // O número de colunas da tabela sem o edit, exclui, etc
         
+        $numRegistrosTotais = count($this->conteudo);
+        
         $colunaEdita = 999;
         $colunaExcluir = 999;
         $colunaExcluirCondicional = 999;
         $colunaEditarCondicional = 999;
+        
+        # usado no rowspan para se ocultar a td repetida
+        $exibeTd = TRUE;
+        
+        # rowspan
+        if(!is_null($this->rowspan)){
+            $arrayRowspan = NULL;
+            $rowspanAnterior = NULL;
+            $rowspanAtual = NULL;
+            
+            # Passa os valores para o array
+            foreach ($this->conteudo as $itens){
+                $arrayRowspan[] = $itens[$this->rowspan];
+            }
+            
+            $arr = array_count_values($arrayRowspan);
+        }
 
         # Quando existir rotina de editar
         # acrescenta colunas extras e calcula a posi��o na tabela
@@ -366,7 +387,7 @@ class Tabela
         if($this->numeroOrdemTipo == 'c'){
             $numOrdem = 1;  # Inicia o número de ordem quando tiver
         }else{
-            $numOrdem = count($this->conteudo);  # Inicia o número de ordem quando tiver
+            $numOrdem = $numRegistrosTotais;  # Inicia o número de ordem quando tiver
         }
         
         foreach ($this->conteudo as $row){
@@ -455,197 +476,235 @@ class Tabela
                 $id = $row["$this->idCampo"]; 
             }
 
-            # percorre as colunas 
-            for ($a = 0;$a < ($numColunas);$a ++){
-                echo '<td';
+            # Percorre as colunas 
+            for ($a = 0;$a < ($numColunas);$a ++){  
                 
-                # alinhamento
-                if((isset($this->align[$a])) and ($this->align[$a] <> NULL)){ 
-                    echo ' id="'.$this->align[$a].'"';
-                }else{
-                    echo ' id="center"';
-                }
+                $rowspanValor = NULL;
                 
-                echo '>';
-                
-                # colunas
-                # Botão editar
-                if(($this->editar <> NULL) and ($a == $colunaEdita)){
-                    $link = new Link(NULL,$this->editar.'&'.$this->nomeGetId.'='.$id,$this->nomeColunaEditar.': '.$row[0]);
-                    $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
-                    $link->show();     
+                # Verifica se tem Rowlspan
+                if(!is_null($this->rowspan)){
                     
-                    #$botao = new BotaoGrafico();
-                    #$botao->set_url($this->editar.'&'.$this->nomeGetId.'='.$id);
-                    #$botao->set_imagem(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
-                    #$botao->set_title($this->nomeColunaEditar.': '.$row[0]);
-                    #$botao->show();                    
-                }
-                elseif(($this->excluir <> NULL) and ($a == $colunaExcluir))	// coluna de excluir
-                {
-                    $link = new Link(NULL,$this->excluir.'&'.$this->nomeGetId.'='.$id,$this->nomeColunaExcluir.': '.$row[0]);
-                    $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
-                    $link->set_confirma('Deseja mesmo excluir?');
-                    $link->show(); 
-                    
-                    #$botao = new BotaoGrafico();
-                    #$botao->set_url($this->excluir.'&'.$this->nomeGetId.'='.$id);
-                    #$botao->set_imagemm(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
-                    #$botao->set_title($this->nomeColunaExcluir.': '.$row[0]);
-                    #$botao->set_confirma('Deseja mesmo excluir?');
-                    #$botao->show();                    
-                }						
-                elseif(($this->editarCondicional <> NULL) and ($a == $colunaEditarCondicional))	// coluna de editar_condicional
-                {
-                    # Se o operador for igual
-                    if($this->editarOperador == "=="){                    
-                        if($row[$this->editarColuna] == $this->editarCondicao){
-                            $link = new Link('Editar',$this->editarCondicional.'&'.$this->nomeGetId.'='.$id);
-                            $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
-                            $link->set_title($this->nomeColunaEditar.': '.$row[0]);
-                            $link->show();
-                        }
-                    }
-                    
-                    # Se o operador for diferente
-                    if(($this->editarOperador == "<>") OR ($this->editarOperador == "!=")){          
-                        if($row[$this->editarColuna] <> $this->editarCondicao){
-                            $link = new Link('Editar',$this->editarCondicional.'&'.$this->nomeGetId.'='.$id);
-                            $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
-                            $link->set_title($this->nomeColunaEditar.': '.$row[0]);
-                            $link->show();
-                        }
-                    }
-                    
-                }
-                elseif(($this->excluirCondicional <> NULL) AND ($a == $colunaExcluirCondicional))	// coluna de excluir_condicional
-                {
-                    # Se o operador for igual
-                    if($this->excluirOperador == "=="){ 
-                        if($row[$this->excluirColuna] == $this->excluirCondicao){
-                            $link = new Link('Excluir',$this->excluirCondicional.'&'.$this->nomeGetId.'='.$id);
-                            $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
-                            $link->set_title('Exclui: '.$row[0]);
-                            $link->set_confirma('Deseja mesmo excluir?');
-                            $link->show();
-                        }
-                    }
-                    
-                    # Se o operador for diferente
-                    if(($this->excluirOperador == "<>") OR ($this->excluirOperador == "!=")){ 
-                        if($row[$this->excluirColuna] <> $this->excluirCondicao){
-                            $link = new Link('Excluir',$this->excluirCondicional.'&'.$this->nomeGetId.'='.$id);
-                            $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
-                            $link->set_title('Exclui: '.$row[0]);
-                            $link->set_confirma('Deseja mesmo excluir?');
-                            $link->show();
-                        }
-                    }
-                }
+                    # Verifica se é essa coluna
+                    if($this->rowspan == $a){
+                        
+                        $rowAtual = $row[$a];
+                        
+                        # Verifica se mudou o valor
+                        if($rowspanAnterior <> $rowAtual){
+                            $rowspanAnterior = $rowAtual;  // habilita o novo valor anterior
+                            $exibeTd = TRUE;
 
-                # Coloca a função (se tiver)
-                if((isset($this->funcao[$a])) and ($this->funcao[$a] <> NULL)){
-                    $nomedafuncao = $this->funcao[$a];
-                    $row[$a] = $nomedafuncao($row[$a]);
-                }
-                
-                # Coloca a classe (se tiver)
-                if((isset($this->classe[$a])) and ($this->classe[$a] <> NULL)){
-                    $instancia = new $this->classe[$a]();
-                    $metodoClasse = $this->metodo[$a];
-                    $row[$a] = $instancia->$metodoClasse($row[$a]);
-                }
-                
-                # Coloca o link (se tiver)
-                if((isset($this->linkCondicional[$a])) and ($this->linkCondicional[$a] <> NULL)){
-                    if($this->linkCondicionalOperador == '='){
-                        if($this->linkCondicional[$a] == $row[$a]){
-                            if((isset($this->link[$a])) and ($this->link[$a] <> NULL)) 
-                                $this->link[$a]->show($id);
-                        }
-                    }
-                    
-                    if($this->linkCondicionalOperador == '<>'){
-                        if($this->linkCondicional[$a] <> $row[$a]){
-                            if((isset($this->link[$a])) and ($this->link[$a] <> NULL)){ 
-                                $this->link[$a]->show($id);
+                            if($arr[$row[$a]] > 1){
+                                $rowspanValor = $arr[$row[$a]];
                             }
-                        }
-                    }
-                }else{
-                    if((isset($this->link[$a])) and ($this->link[$a] <> NULL)){
-                        $this->link[$a]->show($id);
-                    }
-                }
-                
-                # Se não é coluna de editar, nem de excluir, nem excluir condicional, nem de link etc
-                if (($a <> $colunaEdita) and ($a <> $colunaExcluir) and ($a <> $colunaExcluirCondicional) and ($a <> $colunaEditarCondicional)and ((!isset($this->link[$a])) or ($this->link[$a] == NULL))){
-                    # verifica se tem imagem condicional, se tiver exibe o gráfico ao invel do valor                
-                    if (!is_null($this->imagemCondicional)){
-                        # pega as colunas que possuem imagens 
-                        $colunasImagem = array();
-                        foreach ($this->imagemCondicional as $condicionalColuna){ 
-                            array_push($colunasImagem,$condicionalColuna['coluna']);
-                        }
-
-                        $contadorRow = 0;   // evita que o texto seja escrito mais de uma vez
-
-                        foreach ($this->imagemCondicional as $condicionalImagem){ 
-                            if($a == $condicionalImagem['coluna']){
-                                switch ($condicionalImagem['operador']){
-                                    case '=':
-                                    case '==':
-                                        if($row[$a] == $condicionalImagem['valor'])
-                                            $condicionalImagem['imagem']->show();
-                                        break;
-
-                                    case '<>':	
-                                        if($row[$a] <> $condicionalImagem['valor'])
-                                            $condicionalImagem['imagem']->show();
-                                        break;	
-
-                                    case '>':	
-                                        if($row[$a] > $condicionalImagem['valor'])
-                                            $condicionalImagem['imagem']->show();
-                                        break;
-
-                                    case '<':	
-                                        if($row[$a] < $condicionalImagem['valor'])
-                                            $condicionalImagem['imagem']->show();
-                                        break;
-
-                                    case '>=':	
-                                        if($row[$a] >= $condicionalImagem['valor'])
-                                            $condicionalImagem['imagem']->show();
-                                        break;                                   
-
-                                    case '<=':	
-                                        if($row[$a] <= $condicionalImagem['valor'])
-                                            $condicionalImagem['imagem']->show();
-                                        break;
-                                }
+                        }else{
+                            if($arr[$row[$a]] > 1){
+                                $exibeTd = FALSE;                                
                             }else{
-                                if((!in_array($a,$colunasImagem)) and ($contadorRow == 0)){
-                                    if((!is_null($this->textoRessaltado)) AND ($this->textoRessaltado <> "") AND ($a <> $colunaEdita)){
-                                        #$row[$a] = get_bold($row[$a],$this->textoRessaltado);
-                                        echo $row[$a];
-                                    }else{
-                                        echo $row[$a];
-                                    }
-                                    $contadorRow++;
+                                $exibeTd = TRUE;
+                            }
+
+                        }
+                    }
+                }
+                
+                if($exibeTd){
+                    
+                    echo '<td ';
+                    
+                    if(!is_null($rowspanValor)){
+                        echo 'rowspan="'.$rowspanValor.'" ';
+                    }
+                                                        
+                    # alinhamento
+                    if((isset($this->align[$a])) and ($this->align[$a] <> NULL)){ 
+                        echo ' id="'.$this->align[$a].'"';
+                    }else{
+                        echo ' id="center"';
+                    }
+
+
+                    echo '>';
+
+                    # colunas
+                    # Botão editar
+                    if(($this->editar <> NULL) and ($a == $colunaEdita)){
+                        $link = new Link(NULL,$this->editar.'&'.$this->nomeGetId.'='.$id,$this->nomeColunaEditar.': '.$row[0]);
+                        $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
+                        $link->show();     
+
+                        #$botao = new BotaoGrafico();
+                        #$botao->set_url($this->editar.'&'.$this->nomeGetId.'='.$id);
+                        #$botao->set_imagem(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
+                        #$botao->set_title($this->nomeColunaEditar.': '.$row[0]);
+                        #$botao->show();                    
+                    }
+                    elseif(($this->excluir <> NULL) and ($a == $colunaExcluir))	// coluna de excluir
+                    {
+                        $link = new Link(NULL,$this->excluir.'&'.$this->nomeGetId.'='.$id,$this->nomeColunaExcluir.': '.$row[0]);
+                        $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
+                        $link->set_confirma('Deseja mesmo excluir?');
+                        $link->show(); 
+
+                        #$botao = new BotaoGrafico();
+                        #$botao->set_url($this->excluir.'&'.$this->nomeGetId.'='.$id);
+                        #$botao->set_imagemm(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
+                        #$botao->set_title($this->nomeColunaExcluir.': '.$row[0]);
+                        #$botao->set_confirma('Deseja mesmo excluir?');
+                        #$botao->show();                    
+                    }						
+                    elseif(($this->editarCondicional <> NULL) and ($a == $colunaEditarCondicional))	// coluna de editar_condicional
+                    {
+                        # Se o operador for igual
+                        if($this->editarOperador == "=="){                    
+                            if($row[$this->editarColuna] == $this->editarCondicao){
+                                $link = new Link('Editar',$this->editarCondicional.'&'.$this->nomeGetId.'='.$id);
+                                $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
+                                $link->set_title($this->nomeColunaEditar.': '.$row[0]);
+                                $link->show();
+                            }
+                        }
+
+                        # Se o operador for diferente
+                        if(($this->editarOperador == "<>") OR ($this->editarOperador == "!=")){          
+                            if($row[$this->editarColuna] <> $this->editarCondicao){
+                                $link = new Link('Editar',$this->editarCondicional.'&'.$this->nomeGetId.'='.$id);
+                                $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
+                                $link->set_title($this->nomeColunaEditar.': '.$row[0]);
+                                $link->show();
+                            }
+                        }
+
+                    }
+                    elseif(($this->excluirCondicional <> NULL) AND ($a == $colunaExcluirCondicional))	// coluna de excluir_condicional
+                    {
+                        # Se o operador for igual
+                        if($this->excluirOperador == "=="){ 
+                            if($row[$this->excluirColuna] == $this->excluirCondicao){
+                                $link = new Link('Excluir',$this->excluirCondicional.'&'.$this->nomeGetId.'='.$id);
+                                $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
+                                $link->set_title('Exclui: '.$row[0]);
+                                $link->set_confirma('Deseja mesmo excluir?');
+                                $link->show();
+                            }
+                        }
+
+                        # Se o operador for diferente
+                        if(($this->excluirOperador == "<>") OR ($this->excluirOperador == "!=")){ 
+                            if($row[$this->excluirColuna] <> $this->excluirCondicao){
+                                $link = new Link('Excluir',$this->excluirCondicional.'&'.$this->nomeGetId.'='.$id);
+                                $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
+                                $link->set_title('Exclui: '.$row[0]);
+                                $link->set_confirma('Deseja mesmo excluir?');
+                                $link->show();
+                            }
+                        }
+                    }
+
+                    # Coloca a função (se tiver)
+                    if((isset($this->funcao[$a])) and ($this->funcao[$a] <> NULL)){
+                        $nomedafuncao = $this->funcao[$a];
+                        $row[$a] = $nomedafuncao($row[$a]);
+                    }
+
+                    # Coloca a classe (se tiver)
+                    if((isset($this->classe[$a])) and ($this->classe[$a] <> NULL)){
+                        $instancia = new $this->classe[$a]();
+                        $metodoClasse = $this->metodo[$a];
+                        $row[$a] = $instancia->$metodoClasse($row[$a]);
+                    }
+
+                    # Coloca o link (se tiver)
+                    if((isset($this->linkCondicional[$a])) and ($this->linkCondicional[$a] <> NULL)){
+                        if($this->linkCondicionalOperador == '='){
+                            if($this->linkCondicional[$a] == $row[$a]){
+                                if((isset($this->link[$a])) and ($this->link[$a] <> NULL)) 
+                                    $this->link[$a]->show($id);
+                            }
+                        }
+
+                        if($this->linkCondicionalOperador == '<>'){
+                            if($this->linkCondicional[$a] <> $row[$a]){
+                                if((isset($this->link[$a])) and ($this->link[$a] <> NULL)){ 
+                                    $this->link[$a]->show($id);
                                 }
                             }
-                        }                            
-                    }elseif((!is_null($this->textoRessaltado)) AND ($this->textoRessaltado <> "")){ # Verifica se tem negrito
-                        if($a <> $colunaEdita){
-                            $row[$a] = bold($row[$a],$this->textoRessaltado);
                         }
-                        echo $row[$a];
                     }else{
-                        echo $row[$a];
+                        if((isset($this->link[$a])) and ($this->link[$a] <> NULL)){
+                            $this->link[$a]->show($id);
+                        }
                     }
-                }                
-                echo '</td>';
+
+                    # Se não é coluna de editar, nem de excluir, nem excluir condicional, nem de link etc
+                    if (($a <> $colunaEdita) and ($a <> $colunaExcluir) and ($a <> $colunaExcluirCondicional) and ($a <> $colunaEditarCondicional)and ((!isset($this->link[$a])) or ($this->link[$a] == NULL))){
+                        # verifica se tem imagem condicional, se tiver exibe o gráfico ao invel do valor                
+                        if (!is_null($this->imagemCondicional)){
+                            # pega as colunas que possuem imagens 
+                            $colunasImagem = array();
+                            foreach ($this->imagemCondicional as $condicionalColuna){ 
+                                array_push($colunasImagem,$condicionalColuna['coluna']);
+                            }
+
+                            $contadorRow = 0;   // evita que o texto seja escrito mais de uma vez
+
+                            foreach ($this->imagemCondicional as $condicionalImagem){ 
+                                if($a == $condicionalImagem['coluna']){
+                                    switch ($condicionalImagem['operador']){
+                                        case '=':
+                                        case '==':
+                                            if($row[$a] == $condicionalImagem['valor'])
+                                                $condicionalImagem['imagem']->show();
+                                            break;
+
+                                        case '<>':	
+                                            if($row[$a] <> $condicionalImagem['valor'])
+                                                $condicionalImagem['imagem']->show();
+                                            break;	
+
+                                        case '>':	
+                                            if($row[$a] > $condicionalImagem['valor'])
+                                                $condicionalImagem['imagem']->show();
+                                            break;
+
+                                        case '<':	
+                                            if($row[$a] < $condicionalImagem['valor'])
+                                                $condicionalImagem['imagem']->show();
+                                            break;
+
+                                        case '>=':	
+                                            if($row[$a] >= $condicionalImagem['valor'])
+                                                $condicionalImagem['imagem']->show();
+                                            break;                                   
+
+                                        case '<=':	
+                                            if($row[$a] <= $condicionalImagem['valor'])
+                                                $condicionalImagem['imagem']->show();
+                                            break;
+                                    }
+                                }else{
+                                    if((!in_array($a,$colunasImagem)) and ($contadorRow == 0)){
+                                        if((!is_null($this->textoRessaltado)) AND ($this->textoRessaltado <> "") AND ($a <> $colunaEdita)){
+                                            #$row[$a] = get_bold($row[$a],$this->textoRessaltado);
+                                            echo $row[$a];
+                                        }else{
+                                            echo $row[$a];
+                                        }
+                                        $contadorRow++;
+                                    }
+                                }
+                            }                            
+                        }elseif((!is_null($this->textoRessaltado)) AND ($this->textoRessaltado <> "")){ # Verifica se tem negrito
+                            if($a <> $colunaEdita){
+                                $row[$a] = bold($row[$a],$this->textoRessaltado);
+                            }
+                            echo $row[$a];
+                        }else{                        
+                            echo $row[$a];
+                        }
+                    }                
+                    echo '</td>';               
+                }// exibetd
             }
             echo '</tr>';
         }

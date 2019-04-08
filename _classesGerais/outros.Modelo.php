@@ -169,6 +169,7 @@ class Modelo{
     # Outros
     private $exibeInfoObrigatoriedade = TRUE;
     private $comGridLista = TRUE;
+    private $rowspan = NULL;            # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
     
     ###########################################################
 
@@ -526,6 +527,7 @@ class Modelo{
             $tabela->set_funcao($this->funcao);
             $tabela->set_classe($this->classe);
             $tabela->set_metodo($this->metodo);
+            $tabela->set_rowspan($this->rowspan);
 
             # acrescenta uma coluna com um número de ordenação
             if ($this->numeroOrdem){
