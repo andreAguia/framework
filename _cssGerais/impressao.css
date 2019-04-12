@@ -410,9 +410,9 @@ p.pMensagem{
      font-size: 10px;     
   }
   
-   /* CI Diária */
+   /* CI */
  
- p#pDiaria{
+ p#pCi{
      color: #000000;
      text-align: justify;
      margin-left: 10%;
@@ -420,30 +420,15 @@ p.pMensagem{
      font-size: 14px;
  }
  
- p#pDiariaData{
+ p#pCiData{
      color: #000000;
      text-align: right;
      margin-left: 10%;
      margin-right: 10%;
      font-size: 14px;
  }
- 
- table#tableDiaria, table#tableDiaria tr, table#tableDiaria td, table#tableDiaria th{
-     margin: 10%;
-     border:#000000 solid 1px;
-     border-collapse:collapse;
-     color: #000000;
-     text-align: center;
- }
- 
- table#tableDiaria th {
-     font-size: 16px;
-     text-align: center;
-     border-collapse:collapse;
-     color: #000000;
- }
- 
- p#pDiariaAssinatura{
+  
+ p#pCiAssinatura{
      color: #000000;
      text-align: center;
      margin-left: 10%;
