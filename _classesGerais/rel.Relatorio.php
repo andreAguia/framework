@@ -183,7 +183,7 @@ class Relatorio
         
         $cabec = new Div('center');
         $cabec->abre();
-            $imagem = new Imagem(PASTA_FIGURAS.'cabecalho2019.png',NULL,2395,284);
+            $imagem = new Imagem(PASTA_FIGURAS.'novoTimbre.png',NULL,120,90);
             $imagem->show();
         $cabec->fecha();
     }
@@ -191,7 +191,7 @@ class Relatorio
     ###########################################################
     
     /**
-     * Método exibeCabecalho
+     * Método exibeCabecalhoVelho1
      * 
      * Exibe o cabeçalho
      */
