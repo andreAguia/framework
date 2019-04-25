@@ -44,8 +44,7 @@ class menuRelatorio
 
     ###########################################################
 
-    function show()
-    {
+    function show() {
         $div = new Div('menuTopo');
         $div->abre();
         
@@ -88,44 +87,68 @@ class menuRelatorio
                     $controle = new Input($campo['nome'],$campo['tipo'],$campo['label'],1); 
                     $controle->set_linha($campo['linha']);	// linha no form que vai ser colocado o controle
                     $controle->set_tabindex($contador);			// tabulador (ordem de navega��o com a tecla tab)
-                    if (isset($campo['maxLength']))				// quantidade m�xima de caracteres
+                    if(isset($campo['maxLength'])){			// quantidade m�xima de caracteres
                         $controle->set_size($campo['size'],$campo['maxLength']);			// tamanho do campos
-                    else
+                    }else{
                         $controle->set_size($campo['size']);			// tamanho do campos
-                    if (isset($campo['required']))
+                    }
+                    
+                    if(isset($campo['required'])){
                         $controle->set_notNULL($campo['required']);		// faz o controle exibir o *
-                    if (isset($campo['array']))
+                    }
+                    
+                    if(isset($campo['array'])){
                         $controle->set_array($campo['array']);			// conteudo de uma combo
-                    if (isset($campo['readOnly']))
+                    }
+                    
+                    if(isset($campo['readOnly'])){
                         $controle->set_readonly($campo['readOnly']);	// readonly
-                    if (isset($campo['disabled']))
+                    }
+                    
+                    if(isset($campo['disabled'])){
                         $controle->set_disabled($campo['disabled']);	// disabled	
-                    if (isset($campo['autofocus']))
+                    }
+                    
+                    if(isset($campo['autofocus'])){
                         $controle->set_autofocus($campo['autofocus']);          // disabled
-                    if (isset($campo['placeholder']))
+                    }
+                    
+                    if(isset($campo['placeholder'])){
                         $controle->set_placeholder($campo['placeholder']);	// placeholder (dica dentro do controle)            
-                    if (isset($campo['title']))
+                    }
+                    
+                    if(isset($campo['title'])){
                         $controle->set_title($campo['title']);		        // title - dica do campo
-                    else
+                    }else{
                         $controle->set_title($campo['label']);
-                    if (isset($campo['onChange']))
+                    }
+                    
+                    if(isset($campo['onChange'])){
                         $controle->set_onChange($campo['onChange']);	 // onChange
-                    if (isset($campo['fieldset']))
+                    }
+                    
+                    if(isset($campo['fieldset'])){
                         $controle->set_fieldset($campo['fieldset']);    // fieldse interno
-                    if (isset($campo['col']))
+                    }
+                    
+                    if(isset($campo['col'])){
                         $controle->set_col($campo['col']);
+                    }
 
                     # Inlcui o valor padrão (se tiver)
-                    if(isset($campo['padrao']))
+                    if(isset($campo['padrao'])){
                         $controle->set_valor($campo['padrao']);
+                    }
 
                     # Inlcui o valor digitado
-                    if(isset($campo['valor']))
+                    if(isset($campo['valor'])){
                         $controle->set_valor($campo['valor']);
+                    }
 
                     # Coloca o foco no primeiro controle
-                    if($contador == 1)
+                    if($contador == 1){
                         $controle->set_autofocus(TRUE);
+                    }
 
                     $formRelatorio->add_item($controle);
 
