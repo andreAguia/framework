@@ -185,7 +185,7 @@ table.tabelaPadrao{
     border-collapse: separate;
     border-spacing: 2pt;
     border-color: #007095;    
-    font-size: 13px;
+    font-size: 12px;
     width: 100%;
 }
 
@@ -193,7 +193,7 @@ table.tabelaPadrao th{
     background-color: #02548b;
     text-align: center;
     font-weight: normal;
-    font-size: 13px;
+    font-size: 12px;
     color: #fff;    
 }
 
