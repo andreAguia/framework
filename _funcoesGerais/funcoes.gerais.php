@@ -2266,3 +2266,40 @@ function vazioPraNulo($valor = NULL){
     
     return $valor;
 }
+
+###########################################################
+
+function verificaSobreposicao($dtInicial1,$dtFinal1,$dtInicial2,$dtFinal2){
+    
+ /**
+  * Verifica se os períodos estão com sobreposição de dias
+  * 
+  * @param $dtInicial1 DATA    NULL a data inicial do primeiro período
+  * @param $dias1      integer NULL a quantidade de dias desse período
+  * @param $dtInicial2 DATA    NULL a data inicial do segundo período
+  * @param $dias2      integer NULL a quantidade de dias desse período
+  * @return bool                    Retorna TRUE quando houver sobreposição e FALSE quando não tiver
+  * 
+  * @syntax verificaSobreposicao($dtInicial1,$periodo1,$dtInicial2,$periodo2); 
+  */
+ 
+    # Inicia o retorno
+    $retorno = FALSE;
+    
+    # Verifica se data inicial do periodo1 está dentro do periodo2
+    if(entre($dtInicial1,$dtInicial2,$dtFinal2)){
+        $retorno = TRUE;
+    }
+    
+    # Verifica se data final do periodo1 está dentro do periodo2
+    if(entre($dtFinal1,$dtInicial2,$dtFinal2)){
+        $retorno = TRUE;
+    }
+    
+    # Verifica se o período1 "engole" o periodo2
+    if((date_to_bd($dtInicial1) < date_to_bd($dtInicial2)) AND (date_to_bd($dtFinal1) > date_to_bd($dtFinal2))){
+        $retorno = TRUE;
+    }
+    
+    return $retorno;
+}
