@@ -141,6 +141,20 @@ class Input
     
 ###########################################################
     
+    public function set_tipo($tipo = "texto"){
+    /**
+     * Altera o tipo quando se deseja alterar depois da classe instanciada
+     * 
+     * @param $tipo      string "texto" O tipo do controle: texto|numero|cpf|data|hora|cep|hidden|password|combo|checkbox|textarea|submit|reset|button
+     * 
+     * @syntax $input->set_tipo([$tipo]);  
+     */
+    
+        $this->tipo = $tipo;
+    }
+    
+###########################################################
+    
     public function set_id($id){
     /**
      * Informa o id para o css ou jscript
