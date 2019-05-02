@@ -1616,6 +1616,8 @@ function addAnos($data,$anos){
         # Divide a data em dia, mes e ano
         $dt = explode('/',$data);
         
+        echo $data;
+        
         $dataFinal = date('d/m/Y',mktime(0, 0, 0, $dt[1], $dt[0], $dt[2]+$anos));
         return $dataFinal;
      }else{ 
