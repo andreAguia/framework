@@ -126,6 +126,8 @@ class Relatorio
     private $funcaoFinalRelatorio = NULL;           // Executa uma rotina ao fim do Relatorio
     private $funcaoFinalRelatorioParametro = NULL;  
     
+    private $aviso = NULL;                          // Exibe um aviso que não será impresso, no cabeçalho
+    
 ###########################################################
     
     public function __construct($id = NULL){
@@ -513,6 +515,7 @@ class Relatorio
             $menuRelatorio->set_formFocus($this->formFocus);
             $menuRelatorio->set_formLink($this->formLink);
             $menuRelatorio->set_brHr($this->brHr);
+            $menuRelatorio->set_aviso($this->aviso);
             $menuRelatorio->show();
         }
         
@@ -524,7 +527,7 @@ class Relatorio
         # Abre a div do relatório
         $div = new Div('divRelatorio');
         $div->abre();
-        
+        echo $this->aviso;
         # Limita o tamanho da tela
         $grid = new Grid();
         $grid->abreColuna(12);

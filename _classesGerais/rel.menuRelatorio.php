@@ -12,6 +12,8 @@ class menuRelatorio
     private $formCampos = NULL;         # array com campos para o formulario    
     private $formLink = NULL;           # para onde vai o post
     private $botaoVoltar = NULL;         # define o link do bot�o voltar
+    
+    private $aviso = NULL;
 
     private $brHr = 1;                  # numeros de salto de linha antes do hr
                                         // usado quando se tem muitos controles e n�o se quer a 
@@ -70,7 +72,7 @@ class menuRelatorio
 
             $grid = new Grid();
             $grid->abreColuna(12);
-
+            
             # Campos
             if(!is_null($this->formCampos))
             {
@@ -158,6 +160,11 @@ class menuRelatorio
 
                 $divRelat->fecha();
             } 
+            
+            # Exibe o aviso (quando tiver)
+            if(!is_null($this->aviso)){
+                callout($this->aviso);
+            }
 
             $grid->fechaColuna();
             $grid->fechaGrid();
