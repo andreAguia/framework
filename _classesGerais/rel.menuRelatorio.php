@@ -163,6 +163,7 @@ class menuRelatorio
             
             # Exibe o aviso (quando tiver)
             if(!is_null($this->aviso)){
+                br();
                 callout($this->aviso);
             }
 
