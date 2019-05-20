@@ -165,6 +165,7 @@ class Modelo{
     
     # Menu Lateral
     private $menuLateralEditar = NULL;      //  Objeto menu a ser inserido ao lado do formulário de edição
+    private $menuLateralListar = NULL;      //  Objeto menu a ser inserido ao lado da tabela de listagem
     
     # Outros
     private $exibeInfoObrigatoriedade = TRUE;
@@ -498,6 +499,17 @@ class Modelo{
             echo '</ul>';
             $div->fecha();
         }
+        
+        # Exibe o menu Lateral (quando tem)
+        if(!is_null($this->menuLateralListar)){
+            $gridMenu = new Grid();
+            $gridMenu->abreColuna(3);
+            
+                $this->menuLateralListar->show();
+                
+            $gridMenu->fechaColuna();
+            $gridMenu->abreColuna(9);
+        }
             
         # Pega a lista em definitivo
         #echo $this->selectLista;
@@ -595,6 +607,11 @@ class Modelo{
             if($this->exibeTempoPesquisa){
                 $time = $time_end - $time_start;
                 p(number_format($time, 4, '.', ',')." segundos","right","f10");
+            }
+            
+            if(!is_null($this->menuLateralEditar)){                
+                $gridMenu->fechaColuna();
+                $gridMenu->fechaGrid();
             }
             
             if($this->comGridLista){
@@ -713,6 +730,7 @@ class Modelo{
             $this->exibeHistorico($id);
         }
         
+        # Exibe o menu Lateral (quando tem)
         if(!is_null($this->menuLateralEditar)){
             $gridMenu = new Grid();
             $gridMenu->abreColuna(3);
