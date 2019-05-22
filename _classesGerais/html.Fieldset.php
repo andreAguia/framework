@@ -6,8 +6,8 @@ class Fieldset
   * 
   * @author André Águia (Alat) - alataguia@gmail.com
   * 
-  * @var private $legend string NULL O texto do item legend do fieldset
-  * @var private $id     string NULL O id para o css
+  * @var private $legend string NULL     O texto do item legend do fieldset
+  * @var private $id     string NULL     O id para o css
   * @var private $class  string fieldset A classe para o css
   * 
   * @example exemplo.fieldset.php
