@@ -365,7 +365,7 @@ class BotaoGrafico
                             }
                         }
                         else{
-                            echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600');\" />";
+                            echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=1000,height=700');\" />";
                         }
                     }
                 }
