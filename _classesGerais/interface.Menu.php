@@ -96,9 +96,10 @@
                 $link->set_title($title);
                 $link->set_target($target);
                 $link->set_accessKey($accessKey);
+                $link->set_id('link');
 
                 $this->item[] = $link;
-                $this->tipo[] = 'item';
+                $this->tipo[] = 'link';
                 break;
             
             case "sublink" :
@@ -110,7 +111,7 @@
                 $link->set_id('sublink');
 
                 $this->item[] = $link;
-                $this->tipo[] = 'item';
+                $this->tipo[] = 'sublink';
                 break;
             
             case "linkWindow" :
@@ -177,6 +178,18 @@
                 
                 case "titulo2" :
                     echo "<li id='titulo2'>";
+                    $row->show();
+                    echo "</li>";
+                    break;
+                
+                case "link" :
+                    echo "<li id='link'>";
+                    $row->show();
+                    echo "</li>";
+                    break;
+                
+                case "sublink" :
+                    echo "<li id='sublink'>";
                     $row->show();
                     echo "</li>";
                     break;
