@@ -548,7 +548,22 @@ class Input
     }    
 
 
-##########################################################                                         
+##########################################################       
+
+    public function set_tagHtml($tagHtml){
+    /**
+     * Altera o atributo tagHtml do controle
+     * 
+     * @syntax $input->set_tagHtml($tagHtml);
+     * 
+     * @param $tagHtml texto NULL O valor a ser atribuído 
+     */
+    
+        $this->tagHtml = $tagHtml;
+    }    
+
+
+##########################################################                                                   
 
      public function show(){
     /**

@@ -778,7 +778,7 @@ class Modelo{
         foreach ($this->campos as $campo){
             
             # pega o tamanho de um controle (input)
-            if($campo['tipo'] == 'textarea') {
+            if(($campo['tipo'] == 'textarea') OR ($campo['tipo'] == 'editor')) {
                 $sizeFormulario = $campo['size'][0];
             }else{
                 $sizeFormulario = $campo['size'];
