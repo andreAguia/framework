@@ -3,26 +3,34 @@
 class Callout
 {    
     /**
-     * Cria um container Callout.
+     * Cria um painel com borda (container) para se adicionar conteúdo.
      * 
      * @author André Águia (Alat) - alataguia@gmail.com
      * 
-     * @note Um painel onde a cor é definida pelo tipo do callout: secondary | primary | success | warning | alert
+     * @var private $tipo        string secondary O tipo do callout: secondary | primary | success | warning | alert
+     * @var private $title       string NULL      O Texto para o evento mouseover
+     * @var private $id          string NULL      O id para o css
+     * @var private $botaoFechar BOLL   FALSE     Se terá ou não botão de fechar 
+     * 
+     * @note Utiliza o tipo callout do framework Zurb Foundation
+     * @note A cor do painel é definida pelo tipo do callout: secondary | primary | success | warning | alert
      * 
      * @example exemplo.callout.php
      */
     
-    private $tipo = "secondary";    // string O tipo do alert (callout): secondary | primary | success | warning | alert
-    private $title = NULL;          // string O Texto para o evento mouseover
-    private $id = NULL;             // string O id para o css
-    private $botaoFechar = FALSE;   // bool   Se terá ou não botão de fechar
+    private $tipo = "secondary";
+    private $title = NULL;
+    private $id = NULL;
+    private $botaoFechar = FALSE;
 
 ###########################################################
 
-    public function __construct($tipo = "secondary",    // string O tipo do alert (callout): secondary | primary | success | warning | alert
-                                $id = NULL){            // string O id para o css
+    public function __construct($tipo = "secondary", $id = NULL){
     /**
      * Inicia o Callout informando o tipo
+     * 
+     * @param $tipo string secondary O tipo do callout: secondary | primary | success | warning | alert
+     * @param $id   string NULL      O id para o css
      * 
      * @syntax $callout = new Callout([$tipo],[$id]);
      */

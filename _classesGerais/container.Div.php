@@ -102,8 +102,7 @@ class Div
      * Fecha uma div aberta
      * 
      * @syntax $div->fecha();
-     */
-    
+     */    
         
         echo '</div>';
     }
