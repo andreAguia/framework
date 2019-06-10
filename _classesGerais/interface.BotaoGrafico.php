@@ -296,7 +296,6 @@ class BotaoGrafico
     }
 
 ###########################################################
-
  
     public function show($valorId = NULL){
     /**
@@ -315,7 +314,7 @@ class BotaoGrafico
             $atalho .= substr($this->label,stripos($this->label,$this->accessKey)+1);
             $this->label = $atalho;
         }
-
+        
         # Abre a div
         $div = new Div($this->id,$this->class);
         $div->abre();

@@ -2027,21 +2027,28 @@ function arrayToString($valores){
 
 ###########################################################
 
-function arrayPreenche($valorInicial,$valorFinal){
+function arrayPreenche($valorInicial,$valorFinal,$ordem = "c"){
 /**
  * Preenche um array numérico com uma faixa de valores
  * 
  * @param $valorInicial integer NULL Valor Numérico Inicial
  * @param $valorFinal   integer NULL Valor Numérico Final
+ * @param $ordem        string  c    c -> se for crescente e d-> se for decrescente
  * @return array com os valores preenchidos
  */
-
+    
     # Inicia o array de retorno
     $resultado = array();
     
     # Preenche com os valores informados
-    for ($i = $valorInicial; $i <= $valorFinal; $i++) {
-        $resultado[] = $i;
+    if($ordem == "c"){
+        for ($i = $valorInicial; $i <= $valorFinal; $i++) {
+            $resultado[] = $i;
+        }
+    }elseif($ordem == "d"){
+        for ($i = $valorInicial; $i >= $valorFinal; $i--) {
+            $resultado[] = $i;
+        }
     }
     
     return $resultado;

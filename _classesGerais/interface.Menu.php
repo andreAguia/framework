@@ -118,7 +118,7 @@
                 # linkWindow
                 $linkWindow = new Link($label);
                 $linkWindow->set_title($title);
-                
+                $linkWindow->set_id('linkWindow');
                 #$linkWindow->set_cursor('pointer');
                 
                 # Resolvendo o bug do firefox que ia para uma pagina em branco

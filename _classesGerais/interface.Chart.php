@@ -209,8 +209,8 @@ class Chart
              echo "legend: { position: 'none' },";                
          }
          
-         echo "hAxis: {title: '".$this->label[1]."'},";
-         echo "vAxis: {title: '".$this->label[0]."'},";
+         echo "hAxis: {title: '".$this->label[0]."'},";
+         echo "vAxis: {title: '".$this->label[1]."'},";
          echo " histogram: {
                 bucketSize: 1,
                 maxNumBuckets: 1000,

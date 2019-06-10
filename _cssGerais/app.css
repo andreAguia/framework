@@ -623,18 +623,31 @@ div#figuraMenuServidor{
 
 /* Tema Menu Procedimentos */
 
+ul.menuProcedimentos li{ 
+    padding: 0px 0px 0px 0px;    
+    text-align: left;
+    font-size: 13px;
+    list-style-type: none;
+    margin: 0px 0px 0px 0px;
+}
+
+ul.menuProcedimentos hover {
+    color: darkgray;
+}
+
 ul.menuProcedimentos li#titulo{
     padding: 0px 0px 0px 0px;    
     text-align: left;
     list-style-type: none;
-    margin: 2px 0px 0px -15px;
+    margin: 15px 0px 0px -15px;
     border-bottom:#bababa solid thin;
 }
 
 ul.menuProcedimentos li#titulo a{
     text-decoration:none;
     color: #02548b;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 ul.menuProcedimentos li#link{
@@ -647,7 +660,21 @@ ul.menuProcedimentos li#link{
 ul.menuProcedimentos a#link{
     text-decoration:none;
     color: #02548b;    
-    font-size: 15px;
+    font-size: 13px;
+}
+
+ul.menuProcedimentos li#linkWindow{
+    padding: 0px 0px 0px 0px;    
+    text-align: left;
+    list-style-type: none;
+    margin: 0px 0px 0px 0px;
+}
+
+
+ul.menuProcedimentos a#linkWindow{
+    text-decoration:none;
+    color: #02548b;    
+    font-size: 13px;
 }
 
 ul.menuProcedimentos li#sublink{
@@ -660,13 +687,22 @@ ul.menuProcedimentos li#sublink{
 ul.menuProcedimentos a#sublink{
     text-decoration:none;
     color: #02548b;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 ul.menuProcedimentos li#titulo a :hover,
 ul.menuProcedimentos a#sublink :hover,
 ul.menuProcedimentos a#link :hover {
     color: darkgray;
+}
+
+span#novo{
+    color:#9e0c0f;
+    font-size: 10px;    
+    font-weight: bold;
+    font-variant-position: sub;
+    cursor:pointer;
+    margin: 0px 20px 0px 0px;
 }
 
 /*******************************************
