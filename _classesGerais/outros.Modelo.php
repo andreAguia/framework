@@ -171,6 +171,7 @@ class Modelo{
     private $exibeInfoObrigatoriedade = TRUE;
     private $comGridLista = TRUE;
     private $rowspan = NULL;            # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
+    private $grupoCorColuna = NULL;     # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
     
     ###########################################################
 
@@ -540,6 +541,10 @@ class Modelo{
             $tabela->set_classe($this->classe);
             $tabela->set_metodo($this->metodo);
             $tabela->set_rowspan($this->rowspan);
+            
+            if(!is_null($this->grupoCorColuna)){
+                $tabela->set_grupoCorColuna($this->grupoCorColuna);
+            }
 
             # acrescenta uma coluna com um número de ordenação
             if ($this->numeroOrdem){

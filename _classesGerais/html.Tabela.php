@@ -113,6 +113,7 @@ class Tabela
     private $nomeGetId = "id";          # Nome do get do id. 
     private $scroll = TRUE;             # Habilita ou não o scrool horizontal da tabela
     private $rowspan = NULL;            # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
+    private $grupoCorColuna = NULL;     # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
     
     ###########################################################
 
@@ -248,6 +249,9 @@ class Tabela
         $colunaExcluir = 999;
         $colunaExcluirCondicional = 999;
         $colunaEditarCondicional = 999;
+        
+        $valorGrupoCorColuna = NULL;
+        $corGrupo = "grupo1";
         
         # usado no rowspan para se ocultar a td repetida
         $exibeTd = TRUE;
@@ -455,7 +459,22 @@ class Tabela
                         }		
                     }
                 }
-            }				
+            }
+            
+            # Cor de agrupamento
+            if(!is_null($this->grupoCorColuna)){
+                if($row[$this->grupoCorColuna] <> $valorGrupoCorColuna){
+                    
+                    $valorGrupoCorColuna = $row[$this->grupoCorColuna];
+                    if($corGrupo == "grupo1"){
+                        $corGrupo = "grupo2";
+                    }else{
+                        $corGrupo = "grupo1";
+                    }                   
+                }
+                
+                echo ' id="'.$corGrupo.'"';
+            }
         
             echo '>';// tr
             
