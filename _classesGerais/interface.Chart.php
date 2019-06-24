@@ -25,10 +25,17 @@ class Chart
     
     private $largura = '100%';
     private $altura = '100%';
+    
+    private $faixas = 1;
+    private $tituloEixoX = NULL;
+    private $tituloEixoY = NULL;
+    private $cores = NULL;
+    
+    private $minValor = 0;
 
 ###########################################################
 
-    public function __construct($tipo = NULL,$dados = NULL){
+    public function __construct($tipo = NULL,$dados = NULL, $faixas = 1){
         
     /**
      * Inicia a classe
@@ -41,6 +48,7 @@ class Chart
     
         $this->tipo = $tipo;
         $this->dados = $dados;
+        $this->faixas = $faixas;
         echo '<script type="text/javascript" src="'.PASTA_FUNCOES_GERAIS.'/loader.js"></script>';
     }
 
@@ -56,6 +64,48 @@ class Chart
      */
     
         $this->title = $title;
+    }
+
+###########################################################
+
+    public function set_cores($cores = NULL){
+    /**
+     * Informa label da colunas
+     * 
+     * @syntax $button->set_tresd($tresd);
+     * 
+     * @param $tresd bool NULL Informa se o gráfico será ou não em 3 dimensões
+     */
+    
+        $this->cores = $cores;
+    }
+
+###########################################################
+
+    public function set_tituloEixoX($tituloEixoX = NULL){
+    /**
+     * Informa titulo do eixo X
+     * 
+     * @syntax $button->set_tresd($tresd);
+     * 
+     * @param $tresd bool NULL Informa se o gráfico será ou não em 3 dimensões
+     */
+    
+        $this->tituloEixoX = $tituloEixoX;
+    }
+
+###########################################################
+
+    public function set_tituloEixoY($tituloEixoY = NULL){
+    /**
+     * Informa titulo do eixo Y
+     * 
+     * @syntax $button->set_tresd($tresd);
+     * 
+     * @param $tresd bool NULL Informa se o gráfico será ou não em 3 dimensões
+     */
+    
+        $this->tituloEixoY = $tituloEixoY;
     }
 
 ###########################################################
@@ -179,45 +229,82 @@ class Chart
         $textoColuna .= "],";
         echo $textoColuna;
         
-         # Percorre o array de dados
-         foreach ($this->dados as $item){
-             echo "['".$item[0]."',".$item[1]."]";
-             if($contador < $numItens-1){
-                 echo ",";
-             }
-             $contador++;
-         }
+        # Percorre o array de dados
+        foreach ($this->dados as $item){
             
-         echo "]);";
+            echo "[";
+            echo "'".$item[0]."'";
+            
+            for ($i = 1; $i <= $this->faixas; $i++) {
+               echo ",";
+               echo $item[$i];
+            }
+            
+            echo "]";
+                         
+            if($contador < $numItens-1){
+                echo ",";
+            }
+            $contador++;
+        }
+           
+        echo "]);";
         
-         echo "var options = {
-                  title: '',";
+        echo "var options = {
+        
+        title: '',";
          
-         if(!is_null($this->title)){
-             echo "title: '$this->title',";             
-         }
+        if(!is_null($this->title)){
+            echo "title: '$this->title',";             
+        }
          
-         if($this->tresd){
-             echo "is3D: TRUE,";                
-         }
+        if($this->tresd){
+            echo "is3D: TRUE,";                
+        }
          
-         if($this->pieHole){
-             echo "pieHole: 0.4,";                
-         }
+        if($this->pieHole){
+            echo "pieHole: 0.4,";                
+        }
          
-         if(!$this->legend){
-             echo "legend: { position: 'none' },";                
-         }
+        if(!$this->legend){
+            echo "legend: { position: 'none' },";                
+        }
          
-         echo "hAxis: {title: '".$this->label[0]."'},";
-         echo "vAxis: {title: '".$this->label[1]."'},";
-         echo " histogram: {
-                bucketSize: 1,
-                maxNumBuckets: 1000,
-                minValue: 18,
-                maxValue: 100
-              }"; 
-         echo "};";
+        # cores
+        if(!is_null($this->cores)){
+            $numCor = count($this->cores);
+            $contCor = 1;
+            echo "colors: [";
+            foreach ($this->cores as $cor){
+                if($contCor == $numCor){
+                    echo "'$cor'";
+                }else{
+                    echo "'$cor',";
+                }
+                $contCor++;
+            }
+            echo "],";
+        }
+         
+        # Verifica o título do eixo X
+        if(is_null($this->tituloEixoX)){
+            $this->tituloEixoX = $this->label[0];
+        }
+         
+        # Verifica o título do eixo Y
+        if(is_null($this->tituloEixoY)){
+            $this->tituloEixoY = $this->label[1];
+        }
+         
+        echo "hAxis: {title: '".$this->tituloEixoX."'},";
+        echo "vAxis: {title: '".$this->tituloEixoY."'},";
+        echo " histogram: {
+               bucketSize: 1,
+               maxNumBuckets: 1000,
+               minValue: 1,
+               maxValue: 100
+             }"; 
+        echo "};";
          
         switch ($this->tipo)
         {   

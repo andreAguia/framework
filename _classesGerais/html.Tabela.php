@@ -232,6 +232,7 @@ class Tabela
     }
 
     ###########################################################
+    
     /**
      * Método show
      * 
@@ -267,6 +268,7 @@ class Tabela
                 $arrayRowspan[] = $itens[$this->rowspan];
             }
             
+            # Conta quantos valores tem e guarda no array $arr
             $arr = array_count_values($arrayRowspan);
         }
 
@@ -499,6 +501,7 @@ class Tabela
             for ($a = 0;$a < ($numColunas);$a ++){  
                 
                 $rowspanValor = NULL;
+                $exibeTd = TRUE;
                 
                 # Verifica se tem Rowlspan
                 if(!is_null($this->rowspan)){
@@ -511,16 +514,13 @@ class Tabela
                         # Verifica se mudou o valor
                         if($rowspanAnterior <> $rowAtual){
                             $rowspanAnterior = $rowAtual;  // habilita o novo valor anterior
-                            $exibeTd = TRUE;
 
                             if($arr[$row[$a]] > 1){
                                 $rowspanValor = $arr[$row[$a]];
                             }
                         }else{
                             if($arr[$row[$a]] > 1){
-                                $exibeTd = FALSE;                                
-                            }else{
-                                $exibeTd = TRUE;
+                                $exibeTd = FALSE;
                             }
 
                         }
@@ -537,9 +537,9 @@ class Tabela
                                                         
                     # alinhamento
                     if((isset($this->align[$a])) and ($this->align[$a] <> NULL)){ 
-                        echo ' id="'.$this->align[$a].'"';
+                        echo 'id="'.$this->align[$a].'"';
                     }else{
-                        echo ' id="center"';
+                        echo 'id="center"';
                     }
 
 
@@ -754,4 +754,6 @@ class Tabela
             echo '</div>';
         }        
     }
+    
+    ###########################################################
 }
