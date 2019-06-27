@@ -188,6 +188,7 @@ class Relatorio
             $imagem = new Imagem(PASTA_FIGURAS.'novoTimbre.png',NULL,120,90);
             $imagem->show();
         $cabec->fecha();
+        br();
     }
     
     ###########################################################
