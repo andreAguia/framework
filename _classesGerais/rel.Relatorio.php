@@ -507,6 +507,11 @@ class Relatorio
                 $tamanhoLinha = $tamanho;
             }
         }
+        
+        # Se tiver número de ordem aumenta o tamanho da linha
+        if($this->numeroOrdem){
+            $tamanhoLinha++;
+        }
 
         # Abre uma classe de menu do relatório
         if ($this->menuRelatorio){
@@ -529,6 +534,7 @@ class Relatorio
         $div = new Div('divRelatorio');
         $div->abre();
         echo $this->aviso;
+        
         # Limita o tamanho da tela
         $grid = new Grid();
         $grid->abreColuna(12);
@@ -789,8 +795,6 @@ class Relatorio
         } // se tem conteúdo (beta)
         
         echo '</table>';
-        
-                
         
         # Total de Registros
         if ($this->totalRegistro){
