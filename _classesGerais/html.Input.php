@@ -795,7 +795,7 @@ class Input
                 echo '>';
                 echo $this->valor;
                 echo '</textarea> ';
-                echo "<script>CKEDITOR.replace( '$this->id' )</script>";
+                echo "<script>CKEDITOR.replace('$this->id')</script>";
                 break;
 
             case "hidden":
