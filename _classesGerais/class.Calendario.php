@@ -8,10 +8,11 @@ class Calendario
   */
 
     private $mes = NULL;
+    private $ano = NULL;
 
 ###########################################################    
 
-    public function __construct($mes){
+    public function __construct($mes,$ano){
     /**
      * Inicia a classe atribuindo um valor do legend e do id
      * 
@@ -22,153 +23,91 @@ class Calendario
      */
     
     	$this->mes = $mes;
+        $this->ano = $ano;
     }
     
 ###########################################################
-
-    function MostreSemanas(){
-        
-        $semanas = "DSTQQSS";
-
-        for( $i = 0; $i < 7; $i++ ){
-            echo "<td>".$semanas{$i}."</td>";
-        }
-    }
-
-###########################################################
-
-    function GetNumeroDias(){
-        
     
-        $numero_dias = array( 
-                        '01' => 31, '02' => 28, '03' => 31, '04' =>30, '05' => 31, '06' => 30,
-                        '07' => 31, '08' =>31, '09' => 30, '10' => 31, '11' => 30, '12' => 31
-        );
+    public function show(){
+        
+        # Verifica quantos dias tem o mês específico
+        $dias = date("j",mktime(0,0,0,$this->mes+1,0,$this->ano));
+        
+        # Array dom os nomes do dia da semana 
+        $diaSemana = array("Domingo","2º feira","3° feira","4° feira","5° feira","6° feira","Sabado");
+        
+        # Determina o dia da semana do dia primeiro
+        $tstamp=mktime(0,0,0,$this->mes,1,$this->ano);
+        $Tdate = getdate($tstamp);
+        $wday=$Tdate["wday"];
+        
+        # Inicia a tabela
+        echo '<table class="tabelaPadrao">';
+        
+        # Título Mês/Ano
+        echo '<caption>'.get_nomeMes($this->mes).' / '.$this->ano.'</caption>';
 
-        if (((date('Y') % 4) == 0 and (date('Y') % 100)!=0) or (date('Y') % 400)==0)
-        {
-            $numero_dias['02'] = 29;	// altera o numero de dias de fevereiro se o ano for bissexto
+        echo '<col style="width:14%">';
+        echo '<col style="width:14%">';
+        echo '<col style="width:14%">';
+        echo '<col style="width:14%">';
+        echo '<col style="width:14%">';
+        echo '<col style="width:14%">';
+        echo '<col style="width:14%">';
+
+        # Cabeçalho dias da semana
+        echo '<tr>';
+        foreach($diaSemana as $ds){
+            echo "<th>$ds</th>";
         }
-
-        return $numero_dias[$this->mes];
-    }
-    ###########################################################
-    function GetNomeMes()
-    {
-         $meses = array( '01' => "Janeiro", '02' => "Fevereiro", '03' => "Março",
-                         '04' => "Abril",   '05' => "Maio",      '06' => "Junho",
-                         '07' => "Julho",   '08' => "Agosto",    '09' => "Setembro",
-                         '10' => "Outubro", '11' => "Novembro",  '12' => "Dezembro"
-                         );
-
-          return $meses[$this->mes];
-    }
-
-    ###########################################################
-	 
-    function MostreCalendario(){
-
-            $numero_dias = $this->GetNumeroDias();	// retorna o número de dias que tem o mês desejado
-            $nome_mes = $this->GetNomeMes();
-            $diacorrente = 0;	
-
-            $diasemana = jddayofweek( cal_to_jd(CAL_GREGORIAN, $this->mes,"01",date('Y')) , 0 );	// função que descobre o dia da semana
-
-            echo "<table border = 0 cellspacing = '0' align = 'center'>";
-             echo "<tr>";
-             echo "<td colspan = 7><h3>".$nome_mes."</h3></td>";
-             echo "</tr>";
-             echo "<tr>";
-               $this->MostreSemanas();	// função que mostra as semanas aqui
-             echo "</tr>";
-            for( $linha = 0; $linha < 6; $linha++ )
-            {
-
-
-               echo "<tr>";
-
-               for( $coluna = 0; $coluna < 7; $coluna++ )
-               {
-                    echo "<td width = 30 height = 30 ";
-
-                      if( ($diacorrente == ( date('d') - 1) && date('m') == $mes) )
-                      {	
-                               echo " id = 'dia_atual' ";
-                      }
-                      else
-                      {
-                                 if(($diacorrente + 1) <= $numero_dias )
-                                 {
-                                     if( $coluna < $diasemana && $linha == 0)
-                                     {
-                                            echo " id = 'dia_branco' ";
-                                     }
-                                     else
-                                     {
-                                            echo " id = 'dia_comum' ";
-                                     }
-                                 }
-                                 else
-                                 {
-                                    echo " ";
-                                 }
-                      }
-                    echo " align = 'center' valign = 'center'>";
-
-
-                       /* TRECHO IMPORTANTE: A PARTIR DESTE TRECHO É MOSTRADO UM DIA DO CALENDÁRIO (MUITA ATENÇÃO NA HORA DA MANUTENÇÃO) */
-
-                          if( $diacorrente + 1 <= $numero_dias )
-                          {
-                             if( $coluna < $diasemana && $linha == 0)
-                             {
-                                     echo " ";
-                             }
-                             else
-                             {
-                                    // echo "<input type = 'button' id = 'dia_comum' name = 'dia".($diacorrente+1)."'  value = '".++$diacorrente."' onclick = "acao(this.value)">";
-                                       echo "<a href = ".$_SERVER['PHP_SELF']."?mes=$mes&dia=".($diacorrente+1).">".++$diacorrente . "</a>";
-                             }
-                          }
-                          else
-                          {
-                            break;
-                          }
-
-                       /* FIM DO TRECHO MUITO IMPORTANTE */
-
-
-
-                    echo "</td>";
-               }
-               echo "</tr>";
-            }
-
-            echo "</table>";
-    }
-    
-    ###########################################################
-    function MostreCalendarioCompleto()
-    {
-                echo "<table align = 'center'>";
-                $cont = 1;
-                for( $j = 0; $j < 4; $j++ )
-                {
-                      echo "<tr>";
-                    for( $i = 0; $i < 3; $i++ )
-                    {
-
-                      echo "<td>";
-                            $this->MostreCalendario( ($cont < 10 ) ? "0".$cont : $cont );  
-
-                            $cont++;
-                      echo "</td>";
-
+        echo '</tr>';
+        
+        # Contador do dia
+        $dia = 1;
+        
+        # Corpo do calendário
+        echo '<tr>';
+        do {            
+            for ($i = 1; $i <= 7; $i++) {
+                # Verifica o dia ionicial do mes
+                if($dia == 1){
+                    if($wday+1 == $i){
+                        echo "<td";
+                        if($i == 1){
+                            echo " id='domingo'";
+                        }                        
+                        echo " align='center'>$dia</td>";
+                        $dia++;
+                    }else{
+                        echo "<td";
+                        if($i == 1){
+                            echo " id='domingo'";
+                        }         
+                        echo"></td>";
                     }
-                    echo "</tr>";
-               }
-               echo "</table>";
+                }else{
+                    if($dia <= $dias){
+                        echo "<td";
+                        if($i == 1){
+                            echo " id='domingo'";
+                        }                        
+                        echo " align='center'>$dia</td>";
+                        $dia++;
+                    }else{
+                        echo "<td";
+                        if($i == 1){
+                            echo " id='domingo'";
+                        }         
+                        echo"></td>";
+                    }
+                }
+            }
+            echo '</tr><tr>';
+        } while ($dia <= $dias);
+        echo '</tr>';
+        
+        # termina a tabela
+        echo '</table>';
     }
     
-    ###########################################################
 }

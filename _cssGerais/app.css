@@ -308,6 +308,14 @@ fieldset.fieldset{
     font-weight: normal;
     padding: 2px;
   }
+
+/*******************************************
+ * class Calendario
+ *******************************************/
+
+td#domingo {
+    background-color:#D7D7D7;
+  }  
   
 /********************************
  *  class Form
