@@ -72,33 +72,33 @@ class Calendario
                 # Verifica o dia ionicial do mes
                 if($dia == 1){
                     if($wday+1 == $i){
-                        echo "<td";
-                        if($i == 1){
+                        echo "<td align='center'";
+                        if(($i == 1) OR ($i == 7)){
                             echo " id='domingo'";
                         }                        
                         echo " align='center'>$dia</td>";
                         $dia++;
                     }else{
-                        echo "<td";
+                        echo "<td align='center'";
                         if($i == 1){
                             echo " id='domingo'";
                         }         
-                        echo"></td>";
+                        echo"> --- </td>";
                     }
                 }else{
                     if($dia <= $dias){
-                        echo "<td";
-                        if($i == 1){
+                        echo "<td align='center'";
+                        if(($i == 1) OR ($i == 7)){
                             echo " id='domingo'";
                         }                        
-                        echo " align='center'>$dia</td>";
+                        echo ">$dia</td>";
                         $dia++;
                     }else{
-                        echo "<td";
-                        if($i == 1){
+                        echo "<td align='center'";
+                        if(($i == 1) OR ($i == 7)){
                             echo " id='domingo'";
                         }         
-                        echo"></td>";
+                        echo"> --- </td>";
                     }
                 }
             }
