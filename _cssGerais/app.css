@@ -315,7 +315,11 @@ fieldset.fieldset{
 
 td#domingo {
     background-color:#D7D7D7;
-  }  
+  }
+  
+td#hoje {
+    background-color: #99ccff;
+  }    
   
 /********************************
  *  class Form

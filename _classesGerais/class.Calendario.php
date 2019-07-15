@@ -9,10 +9,11 @@ class Calendario
 
     private $mes = NULL;
     private $ano = NULL;
+    private $tamanho = "m";
 
 ###########################################################    
 
-    public function __construct($mes,$ano){
+    public function __construct($mes,$ano,$tamanho = "m"){
     /**
      * Inicia a classe atribuindo um valor do legend e do id
      * 
@@ -24,6 +25,7 @@ class Calendario
     
     	$this->mes = $mes;
         $this->ano = $ano;
+        $this->tamanho = $tamanho;
     }
     
 ###########################################################
@@ -33,8 +35,21 @@ class Calendario
         # Verifica quantos dias tem o mês específico
         $dias = date("j",mktime(0,0,0,$this->mes+1,0,$this->ano));
         
-        # Array dom os nomes do dia da semana 
-        $diaSemana = array("Domingo","2º feira","3° feira","4° feira","5° feira","6° feira","Sabado");
+        # Array dom os nomes do dia da semana
+        switch ($this->tamanho){
+            case "p":
+                 $diaSemana = array("D","S","T","Q","Q","S","S");
+                break;
+            
+            case "m":
+                $diaSemana = array("Domingo","2º feira","3° feira","4° feira","5° feira","6° feira","Sabado");
+                break;
+            
+            case "g":
+                $diaSemana = array("Domingo","Segunda feira","Terça feira","Quarta feira","Quinta feira","Sexta feira","Sabado");
+                break;
+        }
+        
         
         # Determina o dia da semana do dia primeiro
         $tstamp=mktime(0,0,0,$this->mes,1,$this->ano);
@@ -69,18 +84,27 @@ class Calendario
         echo '<tr>';
         do {            
             for ($i = 1; $i <= 7; $i++) {
-                # Verifica o dia ionicial do mes
+                # Verifica o dia inicial do mes
                 if($dia == 1){
                     if($wday+1 == $i){
                         echo "<td align='center'";
-                        if(($i == 1) OR ($i == 7)){
-                            echo " id='domingo'";
-                        }                        
-                        echo " align='center'>$dia</td>";
+                        
+                        # Verifica se é hoje
+                        if(($this->ano == date('Y')) AND ($this->mes == date('m')) AND ($dia == date('d'))){
+                            echo " id='hoje'";
+                        }else{
+                            # Verifica se é Sábado ou Domeingo                                                
+                            if(($i == 1) OR ($i == 7)){
+                                echo " id='domingo'";
+                            }
+                        }
+                        
+                        # Exibe o dia
+                        echo ">$dia</td>";
                         $dia++;
                     }else{
                         echo "<td align='center'";
-                        if($i == 1){
+                        if(($i == 1) OR ($i == 7)){
                             echo " id='domingo'";
                         }         
                         echo"> --- </td>";
@@ -88,9 +112,18 @@ class Calendario
                 }else{
                     if($dia <= $dias){
                         echo "<td align='center'";
-                        if(($i == 1) OR ($i == 7)){
-                            echo " id='domingo'";
-                        }                        
+                        
+                        # Verifica se é hoje
+                        if(($this->ano == date('Y')) AND ($this->mes == date('m')) AND ($dia == date('d'))){
+                            echo " id='hoje'";
+                        }else{
+                            # Verifica se é Sábado ou Domeingo                                                
+                            if(($i == 1) OR ($i == 7)){
+                                echo " id='domingo'";
+                            }
+                        }
+                        
+                        # Exibe o dia
                         echo ">$dia</td>";
                         $dia++;
                     }else{
