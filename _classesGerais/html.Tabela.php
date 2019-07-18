@@ -542,7 +542,6 @@ class Tabela
                         echo 'id="center"';
                     }
 
-
                     echo '>';
 
                     # colunas
