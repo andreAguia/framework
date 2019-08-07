@@ -1147,6 +1147,7 @@ function addDias($data = NULL,$dias = 0,$primeiroDia = TRUE){
  * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
  * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
  * @note Se o terceiro parâmetro estiver TRUE, o primeiro dia será contado, senão a contagem começará apartir do dia seguinte.
+ * @note Se os dias estiverem negativos o valor será subtraído.
  *
  * @param $data        string  NULL A data inicial
  * @param $dias        integer 0    O número de dias a serem adicionados
