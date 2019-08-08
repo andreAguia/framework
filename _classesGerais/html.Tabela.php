@@ -65,9 +65,10 @@ class Tabela
     private $linkCondicionalOperador = '=';
     
     # das Classes e Funções
+    private $funcao = NULL;
     private $classe = NULL;
     private $metodo = NULL;
-    private $funcao = NULL;
+    private $funcaoDepoisClasse = NULL;    
     
     # condicional
     private $formatacaoCondicional = NULL;
@@ -630,6 +631,12 @@ class Tabela
                         $instancia = new $this->classe[$a]();
                         $metodoClasse = $this->metodo[$a];
                         $row[$a] = $instancia->$metodoClasse($row[$a]);
+                    }
+                    
+                    # Coloca a função (se tiver)
+                    if((isset($this->funcaoDepoisClasse[$a])) and ($this->funcaoDepoisClasse[$a] <> NULL)){
+                        $nomedafuncao = $this->funcaoDepoisClasse[$a];
+                        $row[$a] = $nomedafuncao($row[$a]);
                     }
 
                     # Coloca o link (se tiver)
