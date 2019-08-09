@@ -9,20 +9,21 @@
 * Usado para exibir ou não uma div
 */
 
-var aba = null;
+var aba = {};
+
 
 function fechaDivId(div){
     document.getElementById(div).style.display = "none";
-    aba=false;
+    aba[div] = false;
 }
 
 function abreDivId(div){ 
     document.getElementById(div).style.display = "block";
-    aba=true;
+    aba[div] = true;
 }
 
 function abreFechaDivId(div){
-    if(aba){
+    if(aba[div]){
         fechaDivId(div);
     }else{
         abreDivId(div);
