@@ -1232,7 +1232,7 @@ function jaPassou($data){
             return FALSE;
         }
     }else{
-        alert('Data Inválida');
+        alert('Data Inválida: '.$data);
         return FALSE;
     }
 }
