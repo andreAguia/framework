@@ -93,6 +93,7 @@ class Relatorio
     private $exibeSomatorioGeral = TRUE;        // se exibe o somatório geral ou somente o parcial
     
     private $totalRegistro = TRUE;		// se terá o número de registros no fim do relatório (e dos grupos))
+    private $totalRegistroValor = NULL;		// Guarda o valor do toal para ser recuperado na rotina de relatório via get
     private $bordaInterna = FALSE;		// Exibe ou não uma linha dentro da tabela entro os registros 
     private $dataImpressao = TRUE;		// Exibe ou  não a Data de Impressão
     private $espacamento = 0;                   // Espaçamento entre as linha. 0 - espacamento padrão
@@ -166,11 +167,11 @@ class Relatorio
         }
 
         # Se for Get, retorna o valor da propriedade
-        #if (substr($metodo, 0, 3) == 'get')
-        #{
-        # $var = substr($metodo, 4);
-        #  return $this->$var;
-        #}
+        if (substr($metodo, 0, 3) == 'get')
+        {
+         $var = substr($metodo, 4);
+          return $this->$var;
+        }
     }
     
     ###########################################################
@@ -472,6 +473,22 @@ class Relatorio
         echo '</thead>'; 
     }
                     
+    ###########################################################
+    
+     /**
+      * Método totalRegistro
+      * 
+      * Exibe o total de Registro
+      */
+    
+    private function exibeDataImpressao(){
+        # Pega o usuário
+        $idUsuario = get_session('idUsuario');  
+        
+        br();
+        hr();
+        p('Emitido em: '.date('d/m/Y - H:i:s')." (".$idUsuario.")",'pRelatorioDataImpressao');
+    }
     ###########################################################
             
     /**
@@ -807,7 +824,8 @@ class Relatorio
         # Total de Registros
         if ($this->totalRegistro){
             hr();
-            p('Total de Registros: '.$contador,'pRelatorioTotal');            
+            p('Total de Registros: '.$contador,'pRelatorioTotal');
+            $this->totalRegistroValor = $contador;
         }
         
         # Executa a rotina no final de um grupo na forma de função
@@ -833,10 +851,8 @@ class Relatorio
         
         # Data da Impressão
         if ($this->dataImpressao){
-            br();
-            hr();
-            p('Emitido em: '.date('d/m/Y - H:i:s')." (".$idUsuario.")",'pRelatorioDataImpressao');
-        }	
+            $this->exibeDataImpressao();
+        }
         
         # Fecha o grid
         $grid->fechaColuna();
