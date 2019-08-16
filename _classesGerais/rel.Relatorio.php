@@ -88,7 +88,7 @@ class Relatorio
     # do somatório
     private $colunaSomatorio = NULL;            // coluna que terá somatório (por enquanto uma por relatório)
     private $textoSomatorio = 'Total:';         // texto a ser exibido na linha de totalização
-    private $colunaTexto = 0;                   // coluna onte o texto será exibido;
+    private $colunaTexto = 0;                   // coluna onde o texto será exibido;
     private $funcaoSomatorio = NULL;            // se executa alguma função no somatório
     private $exibeSomatorioGeral = TRUE;        // se exibe o somatório geral ou somente o parcial
     
@@ -461,6 +461,14 @@ class Relatorio
             }
         }
         echo '</tr>';
+                    
+        # Espaçamento
+        if($this->espacamento > 0){
+            for ($b = 0;$b < $this->espacamento;$b++){
+                echo '<tr></tr>';
+            }
+        }
+            
         echo '</thead>'; 
     }
                     
