@@ -2347,3 +2347,27 @@ function dataMaior($data1, $data2){
 }
 
 ###########################################################
+
+function get_post_action($name){
+
+/**
+ * Função curiosa que retorna o nome do botão de submit de um formulário que foi escolhido.
+ *
+ * @param  $nome array com os nomes possíveis
+ * 
+ * @note Essa função é utilizada quando se deseja ter multiplos botoes submit em um formulario. Dai ela informa o nome do botão escolhido.
+ * @note Feito, inicialmente, para a rotina das Cis de Redução da carga horária e readaptação. Pois tem um botão para Salvar e Sair e outro para Salvar e imprimir.
+ * 
+ * @return string o nome escolhido
+ *
+ * @syntax get_post_action($name);
+ */
+
+    $params = func_get_args();
+
+    foreach ($params as $name) {
+        if (isset($_POST[$name])) {
+            return $name;
+        }
+    }
+}
