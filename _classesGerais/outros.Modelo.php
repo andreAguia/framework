@@ -814,6 +814,16 @@ class Modelo{
                 $controle->set_size($campo['size']);
             }
             
+            # Maximo de um controle numero
+            if (isset($campo['max'])) {
+                $controle->set_max($campo['max']);
+            }
+            
+            # Mínimo de um controle numero
+            if (isset($campo['min'])) {
+                $controle->set_min($campo['min']);
+            }
+            
             # Quantidade máxima de caracteres
             if (isset($campo['maxLength'])) { 
                 $controle->set_size($campo['size'], $campo['maxLength']);

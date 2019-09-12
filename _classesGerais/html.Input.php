@@ -63,7 +63,11 @@ class Input
     # do tamanho
     private $size = 0;
     private $maxlength = 0;
-    private $col = 12; 
+    private $col = 12;
+    
+    # do limite do input numero
+    private $max = NULL;
+    private $min = NULL;
     
     # da dica
     private $title = NULL;
@@ -137,6 +141,34 @@ class Input
     
         $this->size = $size;
         $this->maxlength = $maxlength;
+    }
+    
+###########################################################
+    
+    public function set_max($max = NULL){
+    /**
+     * Informa o maximo de um controle numerico
+     * 
+     * @param $max      integer NULL O valor máximo do campo
+     * 
+     * @syntax $input->set_max($max);  
+     */
+    
+        $this->max = $max;
+    }
+    
+###########################################################
+    
+    public function set_min($min = NULL){
+    /**
+     * Informa o mininmo de um controle numerico
+     * 
+     * @param $min      integer NULL O valor mínimo do campo
+     * 
+     * @syntax $input->set_min($min);  
+     */
+    
+        $this->min = $min;
     }
     
 ###########################################################
@@ -938,6 +970,15 @@ class Input
                 echo ' size="'.$this->size.'"';
                 echo ' type="number"';
                 echo ' value="'.$this->valor.'"'; 
+                
+                if(!vazio($this->max)){
+                    echo ' max="'.$this->max.'"'; 
+                }
+                
+                if(!vazio($this->min)){
+                    echo ' min="'.$this->min.'"'; 
+                }
+                
                 echo '/>';
                 break;
             
