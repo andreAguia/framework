@@ -13,6 +13,10 @@ $tabela->set_conteudo($array);
 $tabela->set_label(array("Time","Jogos","Pontos"));
 $tabela->set_width(array(80,10,10));
 $tabela->set_align(array("left","center","center"));
+
+$tabela->set_colunaSomatorio(1);
+$tabela->set_textoSomatorio("Total de Jogos:");
+$tabela->set_totalRegistro(FALSE);
 $tabela->show();
 
 # Exemplo com mais itens

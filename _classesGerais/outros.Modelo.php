@@ -79,6 +79,13 @@ class Modelo{
     private $formatacaoCondicional = NULL;  # Array com uma formata��o condicional de cores
     private $numeroOrdem = FALSE;           # Exibe (qualdo TRUE) uma numera��o das colunas
     private $numeroOrdemTipo = 'c';         # Informa que a ordena��o ser� 'c' crescente ou 'd' decrescente
+    
+    # do somatório da tabela
+    private $colunaSomatorio = NULL;            // coluna que terá somatório (por enquanto uma por relatório)
+    private $textoSomatorio = 'Total:';         // texto a ser exibido na linha de totalização
+    private $colunaTexto = 0;                   // coluna onde o texto será exibido;
+    private $funcaoSomatorio = NULL;            // se executa alguma função no somatório
+    private $exibeSomatorioGeral = TRUE;        // se exibe o somatório geral ou somente o parcial
 
     # Da função
     private $funcao = NULL;
@@ -551,6 +558,21 @@ class Modelo{
                 $tabela->set_numeroOrdem($this->numeroOrdem);
                 $tabela->set_numeroOrdemTipo($this->numeroOrdemTipo);
             }        
+            
+            # Coluna do somatório
+            if(!is_null($this->set_colunaSomatorio)){
+                $tabela->set_colunaSomatorio($this->set_colunaSomatorio);
+            }
+            
+            # Texto do somatório
+            if(!is_null($this->set_textoSomatorio)){
+                $tabela->set_textoSomatorio($this->set_textoSomatorio);
+            }
+            
+            # Nao exibe o total de registros
+            if(!is_null($this->set_totalRegistro)){
+                $tabela->set_totalRegistro($this->set_totalRegistro);
+            }
 
             # formatação condicional
             $tabela->set_formatacaoCondicional($this->formatacaoCondicional);

@@ -107,6 +107,13 @@ class Tabela
     private $linkTituloImagemWidth = 15;
     private $linkTituloImagemHeight = 15; 
     private $linkTituloTitle = NULL;
+    
+    # do somatório
+    private $colunaSomatorio = NULL;            // coluna que terá somatório (por enquanto uma por relatório)
+    private $textoSomatorio = 'Total:';         // texto a ser exibido na linha de totalização
+    private $colunaTexto = 0;                   // coluna onde o texto será exibido;
+    private $funcaoSomatorio = NULL;            // se executa alguma função no somatório
+    private $exibeSomatorioGeral = TRUE;        // se exibe o somatório geral ou somente o parcial
      
     # outros
     private $textoRessaltado = NULL;	# string que será ressaltada no resultado da tabela (usado para resaltar pesquisas)
@@ -234,6 +241,57 @@ class Tabela
 
     ###########################################################
     
+     /**
+      * Método exibeSomatorio
+      * 
+      * Exibe o somatório de uma coluna no fim do relatório ou de um agrupamento
+      */
+    
+    private function exibeSomatorio($tamanho,$somatorio){  
+        # Exibe uma linha
+        $this->exibeLinha($tamanho);
+        
+        # Inicia a linha
+        echo '<tr id="somatorio">';
+                        
+        # Percorre as colunas da tabela para chegar a coluna do somatório
+        for($i = 0; $i<$tamanho; $i++){
+            
+            # Verifica se é a coluna onde terá o texto padrão a primeira coluna
+            if($i == $this->colunaTexto){
+                echo '<td id="textoSomatorio">'.$this->textoSomatorio.'</td>';
+            } 
+            
+            if(is_array($this->colunaSomatorio)){
+                # Em desenvolvimento
+                # Quando pronto possibilitará somatório 
+                # em mais de uma coluna
+            }else{
+                # Se for a coluna do somatório exibe o somatório
+                if($i == $this->colunaSomatorio){                
+                    # Se tiver função no somatório executa
+                    if(is_null($this->funcaoSomatorio)){
+                        echo '<td>'.$somatorio.'</td>';                
+                    } # Senão exibe o somatório
+                    else{
+                        $nomedafuncao = $this->funcaoSomatorio;
+                        $subSomatorio = $nomedafuncao($somatorio);
+                        echo '<td>'.$somatorio.'</td>';
+                    }
+                }
+            }
+            
+            # Senão exibe coluna em branco
+            if(($i <> $this->colunaTexto) AND ($i <> $this->colunaSomatorio)){ 
+                echo '<td></td>';
+            }
+        }
+
+        # Fecha a linha
+        echo '</tr>';
+    }
+    ###########################################################
+    
     /**
      * Método show
      * 
@@ -257,6 +315,9 @@ class Tabela
         
         # usado no rowspan para se ocultar a td repetida
         $exibeTd = TRUE;
+        
+        # Somatório
+        $somatorio = 0;         // somatorio de colunas se houver
         
         # rowspan
         if(!is_null($this->rowspan)){
@@ -727,12 +788,25 @@ class Tabela
                         }else{                        
                             echo $row[$a];
                         }
+                        
+                        # soma o valor quando o somatório estiver habilitado
+                        if(!is_null($this->colunaSomatorio)){
+                            if($a == $this->colunaSomatorio){
+                                $somatorio +=$row[$a];
+                            }
+                        }
                     }                
                     echo '</td>';               
                 }// exibetd
             }
             echo '</tr>';
         }
+        
+        # Exibe a soma quando o somatório estiver habilitado
+            if((!is_null($this->colunaSomatorio)) AND ($numRegistros <> 0)){
+                $this->exibeSomatorio($numColunas,$somatorio);
+            }
+            
 
         echo '</tbody>';
         

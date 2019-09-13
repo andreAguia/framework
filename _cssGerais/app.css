@@ -235,6 +235,16 @@ table.tabelaPadrao a{
      background-color:#e6e6e6;
  }
  
+ tr#somatorio{
+     background-color:#02548b;
+     text-align: center;
+     color: #fff;
+ }
+ 
+ td#textoSomatorio{
+     text-align: left;
+ }
+ 
  
  /*******************************************
  * class titleBar
