@@ -68,6 +68,7 @@ class Modelo{
     private $width = NULL;	
     private $align = NULL;
     private $idTabela = NULL;
+    private $totalRegistro = TRUE;
     
     private $link = NULL;               # array de objetos link correspondente a coluna em que ele aparece
     private $linkCondicional = NULL;    # array com o valor que a coluna deve ter para ter o link
@@ -83,9 +84,6 @@ class Modelo{
     # do somatório da tabela
     private $colunaSomatorio = NULL;            // coluna que terá somatório (por enquanto uma por relatório)
     private $textoSomatorio = 'Total:';         // texto a ser exibido na linha de totalização
-    private $colunaTexto = 0;                   // coluna onde o texto será exibido;
-    private $funcaoSomatorio = NULL;            // se executa alguma função no somatório
-    private $exibeSomatorioGeral = TRUE;        // se exibe o somatório geral ou somente o parcial
 
     # Da função
     private $funcao = NULL;
@@ -560,19 +558,17 @@ class Modelo{
             }        
             
             # Coluna do somatório
-            if(!is_null($this->set_colunaSomatorio)){
-                $tabela->set_colunaSomatorio($this->set_colunaSomatorio);
+            if(!is_null($this->colunaSomatorio)){
+                $tabela->set_colunaSomatorio($this->colunaSomatorio);
             }
             
             # Texto do somatório
-            if(!is_null($this->set_textoSomatorio)){
-                $tabela->set_textoSomatorio($this->set_textoSomatorio);
+            if(!is_null($this->textoSomatorio)){
+                $tabela->set_textoSomatorio($this->textoSomatorio);
             }
             
-            # Nao exibe o total de registros
-            if(!is_null($this->set_totalRegistro)){
-                $tabela->set_totalRegistro($this->set_totalRegistro);
-            }
+            # Informa se exibe (ou não) o total de registros
+            $tabela->set_totalRegistro($this->totalRegistro);
 
             # formatação condicional
             $tabela->set_formatacaoCondicional($this->formatacaoCondicional);

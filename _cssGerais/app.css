@@ -1,4 +1,4 @@
-/**
+Fservidor/**
  *
  * Css Geral
  *
@@ -622,23 +622,21 @@ a#sublink{
 ul.menuServidor li{ 
     padding: 1px 0px 1px 0px;    
     text-align: left;
-    font-size: 13px;
-    list-style-type:square;
+    font-size: 12px;
+    list-style-type: none;
     margin: 0px 15px 0px 2px;
 }
 
 ul.menuServidor li#titulo{
-    padding: 5px 0px 5px 0px;
-    margin: 0px 0px 10px -10px;
-    border-bottom:#000 solid thin;
+    padding: 5px 0px 1px 0px;
+    margin: 0px 0px 0px -10px;
     text-align: left;
-    font-size: 16px;    
-    font-weight: bold;
+    font-size: 14px;
     list-style-type: none;    
 }
 
 ul.menuServidor a { 
-    text-decoration:none;
+    text-decoration: none;
     color: #02548b;
 }
 
