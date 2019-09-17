@@ -36,7 +36,7 @@ class UploadImage
     }
 
     private function ehImagem($extensao){
-        $extensoes = array('gif', 'jpeg', 'jpg', 'png');     // extensoes permitidas
+        $extensoes = array('gif', 'jpeg', 'jpg', 'png', 'img');     // extensoes permitidas
         if (in_array($extensao, $extensoes)) {
             return true;
         }
