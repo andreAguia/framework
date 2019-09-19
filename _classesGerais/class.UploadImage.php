@@ -36,7 +36,7 @@ class UploadImage
     }
 
     private function ehImagem($extensao){
-        $extensoes = array('gif', 'jpeg', 'jpg', 'png', 'img');     // extensoes permitidas
+        $extensoes = array('gif', 'jpeg', 'jpg', 'png', 'img', 'jpeg');     // extensoes permitidas
         if (in_array($extensao, $extensoes)) {
             return true;
         }
@@ -91,9 +91,9 @@ class UploadImage
 
         //gera um nome unico para a imagem em funcao do tempo
         if(is_null($this->nome)){
-            $novo_nome = time().'.'.$extensao;
+            $novo_nome = time().'.jpg';
         }else{
-            $novo_nome = $this->nome.'.'.$extensao;
+            $novo_nome = $this->nome.'.jpg';
         }
         //localizacao do arquivo 
         $destino = $this->pasta . $novo_nome;
