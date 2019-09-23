@@ -2,9 +2,13 @@
 class Calendario
 {
  /**
-  * Cria um fieldset. 
+  * Exibe um Calendário. 
   * 
   * @author Talianderson Dias - talianderson.web@gmail.com
+  * 
+  * @var private $mes     integer NULL O mês a ser exibido. 1 a 12.
+  * @var private $ano     integer NULL O ano do calandário com 4 dígitos
+  * @var private $tamanho string  NULL O tamanho do calendário: p|m|g   
   */
 
     private $mes = NULL;
@@ -13,17 +17,37 @@ class Calendario
 
 ###########################################################    
 
-    public function __construct($mes,$ano,$tamanho = "m"){
+    public function __construct($mes = NULL,$ano = NULL,$tamanho = "m"){
     /**
      * Inicia a classe atribuindo um valor do legend e do id
      * 
-     * @param $legend   string NULL O texto a ser exibido
-     * @param $id       string NULL O id para o css
+     * @param private $mes     integer NULL O mês a ser exibido. 1 a 12.
+     * @param private $ano     integer NULL O ano do calandário com 4 dígitos
+     * @param private $tamanho string  NULL O tamanho do calendário: p|m|g
      * 
-     * @syntax $field = new Fieldset([$legend], [$id]);
+     * @note Se o mês não for informado, é exibido o mês corrente
+     * @note Se o ano não for informado, é exibido o mês corrente
+     * 
+     * @syntax $calendario = new Calendario([$mes], [$ano], [$tamanho]);
      */
     
-    	$this->mes = $mes;
+    	# Verifica se o mês é válido
+        if(($mes < 1) OR ($mes > 12)){
+            alert("É necessário informar o mês válido na Classe Calendário");
+            return;
+        }
+        
+        # Verifica se o mês está vazio e habilita o mês atual
+        if(vazio($mes)){
+            $mes = date('m');
+        }
+        
+        # Verifica se o ano está vazio e habilita o ano atual
+        if(vazio($ano)){
+            $ano = date('Y');
+        }
+        
+        $this->mes = $mes;
         $this->ano = $ano;
         $this->tamanho = $tamanho;
     }
@@ -31,6 +55,11 @@ class Calendario
 ###########################################################
     
     public function show(){
+    /**
+     * Exibe o Mês
+     * 
+     * @syntax $calendario->show();
+     */
         
         # Verifica quantos dias tem o mês específico
         $dias = date("j",mktime(0,0,0,$this->mes+1,0,$this->ano));
@@ -117,7 +146,7 @@ class Calendario
                         if(($this->ano == date('Y')) AND ($this->mes == date('m')) AND ($dia == date('d'))){
                             echo " id='hoje'";
                         }else{
-                            # Verifica se é Sábado ou Domeingo                                                
+                            # Verifica se é Sábado ou Domingo                                                
                             if(($i == 1) OR ($i == 7)){
                                 echo " id='domingo'";
                             }
