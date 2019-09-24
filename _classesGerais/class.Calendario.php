@@ -2,44 +2,45 @@
 class Calendario
 {
  /**
-  * Exibe um Calendário. 
+  * Classe que constroi e exibe um calendário.
   * 
   * @author Talianderson Dias - talianderson.web@gmail.com
   * 
   * @var private $mes     integer NULL O mês a ser exibido. 1 a 12.
   * @var private $ano     integer NULL O ano do calandário com 4 dígitos
-  * @var private $tamanho string  NULL O tamanho do calendário: p|m|g   
+  * @var private $tamanho string  NULL O tamanho do calendário: p | g
+  * 
+  * @example exemplo.calendario.php 
   */
 
     private $mes = NULL;
     private $ano = NULL;
-    private $tamanho = "m";
+    private $tamanho = "p";
 
 ###########################################################    
 
-    public function __construct($mes = NULL,$ano = NULL,$tamanho = "m"){
+    public function __construct($mes = NULL,$ano = NULL){
     /**
      * Inicia a classe atribuindo um valor do legend e do id
      * 
      * @param private $mes     integer NULL O mês a ser exibido. 1 a 12.
-     * @param private $ano     integer NULL O ano do calandário com 4 dígitos
-     * @param private $tamanho string  NULL O tamanho do calendário: p|m|g
+     * @param private $ano     integer NULL O ano do calandário com 4 dígitos     
      * 
      * @note Se o mês não for informado, é exibido o mês corrente
      * @note Se o ano não for informado, é exibido o mês corrente
      * 
-     * @syntax $calendario = new Calendario([$mes], [$ano], [$tamanho]);
+     * @syntax $calendario = new Calendario([$mes], [$ano]);
      */
-    
-    	# Verifica se o mês é válido
-        if(($mes < 1) OR ($mes > 12)){
-            alert("É necessário informar o mês válido na Classe Calendário");
-            return;
-        }
         
         # Verifica se o mês está vazio e habilita o mês atual
         if(vazio($mes)){
             $mes = date('m');
+        }
+        
+    	# Verifica se o mês é válido
+        if(($mes < 1) OR ($mes > 12)){
+            alert("É necessário informar o mês válido na Classe Calendário");
+            return;
         }
         
         # Verifica se o ano está vazio e habilita o ano atual
@@ -49,9 +50,24 @@ class Calendario
         
         $this->mes = $mes;
         $this->ano = $ano;
-        $this->tamanho = $tamanho;
     }
     
+###########################################################
+
+    public function set_tamanho($tamanho = NULL){
+    /**
+     * Informa o tamanho do nome do dia da semana no cabeçalçho da tabela do calendário
+     * 
+     * @param private $tamanho string  NULL O tamanho do calendário: p | g
+     *
+     * @note O tamanho p é utilizado quando o espaço é pequeno para exibir o nome completo dos dias da semanas. 
+     * 
+     * @syntax $calendario->show($tamanho);
+     */
+    
+        $this->tamanho = $tamanho;
+    }
+
 ###########################################################
     
     public function show(){
@@ -70,12 +86,8 @@ class Calendario
                  $diaSemana = array("D","S","T","Q","Q","S","S");
                 break;
             
-            case "m":
-                $diaSemana = array("Domingo","2º feira","3° feira","4° feira","5° feira","6° feira","Sabado");
-                break;
-            
             case "g":
-                $diaSemana = array("Domingo","Segunda feira","Terça feira","Quarta feira","Quinta feira","Sexta feira","Sabado");
+                $diaSemana = array("Domingo","2º feira","3° feira","4° feira","5° feira","6° feira","Sabado");
                 break;
         }
         
