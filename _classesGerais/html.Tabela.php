@@ -120,6 +120,7 @@ class Tabela
     private $idCampo = NULL;
     private $nomeGetId = "id";          # Nome do get do id. 
     private $scroll = TRUE;             # Habilita ou não o scrool horizontal da tabela
+    
     private $rowspan = NULL;            # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
     private $grupoCorColuna = NULL;     # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
     

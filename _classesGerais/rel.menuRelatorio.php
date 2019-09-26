@@ -83,7 +83,7 @@ class menuRelatorio
                 # Abre o form
                 $formRelatorio = new Form($this->formLink);
 
-                $contador = 1;	// Contador para a tabula��o do formul�rio
+                $contador = 1;	// Contador para a tabulação do formulário
 
                 foreach ($this->formCampos as $campo){
                     $controle = new Input($campo['nome'],$campo['tipo'],$campo['label'],1); 
