@@ -110,7 +110,6 @@ p#pRelatorioTitulo{
    margin: 0px;
    padding: 0em;
  }
-
  
  /*******************************************
  * Tabela principal (corpo do relatório)
@@ -120,7 +119,7 @@ p#pRelatorioTitulo{
      border-collapse: separate;
      border-spacing: 1px;     
      margin: 2px 1px 1px 1px;
-     width: 100%;  
+     width: 100%;
  }
  
  table.tabelaRelatorio tr{
@@ -144,7 +143,7 @@ p#pRelatorioTitulo{
    font-size: 12px;
    padding: 0px 3px 0px 3px;
    color: #000;
-   vertical-align: bottom;
+   vertical-align: middle;
  }
  
  table.tabelaRelatorio td.zebrado{
@@ -171,6 +170,14 @@ p#pRelatorioTitulo{
     color: #000;
     background-color: #000;
     height:1px;
+ }
+ 
+ tr#grupo1{
+     background-color:#bababa;
+ }
+ 
+ tr#grupo2{
+     background-color:#e6e6e6;
  }
  
  /*******************************************

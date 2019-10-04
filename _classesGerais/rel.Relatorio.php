@@ -129,7 +129,10 @@ class Relatorio
     
     private $aviso = NULL;                          // Exibe um aviso que não será impresso, no cabeçalho
     
-###########################################################
+    private $rowspan = NULL;            # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
+    private $grupoCorColuna = NULL;     # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
+    
+    ###########################################################
     
     public function __construct($id = NULL){
     /**
@@ -505,6 +508,31 @@ class Relatorio
         $somatorio = 0;         // somatorio de colunas se houver
         $subSomatorio = 0;      // somatório do grupo
         
+        #####
+        
+        $valorGrupoCorColuna = NULL;
+        $corGrupo = "grupo1";
+        
+        # usado no rowspan para se ocultar a td repetida
+        $exibeTd = TRUE;
+        
+        # rowspan
+        if(!is_null($this->rowspan)){
+            $arrayRowspan = NULL;
+            $rowspanAnterior = NULL;
+            $rowspanAtual = NULL;
+            
+            # Passa os valores para o array
+            foreach ($this->conteudo as $itens){
+                $arrayRowspan[] = $itens[$this->rowspan];
+            }
+            
+            # Conta quantos valores tem e guarda no array $arr
+            $arr = array_count_values($arrayRowspan);
+        }
+        
+        #####
+        
         # Linha de ordem (se tiver)
         if($this->numeroOrdemTipo == 'c'){
             $numOrdem = 1;  # Inicia o número de ordem quando tiver
@@ -572,6 +600,9 @@ class Relatorio
             
             # Percorre os registros
             foreach ($this->conteudo as $row){
+                
+                #################
+                
                 # Como a flag agrupa é mudada no início do loop verifica-se 
                 # a colocação do total do agrupamento anterior
                 # Verifica se tem agrupamento
@@ -633,6 +664,8 @@ class Relatorio
                         }
                     }
                 }
+                
+                #################
 
                 # Título do subgrupo (quando tiver)
                 if (($grupo) && (($agrupa == '') || ($agrupa <> $row[$this->numGrupo]))){                
@@ -661,6 +694,8 @@ class Relatorio
                     $subSomatorio = 0;  // Zera o somatório
                     $subContador = 0;   // Zera o contador de registro
                 }
+                
+                #################
 
                 # Nome das colunas (labels)
                 if ($subContador == 0){
@@ -669,6 +704,8 @@ class Relatorio
                      # começa o corpo da tabela
                      echo '<tbody>';
                 }
+                
+                #################
                 
                 # Incrementa contadores
                 $contador += 1;         
@@ -681,7 +718,28 @@ class Relatorio
                     }
                 }
                 
-                echo '<tr>';
+                #################
+                
+                echo '<tr ';
+                
+                # Cor de agrupamento
+                if(!is_null($this->grupoCorColuna)){
+                    if($row[$this->grupoCorColuna] <> $valorGrupoCorColuna){
+
+                        $valorGrupoCorColuna = $row[$this->grupoCorColuna];
+                        if($corGrupo == "grupo1"){
+                            $corGrupo = "grupo2";
+                        }else{
+                            $corGrupo = "grupo1";
+                        }                   
+                    }
+
+                    echo ' id="'.$corGrupo.'"';
+                }
+                
+                echo '>';
+                 
+                #################
                 
                 if($this->numeroOrdem){
                     echo '<td id="center">'.$numOrdem.'</td>';            
@@ -692,44 +750,86 @@ class Relatorio
                 }else{
                     $numOrdem--;    # decrementa o número de ordem
                 }
+                
+                #################
 
                 # percorre as colunas
                 for ($a = 0;$a < $tamanho;$a += 1){
+                    
                     if ((!$grupo) || (($grupo) && ($a <> $this->numGrupo)) || (($grupo) && (!$this->ocultaGrupo))){
-                        echo '<td';
-
-                        # alinhamento
-                        if((isset($this->align[$a])) and ($this->align[$a] <> NULL)){ 
-                            echo ' id="'.$this->align[$a].'"';
-                        }else{
-                            echo ' id="center"';
-                        }
                         
-                        # Coloca a classe (se tiver)
-                        if((isset($this->classe[$a])) and ($this->classe[$a] <> NULL)){
-                            $instancia = new $this->classe[$a]();
-                            $metodoClasse = $this->metodo[$a];
-                            $row[$a] = $instancia->$metodoClasse($row[$a]);
-                        }
+                        #################
+                        
+                        $rowspanValor = NULL;
+                        $exibeTd = TRUE;
 
-                        # Coloca a função (se tiver)
-                        if((isset($this->funcao[$a])) and ($this->funcao[$a] <> NULL)){
-                            $nomedafuncao = $this->funcao[$a];
-                            $row[$a] = $nomedafuncao($row[$a]);
-                        }
+                        # Verifica se tem Rowlspan
+                        if(!is_null($this->rowspan)){
 
-                        echo '>';
-                        echo $row[$a];
+                            # Verifica se é essa coluna
+                            if($this->rowspan == $a){
 
-                        # soma o valor quando o somatório estiver habilitado
-                        if(!is_null($this->colunaSomatorio)){
-                            if($a == $this->colunaSomatorio){
-                                $somatorio +=$row[$a];
-                                $subSomatorio +=$row[$a];
+                                $rowAtual = $row[$a];
+
+                                # Verifica se mudou o valor
+                                if($rowspanAnterior <> $rowAtual){
+                                    $rowspanAnterior = $rowAtual;  // habilita o novo valor anterior
+
+                                    if($arr[$row[$a]] > 1){
+                                        $rowspanValor = $arr[$row[$a]];
+                                    }
+                                }else{
+                                    if($arr[$row[$a]] > 1){
+                                        $exibeTd = FALSE;
+                                    }
+
+                                }
                             }
                         }
-                        echo '</td>';
-                    } 
+                        
+                        #################
+                        
+                        if($exibeTd){
+                        
+                            echo '<td ';
+
+                            if(!is_null($rowspanValor)){
+                                echo 'rowspan="'.$rowspanValor.'" ';
+                            }
+
+                            # alinhamento
+                            if((isset($this->align[$a])) and ($this->align[$a] <> NULL)){ 
+                                echo ' id="'.$this->align[$a].'"';
+                            }else{
+                                echo ' id="center"';
+                            }
+
+                            # Coloca a classe (se tiver)
+                            if((isset($this->classe[$a])) and ($this->classe[$a] <> NULL)){
+                                $instancia = new $this->classe[$a]();
+                                $metodoClasse = $this->metodo[$a];
+                                $row[$a] = $instancia->$metodoClasse($row[$a]);
+                            }
+
+                            # Coloca a função (se tiver)
+                            if((isset($this->funcao[$a])) and ($this->funcao[$a] <> NULL)){
+                                $nomedafuncao = $this->funcao[$a];
+                                $row[$a] = $nomedafuncao($row[$a]);
+                            }
+
+                            echo '>';
+                            echo $row[$a];
+
+                            # soma o valor quando o somatório estiver habilitado
+                            if(!is_null($this->colunaSomatorio)){
+                                if($a == $this->colunaSomatorio){
+                                    $somatorio +=$row[$a];
+                                    $subSomatorio +=$row[$a];
+                                }
+                            }
+                            echo '</td>';
+                        }// exibetd
+                    }
                 } 
                 echo '</tr>';
                 
