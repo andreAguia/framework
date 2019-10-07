@@ -427,7 +427,7 @@ class Tabela
         }
 
         for($a = 0;$a < $numColunas;$a += 1){        
-            echo '<th title="'.$this->label[$a].'">';
+            echo '<th title="'.strip_tags($this->label[$a]).'">';
 
             # colunas
             if(($this->editar <> NULL) and ($a == $colunaEdita)){			// coluna de editar
