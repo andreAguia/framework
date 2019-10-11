@@ -188,13 +188,13 @@ class Tabela
     /**
      * Método set_excluirCondicional
      * 
-     * Define uma condição para exibir ou n�o a op��o de exclus�o
-     * Usado na rotina de f�rias para colocar a op��o de exclus�o 
-     * somente nas f�rias com status de solicitada.
+     * Define uma condição para exibir ou n�o a opção de exclusão
+     * Usado na rotina de férias para colocar a opção de exclusão 
+     * somente nas férias com status de solicitada.
      * 
-     * @param 	$excluirCondicional string -> url para a rotina de exclus�o
-     * @param 	$excluirCondicao	 string -> valor que exibe o bot�o de exclus�o
-     * @param 	$excluirColuna		 integer -> n�mero da coluna cujo valor ser� comparado
+     * @param 	$excluirCondicional string -> url para a rotina de exclusão
+     * @param 	$excluirCondicao    string -> valor que exibe o botão de exclusão
+     * @param 	$excluirColuna	    integer -> número da coluna cujo valor será comparado
      */
     public function set_excluirCondicional($excluirCondicional,$excluirCondicao,$excluirColuna,$excluirOperador) {
         $this->excluirCondicional = $excluirCondicional;
@@ -661,12 +661,12 @@ class Tabela
                     {
                         # Se o operador for igual
                         if($this->excluirOperador == "=="){ 
-                            if($row[$this->excluirColuna] == $this->excluirCondicao){
-                                $link = new Link('Excluir',$this->excluirCondicional.'&'.$this->nomeGetId.'='.$id);
+                            if($row[$this->excluirColuna] == $this->excluirCondicao){                                
+                                $link = new Link(NULL,$this->excluirCondicional.'&'.$this->nomeGetId.'='.$id,$this->nomeColunaExcluir.': '.$row[0]);
                                 $link->set_imagem(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
                                 $link->set_title('Exclui: '.$row[0]);
                                 $link->set_confirma('Deseja mesmo excluir?');
-                                $link->show();
+                                $link->show(); 
                             }
                         }
 
