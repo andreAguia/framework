@@ -85,9 +85,7 @@ abstract class Bd
     /**
      * Retorna um array multidimenssional, se many is TRUE, com os registros do banco de dados, ou um valor único dependendo do formato do campo no banco de dados, quando $many is FALSE.
      * 
-     * @syntax $bd->select($select, [$many]);
-     * 
-     * @note Os parâmetros $orderCampo e $orderTipo só estão presentes no método para serem usados na classes filhas em caso de herança. 
+     * @syntax $bd->select($select, [$many]);    
      */    
     
     	try{
@@ -102,6 +100,7 @@ abstract class Bd
             $this->conn = NULL;
             return $row;
     	}
+        
     	catch(PDOException $e){
             print "ERRO! ".$e->getMessage()."<br />";
             die();
@@ -227,7 +226,7 @@ abstract class Bd
     
 ###########################################################
     
-    public function count($select){     // string O select que será contado os registros
+    public function count($select = NULL){     // string O select que será contado os registros
     /**
      * Informa o número inteiro com a quantidade de rows de um select
      * 
@@ -269,7 +268,7 @@ abstract class Bd
     
     ###########################################################
     
-    public function set_lastId($lastId){ // integer O número do id a ser gravado
+    public function set_lastId($lastId = NULL){ // integer O número do id a ser gravado
     /**
      * Grava a variável lastId
      * 
