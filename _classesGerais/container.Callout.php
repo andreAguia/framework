@@ -7,30 +7,23 @@ class Callout
      * 
      * @author André Águia (Alat) - alataguia@gmail.com
      * 
-     * @var private $tipo        string secondary O tipo do callout: secondary | primary | success | warning | alert
-     * @var private $title       string NULL      O Texto para o evento mouseover
-     * @var private $id          string NULL      O id para o css
-     * @var private $botaoFechar BOLL   FALSE     Se terá ou não botão de fechar 
-     * 
      * @note Utiliza o tipo callout do framework Zurb Foundation
      * @note A cor do painel é definida pelo tipo do callout: secondary | primary | success | warning | alert
      * 
      * @example exemplo.callout.php
      */
     
-    private $tipo = "secondary";
-    private $title = NULL;
-    private $id = NULL;
-    private $botaoFechar = FALSE;
+    private $tipo = "secondary";    // string O tipo do callout: secondary | primary | success | warning | alert
+    private $title = NULL;          // string O Texto para o evento mouseover
+    private $id = NULL;             // string O id para o css
+    private $botaoFechar = FALSE;   // bool   Se terá ou não um botão (X) para fechar 
 
 ###########################################################
 
-    public function __construct($tipo = "secondary", $id = NULL){
+    public function __construct($tipo = "secondary",    // string O tipo do callout: secondary | primary | success | warning | alert
+                                $id = NULL){            // string O id para o css
     /**
      * Inicia o Callout informando o tipo
-     * 
-     * @param $tipo string secondary O tipo do callout: secondary | primary | success | warning | alert
-     * @param $id   string NULL      O id para o css
      * 
      * @syntax $callout = new Callout([$tipo],[$id]);
      */

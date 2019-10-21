@@ -64,7 +64,7 @@ class Calendario
     
     public function show(){
     /**
-     * Exibe o Mês
+     * Exibe o Calendário
      * 
      * @syntax $calendario->show();
      */
