@@ -6,28 +6,22 @@ class Calendario
   * 
   * @author Talianderson Dias - talianderson.web@gmail.com
   * 
-  * @var private $mes     integer NULL O mês a ser exibido. 1 a 12.
-  * @var private $ano     integer NULL O ano do calandário com 4 dígitos
-  * @var private $tamanho string  NULL O tamanho do calendário: p | g
-  * 
   * @example exemplo.calendario.php 
   */
 
-    private $mes = NULL;
-    private $ano = NULL;
-    private $tamanho = "p";
+    private $mes = NULL;        // integer O mês a ser exibido. 1 a 12.
+    private $ano = NULL;        // integer O ano do calandário com 4 dígitos
+    private $tamanho = "p";     // string  O tamanho do calendário: p | g
 
 ###########################################################    
 
-    public function __construct($mes = NULL,$ano = NULL){
+    public function __construct($mes = NULL,    // integer O mês a ser exibido. 1 a 12.
+                                $ano = NULL){   // integer O ano do calandário com 4 dígitos     
     /**
      * Inicia a classe atribuindo um valor do legend e do id
      * 
-     * @param private $mes     integer NULL O mês a ser exibido. 1 a 12.
-     * @param private $ano     integer NULL O ano do calandário com 4 dígitos     
-     * 
-     * @note Se o mês não for informado, é exibido o mês corrente
-     * @note Se o ano não for informado, é exibido o mês corrente
+     * @note Se o mês não for informado, é exibido o mês atual.
+     * @note Se o ano não for informado, é exibido o ano atual.
      * 
      * @syntax $calendario = new Calendario([$mes], [$ano]);
      */
@@ -54,12 +48,10 @@ class Calendario
     
 ###########################################################
 
-    public function set_tamanho($tamanho = NULL){
+    public function set_tamanho($tamanho = NULL){ // string O tamanho do calendário: p | g
     /**
      * Informa o tamanho do nome do dia da semana no cabeçalçho da tabela do calendário
      * 
-     * @param private $tamanho string  NULL O tamanho do calendário: p | g
-     *
      * @note O tamanho p é utilizado quando o espaço é pequeno para exibir o nome completo dos dias da semanas. 
      * 
      * @syntax $calendario->show($tamanho);
@@ -89,8 +81,7 @@ class Calendario
             case "g":
                 $diaSemana = array("Domingo","2º feira","3° feira","4° feira","5° feira","6° feira","Sabado");
                 break;
-        }
-        
+        }        
         
         # Determina o dia da semana do dia primeiro
         $tstamp=mktime(0,0,0,$this->mes,1,$this->ano);
@@ -182,6 +173,5 @@ class Calendario
         
         # termina a tabela
         echo '</table>';
-    }
-    
+    }    
 }

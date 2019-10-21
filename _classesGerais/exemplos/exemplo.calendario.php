@@ -1,18 +1,18 @@
 <?php
 
-# Calendário pequeno
+# Calendário pequeno com Mês e ano atual.
 $cal = new Calendario();
 $cal->show();
 
-# Calendário grande
+# Calendário grande com Mês e ano atual.
 $cal = new Calendario();
 $cal->set_tamanho("g");
 $cal->show();
 
-# Calendário pequeno com mês
+# Calendário pequeno do mês de Maio do ano atual.
 $cal = new Calendario(5);
 $cal->show();
 
-# Calendário pequeno com mês e ano
-$cal = new Calendario(5,1987);
+# Calendário pequeno com mês e ano informados
+$cal = new Calendario(1,1987);
 $cal->show();
