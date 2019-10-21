@@ -43,7 +43,7 @@ class Page
     private $onLoad = NULL;     # inicia a rotina quando toda a página terminar de carregar
     
     # css
-    private $css = "foundation";    #escolhe qual framework css vai carregar: foundation ou w3c
+    private $css = "foundation";    # Escolhe qual framework css vai carregar: foundation ou w3c
 
 ###########################################################
     

@@ -7,28 +7,20 @@ class Div
     * 
     * @author André Águia (Alat) - alataguia@gmail.com
     * 
-    * @var private $class string NULL A classe para o css
-    * @var private $id    string NULL O id para o css
-    * @var private $title string NULL Texto para o evento mouseover
-    * 
-    * @var private $onClick string NULL A rotina jscript a ser executada no evento onclick.
-    * 
     * @example exemplo.div.php
     */
     
-    private $class = NULL;
-    private $id = NULL;
-    private $title = NULL;
-    private $onClick = NULL;
+    private $class = NULL;      // string A classe para o css.
+    private $id = NULL;         // string O id para o css.
+    private $title = NULL;      // string O texto para o evento mouseover.
+    private $onClick = NULL;    // string Rotina jscript a ser executada no evento onclick.
 
 ###########################################################
 
-    public function __construct($id = NULL, $class = NULL){
+    public function __construct($id = NULL,         // string O id para o css.
+                                $class = NULL){     // string A classe para o css.
     /**
      * Inicia a div informando o id e a classe para o css
-     * 
-     * @param $id       string NULL O id para o css
-     * @param $class 	string NULL A classe para o css
      * 
      * @syntax $div = new Div($id,[$class]);
      */
@@ -39,13 +31,11 @@ class Div
     
 ###########################################################
 
-    public function set_title($title = NULL){
+    public function set_title($title = NULL){   // string O texto para o evento mouseover.
     /**
      * Informa o texto no mouse over
      * 
      * @syntax $div->set_title($title);
-     * 
-     * @param $title string NULL O texto a ser exibido
      */
     
         $this->title = $title;
@@ -53,13 +43,11 @@ class Div
 
 ###########################################################
 
-    public function set_onClick($onClick = NULL){
+    public function set_onClick($onClick = NULL){   // string A rotina jscript a ser executada no evento onclick.
     /**
      * Informa a rotina jscript a ser executada no evento onclick.
      * 
      * @syntax $div->set_onClick($onClick);
-     * 
-     * @param $onClick string NULL A rotina jscript a ser executada no evento onclick.
      */
     
         $this->onClick = $onClick;

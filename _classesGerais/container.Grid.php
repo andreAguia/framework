@@ -15,11 +15,9 @@ class Grid
 
 ###########################################################
     
-    public function __construct($align = NULL){
+    public function __construct($align = "left"){   // string O alinhamento do grid: center | left | right | justify | spaced
     /**
      * Inicia uma linha de uma grid. Similar a um table e tr juntos.
-     * 
-     * @param $align string left O alinhamento do grid: center | left | right | justify | spaced
      * 
      * @syntax $grid = new Grid([$align]);     
      */    
@@ -36,17 +34,15 @@ class Grid
 
 ###########################################################
 
-    public function abreColuna($small = NULL,$medium = NULL, $large = NULL){	
+    public function abreColuna($small = NULL,       // string O tamanho da coluna quando a tela for pequena
+                               $medium = NULL,      // string O tamanho da coluna quando a tela for media
+                               $large = NULL){      // string O tamanho da coluna quando a tela for grande
     /**
      * Inicia uma coluna de uma grid. Similar a um td.
      * 
      * @note Cada grid tem a capacidade máxima de 12 colunas.
      * @note Cada coluna poderá ter o tamanho entre 1 a 12 de forma que o somatório do tamanho das colunas seja 12.
      * @note Cada coluna poderá ter um tamanho variável dependendo do tamanho da tela (responsivo) que é determinado pelos parâmetros $small, $medium e $large
-     * 
-     * @param $small  string NULL O tamanho da coluna quando a tela for pequena
-     * @param $medium string NULL O tamanho da coluna quando a tela for media
-     * @param $large  string NULL O tamanho da coluna quando a tela for grande
      * 
      * @syntax $grid->abreColuna($small,[$medium],[$large]);
      */    
