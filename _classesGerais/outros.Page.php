@@ -216,12 +216,12 @@ class Page
         }
 
         # Carrega o css
-        #if($this->css == "foundation"){
+        if($this->css == "foundation"){
             echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'foundation.css" />';
             echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'foundation-icons.css" />';
-        #}else{
+        }else{
             echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'w3c.css" />';
-        #}
+        }
         echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'app.css" />';
         echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'impressao.css" media="print"/>';
         echo '<link rel="stylesheet" href="'.PASTA_ESTILOS.'estilos.css" />';
