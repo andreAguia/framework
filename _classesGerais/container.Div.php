@@ -65,18 +65,22 @@ class Div
         # abre a div 
         echo '<div';
         
+        # id
         if(!is_null($this->id)){
             echo ' id="'.$this->id.'"';
         }
         
+        # class
         if(!is_null($this->class)){
             echo ' class="'.$this->class.'"';
         }
         
+        # title
         if(!is_null($this->title)){
             echo ' title="'.$this->title.'"';
         }
         
+        # onClick
         if(is_null($this->onClick)){     
             echo ' onclick="'.$this->onClick.'"';
         }
