@@ -6,26 +6,16 @@
   * 
   * @author André Águia (Alat) - alataguia@gmail.com
   * 
-  * @group da imagem
-  * @var private $figura string  NULL   Caminho e nome do arquivo de imagem a ser exibida.
-  * @var private $title  string  NULL   Texto que irá aparecer no evento mouseover
-  * @var private $width  integer 15     Largura da figura.
-  * @var private $height integer 20     Altura da figura. 
-  * 
-  * @group do css
-  * @var private $class string NULL O nome da classe.
-  * @var private $id    string NULL O nome do id
-  * 
   * @example exemplo.imagem.php 
   */
-
-    private $figura = "_semImagem.jpg";
-    private $title = NULL;
-    private $width = 15;
-    private $height = 20;
+     
+    private $figura = "_semImagem.jpg";     // string  Caminho e nome do arquivo de imagem a ser exibida.
+    private $title = NULL;                  // string  Texto que irá aparecer no evento mouseover
+    private $width = 15;                    // integer Largura da figura.
+    private $height = 20;                   // integer Altura da figura. 
     
-    private $class = NULL;
-    private $id = NULL;
+    private $class = NULL;                  // string O nome da classe.
+    private $id = NULL;                     // string O nome do id
 
 ###########################################################
 
@@ -49,7 +39,7 @@
 
 ###########################################################
 
-    public function set_class($class = NULL){
+    public function set_class($class = NULL){   // string O nome da classe.
     /**
      * Altera a classe da figura para ser usado no CSS
      * 
@@ -63,7 +53,7 @@
 
 ###########################################################
 
-    public function set_id($id = NULL){
+    public function set_id($id = NULL){ // string O nome do id
     /**
      * Altera o id da figura para ser usado no CSS
      * 

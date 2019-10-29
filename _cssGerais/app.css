@@ -331,6 +331,20 @@ td#hoje {
     background-color: #99ccff;
   }    
   
+p#pferiado {
+    padding: 0px 0px 0px 0px;
+    text-align: center;
+    font-size: 8px;
+    margin: 0px;
+}
+
+img#imgcalendario{
+    float: right;
+    margin-top: -20px;
+    margin-left: -1px;
+    position: absolute;
+}
+  
 /********************************
  *  class Form
  ********************************/

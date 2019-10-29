@@ -116,6 +116,11 @@ class Calendario
         echo '<tr>';
         do {            
             for ($i = 1; $i <= 7; $i++) {
+                # Verifica se nesta data existe um feriado
+                $data = "$dia/$this->mes/$this->ano";
+                $pessoal = new Pessoal();
+                $feriado = $pessoal->get_feriado($data); 
+                        
                 # Verifica o dia inicial do mes
                 if($dia == 1){
                     if($wday+1 == $i){
@@ -128,17 +133,32 @@ class Calendario
                             # Verifica se é Sábado ou Domeingo                                                
                             if(($i == 1) OR ($i == 7)){
                                 echo " id='domingo'";
+                            }elseif(!is_null($feriado)){
+                                echo " id='domingo' title='$feriado'";
                             }
                         }
                         
                         # Exibe o dia
-                        echo ">$dia</td>";
+                        echo ">";
+                                                
+                        # Exibe o Feriado (caso tenha)
+                        if(!is_null($feriado)){     // verifica se tem feriado
+                            echo $dia;
+                            $figura = new Imagem(PASTA_FIGURAS_GERAIS.'info.png',$feriado,25,25);
+                            $figura->set_id("imgcalendario");
+                            $figura->show();
+                        }else{
+                            echo $dia;
+                        }
+                        
+                        echo "</td>";
                         $dia++;
                     }else{
                         echo "<td align='center'";
+                        # Verifica se é Sábado ou Domingo                                                
                         if(($i == 1) OR ($i == 7)){
-                            echo " id='domingo'";
-                        }         
+                            echo " id='domingo' title='$feriado'";
+                        }    
                         echo"> --- </td>";
                     }
                 }else{
@@ -150,19 +170,33 @@ class Calendario
                             echo " id='hoje'";
                         }else{
                             # Verifica se é Sábado ou Domingo                                                
-                            if(($i == 1) OR ($i == 7)){
-                                echo " id='domingo'";
+                            if(($i == 1) OR ($i == 7) OR (!is_null($feriado))){
+                                echo " id='domingo' title='$feriado'";
                             }
                         }
                         
                         # Exibe o dia
-                        echo ">$dia</td>";
+                        echo ">";
+                                                
+                        # Exibe o Feriado (caso tenha)
+                        if(!is_null($feriado)){     // verifica se tem feriado
+                            echo $dia;
+                            $figura = new Imagem(PASTA_FIGURAS_GERAIS.'info.png',$feriado,25,25);
+                            $figura->set_id("imgcalendario");
+                            $figura->show();
+                        }else{
+                            echo $dia;
+                        }
+                        
+                        echo "</td>";
                         $dia++;
+                    
                     }else{
                         echo "<td align='center'";
+                        # Verifica se é Sábado ou Domingo                                                
                         if(($i == 1) OR ($i == 7)){
-                            echo " id='domingo'";
-                        }         
+                            echo " id='domingo' title='$feriado'";
+                        }     
                         echo"> --- </td>";
                     }
                 }

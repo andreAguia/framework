@@ -6,25 +6,19 @@ class Fieldset
   * 
   * @author André Águia (Alat) - alataguia@gmail.com
   * 
-  * @var private $legend string NULL     O texto do item legend do fieldset
-  * @var private $id     string NULL     O id para o css
-  * @var private $class  string fieldset A classe para o css
-  * 
   * @example exemplo.fieldset.php
   */
 
-    private $id = NULL;
-    private $legend = NULL;
-    private $class = "fieldset";
+    private $legend = NULL;         // string O texto do item legend do fieldset
+    private $id = NULL;             // string O id para o css
+    private $class = "fieldset";    // string A classe para o css
 
 ###########################################################    
 
-    public function __construct($legend = NULL,$id = NULL){
+    public function __construct($legend = NULL, // string O texto do item legend do fieldset
+                                $id = NULL){    // string O id para o css
     /**
      * Inicia a classe atribuindo um valor do legend e do id
-     * 
-     * @param $legend   string NULL O texto a ser exibido
-     * @param $id       string NULL O id para o css
      * 
      * @syntax $field = new Fieldset([$legend], [$id]);
      */
@@ -35,13 +29,11 @@ class Fieldset
     
 ###########################################################
 
-    public function set_class($class = NULL){
+    public function set_class($class = NULL){   // string A classe para o css
     /**
      * Informa o nome da class para o css
      * 
      * @syntax $field->set_class($class);
-     * 
-     * @param $class string NULL O nome da class para o css
      */
     
         $this->title = $class;
