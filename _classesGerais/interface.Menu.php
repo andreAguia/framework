@@ -34,7 +34,7 @@
     
 ###########################################################
     
-    public function add_item($tipo = 'link',$label = NULL,$url = '#',$title = NULL,$accessKey = NULL,$target = NULL){
+    public function add_item($tipo = 'link',$label = NULL,$url = '#',$title = NULL,$accessKey = NULL,$target = NULL,$bold = FALSE){
     /**
      * Adiciona um item ao menu
      * 
@@ -53,6 +53,11 @@
         # title
         if(is_null($title)){
             $title = $label;
+        }
+        
+        # bold
+        if($bold){
+            $label = '<b>'.$label.'</b>';
         }
         
         switch ($tipo){
