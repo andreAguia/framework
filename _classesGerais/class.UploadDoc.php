@@ -37,27 +37,14 @@ class UploadDoc
     
 ###########################################################
 
-    private function ehImagem($extensao){
-        
-        $extensoes = array('gif', 'jpeg', 'jpg', 'png', 'img', 'jpeg');     // extensoes permitidas
-        if (in_array($extensao, $extensoes)) {
-            return true;
-        }
-    }
-    
-###########################################################
-
     public function salvar(){
         
         # Pega a extensão
         $extensao = $this->getExtensao();
 
-        //gera um nome unico para a imagem em funcao do tempo
-        if(is_null($this->nome)){
-            $novo_nome = time().'.jpg';
-        }else{
-            $novo_nome = $this->nome.'.jpg';
-        }
+        # Gera o nome do arquivo
+        $novo_nome = $this->nome.'.pdf';
+        
         //localizacao do arquivo 
         $destino = $this->pasta . $novo_nome;
 
