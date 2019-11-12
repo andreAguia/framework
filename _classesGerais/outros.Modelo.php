@@ -26,6 +26,7 @@ class Modelo{
     
     # botões Incluir e editar do list
     private $botaoIncluir = TRUE;
+    private $botaoIncluirNome = "Incluir";
     private $botaoEditar = TRUE;    # esse flag é necessário pois o link de editar e incluir são os mesmos
                                     # e pode-se querer ter o botão incluir mas não o botão editar.   
     private $botaoExcluir = TRUE;
@@ -350,7 +351,7 @@ class Modelo{
 
             # Botão incluir
             if ($this->botaoIncluir){
-                $linkBotaoIncluir = new Button("Incluir",$this->linkIncluir);
+                $linkBotaoIncluir = new Button($this->botaoIncluirNome,$this->linkIncluir);
                 $linkBotaoIncluir->set_title('Incluir um Registro');
                 $linkBotaoIncluir->set_accessKey('I');
                 $menu->add_link($linkBotaoIncluir,"right");
