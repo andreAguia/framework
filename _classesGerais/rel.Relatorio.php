@@ -799,10 +799,12 @@ class Relatorio
 
                             # alinhamento
                             if((isset($this->align[$a])) and ($this->align[$a] <> NULL)){ 
-                                echo ' id="'.$this->align[$a].'"';
+                                echo 'id="'.$this->align[$a].'" ';
                             }else{
-                                echo ' id="center"';
+                                echo 'id="center" ';
                             }
+
+                            echo '>';
 
                             # Coloca a classe (se tiver)
                             if((isset($this->classe[$a])) and ($this->classe[$a] <> NULL)){
@@ -817,7 +819,7 @@ class Relatorio
                                 $row[$a] = $nomedafuncao($row[$a]);
                             }
 
-                            echo '>';
+                            
                             echo $row[$a];
 
                             # soma o valor quando o somatório estiver habilitado
