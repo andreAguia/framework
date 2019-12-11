@@ -1431,7 +1431,12 @@ class Modelo{
                 
                 # grava se tiver atividades para serem gravadas
                 if (!is_null($atividade)){
-                    $intra->registraLog($this->idUsuario,$data,$atividade,$this->tabela,$id,$tipoLog,$this->idServidorPesquisado);
+                    $intra->registraLog($this->idUsuario,
+                                        $data,$atividade,
+                                        $this->tabela,
+                                        $id,
+                                        $tipoLog,
+                                        $this->idServidorPesquisado);
                 }
             }
             
