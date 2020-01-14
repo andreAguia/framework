@@ -664,6 +664,25 @@ div#figuraMenuServidor{
     margin-right: 0px;
 }
 
+/* Tema Menu Documentos */
+
+ul.menuDocumentos li{ 
+    padding: 0px 0px 0px 0px;    
+    text-align: left;
+    font-size: 12px;
+    list-style-type: none;
+    margin: 0px 0px 0px 0px;
+}
+
+ul.menuDocumentos a { 
+    text-decoration: none;
+    color: #000;
+}
+
+ul.menuDocumentos a:hover {
+    color: grey;
+}
+
 /* Tema Menu Procedimentos */
 
 ul.menuProcedimentos li{ 
