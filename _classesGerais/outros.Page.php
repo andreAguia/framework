@@ -256,7 +256,7 @@ class Page
         #echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'app.js"></script>';
 
         echo '</body>';
-        echo '<footer id="center">';        
+        echo '<footer>';        
         echo '</footer>';
         echo '</html>';
 

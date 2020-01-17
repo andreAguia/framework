@@ -953,3 +953,15 @@ p#pRelatorioTitulo{
     background-color: #000;
     height:1px;
  }
+ 
+ /*******************************************
+ * Rodapé
+ *******************************************/
+ 
+  @media print {
+        div#rodape {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    }

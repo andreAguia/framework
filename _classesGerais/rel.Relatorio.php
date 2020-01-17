@@ -119,6 +119,9 @@ class Relatorio
     private $logDetalhe = NULL;     // detalhamento do log
     private $logServidor = NULL;    // o idServidor para quando o relatório for de um único servidor
     
+    # do Rodapé
+    private $rodape = NULL;
+    
     # Outros
     private $linhaFinal = FALSE;        // Exibe linha final
     private $funcaoFinalGrupo = NULL;           // Executa uma rotina ao fim de cada agrupamento na forma de função
@@ -952,8 +955,15 @@ class Relatorio
         $idUsuario = get_session('idUsuario');  
         
         # Data da Impressão
-        if ($this->dataImpressao){
+        if($this->dataImpressao){
             $this->exibeDataImpressao();
+        }
+        
+        # Rodapé
+        if(!vazio($this->rodape)){
+            echo "<footer>";
+            echo $this->rodape;
+            echo "</footer>";
         }
         
         # Fecha o grid
