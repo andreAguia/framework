@@ -123,7 +123,7 @@ class Relatorio
     private $rodape = NULL;
     
     # Outros
-    private $linhaFinal = FALSE;        // Exibe linha final
+    private $linhaFinal = FALSE;                // Exibe linha final
     private $funcaoFinalGrupo = NULL;           // Executa uma rotina ao fim de cada agrupamento na forma de função
     private $funcaoFinalGrupoParametro = NULL;  // Usado na escala anual de férias para exibir texto.
     
