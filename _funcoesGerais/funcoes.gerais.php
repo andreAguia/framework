@@ -235,7 +235,7 @@ function date_to_php($data,$separador = '-'){
  *
  * @example exemplo.date_to_php.php
  */
-
+    
     if(vazio($data)){
         return NULL;
     }else{
