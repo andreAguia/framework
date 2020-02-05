@@ -683,6 +683,25 @@ ul.menuDocumentos a:hover {
     color: grey;
 }
 
+/* Tema Menu Beneficios */
+
+ul.menuBeneficios li{ 
+    padding: 0px 0px 0px 0px;    
+    text-align: left;
+    font-size: 12px;
+    list-style-type: none;
+    margin: 0px 0px 0px -20px;
+}
+
+ul.menuBeneficios a { 
+    text-decoration: none;
+    color: #000;
+}
+
+ul.menuBeneficios a:hover {
+    color: grey;
+}
+
 /* Tema Menu Procedimentos */
 
 ul.menuProcedimentos li{ 
