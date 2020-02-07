@@ -979,11 +979,25 @@ function callout($mensagem, $tipo = "warning"){
  *
  * @example exemplo.callout.php
  */
+    
+    # Verifica se não está vazio
+    if(!vazio($mensagem)){
+        
+        # Chama a classe callout
+        $callout = new Callout($tipo);
+        $callout->abre();
 
-    $callout = new Callout($tipo);
-    $callout->abre();
-        p($mensagem,"funcaoCallout");
-    $callout->fecha();
+            # Verifica se é diversas mensagens
+            if(is_array($mensagem)){
+                foreach($mensagem as $mm){
+                    p($mm,"funcaoCallout");
+                }
+            }else{
+                p($mensagem,"funcaoCallout");
+            }
+            
+        $callout->fecha();
+    }
 }
 
 ###########################################################
