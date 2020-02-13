@@ -22,6 +22,7 @@ class Chart
     private $idDiv = "chart";
     private $pieHole = FALSE;
     private $legend = TRUE;
+    private $isStacked = FALSE;
     
     private $largura = '100%';
     private $altura = '100%';
@@ -195,6 +196,20 @@ class Chart
 
 ###########################################################
 
+    public function set_isStacked($isStacked = NULL){
+    /**
+     * Informa label da colunas
+     * 
+     * @syntax $button->set_tresd($tresd);
+     * 
+     * @param $tresd bool NULL Informa se o gráfico será ou não em 3 dimensões
+     */
+    
+        $this->isStacked = $isStacked;
+    }
+
+###########################################################
+
      public function show(){
     /**
      * Exibe o gráfico
@@ -269,7 +284,11 @@ class Chart
         if(!$this->legend){
             echo "legend: { position: 'none' },";                
         }
-         
+        
+        if(!is_null($this->isStacked)){
+            echo "isStacked: true,";             
+        }
+                 
         # cores
         if(!is_null($this->cores)){
             $numCor = count($this->cores);
