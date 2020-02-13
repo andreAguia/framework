@@ -274,7 +274,7 @@ class Chart
         }
          
         if($this->tresd){
-            echo "is3D: TRUE,";                
+            echo "is3D: true,";                
         }
          
         if($this->pieHole){
@@ -285,7 +285,7 @@ class Chart
             echo "legend: { position: 'none' },";                
         }
         
-        if(!is_null($this->isStacked)){
+        if($this->isStacked){
             echo "isStacked: true,";             
         }
                  
@@ -336,6 +336,7 @@ class Chart
             case "Histogram": 
             case "BarChart":
             case "ColumnChart":
+            case "Bar":
             case "LineChart":
                 echo "var chart = new google.visualization.".$this->tipo."(document.getElementById('$this->idDiv'));
                chart.draw(data, options);
