@@ -912,6 +912,13 @@ class Input
             case "data":
                 echo ' type="date"';
                 echo ' value="'.$this->valor.'"';
+                if(!vazio($this->max)){
+                    echo ' max="'.$this->max.'"'; 
+                }
+                
+                if(!vazio($this->min)){
+                    echo ' min="'.$this->min.'"'; 
+                }
                 echo '/>';      
                 break; 
 
