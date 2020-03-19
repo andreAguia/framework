@@ -18,12 +18,17 @@ class UploadDoc
     
 ###########################################################
 
-    function __construct($arquivo, $pasta, $nome, $extensoes){
+    function __construct($arquivo = NULL, $pasta = NULL, $nome = NULL, $extensoes = NULL){
         
         $this->arquivo = $arquivo;
         $this->pasta   = $pasta;
         $this->nome    = $nome;
-        $this->extensoes = $extensoes;
+        
+        if(is_null($extensoes)){
+            $this->extensoes = array("pdf");
+        }else{
+            $this->extensoes = $extensoes;
+        }
     }
     
 ###########################################################
@@ -43,7 +48,7 @@ class UploadDoc
         
         # Pega a extensão
         $extensaoArquivo = $this->getExtensao();
-        
+        echo $extensaoArquivo;
         # Verifica se a extensão é permitida
         if (in_array($extensaoArquivo, $this->extensoes)) {
             # Gera o nome do arquivo
