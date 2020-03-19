@@ -14,14 +14,16 @@ class UploadDoc
     private $arquivo = NULL;    // FILE   O arquivo a ser trabalhado
     private $pasta = NULL;      // string O caminho da pasta onde será armazenada o documento
     private $nome = NULL;       // string O nome do arquivo ao final do upload
+    private $extensoes = NULL;  // array  As extensões permitidas. Pode ser array ou string.
     
 ###########################################################
 
-    function __construct($arquivo, $pasta, $nome){
+    function __construct($arquivo, $pasta, $nome, $extensoes){
         
         $this->arquivo = $arquivo;
         $this->pasta   = $pasta;
         $this->nome    = $nome;
+        $this->extensoes = $extensoes;
     }
     
 ###########################################################
@@ -31,8 +33,8 @@ class UploadDoc
         //retorna a extensao do documento
         $img_nome = $this->arquivo['name'];
         $img_separador = explode('.',$img_nome);
-        $extensao = strtolower(end($img_separador));
-        return $extensao;
+        $extensaoArquivo = strtolower(end($img_separador));
+        return $extensaoArquivo;
     }
     
 ###########################################################
@@ -40,19 +42,28 @@ class UploadDoc
     public function salvar(){
         
         # Pega a extensão
-        $extensao = $this->getExtensao();
-
-        # Gera o nome do arquivo
-        $novo_nome = $this->nome.'.pdf';
+        $extensaoArquivo = $this->getExtensao();
         
-        //localizacao do arquivo 
-        $destino = $this->pasta . $novo_nome;
+        # Verifica se a extensão é permitida
+        if (in_array($extensaoArquivo, $this->extensoes)) {
+            # Gera o nome do arquivo
+            $novo_nome = $this->nome.'.'.$extensaoArquivo;
 
-        //move o arquivo
-        if (! move_uploaded_file($this->arquivo['tmp_name'], $destino)){
-            if ($this->arquivo['error'] == 1) {
-                return "Tamanho excede o permitido";
-            } 
+            # Localizacao do arquivo 
+            $destino = $this->pasta . $novo_nome;
+
+            # Move o arquivo
+            if (! move_uploaded_file($this->arquivo['tmp_name'], $destino)){
+                if ($this->arquivo['error'] == 1) {
+                    alert ("Tamanho excede o permitido");
+                    return FALSE;
+                } 
+            }else{
+                return TRUE;
+            }
+        }else{
+            alert ("Extensão não Permitida");
+            return FALSE;
         }
     }
     

@@ -74,8 +74,8 @@ class MenuGrafico
             }
         }
         
-        if($quantidade > 0)
-        {
+        if($quantidade > 0){
+            
             # Cria uma grid
             $grid = new Grid();
             
@@ -83,8 +83,8 @@ class MenuGrafico
             $tamColuna = 12/$this->colunas;
             #$tamColuna = $this->colunas;
             
-            foreach ($this->item as $objeto)
-            {
+            foreach ($this->item as $objeto){
+                
                 $contador++;
                 $grid->abreColuna("up-".$tamColuna);
                 $objeto->show();
