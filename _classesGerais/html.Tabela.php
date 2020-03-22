@@ -320,6 +320,11 @@ class Tabela
         # Somatório
         $somatorio = 0;         // somatorio de colunas se houver
         
+        # Verifica o tamanho da tabela
+        $numLinhas = count($this->conteudo);
+        
+        if($numLinhas > 0){
+        
         # rowspan
         if(!is_null($this->rowspan)){
             $arrayRowspan = NULL;
@@ -833,7 +838,16 @@ class Tabela
         
         if($this->scroll){
             echo '</div>';
-        }        
+        }
+        }else{
+            if ($this->titulo){
+                tituloTable($this->titulo);
+            }
+            $callout = new Callout();
+            $callout->abre();
+                p('Nenhum item encontrado !!','f14','center');
+            $callout->fecha();
+        }
     }
     
     ###########################################################

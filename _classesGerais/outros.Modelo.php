@@ -521,128 +521,117 @@ class Modelo{
         # Pega a lista em definitivo
         #echo $this->selectLista;
         $result = $objeto->select($this->selectLista);
+    
+        # Monta a tabela
+        $tabela = new Tabela();
+        $tabela->set_titulo($this->nome);
+        $tabela->set_conteudo($result);
+        $tabela->set_id($this->idTabela);
+        $tabela->set_label($this->label);
+        $tabela->set_align($this->align);
+        $tabela->set_width($this->width);
+        $tabela->set_link($this->link);
+        $tabela->set_linkCondicional($this->linkCondicional);
+        $tabela->set_linkCondicionalOperador($this->linkCondicionalOperador);
+        $tabela->set_funcao($this->funcao);
+        $tabela->set_classe($this->classe);
+        $tabela->set_metodo($this->metodo);
+        $tabela->set_rowspan($this->rowspan);
 
-        # se o resultado for vazio exibe mensagem ao inves de montar a tabela
-        if(count($result) == 0){
-            br();
-            tituloTable($this->nome);
-            $callout = new Callout();
-            $callout->abre();
-                p('Nenhum item encontrado !!','center');
-            $callout->fecha();
+        if(!is_null($this->grupoCorColuna)){
+            $tabela->set_grupoCorColuna($this->grupoCorColuna);
         }
-        else{
-            # Monta a tabela
-            $tabela = new Tabela();
-            $tabela->set_titulo($this->nome);
-            $tabela->set_conteudo($result);
-            $tabela->set_id($this->idTabela);
-            $tabela->set_label($this->label);
-            $tabela->set_align($this->align);
-            $tabela->set_width($this->width);
-            $tabela->set_link($this->link);
-            $tabela->set_linkCondicional($this->linkCondicional);
-            $tabela->set_linkCondicionalOperador($this->linkCondicionalOperador);
-            $tabela->set_funcao($this->funcao);
-            $tabela->set_classe($this->classe);
-            $tabela->set_metodo($this->metodo);
-            $tabela->set_rowspan($this->rowspan);
-            
-            if(!is_null($this->grupoCorColuna)){
-                $tabela->set_grupoCorColuna($this->grupoCorColuna);
-            }
 
-            # acrescenta uma coluna com um número de ordenação
-            if ($this->numeroOrdem){
-                $tabela->set_numeroOrdem($this->numeroOrdem);
-                $tabela->set_numeroOrdemTipo($this->numeroOrdemTipo);
-            }        
-            
-            # Coluna do somatório
-            if(!is_null($this->colunaSomatorio)){
-                $tabela->set_colunaSomatorio($this->colunaSomatorio);
-            }
-            
-            # Texto do somatório
-            if(!is_null($this->textoSomatorio)){
-                $tabela->set_textoSomatorio($this->textoSomatorio);
-            }
-            
-            # Informa se exibe (ou não) o total de registros
-            $tabela->set_totalRegistro($this->totalRegistro);
+        # acrescenta uma coluna com um número de ordenação
+        if ($this->numeroOrdem){
+            $tabela->set_numeroOrdem($this->numeroOrdem);
+            $tabela->set_numeroOrdemTipo($this->numeroOrdemTipo);
+        }        
 
-            # formatação condicional
-            $tabela->set_formatacaoCondicional($this->formatacaoCondicional);
+        # Coluna do somatório
+        if(!is_null($this->colunaSomatorio)){
+            $tabela->set_colunaSomatorio($this->colunaSomatorio);
+        }
 
-            # imagem condicional
-            $tabela->set_imagemCondicional($this->imagemCondicional);
+        # Texto do somatório
+        if(!is_null($this->textoSomatorio)){
+            $tabela->set_textoSomatorio($this->textoSomatorio);
+        }
 
-            # se tem botão editar
-            if ($this->botaoEditar) {
-                $tabela->set_editar($this->linkEditar);
-            }
-            
-            # se tem botão excluir
-            if ($this->botaoExcluir) {
-                $tabela->set_excluir($this->linkExcluir);
-            }
+        # Informa se exibe (ou não) o total de registros
+        $tabela->set_totalRegistro($this->totalRegistro);
 
-            # coloca no rodapé a paginação (quando houver)
-            if ($this->paginacao) {
-                $tabela->set_rodape($texto . ' (' . $itemInicial . ' a ' . $itemFinal . ' de ' . $totalRegistros . ' Registros)');
-            }
+        # formatação condicional
+        $tabela->set_formatacaoCondicional($this->formatacaoCondicional);
 
-            # Muda a imagem do botão editar
-            if (!is_null($this->editarBotao)) {
-                $tabela->set_editarBotao($this->editarBotao);
-            }
+        # imagem condicional
+        $tabela->set_imagemCondicional($this->imagemCondicional);
 
-            # Muda a imagem do botão excluir
-            if (!is_null($this->excluirBotao)) {
-                $tabela->set_excluirBotao($this->excluirBotao);
-            }
+        # se tem botão editar
+        if ($this->botaoEditar) {
+            $tabela->set_editar($this->linkEditar);
+        }
 
-            $tabela->set_idCampo($this->idCampo);
-            $tabela->set_order($this->orderCampo,$this->orderTipo,$this->orderChamador);
+        # se tem botão excluir
+        if ($this->botaoExcluir) {
+            $tabela->set_excluir($this->linkExcluir);
+        }
 
-            $tabela->set_editarCondicional($this->editarCondicional,$this->editarCondicao,$this->editarColuna,$this->editarOperador);
-            
-            $tabela->set_excluirCondicional($this->excluirCondicional,$this->excluirCondicao,$this->excluirColuna,$this->excluirOperador);
+        # coloca no rodapé a paginação (quando houver)
+        if ($this->paginacao) {
+            $tabela->set_rodape($texto . ' (' . $itemInicial . ' a ' . $itemFinal . ' de ' . $totalRegistros . ' Registros)');
+        }
 
-            if (!is_null($this->nomeColunaEditar)) {
-                $tabela->set_nomeColunaEditar($this->nomeColunaEditar);
-            }
+        # Muda a imagem do botão editar
+        if (!is_null($this->editarBotao)) {
+            $tabela->set_editarBotao($this->editarBotao);
+        }
 
-            #$tabela->link_image = $this->link_image;
-            #$tabela->link_title = $this->link_title;
+        # Muda a imagem do botão excluir
+        if (!is_null($this->excluirBotao)) {
+            $tabela->set_excluirBotao($this->excluirBotao);
+        }
 
-            # informa para tabela se tem parametro para ser ressaltado na tabela
-            if (!is_null($this->parametroValue) or ( $this->parametroValue == "")) {
-                if($this->exibeTextoRessaltado){
-                    $tabela->set_textoRessaltado($this->parametroValue);
-                }
+        $tabela->set_idCampo($this->idCampo);
+        $tabela->set_order($this->orderCampo,$this->orderTipo,$this->orderChamador);
+
+        $tabela->set_editarCondicional($this->editarCondicional,$this->editarCondicao,$this->editarColuna,$this->editarOperador);
+
+        $tabela->set_excluirCondicional($this->excluirCondicional,$this->excluirCondicao,$this->excluirColuna,$this->excluirOperador);
+
+        if (!is_null($this->nomeColunaEditar)) {
+            $tabela->set_nomeColunaEditar($this->nomeColunaEditar);
+        }
+
+        #$tabela->link_image = $this->link_image;
+        #$tabela->link_title = $this->link_title;
+
+        # informa para tabela se tem parametro para ser ressaltado na tabela
+        if (!is_null($this->parametroValue) or ( $this->parametroValue == "")) {
+            if($this->exibeTextoRessaltado){
+                $tabela->set_textoRessaltado($this->parametroValue);
             }
-            $tabela->show();
-            
-            # Pega o time final
-            $time_end = microtime(TRUE);
-            
-            # Calcula e exibe o tempo
-            if($this->exibeTempoPesquisa){
-                $time = $time_end - $time_start;
-                p(number_format($time, 4, '.', ',')." segundos","right","f10");
-            }
-            
-            if(!is_null($this->menuLateralEditar)){                
-                $gridMenu->fechaColuna();
-                $gridMenu->fechaGrid();
-            }
-            
-            if($this->comGridLista){
-                $grid->fechaColuna();
-                $grid->fechaGrid();
-            }
-        }       
+        }
+        $tabela->show();
+
+        # Pega o time final
+        $time_end = microtime(TRUE);
+
+        # Calcula e exibe o tempo
+        if($this->exibeTempoPesquisa){
+            $time = $time_end - $time_start;
+            p(number_format($time, 4, '.', ',')." segundos","right","f10");
+        }
+
+        if(!is_null($this->menuLateralEditar)){                
+            $gridMenu->fechaColuna();
+            $gridMenu->fechaGrid();
+        }
+
+        if($this->comGridLista){
+            $grid->fechaColuna();
+            $grid->fechaGrid();
+        }     
     }
     
     ###########################################################
@@ -699,11 +688,10 @@ class Modelo{
         if($this->botaoHistorico){
             if(Verifica::acesso($this->idUsuario,1)){
                 if(!is_null($id)){
-                    $linkBotaoHistorico = new Button("Histórico");
-                    $linkBotaoHistorico->set_title('Exibe o histórico');
+                    $linkBotaoHistorico = new Link("Histórico");
+                    $linkBotaoHistorico->set_class('button success');
                     $linkBotaoHistorico->set_onClick("abreFechaDivId('divHistorico');");
-                    $linkBotaoHistorico->set_accessKey('H');
-                    $linkBotaoHistorico->set_class('success button');
+                    $linkBotaoHistorico->set_title('Exibe o histórico');
                     $menu->add_link($linkBotaoHistorico,"right");
                 }
             }

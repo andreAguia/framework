@@ -48,7 +48,7 @@ class UploadDoc
         
         # Pega a extensão
         $extensaoArquivo = $this->getExtensao();
-        echo $extensaoArquivo;
+        
         # Verifica se a extensão é permitida
         if (in_array($extensaoArquivo, $this->extensoes)) {
             # Gera o nome do arquivo
@@ -67,7 +67,7 @@ class UploadDoc
                 return TRUE;
             }
         }else{
-            alert ("Extensão não Permitida");
+            alert ("Extensão não Permitida. ($extensaoArquivo)");
             return FALSE;
         }
     }

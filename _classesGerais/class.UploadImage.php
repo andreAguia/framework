@@ -138,7 +138,7 @@ class UploadImage
                 return TRUE;
             }
          }else{
-            alert ("Extensão não Permitida");
+            alert ("Extensão não Permitida. ($extensaoArquivo)");
             return FALSE;
         }
     }
