@@ -2387,3 +2387,19 @@ function get_post_action($name){
 }
 
 ###########################################################
+
+function limpa_numero($str){ 
+    
+ /**
+ * Função que limpa uma string com números e letras sobrando somente números
+ *
+ * @param  $str string a ser trabalhada
+ * 
+ * @return string o numero limpo
+ *
+ * @syntax limpa_numero($str);
+ */
+    
+  return preg_replace("/[^0-9]/", "", $str); 
+  
+}
