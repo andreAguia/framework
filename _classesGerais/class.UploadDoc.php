@@ -59,8 +59,8 @@ class UploadDoc
 
             # Move o arquivo
             if (! move_uploaded_file($this->arquivo['tmp_name'], $destino)){
-                if ($this->arquivo['error'] <> 0) {
-                    alert ("Tamanho excede o permitido [".$this->arquivo['error']."]");
+                if ($this->arquivo['error'] == 1) {
+                    alert ("Tamanho excede o permitido");
                     return FALSE;
                 } 
             }else{
