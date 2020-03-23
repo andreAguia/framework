@@ -105,7 +105,7 @@
         
         # Onclick
         if(!(is_null($this->onClick))){
-            echo ' onClick="window.location=\''.$this->onClick.'\'"';
+            echo ' onClick="'.$this->onClick.'"';
         }
         
         # title 
