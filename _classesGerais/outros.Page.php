@@ -150,7 +150,7 @@ class Page
         echo '<html class="no-js" lang="pt-br">';   # Abre a tag html e informa o idioma (html5)
 
         echo '<head>';
-        echo '<meta charset="utf-8" />';               # Código de caractere
+        echo '<meta charset="utf-8" />';            # Código de caractere
         
         echo '<meta http-equiv="x-ua-compatible" content="ie=edge">';                   # Foundation
         echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';  # Foundation
@@ -158,7 +158,7 @@ class Page
         echo '<meta name="description" content="'.$this->description.'">';  # Descrição da página
         echo '<meta name="author" content="'.$this->author.'">';            # Autor da Página
         
-        echo '<meta http-equiv="pragma" content="no-cache">';               # Obriga o Navegador a não usar cache
+        #echo '<meta http-equiv="pragma" content="no-cache">';               # Obriga o Navegador a não usar cache
 
         # Se tiver refresh automático
         if ($this->refresh) {
