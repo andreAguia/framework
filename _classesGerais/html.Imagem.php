@@ -16,6 +16,8 @@
     
     private $class = NULL;                  // string O nome da classe.
     private $id = NULL;                     // string O nome do id
+    
+    private $onClick = NULL;                // rotina do evento onClick
 
 ###########################################################
 
@@ -67,6 +69,20 @@
 
 ###########################################################
     
+    public function set_onClick($onClick = NULL){
+    /**
+     * Define uma rotina em jscript para ser executada no evento onclick
+     * 
+     * @param $rotina string NULL Rotina em jscript a ser executada
+     * 
+     * @syntax $imagem->set_onClick($rotina);
+     */
+    
+        $this->onClick = $onClick;
+    }
+
+ ###########################################################
+    
     public function show(){
     /**
      * Exibe a imagem
@@ -85,6 +101,11 @@
         # classe para o css    
         if(!(is_null($this->class))){
             echo ' class="'.$this->class.'"';
+        }
+        
+        # Onclick
+        if(!(is_null($this->onClick))){
+            echo ' onClick="window.location=\''.$this->onClick.'\'"';
         }
         
         # title 
