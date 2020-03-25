@@ -2,13 +2,9 @@
 class UploadDoc
 {
 /**
- * Upload uma Imagem
+ * Upload de Documentos em Geral que não são Imagens
  *
  * @author Marco Antoni <marquinho9.10@gmail.com>
- * 
- * @var private $arquivo    FILE    NULL O arquivo a ser trabalhado
- * @var private $pasta      string  NULL O caminho da pasta onde será armazenada a imagem
- * @var private $nome       string  NULL O nome do arquivo ao final do upload
  */
     
     private $arquivo = NULL;    // FILE   O arquivo a ser trabalhado
@@ -18,7 +14,15 @@ class UploadDoc
     
 ###########################################################
 
-    function __construct($arquivo = NULL, $pasta = NULL, $nome = NULL, $extensoes = NULL){
+    public function __construct($arquivo = NULL,       // file     O arquivo que veio por post para ser subido.
+                                $pasta = NULL,         // string   A pasta onde vai ser gravado
+                                $nome = NULL,          // string   O nome que o arquivo será gravado no servidor 
+                                $extensoes = NULL){    // array    As extensões permitidas nesse upload        
+    /**
+     * Inicia a classe
+     * 
+     * @syntax $documento = new UploadDoc($arquivo, $pasta, $nome, $extensoes);
+     */
         
         $this->arquivo = $arquivo;
         $this->pasta   = $pasta;
@@ -34,8 +38,12 @@ class UploadDoc
 ###########################################################
 
     private function getExtensao(){
+     /**
+     * Retorna a extensão do arquivo a ser subido
+     * 
+     * @syntax $documento->getExtensao();
+     */
         
-        //retorna a extensao do documento
         $img_nome = $this->arquivo['name'];
         $img_separador = explode('.',$img_nome);
         $extensaoArquivo = strtolower(end($img_separador));
@@ -45,6 +53,12 @@ class UploadDoc
 ###########################################################
 
     public function salvar(){
+        
+     /**
+     * Executa o Upload salvando na pasta indicada ou retornando um erro
+     * 
+     * @syntax $documento->salvar();
+     */
         
         # Pega a extensão
         $extensaoArquivo = $this->getExtensao();
