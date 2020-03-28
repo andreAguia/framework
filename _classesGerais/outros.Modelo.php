@@ -1411,7 +1411,14 @@ class Modelo{
                 if (is_null($id) or ($id == "")){
                     $atividade = 'Incluiu: '.$alteracoes;
                     $id = $objeto->get_lastId();
-                    $tipoLog = 1;		
+                    $tipoLog = 1;
+                    
+                    # Gambiarra do cadastroConcurso.php
+                    $origem = get_session("origem");
+                    if($origem == "cadastroConcurso.php"){
+                        $this->linkListar .= "&id=$id";
+                    }
+                    
                 }else{
                     $atividade .= 'Alterou: '.$alteracoes;
                     $tipoLog = 2;
@@ -1420,7 +1427,8 @@ class Modelo{
                 # grava se tiver atividades para serem gravadas
                 if (!is_null($atividade)){
                     $intra->registraLog($this->idUsuario,
-                                        $data,$atividade,
+                                        $data,
+                                        $atividade,
                                         $this->tabela,
                                         $id,
                                         $tipoLog,
