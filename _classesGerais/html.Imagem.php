@@ -17,20 +17,18 @@
     private $class = NULL;                  // string O nome da classe.
     private $id = NULL;                     // string O nome do id
     
-    private $onClick = NULL;                // rotina do evento onClick
+    private $onClick = NULL;                // string Rotina do evento onClick
 
 ###########################################################
 
-    public function __construct($figura = NULL,$title = NULL,$width = 15,$height = 20){
+    public function __construct($figura = NULL, // string  Caminho e nome do arquivo de imagem a ser exibida.
+                                $title = NULL,  // string  Texto que irá aparecer no evento mouseover
+                                $width = 15,    // integer Largura da figura.   
+                                $height = 20){  // integer Altura da figura.
     /**
      * Cria a classe informando varios argumentos
      * 
      * @syntax $imagem = new Imagem($figura, $title, $width, $height);
-     *  
-     * @param $figura string  NULL  Caminho e nome do arquivo de imagem a ser exibida.
-     * @param $title  string  NULL  Texto que irá aparecer no evento mouseover
-     * @param $width  integer 15    Largura da figura.
-     * @param $height integer 20    Altura da figura.
      */
     
         $this->figura = $figura;
@@ -46,8 +44,6 @@
      * Altera a classe da figura para ser usado no CSS
      * 
      * @syntax $imagem->set_class($class);
-     * 
-     * @param $class string NULL O nome da classe
      */
     
         $this->class = $class;
@@ -60,8 +56,6 @@
      * Altera o id da figura para ser usado no CSS
      * 
      * @syntax $imagem->set_id($id);
-     * 
-     * @param $id string NULL O nome do id
      */
     
         $this->id = $id;
@@ -69,11 +63,9 @@
 
 ###########################################################
     
-    public function set_onClick($onClick = NULL){
+    public function set_onClick($onClick = NULL){ // string Rotina em jscript a ser executada
     /**
      * Define uma rotina em jscript para ser executada no evento onclick
-     * 
-     * @param $rotina string NULL Rotina em jscript a ser executada
      * 
      * @syntax $imagem->set_onClick($rotina);
      */

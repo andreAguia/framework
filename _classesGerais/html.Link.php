@@ -6,63 +6,34 @@ class Link
      * 
      * @author André Águia (Alat) - alataguia@gmail.com
      * 
-     * @group do link
-     * @var private $label  string NULL O texto a ser exibido no link.
-     * @var private $url    string NULL A url do link.
-     * @var private $title  string NULL Texto que irá aparecer no evento mouseover
-     * @var private $target string NULL Nome da div ou da janela onde o link será aberto
-     * 
-     * @group do css
-     * @var private $class string NULL A classe para o css.
-     * @var private $id    string NULL O id para o css.
-     * 
-     * @group da janela
-     * @var private $janela       boolean FALSE Indica se o link abrirá uma janela. Usado nas rotinas de relatórios.
-     * @var private $janelaWidth  integer 750   A largura da janela
-     * @var private $janelaHeight integer 600   A altura da janela 
-     * 
-     * @group eventos
-     * @var private $onClick string NULL A rotina jscript a ser executada no evento onclick.
-     *
-     * @group outros
-     * @var private $confirma  string  NULL   Texto a ser exibido em uma janela confirmação em jscript. A rotina somente prosseguirá se o usuário pressionar sim.
-     * @var private $accessKey string  NULL   Letra para se usar junto com a tecla ALT como atalho de acesso ao botão 
-     * 
-     * @group da imagem
-     * @var private $imagem         string  "_semImagem.jpg" O caminho e o nome da Imagem a ser exibida
-     * @var private $imagemWidth    integer 48               Largura da imagem
-     * @var private $imagemHeight   integer 48               Altura da imagem
-     * 
      * @example exemplo.link.php
      */
 
-    private $label = NULL;
-    private $url = NULL;
-    private $title = NULL;
-    private $target = NULL;    
+    private $label = NULL;      // string O texto a ser exibido no link.
+    private $url = NULL;        // string A url do link.
+    private $title = NULL;      // string Texto que irá aparecer no evento mouseover
+    private $target = NULL;     // string Nome da div ou da janela onde o link será aberto
 
-    private $class = NULL;
-    private $id = NULL;
+    private $class = NULL;      // string A classe para o css.
+    private $id = NULL;         // string O id para o css.
     
-    private $onClick = NULL;
+    private $onClick = NULL;    // string A rotina jscript a ser executada no evento onclick.
         
-    private $confirma = NULL;
-    private $accessKey = NULL;
+    private $confirma = NULL;   // string Texto a ser exibido em uma janela confirmação em jscript.
+    private $accessKey = NULL;  // string Letra para se usar junto com a tecla ALT como atalho de acesso ao botão 
     
-    private $imagem = NULL;
-    private $imagemWidth = 48;
-    private $imagemHeight = 48;    
-
+    private $imagem = NULL;     // string  O caminho e o nome da Imagem a ser exibida
+    private $imagemWidth = 48;  // integer A largura da imagem
+    private $imagemHeight = 48; // integer A altura da imagem
+    
 ###########################################################
 
-    public function __construct($label = NULL,$url = NULL, $title = NULL){
+    public function __construct($label = NULL,  // string O texto a ser exibido no link
+                                $url = NULL,    // string A url do link
+                                $title = NULL){ // string O texto a ser exibido no mouseover
         
     /**
      * Constroi um link sem exibí-lo
-     * 
-     * @param $label string NULL O texto a ser exibido no link
-     * @param $url   string NULL A url do link
-     * @param $title string NULL O texto a ser exibido no mouseover
      * 
      * @syntax $link = new Link($label,[$url],[$title]);
      */
@@ -74,13 +45,11 @@ class Link
 
 ###########################################################
     
-    public function set_url($url = NULL){
+    public function set_url($url = NULL){   // string O caminho do link do link
     /**
      * Informa a url
      * 
      * @syntax $link->set_url($url);
-     * 
-     * @param $url string NULL O caminho do link do link
      */
     
         $this->url = $url;
@@ -88,13 +57,11 @@ class Link
 
 ###########################################################
     
-    public function set_class($class = NULL){
+    public function set_class($class = NULL){   // string O nome da class para o css
     /**
      * Informa o nome da class para o css
      * 
      * @syntax $link->set_class($class);
-     * 
-     * @param $class string NULL O nome da class para o css
      */
     
         $this->class = $class;
@@ -102,13 +69,11 @@ class Link
 
 ###########################################################
 
-    public function set_id($id = NULL){
+    public function set_id($id = NULL){ // string O nome do id
     /**
      * Informa o id para o CSS
      * 
      * @syntax $link->set_id($id);
-     * 
-     * @param $id string NULL O nome do id
      */
     
         $this->id = $id;
@@ -116,13 +81,11 @@ class Link
 
 ###########################################################
 
-    public function set_title($title = NULL){
+    public function set_title($title = NULL){ // string O texto do mouseover
     /**
      * Informa o texto a ser exibido no mouseOver
      * 
      * @syntax $link->set_title($title);
-     * 
-     * @param $title string NULL O texto do mouseover
      */
     
         $this->title = $title;
@@ -130,13 +93,11 @@ class Link
 
 ###########################################################
 
-    public function set_target($target = NULL){
+    public function set_target($target = NULL){ // string Nome da div ou da janela onde o link será aberto
     /**
      * Informa o nome da div ou da janela onde o link será aberto
      * 
      * @syntax $link->set_target($target);
-     * 
-     * @param $target string NULL Nome da div ou da janela onde o link será aberto
      */
     
         $this->target = $target;
@@ -144,13 +105,11 @@ class Link
 
 ###########################################################
 
-    public function set_onClick($onClick = NULL){
+    public function set_onClick($onClick = NULL){ // string A rotina jscript a ser executada no evento onclick.
     /**
      * Informa a rotina jscript a ser executada no evento onclick.
      * 
      * @syntax $link->set_onClick($onClick);
-     * 
-     * @param $onClick string NULL A rotina jscript a ser executada no evento onclick.
      */
     
         $this->onClick = $onClick;
@@ -158,13 +117,11 @@ class Link
 
 ###########################################################
 
-    public function set_accessKey($accessKey = NULL){
+    public function set_accessKey($accessKey = NULL){ // string A letra de atalho para esse link
     /**
      * Informa uma letra de atalho a ser utilizado junto com a tecla ALT para esse link
      * 
      * @syntax $link->set_accessKey($accessKey);
-     * 
-     * @param $accessKey string NULL A letra de atalho para esse link     * 
      */
     
         $this->accessKey = $accessKey;
@@ -172,13 +129,11 @@ class Link
 
 ###########################################################
 
-    public function set_confirma($confirma = NULL){
+    public function set_confirma($confirma = NULL){ // string Texto a ser exibido para confirmar o clique. 
     /**
      * Informa um Texto a ser exibido para confirmar o clique. O programa somente continuará após pressinar Sim.
      * 
      * @syntax $link->set_confirma($confirma);
-     * 
-     * @param $confirma string NULL Texto a ser exibido para confirmar o clique. 
      */
     
         $this->confirma = $confirma;
@@ -186,15 +141,13 @@ class Link
 
 ###########################################################
     
-    public function set_imagem($imagem = NULL,$imagemWidth = 48, $imagemHeight = 48){
+    public function set_imagem($imagem = NULL,      // string  O caminho e o nome da Imagem a ser exibida
+                               $imagemWidth = 48,   // integer Largura da imagem
+                               $imagemHeight = 48){ // integer Altura da imagem
     /**
      * Define a imagem do botão
      * 
-     * @syntax $botao->set_imagem($imagem,[$imagemWidth],[$imgagemHeight]); 
-     * 
-     * @param $imagem        string  NULL O caminho e o nome da Imagem a ser exibida
-     * @param $imagemWidth   integer 48	 Largura da imagem
-     * @param $imagemHeight  integer 48	 Altura da imagem
+     * @syntax $link->set_imagem($imagem,[$imagemWidth],[$imgagemHeight]); 
      */
     
         $this->imagem = $imagem;
@@ -204,11 +157,11 @@ class Link
 
 ###########################################################
 
-    public function show($id = NULL){
+    public function show($id = NULL){ // integer Usado em links em tabelas para acrescentar o id do registro a url
     /**
      * Exibe o link
      * 
-     * @param  $id integer NULL	Usado em links em tabelas para acrescentar o id do registro a url
+     * @syntax $link->show([$id]); 
      */    
 
         # Atalho
