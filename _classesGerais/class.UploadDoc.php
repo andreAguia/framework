@@ -72,13 +72,16 @@ class UploadDoc
             $destino = $this->pasta . $novo_nome;
 
             # Move o arquivo
-            if (! move_uploaded_file($this->arquivo['tmp_name'], $destino)){
-                if ($this->arquivo['error'] == 1) {
-                    alert ("Tamanho excede o permitido");
-                    return FALSE;
-                } 
-            }else{
+            if(move_uploaded_file($this->arquivo['tmp_name'], $destino)){
                 return TRUE;
+            }else{
+                if ($this->arquivo['error'] == 1) {
+                    alert ("Tamanho excede o permitido.");
+                    return FALSE;
+                }else{
+                    alert ("Aconteceu algum problema.");
+                    return FALSE;
+                }
             }
         }else{
             alert ("Extensão não Permitida. ($extensaoArquivo)");
