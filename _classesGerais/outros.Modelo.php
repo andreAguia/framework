@@ -1325,6 +1325,7 @@ class Modelo{
 
             # validação dos campos tipo data
             if ((($campo['tipo'] == 'date')or($campo['tipo'] == 'data'))and(!(is_null($campoValor[$contador])))) { 
+                
                 # formata data quando vier de um controle (vem yyyy/mm/dd)
                 $campoValor[$contador] = date_to_php($campoValor[$contador]);
                 
@@ -1337,12 +1338,12 @@ class Modelo{
                 } # passa a data para o formato de gravação
             }
 
-######################### PLM #########################            
+######################### PLM (Primeira Letra Maiúsculas) #########################            
 
             # passa pra plm quando estiver true
             if((isset($campo['plm'])) AND ($campo['plm'])) {    
                 
-                # formata data quando vier de um controle (vem yyyy/mm/dd)
+                # passa para plm com a função plm
                 $campoValor[$contador] = plm($campoValor[$contador]);
             }            
             
