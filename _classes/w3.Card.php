@@ -14,8 +14,8 @@ class Card
     private $footer = NULL;     // string O texto para o rodapé.
     private $title = NULL;      // string O texto para o evento mouseover.
     private $onClick = NULL;    // string Rotina jscript a ser executada no evento onclick.
-    private $color = 'blue';    // string Cor do cabeçalho e rodapé: blue | green | teal | indigo | yellow | red ... Várias cores
-
+    private $color = 'w3-uenf-color1';    // string Cor do cabeçalho e rodapé: blue | green | teal | indigo | yellow | red ... Várias cores
+    
 ###########################################################
 
     public function __construct($header = NULL,     // string O texto para o cabeçalho.
@@ -32,7 +32,7 @@ class Card
     
 ###########################################################
 
-    public function set_title($title = NULL){   // string O texto para o rodapé.
+    public function set_title($title = NULL){   // string O texto no mouse over
     /**
      * Informa o texto no mouse over
      * 
@@ -76,7 +76,7 @@ class Card
      */
     
         # abre o card 
-        echo '<div class="w3-card-4" ';
+        echo '<div class="w3-card-4 w3-margin" ';
         
         # title
         if(!is_null($this->title)){
@@ -90,12 +90,12 @@ class Card
         echo '>';
 
         if(!is_null($this->header)){
-            echo '<header class="w3-container w3-'.$this->color.'">';
-            echo '<h4>'.$this->header.'</h4>';
+            echo '<header class="w3-container w3-medium w3-padding w3-center '.$this->color.'">';
+            echo $this->header;
             echo '</header>';
         }
         
-        echo '<header class="w3-container">';
+        echo '<div class="w3-container">';
     }
 
 ###########################################################
@@ -106,11 +106,11 @@ class Card
      * 
      * @syntax $card->fecha();
      */
-        echo '</header>';
+        echo '</div>';
         
         if(!is_null($this->footer)){
-            echo '<footer class="w3-container w3-'.$this->color.'">';
-            echo '<h6>'.$this->footer.'</h6>';
+            echo '<footer class="w3-container w3-small w3-padding '.$this->color.'">';
+            echo $this->footer;
             echo '</footer>';
         }
         
