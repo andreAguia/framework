@@ -222,6 +222,7 @@ class Page
         }else{
             echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'w3c.css" />';
         }
+        
         echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'app.css" />';
         echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'impressao.css" media="print"/>';
         echo '<link rel="stylesheet" href="'.PASTA_ESTILOS.'estilos.css" />';
@@ -248,12 +249,8 @@ class Page
      * @note Rotina executa todas os comandos de fechamento da página.
      * 
      * @syntax $page->terminaPagina();
+     * 
      */
-        # Java Script do Foundation
-        #echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'what-input.js"></script>';
-        echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'foundation.js"></script>';
-        #echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'foundation.min.js"></script>'; 
-        #echo '<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'app.js"></script>';
 
         echo '</body>';
         echo '<footer>';        
