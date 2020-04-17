@@ -172,6 +172,45 @@ class Page
             echo '<title>' . $this->title . '</title>';
         }
 
+        
+
+        # Carrega o css
+        if($this->css == "foundation"){
+            echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'foundation.css" />';
+            echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'foundation-icons.css" />';
+        }else{
+            echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'w3c.css" />';
+        }
+        
+        echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'app.css" />';
+        echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'impressao.css" media="print"/>';
+        echo '<link rel="stylesheet" href="'.PASTA_ESTILOS.'estilos.css" />';
+        
+        echo '<link rel="shortcut icon" href="'.PASTA_FIGURAS.'uenf.gif" />';
+        echo '</head>';
+
+         if(is_null($this->bodyOnLoad)){
+            echo '<body>';
+         }else{
+            echo '<body onload='.$this->bodyOnLoad.'>';
+         }
+         
+         # Define o timezone
+         date_default_timezone_set('America/Sao_Paulo');
+    }
+
+###########################################################
+    
+    public function terminaPagina(){
+    /**
+     * Termina a página
+     * 
+     * @note Rotina executa todas os comandos de fechamento da página.
+     * 
+     * @syntax $page->terminaPagina();
+     * 
+     */
+        
         # Java Script da máscara de entrada de dados
         echo'<script language="JavaScript" src="'.PASTA_FUNCOES_GERAIS.'mascara.js"></script>';
 
@@ -214,43 +253,6 @@ class Page
             </script>
             ";
         }
-
-        # Carrega o css
-        if($this->css == "foundation"){
-            echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'foundation.css" />';
-            echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'foundation-icons.css" />';
-        }else{
-            echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'w3c.css" />';
-        }
-        
-        echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'app.css" />';
-        echo '<link rel="stylesheet" href="'.PASTA_ESTILOS_GERAIS.'impressao.css" media="print"/>';
-        echo '<link rel="stylesheet" href="'.PASTA_ESTILOS.'estilos.css" />';
-        
-        echo '<link rel="shortcut icon" href="'.PASTA_FIGURAS.'uenf.gif" />';
-        echo '</head>';
-
-         if(is_null($this->bodyOnLoad)){
-            echo '<body>';
-         }else{
-            echo '<body onload='.$this->bodyOnLoad.'>';
-         }
-         
-         # Define o timezone
-         date_default_timezone_set('America/Sao_Paulo');
-    }
-
-###########################################################
-    
-    public function terminaPagina(){
-    /**
-     * Termina a página
-     * 
-     * @note Rotina executa todas os comandos de fechamento da página.
-     * 
-     * @syntax $page->terminaPagina();
-     * 
-     */
 
         echo '</body>';
         echo '<footer>';        
