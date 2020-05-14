@@ -86,8 +86,8 @@ abstract class Bd
      * Retorna um array multidimenssional, se many is TRUE, com os registros do banco de dados, ou um valor único dependendo do formato do campo no banco de dados, quando $many is FALSE.
      * 
      * @syntax $bd->select($select, [$many]);    
-     */    
-    
+     */
+       
     	try{
             $this->conecta();
 
