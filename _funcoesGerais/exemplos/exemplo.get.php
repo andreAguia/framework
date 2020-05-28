@@ -2,4 +2,4 @@
 
 # Nesse exemplo exibe o valor default (padrão)
 $padrao = "Girafa";
-echo get('campoValor',$padrao);
+echo get('campoValor', $padrao);

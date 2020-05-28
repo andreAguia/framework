@@ -8,6 +8,6 @@ print_r($browser);
 br(2);
 
 # Ou recuperando para usar em outro local
-echo "Nome do navegador: ".$browser['browser'];
+echo "Nome do navegador: " . $browser['browser'];
 br();
-echo "Versão: ".$browser['version'];
+echo "Versão: " . $browser['version'];

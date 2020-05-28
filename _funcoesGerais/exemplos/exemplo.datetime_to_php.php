@@ -10,6 +10,5 @@ $dataBrasileira = datetime_to_php($dataBanco);
 # Observe que como o separador 
 # é igual ao padrão eu não precisei informá-lo
 # caso não seja é necessário informá-lo
-
 # Agora podemos exibir
 echo $dataBrasileira;

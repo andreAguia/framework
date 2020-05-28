@@ -1,58 +1,57 @@
 <?php
-class Processo 
-{
- /**
-  * Inicia uma rotina php em segundo plano
-  *
-  * @author Douglas V. Pasqua
-  */
-  
-    public function run($cmd) {
+
+class Processo {
+
     /**
-     * Roda a rotina em segundo plano e retorna o seu PID
-     * 
-     * @syntax $processo->run($cmd);
-     * 
-     * @param $cmd string NULL O nome do arquivo .php que será executado em segundo plano
+     * Inicia uma rotina php em segundo plano
+     *
+     * @author Douglas V. Pasqua
      */
-        
+    public function run($cmd) {
+        /**
+         * Roda a rotina em segundo plano e retorna o seu PID
+         * 
+         * @syntax $processo->run($cmd);
+         * 
+         * @param $cmd string NULL O nome do arquivo .php que será executado em segundo plano
+         */
         $cmd = sprintf("nohup %s >/dev/null 2>&1 & echo $!", $cmd);
         exec($cmd, $output);
         return(trim($output[0]));
     }
-        
+
     ###########################################################
-    
-    public function isRunning($pid)  {
-    /**
-     * Verifica pelo PID se o processo ainda está rodando
-     * 
-     * @syntax $processo->isRunning($pid);
-     * 
-     * @param $pid string NULL O PID fornecido quando se rodou o processo
-     */
-        
+
+    public function isRunning($pid) {
+        /**
+         * Verifica pelo PID se o processo ainda está rodando
+         * 
+         * @syntax $processo->isRunning($pid);
+         * 
+         * @param $pid string NULL O PID fornecido quando se rodou o processo
+         */
         $command = "/bin/ps -p $pid";
         exec($command, $output);
 
-        if(isset($output[1])) {
-                return TRUE;
+        if (isset($output[1])) {
+            return TRUE;
         }
 
         return FALSE;
     }
-        
+
     ###########################################################
- 
+
     public function kill($pid) {
-    /**
-     * finaliza o processo
-     * 
-     * @syntax $processo->kill($pid);
-     * 
-     * @param $pid string NULL O PID fornecido quando se rodou o processo
-     */
+        /**
+         * finaliza o processo
+         * 
+         * @syntax $processo->kill($pid);
+         * 
+         * @param $pid string NULL O PID fornecido quando se rodou o processo
+         */
         $command = "/bin/kill $pid";
         exec($command);
     }
+
 }

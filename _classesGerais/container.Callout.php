@@ -1,7 +1,7 @@
 <?php
 
-class Callout
-{    
+class Callout {
+
     /**
      * Cria um painel com borda (container) para se adicionar conteúdo.
      * 
@@ -12,7 +12,6 @@ class Callout
      * 
      * @example exemplo.callout.php
      */
-    
     private $tipo = "secondary";    // string O tipo do callout: secondary | primary | success | warning | alert
     private $title = NULL;          // string O Texto para o evento mouseover
     private $id = NULL;             // string O id para o css
@@ -20,96 +19,95 @@ class Callout
 
 ###########################################################
 
-    public function __construct($tipo = "secondary",    // string O tipo do callout: secondary | primary | success | warning | alert
-                                $id = NULL){            // string O id para o css
-    /**
-     * Inicia o Callout informando o tipo
-     * 
-     * @syntax $callout = new Callout([$tipo],[$id]);
-     */
-    
-    	$this->tipo = $tipo;
-        $this->id = $id;
-    }
-    
-###########################################################
+    public function __construct($tipo = "secondary", // string O tipo do callout: secondary | primary | success | warning | alert
+            $id = NULL) {            // string O id para o css
+        /**
+         * Inicia o Callout informando o tipo
+         * 
+         * @syntax $callout = new Callout([$tipo],[$id]);
+         */
 
-    public function set_id($id = NULL){ // string O nome do id
-    /**
-     * Informa o id da div para o css
-     * 
-     * @syntax $callout->set_id($id);
-     */
-    
+        $this->tipo = $tipo;
         $this->id = $id;
     }
 
 ###########################################################
 
-    public function set_title($title = NULL){ // string O texto a ser exibido
-    /**
-     * Informa o texto no mouse over
-     * 
-     * @syntax $callout->set_title($title);
-     */
-    
+    public function set_id($id = NULL) { // string O nome do id
+        /**
+         * Informa o id da div para o css
+         * 
+         * @syntax $callout->set_id($id);
+         */
+
+        $this->id = $id;
+    }
+
+###########################################################
+
+    public function set_title($title = NULL) { // string O texto a ser exibido
+        /**
+         * Informa o texto no mouse over
+         * 
+         * @syntax $callout->set_title($title);
+         */
+
         $this->title = $title;
     }
 
 ###########################################################
 
-    public function set_botaoFechar($botaoFechar = FALSE){ // bool Exibe ou não o botão
-    /**
-     * Informa se terá um botão de fechar o callout
-     * 
-     * @syntax $callout->set_botaoFechar($botaoFechar);
-     */
-    
+    public function set_botaoFechar($botaoFechar = FALSE) { // bool Exibe ou não o botão
+        /**
+         * Informa se terá um botão de fechar o callout
+         * 
+         * @syntax $callout->set_botaoFechar($botaoFechar);
+         */
+
         $this->botaoFechar = $botaoFechar;
     }
 
 ###########################################################
 
-    public function abre(){	
-    /**
-     * Inicia a abertura do Callout para inserção do conteúdo
-     *
-     * @syntax $callout->abre();
-     */
-    
+    public function abre() {
+        /**
+         * Inicia a abertura do Callout para inserção do conteúdo
+         *
+         * @syntax $callout->abre();
+         */
         # abre a div 
-        echo '<div class="callout '.$this->tipo.'"';
-        
-        if (!is_null($this->id)){
-            echo ' id="'.$this->id.'"';
+        echo '<div class="callout ' . $this->tipo . '"';
+
+        if (!is_null($this->id)) {
+            echo ' id="' . $this->id . '"';
         }
-        
-        if (!is_null($this->title)){
-            echo ' title="'.$this->title.'"';
+
+        if (!is_null($this->title)) {
+            echo ' title="' . $this->title . '"';
         }
-        
-        if ($this->botaoFechar){
+
+        if ($this->botaoFechar) {
             echo ' data-closable';
         }
-        
+
         echo '>';
     }
 
 ###########################################################
 
-    public function fecha(){
-    /**
-     * Fecha um Callout aberto
-     * 
-     * @syntax $callout->fecha();
-     */
-        
+    public function fecha() {
+        /**
+         * Fecha um Callout aberto
+         * 
+         * @syntax $callout->fecha();
+         */
         # Exibe o botão de fechar        
-        if ($this->botaoFechar){
+        if ($this->botaoFechar) {
             echo '<button class="close-button" aria-label="Dismiss alert" type="button" data-close>';
             echo '<span aria-hidden="TRUE">&times;</span>';
             echo '</button>';
-        }        
+        }
         echo '</div>';
     }
+
 }

@@ -8,6 +8,6 @@ $top->set_title("Área de Cadastro");
 $value = "";
 
 # Coloca o campo de pesquisa
-$top->add_pesquisa("Pesquisar por Nome:",$value);
+$top->add_pesquisa("Pesquisar por Nome:", $value);
 
-$top->show();       
+$top->show();

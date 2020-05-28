@@ -1,7 +1,7 @@
 <?php
 
 # Exemplo utilizando todos os parâmetros
-$msg1 = new Alert('O registro não pode ser excluído !!','left');
+$msg1 = new Alert('O registro não pode ser excluído !!', 'left');
 $msg1->set_tipo('alert');
 $msg1->set_title('Informação do Sistema');
 $msg1->set_page('#');

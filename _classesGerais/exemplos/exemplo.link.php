@@ -1,7 +1,7 @@
 <?php
 
 # Exemplo de link comum
-$link = new Link("Salvar","#");
+$link = new Link("Salvar", "#");
 $link->set_accessKey("S");
 $link->set_id("linkAzul");
 $link->show();

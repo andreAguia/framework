@@ -12,9 +12,55 @@ header{
     margin-bottom: 10px;
 }
 
- /******************************************* 
- * Define o alinhamento pelo id
- *******************************************/ 
+/******************************************* 
+* Define variáveis de cores e de erros 
+*******************************************/ 
+
+:root {
+    --fsphp: #1F2026;
+    --fsline: #475163;
+    --green: #35ba9b;
+    --blue: #3aadd9;
+    --yellow: #FF8C00;
+    --red: #d94452;
+}
+
+.trigger {
+    font-size: 0.9em;
+    padding: 15px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin: 20px 0;
+    font-weight: bold;
+    border: 1px solid #cccccc;
+}
+
+.trigger small {
+    display: block;
+    margin-top: 7px;
+    font-family: "Source Code Pro", serif;
+    font-size: 1em;
+}
+
+.trigger.accept {
+    color: var(--green);
+    border-color: var(--green);
+}
+
+.trigger.warning {
+    color: var(--yellow);
+    border-color: var(--yellow);
+}
+
+.trigger.error {
+    color: var(--red);
+    border-color: var(--red);
+}
+
+/******************************************* 
+* Define o alinhamento pelo id
+*******************************************/ 
 
 #center{
     text-align: center;
@@ -56,126 +102,126 @@ header{
  * Muda o tamanho da fonte de um <p> pelo id
  *******************************************/
 #f8{
-     font-size: 8px;   
- }
- 
- #f9{
-     font-size: 9px;   
- }
- 
- #f10{
-     font-size: 10px;   
- }
- 
- #f11{
-     font-size: 11px;   
- }
- 
- #f12{
-     font-size: 12px;   
- }
- 
- #f13{
-     font-size: 13px;   
- }
- 
- #f14{
-     font-size: 14px;   
- }
- 
- #f16{
-     font-size: 16px;   
- }
- 
- #f18{
-     font-size: 18px;   
- }
- 
- #f20{
-     font-size: 20px;   
- }
- 
- #f22{
-     font-size: 22px;   
- }
- 
- #f24{
-     font-size: 24px;   
- }
- 
- #f26{
-     font-size: 26px;   
- }
- 
- #f28{
-     font-size: 28px;   
- }
- 
- /*******************************************
- * Muda o tamanho da fonte de um elemento pela classe
- *******************************************/
- .f8{
-     font-size: 8px;   
- }
- 
- .f10{
-     font-size: 10px;   
- }
- 
- .f11{
-     font-size: 11px;   
- }
- 
- .f12{
-     font-size: 12px;   
- }
- 
- .f13{
-     font-size: 13px;   
- }
- 
- .f14{
-     font-size: 14px;   
- }
- 
- .f16{
-     font-size: 16px;   
- }
- 
- .f18{
-     font-size: 18px;   
- }
- 
- .f20{
-     font-size: 20px;   
- }
- 
- .f22{
-     font-size: 22px;   
- }
- 
- .f24{
-     font-size: 24px;   
- }
- 
- .f26{
-     font-size: 26px;   
- }
- 
- .f28{
-     font-size: 28px;   
- }
- 
- /*******************************************
- * Footer ( ver a utilidade )
- *******************************************/
+    font-size: 8px;   
+}
 
- footer {
+#f9{
+    font-size: 9px;   
+}
+
+#f10{
+    font-size: 10px;   
+}
+
+#f11{
+    font-size: 11px;   
+}
+
+#f12{
+    font-size: 12px;   
+}
+
+#f13{
+    font-size: 13px;   
+}
+
+#f14{
+    font-size: 14px;   
+}
+
+#f16{
+    font-size: 16px;   
+}
+
+#f18{
+    font-size: 18px;   
+}
+
+#f20{
+    font-size: 20px;   
+}
+
+#f22{
+    font-size: 22px;   
+}
+
+#f24{
+    font-size: 24px;   
+}
+
+#f26{
+    font-size: 26px;   
+}
+
+#f28{
+    font-size: 28px;   
+}
+
+/*******************************************
+* Muda o tamanho da fonte de um elemento pela classe
+*******************************************/
+.f8{
+    font-size: 8px;   
+}
+
+.f10{
+    font-size: 10px;   
+}
+
+.f11{
+    font-size: 11px;   
+}
+
+.f12{
+    font-size: 12px;   
+}
+
+.f13{
+    font-size: 13px;   
+}
+
+.f14{
+    font-size: 14px;   
+}
+
+.f16{
+    font-size: 16px;   
+}
+
+.f18{
+    font-size: 18px;   
+}
+
+.f20{
+    font-size: 20px;   
+}
+
+.f22{
+    font-size: 22px;   
+}
+
+.f24{
+    font-size: 24px;   
+}
+
+.f26{
+    font-size: 26px;   
+}
+
+.f28{
+    font-size: 28px;   
+}
+
+/*******************************************
+* Footer ( ver a utilidade )
+*******************************************/
+
+footer {
     font-size: 10px;
     padding: 1px;   
- }
- 
- /**** Classes  ****/
+}
+
+/**** Classes  ****/
 
 /*******************************************
  *  class tabela
@@ -214,59 +260,59 @@ table.tabelaPadrao a{
     text-decoration: none;
     color: #fff;
 }
- 
- span#ressaltado{
-     padding: 0px;
-     padding-top: 2px;
- }
- 
- a#linkTituloTabela{
-     background-color: #e6e6e6;
-     font-weight: normal;
-     color: #02548b;
-     font-size: 16px;
- }
- 
- tr#grupo1{
-     background-color:#bababa;
- }
- 
- tr#grupo2{
-     background-color:#e6e6e6;
- }
- 
- tr#somatorio{
-     background-color:#02548b;
-     text-align: center;
-     color: #fff;
- }
- 
- td#textoSomatorio{
-     text-align: left;
- }
- 
- 
- /*******************************************
- * class titleBar
- *******************************************/
- 
- div.title-bar{
-     background-color: #02548b;
- }
- 
- div.title-bar-title{
-     font-weight: normal;
-     padding-left: 10px;
- }
-  
+
+span#ressaltado{
+    padding: 0px;
+    padding-top: 2px;
+}
+
+a#linkTituloTabela{
+    background-color: #e6e6e6;
+    font-weight: normal;
+    color: #02548b;
+    font-size: 16px;
+}
+
+tr#grupo1{
+    background-color:#bababa;
+}
+
+tr#grupo2{
+    background-color:#e6e6e6;
+}
+
+tr#somatorio{
+    background-color:#02548b;
+    text-align: center;
+    color: #fff;
+}
+
+td#textoSomatorio{
+    text-align: left;
+}
+
+
+/*******************************************
+* class titleBar
+*******************************************/
+
+div.title-bar{
+    background-color: #02548b;
+}
+
+div.title-bar-title{
+    font-weight: normal;
+    padding-left: 10px;
+}
+
 /*******************************************
  * class Modelo
  *******************************************/
 
 div#divHistorico{
-     display: none;
+    display: none;
 }
- 
+
 div#paginacao{
     position: absolute;
     top: 90px;
@@ -283,9 +329,9 @@ div#pesquisa{
     margin-bottom: 0px;
     margin-left: 5px;    
 }
- /*******************************************
- * classe BotaoGrafico
- *******************************************/
+/*******************************************
+* classe BotaoGrafico
+*******************************************/
 div.botaoGrafico{    
     font-size: 11px;
     text-align: center;
@@ -317,7 +363,7 @@ fieldset.fieldset{
     font-size: 14px;     
     font-weight: normal;
     padding: 2px;
-  }
+}
 
 /*******************************************
  * class Calendario
@@ -325,12 +371,12 @@ fieldset.fieldset{
 
 td#domingo {
     background-color:#D7D7D7;
-  }
-  
+}
+
 td#hoje {
     background-color: #99ccff;
-  }    
-  
+}    
+
 p#pferiado {
     padding: 0px 0px 0px 0px;
     text-align: center;
@@ -344,7 +390,7 @@ img#imgcalendario{
     margin-left: -1px;
     position: absolute;
 }
-  
+
 /********************************
  *  class Form
  ********************************/
@@ -356,58 +402,58 @@ form.formPadrao input:focus{
 }
 
 form.formPadrao label{
-   font-size: 12px;
+    font-size: 12px;
 }
 
 /* upload */
 
 form.upload{
-  position: absolute;
-  top: 370px;
-  left: 50%;
-  margin-top: 10px;
-  margin-left: -250px;
-  width: 500px;
-  height: 200px;
-  border: 1px dashed #000;
+    position: absolute;
+    top: 370px;
+    left: 50%;
+    margin-top: 10px;
+    margin-left: -250px;
+    width: 500px;
+    height: 200px;
+    border: 1px dashed #000;
 }
 form.upload p{
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  line-height: 170px;
-  color: #000;
-  font-family: Arial;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 170px;
+    color: #000;
+    font-family: Arial;
 }
 form.upload input{
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  outline: none;
-  opacity: 0;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    opacity: 0;
 }
 
 form.upload button{
-  margin: 0;
-  color: #000;
-  background: #16a085;
-  border: none;
-  width: 508px;
-  height: 35px;
-  margin-top: -20px;
-  margin-left: -4px;
-  border-radius: 4px;
-  transition: all .2s ease;
-  outline: none;
+    margin: 0;
+    color: #000;
+    background: #16a085;
+    border: none;
+    width: 508px;
+    height: 35px;
+    margin-top: -20px;
+    margin-left: -4px;
+    border-radius: 4px;
+    transition: all .2s ease;
+    outline: none;
 }
 form.upload button:hover{
-  background: #149174;
-	color: #0C5645;
+    background: #149174;
+    color: #0C5645;
 }
 form.upload button:active{
-  border:0;
+    border:0;
 }
 
 /********************************
@@ -424,27 +470,27 @@ form.upload button:active{
  ********************************/
 
 #container > div {
-  display: flex;
+    display: flex;
 }
 
 #flex-start {
-  justify-content: flex-start;
+    justify-content: flex-start;
 }
 
 #center {
-  justify-content: center;
+    justify-content: center;
 }
 
 #flex-end {
-  justify-content: flex-end;
+    justify-content: flex-end;
 }
 
 #space-between {
-  justify-content: space-between;
+    justify-content: space-between;
 }
 
 #space-around {
-  justify-content: space-around;
+    justify-content: space-around;
 }
 
 /**** Funções  ****/
@@ -452,26 +498,26 @@ form.upload button:active{
 /*******************************************
  * Função titulo
  *******************************************/
- div#titulo{     
-     background-color: #02548b;    
-     border: 1px solid #fff;
-     padding: 5px 5px 5px 0px;    
-     text-align: center;
-     color: #fff;
-     font-size: 14px;     
-     font-weight: normal;
+div#titulo{     
+    background-color: #02548b;    
+    border: 1px solid #fff;
+    padding: 5px 5px 5px 0px;    
+    text-align: center;
+    color: #fff;
+    font-size: 14px;     
+    font-weight: normal;
 }
 
 /*******************************************
  * Função tituloTable
  *******************************************/
- div#tituloTable{
-     background-color: #e6e6e6;
-     font-weight: normal;
-     color: #02548b;
-     font-size: 16px;
-     text-align: center;
-     padding: 5px 5px 5px 0px;
+div#tituloTable{
+    background-color: #e6e6e6;
+    font-weight: normal;
+    color: #02548b;
+    font-size: 16px;
+    text-align: center;
+    padding: 5px 5px 5px 0px;
 }
 
 /*******************************************
@@ -815,7 +861,7 @@ li#titulo1{
     font-size: 16px;
     list-style-type: none;
     margin: 0px;
-    
+
 }
 
 ul.menuHorizontal li#titulo a{
@@ -826,7 +872,7 @@ ul.menuHorizontal li#titulo a{
 ul.menuHorizontal a { 
     text-decoration:none;
     color: #076cba;
-    
+
 }
 
 ul.menuHorizontal a:hover {
@@ -835,11 +881,16 @@ ul.menuHorizontal a:hover {
 
 ul.menuHorizontal {
     text-align: right;
-    
+
 }
 
+/*******************************************
+ * Classe Tab
+ *******************************************/
+
+
 /**** Relatório  ****/
-    
+
 /*******************************************
  * Classe Relatorio
  *******************************************/
@@ -858,129 +909,129 @@ div#divRelatorio hr{
 }
 
 p#pRelatorioTitulo{
-   text-align: center;
-   font-size: 22px;
-   color: #000;
-   margin: 0px;
- }
- 
- p#pRelatorioSubtitulo{
-   text-align: center;
-   font-size: 16px;
-   color: #000;  
-   margin: 0px;
- }
- 
- p#pRelatorioSubtotal{
-   text-align: right;
-   font-size: 10px;
-   color: #000;
- }
- 
- p#pRelatorioSubgrupo{
-   text-align: center;
-   font-size: 14px;
-   color: #000;
-   margin: 0px;
- }
- 
- p#pRelatorioLabel{
-   text-align: center;
-   font-size: 12px;
-   color: #000;
- }
- 
- p#pRelatorioCabecalho{
-   text-align: center;
-   font-size: 12px;
-   color: #000;
- }
- 
- p#pRelatorioNenhumItem{
-   text-align: center;
-   font-size: 12px;
-   color: #000;
- }
- 
- p#pRelatorioTotal{
-   text-align: right;
-   font-size: 10px;
-   color: #000;
- }
- 
- p#pRelatorioDataImpressao{
-   text-align: right;
-   font-size: 10px;
-   color: #000;
-   margin: 0px;
-   padding: 0em;
- }
- 
- /*******************************************
- * Tabela principal (corpo do relatório)
- *******************************************/
- 
- table.tabelaRelatorio{
-     border-collapse: separate;
-     border-spacing: 1px;     
-     margin: 2px 1px 1px 1px;
-     width: 100%;  
- }
- 
- table.tabelaRelatorio tr{
-     border-collapse: separate;
-     border-spacing: 1px;
-     background-color: #FFF;
-     text-align: center;
- }
- 
- table.tabelaRelatorio th{
-   text-align: center;
-   padding: 0px 3px 0px 3px;
-   font-size: 12px;
-   font-weight: normal;
-   color: #000;
-   border-bottom:#000 solid 2px;
-   border-top:#000 solid 2px;
- }
- 
- table.tabelaRelatorio td{
-   font-size: 12px;
-   padding: 0px 3px 0px 3px;
-   color: #000;
-   vertical-align: middle;
- }
-  
- table.tabelaRelatorio tfoot td{
-   text-align: right;
-   font-size: 11px;
-   border-top:#000 solid 2px;
-   font-weight: normal;
- }
- 
- table#subRelatorioGeral{
-     margin: 2px 2% 1px 2%;
-     width: 95%;
- }
- 
- table#subRelatorioGeral th{
-     background-color: #98AFC7;     
- } 
- 
- table.tabelaRelatorio hr{
+    text-align: center;
+    font-size: 22px;
+    color: #000;
+    margin: 0px;
+}
+
+p#pRelatorioSubtitulo{
+    text-align: center;
+    font-size: 16px;
+    color: #000;  
+    margin: 0px;
+}
+
+p#pRelatorioSubtotal{
+    text-align: right;
+    font-size: 10px;
+    color: #000;
+}
+
+p#pRelatorioSubgrupo{
+    text-align: center;
+    font-size: 14px;
+    color: #000;
+    margin: 0px;
+}
+
+p#pRelatorioLabel{
+    text-align: center;
+    font-size: 12px;
+    color: #000;
+}
+
+p#pRelatorioCabecalho{
+    text-align: center;
+    font-size: 12px;
+    color: #000;
+}
+
+p#pRelatorioNenhumItem{
+    text-align: center;
+    font-size: 12px;
+    color: #000;
+}
+
+p#pRelatorioTotal{
+    text-align: right;
+    font-size: 10px;
+    color: #000;
+}
+
+p#pRelatorioDataImpressao{
+    text-align: right;
+    font-size: 10px;
+    color: #000;
+    margin: 0px;
+    padding: 0em;
+}
+
+/*******************************************
+* Tabela principal (corpo do relatório)
+*******************************************/
+
+table.tabelaRelatorio{
+    border-collapse: separate;
+    border-spacing: 1px;     
+    margin: 2px 1px 1px 1px;
+    width: 100%;  
+}
+
+table.tabelaRelatorio tr{
+    border-collapse: separate;
+    border-spacing: 1px;
+    background-color: #FFF;
+    text-align: center;
+}
+
+table.tabelaRelatorio th{
+    text-align: center;
+    padding: 0px 3px 0px 3px;
+    font-size: 12px;
+    font-weight: normal;
+    color: #000;
+    border-bottom:#000 solid 2px;
+    border-top:#000 solid 2px;
+}
+
+table.tabelaRelatorio td{
+    font-size: 12px;
+    padding: 0px 3px 0px 3px;
+    color: #000;
+    vertical-align: middle;
+}
+
+table.tabelaRelatorio tfoot td{
+    text-align: right;
+    font-size: 11px;
+    border-top:#000 solid 2px;
+    font-weight: normal;
+}
+
+table#subRelatorioGeral{
+    margin: 2px 2% 1px 2%;
+    width: 95%;
+}
+
+table#subRelatorioGeral th{
+    background-color: #98AFC7;     
+} 
+
+table.tabelaRelatorio hr{
     color: #000;
     background-color: #000;
     height:1px;
- }
- 
- /*******************************************
- * Rodapé
- *******************************************/
- 
-  @media print {
-        div#rodape {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
+}
+
+/*******************************************
+* Rodapé
+*******************************************/
+
+@media print {
+    div#rodape {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
     }
+}

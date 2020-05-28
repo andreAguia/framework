@@ -6,45 +6,45 @@ $data3 = "";
 $data4 = NULL;
 $data5 = "fdsçlfksçfso";
 $data6 = "25/10/2018";
-    
-if(validaData($data1)){
+
+if (validaData($data1)) {
     echo "TRUE";
-}else{
+} else {
     echo "FALSE";
 }
 br();
 
-if(validaData($data2)){
+if (validaData($data2)) {
     echo "TRUE";
-}else{
+} else {
     echo "FALSE";
 }
 br();
 
-if(validaData($data3)){
+if (validaData($data3)) {
     echo "TRUE";
-}else{
+} else {
     echo "FALSE";
 }
 br();
 
-if(validaData($data4)){
+if (validaData($data4)) {
     echo "TRUE";
-}else{
+} else {
     echo "FALSE";
 }
 br();
 
-if(validaData($data5)){
+if (validaData($data5)) {
     echo "TRUE";
-}else{
+} else {
     echo "FALSE";
 }
 br();
 
-if(validaData($data6)){
+if (validaData($data6)) {
     echo "TRUE";
-}else{
+} else {
     echo "FALSE";
 }
 

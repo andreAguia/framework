@@ -9,6 +9,5 @@ $dataBanco = date_to_bd($dataBrasileira);
 
 # Observe que como o separador 
 # é igual ao padrão eu não precisei informá-lo
-
 # Agora podemos inserir ao banco
 echo $dataBanco;

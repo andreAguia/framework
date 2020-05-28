@@ -6,25 +6,25 @@ $b = "";
 $c = " ";
 
 # Valor nulo
-if(vazio($a)){
+if (vazio($a)) {
     echo "TRUE";
-}else{
+} else {
     echo "FALSE";
 }
 br();
 
 # Valor vazio
-if(vazio($b)){
+if (vazio($b)) {
     echo "TRUE";
-}else{
+} else {
     echo "FALSE";
 }
 br();
 
 # Valor espaço
-if(vazio($c)){
+if (vazio($c)) {
     echo "TRUE";
-}else{
+} else {
     echo "FALSE";
 }
 

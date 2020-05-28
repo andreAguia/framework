@@ -1,6 +1,7 @@
 <?php
-class Relatorio
- {    
+
+class Relatorio {
+
     /**
      * Classe para a criação de relatórios
      * 
@@ -46,7 +47,6 @@ class Relatorio
      * @example exemplo.relatorio.php
      * 
      */
-    
     # do relatório
     private $conteudo = NULL;
     private $label = NULL;
@@ -55,18 +55,18 @@ class Relatorio
     private $funcao = NULL;
     private $classe = NULL;
     private $metodo = NULL;
- 
+
     # do título
     private $titulo = NULL;
     private $tituloLinha2 = NULL;
     private $tituloLinha3 = NULL;
     private $subtitulo = NULL;
     private $tituloTabela = NULL;
-    
+
     # do número de ordem
     private $numeroOrdem = FALSE;
     private $numeroOrdemTipo = 'c';
-    
+
     # Rotinas Extras
     private $funcaoAntesTitulo = NULL;
     private $funcaoAntesTituloParametro = NULL;
@@ -78,78 +78,67 @@ class Relatorio
     private $numGrupo = NULL;
     private $ocultaGrupo = TRUE;
     private $saltoAposGrupo = FALSE;
-			
+
     # do subrelatório
     private $subRelatorio = NULL;               // Objeto relatório que na verdade é um subrelatório
     private $subSelect = NULL;                  // sql do subrelatorio
-    private $subClasseBd = NULL;		// Classe do bd   
-    private $subJoin = NULL;			// posição no array do join no primeiro relatório    
-
+    private $subClasseBd = NULL;  // Classe do bd   
+    private $subJoin = NULL;   // posição no array do join no primeiro relatório    
     # do somatório
     private $colunaSomatorio = NULL;            // coluna que terá somatório (por enquanto uma por relatório)
     private $textoSomatorio = 'Total:';         // texto a ser exibido na linha de totalização
     private $colunaTexto = 0;                   // coluna onde o texto será exibido;
     private $funcaoSomatorio = NULL;            // se executa alguma função no somatório
     private $exibeSomatorioGeral = TRUE;        // se exibe o somatório geral ou somente o parcial
-    
-    private $totalRegistro = TRUE;		// se terá o número de registros no fim do relatório (e dos grupos))
-    private $totalRegistroValor = NULL;		// Guarda o valor do toal para ser recuperado na rotina de relatório via get
-    private $bordaInterna = FALSE;		// Exibe ou não uma linha dentro da tabela entro os registros 
-    private $dataImpressao = TRUE;		// Exibe ou  não a Data de Impressão
+    private $totalRegistro = TRUE;  // se terá o número de registros no fim do relatório (e dos grupos))
+    private $totalRegistroValor = NULL;  // Guarda o valor do toal para ser recuperado na rotina de relatório via get
+    private $bordaInterna = FALSE;  // Exibe ou não uma linha dentro da tabela entro os registros 
+    private $dataImpressao = TRUE;  // Exibe ou  não a Data de Impressão
     private $espacamento = 0;                   // Espaçamento entre as linha. 0 - espacamento padrão
-
     private $cabecalhoRelatorio = TRUE;         // Exibe ou não o cabeçalho do relatório
-    private $botaoVoltar = NULL;		// Link do botão voltar
-
-    private $mensagemNenhumRegistro = TRUE;	// Exibe ou não a mensagem de quando não tem registro a ser exibido
-
+    private $botaoVoltar = NULL;  // Link do botão voltar
+    private $mensagemNenhumRegistro = TRUE; // Exibe ou não a mensagem de quando não tem registro a ser exibido
     # do menu do relatório
-    private $menuRelatorio = TRUE;		// se coloca ou não o menu relatório
-    private $formCampos = NULL;	 		// array com campos para o formulario
-    private $formFocus = NULL;   		// Campos a receber foco no form
-    private $formLink = NULL;	 		// para onde vai o post
+    private $menuRelatorio = TRUE;  // se coloca ou não o menu relatório
+    private $formCampos = NULL;    // array com campos para o formulario
+    private $formFocus = NULL;     // Campos a receber foco no form
+    private $formLink = NULL;    // para onde vai o post
     private $brHr = 1;                          // quantidade de saltos de linha antes do hr do menu
-    
     # especiais
     private $linhaNomeColuna = FALSE;           // exibe (ou não) a linha entre o nome das colunas
     private $id = NULL;                         // id do css para alterações
-    
     # do log
     private $log = TRUE;            // informa se gerará log ou não
     private $logDetalhe = NULL;     // detalhamento do log
     private $logServidor = NULL;    // o idServidor para quando o relatório for de um único servidor
-    
     # do Rodapé
     private $rodape = NULL;
-    
+
     # Outros
     private $linhaFinal = FALSE;                // Exibe linha final
     private $funcaoFinalGrupo = NULL;           // Executa uma rotina ao fim de cada agrupamento na forma de função
     private $funcaoFinalGrupoParametro = NULL;  // Usado na escala anual de férias para exibir texto.
-    
     private $funcaoFinalRelatorio = NULL;           // Executa uma rotina ao fim do Relatorio
-    private $funcaoFinalRelatorioParametro = NULL;  
-    
+    private $funcaoFinalRelatorioParametro = NULL;
     private $aviso = NULL;                          // Exibe um aviso que não será impresso, no cabeçalho
-    
     private $rowspan = NULL;            # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
     private $grupoCorColuna = NULL;     # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
-    
+
     ###########################################################
-    
-    public function __construct($id = NULL){
-    /**
-     * Inicia o relatório
-     * 
-     *
-     * @param $id string NULL O id da tabela. (opcional)
-     * 
-     * @syntax $relatorio = new Relatorio([$id]);
-     * 
-     */        
-    	$this->id = $id;
+
+    public function __construct($id = NULL) {
+        /**
+         * Inicia o relatório
+         * 
+         *
+         * @param $id string NULL O id da tabela. (opcional)
+         * 
+         * @syntax $relatorio = new Relatorio([$id]);
+         * 
+         */
+        $this->id = $id;
     }
-    
+
     ###########################################################
 
     /**
@@ -165,87 +154,83 @@ class Relatorio
      * @param 	$metodo		O nome do metodo
      * @param 	$parametros	Os parâmetros inseridos  
      */
-    public function __call ($metodo, $parametros){
+    public function __call($metodo, $parametros) {
         ## Se for set, atribui um valor para a propriedade
-        if (substr($metodo, 0, 3) == 'set'){
+        if (substr($metodo, 0, 3) == 'set') {
             $var = substr($metodo, 4);
             $this->$var = $parametros[0];
         }
 
         # Se for Get, retorna o valor da propriedade
-        if (substr($metodo, 0, 3) == 'get')
-        {
-         $var = substr($metodo, 4);
-          return $this->$var;
+        if (substr($metodo, 0, 3) == 'get') {
+            $var = substr($metodo, 4);
+            return $this->$var;
         }
     }
-    
+
     ###########################################################
-    
+
     /**
      * Método exibeCabecalho
      * 
      * Exibe o cabeçalho
      */
-    
-    public function exibeCabecalho(){
-        
+    public function exibeCabecalho() {
+
         $cabec = new Div('center');
         $cabec->abre();
-            $imagem = new Imagem(PASTA_FIGURAS.'novoTimbre.png',NULL,120,90);
-            $imagem->show();
+        $imagem = new Imagem(PASTA_FIGURAS . 'novoTimbre.png', NULL, 120, 90);
+        $imagem->show();
         $cabec->fecha();
         br();
     }
-    
+
     ###########################################################
-    
+
     /**
      * Método exibeCabecalhoVelho1
      * 
      * Exibe o cabeçalho
      */
-    
-    public function exibeCabecalhoVelho1(){
-                
+    public function exibeCabecalhoVelho1() {
+
         $governo = "Governo do Estado do Rio de Janeiro";
         $universidade = "Universidade Estadual do Norte Fluminense Darcy Ribeiro";
         $diretoria = "Diretoria Geral de Administração";
         $gerencia = "Gerência de Recursos Humanos";
-        
+
         $cabec = new Div('center');
         $cabec->abre();
-            $imagem = new Imagem(PASTA_FIGURAS.'brasao.gif',NULL,50,80);
-            $imagem->show();
+        $imagem = new Imagem(PASTA_FIGURAS . 'brasao.gif', NULL, 50, 80);
+        $imagem->show();
         $cabec->fecha();
-        
-        p($governo."<br/>".$universidade."<br/>".$diretoria." - ".$gerencia,"pRelatorioCabecalho");
+
+        p($governo . "<br/>" . $universidade . "<br/>" . $diretoria . " - " . $gerencia, "pRelatorioCabecalho");
     }
-    
+
     ###########################################################
-    
+
     /**
      * Método exibeCabecalho
      * 
      * Exibe o cabeçalho
      */
-    
-    public function exibeCabecalhoVelho2(){
-                
+    public function exibeCabecalhoVelho2() {
+
         $governo = "Governo do Estado do Rio de Janeiro";
         $universidade = "Fundação Estadual Norte Fluminense";
         $diretoria = "Diretoria de Planejamento Administração e Finanças";
         $gerencia = "Gerência de Recursos Humanos";
-        
+
         $cabec = new Div('center');
         $cabec->abre();
-            $imagem = new Imagem(PASTA_FIGURAS.'brasao.gif',NULL,50,80);
-            $imagem->show();
+        $imagem = new Imagem(PASTA_FIGURAS . 'brasao.gif', NULL, 50, 80);
+        $imagem->show();
         $cabec->fecha();
-        
-        p($governo."<br/>".$universidade."<br/>".$diretoria." - ".$gerencia,"pRelatorioCabecalho");
+
+        p($governo . "<br/>" . $universidade . "<br/>" . $diretoria . " - " . $gerencia, "pRelatorioCabecalho");
     }
-    
+
     ###########################################################
 
     /**
@@ -253,30 +238,29 @@ class Relatorio
      * 
      * @param 	$numGrupo		numero da coluna do agrupamento
      */
-    function set_numGrupo($numGrupo = NULL,$ocultaGrupo = TRUE){
+    function set_numGrupo($numGrupo = NULL, $ocultaGrupo = TRUE) {
         $this->numGrupo = $numGrupo;
         $this->ocultaGrupo = $ocultaGrupo;
     }
 
     ###########################################################
-    
-     /**
-      * Método exibeTitulo
-      * 
-      * Exibe o título do relatório
-      */
-    
-    private function exibeTitulo(){
-        
+
+    /**
+     * Método exibeTitulo
+     * 
+     * Exibe o título do relatório
+     */
+    private function exibeTitulo() {
+
         # Objeto antes do título
-        if (!is_null($this->objetoAntesTitulo)){
+        if (!is_null($this->objetoAntesTitulo)) {
             $this->objetoAntesTitulo->show();
         }
-        
+
         # Função antes do título
-        if(!is_null($this->funcaoAntesTitulo)){
+        if (!is_null($this->funcaoAntesTitulo)) {
             # Verifica se é array. Mais de uma função
-            if(is_array($this->funcaoAntesTitulo)){
+            if (is_array($this->funcaoAntesTitulo)) {
                 # quantidade de itens
                 $quantidade = count($this->funcaoAntesTitulo);
 
@@ -285,107 +269,105 @@ class Relatorio
                     $nomedafuncao = $this->funcaoAntesTitulo[$i];
                     $nomedafuncao($this->funcaoAntesTituloParametro[$i]);
                 }
-            }else{
-               $nomedafuncao = $this->funcaoAntesTitulo;
-               $nomedafuncao($this->funcaoAntesTituloParametro); 
+            } else {
+                $nomedafuncao = $this->funcaoAntesTitulo;
+                $nomedafuncao($this->funcaoAntesTituloParametro);
             }
         }
 
         # Exibe o Título do relatório
-        if (!is_null($this->titulo)){
-            p($this->titulo,"pRelatorioTitulo");
+        if (!is_null($this->titulo)) {
+            p($this->titulo, "pRelatorioTitulo");
         }
 
         # Exibe a segunda linha do Título do relatório
-        if (!is_null($this->tituloLinha2)){
-            p($this->tituloLinha2,"pRelatorioTitulo");
-        }   
+        if (!is_null($this->tituloLinha2)) {
+            p($this->tituloLinha2, "pRelatorioTitulo");
+        }
 
         # Exibe a terceira linha do Título do relatório
-        if (!is_null($this->tituloLinha3)){
-            p($this->tituloLinha3,"pRelatorioTitulo");
-        }            
+        if (!is_null($this->tituloLinha3)) {
+            p($this->tituloLinha3, "pRelatorioTitulo");
+        }
 
         # Exibe o subtítulo (se houver))
-        if (!is_null($this->subtitulo)){
-            p($this->subtitulo,"pRelatorioSubtitulo");
-        }            
-        
-        if ((!is_null($this->titulo)) or (!is_null($this->tituloLinha2)) or (!is_null($this->tituloLinha3)) or (!is_null($this->subtitulo))){
+        if (!is_null($this->subtitulo)) {
+            p($this->subtitulo, "pRelatorioSubtitulo");
+        }
+
+        if ((!is_null($this->titulo)) or (!is_null($this->tituloLinha2)) or (!is_null($this->tituloLinha3)) or (!is_null($this->subtitulo))) {
             br();
         }
-        
+
         # Exibe a mensagem depois do título (se houver))
-        if (!is_null($this->objetoDepoisTitulo)){
+        if (!is_null($this->objetoDepoisTitulo)) {
             $this->objetoDepoisTitulo->show();
         }
     }
-    
+
     ###########################################################
-    
-     /**
-      * Método exibeLinha
-      * 
-      * Exibe uma linha interna do relatório que separa os registros.
-      */
-    
-    private function exibeLinha($tamanhoLinha){
-        
+
+    /**
+     * Método exibeLinha
+     * 
+     * Exibe uma linha interna do relatório que separa os registros.
+     */
+    private function exibeLinha($tamanhoLinha) {
+
         # Verifica se tem coluna para numero de ordem
-        if($this->numeroOrdem){
+        if ($this->numeroOrdem) {
             $tamanhoLinha++;
         }
-        
+
         # Monta a linha
-        echo '<tr><td colspan="'.$tamanhoLinha.'">';
+        echo '<tr><td colspan="' . $tamanhoLinha . '">';
         hr();
         echo '</td></tr>';
     }
-            
+
     ###########################################################
-    
-     /**
-      * Método exibeSomatorio
-      * 
-      * Exibe o somatório de uma coluna no fim do relatório ou de um agrupamento
-      */
-    
-    private function exibeSomatorio($tamanho,$subSomatorio){  
+
+    /**
+     * Método exibeSomatorio
+     * 
+     * Exibe o somatório de uma coluna no fim do relatório ou de um agrupamento
+     */
+    private function exibeSomatorio($tamanho, $subSomatorio) {
         # Exibe uma linha
         $this->exibeLinha($tamanho);
-        
+
         # Inicia a linha
         echo '<tr>';
-                        
+
         # Percorre as colunas da tabela para chegar a coluna do somatório
-        for($i = 0; $i<$tamanho; $i++){
-            
+        for ($i = 0; $i < $tamanho; $i++) {
+
             # Verifica se é a coluna onde terá o texto padrão a primeira coluna
-            if($i == $this->colunaTexto){
-                echo '<td>'.$this->textoSomatorio.'</td>';
-            } 
-            
-            if(is_array($this->colunaSomatorio)){
+            if ($i == $this->colunaTexto) {
+                echo '<td>' . $this->textoSomatorio . '</td>';
+            }
+
+            if (is_array($this->colunaSomatorio)) {
                 # Em desenvolvimento
                 # Quando pronto possibilitará somatório 
                 # em mais de uma coluna
-            }else{
+            } else {
                 # Se for a coluna do somatório exibe o somatório
-                if($i == $this->colunaSomatorio){                
+                if ($i == $this->colunaSomatorio) {
                     # Se tiver função no somatório executa
-                    if(is_null($this->funcaoSomatorio)){
-                        echo '<td>'.$subSomatorio.'</td>';                
+                    if (is_null($this->funcaoSomatorio)) {
+                        echo '<td>' . $subSomatorio . '</td>';
                     } # Senão exibe o somatório
-                    else{
+                    else {
                         $nomedafuncao = $this->funcaoSomatorio;
                         $subSomatorio = $nomedafuncao($subSomatorio);
-                        echo '<td>'.$subSomatorio.'</td>';
+                        echo '<td>' . $subSomatorio . '</td>';
                     }
                 }
             }
-            
+
             # Senão exibe coluna em branco
-            if(($i <> $this->colunaTexto) AND ($i <> $this->colunaSomatorio)){ 
+            if (($i <> $this->colunaTexto) AND ($i <> $this->colunaSomatorio)) {
                 echo '<td></td>';
             }
         }
@@ -393,52 +375,51 @@ class Relatorio
         # Fecha a linha
         echo '</tr>';
     }
+
     ###########################################################
-    
-     /**
-      * Método totalRegistro
-      * 
-      * Exibe o total de Registro
-      */
-    
-    private function totalRegistro($totalRegistros){
-        p($totalRegistros.' registros',"pRelatorioTotal");
-    }
-    ###########################################################
-    
+
     /**
-      * Método exibecabecalhoTabela
-      * 
-      * Exibe o cabeçalho da tabela
-      */
-    
-    private function exibeCabecalhoTabela($tamanhoLinha,$tamanho,$grupo){        
+     * Método totalRegistro
+     * 
+     * Exibe o total de Registro
+     */
+    private function totalRegistro($totalRegistros) {
+        p($totalRegistros . ' registros', "pRelatorioTotal");
+    }
+
+    ###########################################################
+
+    /**
+     * Método exibecabecalhoTabela
+     * 
+     * Exibe o cabeçalho da tabela
+     */
+    private function exibeCabecalhoTabela($tamanhoLinha, $tamanho, $grupo) {
         # Inicia a tabela
         echo '<table class="tabelaRelatorio" border="0"';
-        
+
         # Redefine algumas variáveis
-        if(is_null($this->numGrupo)){
+        if (is_null($this->numGrupo)) {
             $this->subTotal = FALSE;
         }
 
         # id da tabela (se houver)
-        if (!is_null($this->id)){
-            echo ' id="'.$this->id.'"';
+        if (!is_null($this->id)) {
+            echo ' id="' . $this->id . '"';
         }
 
         echo '>';
-        
+
         # Colunas
-        if($this->numeroOrdem){
+        if ($this->numeroOrdem) {
             echo '<col style="width:5%">';
         }
 
         # informa o tamanho das colunas (width)
-        for($a = 0;$a < $tamanho;$a += 1){
-            if(isset($this->width[$a]))         // verifica se foi definido um tamanho
-            {                                   // verifica se a coluna não foi ocultada para agrupamento
-                if ((!$grupo) || (($grupo) && ($a <> $this->numGrupo)) || (($grupo) && (!$this->ocultaGrupo))){
-                    echo '<col style="width:'.$this->width[$a].'%">';
+        for ($a = 0; $a < $tamanho; $a += 1) {
+            if (isset($this->width[$a])) {         // verifica se foi definido um tamanho                                   // verifica se a coluna não foi ocultada para agrupamento
+                if ((!$grupo) || (($grupo) && ($a <> $this->numGrupo)) || (($grupo) && (!$this->ocultaGrupo))) {
+                    echo '<col style="width:' . $this->width[$a] . '%">';
                 }
             }
         }
@@ -447,130 +428,127 @@ class Relatorio
         echo '<thead>';
 
         # título
-        if (!is_null($this->tituloTabela)){
-            echo '<caption title="'.$this->tituloTabela.'">';
+        if (!is_null($this->tituloTabela)) {
+            echo '<caption title="' . $this->tituloTabela . '">';
             echo $this->tituloTabela;
             echo '</caption>';
         }
 
         echo '<tr>';
-        
+
         # Reserva uma coluna para o número de ordem (se tiver)
-        if($this->numeroOrdem){
+        if ($this->numeroOrdem) {
             echo '<th title="Número de Ordem" id="numeroOrdem">#</th>';
         }
 
-        for ($a = 0;$a < $tamanho;$a += 1){
-            if ((!$grupo) || (($grupo) && ($a <> $this->numGrupo)) || (($grupo) && (!$this->ocultaGrupo))){
-                echo '<th>';                        
+        for ($a = 0; $a < $tamanho; $a += 1) {
+            if ((!$grupo) || (($grupo) && ($a <> $this->numGrupo)) || (($grupo) && (!$this->ocultaGrupo))) {
+                echo '<th>';
                 echo $this->label[$a];
                 echo '</th>';
             }
         }
         echo '</tr>';
-                    
+
         # Espaçamento
-        if($this->espacamento > 0){
-            for ($b = 0;$b < $this->espacamento;$b++){
+        if ($this->espacamento > 0) {
+            for ($b = 0; $b < $this->espacamento; $b++) {
                 echo '<tr></tr>';
             }
         }
-            
-        echo '</thead>'; 
+
+        echo '</thead>';
     }
-                    
+
     ###########################################################
-    
-     /**
-      * Método totalRegistro
-      * 
-      * Exibe o total de Registro
-      */
-    
-    private function exibeDataImpressao(){
+
+    /**
+     * Método totalRegistro
+     * 
+     * Exibe o total de Registro
+     */
+    private function exibeDataImpressao() {
         # Pega o usuário
-        $idUsuario = get_session('idUsuario');  
-        
+        $idUsuario = get_session('idUsuario');
+
         br();
         hr();
-        p('Emitido em: '.date('d/m/Y - H:i:s')." (".$idUsuario.")",'pRelatorioDataImpressao');
+        p('Emitido em: ' . date('d/m/Y - H:i:s') . " (" . $idUsuario . ")", 'pRelatorioDataImpressao');
     }
+
     ###########################################################
-            
+
     /**
      * Método show
      * 
      * Exibe o relatório
      */
-
-    function show(){
-        $contador = 0;		// contador de registros
-        $subContador = 0;	// contador de registros para grupo (zera a cada grupo)
-        $agrupa = '#';      	// guarda o nome do grupo
-        $grupo = NULL;		// flag de agrupamento ou não
+    function show() {
+        $contador = 0;  // contador de registros
+        $subContador = 0; // contador de registros para grupo (zera a cada grupo)
+        $agrupa = '#';       // guarda o nome do grupo
+        $grupo = NULL;  // flag de agrupamento ou não
         $somatorio = 0;         // somatorio de colunas se houver
         $subSomatorio = 0;      // somatório do grupo
-        
         #####
-        
+
         $valorGrupoCorColuna = NULL;
         $corGrupo = "grupo1";
-        
+
         # usado no rowspan para se ocultar a td repetida
         $exibeTd = TRUE;
-        
+
         # rowspan
-        if(!is_null($this->rowspan)){
+        if (!is_null($this->rowspan)) {
             $arrayRowspan = NULL;
             $rowspanAnterior = NULL;
             $rowspanAtual = NULL;
-            
+
             # Passa os valores para o array
-            foreach ($this->conteudo as $itens){
+            foreach ($this->conteudo as $itens) {
                 $arrayRowspan[] = $itens[$this->rowspan];
             }
-            
+
             # Conta quantos valores tem e guarda no array $arr
             $arr = array_count_values($arrayRowspan);
         }
-        
+
         #####
-        
         # Linha de ordem (se tiver)
-        if($this->numeroOrdemTipo == 'c'){
+        if ($this->numeroOrdemTipo == 'c') {
             $numOrdem = 1;  # Inicia o número de ordem quando tiver
-        }else{
+        } else {
             $numOrdem = count($this->conteudo);  # Inicia o número de ordem quando tiver
         }
 
         # Pega o tamanho da tabela
-        if(!vazio($this->label)){
+        if (!vazio($this->label)) {
             $tamanho = count($this->label);
         }
-        
+
         # Alimenta a flag de grupo
-        if (is_null($this->numGrupo)){
+        if (is_null($this->numGrupo)) {
             $grupo = FALSE;
-        }else{
+        } else {
             $grupo = TRUE;
         }
-        
+
         # Tira uma coluna da linha quando tiver agrupamento com ocultação da culuna
-        if(!vazio($this->label)){
-            if(($grupo) && ($this->ocultaGrupo)){
-                $tamanhoLinha = $tamanho-1;
-            }else{
+        if (!vazio($this->label)) {
+            if (($grupo) && ($this->ocultaGrupo)) {
+                $tamanhoLinha = $tamanho - 1;
+            } else {
                 $tamanhoLinha = $tamanho;
             }
         }
-        
+
         # Se tiver número de ordem aumenta o tamanho da linha
-        if($this->numeroOrdem){
+        if ($this->numeroOrdem) {
             $tamanhoLinha++;
         }
 
         # Abre uma classe de menu do relatório
-        if ($this->menuRelatorio){
+        if ($this->menuRelatorio) {
             $menuRelatorio = new menuRelatorio();
             $menuRelatorio->set_botaoVoltar($this->botaoVoltar);
             $menuRelatorio->set_formCampos($this->formCampos);
@@ -580,65 +558,63 @@ class Relatorio
             $menuRelatorio->set_aviso($this->aviso);
             $menuRelatorio->show();
         }
-        
+
         # Exibe o cabeçalho
-        if($this->cabecalhoRelatorio){
+        if ($this->cabecalhoRelatorio) {
             $this->exibeCabecalho();
         }
-        
+
         # Abre a div do relatório
         $div = new Div('divRelatorio');
         $div->abre();
         echo $this->aviso;
-        
+
         # Limita o tamanho da tela
         $grid = new Grid();
         $grid->abreColuna(12);
-        
+
         # Exibe o título do Relatório
         $this->exibeTitulo();
-        
+
         # Começa o conteúdo do relatório
-        if(!is_null($this->conteudo)){
-            
+        if (!is_null($this->conteudo)) {
+
             # Percorre os registros
-            foreach ($this->conteudo as $row){
-                
+            foreach ($this->conteudo as $row) {
+
                 #################
-                
                 # Como a flag agrupa é mudada no início do loop verifica-se 
                 # a colocação do total do agrupamento anterior
                 # Verifica se tem agrupamento
-                if (!is_null($this->numGrupo)){
+                if (!is_null($this->numGrupo)) {
                     # Verifica se o valor na coluna de agrupamento é diferente da flag agrupa
-                    if (($agrupa <> $row[$this->numGrupo]) && ($agrupa <> "#") && ($grupo)){
+                    if (($agrupa <> $row[$this->numGrupo]) && ($agrupa <> "#") && ($grupo)) {
                         # linha
                         #$this->exibeLinha($tamanhoLinha);
-                        
                         # Exibe o somatório quando estiver habilitado
-                        if(!is_null($this->colunaSomatorio)){
-                            $this->exibeSomatorio($tamanho,$subSomatorio);
+                        if (!is_null($this->colunaSomatorio)) {
+                            $this->exibeSomatorio($tamanho, $subSomatorio);
                             $subSomatorio = 0;  // Zera o somatório
                         }
-                        
+
                         # Fecha a tabela
                         echo '<tfoot>';
-                        echo '<tr><td colspan="'.($tamanhoLinha).'" title="Total de itens da tabela">';
+                        echo '<tr><td colspan="' . ($tamanhoLinha) . '" title="Total de itens da tabela">';
                         echo '</td></tr>';
                         echo '</tfoot>';
                         echo '</table>';
-                        
-                        
+
+
                         # Exibe o número de registros
-                        if (($this->subTotal) AND ($contador > 0)){
+                        if (($this->subTotal) AND ($contador > 0)) {
                             $this->totalRegistro($subContador);
                             $subContador = 0;   // Zera o contador de registro
                         }
-                        
+
                         # Executa a rotina no final de um grupo na forma de função
-                        if(!is_null($this->funcaoFinalGrupo)){
+                        if (!is_null($this->funcaoFinalGrupo)) {
                             # Verifica se é array. Mais de uma função
-                            if(is_array($this->funcaoFinalGrupo)){
+                            if (is_array($this->funcaoFinalGrupo)) {
                                 # quantidade de itens
                                 $quantidade = count($this->funcaoFinalGrupo);
 
@@ -647,210 +623,205 @@ class Relatorio
                                     $nomedafuncao = $this->funcaoFinalGrupo[$i];
                                     $nomedafuncao($this->funcaoFinalGrupoParametro[$i]);
                                 }
-                            }else{
-                               $nomedafuncao = $this->funcaoFinalGrupo;
-                               $nomedafuncao($this->funcaoFinalGrupoParametro); 
+                            } else {
+                                $nomedafuncao = $this->funcaoFinalGrupo;
+                                $nomedafuncao($this->funcaoFinalGrupoParametro);
                             }
                         }
-                        
+
                         # Salta página quando o salto depois de um agrupamento estiver habilitado
-                        if($this->saltoAposGrupo){
+                        if ($this->saltoAposGrupo) {
                             echo "<div style='page-break-before:always;'> </div>";
-                            
+
                             # Exibe o cabeçalho
-                            if($this->cabecalhoRelatorio){
+                            if ($this->cabecalhoRelatorio) {
                                 $this->exibeCabecalho();
                             }
-                            
+
                             # Exibe o título do Relatório
                             $this->exibeTitulo();
                         }
                     }
                 }
-                
-                #################
 
+                #################
                 # Título do subgrupo (quando tiver)
-                if (($grupo) && (($agrupa == '') || ($agrupa <> $row[$this->numGrupo]))){                
-                    
+                if (($grupo) && (($agrupa == '') || ($agrupa <> $row[$this->numGrupo]))) {
+
                     $textoSubitulo = $row[$this->numGrupo];
-                    
+
                     # Coloca a classe (se tiver)
-                    if((isset($this->classe[$this->numGrupo])) and ($this->classe[$this->numGrupo] <> NULL)){
+                    if ((isset($this->classe[$this->numGrupo])) and ($this->classe[$this->numGrupo] <> NULL)) {
                         $instancia = new $this->classe[$this->numGrupo]();
                         $metodoClasse = $this->metodo[$this->numGrupo];
                         $textoSubitulo = $instancia->$metodoClasse($row[$this->numGrupo]);
                     }
 
                     # Coloca a função (se tiver)
-                    if((isset($this->funcao[$this->numGrupo])) and ($this->funcao[$this->numGrupo] <> NULL)){			
+                    if ((isset($this->funcao[$this->numGrupo])) and ($this->funcao[$this->numGrupo] <> NULL)) {
                         $nomedafuncao = $this->funcao[$this->numGrupo];
                         $textoSubitulo = $nomedafuncao($row[$this->numGrupo]);
                     }
-                    
+
                     # Exibe o subtitulo
-                    p(' == '.$textoSubitulo.' == ',"pRelatorioSubgrupo");
-                    
+                    p(' == ' . $textoSubitulo . ' == ', "pRelatorioSubgrupo");
+
                     # atualiza a variavel que guarda o nome do agrupamento atual
                     $agrupa = $row[$this->numGrupo];
-                    
+
                     $subSomatorio = 0;  // Zera o somatório
                     $subContador = 0;   // Zera o contador de registro
                 }
-                
-                #################
 
-                # Nome das colunas (labels)
-                if ($subContador == 0){
-                    $this->exibeCabecalhoTabela($tamanhoLinha,$tamanho,$grupo);
-                    
-                     # começa o corpo da tabela
-                     echo '<tbody>';
-                }
-                
                 #################
-                
+                # Nome das colunas (labels)
+                if ($subContador == 0) {
+                    $this->exibeCabecalhoTabela($tamanhoLinha, $tamanho, $grupo);
+
+                    # começa o corpo da tabela
+                    echo '<tbody>';
+                }
+
+                #################
                 # Incrementa contadores
-                $contador += 1;         
-                $subContador += 1; 
-                
+                $contador += 1;
+                $subContador += 1;
+
                 # Espaçamento
-                if($this->espacamento > 0){
-                    for ($b = 0;$b < $this->espacamento;$b++){
+                if ($this->espacamento > 0) {
+                    for ($b = 0; $b < $this->espacamento; $b++) {
                         echo '<tr></tr>';
                     }
                 }
-                
+
                 #################
-                
+
                 echo '<tr ';
-                
+
                 # Cor de agrupamento
-                if(!is_null($this->grupoCorColuna)){
-                    if($row[$this->grupoCorColuna] <> $valorGrupoCorColuna){
+                if (!is_null($this->grupoCorColuna)) {
+                    if ($row[$this->grupoCorColuna] <> $valorGrupoCorColuna) {
 
                         $valorGrupoCorColuna = $row[$this->grupoCorColuna];
-                        if($corGrupo == "grupo1"){
+                        if ($corGrupo == "grupo1") {
                             $corGrupo = "grupo2";
-                        }else{
+                        } else {
                             $corGrupo = "grupo1";
-                        }                   
+                        }
                     }
 
-                    echo ' id="'.$corGrupo.'"';
-                }
-                
-                echo '>';
-                 
-                #################
-                
-                if($this->numeroOrdem){
-                    echo '<td id="center">'.$numOrdem.'</td>';            
+                    echo ' id="' . $corGrupo . '"';
                 }
 
-                if($this->numeroOrdemTipo == 'c'){
+                echo '>';
+
+                #################
+
+                if ($this->numeroOrdem) {
+                    echo '<td id="center">' . $numOrdem . '</td>';
+                }
+
+                if ($this->numeroOrdemTipo == 'c') {
                     $numOrdem++;    # incrementa o número de ordem
-                }else{
+                } else {
                     $numOrdem--;    # decrementa o número de ordem
                 }
-                
-                #################
 
+                #################
                 # percorre as colunas
-                for ($a = 0;$a < $tamanho;$a += 1){
-                    
-                    if ((!$grupo) || (($grupo) && ($a <> $this->numGrupo)) || (($grupo) && (!$this->ocultaGrupo))){
-                        
+                for ($a = 0; $a < $tamanho; $a += 1) {
+
+                    if ((!$grupo) || (($grupo) && ($a <> $this->numGrupo)) || (($grupo) && (!$this->ocultaGrupo))) {
+
                         #################
-                        
+
                         $rowspanValor = NULL;
                         $exibeTd = TRUE;
 
                         # Verifica se tem Rowlspan
-                        if(!is_null($this->rowspan)){
+                        if (!is_null($this->rowspan)) {
 
                             # Verifica se é essa coluna
-                            if($this->rowspan == $a){
+                            if ($this->rowspan == $a) {
 
                                 $rowAtual = $row[$a];
 
                                 # Verifica se mudou o valor
-                                if($rowspanAnterior <> $rowAtual){
+                                if ($rowspanAnterior <> $rowAtual) {
                                     $rowspanAnterior = $rowAtual;  // habilita o novo valor anterior
 
-                                    if($arr[$row[$a]] > 1){
+                                    if ($arr[$row[$a]] > 1) {
                                         $rowspanValor = $arr[$row[$a]];
                                     }
-                                }else{
-                                    if($arr[$row[$a]] > 1){
+                                } else {
+                                    if ($arr[$row[$a]] > 1) {
                                         $exibeTd = FALSE;
                                     }
-
                                 }
                             }
                         }
-                        
+
                         #################
-                        
-                        if($exibeTd){
-                        
+
+                        if ($exibeTd) {
+
                             echo '<td ';
 
-                            if(!is_null($rowspanValor)){
-                                echo 'rowspan="'.$rowspanValor.'" ';
+                            if (!is_null($rowspanValor)) {
+                                echo 'rowspan="' . $rowspanValor . '" ';
                             }
 
                             # alinhamento
-                            if((isset($this->align[$a])) and ($this->align[$a] <> NULL)){ 
-                                echo 'id="'.$this->align[$a].'" ';
-                            }else{
+                            if ((isset($this->align[$a])) and ($this->align[$a] <> NULL)) {
+                                echo 'id="' . $this->align[$a] . '" ';
+                            } else {
                                 echo 'id="center" ';
                             }
 
                             echo '>';
 
                             # Coloca a classe (se tiver)
-                            if((isset($this->classe[$a])) and ($this->classe[$a] <> NULL)){
+                            if ((isset($this->classe[$a])) and ($this->classe[$a] <> NULL)) {
                                 $instancia = new $this->classe[$a]();
                                 $metodoClasse = $this->metodo[$a];
                                 $row[$a] = $instancia->$metodoClasse($row[$a]);
                             }
 
                             # Coloca a função (se tiver)
-                            if((isset($this->funcao[$a])) and ($this->funcao[$a] <> NULL)){
+                            if ((isset($this->funcao[$a])) and ($this->funcao[$a] <> NULL)) {
                                 $nomedafuncao = $this->funcao[$a];
                                 $row[$a] = $nomedafuncao($row[$a]);
                             }
 
-                            
+
                             echo $row[$a];
 
                             # soma o valor quando o somatório estiver habilitado
-                            if(!is_null($this->colunaSomatorio)){
-                                if($a == $this->colunaSomatorio){
-                                    $somatorio +=$row[$a];
-                                    $subSomatorio +=$row[$a];
+                            if (!is_null($this->colunaSomatorio)) {
+                                if ($a == $this->colunaSomatorio) {
+                                    $somatorio += $row[$a];
+                                    $subSomatorio += $row[$a];
                                 }
                             }
                             echo '</td>';
                         }// exibetd
                     }
-                } 
+                }
                 echo '</tr>';
-                
+
                 # Espaçamento
-                if($this->espacamento > 0){
-                    for ($b = 0;$b < $this->espacamento;$b++){
+                if ($this->espacamento > 0) {
+                    for ($b = 0; $b < $this->espacamento; $b++) {
                         echo '<tr></tr>';
                     }
                 }
 
-                if($this->subRelatorio){                
+                if ($this->subRelatorio) {
                     $nomeClasseBd = $this->subClasseBd;
                     $subBd = new $nomeClasseBd();
                     $subSelect = $this->subSelect;
                     $subSelect .= $row[$this->subJoin];
-                    $result = $subBd->select($subSelect);		  	
+                    $result = $subBd->select($subSelect);
 
                     $nomeClasse = $this->subRelatorio;
                     $nomeClasse->set_cabecalhoRelatorio(FALSE);
@@ -858,46 +829,46 @@ class Relatorio
                     $nomeClasse->set_conteudo($result);
                     $nomeClasse->set_dataImpressao(FALSE);
 
-                    echo '<tr><td colspan="'.$tamanhoLinha.'">';
+                    echo '<tr><td colspan="' . $tamanhoLinha . '">';
                     $nomeClasse->show();
                     echo '</td></tr>';
                 }
 
-                if($this->bordaInterna){
-                   $this->exibeLinha($tamanhoLinha);
+                if ($this->bordaInterna) {
+                    $this->exibeLinha($tamanhoLinha);
                 }
             }
-            
+
             # Exibe a soma quando o somatório estiver habilitado
-            if((!is_null($this->colunaSomatorio)) AND ($contador <> 0)){
-                $this->exibeSomatorio($tamanhoLinha,$subSomatorio);
+            if ((!is_null($this->colunaSomatorio)) AND ($contador <> 0)) {
+                $this->exibeSomatorio($tamanhoLinha, $subSomatorio);
                 $subSomatorio = 0;  // Zera o somatório
             }
-            
+
             echo '</tbody>';
 
             # linha
-            if($this->linhaNomeColuna){
+            if ($this->linhaNomeColuna) {
                 $this->exibeLinha($tamanhoLinha);
             }
-            
+
             # Fecha a tabela
             echo '<tfoot>';
-            echo '<tr><td colspan="'.($tamanhoLinha).'" title="Total de itens da tabela">';
+            echo '<tr><td colspan="' . ($tamanhoLinha) . '" title="Total de itens da tabela">';
             echo '</td></tr>';
             echo '</tfoot>';
             echo '</table>';
-            
+
             # Exibe o número de registros
-            if (($this->subTotal) AND ($contador > 0)){
+            if (($this->subTotal) AND ($contador > 0)) {
                 $this->totalRegistro($subContador);
                 $subContador = 0;   // Zera o contador de registro
             }
 
             # Executa a rotina no final de um grupo na forma de função
-            if(!is_null($this->funcaoFinalGrupo)){
+            if (!is_null($this->funcaoFinalGrupo)) {
                 # Verifica se é array. Mais de uma função
-                if(is_array($this->funcaoFinalGrupo)){
+                if (is_array($this->funcaoFinalGrupo)) {
                     # quantidade de itens
                     $quantidade = count($this->funcaoFinalGrupo);
 
@@ -906,37 +877,37 @@ class Relatorio
                         $nomedafuncao = $this->funcaoFinalGrupo[$i];
                         $nomedafuncao($this->funcaoFinalGrupoParametro[$i]);
                     }
-                }else{
-                   $nomedafuncao = $this->funcaoFinalGrupo;
-                   $nomedafuncao($this->funcaoFinalGrupoParametro); 
+                } else {
+                    $nomedafuncao = $this->funcaoFinalGrupo;
+                    $nomedafuncao($this->funcaoFinalGrupoParametro);
                 }
             }
-            
-            if ($this->linhaFinal){
-                hr();                             
+
+            if ($this->linhaFinal) {
+                hr();
             }
-                       
+
             # Exibe a informação de que não tem nenhum resgistro
-            if (($contador == 0) AND ($this->mensagemNenhumRegistro)){
-                br();            
-                p("Não existe nenhum registro a ser exibido !!!!","pRelatorioNenhumItem");
+            if (($contador == 0) AND ($this->mensagemNenhumRegistro)) {
+                br();
+                p("Não existe nenhum registro a ser exibido !!!!", "pRelatorioNenhumItem");
                 br();
             }
         } // se tem conteúdo (beta)
-        
+
         echo '</table>';
-        
+
         # Total de Registros
-        if ($this->totalRegistro){
+        if ($this->totalRegistro) {
             hr();
-            p('Total de Registros: '.$contador,'pRelatorioTotal');
+            p('Total de Registros: ' . $contador, 'pRelatorioTotal');
             $this->totalRegistroValor = $contador;
         }
-        
+
         # Executa a rotina no final de um grupo na forma de função
-        if(!is_null($this->funcaoFinalRelatorio)){
+        if (!is_null($this->funcaoFinalRelatorio)) {
             # Verifica se é array. Mais de uma função
-            if(is_array($this->funcaoFinalRelatorio)){
+            if (is_array($this->funcaoFinalRelatorio)) {
                 # quantidade de itens
                 $quantidade = count($this->funcaoFinalRelatorio);
 
@@ -945,54 +916,55 @@ class Relatorio
                     $nomedafuncao = $this->funcaoFinalRelatorio[$i];
                     $nomedafuncao($this->funcaoFinalRelatorioParametro[$i]);
                 }
-            }else{
-               $nomedafuncao = $this->funcaoFinalRelatorio;
-               $nomedafuncao($this->funcaoFinalRelatorioParametro); 
+            } else {
+                $nomedafuncao = $this->funcaoFinalRelatorio;
+                $nomedafuncao($this->funcaoFinalRelatorioParametro);
             }
         }
-        
+
         # Pega o usuário
-        $idUsuario = get_session('idUsuario');  
-        
+        $idUsuario = get_session('idUsuario');
+
         # Data da Impressão
-        if($this->dataImpressao){
+        if ($this->dataImpressao) {
             $this->exibeDataImpressao();
         }
-        
+
         # Rodapé
-        if(!vazio($this->rodape)){
+        if (!vazio($this->rodape)) {
             echo "<footer>";
             echo $this->rodape;
             echo "</footer>";
         }
-        
+
         # Fecha o grid
         $grid->fechaColuna();
         $grid->fechaGrid();
-    
+
         # fecha a div relatório
         $div->fecha();
-        
+
         # Grava no log a atividade
-        if ($this->log){
-            
-            if(is_null($this->logDetalhe)){
-                $atividade = 'Visualizou o(a) '.$this->titulo;
-            
-                if (!is_null($this->tituloLinha2)){
-                    $atividade .= ' - '.$this->tituloLinha2;
+        if ($this->log) {
+
+            if (is_null($this->logDetalhe)) {
+                $atividade = 'Visualizou o(a) ' . $this->titulo;
+
+                if (!is_null($this->tituloLinha2)) {
+                    $atividade .= ' - ' . $this->tituloLinha2;
                 }
 
-                if (!is_null($this->subtitulo)){
-                    $atividade .= ' - '.$this->subtitulo;
+                if (!is_null($this->subtitulo)) {
+                    $atividade .= ' - ' . $this->subtitulo;
                 }
-            }else{
-                $atividade = $this->logDetalhe;   
-            }                         
-             
+            } else {
+                $atividade = $this->logDetalhe;
+            }
+
             $Objetolog = new Intra();
             $data = date("Y-m-d H:i:s");
-            $Objetolog->registraLog($idUsuario,$data,$atividade,NULL,NULL,4,$this->logServidor);
+            $Objetolog->registraLog($idUsuario, $data, $atividade, NULL, NULL, 4, $this->logServidor);
         }
     }
+
 }

@@ -7,32 +7,32 @@ $cpf3 = "136.737.784-63";
 $cpf4 = "13673778463";
 
 # Valor nulo
-if(validaCpf($cpf1)){
+if (validaCpf($cpf1)) {
     echo "TRUE";
-}else{
+} else {
     echo "FALSE";
 }
 br();
 
 # Valor vazio
-if(validaCpf($cpf2)){
+if (validaCpf($cpf2)) {
     echo "TRUE";
-}else{
+} else {
     echo "FALSE";
 }
 br();
 
 # CPF correto
-if(validaCpf($cpf3)){
+if (validaCpf($cpf3)) {
     echo "TRUE";
-}else{
+} else {
     echo "FALSE";
 }
 br();
 
 # CPF sem pontuação
-if(validaCpf($cpf4)){
+if (validaCpf($cpf4)) {
     echo "TRUE";
-}else{
+} else {
     echo "FALSE";
 }

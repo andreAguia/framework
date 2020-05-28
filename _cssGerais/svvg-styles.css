@@ -62,7 +62,7 @@
     margin:0;
     padding:0;
 }
-        
+
 /* The wrapper for each item */
 .svThumb {
     /*margin:12px;
@@ -71,7 +71,7 @@
     position: relative;
     overflow:hidden;
 }
-        
+
 /* If have the image layer */
 .svThumb img {
     display:block;
@@ -84,7 +84,7 @@
 #svList li:hover .svThumb img {
     transform:scale(1.05);
 }
-        
+
 /* If have the overlay layer */
 .sv-overlay {
     position: absolute;
@@ -173,18 +173,18 @@
 
 /* jQuery 700 Media Queries */
 .mQuery700 #svList li {
-	width:33.33%;
+    width:33.33%;
 }
 .mQuery700 #svBox {
-	width: 100%;
-	max-width: 100%;
-	font-size: 100%;
+    width: 100%;
+    max-width: 100%;
+    font-size: 100%;
 }
 .mQuery700 .svTitle {
-	font-size: 1.5em;
+    font-size: 1.5em;
 }
 .mQuery700 .sv-text {
-	font-size: 23px;
+    font-size: 23px;
 }
 
 
@@ -193,16 +193,16 @@
     padding-bottom: 51.20%;
 }
 .mQuery550 .svTitle {
-	font-size: 1.17em;
+    font-size: 1.17em;
 }
 .mQuery550 #svList li {
-	width:50%;
+    width:50%;
 }
 .mQuery550 .closeUiBtn {
-	font-size: 200%;
-	line-height: 100%;
-	position: initial;
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
+    font-size: 200%;
+    line-height: 100%;
+    position: initial;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 

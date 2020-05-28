@@ -6,7 +6,7 @@ br();
 echo moedaExtenso($numero);
 br();
 
-echo str_repeat("=",40);
+echo str_repeat("=", 40);
 br();
 
 $numero = "2390";
@@ -15,7 +15,7 @@ br();
 echo moedaExtenso($numero);
 br();
 
-echo str_repeat("=",40);
+echo str_repeat("=", 40);
 br();
 
 $numero = "1234.90";

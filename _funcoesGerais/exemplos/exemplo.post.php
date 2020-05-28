@@ -2,4 +2,4 @@
 
 # Nesse exemplo exibe o valor default (padrão)
 $padrao = "Girafa";
-echo post('campoValor',$padrao);
+echo post('campoValor', $padrao);
