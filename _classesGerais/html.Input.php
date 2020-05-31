@@ -662,6 +662,11 @@ class Input {
                 echo '<span class="input-group-label">SEI</span>';
                 echo '<input class="input-group-field"';
                 break;
+            case "porcentacem":
+            case "percentagem":
+                echo '<div class="input-group">';
+                echo '<input class="input-group-field"';
+                break;
             case "moeda":
                 echo '<div class="input-group">';
                 echo '<span class="input-group-label">R$</span>';
@@ -1018,6 +1023,17 @@ class Input {
                 #echo ' id="'.$this->nome.'"';
                 echo ' onFocus="this.select();"';
                 echo '/>';
+                break;
+
+            case "porcentacem":
+            case "percentagem":
+                echo ' size="' . ($this->size) . '"';
+                echo ' type="text"';
+                echo ' value="' . $this->valor . '"';
+                echo ' onFocus="this.select();"';
+                echo '/>';
+                echo '<span class="input-group-label">%</span>';
+                echo '</div>';
                 break;
 
             default:

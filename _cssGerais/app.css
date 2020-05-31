@@ -888,6 +888,61 @@ ul.menuHorizontal {
  * Classe Tab
  *******************************************/
 
+.tabs {
+    margin: 0;
+    border: 1px solid #bababa;
+    background: #fefefe;
+    list-style-type: none; 
+}
+
+.tabs::before, .tabs::after {
+    display: table;
+    content: ' ';
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-order: 1;
+    order: 1; 
+}
+
+.tabs::after {
+    clear: both; 
+}
+
+.tabs-title {
+    float: left;
+}
+
+.tabs-title > a {
+    display: block;
+    padding: 1.25rem 1.5rem;
+    font-size: 0.80rem;
+    line-height: 1;
+    color: #12306f;
+}
+
+.tabs-title > a:hover {
+    background: #fefefe;
+    color: #12306f;
+    outline: none;
+}
+
+.tabs-title > a:focus, .tabs-title > a[aria-selected='true'] {
+    background: #e6e6e6;
+    color: #12306f;
+    outline: none;
+}
+
+.tabs-content {
+    border: 1px solid #bababa;
+    border-top: 0;
+    background: #fefefe;
+    color: #0a0a0a;
+    transition: all 0.5s ease; 
+}
+
+.tabs-content.vertical {
+    border: 1px solid #bababa;
+}
 
 /**** Relatório  ****/
 
