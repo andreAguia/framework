@@ -921,6 +921,12 @@ class Input {
                 break;
 
             case "processo":
+                echo ' size="' . ($this->size) . '"';
+                echo ' type="text"';
+                echo ' value="' . $this->valor . '"';
+                echo '/>';
+                break;
+            
             case "sei":
                 echo ' size="' . ($this->size) . '"';
                 echo ' type="text"';

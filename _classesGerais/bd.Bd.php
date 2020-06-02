@@ -80,7 +80,7 @@ abstract class Bd {
 ###########################################################
 
     public function select($select = NULL, // string O select do banco de dados
-            $many = TRUE) {    // bool   Se TRUE retorna uma array com vários registros, se falso retorna um array simples com apenas um registro
+            $many = TRUE) {                // bool   Se TRUE retorna uma array com vários registros, se falso retorna um array simples com apenas um registro
         /**
          * Retorna um array multidimenssional, se many is TRUE, com os registros do banco de dados, ou um valor único dependendo do formato do campo no banco de dados, quando $many is FALSE.
          * 
