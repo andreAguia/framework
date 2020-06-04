@@ -669,7 +669,7 @@ var i,
 	fcssescape = function( ch, asCodePoint ) {
 		if ( asCodePoint ) {
 
-			// U+0000 NULL becomes U+FFFD REPLACEMENT CHARACTER
+			// U+0000 null becomes U+FFFD REPLACEMENT CHARACTER
 			if ( ch === "\0" ) {
 				return "\uFFFD";
 			}
@@ -1069,7 +1069,7 @@ support = Sizzle.support = {};
 /**
  * Detects XML nodes
  * @param {Element|Object} elem An element or a document
- * @returns {Boolean} True iff elem is a non-HTML XML node
+ * @returns {Boolean} true iff elem is a non-HTML XML node
  */
 isXML = Sizzle.isXML = function( elem ) {
 	var namespace = elem.namespaceURI,
@@ -3242,7 +3242,7 @@ function createOptions( options ) {
  *
  *	unique:			will ensure a callback can only be added once (no duplicate in the list)
  *
- *	stopOnFalse:	interrupt callings when a callback returns false
+ *	stopOnfalse:	interrupt callings when a callback returns false
  *
  */
 jQuery.Callbacks = function( options ) {
@@ -3289,7 +3289,7 @@ jQuery.Callbacks = function( options ) {
 
 					// Run callback and check for early termination
 					if ( list[ firingIndex ].apply( memory[ 0 ], memory[ 1 ] ) === false &&
-						options.stopOnFalse ) {
+						options.stopOnfalse ) {
 
 						// Jump to end and forget the data so .add doesn't re-fire
 						firingIndex = list.length;
@@ -4905,11 +4905,11 @@ var
 	rmouseEvent = /^(?:mouse|pointer|contextmenu|drag|drop)|click/,
 	rtypenamespace = /^([^.]*)(?:\.(.+)|)/;
 
-function returnTrue() {
+function returntrue() {
 	return true;
 }
 
-function returnFalse() {
+function returnfalse() {
 	return false;
 }
 
@@ -4971,7 +4971,7 @@ function on( elem, types, selector, data, fn, one ) {
 		}
 	}
 	if ( fn === false ) {
-		fn = returnFalse;
+		fn = returnfalse;
 	} else if ( !fn ) {
 		return elem;
 	}
@@ -5366,7 +5366,7 @@ jQuery.event = {
 					el.click && nodeName( el, "input" ) ) {
 
 					// dataPriv.set( el, "click", ... )
-					leverageNative( el, "click", returnTrue );
+					leverageNative( el, "click", returntrue );
 				}
 
 				// Return false to allow normal processing in the caller
@@ -5422,7 +5422,7 @@ function leverageNative( el, type, expectSync ) {
 	// Missing expectSync indicates a trigger call, which must force setup through jQuery.event.add
 	if ( !expectSync ) {
 		if ( dataPriv.get( el, type ) === undefined ) {
-			jQuery.event.add( el, type, returnTrue );
+			jQuery.event.add( el, type, returntrue );
 		}
 		return;
 	}
@@ -5527,8 +5527,8 @@ jQuery.Event = function( src, props ) {
 
 				// Support: Android <=2.3 only
 				src.returnValue === false ?
-			returnTrue :
-			returnFalse;
+			returntrue :
+			returnfalse;
 
 		// Create target properties
 		// Support: Safari <=6 - 7 only
@@ -5561,15 +5561,15 @@ jQuery.Event = function( src, props ) {
 // https://www.w3.org/TR/2003/WD-DOM-Level-3-Events-20030331/ecma-script-binding.html
 jQuery.Event.prototype = {
 	constructor: jQuery.Event,
-	isDefaultPrevented: returnFalse,
-	isPropagationStopped: returnFalse,
-	isImmediatePropagationStopped: returnFalse,
+	isDefaultPrevented: returnfalse,
+	isPropagationStopped: returnfalse,
+	isImmediatePropagationStopped: returnfalse,
 	isSimulated: false,
 
 	preventDefault: function() {
 		var e = this.originalEvent;
 
-		this.isDefaultPrevented = returnTrue;
+		this.isDefaultPrevented = returntrue;
 
 		if ( e && !this.isSimulated ) {
 			e.preventDefault();
@@ -5578,7 +5578,7 @@ jQuery.Event.prototype = {
 	stopPropagation: function() {
 		var e = this.originalEvent;
 
-		this.isPropagationStopped = returnTrue;
+		this.isPropagationStopped = returntrue;
 
 		if ( e && !this.isSimulated ) {
 			e.stopPropagation();
@@ -5587,7 +5587,7 @@ jQuery.Event.prototype = {
 	stopImmediatePropagation: function() {
 		var e = this.originalEvent;
 
-		this.isImmediatePropagationStopped = returnTrue;
+		this.isImmediatePropagationStopped = returntrue;
 
 		if ( e && !this.isSimulated ) {
 			e.stopImmediatePropagation();
@@ -5760,7 +5760,7 @@ jQuery.fn.extend( {
 			selector = undefined;
 		}
 		if ( fn === false ) {
-			fn = returnFalse;
+			fn = returnfalse;
 		}
 		return this.each( function() {
 			jQuery.event.remove( this, types, fn, selector );

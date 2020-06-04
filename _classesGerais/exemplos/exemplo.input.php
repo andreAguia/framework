@@ -8,8 +8,8 @@ $controle = new Input('nome', 'texto', 'Nome:', 1);  // Dados básicos do contro
 $controle->set_size(30);                          // Informa o tamanho. Observe que o maxlength não foi informado.
 $controle->set_linha(1);                          // Informa a linha do controle
 $controle->set_col(4);                            // Informa a quantidade de colunas usadas para esse controle.
-$controle->set_required(TRUE);                    // Informa que é obrigatório
-$controle->set_autofocus(TRUE);                   // Joga o foco para esse controle
+$controle->set_required(true);                    // Informa que é obrigatório
+$controle->set_autofocus(true);                   // Joga o foco para esse controle
 $controle->set_tabIndex(1);                       // Primeiro controle do tab
 $controle->set_placeholder('Nome do Servidor');   // Define a dica no corpo do controle
 $controle->set_title('O nome do servidor');       // Define a dica no mouseover
@@ -69,7 +69,7 @@ $controle->set_size(10);
 $controle->set_linha(2);
 $controle->set_col(2);                            // A soma dos controle em uma linha deve dar 12
 $controle->set_tabIndex(7);
-$controle->set_array(array(NULL, "azul", "verde", "preto", "rosa"));
+$controle->set_array(array(null, "azul", "verde", "preto", "rosa"));
 $controle->set_placeholder('Cor');
 $controle->set_title('Cor Preferida');
 $form->add_item($controle);

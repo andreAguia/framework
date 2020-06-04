@@ -7,8 +7,8 @@ class Menu {
      * 
      * @author André Águia (Alat) - alataguia@gmail.com
      * 
-     * @var private $item    array   NULL     Array de itens do menu
-     * @var private $tipo    array   NULL     Array com o tipo de cada item: Pode ser: link|titulo|linkWindow|linkAjax
+     * @var private $item    array   null     Array de itens do menu
+     * @var private $tipo    array   null     Array com o tipo de cada item: Pode ser: link|titulo|linkWindow|linkAjax
      * @var private $classe  string  menuVertical classe para o css
      * 
      * @example exemplo.menu.php 
@@ -34,16 +34,16 @@ class Menu {
 
 ###########################################################
 
-    public function add_item($tipo = 'link', $label = NULL, $url = '#', $title = NULL, $accessKey = NULL, $target = NULL, $bold = FALSE) {
+    public function add_item($tipo = 'link', $label = null, $url = '#', $title = null, $accessKey = null, $target = null, $bold = false) {
         /**
          * Adiciona um item ao menu
          * 
          * @param $tipo      string link O tipo do item. Pode ser: link|titulo|linkWindow|linkAjax
-         * @param $label     string NULL O nome que vai aparecer no item
+         * @param $label     string null O nome que vai aparecer no item
          * @param $url       string # A url do link
-         * @param $title     string NULL O texto que irá aparecer no mouseover
-         * @param $accessKey string NULL A letra para o atalho do link
-         * @param $target    string NULL O nome da janela ou div quando é do tipo linkWindow ou linkAjax 
+         * @param $title     string null O texto que irá aparecer no mouseover
+         * @param $accessKey string null A letra para o atalho do link
+         * @param $target    string null O nome da janela ou div quando é do tipo linkWindow ou linkAjax 
          * 
          * @note os tipos de item: titulo -> será exibido com título; link -> é um link normal que abrirá na mesma janela; linkWindow -> link que abrirá em uma janela. Normalmente usado em relatórios; linkAjax -> usado para chamar uma rotina a ser aberta dentro de uma div sem reload.
          * 

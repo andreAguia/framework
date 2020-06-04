@@ -9,14 +9,14 @@ class Calendario {
      * 
      * @example exemplo.calendario.php 
      */
-    private $mes = NULL;        // integer O mês a ser exibido. 1 a 12.
-    private $ano = NULL;        // integer O ano do calandário com 4 dígitos
+    private $mes = null;        // integer O mês a ser exibido. 1 a 12.
+    private $ano = null;        // integer O ano do calandário com 4 dígitos
     private $tamanho = "p";     // string  O tamanho do calendário: p | g
 
 ###########################################################    
 
-    public function __construct($mes = NULL, // integer O mês a ser exibido. 1 a 12.
-            $ano = NULL) {   // integer O ano do calandário com 4 dígitos     
+    public function __construct($mes = null, // integer O mês a ser exibido. 1 a 12.
+            $ano = null) {   // integer O ano do calandário com 4 dígitos     
         /**
          * Inicia a classe atribuindo um valor do legend e do id
          * 
@@ -48,7 +48,7 @@ class Calendario {
 
 ###########################################################
 
-    public function set_tamanho($tamanho = NULL) { // string O tamanho do calendário: p | g
+    public function set_tamanho($tamanho = null) { // string O tamanho do calendário: p | g
         /**
          * Informa o tamanho do nome do dia da semana no cabeçalçho da tabela do calendário
          * 

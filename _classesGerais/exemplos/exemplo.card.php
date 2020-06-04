@@ -29,7 +29,7 @@ $card->fecha();
 br();
 
 # Card 3
-$card = new Card(NULL, 'Card sem cabeçalho');
+$card = new Card(null, 'Card sem cabeçalho');
 $card->set_title('Esse Card está Funcionando');
 $card->set_color('red');
 $card->abre();

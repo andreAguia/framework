@@ -32,9 +32,9 @@ class Grid {
 
 ###########################################################
 
-    public function abreColuna($small = NULL, // string O tamanho da coluna quando a tela for pequena
-            $medium = NULL, // string O tamanho da coluna quando a tela for media
-            $large = NULL) {      // string O tamanho da coluna quando a tela for grande
+    public function abreColuna($small = null, // string O tamanho da coluna quando a tela for pequena
+            $medium = null, // string O tamanho da coluna quando a tela for media
+            $large = null) {      // string O tamanho da coluna quando a tela for grande
         /**
          * Inicia uma coluna de uma grid. Similar a um td.
          * 

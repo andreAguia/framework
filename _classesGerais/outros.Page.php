@@ -13,43 +13,43 @@ class Page {
      * @var private $author      string AUTOR          Autor do Código.
      * @var private $system      string SISTEMA        Nome do Sistema.
      * @var private $version     string VERSAO         Versão do Sistema.
-     * @var private $title       string NULL           O title da página (mensagem do topo no browser)
+     * @var private $title       string null           O title da página (mensagem do topo no browser)
      * 
      * @group do refresh
-     * @var private $refresh     bool    FALSE Se a página terá refresh automático
+     * @var private $refresh     bool    false Se a página terá refresh automático
      * @var private $refreshTime integer 30    Versão do Sistema.
      * 
      * @group do javaScript
-     * @var private $jscript    string NULL Acrescenta uma rotina jscript extra.
-     * @var private $bodyOnLoad string NULL Acrescenta rotina no onload do body.
+     * @var private $jscript    string null Acrescenta uma rotina jscript extra.
+     * @var private $bodyOnLoad string null Acrescenta rotina no onload do body.
      */
     # Atributos pegos do config
     private $description = DESCRICAO;       # Descrição do Site
     private $author = AUTOR;                # Autor do Código
     private $system = SISTEMA;              # Nome do Sistema
     private $version = VERSAO;              # Versão do Sistema
-    private $title = NULL;                  # O title da página (mensagem do topo no browser)
+    private $title = null;                  # O title da página (mensagem do topo no browser)
     # refresh
-    private $refresh = FALSE;   # Se a página terá refresh automático
+    private $refresh = false;   # Se a página terá refresh automático
     private $refreshTime = 30;  # O tempo para esse refresh em segundos    
     # javaScript
-    private $jscript = NULL;    # acrescenta uma rotina jscript extra;
-    private $bodyOnLoad = NULL; # acrescenta rotina no onload do body;
+    private $jscript = null;    # acrescenta uma rotina jscript extra;
+    private $bodyOnLoad = null; # acrescenta rotina no onload do body;
     # jquery
-    private $ready = NULL;      # inicia a rotina quando a tela começa a carregar (DOM ready)
-    private $onLoad = NULL;     # inicia a rotina quando toda a página terminar de carregar
+    private $ready = null;      # inicia a rotina quando a tela começa a carregar (DOM ready)
+    private $onLoad = null;     # inicia a rotina quando toda a página terminar de carregar
     # css
     private $css = "foundation";    # Escolhe qual framework css vai carregar: foundation ou w3c
 
 ###########################################################
 
-    public function set_title($title = NULL) {
+    public function set_title($title = null) {
         /**
          * Informa o title da página, mensagem do topo no browser
          * 
          * @syntax $page->set_title($title);
          * 
-         * @param $title string NULL O title da página
+         * @param $title string null O title da página
          */
         $this->title = $title;
     }
@@ -62,7 +62,7 @@ class Page {
          * 
          * @syntax $page->set_refresh($refresh, [$refreshTime]);
          * 
-         * @param $refresh     bool    NULL Se a página possui ou não atualização automática (TRUE / FALSE)
+         * @param $refresh     bool    null Se a página possui ou não atualização automática (true / false)
          * @param $refreshTime integer 30   Informa, em segundos, o tempo para ser atualizada.
          */
         $this->refresh = $refresh;
@@ -71,52 +71,52 @@ class Page {
 
 ###########################################################
 
-    public function set_jscript($jscript = NULL) {
+    public function set_jscript($jscript = null) {
         /**
          * Informa a rotina jscript extra que será carregada junto com as outras rotinas js
          * 
          * @syntax $page->set_jscript($jscript);
          * 
-         * @param $jscript string NULL Rotina jscript extra que será carregada junto com as outras rotinas js
+         * @param $jscript string null Rotina jscript extra que será carregada junto com as outras rotinas js
          */
         $this->jscript = $jscript;
     }
 
 ###########################################################
 
-    public function set_bodyOnLoad($bodyOnLoad = NULL) {
+    public function set_bodyOnLoad($bodyOnLoad = null) {
         /**
          * Informa a rotina a ser executada ao carregar o body
          * 
          * @syntax $page->set_bodyOnLoad($bodyOnLoad);
          * 
-         * @param $bodyOnLoad string NULL Rotina a ser executada ao carregar o body
+         * @param $bodyOnLoad string null Rotina a ser executada ao carregar o body
          */
         $this->bodyOnLoad = $bodyOnLoad;
     }
 
 ###########################################################
 
-    public function set_ready($ready = NULL) {
+    public function set_ready($ready = null) {
         /**
          * Executa rotina ao iniciar a página (carregar o DOM) utilizando o jquery
          * 
          * @syntax $page->set_ready($ready);
          * 
-         * @param $ready string NULL Rotina a ser executada 
+         * @param $ready string null Rotina a ser executada 
          */
         $this->ready = $ready;
     }
 
 ###########################################################
 
-    public function set_onLoad($onLoad = NULL) {
+    public function set_onLoad($onLoad = null) {
         /**
          * Executa rotina quando toda a página for carregada utilizando o jquery
          * 
          * @syntax $page->set_onLoad($onLoad);
          * 
-         * @param $onLoad string NULL Rotina a ser executada
+         * @param $onLoad string null Rotina a ser executada
          */
         $this->onLoad = $onLoad;
     }

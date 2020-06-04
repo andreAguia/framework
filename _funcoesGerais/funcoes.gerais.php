@@ -6,7 +6,7 @@
  */
 ###########################################################
 
-function post($nome, $padrao = NULL) {
+function post($nome, $padrao = null) {
     /**
      * Retorna o valor de um post oriundo de um formulário
      *
@@ -16,8 +16,8 @@ function post($nome, $padrao = NULL) {
      *
      * @note Quando nenhum valor é retornado a função retorna o valor $padrao.
      *
-     * @param $nome   string NULL Nome do post a ser lido.
-     * @param $padrao string NULL Valor retornado caso seja NULL.
+     * @param $nome   string null Nome do post a ser lido.
+     * @param $padrao string null Valor retornado caso seja null.
      *
      * @example exemplo.post.php
      */
@@ -32,7 +32,7 @@ function post($nome, $padrao = NULL) {
         ## da função post, mas continua na função get e get_session.
         # Força a ser nulo quando for ""
         #if(vazio($valor)){
-        #    $valor = NULL;
+        #    $valor = null;
         #}
         # Retorna o valor padrão quando for nulo
         if (is_null($valor)) {
@@ -47,7 +47,7 @@ function post($nome, $padrao = NULL) {
 
 ###########################################################
 
-function get($nome, $padrao = NULL) {
+function get($nome, $padrao = null) {
     /**
      * Retorna o valor de um get
      *
@@ -57,8 +57,8 @@ function get($nome, $padrao = NULL) {
      *
      * @note Quando nenhum valor é retornado a função retorna o valor $padrao.
      *
-     * @param $nome   string NULL Nome do get a ser lido.
-     * @param $padrao string NULL Valor retornado caso seja NULL.
+     * @param $nome   string null Nome do get a ser lido.
+     * @param $padrao string null Valor retornado caso seja null.
      *
      * @example exemplo.get.php
      */
@@ -66,7 +66,7 @@ function get($nome, $padrao = NULL) {
         $valor = filter_input(INPUT_GET, $nome); // Pega o valor (substitui o $_get)
         # Força a ser nulo quando for ""
         if (vazio($valor)) {
-            $valor = NULL;
+            $valor = null;
         }
 
         # Retorna o valor padrão quando for nulo
@@ -82,7 +82,7 @@ function get($nome, $padrao = NULL) {
 
 ###########################################################
 
-function loadPage($url, $target = NULL, $parametros = 'menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600') {
+function loadPage($url, $target = null, $parametros = 'menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600') {
     /**
      * Chama outra página PHP
      *
@@ -90,8 +90,8 @@ function loadPage($url, $target = NULL, $parametros = 'menubar=no,scrollbars=yes
      *
      * @note Muito utilizada para a abertura da janela dos relatórios.
      *
-     * @param $url          string NULL     A página a ser aberta.
-     * @param $target       string NULL     Informa se abrirá em uma nova janela no browser.
+     * @param $url          string null     A página a ser aberta.
+     * @param $target       string null     Informa se abrirá em uma nova janela no browser.
      * @param $parametros   string videNota Parâmetros para o java script.
      *
      * @note O valor padrão do parâmetro: parametro é: 'menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600'
@@ -105,7 +105,7 @@ function loadPage($url, $target = NULL, $parametros = 'menubar=no,scrollbars=yes
 
 ###########################################################
 
-function ajaxLoadPage($url = NULL, $div = NULL) {
+function ajaxLoadPage($url = null, $div = null) {
     /**
      * Abre um outra página php dentro de uma div sem fazer reload da página inteira. Somente a div é atualizada.
      *
@@ -113,15 +113,15 @@ function ajaxLoadPage($url = NULL, $div = NULL) {
      *
      * @note Esta rotina nada mais faz que chamar uma rotina homônima em jscript que efetivamente executa a rotina.
      *
-     * @param $url string NULL A página que será carrregada.
-     * @param $div string NULL O id da div onde a página será aberta.
+     * @param $url string null A página que será carrregada.
+     * @param $div string null O id da div onde a página será aberta.
      */
     echo "<script>ajaxloadPage('$url','$div','');</script>";
 }
 
 ###########################################################
 
-function set_session($nome = NULL, $valor = NULL) {
+function set_session($nome = null, $valor = null) {
     /**
      * Escreve um valor em uma variável de sessão para ser usada em outras páginas sem a necessidade de repassá-la com post ou get.
      *
@@ -129,8 +129,8 @@ function set_session($nome = NULL, $valor = NULL) {
      *
      * @note Se a variável não existe ela será criada, se ela já existe o valor será atualizado.
      *
-     * @param $nome  string NULL O nome da variável se sessão a ser criada ou alterada.
-     * @param $valor string NULL O valor a ser inserido.
+     * @param $nome  string null O nome da variável se sessão a ser criada ou alterada.
+     * @param $valor string null O valor a ser inserido.
      *
      * @example exemplo.set_session.php
      */
@@ -139,7 +139,7 @@ function set_session($nome = NULL, $valor = NULL) {
 
 ###########################################################
 
-function get_session($nome, $padrao = NULL) {
+function get_session($nome, $padrao = null) {
     /**
      * Retorna uma string com o conteúdo da variável de sessao.
      *
@@ -150,7 +150,7 @@ function get_session($nome, $padrao = NULL) {
      * @note Se o valor retornado for nulo será retornado o valor padrão.
      *
      * @param $nome   string O nome da variável de sessão
-     * @param $padrao string O valor retornado caso seja NULL
+     * @param $padrao string O valor retornado caso seja null
      *
      * @example exemplo.set_session.php
      */
@@ -159,7 +159,7 @@ function get_session($nome, $padrao = NULL) {
 
         # Força a ser nulo quando for ""
         if (vazio($valor)) {
-            $valor = NULL;
+            $valor = null;
         }
 
         # Retorna o valor padrão quando for nulo
@@ -188,13 +188,13 @@ function date_to_bd($data, $separador = '/') {
      * @note Utilizado para converter as data ao formato de gravação do banco de dados.
      * @note Interessante também observar que independente do separador de entrada o separador de saída será sempre o -
      *
-     * @param $data      date   NULL A data a ser transformada no formato DD/MM/AAAA
+     * @param $data      date   null A data a ser transformada no formato DD/MM/AAAA
      * @param $separador string /    O separador da data
      *
      * @example exemplo.date_to_bd.php
      */
     if (empty($data)) {
-        return FALSE;
+        return false;
     } else {
         $dt1 = explode($separador, $data);
         $dt2 = $dt1[2] . '-' . $dt1[1] . '-' . $dt1[0];
@@ -218,13 +218,13 @@ function date_to_php($data, $separador = '-') {
      * @note Nessa função o separador padrão difere da função date_to_bd. Isso acontece porque - é o separador padrão do mysql.
      * @note Interessante também observar que independente do separador de entrada o separador de saída será sempre o /
      *
-     * @param $data      date   NULL A data a ser transformada no formato AAAA-MM-DD
+     * @param $data      date   null A data a ser transformada no formato AAAA-MM-DD
      * @param $separador string -    O separador da data.
      *
      * @example exemplo.date_to_php.php
      */
     if (empty($data)) {
-        return NULL;
+        return null;
     } else {
         $dt1 = explode($separador, $data);
         $dt2 = $dt1[2] . '/' . $dt1[1] . '/' . $dt1[0];
@@ -246,14 +246,14 @@ function datetime_to_php($data, $separadorData = '-', $separadorHora = ':') {
      *
      * @note Utilizado para recuperar datas com horas do banco de dados.
      *
-     * @param $data          date   NULL A data a ser transformada
+     * @param $data          date   null A data a ser transformada
      * @param $separadorData string -    O separador da data
      * @param $separadorHora string :    O separador da hora
      *
      * @example exemplo.datetime_to_php.php
      */
     if (is_null($data) or ($data == "")) {
-        return NULL;
+        return null;
     } else {
         # Separa data da hora
         $dt1 = explode($separadorData, $data);
@@ -275,7 +275,7 @@ function back($numPaginas) {
      *
      * @note Utilizado para voltar uma ou duas páginas anteriores e refazer alguma tarefa.
      *
-     * @param $numPaginas integer NULL O número de páginas para voltar.
+     * @param $numPaginas integer null O número de páginas para voltar.
      */
     echo '<script>javascript:history.go(-' . $numPaginas . ');</script>';
 }
@@ -331,7 +331,7 @@ function get_browserName() {
 
     foreach ($bots as $bot) {
         // if bot, returns OTHER
-        if (strpos(strtoupper($var), $bot) !== FALSE) {
+        if (strpos(strtoupper($var), $bot) !== false) {
             return $info;
         }
     }
@@ -341,7 +341,7 @@ function get_browserName() {
         $s = strpos(strtoupper($var), $parent);
         $f = $s + strlen($parent);
         $version = preg_replace('/[^0-9,.]/', '', substr($var, $f, 5));
-        if (strpos(strtoupper($var), $parent) !== FALSE) {
+        if (strpos(strtoupper($var), $parent) !== false) {
             $info['browser'] = $parent;
             $info['version'] = $version;
             return $info;
@@ -352,7 +352,7 @@ function get_browserName() {
 
 ###########################################################
 
-function get_nomeMes($numero = NULL) {
+function get_nomeMes($numero = null) {
     /**
      * Retorna o nome do mês cujo número foi informado
      *
@@ -362,7 +362,7 @@ function get_nomeMes($numero = NULL) {
      *
      * @return string com o nome do mês
      *
-     * @param $mes integer NULL Número inteiro entre 1 e 12 representando um mês do ano.
+     * @param $mes integer null Número inteiro entre 1 e 12 representando um mês do ano.
      *
      * @note Está função deverá der removida pois o sistema já conta o array $mes iniciado na configuração do sistema que já fornece essa informação.
      *
@@ -407,7 +407,7 @@ function get_nomeMesAno($mesAno) {
      *
      * @return string com o nome do mês / ano
      *
-     * @param $mesAno string NULL string no formato MM/AAAA
+     * @param $mesAno string null string no formato MM/AAAA
      *
      * @note Está função foi criada para rotina da área de férias por ano de fruição.
      *
@@ -456,7 +456,7 @@ function retiraAspas($texto) {
      * @note Esta função é o conjunto de 2 funções em php e foi criada para facilitar o código.
      * @note Função muito útil para se evitar problemas ao exibir textos.
      *
-     * @param $texto string NULL O texto a ser trabalhado.
+     * @param $texto string null O texto a ser trabalhado.
      *
      * @example exemplo.retiraAspas.php
      */
@@ -479,8 +479,8 @@ function bold($texto, $destaque) {
      * @note Usado na rotina de pesquisa para destacar o item pesquisado.
      * @note Quando o trecho para destacar não possui acento e o texto principal possui a palavra não é destacada.
      *
-     * @param $texto    string NULL O texto principal de onde existe o trecho a ser destacado.
-     * @param $destaque string NULL O trecho do texto principal a ser destacado.
+     * @param $texto    string null O texto principal de onde existe o trecho a ser destacado.
+     * @param $destaque string null O trecho do texto principal a ser destacado.
      *
      * @example exemplo.bold.php
      */
@@ -509,7 +509,7 @@ function del($texto) {
      *
      * @return string do texto tachado
      *
-     * @param $texto    string NULL O a ser tachado
+     * @param $texto    string null O a ser tachado
      *
      * @example exemplo.del.php
      */
@@ -551,12 +551,12 @@ function soNumeros($texto) {
      *
      * @note Usado para garantir que somente número sejam digitados.
      *
-     * @param $texto string NULL O string a ser trabalhado.
+     * @param $texto string null O string a ser trabalhado.
      *
      * @example exemplo.soNumeros.php
      */
     if (is_null($texto)) {
-        return NULL;
+        return null;
     } else {
         return preg_replace("/[^0-9]/", "", $texto);
     }
@@ -572,7 +572,7 @@ function abreDiv($nome) {
      *
      * @note Esta função apenas executa a função homônima em jscript
      *
-     * @param $nome string NULL O id da div a ser exibida.
+     * @param $nome string null O id da div a ser exibida.
      *
      * @deprecated
      */
@@ -581,7 +581,7 @@ function abreDiv($nome) {
 
 ###########################################################
 
-function moedaExtenso($valor = 0, $maiusculas = FALSE) {
+function moedaExtenso($valor = 0, $maiusculas = false) {
     /**
      * Retorna escrito por extenso o número fornecido em valores monetários (REAIS).
      *
@@ -591,8 +591,8 @@ function moedaExtenso($valor = 0, $maiusculas = FALSE) {
      *
      * @note Usado para fornecer, por extenso, o valor monetário (dinheiro) de alguma transação.
      *
-     * @param $valor      string  NULL O valor a ser transformado.
-     * @param $maiusculas boolean Quando TRUE as primeiras letras são maiúsculas.
+     * @param $valor      string  null O valor a ser transformado.
+     * @param $maiusculas boolean Quando true as primeiras letras são maiúsculas.
      *
      * @example exemplo.moedaExtenso.php
      */
@@ -677,7 +677,7 @@ function anti_injection($str) {
     /**
      * Função que retira comandos sql de uma string
      *
-     * @param $str string NULL a string a ser tratada
+     * @param $str string null a string a ser tratada
      *
      * @return string sem comandos sql. Caso existam.
      *
@@ -692,11 +692,11 @@ function anti_injection($str) {
 
 ###########################################################
 
-function hr($id = NULL) {
+function hr($id = null) {
     /**
      * Insere uma linha
      *
-     * @param $id string NULL a id do hr para o css
+     * @param $id string null a id do hr para o css
      *
      * @syntax hr();
      *
@@ -721,14 +721,14 @@ function alert($mensagem) {
      *
      * @syntax alert($mensagem);
      *
-     * @param $mensagem string NULL A mensagem a ser exibida.
+     * @param $mensagem string null A mensagem a ser exibida.
      */
     echo '<script>alert("' . $mensagem . '");</script>';
 }
 
 ###########################################################
 
-function p($mensagem = NULL, $id = NULL, $class = NULL, $title = NULL) {
+function p($mensagem = null, $id = null, $class = null, $title = null) {
     /**
      * Exibe uma mensagem.
      *
@@ -736,10 +736,10 @@ function p($mensagem = NULL, $id = NULL, $class = NULL, $title = NULL) {
      *
      * @note Essa função chama a tag p do html.
      *
-     * @param $mensagem string NULL A mensagem a ser exibida.
-     * @param $id       string NULL O id para o css.
-     * @param $class    string NULL A classe para o css.
-     * @param $title    string NULL A title do texto.
+     * @param $mensagem string null A mensagem a ser exibida.
+     * @param $id       string null O id para o css.
+     * @param $class    string null A classe para o css.
+     * @param $title    string null A title do texto.
      *
      * @example exemplo.p.php
      */
@@ -767,13 +767,13 @@ function p($mensagem = NULL, $id = NULL, $class = NULL, $title = NULL) {
 
 ###########################################################
 
-function titulo($mensagem = NULL, $title = NULL) {
+function titulo($mensagem = null, $title = null) {
     /**
      * Exibe um texto centralizado dentro de um painel com fundo azul escuro. Utilizado para títulos de páginas.
      *
      * @syntax titulo($mensagem, [$title]);
      *
-     * @param $titulo string NULL O Título a ser exibido
+     * @param $titulo string null O Título a ser exibido
      *
      * @example exemplo.titulo.php
      */
@@ -791,13 +791,13 @@ function titulo($mensagem = NULL, $title = NULL) {
 
 ###########################################################
 
-function tituloTable($mensagem = NULL, $title = NULL) {
+function tituloTable($mensagem = null, $title = null) {
     /**
      * Exibe um texto centralizado dentro de um painel com fundo igual ao titulo da tabela
      *
      * @syntax titulo($mensagem, [$title]);
      *
-     * @param $titulo string NULL O Título a ser exibido
+     * @param $titulo string null O Título a ser exibido
      *
      * @example exemplo.titulo.php
      */
@@ -821,7 +821,7 @@ function botaoVoltar($url, $label = 'Voltar', $title = 'Volta para a página ant
      *
      * @syntax botaoVoltar($url, [$label], [$title] );
      *
-     * @param $url   string NULL     A url do botão
+     * @param $url   string null     A url do botão
      * @param $label string	'Voltar' O texto que aparecerá no botão
      * @param $title string TEXTO    A mensagem no mouseover
      */
@@ -847,7 +847,7 @@ function botaoVoltar($url, $label = 'Voltar', $title = 'Volta para a página ant
 
 ###########################################################
 
-function aguarde($texto = NULL) {
+function aguarde($texto = null) {
 
     /**
      * Rotina que exibe uma animação sugerindo aguardar alguma tarefa ser concluída.
@@ -884,7 +884,7 @@ function formataMoeda($valor, $formato = 1) {
      * @note Assim quando não for informado o formato o sistema irá entender que o valor que será inserido é o formato americano e será transformado para o formato brasileiro.
      * @note Da mesma forma que quando o parâmetro formato for informado com 2. Entender-se-á que o formato do parâmetro $valor é o brasileiro e será convertido para o formato americano.
      *
-     * @param $valor   string  NULL O valor a ser alterado
+     * @param $valor   string  null O valor a ser alterado
      * @param $formato integer 1    O formato sendo: 1 - formato brasileiro | 2 - formato americano para gravação no bd
      *
      * @example exemplo.formataMoeda.php
@@ -908,7 +908,7 @@ function formataNumLinha($numero) {
      *
      * @syntax formataNumLinha($numero);
      *
-     * @param $numero string NULL O número da linha a ser formatada.
+     * @param $numero string null O número da linha a ser formatada.
      *
      * @note Um exemplo dessa formatação poderá ser vista clicando no botão código desta página.
      */
@@ -937,7 +937,7 @@ function callout($mensagem, $tipo = "warning") {
      * @note Foi criada para facilitar o código quando se quer somente exibir uma mensagem dentro de um painel colorido.
      * @note Utiliza a funcionalidade callout do Foundation
      *
-     * @param $mensagem string NULL    A mensagem a ser exibida
+     * @param $mensagem string null    A mensagem a ser exibida
      * @param $tipo     string warning O tipo do callout: secondary | primary | success | warning | alert
      *
      * @syntax callout($mensagem, [$tipo]);
@@ -966,16 +966,16 @@ function callout($mensagem, $tipo = "warning") {
 
 ###########################################################
 
-function label($mensagem, $tipo = "warning", $id = NULL, $title = NULL) {
+function label($mensagem, $tipo = "warning", $id = null, $title = null) {
     /**
      * Cria uma mensagem com fundo colorido.
      *
      * @note Utiliza a funcionalidade label do Foundation
      *
-     * @param $mensagem string NULL    A mensagem a ser exibida:
+     * @param $mensagem string null    A mensagem a ser exibida:
      * @param $tipo     string warning O tipo: secondary | primary | success | warning | alert
-     * @param $id       string NULL    O id para o css
-     * @param $title    string NULL    O texto para o mouseover
+     * @param $id       string null    O id para o css
+     * @param $title    string null    O texto para o mouseover
      *
      * @syntax label($mensagem, [$tipo], [$id], [$title]);
      *
@@ -986,7 +986,7 @@ function label($mensagem, $tipo = "warning", $id = NULL, $title = NULL) {
 
 ###########################################################
 
-function badge($mensagem, $tipo = "warning", $id = NULL, $title = NULL) {
+function badge($mensagem, $tipo = "warning", $id = null, $title = null) {
     /**
      * Semelhante a função label mas com bordas arredondadas
      *
@@ -994,10 +994,10 @@ function badge($mensagem, $tipo = "warning", $id = NULL, $title = NULL) {
      * @note Os caracteres ficam dentro de um círculo. Com palavras de mais de 2 caracteres o efeito não é bom.
      * @note Utiliza a funcionalidade badge do Foundation
      *
-     * @param $mensagem string NULL    A mensagem a ser exibida
+     * @param $mensagem string null    A mensagem a ser exibida
      * @param $tipo     string warning O tipo: secondary | primary | success | warning | alert
-     * @param $id       string NULL    O id para a função P usada na impressão da memsagem.
-     * @param $title    string NULL    Mensagem para o mouseover
+     * @param $id       string null    O id para a função P usada na impressão da memsagem.
+     * @param $title    string null    Mensagem para o mouseover
      *
      * @syntax badge($mensagem, [$tipo], [$id], [$title]);
      *
@@ -1008,7 +1008,7 @@ function badge($mensagem, $tipo = "warning", $id = NULL, $title = NULL) {
 
 ##########################################################
 
-function span($mensagem, $id = NULL, $class = NULL, $title = NULL) {
+function span($mensagem, $id = null, $class = null, $title = null) {
     /**
      * Cria um span com uma mensagem.
      *
@@ -1016,10 +1016,10 @@ function span($mensagem, $id = NULL, $class = NULL, $title = NULL) {
      * @note Apenas monta um elemento span com uma mensagem dentro.
      * @note Só tem utilidade quando está vinculado a alguma formatação css.
      *
-     * @param $mensagem string NULL    A mensagem a ser exibida:
-     * @param $id       string NULL    O id para o css.
-     * @param $class    string NULL    A classe para o css.
-     * @param $title    string NULL    O title para o mouseover.
+     * @param $mensagem string null    A mensagem a ser exibida:
+     * @param $id       string null    O id para o css.
+     * @param $class    string null    A classe para o css.
+     * @param $title    string null    O title para o mouseover.
      *
      * @syntax span($mensagem, [$id], [$class], [title]);
      */
@@ -1049,13 +1049,13 @@ function span($mensagem, $id = NULL, $class = NULL, $title = NULL) {
 
 function validaData($data) {
     /**
-     * Verifica se uma data é válida ou não retorna TRUE or FALSE
+     * Verifica se uma data é válida ou não retorna true or false
      *
-     * @return bool TRUE (1) para datas válidas e FALSE (0) para as inválidas.
+     * @return bool true (1) para datas válidas e false (0) para as inválidas.
      *
      * @category Data
      *
-     * @param $data string NULL A data a ser validada no formato brasileiro
+     * @param $data string null A data a ser validada no formato brasileiro
      *
      * @note Essa função é uma melhoria da função checkdate do php.
      * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
@@ -1067,10 +1067,10 @@ function validaData($data) {
      */
     # Verifica se o tamanho da data é menor que 8
     if (strlen($data) < 8) {
-        return FALSE;
+        return false;
     } else {
         # Verifica se a data possui a barra (/) de separação
-        if (strpos($data, "/") !== FALSE) {
+        if (strpos($data, "/") !== false) {
             $partes = explode("/", $data);
 
             # pega o dia da data
@@ -1083,32 +1083,32 @@ function validaData($data) {
             $ano = intval(isset($partes[2]) ? $partes[2] : 0);
 
             if ($mes == "00") {
-                return FALSE;
+                return false;
             }
 
             if ($dia == "00") {
-                return FALSE;
+                return false;
             }
 
             if (strlen($ano) < 4) {
-                return TRUE;
+                return true;
             } else {
                 # verifica se a data é válida
                 if (checkdate($mes, $dia, $ano)) {
-                    return TRUE;
+                    return true;
                 } else {
-                    return FALSE;
+                    return false;
                 }
             }
         } else {
-            return FALSE;
+            return false;
         }
     }
 }
 
 ###########################################################
 
-function addDias($data = NULL, $dias = 0, $primeiroDia = TRUE) {
+function addDias($data = null, $dias = 0, $primeiroDia = true) {
     /**
      * Adiciona dias a uma data
      *
@@ -1120,12 +1120,12 @@ function addDias($data = NULL, $dias = 0, $primeiroDia = TRUE) {
      *
      * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
      * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
-     * @note Se o terceiro parâmetro estiver TRUE, o primeiro dia será contado, senão a contagem começará apartir do dia seguinte.
+     * @note Se o terceiro parâmetro estiver true, o primeiro dia será contado, senão a contagem começará apartir do dia seguinte.
      * @note Se os dias estiverem negativos o valor será subtraído.
      *
-     * @param $data        string  NULL A data inicial
+     * @param $data        string  null A data inicial
      * @param $dias        integer 0    O número de dias a serem adicionados
-     * @param $primeiroDia bool    TRUE Se inclui o primeiro dia ou não
+     * @param $primeiroDia bool    true Se inclui o primeiro dia ou não
      *
      * @example exemplo.addDias.php
      */
@@ -1141,7 +1141,7 @@ function addDias($data = NULL, $dias = 0, $primeiroDia = TRUE) {
         return $dataFinal;
     } else {
         alert('Data Inválida');
-        return FALSE;
+        return false;
     }
 }
 
@@ -1155,26 +1155,26 @@ function entre($data, $dtInicial, $dtFinal) {
      *
      * @category Data
      *
-     * @return bool TRUE para confirmar e FALSE para negar
+     * @return bool true para confirmar e false para negar
      *
      * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
      * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
      *
-     * @param $data      date NULL A data a ser verificada.
-     * @param $dtInicial date NULL A data inicial do período.
-     * @param $dtFinal   date NULL A data final do período.
+     * @param $data      date null A data a ser verificada.
+     * @param $dtInicial date null A data inicial do período.
+     * @param $dtFinal   date null A data final do período.
      *
      * @example exemplo.entre.php
      */
     if (validaData($data)) {
         if ((date_to_bd($data) < date_to_bd($dtInicial)) or (date_to_bd($data) > date_to_bd($dtFinal))) {
-            return FALSE;
+            return false;
         } else {
-            return TRUE;
+            return true;
         }
     } else {
         alert('Data Inválida');
-        return FALSE;
+        return false;
     }
 }
 
@@ -1188,24 +1188,24 @@ function jaPassou($data) {
      *
      * @category Data
      *
-     * @return bool TRUE para confirmar e FALSE para negar
+     * @return bool true para confirmar e false para negar
      *
      * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
      * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
      *
-     * @param $data      date NULL A data a ser verificada.
+     * @param $data      date null A data a ser verificada.
      *
      * @example exemplo.jaPassou.php
      */
     if (validaData($data)) {
         if (date("Y-m-d") > date_to_bd($data)) {
-            return TRUE;
+            return true;
         } else {
-            return FALSE;
+            return false;
         }
     } else {
         alert('Data Inválida: ' . $data);
-        return FALSE;
+        return false;
     }
 }
 
@@ -1219,34 +1219,34 @@ function eHoje($data) {
      *
      * @category Data
      *
-     * @return bool TRUE para confirmar e FALSE para negar
+     * @return bool true para confirmar e false para negar
      *
      * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
      * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
      *
-     * @param $data      date NULL A data a ser verificada.
+     * @param $data      date null A data a ser verificada.
      *
      */
     if (validaData($data)) {
         if (date("Y/m/d") == date_to_bd($data)) {
-            return TRUE;
+            return true;
         } else {
-            return FALSE;
+            return false;
         }
     } else {
         alert('Data Inválida');
-        return FALSE;
+        return false;
     }
 }
 
 ###########################################################
 
-function dataDif($dataInicial, $dataFinal = NULL) {
+function dataDif($dataInicial, $dataFinal = null) {
     /**
      * Informa, em dias, o período entre duas datas
      *
-     * @param $dataInicial date NULL  A data inicial do período.
-     * @param $dataFinal   date NULL  A data final do período. Se for nula usa-se a data atual.
+     * @param $dataInicial date null  A data inicial do período.
+     * @param $dataFinal   date null  A data final do período. Se for nula usa-se a data atual.
      *
      * @syntax dataDif($dataInicial,[$dataFinal]);
      *
@@ -1286,17 +1286,17 @@ function dataDif($dataInicial, $dataFinal = NULL) {
         return $dias;
     } else {
         alert('Data Inválida');
-        return FALSE;
+        return false;
     }
 }
 
 ###########################################################
 
-function dataExtenso($data = NULL) {
+function dataExtenso($data = null) {
     /**
      * Exibe a data por extenso no formato [dia], de [mês] de [Ano]
      *
-     * @param $data	date NULL A data a ser transformada
+     * @param $data	date null A data a ser transformada
      *
      * @return string A data por extenso no formato [dia], de [mês] de [Ano]
      *
@@ -1321,17 +1321,17 @@ function dataExtenso($data = NULL) {
         return $dataExtenso;
     } else {
         alert('Data Inválida');
-        return FALSE;
+        return false;
     }
 }
 
 ###########################################################
 
-function dataExtenso2($data = NULL) {
+function dataExtenso2($data = null) {
     /**
      * Exibe a data por extenso todo em texto
      *
-     * @param $data	date NULL A data a ser transformada
+     * @param $data	date null A data a ser transformada
      *
      * @return string A data por extenso totalmente em palavras
      *
@@ -1354,8 +1354,8 @@ function dataExtenso2($data = NULL) {
         $dt[2] = intval($dt[2]);
 
         # Inicia variaveis
-        $inicio = NULL;
-        $dataExtenso = NULL;
+        $inicio = null;
+        $dataExtenso = null;
 
         # pega o mês
         $mes = strtolower(get_nomeMes($dt[1]));
@@ -1387,7 +1387,7 @@ function dataExtenso2($data = NULL) {
         return $dataExtenso;
     } else {
         alert('Data Inválida');
-        return FALSE;
+        return false;
     }
 }
 
@@ -1397,7 +1397,7 @@ function numero_to_letra($number) {
     /**
      * Converte um numero para palavra (exenso)
      *
-     * @param $number integer NULL O numero a ser tratado
+     * @param $number integer null O numero a ser tratado
      *
      * @return string A palavra
      *
@@ -1541,8 +1541,8 @@ function addMeses($data, $meses) {
      * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
      * @note Se o parâmetro meses for negativo a data será retroagida.
      *
-     * @param $data  string  NULL A data inicial
-     * @param $meses integer NULL A quantidade de meses a serem adicionados
+     * @param $data  string  null A data inicial
+     * @param $meses integer null A quantidade de meses a serem adicionados
      *
      * @example exemplo.addMeses.php
      */
@@ -1555,7 +1555,7 @@ function addMeses($data, $meses) {
         return $dataFinal;
     } else {
         alert('Data Inválida');
-        return FALSE;
+        return false;
     }
 }
 
@@ -1573,8 +1573,8 @@ function addAnos($data, $anos) {
      * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
      * @note Se o parâmetro $anos for negativo a data será retroagida.
      *
-     * @param $data string  NULL A data inicial
-     * @param $anos integer NULL A quantidade de anos a serem adicionados
+     * @param $data string  null A data inicial
+     * @param $anos integer null A quantidade de anos a serem adicionados
      *
      * @example exemplo.addAnos.php
      */
@@ -1587,7 +1587,7 @@ function addAnos($data, $anos) {
         return $dataFinal;
     } else {
         alert('Data Inválida');
-        return FALSE;
+        return false;
     }
 }
 
@@ -1599,21 +1599,21 @@ function vazio($var) {
      *
      * @syntax vazio($var);
      *
-     * @return TRUE or FALSE
+     * @return true or false
      *
-     * @param $var 	string	NULL A variavel a ser validada
+     * @param $var 	string	null A variavel a ser validada
      *
-     * @note Observe que a função somente retornará TRUE se o valor for NULL ou "". Se houver algum outro dado será retornado FALSE
+     * @note Observe que a função somente retornará true se o valor for null ou "". Se houver algum outro dado será retornado false
      *
      * @example exemplo.vazio.php
      */
     if (is_array($var)) {
         if (is_null($var) OR ($var == '')) {
-            return TRUE;
+            return true;
         }
     } else {
         if (is_null($var) OR (trim($var) == '')) {
-            return TRUE;
+            return true;
         }
     }
 }
@@ -1628,9 +1628,9 @@ function get_mac($ip) {
      *
      * @return string com o MAC do computador
      *
-     * @param $ip string NULL O IP do computador
+     * @param $ip string null O IP do computador
      */
-    $arp = NULL;
+    $arp = null;
     exec("arp " . $ip . " -a", $arp);             // Executa o comando arp que pega na rede o mac de um ip
     $posicao = strpos($arp[3], "-");        // Do texto extraído pega o numero mac pelo traço
     $posicao = $posicao - 2;                // Volta 2 caracteres para pegar o início do mac
@@ -1646,9 +1646,9 @@ function validaCpf($cpf) {
      *
      * @syntax validaCpf($cpf);
      *
-     * @return TRUE or FALSE
+     * @return true or false
      *
-     * @param $cpf 	string	NULL O CPF a ser validado
+     * @param $cpf 	string	null O CPF a ser validado
      *
      * @example exemplo.validaCpf.php
      */
@@ -1657,13 +1657,13 @@ function validaCpf($cpf) {
     $cpf = str_replace('-', '', $cpf);      // retira o -
     # Verifica se sobrou somente número
     if (!is_numeric($cpf)) {  // Verifica se é número
-        $status = FALSE;
+        $status = false;
     } else {
         # Verifica números que pelo padrão normal dão como válidos
         if (($cpf == '11111111111') || ($cpf == '22222222222') || ($cpf == '33333333333') || ($cpf == '44444444444') ||
                 ($cpf == '55555555555') || ($cpf == '66666666666') || ($cpf == '77777777777') || ($cpf == '88888888888') ||
                 ($cpf == '99999999999') || ($cpf == '00000000000')) {
-            $status = FALSE;
+            $status = false;
         } else {
             $dv_informado = substr($cpf, 9, 2); // pega o digito verificador
 
@@ -1708,9 +1708,9 @@ function validaCpf($cpf) {
             # VERIFICA SE O DV CALCULADO É IGUAL AO INFORMADO
             $dv = $digito[9] * 10 + $digito[10];
             if ($dv != $dv_informado) {
-                $status = FALSE;
+                $status = false;
             } else {
-                $status = TRUE;
+                $status = true;
             }
         }
     }
@@ -1727,7 +1727,7 @@ function idade($dataNascimento) {
      *
      * @return integer
      *
-     * @param $dataNascimento date	NULL A data de nascimento no formato dd/mm/aaaa
+     * @param $dataNascimento date	null A data de nascimento no formato dd/mm/aaaa
      *
      *
      */
@@ -1756,7 +1756,7 @@ function idade($dataNascimento) {
 
 ###########################################################
 
-function geraSenha($tamanho = 8, $maiusculas = TRUE, $numeros = TRUE, $simbolos = false) {
+function geraSenha($tamanho = 8, $maiusculas = true, $numeros = true, $simbolos = false) {
     /**
      * Rotina que gera uma senha forte
      *
@@ -1767,9 +1767,9 @@ function geraSenha($tamanho = 8, $maiusculas = TRUE, $numeros = TRUE, $simbolos 
      * @return Uma string contendo uma senha criada de forma aleatória
      *
      * @param   $tamanho    integer  8      O tamanho da string gerada
-     * @param   $maiusculas boolean TRUE    Quando TRUE gera senha também com letras maiusculas.
-     * @param   $numeros    boolean TRUE    Quando TRUE gera senha também com números.
-     * @param   $simbolos   boolean FALSE   Quando TRUE gera senha também com símbolos.
+     * @param   $maiusculas boolean true    Quando true gera senha também com letras maiusculas.
+     * @param   $numeros    boolean true    Quando true gera senha também com números.
+     * @param   $simbolos   boolean false   Quando true gera senha também com símbolos.
      *
      */
     // Caracteres de cada tipo
@@ -1823,7 +1823,7 @@ function year($data) {
      * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
      * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
      *
-     * @param $data data NULL A data a ser trabalhada
+     * @param $data data null A data a ser trabalhada
      */
     if (validaData($data)) {
         # Divide a data em dia, mes e ano
@@ -1831,7 +1831,7 @@ function year($data) {
         return $dt[2];
     } else {
         alert('Data Inválida');
-        return FALSE;
+        return false;
     }
 }
 
@@ -1848,7 +1848,7 @@ function day($data) {
      * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
      * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
      *
-     * @param $data data NULL A data a ser trabalhada
+     * @param $data data null A data a ser trabalhada
      */
     if (validaData($data)) {
         # Divide a data em dia, mes e ano
@@ -1856,7 +1856,7 @@ function day($data) {
         return $dt[0];
     } else {
         alert('Data Inválida');
-        return FALSE;
+        return false;
     }
 }
 
@@ -1873,7 +1873,7 @@ function month($data) {
      * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
      * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
      *
-     * @param $data data NULL A data a ser trabalhada
+     * @param $data data null A data a ser trabalhada
      */
     if (validaData($data)) {
         # Divide a data em dia, mes e ano
@@ -1881,7 +1881,7 @@ function month($data) {
         return $dt[1];
     } else {
         alert('Data Inválida');
-        return FALSE;
+        return false;
     }
 }
 
@@ -1896,7 +1896,7 @@ function createZip($path = 'arquivo.zip', $files = array()) {
      * @author Luiz Otávio Miranda <contato@todoespacoonline.com>
      *
      * @param $path  string arquivo.zip Caminho e o nome do arquivo zip que será criado
-     * @param $files array  NULL        Arquivos que serão adicionados ao zip
+     * @param $files array  null        Arquivos que serão adicionados ao zip
      */
     # Cria o arquivo .zip
     $zip = new ZipArchive;
@@ -1939,7 +1939,7 @@ function maiorValor(array $valores) {
      *
      * @syntax maiorValor($valores);
      *
-     * @param $valores array NULL Array de numeros
+     * @param $valores array null Array de numeros
      * @return number O maior valor do array
      */
     rsort($valores);
@@ -1954,7 +1954,7 @@ function menorValor(array $valores) {
      *
      * @syntax menorValor($valores);
      *
-     * @param $valores array NULL Array de numeros
+     * @param $valores array null Array de numeros
      * @return number O menor valor do array
      */
     sort($valores);
@@ -1967,10 +1967,10 @@ function arrayToString($valores) {
     /**
      * Transforma um array em uma string com os valores separados por vírgula
      *
-     * @param $valores array NULL Array de valores
+     * @param $valores array null Array de valores
      * @return string dos valores separados por vírgulas
      */
-    $resultado = NULL;
+    $resultado = null;
     foreach ($valores as $stringArray) {
         $resultado .= $stringArray . ",";
     }
@@ -1988,8 +1988,8 @@ function arrayPreenche($valorInicial, $valorFinal, $ordem = "c") {
     /**
      * Preenche um array numérico com uma faixa de valores
      *
-     * @param $valorInicial integer NULL Valor Numérico Inicial
-     * @param $valorFinal   integer NULL Valor Numérico Final
+     * @param $valorInicial integer null Valor Numérico Inicial
+     * @param $valorFinal   integer null Valor Numérico Final
      * @param $ordem        string  c    c -> se for crescente e d-> se for decrescente
      * @return array com os valores preenchidos
      */
@@ -2016,7 +2016,7 @@ function diaSemana($data) {
     /**
      * Informa o dia da dsemana de uma data
      *
-     * @param $data data NULL Data a ser examinada
+     * @param $data data null Data a ser examinada
      * @return string com o dia da semana
      *
      * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
@@ -2043,7 +2043,7 @@ function codificacao($string) {
     /**
      * Retorna a codificação da string informada
      *
-     * @param $string string NULL A string a ser analisada
+     * @param $string string null A string a ser analisada
      * @return string UTF-8 ou ISO-8859-1
      *
      * @syntax codificacao($string);
@@ -2058,7 +2058,7 @@ function dias_to_diasMesAno($dias) {
     /**
      * Transforma uma quantidade grande de dias em dias meses e anos
      *
-     * @param $dias integer NULL O número de dias a ser calculado
+     * @param $dias integer null O número de dias a ser calculado
      * @return string com os dias meses e anos calculados
      *
      * @syntax dias_to_diasMesAno($dias);
@@ -2067,7 +2067,7 @@ function dias_to_diasMesAno($dias) {
     $anos = 0;
     $meses = 0;
     $dias = abs($dias); // retira o sinal de dias
-    $texto = NULL;
+    $texto = null;
 
     # Calcula os anos
     if ($dias > 364) {
@@ -2109,8 +2109,8 @@ function resto($dividendo, $divisor) {
     /**
      * Retorna o resto da divisão de 2 números inteiros
      *
-     * @param $dividendo integer NULL O dividendo
-     * @param $divisor   integer NULL O divisor
+     * @param $dividendo integer null O dividendo
+     * @param $divisor   integer null O divisor
      * @return integer o resto da divisão
      *
      * @syntax resto($dividendo,$divisor);
@@ -2127,9 +2127,9 @@ function resto($dividendo, $divisor) {
 function trataNulo($valor, $caractere = "--") {
 
     /**
-     * Transforma o valor NULL ou zero em outro caractere
+     * Transforma o valor null ou zero em outro caractere
      *
-     * @param  $valor     mixed  NULL O valor a ser conferido
+     * @param  $valor     mixed  null O valor a ser conferido
      * @param  $caractere string --   A string a ser exibida caso o valor informado for zero ou nullo
      * @return mixed O valor ou -- quando o valor for zero ou nullo
      *
@@ -2158,7 +2158,7 @@ function ePar($valor) {
     /**
      * TVerifica se numero e par
      *
-     * @param  $valor INTEGER NULL O valor a ser conferido
+     * @param  $valor INTEGER null O valor a ser conferido
      * @return true ou false
      *
      * @syntax ePar($valor);
@@ -2167,12 +2167,12 @@ function ePar($valor) {
     $valor = intval($valor);
 
     # Inicia a variável de retorno
-    $retorno = NULL;
+    $retorno = null;
 
     if ($valor % 2 == 0) {
-        $retorno = TRUE;
+        $retorno = true;
     } else {
-        $retorno = FALSE;
+        $retorno = false;
     }
 
     return $retorno;
@@ -2185,7 +2185,7 @@ function plm($texto) {
     /**
      * Passa o texto para minusculas com a primeira letra de cada palavra em maiusculas
      *
-     * @param  $texto STRING NULL O texto a ser transformado
+     * @param  $texto STRING null O texto a ser transformado
      * @return string O texto modificado
      *
      * @syntax plm($texto);
@@ -2204,18 +2204,18 @@ function plm($texto) {
 
 ###########################################################
 
-function vazioPraNulo($valor = NULL) {
+function vazioPraNulo($valor = null) {
 
     /**
      * Passa o valor informado para nulo quando for vazio ou retorna a string enviada
      *
-     * @param  $valor STRING NULL a string a ser tratada
+     * @param  $valor STRING null a string a ser tratada
      * @return string a string ou nulo
      *
      * @syntax vazioPraNulo($valor);
      */
     if ($valor == "") {
-        $valor = NULL;
+        $valor = null;
     }
 
     return $valor;
@@ -2228,30 +2228,30 @@ function verificaSobreposicao($dtInicial1, $dtFinal1, $dtInicial2, $dtFinal2) {
     /**
      * Verifica se os períodos estão com sobreposição de dias
      *
-     * @param $dtInicial1 DATA    NULL a data inicial do primeiro período
-     * @param $dias1      integer NULL a quantidade de dias desse período
-     * @param $dtInicial2 DATA    NULL a data inicial do segundo período
-     * @param $dias2      integer NULL a quantidade de dias desse período
-     * @return bool                    Retorna TRUE quando houver sobreposição e FALSE quando não tiver
+     * @param $dtInicial1 DATA    null a data inicial do primeiro período
+     * @param $dias1      integer null a quantidade de dias desse período
+     * @param $dtInicial2 DATA    null a data inicial do segundo período
+     * @param $dias2      integer null a quantidade de dias desse período
+     * @return bool                    Retorna true quando houver sobreposição e false quando não tiver
      *
      * @syntax verificaSobreposicao($dtInicial1,$periodo1,$dtInicial2,$periodo2);
      */
     # Inicia o retorno
-    $retorno = FALSE;
+    $retorno = false;
 
     # Verifica se data inicial do periodo1 está dentro do periodo2
     if (entre($dtInicial1, $dtInicial2, $dtFinal2)) {
-        $retorno = TRUE;
+        $retorno = true;
     }
 
     # Verifica se data final do periodo1 está dentro do periodo2
     if (entre($dtFinal1, $dtInicial2, $dtFinal2)) {
-        $retorno = TRUE;
+        $retorno = true;
     }
 
     # Verifica se o período1 "engole" o periodo2
     if ((date_to_bd($dtInicial1) < date_to_bd($dtInicial2)) AND (date_to_bd($dtFinal1) > date_to_bd($dtFinal2))) {
-        $retorno = TRUE;
+        $retorno = true;
     }
 
     return $retorno;

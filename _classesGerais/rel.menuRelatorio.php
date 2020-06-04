@@ -8,10 +8,10 @@
  */
 class menuRelatorio {
 
-    private $formCampos = NULL;         # array com campos para o formulario    
-    private $formLink = NULL;           # para onde vai o post
-    private $botaoVoltar = NULL;         # define o link do bot�o voltar
-    private $aviso = NULL;
+    private $formCampos = null;         # array com campos para o formulario    
+    private $formLink = null;           # para onde vai o post
+    private $botaoVoltar = null;         # define o link do bot�o voltar
+    private $aviso = null;
     private $brHr = 1;                  # numeros de salto de linha antes do hr
 
     // usado quando se tem muitos controles e n�o se quer a 
@@ -46,7 +46,7 @@ class menuRelatorio {
         $div->abre();
 
         # Botão voltar       
-        if ($this->botaoVoltar <> NULL) {
+        if ($this->botaoVoltar <> null) {
             botaoVoltar($this->botaoVoltar, 'Voltar', 'Volta para menu do servidor');
         }
 
@@ -90,7 +90,7 @@ class menuRelatorio {
                 }
 
                 if (isset($campo['required'])) {
-                    $controle->set_notNULL($campo['required']);  // faz o controle exibir o *
+                    $controle->set_notnull($campo['required']);  // faz o controle exibir o *
                 }
 
                 if (isset($campo['array'])) {
@@ -143,7 +143,7 @@ class menuRelatorio {
 
                 # Coloca o foco no primeiro controle
                 if ($contador == 1) {
-                    $controle->set_autofocus(TRUE);
+                    $controle->set_autofocus(true);
                 }
 
                 $formRelatorio->add_item($controle);

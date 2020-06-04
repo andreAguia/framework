@@ -7,9 +7,9 @@ class Upload {
      *
      * @author Marco Antoni <marquinho9.10@gmail.com>
      * 
-     * @var private $arquivo    FILE    NULL O arquivo a ser trabalhado
-     * @var private $pasta      string  NULL O caminho da pasta onde será armazenada a imagem
-     * @var private $nome       string  NULL O nome do arquivo ao final do upload
+     * @var private $arquivo    FILE    null O arquivo a ser trabalhado
+     * @var private $pasta      string  null O caminho da pasta onde será armazenada a imagem
+     * @var private $nome       string  null O nome do arquivo ao final do upload
      */
     private $arquivo;
     private $pasta;

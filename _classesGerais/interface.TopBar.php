@@ -7,25 +7,25 @@ class TopBar {
      * 
      * @author André Águia (Alat) - alataguia@gmail.com
      * 
-     * @var private $label string NULL Texto que aparecerá na barra.
-     * @var private $title string NULL Texto exibido no mouseover
+     * @var private $label string null Texto que aparecerá na barra.
+     * @var private $title string null Texto exibido no mouseover
      * 
      * @example exemplo.topbar.php
      */
-    private $label = NULL;
-    private $title = NULL;
-    private $link = NULL;
-    private $linkLado = NULL;
-    private $controleLabel = NULL;
-    private $controleValor = NULL;
+    private $label = null;
+    private $title = null;
+    private $link = null;
+    private $linkLado = null;
+    private $controleLabel = null;
+    private $controleValor = null;
 
 ###########################################################
 
-    public function __construct($label = NULL) {
+    public function __construct($label = null) {
         /**
          * Método construtor que inicia a classe e informa o label da barra
          * 
-         * @param $label string NULL Texto a ser exibodo do lado esquerdo.
+         * @param $label string null Texto a ser exibodo do lado esquerdo.
          * 
          * @syntax $bar = new TopBar([$label]); 
          */
@@ -34,12 +34,12 @@ class TopBar {
 
 ###########################################################
 
-    public function add_pesquisa($controleLabel = NULL, $controleValor = NULL) {
+    public function add_pesquisa($controleLabel = null, $controleValor = null) {
         /**
          * Inclui um campo de pesquisa
          * 
-         * @param $controleLado  string NULL O texto do label
-         * @param $controleValor string NULL O valor do controle
+         * @param $controleLado  string null O texto do label
+         * @param $controleValor string null O valor do controle
          * 
          * @syntax $bar->add_pesquisa($controleLabel,[$controleValor]);
          */
@@ -49,20 +49,20 @@ class TopBar {
 
 ###########################################################
 
-    public function set_title($title = NULL) {
+    public function set_title($title = null) {
         /**
          * Informa o title
          * 
          * @syntax $button->set_title($title);
          * 
-         * @param $title string NULL O title do botão
+         * @param $title string null O title do botão
          */
         $this->title = $title;
     }
 
 ###########################################################
 
-    public function add_link($link = NULL, $linkLado = NULL) {
+    public function add_link($link = null, $linkLado = null) {
 
         /**
          * Inclui um link na barra

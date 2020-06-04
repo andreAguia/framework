@@ -13,14 +13,14 @@ class Callout {
      * @example exemplo.callout.php
      */
     private $tipo = "secondary";    // string O tipo do callout: secondary | primary | success | warning | alert
-    private $title = NULL;          // string O Texto para o evento mouseover
-    private $id = NULL;             // string O id para o css
-    private $botaoFechar = FALSE;   // bool   Se terá ou não um botão (X) para fechar 
+    private $title = null;          // string O Texto para o evento mouseover
+    private $id = null;             // string O id para o css
+    private $botaoFechar = false;   // bool   Se terá ou não um botão (X) para fechar 
 
 ###########################################################
 
     public function __construct($tipo = "secondary", // string O tipo do callout: secondary | primary | success | warning | alert
-            $id = NULL) {            // string O id para o css
+            $id = null) {            // string O id para o css
         /**
          * Inicia o Callout informando o tipo
          * 
@@ -33,7 +33,7 @@ class Callout {
 
 ###########################################################
 
-    public function set_id($id = NULL) { // string O nome do id
+    public function set_id($id = null) { // string O nome do id
         /**
          * Informa o id da div para o css
          * 
@@ -45,7 +45,7 @@ class Callout {
 
 ###########################################################
 
-    public function set_title($title = NULL) { // string O texto a ser exibido
+    public function set_title($title = null) { // string O texto a ser exibido
         /**
          * Informa o texto no mouse over
          * 
@@ -57,7 +57,7 @@ class Callout {
 
 ###########################################################
 
-    public function set_botaoFechar($botaoFechar = FALSE) { // bool Exibe ou não o botão
+    public function set_botaoFechar($botaoFechar = false) { // bool Exibe ou não o botão
         /**
          * Informa se terá um botão de fechar o callout
          * 
@@ -104,7 +104,7 @@ class Callout {
         # Exibe o botão de fechar        
         if ($this->botaoFechar) {
             echo '<button class="close-button" aria-label="Dismiss alert" type="button" data-close>';
-            echo '<span aria-hidden="TRUE">&times;</span>';
+            echo '<span aria-hidden="true">&times;</span>';
             echo '</button>';
         }
         echo '</div>';

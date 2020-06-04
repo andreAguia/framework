@@ -7,38 +7,38 @@ class Chart {
      * 
      * @author André Águia (Alat) - alataguia@gmail.com
      * 
-     * @var private $dados array  NULL  Os dados do gráfico.
-     * @var private $tipo  string NULL  O tipo do gráfico: Pie | Line | Area
-     * @var private $tresd bool   FALSE Informa se o gráfico será ou não em 3 dimensões
+     * @var private $dados array  null  Os dados do gráfico.
+     * @var private $tipo  string null  O tipo do gráfico: Pie | Line | Area
+     * @var private $tresd bool   false Informa se o gráfico será ou não em 3 dimensões
      * 
      * @example exemplo.button.php
      */
-    private $dados = NULL;
+    private $dados = null;
     private $label = array("coluna1", "coluna2");
-    private $title = NULL;
-    private $tipo = NULL;
-    private $tresd = FALSE;
+    private $title = null;
+    private $tipo = null;
+    private $tresd = false;
     private $idDiv = "chart";
-    private $pieHole = FALSE;
-    private $legend = TRUE;
-    private $isStacked = FALSE;
+    private $pieHole = false;
+    private $legend = true;
+    private $isStacked = false;
     private $largura = '100%';
     private $altura = '100%';
     private $faixas = 1;
-    private $tituloEixoX = NULL;
-    private $tituloEixoY = NULL;
-    private $cores = NULL;
+    private $tituloEixoX = null;
+    private $tituloEixoY = null;
+    private $cores = null;
     private $minValor = 0;
 
 ###########################################################
 
-    public function __construct($tipo = NULL, $dados = NULL, $faixas = 1) {
+    public function __construct($tipo = null, $dados = null, $faixas = 1) {
 
         /**
          * Inicia a classe
          * 
-         * @param $tipo  string NULL O tipo do gráfico: pie|
-         * @param $dados array  NULL Os dados do gráfico
+         * @param $tipo  string null O tipo do gráfico: pie|
+         * @param $dados array  null Os dados do gráfico
          * 
          * @syntax $button = new Chart($tipo,$dados);
          */
@@ -50,130 +50,130 @@ class Chart {
 
 ###########################################################
 
-    public function set_title($title = NULL) {
+    public function set_title($title = null) {
         /**
          * Informa label da colunas
          * 
          * @syntax $button->set_tresd($tresd);
          * 
-         * @param $tresd bool NULL Informa se o gráfico será ou não em 3 dimensões
+         * @param $tresd bool null Informa se o gráfico será ou não em 3 dimensões
          */
         $this->title = $title;
     }
 
 ###########################################################
 
-    public function set_cores($cores = NULL) {
+    public function set_cores($cores = null) {
         /**
          * Informa label da colunas
          * 
          * @syntax $button->set_tresd($tresd);
          * 
-         * @param $tresd bool NULL Informa se o gráfico será ou não em 3 dimensões
+         * @param $tresd bool null Informa se o gráfico será ou não em 3 dimensões
          */
         $this->cores = $cores;
     }
 
 ###########################################################
 
-    public function set_tituloEixoX($tituloEixoX = NULL) {
+    public function set_tituloEixoX($tituloEixoX = null) {
         /**
          * Informa titulo do eixo X
          * 
          * @syntax $button->set_tresd($tresd);
          * 
-         * @param $tresd bool NULL Informa se o gráfico será ou não em 3 dimensões
+         * @param $tresd bool null Informa se o gráfico será ou não em 3 dimensões
          */
         $this->tituloEixoX = $tituloEixoX;
     }
 
 ###########################################################
 
-    public function set_tituloEixoY($tituloEixoY = NULL) {
+    public function set_tituloEixoY($tituloEixoY = null) {
         /**
          * Informa titulo do eixo Y
          * 
          * @syntax $button->set_tresd($tresd);
          * 
-         * @param $tresd bool NULL Informa se o gráfico será ou não em 3 dimensões
+         * @param $tresd bool null Informa se o gráfico será ou não em 3 dimensões
          */
         $this->tituloEixoY = $tituloEixoY;
     }
 
 ###########################################################
 
-    public function set_label($label = NULL) {
+    public function set_label($label = null) {
         /**
          * Informa label da colunas
          * 
          * @syntax $button->set_tresd($tresd);
          * 
-         * @param $tresd bool NULL Informa se o gráfico será ou não em 3 dimensões
+         * @param $tresd bool null Informa se o gráfico será ou não em 3 dimensões
          */
         $this->label = $label;
     }
 
 ###########################################################
 
-    public function set_tresd($tresd = NULL) {
+    public function set_tresd($tresd = null) {
         /**
          * Informa se o gráfico será em 3d
          * 
          * @syntax $button->set_tresd($tresd);
          * 
-         * @param $tresd bool NULL Informa se o gráfico será ou não em 3 dimensões
+         * @param $tresd bool null Informa se o gráfico será ou não em 3 dimensões
          */
         $this->tresd = $tresd;
     }
 
 ###########################################################
 
-    public function set_idDiv($idDiv = NULL) {
+    public function set_idDiv($idDiv = null) {
         /**
          * Informa se o gráfico será em 3d
          * 
          * @syntax $button->set_tresd($tresd);
          * 
-         * @param $tresd bool NULL Informa se o gráfico será ou não em 3 dimensões
+         * @param $tresd bool null Informa se o gráfico será ou não em 3 dimensões
          */
         $this->idDiv = $idDiv;
     }
 
 ###########################################################
 
-    public function set_pieHole($pieHole = NULL) {
+    public function set_pieHole($pieHole = null) {
         /**
          * Informa se o gráfico será em 3d
          * 
          * @syntax $button->set_tresd($tresd);
          * 
-         * @param $tresd bool NULL Informa se o gráfico será ou não em 3 dimensões
+         * @param $tresd bool null Informa se o gráfico será ou não em 3 dimensões
          */
         $this->pieHole = $pieHole;
     }
 
 ###########################################################
 
-    public function set_legend($legend = NULL) {
+    public function set_legend($legend = null) {
         /**
          * Informa se o gráfico será em 3d
          * 
          * @syntax $button->set_tresd($tresd);
          * 
-         * @param $tresd bool NULL Informa se o gráfico será ou não em 3 dimensões
+         * @param $tresd bool null Informa se o gráfico será ou não em 3 dimensões
          */
         $this->legend = $legend;
     }
 
 ###########################################################
 
-    public function set_tamanho($largura = NULL, $altura = NULL) {
+    public function set_tamanho($largura = null, $altura = null) {
         /**
          * Informa se o gráfico será em 3d
          * 
          * @syntax $button->set_tresd($tresd);
          * 
-         * @param $tresd bool NULL Informa se o gráfico será ou não em 3 dimensões
+         * @param $tresd bool null Informa se o gráfico será ou não em 3 dimensões
          */
         $this->largura = $largura;
         $this->altura = $altura;
@@ -181,13 +181,13 @@ class Chart {
 
 ###########################################################
 
-    public function set_isStacked($isStacked = NULL) {
+    public function set_isStacked($isStacked = null) {
         /**
          * Informa label da colunas
          * 
          * @syntax $button->set_tresd($tresd);
          * 
-         * @param $tresd bool NULL Informa se o gráfico será ou não em 3 dimensões
+         * @param $tresd bool null Informa se o gráfico será ou não em 3 dimensões
          */
         $this->isStacked = $isStacked;
     }

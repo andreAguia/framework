@@ -28,9 +28,9 @@ class MenuVideo {
          * 
          * @syntax $form->add_item($objeto);
          * 
-         * @param $local     string  NULL ytVideo|vimeoVideo|dailyMVideo
-         * @param $id        integer NULL id do vídeo
-         * @param $descricao string  NULL Breve descrição do vídeo
+         * @param $local     string  null ytVideo|vimeoVideo|dailyMVideo
+         * @param $id        integer null id do vídeo
+         * @param $descricao string  null Breve descrição do vídeo
          * 
          */
         $this->item[] = array($local, $id, $descricao);

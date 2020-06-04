@@ -1,30 +1,30 @@
 <?php
 
 # Diversos valores
-$a = NULL;
+$a = null;
 $b = "";
 $c = " ";
 
 # Valor nulo
 if (vazio($a)) {
-    echo "TRUE";
+    echo "true";
 } else {
-    echo "FALSE";
+    echo "false";
 }
 br();
 
 # Valor vazio
 if (vazio($b)) {
-    echo "TRUE";
+    echo "true";
 } else {
-    echo "FALSE";
+    echo "false";
 }
 br();
 
 # Valor espaço
 if (vazio($c)) {
-    echo "TRUE";
+    echo "true";
 } else {
-    echo "FALSE";
+    echo "false";
 }
 

@@ -668,7 +668,7 @@ class SMTP {
 
     /**
      * Starts a mail transaction from the email address specified in
-     * $from. Returns true if successful or false otherwise. If True
+     * $from. Returns true if successful or false otherwise. If true
      * the mail transaction is started and then one or more Recipient
      * commands may be called followed by a Data command.
      *
@@ -853,7 +853,7 @@ class SMTP {
 
     /**
      * Starts a mail transaction from the email address specified in
-     * $from. Returns true if successful or false otherwise. If True
+     * $from. Returns true if successful or false otherwise. If true
      * the mail transaction is started and then one or more Recipient
      * commands may be called followed by a Data command. This command
      * will send the message to the users terminal if they are logged

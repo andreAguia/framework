@@ -7,22 +7,22 @@ class UploadImage {
      *
      * @author Marco Antoni <marquinho9.10@gmail.com>
      * 
-     * @var private $arquivo    FILE    NULL O arquivo a ser trabalhado
-     * @var private $altura     integer NULL Altura máxima em que a imagem terá apos o upload
-     * @var private $largura    integer NULL Largura máxima em que a imagem terá apos o upload
-     * @var private $pasta      string  NULL O caminho da pasta onde será armazenada a imagem
-     * @var private $nome       string  NULL O nome do arquivo ao final do upload
+     * @var private $arquivo    FILE    null O arquivo a ser trabalhado
+     * @var private $altura     integer null Altura máxima em que a imagem terá apos o upload
+     * @var private $largura    integer null Largura máxima em que a imagem terá apos o upload
+     * @var private $pasta      string  null O caminho da pasta onde será armazenada a imagem
+     * @var private $nome       string  null O nome do arquivo ao final do upload
      */
     private $arquivo;
     private $altura;
     private $largura;
     private $pasta;
     private $nome;
-    private $extensoes = NULL;  // array  As extensões permitidas. Pode ser array ou string.
+    private $extensoes = null;  // array  As extensões permitidas. Pode ser array ou string.
 
 ###########################################################
 
-    function __construct($arquivo = NULL, $altura = NULL, $largura = NULL, $pasta = NULL, $nome = NULL, $extensoes = NULL) {
+    function __construct($arquivo = null, $altura = null, $largura = null, $pasta = null, $nome = null, $extensoes = null) {
         $this->arquivo = $arquivo;
         $this->altura = $altura;
         $this->largura = $largura;
@@ -122,7 +122,7 @@ class UploadImage {
             if (!move_uploaded_file($this->arquivo['tmp_name'], $destino)) {
                 if ($this->arquivo['error'] == 1) {
                     alert("Tamanho excede o permitido");
-                    return FALSE;
+                    return false;
                 }
             } else {
 
@@ -135,11 +135,11 @@ class UploadImage {
                         $this->redimensionar($largura, $altura, $tipo, $destino);
                     }
                 }
-                return TRUE;
+                return true;
             }
         } else {
             alert("Extensão não Permitida. ($extensaoArquivo)");
-            return FALSE;
+            return false;
         }
     }
 

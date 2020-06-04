@@ -9,24 +9,24 @@ class Link {
      * 
      * @example exemplo.link.php
      */
-    private $label = NULL;      // string O texto a ser exibido no link.
-    private $url = NULL;        // string A url do link.
-    private $title = NULL;      // string Texto que irá aparecer no evento mouseover
-    private $target = NULL;     // string Nome da div ou da janela onde o link será aberto
-    private $class = NULL;      // string A classe para o css.
-    private $id = NULL;         // string O id para o css.
-    private $onClick = NULL;    // string A rotina jscript a ser executada no evento onclick.
-    private $confirma = NULL;   // string Texto a ser exibido em uma janela confirmação em jscript.
-    private $accessKey = NULL;  // string Letra para se usar junto com a tecla ALT como atalho de acesso ao botão 
-    private $imagem = NULL;     // string  O caminho e o nome da Imagem a ser exibida
+    private $label = null;      // string O texto a ser exibido no link.
+    private $url = null;        // string A url do link.
+    private $title = null;      // string Texto que irá aparecer no evento mouseover
+    private $target = null;     // string Nome da div ou da janela onde o link será aberto
+    private $class = null;      // string A classe para o css.
+    private $id = null;         // string O id para o css.
+    private $onClick = null;    // string A rotina jscript a ser executada no evento onclick.
+    private $confirma = null;   // string Texto a ser exibido em uma janela confirmação em jscript.
+    private $accessKey = null;  // string Letra para se usar junto com a tecla ALT como atalho de acesso ao botão 
+    private $imagem = null;     // string  O caminho e o nome da Imagem a ser exibida
     private $imagemWidth = 48;  // integer A largura da imagem
     private $imagemHeight = 48; // integer A altura da imagem
 
 ###########################################################
 
-    public function __construct($label = NULL, // string O texto a ser exibido no link
-            $url = NULL, // string A url do link
-            $title = NULL) { // string O texto a ser exibido no mouseover
+    public function __construct($label = null, // string O texto a ser exibido no link
+            $url = null, // string A url do link
+            $title = null) { // string O texto a ser exibido no mouseover
 
         /**
          * Constroi um link sem exibí-lo
@@ -41,7 +41,7 @@ class Link {
 
 ###########################################################
 
-    public function set_url($url = NULL) {   // string O caminho do link do link
+    public function set_url($url = null) {   // string O caminho do link do link
         /**
          * Informa a url
          * 
@@ -53,7 +53,7 @@ class Link {
 
 ###########################################################
 
-    public function set_class($class = NULL) {   // string O nome da class para o css
+    public function set_class($class = null) {   // string O nome da class para o css
         /**
          * Informa o nome da class para o css
          * 
@@ -65,7 +65,7 @@ class Link {
 
 ###########################################################
 
-    public function set_id($id = NULL) { // string O nome do id
+    public function set_id($id = null) { // string O nome do id
         /**
          * Informa o id para o CSS
          * 
@@ -77,7 +77,7 @@ class Link {
 
 ###########################################################
 
-    public function set_title($title = NULL) { // string O texto do mouseover
+    public function set_title($title = null) { // string O texto do mouseover
         /**
          * Informa o texto a ser exibido no mouseOver
          * 
@@ -89,7 +89,7 @@ class Link {
 
 ###########################################################
 
-    public function set_target($target = NULL) { // string Nome da div ou da janela onde o link será aberto
+    public function set_target($target = null) { // string Nome da div ou da janela onde o link será aberto
         /**
          * Informa o nome da div ou da janela onde o link será aberto
          * 
@@ -101,7 +101,7 @@ class Link {
 
 ###########################################################
 
-    public function set_onClick($onClick = NULL) { // string A rotina jscript a ser executada no evento onclick.
+    public function set_onClick($onClick = null) { // string A rotina jscript a ser executada no evento onclick.
         /**
          * Informa a rotina jscript a ser executada no evento onclick.
          * 
@@ -113,7 +113,7 @@ class Link {
 
 ###########################################################
 
-    public function set_accessKey($accessKey = NULL) { // string A letra de atalho para esse link
+    public function set_accessKey($accessKey = null) { // string A letra de atalho para esse link
         /**
          * Informa uma letra de atalho a ser utilizado junto com a tecla ALT para esse link
          * 
@@ -125,7 +125,7 @@ class Link {
 
 ###########################################################
 
-    public function set_confirma($confirma = NULL) { // string Texto a ser exibido para confirmar o clique. 
+    public function set_confirma($confirma = null) { // string Texto a ser exibido para confirmar o clique. 
         /**
          * Informa um Texto a ser exibido para confirmar o clique. O programa somente continuará após pressinar Sim.
          * 
@@ -137,7 +137,7 @@ class Link {
 
 ###########################################################
 
-    public function set_imagem($imagem = NULL, // string  O caminho e o nome da Imagem a ser exibida
+    public function set_imagem($imagem = null, // string  O caminho e o nome da Imagem a ser exibida
             $imagemWidth = 48, // integer Largura da imagem
             $imagemHeight = 48) { // integer Altura da imagem
         /**
@@ -153,7 +153,7 @@ class Link {
 
 ###########################################################
 
-    public function show($id = NULL) { // integer Usado em links em tabelas para acrescentar o id do registro a url
+    public function show($id = null) { // integer Usado em links em tabelas para acrescentar o id do registro a url
         /**
          * Exibe o link
          * 
@@ -161,7 +161,7 @@ class Link {
          */
 
         # Atalho
-        if ($this->accessKey <> NULL) {
+        if ($this->accessKey <> null) {
             # Altera o label colocando o sublinhado na letra do atalho (se tiver)
             $atalho = substr($this->label, 0, stripos($this->label, $this->accessKey));
             $atalho .= '<B><U>' . $this->accessKey . '</U></B>';
@@ -193,7 +193,7 @@ class Link {
         }
 
         # Verifica se tem confirmação
-        if ($this->confirma <> NULL) {  // com confirmação
+        if ($this->confirma <> null) {  // com confirmação
             if (is_null($id)) { // Exibe ou não o id
                 echo " onclick='confirma(\"$this->url\",\"$this->confirma\")'";
             } else {
@@ -217,7 +217,7 @@ class Link {
         if ((!is_null($this->url)) OR (!is_null($this->onClick))) {
 
             # Verifica se tem confirmação
-            if ($this->confirma <> NULL) {  // com confirmação
+            if ($this->confirma <> null) {  // com confirmação
                 if (is_null($id)) { // Exibe ou não o id
                     echo " onclick='confirma(\"$this->url\",\"$this->confirma\")'";
                 } else {

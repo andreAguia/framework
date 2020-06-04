@@ -16,7 +16,7 @@ $tabela->set_align(array("left", "center", "center"));
 
 $tabela->set_colunaSomatorio(1);
 $tabela->set_textoSomatorio("Total de Jogos:");
-$tabela->set_totalRegistro(FALSE);
+$tabela->set_totalRegistro(false);
 $tabela->show();
 
 # Exemplo com mais itens
@@ -27,7 +27,7 @@ $tabela->set_label(array("Time", "Jogos", "Pontos"));
 $tabela->set_width(array(80, 10, 10));
 $tabela->set_align(array("left", "center", "center"));
 $tabela->set_rodape("Esse é o rodapé da tabela");
-$tabela->set_numeroOrdem(TRUE);
+$tabela->set_numeroOrdem(true);
 $tabela->show();
 
 # Exemplo mais complexo
@@ -38,5 +38,5 @@ $tabela->set_label(array("Time", "Jogos", "Pontos"));
 $tabela->set_width(array(80, 10, 10));
 $tabela->set_align(array("left", "center", "center"));
 $tabela->set_rodape("Esse é o rodapé da tabela");
-$tabela->set_numeroOrdem(TRUE);
+$tabela->set_numeroOrdem(true);
 $tabela->show();

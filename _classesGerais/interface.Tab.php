@@ -14,7 +14,7 @@ class Tab {
 
 ###########################################################    
 
-    public function __construct($tabs = NULL) {
+    public function __construct($tabs = null) {
 
         $this->tabs = $tabs;
         echo "<div class='row'>";

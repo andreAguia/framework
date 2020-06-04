@@ -10,17 +10,17 @@ class Imagem {
      * @example exemplo.imagem.php 
      */
     private $figura = "_semImagem.jpg";     // string  Caminho e nome do arquivo de imagem a ser exibida.
-    private $title = NULL;                  // string  Texto que irá aparecer no evento mouseover
+    private $title = null;                  // string  Texto que irá aparecer no evento mouseover
     private $width = 15;                    // integer Largura da figura.
     private $height = 20;                   // integer Altura da figura. 
-    private $class = NULL;                  // string O nome da classe.
-    private $id = NULL;                     // string O nome do id
-    private $onClick = NULL;                // string Rotina do evento onClick
+    private $class = null;                  // string O nome da classe.
+    private $id = null;                     // string O nome do id
+    private $onClick = null;                // string Rotina do evento onClick
 
 ###########################################################
 
-    public function __construct($figura = NULL, // string  Caminho e nome do arquivo de imagem a ser exibida.
-            $title = NULL, // string  Texto que irá aparecer no evento mouseover
+    public function __construct($figura = null, // string  Caminho e nome do arquivo de imagem a ser exibida.
+            $title = null, // string  Texto que irá aparecer no evento mouseover
             $width = 15, // integer Largura da figura.   
             $height = 20) {  // integer Altura da figura.
         /**
@@ -37,7 +37,7 @@ class Imagem {
 
 ###########################################################
 
-    public function set_class($class = NULL) {   // string O nome da classe.
+    public function set_class($class = null) {   // string O nome da classe.
         /**
          * Altera a classe da figura para ser usado no CSS
          * 
@@ -49,7 +49,7 @@ class Imagem {
 
 ###########################################################
 
-    public function set_id($id = NULL) { // string O nome do id
+    public function set_id($id = null) { // string O nome do id
         /**
          * Altera o id da figura para ser usado no CSS
          * 
@@ -61,7 +61,7 @@ class Imagem {
 
 ###########################################################
 
-    public function set_onClick($onClick = NULL) { // string Rotina em jscript a ser executada
+    public function set_onClick($onClick = null) { // string Rotina em jscript a ser executada
         /**
          * Define uma rotina em jscript para ser executada no evento onclick
          * 

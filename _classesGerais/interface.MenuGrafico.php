@@ -7,21 +7,21 @@ class MenuGrafico {
      * 
      * @author André Águia (Alat) - alataguia@gmail.com
      * 
-     * @var private $item    object  NULL Array de objetos do menu. Normalmente o objeto botaoGrafico.
-     * @var private $colunas integer NULL Número de colunas do menu.
+     * @var private $item    object  null Array de objetos do menu. Normalmente o objeto botaoGrafico.
+     * @var private $colunas integer null Número de colunas do menu.
      * 
      * @example exemplo.menugrafico.php
      */
-    private $item = NULL;
-    private $colunas = NULL;
+    private $item = null;
+    private $colunas = null;
 
 ###########################################################
 
-    public function __construct($colunas = NULL) {
+    public function __construct($colunas = null) {
         /**
          * Inicia um menu
          *     
-         * @param $colunas integer NULL O Número de colunas dos menus
+         * @param $colunas integer null O Número de colunas dos menus
          * 
          * @syntax $menu = new MenuGrafico($colunas);
          */
@@ -30,7 +30,7 @@ class MenuGrafico {
 
 ###########################################################
 
-    public function add_item($objeto = NULL) {
+    public function add_item($objeto = null) {
         /**
          * Inclui um item (botaoGrafico) ao menu
          * 

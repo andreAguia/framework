@@ -9,15 +9,15 @@ class Div {
      * 
      * @example exemplo.div.php
      */
-    private $class = NULL;      // string A classe para o css.
-    private $id = NULL;         // string O id para o css.
-    private $title = NULL;      // string O texto para o evento mouseover.
-    private $onClick = NULL;    // string Rotina jscript a ser executada no evento onclick.
+    private $class = null;      // string A classe para o css.
+    private $id = null;         // string O id para o css.
+    private $title = null;      // string O texto para o evento mouseover.
+    private $onClick = null;    // string Rotina jscript a ser executada no evento onclick.
 
 ###########################################################
 
-    public function __construct($id = NULL, // string O id para o css.
-            $class = NULL) {     // string A classe para o css.
+    public function __construct($id = null, // string O id para o css.
+            $class = null) {     // string A classe para o css.
         /**
          * Inicia a div informando o id e a classe para o css
          * 
@@ -30,7 +30,7 @@ class Div {
 
 ###########################################################
 
-    public function set_title($title = NULL) {   // string O texto para o evento mouseover.
+    public function set_title($title = null) {   // string O texto para o evento mouseover.
         /**
          * Informa o texto no mouse over
          * 
@@ -42,7 +42,7 @@ class Div {
 
 ###########################################################
 
-    public function set_onClick($onClick = NULL) {   // string A rotina jscript a ser executada no evento onclick.
+    public function set_onClick($onClick = null) {   // string A rotina jscript a ser executada no evento onclick.
         /**
          * Informa a rotina jscript a ser executada no evento onclick.
          * 

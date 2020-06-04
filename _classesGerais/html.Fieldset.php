@@ -9,14 +9,14 @@ class Fieldset {
      * 
      * @example exemplo.fieldset.php
      */
-    private $legend = NULL;         // string O texto do item legend do fieldset
-    private $id = NULL;             // string O id para o css
+    private $legend = null;         // string O texto do item legend do fieldset
+    private $id = null;             // string O id para o css
     private $class = "fieldset";    // string A classe para o css
 
 ###########################################################    
 
-    public function __construct($legend = NULL, // string O texto do item legend do fieldset
-            $id = NULL) {    // string O id para o css
+    public function __construct($legend = null, // string O texto do item legend do fieldset
+            $id = null) {    // string O id para o css
         /**
          * Inicia a classe atribuindo um valor do legend e do id
          * 
@@ -29,7 +29,7 @@ class Fieldset {
 
 ###########################################################
 
-    public function set_class($class = NULL) {   // string A classe para o css
+    public function set_class($class = null) {   // string A classe para o css
         /**
          * Informa o nome da class para o css
          * 

@@ -11,162 +11,162 @@
 class Modelo {
     # Nome do Modelo (aparecerá nos fildset e no caption da tabela)
 
-    private $nome = NULL;
+    private $nome = null;
 
     # id (para o fieldset) 
     private $id = 'Padrao';
 
     # botões de voltar da lista
-    private $botaoVoltarLista = TRUE;
-    private $voltarLista = NULL;
+    private $botaoVoltarLista = true;
+    private $voltarLista = null;
 
     # botão de voltar do formulário
     private $voltarForm = '?';
-    private $botaoVoltarForm = TRUE;
+    private $botaoVoltarForm = true;
 
     # botões Incluir e editar do list
-    private $botaoIncluir = TRUE;
+    private $botaoIncluir = true;
     private $botaoIncluirNome = "Incluir";
-    private $botaoEditar = TRUE;    # esse flag é necessário pois o link de editar e incluir são os mesmos
+    private $botaoEditar = true;    # esse flag é necessário pois o link de editar e incluir são os mesmos
     # e pode-se querer ter o botão incluir mas não o botão editar.   
-    private $botaoExcluir = TRUE;
+    private $botaoExcluir = true;
 
     # botão de histórico
-    private $botaoHistorico = TRUE;
+    private $botaoHistorico = true;
 
     # campo de pesquisa de um parâmetro na rotina de listar
-    private $parametroLabel = NULL;
-    private $parametroValue = NULL;
+    private $parametroLabel = null;
+    private $parametroValue = null;
     private $tipoCampoPesquisa = "texto";   // tipo do campo
-    private $arrayPesquisa = NULL;          // Array quando combo
-    private $exibeTextoRessaltado = TRUE;   // Exibe texto ressaltado quando TRUE
+    private $arrayPesquisa = null;          // Array quando combo
+    private $exibeTextoRessaltado = true;   // Exibe texto ressaltado quando true
     # Top bar
-    private $topBarListar = TRUE;  # Exibe ou  não a top bar na rotina de lista
-    private $topBarIncluir = TRUE;  # Exibe ou  não a top bar na rotina de inclusão
+    private $topBarListar = true;  # Exibe ou  não a top bar na rotina de lista
+    private $topBarIncluir = true;  # Exibe ou  não a top bar na rotina de inclusão
     # ordem da lista
-    private $orderCampo = NULL;
-    private $orderTipo = NULL;
-    private $orderChamador = NULL;
+    private $orderCampo = null;
+    private $orderTipo = null;
+    private $orderChamador = null;
 
     # select da lista
     private $selectLista;
     private $selectEdita;
 
     # Tempo de pesquisa
-    private $exibeTempoPesquisa = TRUE;
+    private $exibeTempoPesquisa = true;
 
     # Caminhos
-    private $linkEditar = NULL;
-    private $linkIncluir = NULL;
-    private $linkExcluir = NULL;
-    private $linkGravar = NULL;
-    private $linkListar = NULL;
+    private $linkEditar = null;
+    private $linkIncluir = null;
+    private $linkExcluir = null;
+    private $linkGravar = null;
+    private $linkListar = null;
 
     # Parametros da tabela
-    private $label = NULL;
-    private $width = NULL;
-    private $align = NULL;
-    private $idTabela = NULL;
-    private $totalRegistro = TRUE;
-    private $link = NULL;               # array de objetos link correspondente a coluna em que ele aparece
-    private $linkCondicional = NULL;    # array com o valor que a coluna deve ter para ter o link
-    private $imagemCondicional = NULL;    # array com a imagem condicional
-    private $linkImage = NULL;
-    private $linkTitle = NULL;
+    private $label = null;
+    private $width = null;
+    private $align = null;
+    private $idTabela = null;
+    private $totalRegistro = true;
+    private $link = null;               # array de objetos link correspondente a coluna em que ele aparece
+    private $linkCondicional = null;    # array com o valor que a coluna deve ter para ter o link
+    private $imagemCondicional = null;    # array com a imagem condicional
+    private $linkImage = null;
+    private $linkTitle = null;
     private $linkCondicionalOperador = '='; # operador da compara��o. pode ser (=,<>, < ou >)
-    private $formatacaoCondicional = NULL;  # Array com uma formata��o condicional de cores
-    private $numeroOrdem = FALSE;           # Exibe (qualdo TRUE) uma numera��o das colunas
+    private $formatacaoCondicional = null;  # Array com uma formata��o condicional de cores
+    private $numeroOrdem = false;           # Exibe (qualdo true) uma numera��o das colunas
     private $numeroOrdemTipo = 'c';         # Informa que a ordena��o ser� 'c' crescente ou 'd' decrescente
     # do somatório da tabela
-    private $colunaSomatorio = NULL;            // coluna que terá somatório (por enquanto uma por relatório)
+    private $colunaSomatorio = null;            // coluna que terá somatório (por enquanto uma por relatório)
     private $textoSomatorio = 'Total:';         // texto a ser exibido na linha de totalização
     # Da função
-    private $funcao = NULL;
+    private $funcao = null;
 
     # da Classe
-    private $classe = NULL;             # array de classes
-    private $metodo = NULL;             # array de metodo das classes
+    private $classe = null;             # array de classes
+    private $metodo = null;             # array de metodo das classes
     # das rotinas de exclusão
-    private $excluirCondicional = NULL;
-    private $excluirCondicao = NULL;
-    private $excluirColuna = NULL;
+    private $excluirCondicional = null;
+    private $excluirCondicao = null;
+    private $excluirColuna = null;
     private $excluirOperador = "==";
 
     # das rotinas de edição
-    private $editarCondicional = NULL;
-    private $editarCondicao = NULL;
-    private $editarColuna = NULL;
+    private $editarCondicional = null;
+    private $editarCondicao = null;
+    private $editarColuna = null;
     private $editarOperador = "==";
-    private $botaoCancelaEdita = NULL;
+    private $botaoCancelaEdita = null;
 
     # do título das colunas de link padrão
-    private $nomeColunaExcluir = NULL;
-    private $nomeColunaEditar = NULL;
+    private $nomeColunaExcluir = null;
+    private $nomeColunaEditar = null;
 
     # Define uma nova figura para os botões.
     # Deixndo nulo serã exibido a figura padrão
-    private $editarBotao = NULL;
-    private $excluirBotao = NULL;
+    private $editarBotao = null;
+    private $excluirBotao = null;
 
     # Parâmetros da paginação da listagem
-    private $paginacao = FALSE;   # Flag que indica se terá ou não paginação na lista
+    private $paginacao = false;   # Flag que indica se terá ou não paginação na lista
     private $paginacaoItens = 15;  # Quantidade de registros por página. 
     private $paginacaoInicial = 0;  # A paginação inicial
     private $pagina = 1;   # Página atual
     private $quantidadeMaxLinks = 10;           # Quantidade Máximo de links de paginação a ser exibido na página
     # Valores antes da atualização
-    private $oldValue = NULL;
+    private $oldValue = null;
 
     # Classe do banco de dados
-    private $classBd = NULL;
+    private $classBd = null;
 
     # Nome da tabela
-    private $tabela = NULL;
+    private $tabela = null;
 
     # Nome (e id) do Formulário para o css e jscript
     private $nomeForm = 'formPadrao';
 
     # Insere objeto (Imagem) para o form
-    private $objetoForm = NULL;
+    private $objetoForm = null;
 
     # Nome do campo id
-    private $idCampo = NULL;
+    private $idCampo = null;
 
     # Tipo de label do formulário
     private $formLabelTipo = 1;
 
     # Campos para o formulario
-    private $campos = NULL;
+    private $campos = null;
 
     # Parâmetros pra a rotina de Log
-    private $idUsuario = NULL;      # Usuário logado
-    private $idServidorPesquisado = NULL;   # Usado para informar qual servidor teve os dados alterados. Usado no sistema de pessoal 
+    private $idUsuario = null;      # Usuário logado
+    private $idServidorPesquisado = null;   # Usado para informar qual servidor teve os dados alterados. Usado no sistema de pessoal 
     private $listaLog = 'listaLog.php';     # rotina externa para onde o botão levará
-    private $log = TRUE;      # Se grava ou não o log
-    private $logDescricao = TRUE;           # Define se no log grava a atividade (descrição do que foi gravado)	
+    private $log = true;      # Se grava ou não o log
+    private $logDescricao = true;           # Define se no log grava a atividade (descrição do que foi gravado)	
     # Botões extra
     private $botaoListarExtra; # Array de objetos button para fazer um menu na rotina de listar
     private $botaoEditarExtra; # Array de objetos button para fazer um menu na rotina de editar
     # Rotinas Extras - > rotina extra que aparecerá nas rotinas de listar e editar
-    private $rotinaExtra = NULL;
-    private $rotinaExtraParametro = NULL;
+    private $rotinaExtra = null;
+    private $rotinaExtraParametro = null;
 
     # Rotinas Extras Editar - > rotina extra que aparecerá na rotina de editar
-    private $rotinaExtraEditar = NULL;
-    private $rotinaExtraEditarParametro = NULL;
+    private $rotinaExtraEditar = null;
+    private $rotinaExtraEditarParametro = null;
 
     # Rotinas Extras Listar - > rotina extra que aparecerá na rotina de Lista
-    private $rotinaExtraListar = NULL;
-    private $rotinaExtraListarParametro = NULL;
+    private $rotinaExtraListar = null;
+    private $rotinaExtraListarParametro = null;
 
     # Menu Lateral
-    private $menuLateralEditar = NULL;      //  Objeto menu a ser inserido ao lado do formulário de edição
-    private $menuLateralListar = NULL;      //  Objeto menu a ser inserido ao lado da tabela de listagem
+    private $menuLateralEditar = null;      //  Objeto menu a ser inserido ao lado do formulário de edição
+    private $menuLateralListar = null;      //  Objeto menu a ser inserido ao lado da tabela de listagem
     # Outros
-    private $exibeInfoObrigatoriedade = TRUE;
-    private $comGridLista = TRUE;
-    private $rowspan = NULL;            # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
-    private $grupoCorColuna = NULL;     # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
+    private $exibeInfoObrigatoriedade = true;
+    private $comGridLista = true;
+    private $rowspan = null;            # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
+    private $grupoCorColuna = null;     # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
 
     ###########################################################
 
@@ -211,7 +211,7 @@ class Modelo {
      * @param 	$excluirCondicao	 string -> valor que exibe o botao de exclusao
      * @param 	$excluirColuna		 integer -> numero da coluna cujo valor sera comparado
      */
-    public function set_excluirCondicional($excluirCondicional, $excluirCondicao, $excluirColuna, $excluirOperador = NULL) {
+    public function set_excluirCondicional($excluirCondicional, $excluirCondicao, $excluirColuna, $excluirOperador = null) {
         $this->excluirCondicional = $excluirCondicional;
         $this->excluirCondicao = $excluirCondicao;
         $this->excluirColuna = $excluirColuna;
@@ -231,7 +231,7 @@ class Modelo {
      * @param 	$editarCondicao	   string -> valor que exibe o botão de editar
      * @param 	$editarColuna	   integer -> número da coluna cujo valor será comparado
      */
-    public function set_editarCondicional($editarCondicional, $editarCondicao, $editarColuna, $editarOperador = NULL) {
+    public function set_editarCondicional($editarCondicional, $editarCondicao, $editarColuna, $editarOperador = null) {
         $this->editarCondicional = $editarCondicional;
         $this->editarCondicao = $editarCondicao;
         $this->editarColuna = $editarColuna;
@@ -271,7 +271,7 @@ class Modelo {
      */
     public function listar() {
         # Pega o time inicial
-        $time_start = microtime(TRUE);
+        $time_start = microtime(true);
 
         set_session('oldValue' . $this->tabela);
 
@@ -309,15 +309,15 @@ class Modelo {
                 $controle->set_size(50);
                 $controle->set_placeholder($this->parametroLabel);
                 $controle->set_valor($this->parametroValue);
-                $controle->set_autofocus(TRUE);
+                $controle->set_autofocus(true);
                 $controle->set_onChange('formPadrao.submit();');
                 $controle->set_id("controlePesquisa");
-                $controle->set_pesquisa(TRUE);
+                $controle->set_pesquisa(true);
                 $controle->set_col(8);
 
                 # Oculta o texto ressaltado quando for combo
                 if ($this->tipoCampoPesquisa == "combo") {
-                    $this->exibeTextoRessaltado = FALSE;
+                    $this->exibeTextoRessaltado = false;
                 }
                 # Envia o array quando é combo
                 if (!is_null($this->arrayPesquisa)) {
@@ -385,7 +385,7 @@ class Modelo {
         $totalRegistros = count($result);
 
         # Calculos da paginaçao
-        $texto = NULL;
+        $texto = null;
         if ($this->paginacao) {
             # Calcula o total de páginas
             $totalPaginas = ceil($totalRegistros / $this->paginacaoItens);
@@ -599,7 +599,7 @@ class Modelo {
         $tabela->show();
 
         # Pega o time final
-        $time_end = microtime(TRUE);
+        $time_end = microtime(true);
 
         # Calcula e exibe o tempo
         if ($this->exibeTempoPesquisa) {
@@ -623,16 +623,16 @@ class Modelo {
     /**
      * método ver
      * 
-     * @param $id        integer NULL  id se for para update NULL se for para insert
+     * @param $id        integer null  id se for para update null se for para insert
      */
-    public function ver($id = NULL) {
+    public function ver($id = null) {
 
         # Cria o botão Editar
         $botaoEditar = new Button("Editar", "?fase=editar&id=$id");
         $botaoEditar->set_title("Editar");
         $this->botaoEditarExtra[] = $botaoEditar;
 
-        $this::editar($id, TRUE);
+        $this::editar($id, true);
     }
 
     ###########################################################
@@ -640,10 +640,10 @@ class Modelo {
     /**
      * método editar (e incluir)
      * 
-     * @param $id        integer NULL  id se for para update NULL se for para insert 
-     * @param $bloqueado bool    FALSE Se está bloqueado para edição ou não  
+     * @param $id        integer null  id se for para update null se for para insert 
+     * @param $bloqueado bool    false Se está bloqueado para edição ou não  
      */
-    public function editar($id = NULL, $bloqueado = FALSE) {
+    public function editar($id = null, $bloqueado = false) {
         # Limita o tamanho da tela
         $grid = new Grid();
         $grid->abreColuna(12);
@@ -743,7 +743,7 @@ class Modelo {
             #$top->show(); 
         }
 
-        if (($id <> NULL)and($this->selectEdita <> NULL)) {
+        if (($id <> null)and($this->selectEdita <> null)) {
             # Conecta com o banco de dados
             $objeto = new $this->classBd();
 
@@ -753,7 +753,7 @@ class Modelo {
             }
 
             # faz o select	
-            $row = $objeto->select($this->selectEdita, FALSE);
+            $row = $objeto->select($this->selectEdita, false);
         }
 
         $form = new Form($this->linkGravar . '&id=' . $id, $this->nomeForm);
@@ -768,7 +768,7 @@ class Modelo {
         # para adaptar a grid do frame Foundation
         $linhaAtual = 0;            // zera a flag da linha atual
         $somatorioSize = 0;         // somatorio temporário de uma determinada linha
-        $somaPorLinha[] = NULL;     // Array com o somatório por linha
+        $somaPorLinha[] = null;     // Array com o somatório por linha
         foreach ($this->campos as $campo) {
 
             # pega o tamanho de um controle (input)
@@ -787,7 +787,7 @@ class Modelo {
         }
 
         $contador = 1;          // Contador para a tabulação do formulário
-        $ultimoFieldset = NULL; // Verifica se ultimo fieldset foi o de fechar
+        $ultimoFieldset = null; // Verifica se ultimo fieldset foi o de fechar
 
         foreach ($this->campos as $campo) {
             $controle = new Input($campo['nome'], $campo['tipo'], $campo['label'], $this->formLabelTipo);
@@ -850,11 +850,11 @@ class Modelo {
                 $controle->set_datalist($campo['datalist']);
             }
 
-            # Bloqueia quando for $bloqueado for TRUE
+            # Bloqueia quando for $bloqueado for true
             if ($bloqueado) {
-                $controle->set_readonly(TRUE);
-                $controle->set_disabled(TRUE);
-                $this->exibeInfoObrigatoriedade = FALSE;
+                $controle->set_readonly(true);
+                $controle->set_disabled(true);
+                $this->exibeInfoObrigatoriedade = false;
 
                 if (isset($campo['bloqueadoEsconde'])) {
                     if ($campo['bloqueadoEsconde']) {
@@ -904,8 +904,8 @@ class Modelo {
             } else {
                 $sizeFormulario = $campo['size'];
             }  // se for text area tira do array
-            # Inlcui o valor se for para editar (id <> NULL)
-            if (($id <> NULL)and($this->selectEdita <> NULL)) {
+            # Inlcui o valor se for para editar (id <> null)
+            if (($id <> null)and($this->selectEdita <> null)) {
                 # se tiver criptografia, descriptograva para exibi��o
                 if ((isset($campo['encode'])) AND ( $campo['encode'])) {
                     $row[$campo['nome']] = base64_decode($row[$campo['nome']]);
@@ -916,7 +916,7 @@ class Modelo {
                     $controle->set_valor($row[$campo['nome']]);
                     $oldValue[] = $row[$campo['nome']];
                 } else { // se aceitar tags html
-                    if ((isset($campo['tagHtml'])) AND ( $campo['tagHtml'] == TRUE)) {
+                    if ((isset($campo['tagHtml'])) AND ( $campo['tagHtml'] == true)) {
                         $valorCampo = $row[$campo['nome']];
                         $valorControle = htmlentities($valorCampo);
                         $controle->set_valor($valorControle);
@@ -935,7 +935,7 @@ class Modelo {
         }
 
         # Passa por session os valores antigos
-        if (($id <> NULL)and ( $this->selectEdita <> NULL)) {
+        if (($id <> null)and ( $this->selectEdita <> null)) {
             set_session('oldValue' . $this->tabela, $oldValue);
         }
 
@@ -1005,14 +1005,14 @@ class Modelo {
      *                                     se for nulo será insert
      * @param $validacaoExtra    string   rotina externa extra de validação
      */
-    public function gravar($id = NULL, $validacaoExtra = NULL) {
+    public function gravar($id = null, $validacaoExtra = null) {
         # Variáveis sobre um erro fatal (que não pode prosseguir com ele)
         $erro = 0;      // flag de erro: 1 - tem erro; 0 - não tem	
-        $msgErro = NULL;  // repositório de mensagens de erro
+        $msgErro = null;  // repositório de mensagens de erro
 
         $contador = 0;  // contador para os arrays $campo_nome e $campo_valor
-        $alteracoes = NULL; // informa as alteraçõs dos valores antigos com os novos
-        $atividade = NULL; // Variavel que informa ao log o que foi feito
+        $alteracoes = null; // informa as alteraçõs dos valores antigos com os novos
+        $atividade = null; // Variavel que informa ao log o que foi feito
         # Pega o valor antigo
         $oldValue = get_session('oldValue' . $this->tabela);
 
@@ -1046,7 +1046,7 @@ class Modelo {
             $campoValor[$contador] = vazioPraNulo($campoValor[$contador]);
 
 ######################### Require #########################            
-            # verifica not NULL
+            # verifica not null
             if ((isset($campo['required'])) and ($campo['required'])) {
                 if (vazio($campoValor[$contador])) {
                     $msgErro .= 'O campo ' . $campo['label'] . ' é obrigatório!\n';
@@ -1060,7 +1060,7 @@ class Modelo {
                 # Pega duplicados
                 $duplicidade = new $this->classBd();
 
-                if ((isset($id)) and ($id <> NULL)) {
+                if ((isset($id)) and ($id <> null)) {
                     $result = $duplicidade->select("SELECT $this->idCampo FROM $this->tabela WHERE $campoNome[$contador] = '$campoValor[$contador]' AND $this->idCampo <> $id");
                 } else {
                     $result = $duplicidade->select("SELECT $this->idCampo FROM $this->tabela WHERE $campoNome[$contador] = '$campoValor[$contador]'");
@@ -1148,7 +1148,7 @@ class Modelo {
               # Dá erro quando tamanho for 3
               if($tamParte == 3){
               # Verifica se esqueceu o -
-              if(strpos($partes[0],"-") === FALSE){
+              if(strpos($partes[0],"-") === false){
               $primeira = substr($partes[0],0,1);
               $resto = substr($partes[0],1,2);
 
@@ -1355,14 +1355,14 @@ class Modelo {
             $objeto->gravar($campoNome, $campoValor, $id);
 
             # Após a verificação se não alterou nada
-            # passa a $alteracao para NULL caso lodDescricao 
+            # passa a $alteracao para null caso lodDescricao 
             # peça isso
             if (!$this->logDescricao) {
-                $alteracoes = NULL;
+                $alteracoes = null;
             }
 
             # Inicia o tipo de log
-            $tipoLog = NULL;
+            $tipoLog = null;
 
             # Grava no log a atividade
             if (($this->log) AND (!is_null($alteracoes))) {
@@ -1400,7 +1400,7 @@ class Modelo {
             aguarde();
 
             loadPage($this->linkListar);
-            return TRUE;
+            return true;
         } else {
             alert($msgErro);
             back(1);
@@ -1463,7 +1463,7 @@ class Modelo {
      * 
      * @param  $id o id para se exibir o histórico
      */
-    public function exibeHistorico($id = NULL) {
+    public function exibeHistorico($id = null) {
         echo '<div id="divHistorico">';
 
         $select = 'SELECT data,

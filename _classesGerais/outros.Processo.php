@@ -13,7 +13,7 @@ class Processo {
          * 
          * @syntax $processo->run($cmd);
          * 
-         * @param $cmd string NULL O nome do arquivo .php que será executado em segundo plano
+         * @param $cmd string null O nome do arquivo .php que será executado em segundo plano
          */
         $cmd = sprintf("nohup %s >/dev/null 2>&1 & echo $!", $cmd);
         exec($cmd, $output);
@@ -28,16 +28,16 @@ class Processo {
          * 
          * @syntax $processo->isRunning($pid);
          * 
-         * @param $pid string NULL O PID fornecido quando se rodou o processo
+         * @param $pid string null O PID fornecido quando se rodou o processo
          */
         $command = "/bin/ps -p $pid";
         exec($command, $output);
 
         if (isset($output[1])) {
-            return TRUE;
+            return true;
         }
 
-        return FALSE;
+        return false;
     }
 
     ###########################################################
@@ -48,7 +48,7 @@ class Processo {
          * 
          * @syntax $processo->kill($pid);
          * 
-         * @param $pid string NULL O PID fornecido quando se rodou o processo
+         * @param $pid string null O PID fornecido quando se rodou o processo
          */
         $command = "/bin/kill $pid";
         exec($command);

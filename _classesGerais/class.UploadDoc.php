@@ -7,17 +7,17 @@ class UploadDoc {
      *
      * @author Marco Antoni <marquinho9.10@gmail.com>
      */
-    private $arquivo = NULL;    // FILE   O arquivo a ser trabalhado
-    private $pasta = NULL;      // string O caminho da pasta onde será armazenada o documento
-    private $nome = NULL;       // string O nome do arquivo ao final do upload
-    private $extensoes = NULL;  // array  As extensões permitidas. Pode ser array ou string.
+    private $arquivo = null;    // FILE   O arquivo a ser trabalhado
+    private $pasta = null;      // string O caminho da pasta onde será armazenada o documento
+    private $nome = null;       // string O nome do arquivo ao final do upload
+    private $extensoes = null;  // array  As extensões permitidas. Pode ser array ou string.
 
 ###########################################################
 
-    public function __construct($arquivo = NULL, // file     O arquivo que veio por post para ser subido.
-            $pasta = NULL, // string   A pasta onde vai ser gravado
-            $nome = NULL, // string   O nome que o arquivo será gravado no servidor 
-            $extensoes = NULL) {    // array    As extensões permitidas nesse upload        
+    public function __construct($arquivo = null, // file     O arquivo que veio por post para ser subido.
+            $pasta = null, // string   A pasta onde vai ser gravado
+            $nome = null, // string   O nome que o arquivo será gravado no servidor 
+            $extensoes = null) {    // array    As extensões permitidas nesse upload        
         /**
          * Inicia a classe
          * 
@@ -71,19 +71,19 @@ class UploadDoc {
 
             # Move o arquivo
             if (move_uploaded_file($this->arquivo['tmp_name'], $destino)) {
-                return TRUE;
+                return true;
             } else {
                 if ($this->arquivo['error'] == 1) {
                     alert("Tamanho excede o permitido.");
-                    return FALSE;
+                    return false;
                 } else {
                     alert("Aconteceu algum problema.");
-                    return FALSE;
+                    return false;
                 }
             }
         } else {
             alert("Extensão não Permitida. ($extensaoArquivo)");
-            return FALSE;
+            return false;
         }
     }
 

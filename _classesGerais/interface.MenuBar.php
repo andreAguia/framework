@@ -7,15 +7,15 @@ class MenuBar {
      * 
      * @author André Águia (Alat) - alataguia@gmail.com
      * 
-     * @var private $link   object NULL Array de objetos Link/Button a ser inseridos no menu
-     * @var private $link   object NULL Array informando o lado do objeto. Pode ser: left ou right
+     * @var private $link   object null Array de objetos Link/Button a ser inseridos no menu
+     * @var private $link   object null Array informando o lado do objeto. Pode ser: left ou right
      * @var private $classe string button-group string informando a classe do Menu. Usado pelo Foundation
      * 
      * @example exemplo.menubar.php
      */
     # do link (botao)
-    private $link = NULL;
-    private $linkLado = NULL;
+    private $link = null;
+    private $linkLado = null;
     private $classe = "button-group";
 
 ###########################################################

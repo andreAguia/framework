@@ -13122,7 +13122,7 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
     rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
         fcssescape = function fcssescape(ch, asCodePoint) {
       if (asCodePoint) {
-        // U+0000 NULL becomes U+FFFD REPLACEMENT CHARACTER
+        // U+0000 null becomes U+FFFD REPLACEMENT CHARACTER
         if (ch === "\0") {
           return "\uFFFD";
         } // Control characters and (dependent upon position) numbers get escaped as code points
@@ -13491,7 +13491,7 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
     /**
      * Detects XML nodes
      * @param {Element|Object} elem An element or a document
-     * @returns {Boolean} True iff elem is a non-HTML XML node
+     * @returns {Boolean} true iff elem is a non-HTML XML node
      */
 
     isXML = Sizzle.isXML = function (elem) {
@@ -15423,7 +15423,7 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
    *
    *	unique:			will ensure a callback can only be added once (no duplicate in the list)
    *
-   *	stopOnFalse:	interrupt callings when a callback returns false
+   *	stopOnfalse:	interrupt callings when a callback returns false
    *
    */
 
@@ -15460,7 +15460,7 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
         while (++firingIndex < list.length) {
           // Run callback and check for early termination
-          if (list[firingIndex].apply(memory[0], memory[1]) === false && options.stopOnFalse) {
+          if (list[firingIndex].apply(memory[0], memory[1]) === false && options.stopOnfalse) {
             // Jump to end and forget the data so .add doesn't re-fire
             firingIndex = list.length;
             memory = false;
@@ -16800,11 +16800,11 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
       rmouseEvent = /^(?:mouse|pointer|contextmenu|drag|drop)|click/,
       rtypenamespace = /^([^.]*)(?:\.(.+)|)/;
 
-  function returnTrue() {
+  function returntrue() {
     return true;
   }
 
-  function returnFalse() {
+  function returnfalse() {
     return false;
   } // Support: IE <=9 only
   // See #13393 for more info
@@ -16852,7 +16852,7 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
     }
 
     if (fn === false) {
-      fn = returnFalse;
+      fn = returnfalse;
     } else if (!fn) {
       return elem;
     }
@@ -17282,7 +17282,7 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
       // by a handler lower down the tree; reflect the correct value.
 
       this.isDefaultPrevented = src.defaultPrevented || src.defaultPrevented === undefined && // Support: Android <=2.3 only
-      src.returnValue === false ? returnTrue : returnFalse; // Create target properties
+      src.returnValue === false ? returntrue : returnfalse; // Create target properties
       // Support: Safari <=6 - 7 only
       // Target should not be a text node (#504, #13143)
 
@@ -17308,13 +17308,13 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
   jQuery.Event.prototype = {
     constructor: jQuery.Event,
-    isDefaultPrevented: returnFalse,
-    isPropagationStopped: returnFalse,
-    isImmediatePropagationStopped: returnFalse,
+    isDefaultPrevented: returnfalse,
+    isPropagationStopped: returnfalse,
+    isImmediatePropagationStopped: returnfalse,
     isSimulated: false,
     preventDefault: function preventDefault() {
       var e = this.originalEvent;
-      this.isDefaultPrevented = returnTrue;
+      this.isDefaultPrevented = returntrue;
 
       if (e && !this.isSimulated) {
         e.preventDefault();
@@ -17322,7 +17322,7 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
     },
     stopPropagation: function stopPropagation() {
       var e = this.originalEvent;
-      this.isPropagationStopped = returnTrue;
+      this.isPropagationStopped = returntrue;
 
       if (e && !this.isSimulated) {
         e.stopPropagation();
@@ -17330,7 +17330,7 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
     },
     stopImmediatePropagation: function stopImmediatePropagation() {
       var e = this.originalEvent;
-      this.isImmediatePropagationStopped = returnTrue;
+      this.isImmediatePropagationStopped = returntrue;
 
       if (e && !this.isSimulated) {
         e.stopImmediatePropagation();
@@ -17464,7 +17464,7 @@ Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
       }
 
       if (fn === false) {
-        fn = returnFalse;
+        fn = returnfalse;
       }
 
       return this.each(function () {

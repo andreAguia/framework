@@ -1,38 +1,38 @@
 <?php
 
 # Diversos cpf
-$cpf1 = NULL;
+$cpf1 = null;
 $cpf2 = "";
 $cpf3 = "136.737.784-63";
 $cpf4 = "13673778463";
 
 # Valor nulo
 if (validaCpf($cpf1)) {
-    echo "TRUE";
+    echo "true";
 } else {
-    echo "FALSE";
+    echo "false";
 }
 br();
 
 # Valor vazio
 if (validaCpf($cpf2)) {
-    echo "TRUE";
+    echo "true";
 } else {
-    echo "FALSE";
+    echo "false";
 }
 br();
 
 # CPF correto
 if (validaCpf($cpf3)) {
-    echo "TRUE";
+    echo "true";
 } else {
-    echo "FALSE";
+    echo "false";
 }
 br();
 
 # CPF sem pontuação
 if (validaCpf($cpf4)) {
-    echo "TRUE";
+    echo "true";
 } else {
-    echo "FALSE";
+    echo "false";
 }

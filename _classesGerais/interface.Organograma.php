@@ -7,24 +7,24 @@ class Organograma {
      * 
      * @author André Águia (Alat) - alataguia@gmail.com
      * 
-     * @var private $dados array  NULL  Os dados do gráfico.
-     * @var private $tipo  string NULL  O tipo do gráfico: Pie | Line | Area
-     * @var private $tresd bool   FALSE Informa se o gráfico será ou não em 3 dimensões
+     * @var private $dados array  null  Os dados do gráfico.
+     * @var private $tipo  string null  O tipo do gráfico: Pie | Line | Area
+     * @var private $tresd bool   false Informa se o gráfico será ou não em 3 dimensões
      * 
      * @example exemplo.button.php
      */
-    private $dados = NULL;
+    private $dados = null;
     private $idDiv = "org";
 
 ###########################################################
 
-    public function __construct($dados = NULL) {
+    public function __construct($dados = null) {
 
         /**
          * Inicia a classe
          * 
-         * @param $tipo  string NULL O tipo do gráfico: pie|
-         * @param $dados array  NULL Os dados do gráfico
+         * @param $tipo  string null O tipo do gráfico: pie|
+         * @param $dados array  null Os dados do gráfico
          * 
          * @syntax $button = new Chart($tipo,$dados);
          */
@@ -33,13 +33,13 @@ class Organograma {
 
 ###########################################################
 
-    public function set_idDiv($idDiv = NULL) {
+    public function set_idDiv($idDiv = null) {
         /**
          * Informa se o gráfico será em 3d
          * 
          * @syntax $button->set_tresd($tresd);
          * 
-         * @param $tresd bool NULL Informa se o gráfico será ou não em 3 dimensões
+         * @param $tresd bool null Informa se o gráfico será ou não em 3 dimensões
          */
         $this->idDiv = $idDiv;
     }
@@ -78,8 +78,8 @@ class Organograma {
 
         # Create the chart.
         echo "var chart = new google.visualization.OrgChart(document.getElementById('$this->idDiv'));";
-        # Draw the chart, setting the allowHtml option to TRUE for the tooltips.
-        echo "chart.draw(data, {allowHtml:TRUE});";
+        # Draw the chart, setting the allowHtml option to true for the tooltips.
+        echo "chart.draw(data, {allowHtml:true});";
         echo "}";
 
         echo "</script>";
