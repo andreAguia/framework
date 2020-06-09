@@ -213,30 +213,6 @@ class Link {
             }
         }
 
-        # o destino
-        if ((!is_null($this->url)) OR (!is_null($this->onClick))) {
-
-            # Verifica se tem confirmação
-            if ($this->confirma <> null) {  // com confirmação
-                if (is_null($id)) { // Exibe ou não o id
-                    echo " onclick='confirma(\"$this->url\",\"$this->confirma\")'";
-                } else {
-                    echo " onclick='confirma(\"$this->url$id\",\"$this->confirma\")'";
-                }
-                echo ' href="#"';
-            } else {    // sem confirmação
-                if (is_null($this->onClick)) {
-                    if (is_null($id)) { // Exibe ou não o id
-                        echo ' href="' . $this->url . '"';
-                    } else {
-                        echo ' href="' . $this->url . $id . '"';
-                    }
-                } else {
-                    echo ' href="javascript:' . $this->onClick . '"';
-                }
-            }
-        }
-
         if (!is_null($this->accessKey)) {
             echo ' accesskey="' . $this->accessKey . '"';
         }

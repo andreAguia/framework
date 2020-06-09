@@ -89,6 +89,7 @@ class Tabela {
     private $editarColuna = null;
     private $editarOperador = "==";
     private $editarBotao = 'bullet_edit.png'; # Figura do botao
+    
     # do form de check
     private $check = false;
     private $checkSubmit = null;
