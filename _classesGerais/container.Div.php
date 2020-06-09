@@ -64,22 +64,22 @@ class Div {
         echo '<div';
 
         # id
-        if (!is_null($this->id)) {
+        if (!empty($this->id)) {
             echo ' id="' . $this->id . '"';
         }
 
         # class
-        if (!is_null($this->class)) {
+        if (!empty($this->class)) {
             echo ' class="' . $this->class . '"';
         }
 
         # title
-        if (!is_null($this->title)) {
+        if (!empty($this->title)) {
             echo ' title="' . $this->title . '"';
         }
 
         # onClick
-        if (is_null($this->onClick)) {
+        if (!empty($this->onClick)) {
             echo ' onclick="' . $this->onClick . '"';
         }
         echo '>';

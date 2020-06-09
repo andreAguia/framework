@@ -4,12 +4,12 @@
  *
  */
 
-html{
-    margin-top: 10px;
+header{
+    margin: 5px;
 }
 
-header{
-    margin-bottom: 10px;
+html{
+    margin-top: 3px;
 }
 
 /******************************************* 
