@@ -1,6 +1,7 @@
 <?php
 
-class Calendario {
+class Calendario
+{
 
     /**
      * Classe que constroi e exibe um calendário.
@@ -13,10 +14,12 @@ class Calendario {
     private $ano = null;        // integer O ano do calandário com 4 dígitos
     private $tamanho = "p";     // string  O tamanho do calendário: p | g
 
-###########################################################    
+    ###########################################################    
 
-    public function __construct($mes = null, // integer O mês a ser exibido. 1 a 12.
-            $ano = null) {   // integer O ano do calandário com 4 dígitos     
+    public function __construct(
+        $mes = null,    // integer O mês a ser exibido. 1 a 12.
+        $ano = null     // integer O ano do calandário com 4 dígitos 
+    ) {
         /**
          * Inicia a classe atribuindo um valor do legend e do id
          * 
@@ -32,7 +35,7 @@ class Calendario {
         }
 
         # Verifica se o mês é válido
-        if (($mes < 1) OR ($mes > 12)) {
+        if (($mes < 1) or ($mes > 12)) {
             alert("É necessário informar o mês válido na Classe Calendário");
             return;
         }
@@ -46,9 +49,10 @@ class Calendario {
         $this->ano = $ano;
     }
 
-###########################################################
+    ###########################################################
 
-    public function set_tamanho($tamanho = null) { // string O tamanho do calendário: p | g
+    public function set_tamanho($tamanho = null)
+    { // string O tamanho do calendário: p | g
         /**
          * Informa o tamanho do nome do dia da semana no cabeçalçho da tabela do calendário
          * 
@@ -60,9 +64,10 @@ class Calendario {
         $this->tamanho = $tamanho;
     }
 
-###########################################################
+    ###########################################################
 
-    public function show() {
+    public function show()
+    {
         /**
          * Exibe o Calendário
          * 
@@ -126,11 +131,11 @@ class Calendario {
                         echo "<td align='center'";
 
                         # Verifica se é hoje
-                        if (($this->ano == date('Y')) AND ($this->mes == date('m')) AND ($dia == date('d'))) {
+                        if (($this->ano == date('Y')) and ($this->mes == date('m')) and ($dia == date('d'))) {
                             echo " id='hoje'";
                         } else {
                             # Verifica se é Sábado ou Domeingo                                                
-                            if (($i == 1) OR ($i == 7)) {
+                            if (($i == 1) or ($i == 7)) {
                                 echo " id='domingo'";
                             } elseif (!is_null($feriado)) {
                                 echo " id='domingo' title='$feriado'";
@@ -155,21 +160,21 @@ class Calendario {
                     } else {
                         echo "<td align='center'";
                         # Verifica se é Sábado ou Domingo                                                
-                        if (($i == 1) OR ($i == 7)) {
+                        if (($i == 1) or ($i == 7)) {
                             echo " id='domingo' title='$feriado'";
                         }
-                        echo"> --- </td>";
+                        echo "> --- </td>";
                     }
                 } else {
                     if ($dia <= $dias) {
                         echo "<td align='center'";
 
                         # Verifica se é hoje
-                        if (($this->ano == date('Y')) AND ($this->mes == date('m')) AND ($dia == date('d'))) {
+                        if (($this->ano == date('Y')) and ($this->mes == date('m')) and ($dia == date('d'))) {
                             echo " id='hoje'";
                         } else {
                             # Verifica se é Sábado ou Domingo                                                
-                            if (($i == 1) OR ($i == 7) OR (!is_null($feriado))) {
+                            if (($i == 1) or ($i == 7) or (!is_null($feriado))) {
                                 echo " id='domingo' title='$feriado'";
                             }
                         }
@@ -192,10 +197,10 @@ class Calendario {
                     } else {
                         echo "<td align='center'";
                         # Verifica se é Sábado ou Domingo                                                
-                        if (($i == 1) OR ($i == 7)) {
+                        if (($i == 1) or ($i == 7)) {
                             echo " id='domingo' title='$feriado'";
                         }
-                        echo"> --- </td>";
+                        echo "> --- </td>";
                     }
                 }
             }
@@ -206,5 +211,4 @@ class Calendario {
         # termina a tabela
         echo '</table>';
     }
-
 }
