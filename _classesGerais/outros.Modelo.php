@@ -44,9 +44,9 @@ class Modelo
     private $topBarListar         = true; # Exibe ou  não a top bar na rotina de lista
     private $topBarIncluir        = true; # Exibe ou  não a top bar na rotina de inclusão
     # ordem da lista
-    private $orderCampo    = null;
-    private $orderTipo     = null;
-    private $orderChamador = null;
+    private $orderCampo           = null;
+    private $orderTipo            = null;
+    private $orderChamador        = null;
 
     # select da lista
     private $selectLista;
@@ -78,10 +78,10 @@ class Modelo
     private $numeroOrdem             = false; # Exibe (qualdo true) uma numera��o das colunas
     private $numeroOrdemTipo         = 'c'; # Informa que a ordena��o ser� 'c' crescente ou 'd' decrescente
     # do somatório da tabela
-    private $colunaSomatorio = null; // coluna que terá somatório (por enquanto uma por relatório)
-    private $textoSomatorio  = 'Total:'; // texto a ser exibido na linha de totalização
+    private $colunaSomatorio         = null; // coluna que terá somatório (por enquanto uma por relatório)
+    private $textoSomatorio          = 'Total:'; // texto a ser exibido na linha de totalização
     # Da função
-    private $funcao = null;
+    private $funcao                  = null;
 
     # da Classe
     private $classe             = null; # array de classes
@@ -935,9 +935,9 @@ class Modelo
             } elseif (isset($campo['padrao'])) {
                 $controle->set_valor($campo['padrao']);
             }
-            
-            if(is_null($id)){
-                 $oldValue[] = "";
+
+            if (is_null($id)) {
+                $oldValue[] = "";
             }
 
             $form->add_item($controle);
@@ -1022,12 +1022,11 @@ class Modelo
         $alteracoes = null; // informa as alteraçõs dos valores antigos com os novos
         $atividade  = null; // Variavel que informa ao log o que foi feito
         # Pega o valor antigo
-        $oldValue = get_session('oldValue' . $this->tabela);
+        $oldValue   = get_session('oldValue' . $this->tabela);
 
 //        var_dump(
 //                $oldValue                
 //        );
-
         # percorre os dados digitados validando
         foreach ($this->campos as $campo) {
             # passa o nome dos campos para o array de gravação
@@ -1103,11 +1102,12 @@ class Modelo
 ######################### EMAIL #########################
             # verifica a validade do email
             if ($campo['tipo'] == 'email') {
-                $email = $campoValor[$contador];
 
-                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    $msgErro .= 'Email Inválido!\n';
-                    $erro    = 1;
+                if (!empty($campoValor[$contador])) {
+                    if (!filter_var($campoValor[$contador], FILTER_VALIDATE_EMAIL)) {
+                        $msgErro .= 'Email Inválido!\n';
+                        $erro    = 1;
+                    }
                 }
             }
 

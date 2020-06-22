@@ -934,6 +934,14 @@ class Input {
                 echo '/>';
                 echo '</div>';
                 break;
+            
+            case "email":
+                echo ' size="' . ($this->size) . '"';
+                echo ' type="email"';
+                echo ' value="' . $this->valor . '"';
+                echo ' onFocus="this.select();"';
+                echo '/>';
+                break;
 
             case "cpf":
                 $mascara = '999.999.999-99';
