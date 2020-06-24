@@ -2,7 +2,6 @@
 
 class Calendario
 {
-
     /**
      * Classe que constroi e exibe um calendário.
      * 
@@ -10,16 +9,16 @@ class Calendario
      * 
      * @example exemplo.calendario.php 
      */
-    private $mes = null;        // integer O mês a ser exibido. 1 a 12.
-    private $ano = null;        // integer O ano do calandário com 4 dígitos
+    private $mes     = null;    // integer O mês a ser exibido. 1 a 12.
+    private $ano     = null;    // integer O ano do calandário com 4 dígitos
     private $tamanho = "p";     // string  O tamanho do calendário: p | g
-
     ###########################################################    
 
     public function __construct(
-        $mes = null,    // integer O mês a ser exibido. 1 a 12.
-        $ano = null     // integer O ano do calandário com 4 dígitos 
-    ) {
+            $mes = null, // integer O mês a ser exibido. 1 a 12.
+            $ano = null     // integer O ano do calandário com 4 dígitos 
+    )
+    {
         /**
          * Inicia a classe atribuindo um valor do legend e do id
          * 
@@ -28,7 +27,6 @@ class Calendario
          * 
          * @syntax $calendario = new Calendario([$mes], [$ano]);
          */
-
         # Verifica se o mês está vazio e habilita o mês atual
         if (vazio($mes)) {
             $mes = date('m');
@@ -89,8 +87,8 @@ class Calendario
 
         # Determina o dia da semana do dia primeiro
         $tstamp = mktime(0, 0, 0, $this->mes, 1, $this->ano);
-        $Tdate = getdate($tstamp);
-        $wday = $Tdate["wday"];
+        $Tdate  = getdate($tstamp);
+        $wday   = $Tdate["wday"];
 
         # Inicia a tabela
         echo '<table class="tabelaPadrao">';
@@ -121,7 +119,7 @@ class Calendario
         do {
             for ($i = 1; $i <= 7; $i++) {
                 # Verifica se nesta data existe um feriado
-                $data = "$dia/$this->mes/$this->ano";
+                $data    = "$dia/$this->mes/$this->ano";
                 $pessoal = new Pessoal();
                 $feriado = $pessoal->get_feriado($data);
 
@@ -205,10 +203,12 @@ class Calendario
                 }
             }
             echo '</tr><tr>';
-        } while ($dia <= $dias);
+        }
+        while ($dia <= $dias);
         echo '</tr>';
 
         # termina a tabela
         echo '</table>';
     }
+
 }

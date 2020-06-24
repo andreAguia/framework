@@ -1012,7 +1012,7 @@ class Modelo
      *                                     se for nulo será insert
      * @param $validacaoExtra    string   rotina externa extra de validação
      */
-    public function gravar($id = null, $validacaoExtra = null)
+    public function gravar($id = null, $validacaoExtra = null, $rotinaPosGravacao = null)
     {
         # Variáveis sobre um erro fatal (que não pode prosseguir com ele)
         $erro    = 0; // flag de erro: 1 - tem erro; 0 - não tem
@@ -1029,6 +1029,7 @@ class Modelo
 //        );
         # percorre os dados digitados validando
         foreach ($this->campos as $campo) {
+
             # passa o nome dos campos para o array de gravação
             $campoNome[$contador]  = addslashes($campo['nome']); // nome do campo no banco
             $campoValor[$contador] = post($campo['nome']); // array dos valores
@@ -1059,6 +1060,7 @@ class Modelo
             /*
              * Require
              */
+
             # verifica not null
             if ((isset($campo['required'])) and ($campo['required'])) {
                 if (vazio($campoValor[$contador])) {
@@ -1067,7 +1069,10 @@ class Modelo
                 }
             }
 
-######################### Unique #########################
+            /*
+             * Unique
+             */
+
             # verifica se é 'unique' -> único valor no campo nessa tabela
             if ((isset($campo['unique'])) and ($campo['unique'])) {
                 # Pega duplicados
@@ -1088,7 +1093,10 @@ class Modelo
                 }
             }
 
-######################### CPF #########################
+            /*
+             * CPF
+             */
+
             # verifica a validade do cpf
             if ($campo['tipo'] == 'cpf') {
                 if (!is_null($campoValor[$contador])) {
@@ -1099,7 +1107,10 @@ class Modelo
                 }
             }
 
-######################### EMAIL #########################
+            /*
+             * Email
+             */
+
             # verifica a validade do email
             if ($campo['tipo'] == 'email') {
 
@@ -1111,7 +1122,10 @@ class Modelo
                 }
             }
 
-######################### Checkbox #########################
+            /*
+             * Checkbox
+             */
+
             # validação dos campos tipo checkbox
             if ($campo['tipo'] == 'checkbox') {
                 if (isset($campoValor[$contador])) {
@@ -1119,7 +1133,10 @@ class Modelo
                 }
             }
 
-######################### Data #########################
+            /*
+             * Data
+             */
+
             # validação dos campos tipo data
             if ((($campo['tipo'] == 'date') or ($campo['tipo'] == 'data')) and (!(is_null($campoValor[$contador])))) {
 
@@ -1135,7 +1152,10 @@ class Modelo
                 } # passa a data para o formato de gravação
             }
 
-######################### PLM (Primeira Letra Maiúsculas) #########################
+            /*
+             * PLM (Primeira Letra Maiúsculas)
+             */
+
             # passa pra plm quando estiver true
             if ((isset($campo['plm'])) and ($campo['plm'])) {
 
@@ -1143,13 +1163,19 @@ class Modelo
                 $campoValor[$contador] = plm($campoValor[$contador]);
             }
 
-######################### Moeda #########################
+            /*
+             * Moeda
+             */
+
             # Passa o campo moeda para o formato americano (para o banco de dados)
             if (($campo['tipo'] == 'moeda') and (!(is_null($campoValor[$contador])))) {
                 $campoValor[$contador] = formataMoeda($campoValor[$contador], 2);
             }
 
-######################### Encode #########################
+            /*
+             * Encode
+             */
+
             # se tiver criptografia, descriptograva para exibição
             if ((isset($campo['encode'])) and ($campo['encode'])) {
                 $campoValor[$contador] = base64_encode($campoValor[$contador]);
@@ -1164,7 +1190,8 @@ class Modelo
             $contador++;
         }
 
-        if (!is_null($validacaoExtra)) {
+        # Executa arquivo de validação extra (se houver)
+        if (!empty($validacaoExtra)) {
             include_once $validacaoExtra;
         }
 
@@ -1203,7 +1230,7 @@ class Modelo
                 $data  = date("Y-m-d H:i:s");
 
                 # preenche atividade de inclusão
-                if (is_null($id) or ($id == "")) {
+                if (empty($id) or ($id == "")) {
                     $atividade = 'Incluiu: ' . $alteracoes;
                     $id        = $objeto->get_lastId();
                     $tipoLog   = 1;
@@ -1219,7 +1246,7 @@ class Modelo
                 }
 
                 # grava se tiver atividades para serem gravadas
-                if (!is_null($atividade)) {
+                if (!empty($atividade)) {
                     $intra->registraLog($this->idUsuario,
                                         $data,
                                         $atividade,
@@ -1231,6 +1258,11 @@ class Modelo
             }
 
             aguarde();
+
+            # Executa rotina de pos gravação (se houver)
+            if (!empty($rotinaPosGravacao)) {
+                include_once $rotinaPosGravacao;
+            }
 
             loadPage($this->linkListar);
             return true;
