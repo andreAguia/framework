@@ -53,6 +53,7 @@ class Tabela {
     private $width = null;
     private $rodape = null;
     private $totalRegistro = true;
+    private $totalRegistroTexto = "Total de Registros: ";
 
     # do número de ordem
     private $numeroOrdem = false;
@@ -810,7 +811,7 @@ class Tabela {
                 }
 
                 if (is_null($this->rodape)) {
-                    echo 'Total de Registros:   ' . $numRegistros;
+                    echo $this->totalRegistroTexto . $numRegistros;
                 } else {
                     echo $this->rodape;
                 }
