@@ -15,9 +15,10 @@ class UploadDoc {
 ###########################################################
 
     public function __construct($arquivo = null, // file     O arquivo que veio por post para ser subido.
-            $pasta = null, // string   A pasta onde vai ser gravado
-            $nome = null, // string   O nome que o arquivo será gravado no servidor 
-            $extensoes = null) {    // array    As extensões permitidas nesse upload        
+                                $pasta = null, // string   A pasta onde vai ser gravado
+                                $nome = null, // string   O nome que o arquivo será gravado no servidor 
+                                $extensoes = null)
+    {    // array    As extensões permitidas nesse upload        
         /**
          * Inicia a classe
          * 

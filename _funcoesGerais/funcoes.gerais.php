@@ -47,6 +47,7 @@ function post($nome, $padrao = null)
 }
 
 ###########################################################
+
 function get($nome, $padrao = null)
 {
     /**
@@ -82,6 +83,7 @@ function get($nome, $padrao = null)
 }
 
 ###########################################################
+
 function loadPage($url, $target = null, $parametros = 'menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600')
 {
     /**
@@ -105,6 +107,7 @@ function loadPage($url, $target = null, $parametros = 'menubar=no,scrollbars=yes
 }
 
 ###########################################################
+
 function ajaxLoadPage($url = null, $div = null)
 {
     /**
@@ -121,6 +124,7 @@ function ajaxLoadPage($url = null, $div = null)
 }
 
 ###########################################################
+
 function set_session($nome = null, $valor = null)
 {
     /**
@@ -139,6 +143,7 @@ function set_session($nome = null, $valor = null)
 }
 
 ###########################################################
+
 function get_session($nome, $padrao = null)
 {
     /**
@@ -175,6 +180,7 @@ function get_session($nome, $padrao = null)
 }
 
 ###########################################################
+
 function date_to_bd($data, $separador = '/')
 {
     /**
@@ -204,6 +210,7 @@ function date_to_bd($data, $separador = '/')
 }
 
 ###########################################################
+
 function date_to_php($data, $separador = '-')
 {
     /**
@@ -234,6 +241,7 @@ function date_to_php($data, $separador = '-')
 }
 
 ###########################################################
+
 function datetime_to_php($data, $separadorData = '-', $separadorHora = ':')
 {
     /**
@@ -257,9 +265,9 @@ function datetime_to_php($data, $separadorData = '-', $separadorHora = ':')
         return null;
     } else {
         # Separa data da hora
-        $dt1 = explode($separadorData, $data);
+        $dt1    = explode($separadorData, $data);
         $espaco = explode(' ', $dt1[2]);
-        $hora = explode($separadorHora, $espaco[1]);
+        $hora   = explode($separadorHora, $espaco[1]);
 
         $dt2 = $espaco[0] . '/' . $dt1[1] . '/' . $dt1[0] . ' ' . $hora[0] . ':' . $hora[1] . ':' . $hora[2];
         return $dt2;
@@ -267,6 +275,7 @@ function datetime_to_php($data, $separadorData = '-', $separadorHora = ':')
 }
 
 ###########################################################
+
 function back($numPaginas)
 {
     /**
@@ -282,6 +291,7 @@ function back($numPaginas)
 }
 
 ###########################################################
+
 function get_so()
 {
     /**
@@ -307,6 +317,7 @@ function get_so()
 }
 
 ###########################################################
+
 function get_browserName()
 {
     /**
@@ -320,7 +331,7 @@ function get_browserName()
      *
      * @example exemplo.get_browserName.php
      */
-    $var = $_SERVER['HTTP_USER_AGENT'];
+    $var             = $_SERVER['HTTP_USER_AGENT'];
     $info['browser'] = "OTHER";
     $info['version'] = "";
 
@@ -339,8 +350,8 @@ function get_browserName()
 
     // loop the valid browsers
     foreach ($browser as $parent) {
-        $s = strpos(strtoupper($var), $parent);
-        $f = $s + strlen($parent);
+        $s       = strpos(strtoupper($var), $parent);
+        $f       = $s + strlen($parent);
         $version = preg_replace('/[^0-9,.]/', '', substr($var, $f, 5));
         if (strpos(strtoupper($var), $parent) !== false) {
             $info['browser'] = $parent;
@@ -352,6 +363,7 @@ function get_browserName()
 }
 
 ###########################################################
+
 function get_nomeMes($numero = null)
 {
     /**
@@ -397,6 +409,7 @@ function get_nomeMes($numero = null)
 }
 
 ###########################################################
+
 function get_nomeMesAno($mesAno)
 {
     /**
@@ -419,7 +432,7 @@ function get_nomeMesAno($mesAno)
 
     # Pega os valores
     $numero = $partes[0];
-    $ano = $partes[1];
+    $ano    = $partes[1];
 
     # Valida o número do mês
     if (($numero > 12) OR ($numero < 1)) {
@@ -445,6 +458,7 @@ function get_nomeMesAno($mesAno)
 }
 
 ###########################################################
+
 function retiraAspas($texto)
 {
     /**
@@ -461,12 +475,13 @@ function retiraAspas($texto)
      *
      * @example exemplo.retiraAspas.php
      */
-    $troca1 = str_replace("'", '"', $texto);
+    $troca1    = str_replace("'", '"', $texto);
     $parametro = str_replace('"', '', $troca1);
     return $parametro;
 }
 
 ###########################################################
+
 function bold($texto, $destaque)
 {
     /**
@@ -485,7 +500,6 @@ function bold($texto, $destaque)
      *
      * @example exemplo.bold.php
      */
-    
     # Cria uma variável do destaque sem acento
     $destaqueSAcento = retiraAcento($destaque);
 
@@ -515,6 +529,7 @@ function bold($texto, $destaque)
 }
 
 ############################################################
+
 function del($texto)
 {
     /**
@@ -528,11 +543,11 @@ function del($texto)
      *
      * @example exemplo.del.php
      */
-   
     return "<del>" . $texto . "</del";
 }
 
 ###########################################################
+
 function retiraAcento($texto)
 {
     /**
@@ -555,6 +570,7 @@ function retiraAcento($texto)
 }
 
 ###########################################################
+
 function soNumeros($texto)
 {
     /**
@@ -578,6 +594,7 @@ function soNumeros($texto)
 }
 
 ###########################################################
+
 function abreDiv($nome)
 {
     /**
@@ -595,6 +612,7 @@ function abreDiv($nome)
 }
 
 ###########################################################
+
 function moedaExtenso($valor = 0, $maiusculas = false)
 {
     /**
@@ -612,17 +630,17 @@ function moedaExtenso($valor = 0, $maiusculas = false)
      * @example exemplo.moedaExtenso.php
      */
     $singular = array("centavo", "real", "mil", "milh�o", "bilh�o", "trilh�o", "quatrilh�o");
-    $plural = array("centavos", "reais", "mil", "milh�es", "bilh�es", "trilh�es", "quatrilh�es");
+    $plural   = array("centavos", "reais", "mil", "milh�es", "bilh�es", "trilh�es", "quatrilh�es");
 
-    $c = array("", "cem", "duzentos", "trezentos", "quatrocentos", "quinhentos", "seiscentos", "setecentos", "oitocentos", "novecentos");
-    $d = array("", "dez", "vinte", "trinta", "quarenta", "cinquenta", "sessenta", "setenta", "oitenta", "noventa");
+    $c   = array("", "cem", "duzentos", "trezentos", "quatrocentos", "quinhentos", "seiscentos", "setecentos", "oitocentos", "novecentos");
+    $d   = array("", "dez", "vinte", "trinta", "quarenta", "cinquenta", "sessenta", "setenta", "oitenta", "noventa");
     $d10 = array("dez", "onze", "doze", "treze", "quatorze", "quinze", "dezesseis", "dezesete", "dezoito", "dezenove");
-    $u = array("", "um", "dois", "três", "quatro", "cinco", "seis", "sete", "oito", "nove");
+    $u   = array("", "um", "dois", "três", "quatro", "cinco", "seis", "sete", "oito", "nove");
 
-    $z = 0;
+    $z  = 0;
     $rt = "";
 
-    $valor = number_format($valor, 2, ".", ".");
+    $valor   = number_format($valor, 2, ".", ".");
     $inteiro = explode(".", $valor);
     for ($i = 0; $i < count($inteiro); $i++) {
         for ($ii = strlen($inteiro[$i]); $ii < 3; $ii++) {
@@ -634,9 +652,9 @@ function moedaExtenso($valor = 0, $maiusculas = false)
 
     for ($i = 0; $i < count($inteiro); $i++) {
         $valor = $inteiro[$i];
-        $rc = (($valor > 100) && ($valor < 200)) ? "cento" : $c[$valor[0]];
-        $rd = ($valor[1] < 2) ? "" : $d[$valor[1]];
-        $ru = ($valor > 0) ? (($valor[1] == 1) ? $d10[$valor[2]] : $u[$valor[2]]) : "";
+        $rc    = (($valor > 100) && ($valor < 200)) ? "cento" : $c[$valor[0]];
+        $rd    = ($valor[1] < 2) ? "" : $d[$valor[1]];
+        $ru    = ($valor > 0) ? (($valor[1] == 1) ? $d10[$valor[2]] : $u[$valor[2]]) : "";
 
         $r = $rc . (($rc && ($rd || $ru)) ? " e " : "") . $rd . (($rd && $ru) ? " e " : "") . $ru;
         $t = count($inteiro) - 1 - $i;
@@ -668,6 +686,7 @@ function moedaExtenso($valor = 0, $maiusculas = false)
 }
 
 ###########################################################
+
 function br($linhas = 1)
 {
     /**
@@ -687,6 +706,7 @@ function br($linhas = 1)
 }
 
 ###########################################################
+
 function anti_injection($str)
 {
     /**
@@ -706,6 +726,7 @@ function anti_injection($str)
 }
 
 ###########################################################
+
 function hr($id = null)
 {
     /**
@@ -729,6 +750,7 @@ function hr($id = null)
 }
 
 ###########################################################
+
 function alert($mensagem)
 {
     /**
@@ -742,6 +764,7 @@ function alert($mensagem)
 }
 
 ###########################################################
+
 function p($mensagem = null, $id = null, $class = null, $title = null)
 {
     /**
@@ -781,6 +804,7 @@ function p($mensagem = null, $id = null, $class = null, $title = null)
 }
 
 ###########################################################
+
 function titulo($mensagem = null, $title = null)
 {
     /**
@@ -805,6 +829,7 @@ function titulo($mensagem = null, $title = null)
 }
 
 ###########################################################
+
 function tituloTable($mensagem = null, $title = null)
 {
     /**
@@ -829,6 +854,7 @@ function tituloTable($mensagem = null, $title = null)
 }
 
 ###########################################################
+
 function botaoVoltar($url, $label = 'Voltar', $title = 'Volta para a página anterior')
 {
     /**
@@ -861,6 +887,7 @@ function botaoVoltar($url, $label = 'Voltar', $title = 'Volta para a página ant
 }
 
 ###########################################################
+
 function aguarde($texto = null)
 {
 
@@ -872,7 +899,7 @@ function aguarde($texto = null)
      * @example exemplo.aguarde.php
      */
     # Monta a div com a animação
-    $div = new Div("center");
+    $div    = new Div("center");
     $div->abre();
     br();
     $Imagem = new Imagem(PASTA_FIGURAS_GERAIS . 'carregando.gif', 'Aguarde', 90, 90);
@@ -886,6 +913,7 @@ function aguarde($texto = null)
 }
 
 ###########################################################
+
 function formataMoeda($valor, $formato = 1)
 {
     /**
@@ -916,6 +944,7 @@ function formataMoeda($valor, $formato = 1)
 }
 
 ###########################################################
+
 function formataNumLinha($numero)
 {
     /**
@@ -943,6 +972,7 @@ function formataNumLinha($numero)
 }
 
 ###########################################################
+
 function callout($mensagem, $tipo = "warning")
 {
     /**
@@ -980,6 +1010,7 @@ function callout($mensagem, $tipo = "warning")
 }
 
 ###########################################################
+
 function label($mensagem, $tipo = "warning", $id = null, $title = null)
 {
     /**
@@ -1000,6 +1031,7 @@ function label($mensagem, $tipo = "warning", $id = null, $title = null)
 }
 
 ###########################################################
+
 function badge($mensagem, $tipo = "warning", $id = null, $title = null)
 {
     /**
@@ -1022,6 +1054,7 @@ function badge($mensagem, $tipo = "warning", $id = null, $title = null)
 }
 
 ##########################################################
+
 function span($mensagem, $id = null, $class = null, $title = null)
 {
     /**
@@ -1061,6 +1094,7 @@ function span($mensagem, $id = null, $class = null, $title = null)
 }
 
 ###########################################################
+
 function validaData($data)
 {
     /**
@@ -1122,6 +1156,7 @@ function validaData($data)
 }
 
 ###########################################################
+
 function addDias($data = null, $dias = 0, $primeiroDia = true)
 {
     /**
@@ -1149,9 +1184,9 @@ function addDias($data = null, $dias = 0, $primeiroDia = true)
     }
 
     if (validaData($data)) {
-        $dia = substr($data, 0, 2);
-        $mes = substr($data, 3, 2);
-        $ano = substr($data, 6, 4);
+        $dia       = substr($data, 0, 2);
+        $mes       = substr($data, 3, 2);
+        $ano       = substr($data, 6, 4);
         $dataFinal = date('d/m/Y', mktime(24 * $dias, 0, 0, $mes, $dia, $ano));
         return $dataFinal;
     } else {
@@ -1161,6 +1196,7 @@ function addDias($data = null, $dias = 0, $primeiroDia = true)
 }
 
 ###########################################################
+
 function entre($data, $dtInicial, $dtFinal)
 {
     /**
@@ -1194,6 +1230,7 @@ function entre($data, $dtInicial, $dtFinal)
 }
 
 ###########################################################
+
 function jaPassou($data)
 {
     /**
@@ -1225,6 +1262,7 @@ function jaPassou($data)
 }
 
 ###########################################################
+
 function eHoje($data)
 {
     /**
@@ -1255,6 +1293,7 @@ function eHoje($data)
 }
 
 ###########################################################
+
 function dataDif($dataInicial, $dataFinal = null)
 {
     /**
@@ -1286,11 +1325,11 @@ function dataDif($dataInicial, $dataFinal = null)
 
         # Passa para o padrão americano
         $dataInicial = date_to_bd($dataInicial);
-        $dataFinal = date_to_bd($dataFinal);
+        $dataFinal   = date_to_bd($dataFinal);
 
         # Cria um timestamp
         $time_inicial = strtotime($dataInicial);
-        $time_final = strtotime($dataFinal);
+        $time_final   = strtotime($dataFinal);
 
         # Calcula a diferença de segundos entre as duas datas:
         $diferenca = $time_final - $time_inicial;
@@ -1306,6 +1345,7 @@ function dataDif($dataInicial, $dataFinal = null)
 }
 
 ###########################################################
+
 function dataExtenso($data = null)
 {
     /**
@@ -1341,6 +1381,7 @@ function dataExtenso($data = null)
 }
 
 ###########################################################
+
 function dataExtenso2($data = null)
 {
     /**
@@ -1369,7 +1410,7 @@ function dataExtenso2($data = null)
         $dt[2] = intval($dt[2]);
 
         # Inicia variaveis
-        $inicio = null;
+        $inicio      = null;
         $dataExtenso = null;
 
         # pega o mês
@@ -1407,6 +1448,7 @@ function dataExtenso2($data = null)
 }
 
 ###########################################################
+
 function numero_to_letra($number)
 {
     /**
@@ -1418,12 +1460,12 @@ function numero_to_letra($number)
      *
      * @syntax numero_to_letra($number);
      */
-    $hyphen = '-';
+    $hyphen      = '-';
     $conjunction = ' e ';
-    $separator = ', ';
-    $negative = 'menos ';
-    $decimal = ' ponto ';
-    $dictionary = array(
+    $separator   = ', ';
+    $negative    = 'menos ';
+    $decimal     = ' ponto ';
+    $dictionary  = array(
         0                   => 'zero',
         1                   => 'um',
         2                   => 'dois',
@@ -1486,7 +1528,7 @@ function numero_to_letra($number)
         return $negative . numero_to_letra(abs($number));
     }
 
-    $string = $fraction = null;
+    $string   = $fraction = null;
 
     if (strpos($number, '.') !== false) {
         list($number, $fraction) = explode('.', $number);
@@ -1497,25 +1539,25 @@ function numero_to_letra($number)
             $string = $dictionary[$number];
             break;
         case $number < 100:
-            $tens = ((int) ($number / 10)) * 10;
-            $units = $number % 10;
+            $tens   = ((int) ($number / 10)) * 10;
+            $units  = $number % 10;
             $string = $dictionary[$tens];
             if ($units) {
                 $string .= $conjunction . $dictionary[$units];
             }
             break;
         case $number < 1000:
-            $hundreds = floor($number / 100) * 100;
+            $hundreds  = floor($number / 100) * 100;
             $remainder = $number % 100;
-            $string = $dictionary[$hundreds];
+            $string    = $dictionary[$hundreds];
             if ($remainder) {
                 $string .= $conjunction . numero_to_letra($remainder);
             }
             break;
         default:
-            $baseUnit = pow(1000, floor(log($number, 1000)));
+            $baseUnit     = pow(1000, floor(log($number, 1000)));
             $numBaseUnits = (int) ($number / $baseUnit);
-            $remainder = $number % $baseUnit;
+            $remainder    = $number % $baseUnit;
             if ($baseUnit == 1000) {
                 $string = numero_to_letra($numBaseUnits) . ' ' . $dictionary[1000];
             } elseif ($numBaseUnits == 1) {
@@ -1532,7 +1574,7 @@ function numero_to_letra($number)
 
     if (null !== $fraction && is_numeric($fraction)) {
         $string .= $decimal;
-        $words = array();
+        $words  = array();
         foreach (str_split((string) $fraction) as $number) {
             $words[] = $dictionary[$number];
         }
@@ -1543,6 +1585,7 @@ function numero_to_letra($number)
 }
 
 ###########################################################
+
 function addMeses($data, $meses)
 {
     /**
@@ -1575,6 +1618,7 @@ function addMeses($data, $meses)
 }
 
 ###########################################################
+
 function addAnos($data, $anos)
 {
     /**
@@ -1607,6 +1651,7 @@ function addAnos($data, $anos)
 }
 
 ###########################################################
+
 function vazio($var)
 {
     /**
@@ -1634,6 +1679,7 @@ function vazio($var)
 }
 
 ###########################################################
+
 function get_mac($ip)
 {
     /**
@@ -1645,15 +1691,16 @@ function get_mac($ip)
      *
      * @param $ip string null O IP do computador
      */
-    $arp = null;
+    $arp     = null;
     exec("arp " . $ip . " -a", $arp);             // Executa o comando arp que pega na rede o mac de um ip
     $posicao = strpos($arp[3], "-");        // Do texto extraído pega o numero mac pelo traço
     $posicao = $posicao - 2;                // Volta 2 caracteres para pegar o início do mac
-    $mac = substr($arp[3], $posicao, 17);   // Extrai os 17 caracteres do mac
+    $mac     = substr($arp[3], $posicao, 17);   // Extrai os 17 caracteres do mac
     return $mac;
 }
 
 ###########################################################
+
 function validaCpf($cpf)
 {
     /**
@@ -1688,10 +1735,10 @@ function validaCpf($cpf)
 
             # CALCULA O VALOR DO 10º DIGITO DE VERIFICAÇÂO
             $posicao = 10;
-            $soma = 0;
+            $soma    = 0;
 
             for ($i = 0; $i <= 8; $i++) {
-                $soma = $soma + $digito[$i] * $posicao;
+                $soma    = $soma + $digito[$i] * $posicao;
                 $posicao = $posicao - 1;
             }
 
@@ -1705,10 +1752,10 @@ function validaCpf($cpf)
 
             # CALCULA O VALOR DO 11º DIGITO DE VERIFICAÇÃO
             $posicao = 11;
-            $soma = 0;
+            $soma    = 0;
 
             for ($i = 0; $i <= 9; $i++) {
-                $soma = $soma + $digito[$i] * $posicao;
+                $soma    = $soma + $digito[$i] * $posicao;
                 $posicao = $posicao - 1;
             }
 
@@ -1733,6 +1780,7 @@ function validaCpf($cpf)
 }
 
 ###########################################################
+
 function idade($dataNascimento)
 {
     /**
@@ -1758,7 +1806,7 @@ function idade($dataNascimento)
             list($dia, $mes, $ano) = explode('/', $dataNascimento);
 
             // Descobre que dia é hoje e retorna a unix timestamp
-            $hoje = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
+            $hoje       = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
             // Descobre a unix timestamp da data de nascimento do fulano
             $nascimento = mktime(0, 0, 0, $mes, $dia, $ano);
 
@@ -1770,6 +1818,7 @@ function idade($dataNascimento)
 }
 
 ###########################################################
+
 function geraSenha($tamanho = 8, $maiusculas = true, $numeros = true, $simbolos = false)
 {
     /**
@@ -1790,11 +1839,11 @@ function geraSenha($tamanho = 8, $maiusculas = true, $numeros = true, $simbolos 
     // Caracteres de cada tipo
     $lmin = 'abcdefghijklmnopqrstuvwxyz';
     $lmai = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $num = '1234567890';
+    $num  = '1234567890';
     $simb = '!@#$%*-';
 
     // Variáveis internas
-    $retorno = '';
+    $retorno    = '';
     $caracteres = '';
 
     // Agrupamos todos os caracteres que poderão ser utilizados
@@ -1826,6 +1875,7 @@ function geraSenha($tamanho = 8, $maiusculas = true, $numeros = true, $simbolos 
 }
 
 ###########################################################
+
 function year($data)
 {
     /**
@@ -1851,6 +1901,7 @@ function year($data)
 }
 
 ###########################################################
+
 function day($data)
 {
     /**
@@ -1876,6 +1927,7 @@ function day($data)
 }
 
 ###########################################################
+
 function month($data)
 {
     /**
@@ -1901,6 +1953,7 @@ function month($data)
 }
 
 ###########################################################
+
 function createZip($path = 'arquivo.zip', $files = array())
 {
     /**
@@ -1933,6 +1986,7 @@ function createZip($path = 'arquivo.zip', $files = array())
 ###########################################################
 #  Funções Estatísticas
 ###########################################################
+
 function media_aritmetica(array $valores)
 {
     /**
@@ -1947,6 +2001,7 @@ function media_aritmetica(array $valores)
 }
 
 ###########################################################
+
 function maiorValor(array $valores)
 {
     /**
@@ -1962,6 +2017,7 @@ function maiorValor(array $valores)
 }
 
 ###########################################################
+
 function menorValor(array $valores)
 {
     /**
@@ -1977,6 +2033,7 @@ function menorValor(array $valores)
 }
 
 ###########################################################
+
 function arrayToString($valores)
 {
     /**
@@ -1991,13 +2048,14 @@ function arrayToString($valores)
     }
 
     # Retira a última vírgula
-    $size = strlen($resultado);
+    $size      = strlen($resultado);
     $resultado = substr($resultado, 0, $size - 1);
 
     return $resultado;
 }
 
 ###########################################################
+
 function arrayPreenche($valorInicial, $valorFinal, $ordem = "c")
 {
     /**
@@ -2026,6 +2084,7 @@ function arrayPreenche($valorInicial, $valorFinal, $ordem = "c")
 }
 
 ###########################################################
+
 function diaSemana($data)
 {
     /**
@@ -2053,6 +2112,7 @@ function diaSemana($data)
 }
 
 ###########################################################
+
 function codificacao($string)
 {
     /**
@@ -2067,6 +2127,7 @@ function codificacao($string)
 }
 
 ###########################################################
+
 function dias_to_diasMesAno($dias)
 {
 
@@ -2079,23 +2140,23 @@ function dias_to_diasMesAno($dias)
      * @syntax dias_to_diasMesAno($dias);
      */
     # Inicia as variáveis
-    $anos = 0;
+    $anos  = 0;
     $meses = 0;
-    $dias = abs($dias); // retira o sinal de dias
+    $dias  = abs($dias); // retira o sinal de dias
     $texto = null;
 
     # Calcula os anos
     if ($dias > 364) {
-        $anos = intval($dias / 365);      // Divide para descobrir a quantidade de anos
+        $anos  = intval($dias / 365);      // Divide para descobrir a quantidade de anos
         $resto = resto($dias, 365);      // Pega o resto para calcular os meses e dias
-        $dias = $resto;                 // Passa o resto para variável $dias
+        $dias  = $resto;                 // Passa o resto para variável $dias
     }
 
     # Calcula os meses
     if ($dias > 29) {
         $meses = intval($dias / 30);          // Divide para descobrir a quantidade de meses
         $resto = resto($dias, 30);          // Pega o resto para calcular os dias
-        $dias = $resto;                     // Passa o resto para variável $dias
+        $dias  = $resto;                     // Passa o resto para variável $dias
     }
 
     # Monta o texto de retorno
@@ -2118,6 +2179,7 @@ function dias_to_diasMesAno($dias)
 }
 
 ###########################################################
+
 function resto($dividendo, $divisor)
 {
 
@@ -2131,13 +2193,14 @@ function resto($dividendo, $divisor)
      * @syntax resto($dividendo,$divisor);
      */
     $resultado = intval($dividendo / $divisor);
-    $valor = $resultado * $divisor;
-    $resto = $dividendo - $valor;
+    $valor     = $resultado * $divisor;
+    $resto     = $dividendo - $valor;
 
     return $resto;
 }
 
 ###########################################################
+
 function trataNulo($valor, $caractere = "--")
 {
 
@@ -2167,6 +2230,7 @@ function trataNulo($valor, $caractere = "--")
 }
 
 ###########################################################
+
 function ePar($valor)
 {
 
@@ -2194,6 +2258,7 @@ function ePar($valor)
 }
 
 ###########################################################
+
 function plm($texto)
 {
 
@@ -2209,6 +2274,7 @@ function plm($texto)
 }
 
 ###########################################################
+
 function vazioPraNulo($valor = null)
 {
 
@@ -2228,6 +2294,7 @@ function vazioPraNulo($valor = null)
 }
 
 ###########################################################
+
 function verificaSobreposicao($dtInicial1, $dtFinal1, $dtInicial2, $dtFinal2)
 {
 
@@ -2264,6 +2331,7 @@ function verificaSobreposicao($dtInicial1, $dtFinal1, $dtInicial2, $dtFinal2)
 }
 
 ###########################################################
+
 function dataMaior($data1, $data2)
 {
 
@@ -2297,6 +2365,7 @@ function dataMaior($data1, $data2)
 }
 
 ###########################################################
+
 function get_post_action($name)
 {
 
@@ -2322,6 +2391,7 @@ function get_post_action($name)
 }
 
 ###########################################################
+
 function limpa_numero($str)
 {
 
@@ -2335,4 +2405,69 @@ function limpa_numero($str)
      * @syntax limpa_numero($str);
      */
     return preg_replace("/[^0-9]/", "", $str);
+}
+
+###########################################################
+
+function getMimeContentType($ext)
+{
+
+    $mime_types = array(
+        'txt'  => 'text/plain',
+        'htm'  => 'text/html',
+        'html' => 'text/html',
+        'php'  => 'text/html',
+        'css'  => 'text/css',
+        'js'   => 'application/javascript',
+        'json' => 'application/json',
+        'xml'  => 'application/xml',
+        'swf'  => 'application/x-shockwave-flash',
+        'flv'  => 'video/x-flv',
+        
+        // images
+        'png'  => 'image/png',
+        'jpe'  => 'image/jpeg',
+        'jpeg' => 'image/jpeg',
+        'jpg'  => 'image/jpeg',
+        'gif'  => 'image/gif',
+        'bmp'  => 'image/bmp',
+        'ico'  => 'image/vnd.microsoft.icon',
+        'tiff' => 'image/tiff',
+        'tif'  => 'image/tiff',
+        'svg'  => 'image/svg+xml',
+        'svgz' => 'image/svg+xml',
+        
+        // archives
+        'zip' => 'application/zip',
+        'rar' => 'application/x-rar-compressed',
+        'exe' => 'application/x-msdownload',
+        'msi' => 'application/x-msdownload',
+        'cab' => 'application/vnd.ms-cab-compressed',
+        
+        // audio/video
+        'mp3' => 'audio/mpeg',
+        'qt'  => 'video/quicktime',
+        'mov' => 'video/quicktime',
+        
+        // adobe
+        'pdf' => 'application/pdf',
+        'psd' => 'image/vnd.adobe.photoshop',
+        'ai'  => 'application/postscript',
+        'eps' => 'application/postscript',
+        'ps'  => 'application/postscript',
+        
+        // ms office
+        'doc' => 'application/msword',
+        'rtf' => 'application/rtf',
+        'xls' => 'application/vnd.ms-excel',
+        'ppt' => 'application/vnd.ms-powerpoint',
+        
+        // open office
+        'odt' => 'application/vnd.oasis.opendocument.text',
+        'ods' => 'application/vnd.oasis.opendocument.spreadsheet',
+    );
+
+    if (array_key_exists($ext, $mime_types)) {
+        return $mime_types[$ext];
+    }
 }
