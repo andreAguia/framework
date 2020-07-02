@@ -208,6 +208,9 @@ class Page {
 
         # Jquery
         echo '<script language="JavaScript" src="' . PASTA_FUNCOES_GERAIS . 'jquery.js"></script>';
+        
+        # Jquery mask
+        #echo '<script language="JavaScript" src="' . PASTA_FUNCOES_GERAIS . 'jquery.mask.js"></script>';
 
         # Ckeditor
         echo '<script src="' . PASTA_FUNCOES_GERAIS . 'ckeditor/ckeditor.js"></script>';

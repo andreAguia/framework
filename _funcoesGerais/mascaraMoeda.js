@@ -22,7 +22,7 @@ function formatarMoeda(campo, separador_milhar, separador_decimal, tecla)
         return true; // Tecla Delete
     key = String.fromCharCode(whichCode); // Pegando o valor digitado
     if (strCheck.indexOf(key) == -1)
-        return false; // Valor inv�lido (n�o inteiro)
+        return false; // Valor inválido (não inteiro)
     len = campo.value.length;
     for (i = 0; i < len; i++)
         if ((campo.value.charAt(i) != '0') && (campo.value.charAt(i) != separador_decimal))

@@ -680,8 +680,7 @@ class Input {
                 echo '<INPUT onPaste="return false;"';
                 $this->tipo = 'password';
                 break;
-            case "combo":
-            case "simnao":
+            case "combo":            
                 if ($this->pesquisa) {
                     echo '<div class="input-group" id="pesquisa">';
                     echo '<span class="input-group-label"><i class="fi-magnifying-glass"></i></span>';
@@ -693,6 +692,10 @@ class Input {
             case "editor":
             case "textarea":
                 echo '<textarea';
+                break;
+            case "simnao":            
+                echo '<div class="switch">
+                        <input class="switch-input" type="checkbox"';
                 break;
         }
 
@@ -802,21 +805,16 @@ class Input {
                 break;
 
             case "simnao":
-                $this->array = array(array(1, "Sim"), array(0, "Não"));
-
-                echo '>';
-                foreach ($this->array as $field) {
-                    echo '<option value="' . $field[0] . '"';
-                    if ($field[0] == $this->valor) {
-                        echo ' selected>';
-                    } else {
-                        echo '>';
-                    }
-                    echo $field[1];
-                    echo '</option>';
+                if ($this->valor) { 
+                    echo ' checked>';
+                } else {
+                    echo '>';
                 }
-
-                echo '</select>';
+                echo '<label class="switch-paddle" for="'.$this->nome.'">';
+                echo '<span class="show-for-sr"></span>';
+                echo '<span class="switch-active" aria-hidden="true">Sim</span>';
+                echo '<span class="switch-inactive" aria-hidden="true">Não</span>';
+                echo '</label></div>';
                 break;
 
             case "combo":

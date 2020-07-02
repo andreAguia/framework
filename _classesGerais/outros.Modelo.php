@@ -1030,9 +1030,11 @@ class Modelo
         # percorre os dados digitados validando
         foreach ($this->campos as $campo) {
 
-            # passa o nome dos campos para o array de gravação
-            $campoNome[$contador]  = addslashes($campo['nome']); // nome do campo no banco
-            $campoValor[$contador] = post($campo['nome']); // array dos valores
+            /*
+             *  Passa o nome dos campos para o array de gravação
+             */
+            $campoNome[$contador]  = addslashes($campo['nome']);    // nome do campo no banco
+            $campoValor[$contador] = post($campo['nome']);          // array dos valores
             # Transforma aspas simples para dupla
             $campoValor[$contador] = str_replace("'", '"', $campoValor[$contador]);
             #$campoValor[$contador] = addcslashes($campoValor[$contador],'"');
@@ -1042,7 +1044,7 @@ class Modelo
             } else {
                 $campoValor[$contador] = strip_tags($campoValor[$contador]);
             }
-
+            
             # Compara o valor antigo com o novo
             if ($oldValue[$contador] != $campoValor[$contador]) {
 
@@ -1130,6 +1132,18 @@ class Modelo
             if ($campo['tipo'] == 'checkbox') {
                 if (isset($campoValor[$contador])) {
                     $campoValor[$contador] = 1;
+                }
+            }
+            
+            /*
+             * SimNao
+             */
+            
+             if ($campo['tipo'] == 'simnao') {
+                if($campoValor[$contador]) {
+                   $campoValor[$contador] = 1;
+                }else{
+                    $campoValor[$contador] = 0;
                 }
             }
 
