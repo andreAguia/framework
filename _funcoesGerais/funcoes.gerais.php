@@ -2336,7 +2336,7 @@ function dataMaior($data1, $data2)
 {
 
     /**
-     * Retorna a data maior
+     * Retorna a data maior (mais nova)
      *
      * @param  $data1 data uma das datas
      * @param  $data2 data a outra datas
