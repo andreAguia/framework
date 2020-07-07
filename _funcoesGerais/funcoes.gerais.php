@@ -6,8 +6,7 @@
  */
 ###########################################################
 
-function post($nome, $padrao = null)
-{
+function post($nome, $padrao = null) {
     /**
      * Retorna o valor de um post oriundo de um formulário
      *
@@ -48,8 +47,7 @@ function post($nome, $padrao = null)
 
 ###########################################################
 
-function get($nome, $padrao = null)
-{
+function get($nome, $padrao = null) {
     /**
      * Retorna o valor de um get
      *
@@ -84,8 +82,7 @@ function get($nome, $padrao = null)
 
 ###########################################################
 
-function loadPage($url, $target = null, $parametros = 'menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600')
-{
+function loadPage($url, $target = null, $parametros = 'menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600') {
     /**
      * Chama outra página PHP
      *
@@ -108,8 +105,7 @@ function loadPage($url, $target = null, $parametros = 'menubar=no,scrollbars=yes
 
 ###########################################################
 
-function ajaxLoadPage($url = null, $div = null)
-{
+function ajaxLoadPage($url = null, $div = null) {
     /**
      * Abre um outra página php dentro de uma div sem fazer reload da página inteira. Somente a div é atualizada.
      *
@@ -125,8 +121,7 @@ function ajaxLoadPage($url = null, $div = null)
 
 ###########################################################
 
-function set_session($nome = null, $valor = null)
-{
+function set_session($nome = null, $valor = null) {
     /**
      * Escreve um valor em uma variável de sessão para ser usada em outras páginas sem a necessidade de repassá-la com post ou get.
      *
@@ -144,8 +139,7 @@ function set_session($nome = null, $valor = null)
 
 ###########################################################
 
-function get_session($nome, $padrao = null)
-{
+function get_session($nome, $padrao = null) {
     /**
      * Retorna uma string com o conteúdo da variável de sessao.
      *
@@ -181,8 +175,7 @@ function get_session($nome, $padrao = null)
 
 ###########################################################
 
-function date_to_bd($data, $separador = '/')
-{
+function date_to_bd($data, $separador = '/') {
     /**
      * Transforma uma data do formato brasileiro DD/MM/AAAA para o formato americano AAAA-MM-DD.
      *
@@ -211,8 +204,7 @@ function date_to_bd($data, $separador = '/')
 
 ###########################################################
 
-function date_to_php($data, $separador = '-')
-{
+function date_to_php($data, $separador = '-') {
     /**
      * Transforma uma data do formato americano AAAA-MM-DD para o formato brasileiro DD/MM/AAAA.
      *
@@ -242,8 +234,7 @@ function date_to_php($data, $separador = '-')
 
 ###########################################################
 
-function datetime_to_php($data, $separadorData = '-', $separadorHora = ':')
-{
+function datetime_to_php($data, $separadorData = '-', $separadorHora = ':') {
     /**
      * Transforma uma data com hora do formato americano AAAA/MM/DD HH:MM:SS para o formato brasileiro DD/MM/AAAA HH:MM:SS.
      *
@@ -265,9 +256,9 @@ function datetime_to_php($data, $separadorData = '-', $separadorHora = ':')
         return null;
     } else {
         # Separa data da hora
-        $dt1    = explode($separadorData, $data);
+        $dt1 = explode($separadorData, $data);
         $espaco = explode(' ', $dt1[2]);
-        $hora   = explode($separadorHora, $espaco[1]);
+        $hora = explode($separadorHora, $espaco[1]);
 
         $dt2 = $espaco[0] . '/' . $dt1[1] . '/' . $dt1[0] . ' ' . $hora[0] . ':' . $hora[1] . ':' . $hora[2];
         return $dt2;
@@ -276,8 +267,7 @@ function datetime_to_php($data, $separadorData = '-', $separadorHora = ':')
 
 ###########################################################
 
-function back($numPaginas)
-{
+function back($numPaginas) {
     /**
      * Retorna um número de páginas a partir do histórico do browser.
      *
@@ -292,8 +282,7 @@ function back($numPaginas)
 
 ###########################################################
 
-function get_so()
-{
+function get_so() {
     /**
      * Retorna string com o nome do Sistema Operacional.
      *
@@ -318,8 +307,7 @@ function get_so()
 
 ###########################################################
 
-function get_browserName()
-{
+function get_browserName() {
     /**
      * Retorna array com informações sobre do browser.
      *
@@ -331,7 +319,7 @@ function get_browserName()
      *
      * @example exemplo.get_browserName.php
      */
-    $var             = $_SERVER['HTTP_USER_AGENT'];
+    $var = $_SERVER['HTTP_USER_AGENT'];
     $info['browser'] = "OTHER";
     $info['version'] = "";
 
@@ -350,8 +338,8 @@ function get_browserName()
 
     // loop the valid browsers
     foreach ($browser as $parent) {
-        $s       = strpos(strtoupper($var), $parent);
-        $f       = $s + strlen($parent);
+        $s = strpos(strtoupper($var), $parent);
+        $f = $s + strlen($parent);
         $version = preg_replace('/[^0-9,.]/', '', substr($var, $f, 5));
         if (strpos(strtoupper($var), $parent) !== false) {
             $info['browser'] = $parent;
@@ -364,8 +352,7 @@ function get_browserName()
 
 ###########################################################
 
-function get_nomeMes($numero = null)
-{
+function get_nomeMes($numero = null) {
     /**
      * Retorna o nome do mês cujo número foi informado
      *
@@ -410,8 +397,7 @@ function get_nomeMes($numero = null)
 
 ###########################################################
 
-function get_nomeMesAno($mesAno)
-{
+function get_nomeMesAno($mesAno) {
     /**
      * Retorna o nome do mês e ano informando a string no formato MM/AAAA
      *
@@ -432,7 +418,7 @@ function get_nomeMesAno($mesAno)
 
     # Pega os valores
     $numero = $partes[0];
-    $ano    = $partes[1];
+    $ano = $partes[1];
 
     # Valida o número do mês
     if (($numero > 12) OR ($numero < 1)) {
@@ -459,8 +445,7 @@ function get_nomeMesAno($mesAno)
 
 ###########################################################
 
-function retiraAspas($texto)
-{
+function retiraAspas($texto) {
     /**
      * Retorna a string sem as aspas simples e duplas.
      *
@@ -475,15 +460,14 @@ function retiraAspas($texto)
      *
      * @example exemplo.retiraAspas.php
      */
-    $troca1    = str_replace("'", '"', $texto);
+    $troca1 = str_replace("'", '"', $texto);
     $parametro = str_replace('"', '', $troca1);
     return $parametro;
 }
 
 ###########################################################
 
-function bold($texto, $destaque)
-{
+function bold($texto, $destaque) {
     /**
      * Retorna uma string com um trecho em destaque (bold).
      *
@@ -530,8 +514,7 @@ function bold($texto, $destaque)
 
 ############################################################
 
-function del($texto)
-{
+function del($texto) {
     /**
      * Retorna uma string com um trecho em tachado (del em html).
      *
@@ -548,8 +531,7 @@ function del($texto)
 
 ###########################################################
 
-function retiraAcento($texto)
-{
+function retiraAcento($texto) {
     /**
      * Retorna uma string sem acentos.
      *
@@ -571,8 +553,7 @@ function retiraAcento($texto)
 
 ###########################################################
 
-function soNumeros($texto)
-{
+function soNumeros($texto) {
     /**
      * Retorna somente os números de uma string
      *
@@ -595,8 +576,7 @@ function soNumeros($texto)
 
 ###########################################################
 
-function abreDiv($nome)
-{
+function abreDiv($nome) {
     /**
      * Torna visível uma div que está oculta (abre).
      *
@@ -613,8 +593,7 @@ function abreDiv($nome)
 
 ###########################################################
 
-function moedaExtenso($valor = 0, $maiusculas = false)
-{
+function moedaExtenso($valor = 0, $maiusculas = false) {
     /**
      * Retorna escrito por extenso o número fornecido em valores monetários (REAIS).
      *
@@ -630,17 +609,17 @@ function moedaExtenso($valor = 0, $maiusculas = false)
      * @example exemplo.moedaExtenso.php
      */
     $singular = array("centavo", "real", "mil", "milh�o", "bilh�o", "trilh�o", "quatrilh�o");
-    $plural   = array("centavos", "reais", "mil", "milh�es", "bilh�es", "trilh�es", "quatrilh�es");
+    $plural = array("centavos", "reais", "mil", "milh�es", "bilh�es", "trilh�es", "quatrilh�es");
 
-    $c   = array("", "cem", "duzentos", "trezentos", "quatrocentos", "quinhentos", "seiscentos", "setecentos", "oitocentos", "novecentos");
-    $d   = array("", "dez", "vinte", "trinta", "quarenta", "cinquenta", "sessenta", "setenta", "oitenta", "noventa");
+    $c = array("", "cem", "duzentos", "trezentos", "quatrocentos", "quinhentos", "seiscentos", "setecentos", "oitocentos", "novecentos");
+    $d = array("", "dez", "vinte", "trinta", "quarenta", "cinquenta", "sessenta", "setenta", "oitenta", "noventa");
     $d10 = array("dez", "onze", "doze", "treze", "quatorze", "quinze", "dezesseis", "dezesete", "dezoito", "dezenove");
-    $u   = array("", "um", "dois", "três", "quatro", "cinco", "seis", "sete", "oito", "nove");
+    $u = array("", "um", "dois", "três", "quatro", "cinco", "seis", "sete", "oito", "nove");
 
-    $z  = 0;
+    $z = 0;
     $rt = "";
 
-    $valor   = number_format($valor, 2, ".", ".");
+    $valor = number_format($valor, 2, ".", ".");
     $inteiro = explode(".", $valor);
     for ($i = 0; $i < count($inteiro); $i++) {
         for ($ii = strlen($inteiro[$i]); $ii < 3; $ii++) {
@@ -652,9 +631,9 @@ function moedaExtenso($valor = 0, $maiusculas = false)
 
     for ($i = 0; $i < count($inteiro); $i++) {
         $valor = $inteiro[$i];
-        $rc    = (($valor > 100) && ($valor < 200)) ? "cento" : $c[$valor[0]];
-        $rd    = ($valor[1] < 2) ? "" : $d[$valor[1]];
-        $ru    = ($valor > 0) ? (($valor[1] == 1) ? $d10[$valor[2]] : $u[$valor[2]]) : "";
+        $rc = (($valor > 100) && ($valor < 200)) ? "cento" : $c[$valor[0]];
+        $rd = ($valor[1] < 2) ? "" : $d[$valor[1]];
+        $ru = ($valor > 0) ? (($valor[1] == 1) ? $d10[$valor[2]] : $u[$valor[2]]) : "";
 
         $r = $rc . (($rc && ($rd || $ru)) ? " e " : "") . $rd . (($rd && $ru) ? " e " : "") . $ru;
         $t = count($inteiro) - 1 - $i;
@@ -687,8 +666,7 @@ function moedaExtenso($valor = 0, $maiusculas = false)
 
 ###########################################################
 
-function br($linhas = 1)
-{
+function br($linhas = 1) {
     /**
      * Gera tantos saltos de linha quanto for o nímero fornecido.
      *
@@ -707,8 +685,7 @@ function br($linhas = 1)
 
 ###########################################################
 
-function anti_injection($str)
-{
+function anti_injection($str) {
     /**
      * Função que retira comandos sql de uma string
      *
@@ -727,8 +704,7 @@ function anti_injection($str)
 
 ###########################################################
 
-function hr($id = null)
-{
+function hr($id = null) {
     /**
      * Insere uma linha
      *
@@ -751,8 +727,7 @@ function hr($id = null)
 
 ###########################################################
 
-function alert($mensagem)
-{
+function alert($mensagem) {
     /**
      * Abre uma janela popup com uma mensagem de alert
      *
@@ -765,8 +740,7 @@ function alert($mensagem)
 
 ###########################################################
 
-function p($mensagem = null, $id = null, $class = null, $title = null)
-{
+function p($mensagem = null, $id = null, $class = null, $title = null) {
     /**
      * Exibe uma mensagem.
      *
@@ -805,8 +779,7 @@ function p($mensagem = null, $id = null, $class = null, $title = null)
 
 ###########################################################
 
-function titulo($mensagem = null, $title = null)
-{
+function titulo($mensagem = null, $title = null) {
     /**
      * Exibe um texto centralizado dentro de um painel com fundo azul escuro. Utilizado para títulos de páginas.
      *
@@ -830,8 +803,7 @@ function titulo($mensagem = null, $title = null)
 
 ###########################################################
 
-function tituloTable($mensagem = null, $title = null)
-{
+function tituloTable($mensagem = null, $title = null) {
     /**
      * Exibe um texto centralizado dentro de um painel com fundo igual ao titulo da tabela
      *
@@ -855,8 +827,7 @@ function tituloTable($mensagem = null, $title = null)
 
 ###########################################################
 
-function botaoVoltar($url, $label = 'Voltar', $title = 'Volta para a página anterior')
-{
+function botaoVoltar($url, $label = 'Voltar', $title = 'Volta para a página anterior') {
     /**
      * Rotina que exibe o botão de Voltar
      *
@@ -888,8 +859,7 @@ function botaoVoltar($url, $label = 'Voltar', $title = 'Volta para a página ant
 
 ###########################################################
 
-function aguarde($texto = null)
-{
+function aguarde($texto = null) {
 
     /**
      * Rotina que exibe uma animação sugerindo aguardar alguma tarefa ser concluída.
@@ -899,7 +869,7 @@ function aguarde($texto = null)
      * @example exemplo.aguarde.php
      */
     # Monta a div com a animação
-    $div    = new Div("center");
+    $div = new Div("center");
     $div->abre();
     br();
     $Imagem = new Imagem(PASTA_FIGURAS_GERAIS . 'carregando.gif', 'Aguarde', 90, 90);
@@ -914,8 +884,7 @@ function aguarde($texto = null)
 
 ###########################################################
 
-function formataMoeda($valor, $formato = 1)
-{
+function formataMoeda($valor, $formato = 1) {
     /**
      * Função que retorna um valor no formato especificado
      *
@@ -945,8 +914,7 @@ function formataMoeda($valor, $formato = 1)
 
 ###########################################################
 
-function formataNumLinha($numero)
-{
+function formataNumLinha($numero) {
     /**
      * Tabula a exibição de números Para exibição na rotina que lista códigos.
      *
@@ -973,8 +941,7 @@ function formataNumLinha($numero)
 
 ###########################################################
 
-function callout($mensagem, $tipo = "warning")
-{
+function callout($mensagem, $tipo = "warning") {
     /**
      * Exibe um painel contendo uma mensagem.
      *
@@ -1011,8 +978,7 @@ function callout($mensagem, $tipo = "warning")
 
 ###########################################################
 
-function label($mensagem, $tipo = "warning", $id = null, $title = null)
-{
+function label($mensagem, $tipo = "warning", $id = null, $title = null) {
     /**
      * Cria uma mensagem com fundo colorido.
      *
@@ -1032,8 +998,7 @@ function label($mensagem, $tipo = "warning", $id = null, $title = null)
 
 ###########################################################
 
-function badge($mensagem, $tipo = "warning", $id = null, $title = null)
-{
+function badge($mensagem, $tipo = "warning", $id = null, $title = null) {
     /**
      * Semelhante a função label mas com bordas arredondadas
      *
@@ -1055,8 +1020,7 @@ function badge($mensagem, $tipo = "warning", $id = null, $title = null)
 
 ##########################################################
 
-function span($mensagem, $id = null, $class = null, $title = null)
-{
+function span($mensagem, $id = null, $class = null, $title = null) {
     /**
      * Cria um span com uma mensagem.
      *
@@ -1095,8 +1059,7 @@ function span($mensagem, $id = null, $class = null, $title = null)
 
 ###########################################################
 
-function validaData($data)
-{
+function validaData($data) {
     /**
      * Verifica se uma data é válida ou não retorna true or false
      *
@@ -1157,8 +1120,7 @@ function validaData($data)
 
 ###########################################################
 
-function addDias($data = null, $dias = 0, $primeiroDia = true)
-{
+function addDias($data = null, $dias = 0, $primeiroDia = true) {
     /**
      * Adiciona dias a uma data
      *
@@ -1183,22 +1145,26 @@ function addDias($data = null, $dias = 0, $primeiroDia = true)
         $dias--;
     }
 
-    if (validaData($data)) {
-        $dia       = substr($data, 0, 2);
-        $mes       = substr($data, 3, 2);
-        $ano       = substr($data, 6, 4);
-        $dataFinal = date('d/m/Y', mktime(24 * $dias, 0, 0, $mes, $dia, $ano));
-        return $dataFinal;
+    # Verifica se data é nula
+    if (empty($data)) {
+        return null;
     } else {
-        alert('Data Inválida');
-        return false;
+        if (validaData($data)) {
+            $dia = substr($data, 0, 2);
+            $mes = substr($data, 3, 2);
+            $ano = substr($data, 6, 4);
+            $dataFinal = date('d/m/Y', mktime(24 * $dias, 0, 0, $mes, $dia, $ano));
+            return $dataFinal;
+        } else {
+            alert('Data Inválida');
+            return false;
+        }
     }
 }
 
 ###########################################################
 
-function entre($data, $dtInicial, $dtFinal)
-{
+function entre($data, $dtInicial, $dtFinal) {
     /**
      * Verifica se a data está entre duas datas.
      *
@@ -1231,8 +1197,7 @@ function entre($data, $dtInicial, $dtFinal)
 
 ###########################################################
 
-function jaPassou($data)
-{
+function jaPassou($data) {
     /**
      * Verifica se a data já passou da data atual
      *
@@ -1263,8 +1228,7 @@ function jaPassou($data)
 
 ###########################################################
 
-function eHoje($data)
-{
+function eHoje($data) {
     /**
      * Verifica se a data é hoje
      *
@@ -1294,8 +1258,7 @@ function eHoje($data)
 
 ###########################################################
 
-function dataDif($dataInicial, $dataFinal = null)
-{
+function dataDif($dataInicial, $dataFinal = null) {
     /**
      * Informa, em dias, o período entre duas datas
      *
@@ -1325,11 +1288,11 @@ function dataDif($dataInicial, $dataFinal = null)
 
         # Passa para o padrão americano
         $dataInicial = date_to_bd($dataInicial);
-        $dataFinal   = date_to_bd($dataFinal);
+        $dataFinal = date_to_bd($dataFinal);
 
         # Cria um timestamp
         $time_inicial = strtotime($dataInicial);
-        $time_final   = strtotime($dataFinal);
+        $time_final = strtotime($dataFinal);
 
         # Calcula a diferença de segundos entre as duas datas:
         $diferenca = $time_final - $time_inicial;
@@ -1346,8 +1309,7 @@ function dataDif($dataInicial, $dataFinal = null)
 
 ###########################################################
 
-function dataExtenso($data = null)
-{
+function dataExtenso($data = null) {
     /**
      * Exibe a data por extenso no formato [dia], de [mês] de [Ano]
      *
@@ -1382,8 +1344,7 @@ function dataExtenso($data = null)
 
 ###########################################################
 
-function dataExtenso2($data = null)
-{
+function dataExtenso2($data = null) {
     /**
      * Exibe a data por extenso todo em texto
      *
@@ -1410,7 +1371,7 @@ function dataExtenso2($data = null)
         $dt[2] = intval($dt[2]);
 
         # Inicia variaveis
-        $inicio      = null;
+        $inicio = null;
         $dataExtenso = null;
 
         # pega o mês
@@ -1449,8 +1410,7 @@ function dataExtenso2($data = null)
 
 ###########################################################
 
-function numero_to_letra($number)
-{
+function numero_to_letra($number) {
     /**
      * Converte um numero para palavra (exenso)
      *
@@ -1460,54 +1420,54 @@ function numero_to_letra($number)
      *
      * @syntax numero_to_letra($number);
      */
-    $hyphen      = '-';
+    $hyphen = '-';
     $conjunction = ' e ';
-    $separator   = ', ';
-    $negative    = 'menos ';
-    $decimal     = ' ponto ';
-    $dictionary  = array(
-        0                   => 'zero',
-        1                   => 'um',
-        2                   => 'dois',
-        3                   => 'três',
-        4                   => 'quatro',
-        5                   => 'cinco',
-        6                   => 'seis',
-        7                   => 'sete',
-        8                   => 'oito',
-        9                   => 'nove',
-        10                  => 'dez',
-        11                  => 'onze',
-        12                  => 'doze',
-        13                  => 'treze',
-        14                  => 'quatorze',
-        15                  => 'quinze',
-        16                  => 'dezesseis',
-        17                  => 'dezessete',
-        18                  => 'dezoito',
-        19                  => 'dezenove',
-        20                  => 'vinte',
-        30                  => 'trinta',
-        40                  => 'quarenta',
-        50                  => 'cinquenta',
-        60                  => 'sessenta',
-        70                  => 'setenta',
-        80                  => 'oitenta',
-        90                  => 'noventa',
-        100                 => 'cento',
-        200                 => 'duzentos',
-        300                 => 'trezentos',
-        400                 => 'quatrocentos',
-        500                 => 'quinhentos',
-        600                 => 'seiscentos',
-        700                 => 'setecentos',
-        800                 => 'oitocentos',
-        900                 => 'novecentos',
-        1000                => 'mil',
-        1000000             => array('milhão', 'milhões'),
-        1000000000          => array('bilhão', 'bilhões'),
-        1000000000000       => array('trilhão', 'trilhões'),
-        1000000000000000    => array('quatrilhão', 'quatrilhões'),
+    $separator = ', ';
+    $negative = 'menos ';
+    $decimal = ' ponto ';
+    $dictionary = array(
+        0 => 'zero',
+        1 => 'um',
+        2 => 'dois',
+        3 => 'três',
+        4 => 'quatro',
+        5 => 'cinco',
+        6 => 'seis',
+        7 => 'sete',
+        8 => 'oito',
+        9 => 'nove',
+        10 => 'dez',
+        11 => 'onze',
+        12 => 'doze',
+        13 => 'treze',
+        14 => 'quatorze',
+        15 => 'quinze',
+        16 => 'dezesseis',
+        17 => 'dezessete',
+        18 => 'dezoito',
+        19 => 'dezenove',
+        20 => 'vinte',
+        30 => 'trinta',
+        40 => 'quarenta',
+        50 => 'cinquenta',
+        60 => 'sessenta',
+        70 => 'setenta',
+        80 => 'oitenta',
+        90 => 'noventa',
+        100 => 'cento',
+        200 => 'duzentos',
+        300 => 'trezentos',
+        400 => 'quatrocentos',
+        500 => 'quinhentos',
+        600 => 'seiscentos',
+        700 => 'setecentos',
+        800 => 'oitocentos',
+        900 => 'novecentos',
+        1000 => 'mil',
+        1000000 => array('milhão', 'milhões'),
+        1000000000 => array('bilhão', 'bilhões'),
+        1000000000000 => array('trilhão', 'trilhões'),
+        1000000000000000 => array('quatrilhão', 'quatrilhões'),
         1000000000000000000 => array('quinquilhão', 'quinquilhões')
     );
 
@@ -1528,7 +1488,7 @@ function numero_to_letra($number)
         return $negative . numero_to_letra(abs($number));
     }
 
-    $string   = $fraction = null;
+    $string = $fraction = null;
 
     if (strpos($number, '.') !== false) {
         list($number, $fraction) = explode('.', $number);
@@ -1539,25 +1499,25 @@ function numero_to_letra($number)
             $string = $dictionary[$number];
             break;
         case $number < 100:
-            $tens   = ((int) ($number / 10)) * 10;
-            $units  = $number % 10;
+            $tens = ((int) ($number / 10)) * 10;
+            $units = $number % 10;
             $string = $dictionary[$tens];
             if ($units) {
                 $string .= $conjunction . $dictionary[$units];
             }
             break;
         case $number < 1000:
-            $hundreds  = floor($number / 100) * 100;
+            $hundreds = floor($number / 100) * 100;
             $remainder = $number % 100;
-            $string    = $dictionary[$hundreds];
+            $string = $dictionary[$hundreds];
             if ($remainder) {
                 $string .= $conjunction . numero_to_letra($remainder);
             }
             break;
         default:
-            $baseUnit     = pow(1000, floor(log($number, 1000)));
+            $baseUnit = pow(1000, floor(log($number, 1000)));
             $numBaseUnits = (int) ($number / $baseUnit);
-            $remainder    = $number % $baseUnit;
+            $remainder = $number % $baseUnit;
             if ($baseUnit == 1000) {
                 $string = numero_to_letra($numBaseUnits) . ' ' . $dictionary[1000];
             } elseif ($numBaseUnits == 1) {
@@ -1574,7 +1534,7 @@ function numero_to_letra($number)
 
     if (null !== $fraction && is_numeric($fraction)) {
         $string .= $decimal;
-        $words  = array();
+        $words = array();
         foreach (str_split((string) $fraction) as $number) {
             $words[] = $dictionary[$number];
         }
@@ -1586,8 +1546,7 @@ function numero_to_letra($number)
 
 ###########################################################
 
-function addMeses($data, $meses)
-{
+function addMeses($data, $meses) {
     /**
      * Adiciona meses a uma data
      *
@@ -1619,8 +1578,7 @@ function addMeses($data, $meses)
 
 ###########################################################
 
-function addAnos($data, $anos)
-{
+function addAnos($data, $anos) {
     /**
      * Função que adiciona anos a uma data
      *
@@ -1652,8 +1610,7 @@ function addAnos($data, $anos)
 
 ###########################################################
 
-function vazio($var)
-{
+function vazio($var) {
     /**
      * Verifica se o valor da variável é vazio ou nulo
      *
@@ -1680,8 +1637,7 @@ function vazio($var)
 
 ###########################################################
 
-function get_mac($ip)
-{
+function get_mac($ip) {
     /**
      * Informa o valor do número MAC de um IP
      *
@@ -1691,18 +1647,17 @@ function get_mac($ip)
      *
      * @param $ip string null O IP do computador
      */
-    $arp     = null;
+    $arp = null;
     exec("arp " . $ip . " -a", $arp);             // Executa o comando arp que pega na rede o mac de um ip
     $posicao = strpos($arp[3], "-");        // Do texto extraído pega o numero mac pelo traço
     $posicao = $posicao - 2;                // Volta 2 caracteres para pegar o início do mac
-    $mac     = substr($arp[3], $posicao, 17);   // Extrai os 17 caracteres do mac
+    $mac = substr($arp[3], $posicao, 17);   // Extrai os 17 caracteres do mac
     return $mac;
 }
 
 ###########################################################
 
-function validaCpf($cpf)
-{
+function validaCpf($cpf) {
     /**
      * Rotina de validação do CPF
      *
@@ -1735,10 +1690,10 @@ function validaCpf($cpf)
 
             # CALCULA O VALOR DO 10º DIGITO DE VERIFICAÇÂO
             $posicao = 10;
-            $soma    = 0;
+            $soma = 0;
 
             for ($i = 0; $i <= 8; $i++) {
-                $soma    = $soma + $digito[$i] * $posicao;
+                $soma = $soma + $digito[$i] * $posicao;
                 $posicao = $posicao - 1;
             }
 
@@ -1752,10 +1707,10 @@ function validaCpf($cpf)
 
             # CALCULA O VALOR DO 11º DIGITO DE VERIFICAÇÃO
             $posicao = 11;
-            $soma    = 0;
+            $soma = 0;
 
             for ($i = 0; $i <= 9; $i++) {
-                $soma    = $soma + $digito[$i] * $posicao;
+                $soma = $soma + $digito[$i] * $posicao;
                 $posicao = $posicao - 1;
             }
 
@@ -1781,8 +1736,7 @@ function validaCpf($cpf)
 
 ###########################################################
 
-function idade($dataNascimento)
-{
+function idade($dataNascimento) {
     /**
      * Rotina que calcula a idade a partir de uma data de nascimento
      *
@@ -1806,7 +1760,7 @@ function idade($dataNascimento)
             list($dia, $mes, $ano) = explode('/', $dataNascimento);
 
             // Descobre que dia é hoje e retorna a unix timestamp
-            $hoje       = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
+            $hoje = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
             // Descobre a unix timestamp da data de nascimento do fulano
             $nascimento = mktime(0, 0, 0, $mes, $dia, $ano);
 
@@ -1819,8 +1773,7 @@ function idade($dataNascimento)
 
 ###########################################################
 
-function geraSenha($tamanho = 8, $maiusculas = true, $numeros = true, $simbolos = false)
-{
+function geraSenha($tamanho = 8, $maiusculas = true, $numeros = true, $simbolos = false) {
     /**
      * Rotina que gera uma senha forte
      *
@@ -1839,11 +1792,11 @@ function geraSenha($tamanho = 8, $maiusculas = true, $numeros = true, $simbolos 
     // Caracteres de cada tipo
     $lmin = 'abcdefghijklmnopqrstuvwxyz';
     $lmai = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $num  = '1234567890';
+    $num = '1234567890';
     $simb = '!@#$%*-';
 
     // Variáveis internas
-    $retorno    = '';
+    $retorno = '';
     $caracteres = '';
 
     // Agrupamos todos os caracteres que poderão ser utilizados
@@ -1876,8 +1829,7 @@ function geraSenha($tamanho = 8, $maiusculas = true, $numeros = true, $simbolos 
 
 ###########################################################
 
-function year($data)
-{
+function year($data) {
     /**
      * Função que retorna o ano de uma data
      *
@@ -1902,8 +1854,7 @@ function year($data)
 
 ###########################################################
 
-function day($data)
-{
+function day($data) {
     /**
      * Função que retorna o dia de uma data
      *
@@ -1928,8 +1879,7 @@ function day($data)
 
 ###########################################################
 
-function month($data)
-{
+function month($data) {
     /**
      * Função que retorna o mês de uma data
      *
@@ -1954,8 +1904,7 @@ function month($data)
 
 ###########################################################
 
-function createZip($path = 'arquivo.zip', $files = array())
-{
+function createZip($path = 'arquivo.zip', $files = array()) {
     /**
      * Cria arquivos compactados .zip
      *
@@ -1987,8 +1936,7 @@ function createZip($path = 'arquivo.zip', $files = array())
 #  Funções Estatísticas
 ###########################################################
 
-function media_aritmetica(array $valores)
-{
+function media_aritmetica(array $valores) {
     /**
      * Calcula a media de um array de numeros
      *
@@ -2002,8 +1950,7 @@ function media_aritmetica(array $valores)
 
 ###########################################################
 
-function maiorValor(array $valores)
-{
+function maiorValor(array $valores) {
     /**
      * Obtem a maior valor de um array.
      *
@@ -2018,8 +1965,7 @@ function maiorValor(array $valores)
 
 ###########################################################
 
-function menorValor(array $valores)
-{
+function menorValor(array $valores) {
     /**
      * Obtem o menor valor de um array.
      *
@@ -2034,8 +1980,7 @@ function menorValor(array $valores)
 
 ###########################################################
 
-function arrayToString($valores)
-{
+function arrayToString($valores) {
     /**
      * Transforma um array em uma string com os valores separados por vírgula
      *
@@ -2048,7 +1993,7 @@ function arrayToString($valores)
     }
 
     # Retira a última vírgula
-    $size      = strlen($resultado);
+    $size = strlen($resultado);
     $resultado = substr($resultado, 0, $size - 1);
 
     return $resultado;
@@ -2056,8 +2001,7 @@ function arrayToString($valores)
 
 ###########################################################
 
-function arrayPreenche($valorInicial, $valorFinal, $ordem = "c")
-{
+function arrayPreenche($valorInicial, $valorFinal, $ordem = "c") {
     /**
      * Preenche um array numérico com uma faixa de valores
      *
@@ -2085,8 +2029,7 @@ function arrayPreenche($valorInicial, $valorFinal, $ordem = "c")
 
 ###########################################################
 
-function diaSemana($data)
-{
+function diaSemana($data) {
     /**
      * Informa o dia da dsemana de uma data
      *
@@ -2113,8 +2056,7 @@ function diaSemana($data)
 
 ###########################################################
 
-function codificacao($string)
-{
+function codificacao($string) {
     /**
      * Retorna a codificação da string informada
      *
@@ -2128,8 +2070,7 @@ function codificacao($string)
 
 ###########################################################
 
-function dias_to_diasMesAno($dias)
-{
+function dias_to_diasMesAno($dias) {
 
     /**
      * Transforma uma quantidade grande de dias em dias meses e anos
@@ -2140,23 +2081,23 @@ function dias_to_diasMesAno($dias)
      * @syntax dias_to_diasMesAno($dias);
      */
     # Inicia as variáveis
-    $anos  = 0;
+    $anos = 0;
     $meses = 0;
-    $dias  = abs($dias); // retira o sinal de dias
+    $dias = abs($dias); // retira o sinal de dias
     $texto = null;
 
     # Calcula os anos
     if ($dias > 364) {
-        $anos  = intval($dias / 365);      // Divide para descobrir a quantidade de anos
+        $anos = intval($dias / 365);      // Divide para descobrir a quantidade de anos
         $resto = resto($dias, 365);      // Pega o resto para calcular os meses e dias
-        $dias  = $resto;                 // Passa o resto para variável $dias
+        $dias = $resto;                 // Passa o resto para variável $dias
     }
 
     # Calcula os meses
     if ($dias > 29) {
         $meses = intval($dias / 30);          // Divide para descobrir a quantidade de meses
         $resto = resto($dias, 30);          // Pega o resto para calcular os dias
-        $dias  = $resto;                     // Passa o resto para variável $dias
+        $dias = $resto;                     // Passa o resto para variável $dias
     }
 
     # Monta o texto de retorno
@@ -2180,8 +2121,7 @@ function dias_to_diasMesAno($dias)
 
 ###########################################################
 
-function resto($dividendo, $divisor)
-{
+function resto($dividendo, $divisor) {
 
     /**
      * Retorna o resto da divisão de 2 números inteiros
@@ -2193,16 +2133,15 @@ function resto($dividendo, $divisor)
      * @syntax resto($dividendo,$divisor);
      */
     $resultado = intval($dividendo / $divisor);
-    $valor     = $resultado * $divisor;
-    $resto     = $dividendo - $valor;
+    $valor = $resultado * $divisor;
+    $resto = $dividendo - $valor;
 
     return $resto;
 }
 
 ###########################################################
 
-function trataNulo($valor, $caractere = "--")
-{
+function trataNulo($valor, $caractere = "--") {
 
     /**
      * Transforma o valor null ou zero em outro caractere
@@ -2231,8 +2170,7 @@ function trataNulo($valor, $caractere = "--")
 
 ###########################################################
 
-function ePar($valor)
-{
+function ePar($valor) {
 
     /**
      * TVerifica se numero e par
@@ -2259,8 +2197,7 @@ function ePar($valor)
 
 ###########################################################
 
-function plm($texto)
-{
+function plm($texto) {
 
     /**
      * Passa o texto para minusculas com a primeira letra de cada palavra em maiusculas
@@ -2275,8 +2212,7 @@ function plm($texto)
 
 ###########################################################
 
-function vazioPraNulo($valor = null)
-{
+function vazioPraNulo($valor = null) {
 
     /**
      * Passa o valor informado para nulo quando for vazio ou retorna a string enviada
@@ -2295,8 +2231,7 @@ function vazioPraNulo($valor = null)
 
 ###########################################################
 
-function verificaSobreposicao($dtInicial1, $dtFinal1, $dtInicial2, $dtFinal2)
-{
+function verificaSobreposicao($dtInicial1, $dtFinal1, $dtInicial2, $dtFinal2) {
 
     /**
      * Verifica se os períodos estão com sobreposição de dias
@@ -2332,8 +2267,7 @@ function verificaSobreposicao($dtInicial1, $dtFinal1, $dtInicial2, $dtFinal2)
 
 ###########################################################
 
-function dataMaior($data1, $data2)
-{
+function dataMaior($data1, $data2) {
 
     /**
      * Retorna a data maior (mais nova)
@@ -2366,8 +2300,7 @@ function dataMaior($data1, $data2)
 
 ###########################################################
 
-function get_post_action($name)
-{
+function get_post_action($name) {
 
     /**
      * Função curiosa que retorna o nome do botão de submit de um formulário que foi escolhido.
@@ -2392,8 +2325,7 @@ function get_post_action($name)
 
 ###########################################################
 
-function limpa_numero($str)
-{
+function limpa_numero($str) {
 
     /**
      * Função que limpa uma string com números e letras sobrando somente números
@@ -2409,59 +2341,52 @@ function limpa_numero($str)
 
 ###########################################################
 
-function getMimeContentType($ext)
-{
+function getMimeContentType($ext) {
 
     $mime_types = array(
-        'txt'  => 'text/plain',
-        'htm'  => 'text/html',
+        'txt' => 'text/plain',
+        'htm' => 'text/html',
         'html' => 'text/html',
-        'php'  => 'text/html',
-        'css'  => 'text/css',
-        'js'   => 'application/javascript',
+        'php' => 'text/html',
+        'css' => 'text/css',
+        'js' => 'application/javascript',
         'json' => 'application/json',
-        'xml'  => 'application/xml',
-        'swf'  => 'application/x-shockwave-flash',
-        'flv'  => 'video/x-flv',
-        
+        'xml' => 'application/xml',
+        'swf' => 'application/x-shockwave-flash',
+        'flv' => 'video/x-flv',
         // images
-        'png'  => 'image/png',
-        'jpe'  => 'image/jpeg',
+        'png' => 'image/png',
+        'jpe' => 'image/jpeg',
         'jpeg' => 'image/jpeg',
-        'jpg'  => 'image/jpeg',
-        'gif'  => 'image/gif',
-        'bmp'  => 'image/bmp',
-        'ico'  => 'image/vnd.microsoft.icon',
+        'jpg' => 'image/jpeg',
+        'gif' => 'image/gif',
+        'bmp' => 'image/bmp',
+        'ico' => 'image/vnd.microsoft.icon',
         'tiff' => 'image/tiff',
-        'tif'  => 'image/tiff',
-        'svg'  => 'image/svg+xml',
+        'tif' => 'image/tiff',
+        'svg' => 'image/svg+xml',
         'svgz' => 'image/svg+xml',
-        
         // archives
         'zip' => 'application/zip',
         'rar' => 'application/x-rar-compressed',
         'exe' => 'application/x-msdownload',
         'msi' => 'application/x-msdownload',
         'cab' => 'application/vnd.ms-cab-compressed',
-        
         // audio/video
         'mp3' => 'audio/mpeg',
-        'qt'  => 'video/quicktime',
+        'qt' => 'video/quicktime',
         'mov' => 'video/quicktime',
-        
         // adobe
         'pdf' => 'application/pdf',
         'psd' => 'image/vnd.adobe.photoshop',
-        'ai'  => 'application/postscript',
+        'ai' => 'application/postscript',
         'eps' => 'application/postscript',
-        'ps'  => 'application/postscript',
-        
+        'ps' => 'application/postscript',
         // ms office
         'doc' => 'application/msword',
         'rtf' => 'application/rtf',
         'xls' => 'application/vnd.ms-excel',
         'ppt' => 'application/vnd.ms-powerpoint',
-        
         // open office
         'odt' => 'application/vnd.oasis.opendocument.text',
         'ods' => 'application/vnd.oasis.opendocument.spreadsheet',
