@@ -1,4 +1,4 @@
- <?php
+<?php
 
 class Input {
 
@@ -680,7 +680,7 @@ class Input {
                 echo '<INPUT onPaste="return false;"';
                 $this->tipo = 'password';
                 break;
-            case "combo":            
+            case "combo":
                 if ($this->pesquisa) {
                     echo '<div class="input-group" id="pesquisa">';
                     echo '<span class="input-group-label"><i class="fi-magnifying-glass"></i></span>';
@@ -693,7 +693,7 @@ class Input {
             case "textarea":
                 echo '<textarea';
                 break;
-            case "simnao":            
+            case "simnao":
                 echo '<div class="switch">
                         <input class="switch-input" type="checkbox"';
                 break;
@@ -805,12 +805,12 @@ class Input {
                 break;
 
             case "simnao":
-                if ($this->valor) { 
+                if ($this->valor) {
                     echo ' checked>';
                 } else {
                     echo '>';
                 }
-                echo '<label class="switch-paddle" for="'.$this->nome.'">';
+                echo '<label class="switch-paddle" for="' . $this->nome . '">';
                 echo '<span class="show-for-sr"></span>';
                 echo '<span class="switch-active" aria-hidden="true">Sim</span>';
                 echo '<span class="switch-inactive" aria-hidden="true">Não</span>';
@@ -924,7 +924,7 @@ class Input {
                 echo ' value="' . $this->valor . '"';
                 echo '/>';
                 break;
-            
+
             case "sei":
                 echo ' size="' . ($this->size) . '"';
                 echo ' type="text"';
@@ -932,7 +932,7 @@ class Input {
                 echo '/>';
                 echo '</div>';
                 break;
-            
+
             case "email":
                 echo ' size="' . ($this->size) . '"';
                 echo ' type="email"';
@@ -964,7 +964,6 @@ class Input {
                 if (!vazio($this->min)) {
                     echo ' min="' . $this->min . '"';
                 }
-
                 echo '/>';
                 break;
 

@@ -81,7 +81,8 @@ class Tabela {
     private $excluirCondicao = null;
     private $excluirColuna = null;
     private $excluirOperador = "==";
-    private $excluirBotao = 'lixo.png'; # Figura do botão
+    private $excluirBotao = 'lixo.png'; 
+
     # das rotinas de edição
     private $editar = null;
     private $nomeColunaEditar = 'Editar'; # Nome da Coluna
@@ -89,8 +90,8 @@ class Tabela {
     private $editarCondicao = null;
     private $editarColuna = null;
     private $editarOperador = "==";
-    private $editarBotao = 'bullet_edit.png'; # Figura do botao
-    
+    private $editarBotao = 'bullet_edit.png';
+
     # do form de check
     private $check = false;
     private $checkSubmit = null;
@@ -120,7 +121,8 @@ class Tabela {
     private $scroll = true;             # Habilita ou não o scrool horizontal da tabela
     private $rowspan = null;            # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
     private $grupoCorColuna = null;     # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
-
+    private $bordaInterna = false;  // Exibe ou não uma linha dentro da tabela entro os registros 
+    //
     ###########################################################
 
     /**
@@ -288,7 +290,6 @@ class Tabela {
     }
 
     ###########################################################
-
     /**
      * Método show
      * 
