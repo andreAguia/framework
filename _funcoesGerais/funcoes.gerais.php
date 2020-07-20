@@ -6,7 +6,8 @@
  */
 ###########################################################
 
-function post($nome, $padrao = null) {
+function post($nome, $padrao = null)
+{
     /**
      * Retorna o valor de um post oriundo de um formulário
      *
@@ -22,7 +23,8 @@ function post($nome, $padrao = null) {
      * @example exemplo.post.php
      */
     # Verifica se o post existe
-    if (isset($_POST[$nome])) {
+    if (isset($_POST[$nome]))
+    {
         # Pega o valor desse post
         $valor = filter_input(INPUT_POST, $nome); // Substitui o $_post
         ## Obs:
@@ -35,19 +37,22 @@ function post($nome, $padrao = null) {
         #    $valor = null;
         #}
         # Retorna o valor padrão quando for nulo
-        if (is_null($valor)) {
+        if (is_null($valor))
+        {
             $valor = $padrao;
         }
 
         return $valor;
-    } else {
+    } else
+    {
         return $padrao;
     }
 }
 
 ###########################################################
 
-function get($nome, $padrao = null) {
+function get($nome, $padrao = null)
+{
     /**
      * Retorna o valor de um get
      *
@@ -62,27 +67,32 @@ function get($nome, $padrao = null) {
      *
      * @example exemplo.get.php
      */
-    if (isset($_GET[$nome])) {        // Verifica se existe esse get (substitui o isset)
+    if (isset($_GET[$nome]))
+    {        // Verifica se existe esse get (substitui o isset)
         $valor = filter_input(INPUT_GET, $nome); // Pega o valor (substitui o $_get)
         # Força a ser nulo quando for ""
-        if (vazio($valor)) {
+        if (vazio($valor))
+        {
             $valor = null;
         }
 
         # Retorna o valor padrão quando for nulo
-        if (is_null($valor)) {
+        if (is_null($valor))
+        {
             $valor = $padrao;
         }
 
         return $valor;
-    } else {
+    } else
+    {
         return $padrao;
     }
 }
 
 ###########################################################
 
-function loadPage($url, $target = null, $parametros = 'menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600') {
+function loadPage($url, $target = null, $parametros = 'menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600')
+{
     /**
      * Chama outra página PHP
      *
@@ -96,16 +106,19 @@ function loadPage($url, $target = null, $parametros = 'menubar=no,scrollbars=yes
      *
      * @note O valor padrão do parâmetro: parametro é: 'menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600'
      */
-    if (is_null($target)) {
+    if (is_null($target))
+    {
         echo '<meta http-equiv="refresh" content="0; URL=' . $url . '">';
-    } else {
+    } else
+    {
         echo "<script>window.open('$url','$target','$parametros');</script>";
     }
 }
 
 ###########################################################
 
-function ajaxLoadPage($url = null, $div = null) {
+function ajaxLoadPage($url = null, $div = null)
+{
     /**
      * Abre um outra página php dentro de uma div sem fazer reload da página inteira. Somente a div é atualizada.
      *
@@ -121,7 +134,8 @@ function ajaxLoadPage($url = null, $div = null) {
 
 ###########################################################
 
-function set_session($nome = null, $valor = null) {
+function set_session($nome = null, $valor = null)
+{
     /**
      * Escreve um valor em uma variável de sessão para ser usada em outras páginas sem a necessidade de repassá-la com post ou get.
      *
@@ -139,7 +153,8 @@ function set_session($nome = null, $valor = null) {
 
 ###########################################################
 
-function get_session($nome, $padrao = null) {
+function get_session($nome, $padrao = null)
+{
     /**
      * Retorna uma string com o conteúdo da variável de sessao.
      *
@@ -154,28 +169,33 @@ function get_session($nome, $padrao = null) {
      *
      * @example exemplo.set_session.php
      */
-    if (isset($_SESSION[$nome])) {
+    if (isset($_SESSION[$nome]))
+    {
         $valor = $_SESSION[$nome];
 
         # Força a ser nulo quando for ""
-        if (vazio($valor)) {
+        if (vazio($valor))
+        {
             $valor = null;
         }
 
         # Retorna o valor padrão quando for nulo
-        if (is_null($valor)) {
+        if (is_null($valor))
+        {
             $valor = $padrao;
         }
 
         return $valor;
-    } else {
+    } else
+    {
         return $padrao;
     }
 }
 
 ###########################################################
 
-function date_to_bd($data, $separador = '/') {
+function date_to_bd($data, $separador = '/')
+{
     /**
      * Transforma uma data do formato brasileiro DD/MM/AAAA para o formato americano AAAA-MM-DD.
      *
@@ -193,9 +213,11 @@ function date_to_bd($data, $separador = '/') {
      *
      * @example exemplo.date_to_bd.php
      */
-    if (empty($data)) {
+    if (empty($data))
+    {
         return false;
-    } else {
+    } else
+    {
         $dt1 = explode($separador, $data);
         $dt2 = $dt1[2] . '-' . $dt1[1] . '-' . $dt1[0];
         return $dt2;
@@ -204,7 +226,8 @@ function date_to_bd($data, $separador = '/') {
 
 ###########################################################
 
-function date_to_php($data, $separador = '-') {
+function date_to_php($data, $separador = '-')
+{
     /**
      * Transforma uma data do formato americano AAAA-MM-DD para o formato brasileiro DD/MM/AAAA.
      *
@@ -223,9 +246,11 @@ function date_to_php($data, $separador = '-') {
      *
      * @example exemplo.date_to_php.php
      */
-    if (empty($data)) {
+    if (empty($data))
+    {
         return null;
-    } else {
+    } else
+    {
         $dt1 = explode($separador, $data);
         $dt2 = $dt1[2] . '/' . $dt1[1] . '/' . $dt1[0];
         return $dt2;
@@ -234,7 +259,8 @@ function date_to_php($data, $separador = '-') {
 
 ###########################################################
 
-function datetime_to_php($data, $separadorData = '-', $separadorHora = ':') {
+function datetime_to_php($data, $separadorData = '-', $separadorHora = ':')
+{
     /**
      * Transforma uma data com hora do formato americano AAAA/MM/DD HH:MM:SS para o formato brasileiro DD/MM/AAAA HH:MM:SS.
      *
@@ -252,9 +278,11 @@ function datetime_to_php($data, $separadorData = '-', $separadorHora = ':') {
      *
      * @example exemplo.datetime_to_php.php
      */
-    if (is_null($data) or ($data == "")) {
+    if (is_null($data) or ($data == ""))
+    {
         return null;
-    } else {
+    } else
+    {
         # Separa data da hora
         $dt1 = explode($separadorData, $data);
         $espaco = explode(' ', $dt1[2]);
@@ -267,7 +295,8 @@ function datetime_to_php($data, $separadorData = '-', $separadorHora = ':') {
 
 ###########################################################
 
-function back($numPaginas) {
+function back($numPaginas)
+{
     /**
      * Retorna um número de páginas a partir do histórico do browser.
      *
@@ -282,7 +311,8 @@ function back($numPaginas) {
 
 ###########################################################
 
-function get_so() {
+function get_so()
+{
     /**
      * Retorna string com o nome do Sistema Operacional.
      *
@@ -296,18 +326,22 @@ function get_so() {
      */
     $so = $_SERVER['HTTP_USER_AGENT'];
 
-    if (strstr($so, 'Linux')) {
+    if (strstr($so, 'Linux'))
+    {
         return 'Linux';
-    } elseif (strstr($so, 'Windows')) {
+    } elseif (strstr($so, 'Windows'))
+    {
         return 'Windows';
-    } else {
+    } else
+    {
         return 'Não Identificado';
     }
 }
 
 ###########################################################
 
-function get_browserName() {
+function get_browserName()
+{
     /**
      * Retorna array com informações sobre do browser.
      *
@@ -329,19 +363,23 @@ function get_browserName() {
     // bots = ignore
     $bots = array('GOOGLEBOT', 'MSNBOT', 'SLURP');
 
-    foreach ($bots as $bot) {
+    foreach ($bots as $bot)
+    {
         // if bot, returns OTHER
-        if (strpos(strtoupper($var), $bot) !== false) {
+        if (strpos(strtoupper($var), $bot) !== false)
+        {
             return $info;
         }
     }
 
     // loop the valid browsers
-    foreach ($browser as $parent) {
+    foreach ($browser as $parent)
+    {
         $s = strpos(strtoupper($var), $parent);
         $f = $s + strlen($parent);
         $version = preg_replace('/[^0-9,.]/', '', substr($var, $f, 5));
-        if (strpos(strtoupper($var), $parent) !== false) {
+        if (strpos(strtoupper($var), $parent) !== false)
+        {
             $info['browser'] = $parent;
             $info['version'] = $version;
             return $info;
@@ -352,7 +390,8 @@ function get_browserName() {
 
 ###########################################################
 
-function get_nomeMes($numero = null) {
+function get_nomeMes($numero = null)
+{
     /**
      * Retorna o nome do mês cujo número foi informado
      *
@@ -369,14 +408,17 @@ function get_nomeMes($numero = null) {
      * @example exemplo.get_nomeMes.php
      */
     # Verifica se numero é nulo
-    if (is_null($numero)) {
+    if (is_null($numero))
+    {
         $numero = date('m');
     }
 
     # Valida o número do mês
-    if (($numero > 12) OR ($numero < 1)) {
+    if (($numero > 12) OR ($numero < 1))
+    {
         return "ERRO !! - Mês Inexistente";
-    } else {
+    } else
+    {
         # Cria array dos meses
         $mes = array(array("1", "Janeiro"),
             array("2", "Fevereiro"),
@@ -397,7 +439,8 @@ function get_nomeMes($numero = null) {
 
 ###########################################################
 
-function get_nomeMesAno($mesAno) {
+function get_nomeMesAno($mesAno)
+{
     /**
      * Retorna o nome do mês e ano informando a string no formato MM/AAAA
      *
@@ -421,9 +464,11 @@ function get_nomeMesAno($mesAno) {
     $ano = $partes[1];
 
     # Valida o número do mês
-    if (($numero > 12) OR ($numero < 1)) {
+    if (($numero > 12) OR ($numero < 1))
+    {
         return "ERRO !! - Mês Inexistente";
-    } else {
+    } else
+    {
         # Cria array dos meses
         $mes = array(
             array("1", "Janeiro"),
@@ -445,7 +490,8 @@ function get_nomeMesAno($mesAno) {
 
 ###########################################################
 
-function retiraAspas($texto) {
+function retiraAspas($texto)
+{
     /**
      * Retorna a string sem as aspas simples e duplas.
      *
@@ -467,7 +513,8 @@ function retiraAspas($texto) {
 
 ###########################################################
 
-function bold($texto, $destaque) {
+function bold($texto, $destaque)
+{
     /**
      * Retorna uma string com um trecho em destaque (bold).
      *
@@ -514,7 +561,8 @@ function bold($texto, $destaque) {
 
 ############################################################
 
-function del($texto) {
+function del($texto)
+{
     /**
      * Retorna uma string com um trecho em tachado (del em html).
      *
@@ -531,7 +579,8 @@ function del($texto) {
 
 ###########################################################
 
-function retiraAcento($texto) {
+function retiraAcento($texto)
+{
     /**
      * Retorna uma string sem acentos.
      *
@@ -553,7 +602,8 @@ function retiraAcento($texto) {
 
 ###########################################################
 
-function soNumeros($texto) {
+function soNumeros($texto)
+{
     /**
      * Retorna somente os números de uma string
      *
@@ -567,16 +617,19 @@ function soNumeros($texto) {
      *
      * @example exemplo.soNumeros.php
      */
-    if (is_null($texto)) {
+    if (is_null($texto))
+    {
         return null;
-    } else {
+    } else
+    {
         return preg_replace("/[^0-9]/", "", $texto);
     }
 }
 
 ###########################################################
 
-function abreDiv($nome) {
+function abreDiv($nome)
+{
     /**
      * Torna visível uma div que está oculta (abre).
      *
@@ -593,7 +646,8 @@ function abreDiv($nome) {
 
 ###########################################################
 
-function moedaExtenso($valor = 0, $maiusculas = false) {
+function moedaExtenso($valor = 0, $maiusculas = false)
+{
     /**
      * Retorna escrito por extenso o número fornecido em valores monetários (REAIS).
      *
@@ -621,15 +675,18 @@ function moedaExtenso($valor = 0, $maiusculas = false) {
 
     $valor = number_format($valor, 2, ".", ".");
     $inteiro = explode(".", $valor);
-    for ($i = 0; $i < count($inteiro); $i++) {
-        for ($ii = strlen($inteiro[$i]); $ii < 3; $ii++) {
+    for ($i = 0; $i < count($inteiro); $i++)
+    {
+        for ($ii = strlen($inteiro[$i]); $ii < 3; $ii++)
+        {
             $inteiro[$i] = "0" . $inteiro[$i];
         }
     }
 
     $fim = count($inteiro) - ($inteiro[count($inteiro) - 1] > 0 ? 1 : 2);
 
-    for ($i = 0; $i < count($inteiro); $i++) {
+    for ($i = 0; $i < count($inteiro); $i++)
+    {
         $valor = $inteiro[$i];
         $rc = (($valor > 100) && ($valor < 200)) ? "cento" : $c[$valor[0]];
         $rd = ($valor[1] < 2) ? "" : $d[$valor[1]];
@@ -639,25 +696,32 @@ function moedaExtenso($valor = 0, $maiusculas = false) {
         $t = count($inteiro) - 1 - $i;
         $r .= $r ? " " . ($valor > 1 ? $plural[$t] : $singular[$t]) : "";
 
-        if ($valor == "000") {
+        if ($valor == "000")
+        {
             $z++;
-        } elseif ($z > 0) {
+        } elseif ($z > 0)
+        {
             $z--;
         }
 
-        if (($t == 1) && ($z > 0) && ($inteiro[0] > 0)) {
+        if (($t == 1) && ($z > 0) && ($inteiro[0] > 0))
+        {
             $r .= (($z > 1) ? " de " : "") . $plural[$t];
         }
 
-        if ($r) {
+        if ($r)
+        {
             $rt = $rt . ((($i > 0) && ($i <= $fim) && ($inteiro[0] > 0) && ($z < 1)) ? ( ($i < $fim) ? ", " : " e ") : " ") . $r;
         }
     }
 
-    if (!$maiusculas) {
+    if (!$maiusculas)
+    {
         return($rt ? $rt : "zero");
-    } else {
-        if ($rt) {
+    } else
+    {
+        if ($rt)
+        {
             $rt = ereg_replace(" E ", " e ", ucwords($rt));
         }
         return (($rt) ? ($rt) : "Zero");
@@ -666,7 +730,8 @@ function moedaExtenso($valor = 0, $maiusculas = false) {
 
 ###########################################################
 
-function br($linhas = 1) {
+function br($linhas = 1)
+{
     /**
      * Gera tantos saltos de linha quanto for o nímero fornecido.
      *
@@ -678,14 +743,16 @@ function br($linhas = 1) {
      *
      * @example exemplo.br.php
      */
-    for ($i = 1; $i <= $linhas; $i++) {
+    for ($i = 1; $i <= $linhas; $i++)
+    {
         echo '<br />';
     }
 }
 
 ###########################################################
 
-function anti_injection($str) {
+function anti_injection($str)
+{
     /**
      * Função que retira comandos sql de uma string
      *
@@ -704,7 +771,8 @@ function anti_injection($str) {
 
 ###########################################################
 
-function hr($id = null) {
+function hr($id = null)
+{
     /**
      * Insere uma linha
      *
@@ -718,7 +786,8 @@ function hr($id = null) {
      */
     echo '<hr';
 
-    if (!is_null($id)) {
+    if (!is_null($id))
+    {
         echo ' id="' . $id . '"';
     }
 
@@ -727,7 +796,8 @@ function hr($id = null) {
 
 ###########################################################
 
-function alert($mensagem) {
+function alert($mensagem)
+{
     /**
      * Abre uma janela popup com uma mensagem de alert
      *
@@ -740,7 +810,8 @@ function alert($mensagem) {
 
 ###########################################################
 
-function p($mensagem = null, $id = null, $class = null, $title = null) {
+function p($mensagem = null, $id = null, $class = null, $title = null)
+{
     /**
      * Exibe uma mensagem.
      *
@@ -758,17 +829,20 @@ function p($mensagem = null, $id = null, $class = null, $title = null) {
     echo '<p';
 
     # id
-    if (!is_null($id)) {
+    if (!is_null($id))
+    {
         echo ' id="' . $id . '"';
     }
 
     # class
-    if (!is_null($class)) {
+    if (!is_null($class))
+    {
         echo ' class="' . $class . '"';
     }
 
     # title
-    if (!is_null($title)) {
+    if (!is_null($title))
+    {
         echo ' title="' . $title . '"';
     }
 
@@ -779,7 +853,8 @@ function p($mensagem = null, $id = null, $class = null, $title = null) {
 
 ###########################################################
 
-function titulo($mensagem = null, $title = null) {
+function titulo($mensagem = null, $title = null)
+{
     /**
      * Exibe um texto centralizado dentro de um painel com fundo azul escuro. Utilizado para títulos de páginas.
      *
@@ -789,7 +864,8 @@ function titulo($mensagem = null, $title = null) {
      *
      * @example exemplo.titulo.php
      */
-    if (is_null($title)) {
+    if (is_null($title))
+    {
         $title = $mensagem;
     }
 
@@ -803,7 +879,8 @@ function titulo($mensagem = null, $title = null) {
 
 ###########################################################
 
-function tituloTable($mensagem = null, $title = null) {
+function tituloTable($mensagem = null, $title = null)
+{
     /**
      * Exibe um texto centralizado dentro de um painel com fundo igual ao titulo da tabela
      *
@@ -813,7 +890,8 @@ function tituloTable($mensagem = null, $title = null) {
      *
      * @example exemplo.titulo.php
      */
-    if (is_null($title)) {
+    if (is_null($title))
+    {
         $title = $mensagem;
     }
 
@@ -827,7 +905,8 @@ function tituloTable($mensagem = null, $title = null) {
 
 ###########################################################
 
-function botaoVoltar($url, $label = 'Voltar', $title = 'Volta para a página anterior') {
+function botaoVoltar($url, $label = 'Voltar', $title = 'Volta para a página anterior')
+{
     /**
      * Rotina que exibe o botão de Voltar
      *
@@ -846,7 +925,8 @@ function botaoVoltar($url, $label = 'Voltar', $title = 'Volta para a página ant
     $linkBotaoVoltar = new Button($label);
     $linkBotaoVoltar->set_title($title);
     $linkBotaoVoltar->set_url($url);
-    if ($label == 'Voltar') {
+    if ($label == 'Voltar')
+    {
         $linkBotaoVoltar->set_accessKey('V');
     }
     $menu->add_link($linkBotaoVoltar, "left");
@@ -859,7 +939,8 @@ function botaoVoltar($url, $label = 'Voltar', $title = 'Volta para a página ant
 
 ###########################################################
 
-function aguarde($texto = null) {
+function aguarde($texto = null)
+{
 
     /**
      * Rotina que exibe uma animação sugerindo aguardar alguma tarefa ser concluída.
@@ -875,7 +956,8 @@ function aguarde($texto = null) {
     $Imagem = new Imagem(PASTA_FIGURAS_GERAIS . 'carregando.gif', 'Aguarde', 90, 90);
     $Imagem->show();
 
-    if (!is_null($texto)) {
+    if (!is_null($texto))
+    {
         br(2);
         p($texto, "center");
     }
@@ -884,7 +966,8 @@ function aguarde($texto = null) {
 
 ###########################################################
 
-function formataMoeda($valor, $formato = 1) {
+function formataMoeda($valor, $formato = 1)
+{
     /**
      * Função que retorna um valor no formato especificado
      *
@@ -901,10 +984,12 @@ function formataMoeda($valor, $formato = 1) {
      *
      * @example exemplo.formataMoeda.php
      */
-    if ($formato == 1) {
+    if ($formato == 1)
+    {
         # Formato americano para o brasileiro
         $moeda = number_format($valor, 2, ',', '.');
-    } else {
+    } else
+    {
         # Formato brasileiro para o americano
         $moeda = str_replace(".", "", $valor);
         $moeda = str_replace(",", ".", $moeda);
@@ -914,7 +999,8 @@ function formataMoeda($valor, $formato = 1) {
 
 ###########################################################
 
-function formataNumLinha($numero) {
+function formataNumLinha($numero)
+{
     /**
      * Tabula a exibição de números Para exibição na rotina que lista códigos.
      *
@@ -941,7 +1027,8 @@ function formataNumLinha($numero) {
 
 ###########################################################
 
-function callout($mensagem, $tipo = "warning") {
+function callout($mensagem, $tipo = "warning")
+{
     /**
      * Exibe um painel contendo uma mensagem.
      *
@@ -957,18 +1044,22 @@ function callout($mensagem, $tipo = "warning") {
      * @example exemplo.callout.php
      */
     # Verifica se não está vazio
-    if (!vazio($mensagem)) {
+    if (!vazio($mensagem))
+    {
 
         # Chama a classe callout
         $callout = new Callout($tipo);
         $callout->abre();
 
         # Verifica se é diversas mensagens
-        if (is_array($mensagem)) {
-            foreach ($mensagem as $mm) {
+        if (is_array($mensagem))
+        {
+            foreach ($mensagem as $mm)
+            {
                 p($mm, "funcaoCallout");
             }
-        } else {
+        } else
+        {
             p($mensagem, "funcaoCallout");
         }
 
@@ -978,7 +1069,8 @@ function callout($mensagem, $tipo = "warning") {
 
 ###########################################################
 
-function label($mensagem, $tipo = "warning", $id = null, $title = null) {
+function label($mensagem, $tipo = "warning", $id = null, $title = null)
+{
     /**
      * Cria uma mensagem com fundo colorido.
      *
@@ -993,12 +1085,13 @@ function label($mensagem, $tipo = "warning", $id = null, $title = null) {
      *
      * @example exemplo.label.php
      */
-    span($mensagem, $id, $tipo . ' label', $title);
+    span($mensagem, $id, "label {$tipo}", $title);
 }
 
 ###########################################################
 
-function badge($mensagem, $tipo = "warning", $id = null, $title = null) {
+function badge($mensagem, $tipo = "warning", $id = null, $title = null)
+{
     /**
      * Semelhante a função label mas com bordas arredondadas
      *
@@ -1015,12 +1108,31 @@ function badge($mensagem, $tipo = "warning", $id = null, $title = null) {
      *
      * @example exemplo.badge.php
      */
-    span($mensagem, $id, $tipo . ' badge', $title);
+    span($mensagem, $id, "badge {$tipo}", $title);
+}
+
+###########################################################
+
+function toolTip($word, $title)
+{
+    /**
+     * Cria uma palavre com title diferente
+     *
+     * @note É indicado quando se quer dar uma descrição mais detalhada sobre uma palavra
+     * @note Utiliza a funcionalidade tooltip do Foundation
+     *
+     * @param $word  string null    A palavra que será destacada
+     * @param $title string null    Mensagem para o mouseover
+     *
+     * @syntax toolTip($word, $title);
+     */
+    echo "<span data-tooltip title='{$title}'>{$word}</span>";
 }
 
 ##########################################################
 
-function span($mensagem, $id = null, $class = null, $title = null) {
+function span($mensagem, $id = null, $class = null, $title = null)
+{
     /**
      * Cria um span com uma mensagem.
      *
@@ -1038,17 +1150,20 @@ function span($mensagem, $id = null, $class = null, $title = null) {
     echo '<span';
 
     # id
-    if (!is_null($id)) {
+    if (!is_null($id))
+    {
         echo ' id="' . $id . '"';
     }
 
     # class
-    if (!is_null($class)) {
+    if (!is_null($class))
+    {
         echo ' class="' . $class . '"';
     }
 
     # title
-    if (!is_null($title)) {
+    if (!is_null($title))
+    {
         echo ' title="' . $title . '"';
     }
 
@@ -1059,7 +1174,8 @@ function span($mensagem, $id = null, $class = null, $title = null) {
 
 ###########################################################
 
-function validaData($data) {
+function validaData($data)
+{
     /**
      * Verifica se uma data é válida ou não retorna true or false
      *
@@ -1078,11 +1194,14 @@ function validaData($data) {
      * @example exemplo.validaData.php
      */
     # Verifica se o tamanho da data é menor que 8
-    if (strlen($data) < 8) {
+    if (strlen($data) < 8)
+    {
         return false;
-    } else {
+    } else
+    {
         # Verifica se a data possui a barra (/) de separação
-        if (strpos($data, "/") !== false) {
+        if (strpos($data, "/") !== false)
+        {
             $partes = explode("/", $data);
 
             # pega o dia da data
@@ -1094,25 +1213,32 @@ function validaData($data) {
             # caso informe data com uma única barra (/)
             $ano = intval(isset($partes[2]) ? $partes[2] : 0);
 
-            if ($mes == "00") {
+            if ($mes == "00")
+            {
                 return false;
             }
 
-            if ($dia == "00") {
+            if ($dia == "00")
+            {
                 return false;
             }
 
-            if (strlen($ano) < 4) {
+            if (strlen($ano) < 4)
+            {
                 return true;
-            } else {
+            } else
+            {
                 # verifica se a data é válida
-                if (checkdate($mes, $dia, $ano)) {
+                if (checkdate($mes, $dia, $ano))
+                {
                     return true;
-                } else {
+                } else
+                {
                     return false;
                 }
             }
-        } else {
+        } else
+        {
             return false;
         }
     }
@@ -1120,7 +1246,8 @@ function validaData($data) {
 
 ###########################################################
 
-function addDias($data = null, $dias = 0, $primeiroDia = true) {
+function addDias($data = null, $dias = 0, $primeiroDia = true)
+{
     /**
      * Adiciona dias a uma data
      *
@@ -1141,21 +1268,26 @@ function addDias($data = null, $dias = 0, $primeiroDia = true) {
      *
      * @example exemplo.addDias.php
      */
-    if ($primeiroDia) {
+    if ($primeiroDia)
+    {
         $dias--;
     }
 
     # Verifica se data é nula
-    if (empty($data)) {
+    if (empty($data))
+    {
         return null;
-    } else {
-        if (validaData($data)) {
+    } else
+    {
+        if (validaData($data))
+        {
             $dia = substr($data, 0, 2);
             $mes = substr($data, 3, 2);
             $ano = substr($data, 6, 4);
             $dataFinal = date('d/m/Y', mktime(24 * $dias, 0, 0, $mes, $dia, $ano));
             return $dataFinal;
-        } else {
+        } else
+        {
             alert('Data Inválida');
             return false;
         }
@@ -1164,7 +1296,8 @@ function addDias($data = null, $dias = 0, $primeiroDia = true) {
 
 ###########################################################
 
-function entre($data, $dtInicial, $dtFinal) {
+function entre($data, $dtInicial, $dtFinal)
+{
     /**
      * Verifica se a data está entre duas datas.
      *
@@ -1183,13 +1316,17 @@ function entre($data, $dtInicial, $dtFinal) {
      *
      * @example exemplo.entre.php
      */
-    if (validaData($data)) {
-        if ((date_to_bd($data) < date_to_bd($dtInicial)) or (date_to_bd($data) > date_to_bd($dtFinal))) {
+    if (validaData($data))
+    {
+        if ((date_to_bd($data) < date_to_bd($dtInicial)) or (date_to_bd($data) > date_to_bd($dtFinal)))
+        {
             return false;
-        } else {
+        } else
+        {
             return true;
         }
-    } else {
+    } else
+    {
         alert('Data Inválida');
         return false;
     }
@@ -1197,7 +1334,8 @@ function entre($data, $dtInicial, $dtFinal) {
 
 ###########################################################
 
-function jaPassou($data) {
+function jaPassou($data)
+{
     /**
      * Verifica se a data já passou da data atual
      *
@@ -1214,13 +1352,17 @@ function jaPassou($data) {
      *
      * @example exemplo.jaPassou.php
      */
-    if (validaData($data)) {
-        if (date("Y-m-d") > date_to_bd($data)) {
+    if (validaData($data))
+    {
+        if (date("Y-m-d") > date_to_bd($data))
+        {
             return true;
-        } else {
+        } else
+        {
             return false;
         }
-    } else {
+    } else
+    {
         alert('Data Inválida: ' . $data);
         return false;
     }
@@ -1228,7 +1370,8 @@ function jaPassou($data) {
 
 ###########################################################
 
-function eHoje($data) {
+function eHoje($data)
+{
     /**
      * Verifica se a data é hoje
      *
@@ -1244,13 +1387,17 @@ function eHoje($data) {
      * @param $data      date null A data a ser verificada.
      *
      */
-    if (validaData($data)) {
-        if (date("Y/m/d") == date_to_bd($data)) {
+    if (validaData($data))
+    {
+        if (date("Y/m/d") == date_to_bd($data))
+        {
             return true;
-        } else {
+        } else
+        {
             return false;
         }
-    } else {
+    } else
+    {
         alert('Data Inválida');
         return false;
     }
@@ -1258,7 +1405,8 @@ function eHoje($data) {
 
 ###########################################################
 
-function dataDif($dataInicial, $dataFinal = null) {
+function dataDif($dataInicial, $dataFinal = null)
+{
     /**
      * Informa, em dias, o período entre duas datas
      *
@@ -1279,12 +1427,14 @@ function dataDif($dataInicial, $dataFinal = null) {
      * @example exemplo.dataDif.php
      */
     # Se for nula coloca a data atual
-    if (is_null($dataFinal)) {
+    if (is_null($dataFinal))
+    {
         $dataFinal = date("d/m/Y");
     }
 
     # Verifica a validade das datas
-    if ((validaData($dataInicial)) AND (validaData($dataFinal))) {
+    if ((validaData($dataInicial)) AND (validaData($dataFinal)))
+    {
 
         # Passa para o padrão americano
         $dataInicial = date_to_bd($dataInicial);
@@ -1301,7 +1451,8 @@ function dataDif($dataInicial, $dataFinal = null) {
         $dias = (int) floor($diferenca / (60 * 60 * 24));
 
         return $dias;
-    } else {
+    } else
+    {
         alert('Data Inválida');
         return false;
     }
@@ -1309,7 +1460,8 @@ function dataDif($dataInicial, $dataFinal = null) {
 
 ###########################################################
 
-function dataExtenso($data = null) {
+function dataExtenso($data = null)
+{
     /**
      * Exibe a data por extenso no formato [dia], de [mês] de [Ano]
      *
@@ -1325,7 +1477,8 @@ function dataExtenso($data = null) {
      * @example exemplo.dataExtenso.php
      */
     # Verifica a validade da data
-    if (validaData($data)) {
+    if (validaData($data))
+    {
 
         # Divide a data em dia, mes e ano
         $dt = explode('/', $data);
@@ -1336,7 +1489,8 @@ function dataExtenso($data = null) {
         $dataExtenso = $dt[0] . ' de ' . $mes . ' de ' . $dt[2];
 
         return $dataExtenso;
-    } else {
+    } else
+    {
         alert('Data Inválida');
         return false;
     }
@@ -1344,7 +1498,8 @@ function dataExtenso($data = null) {
 
 ###########################################################
 
-function dataExtenso2($data = null) {
+function dataExtenso2($data = null)
+{
     /**
      * Exibe a data por extenso todo em texto
      *
@@ -1360,7 +1515,8 @@ function dataExtenso2($data = null) {
      * @example exemplo.dataExtenso.php
      */
     # Verifica a validade da data
-    if (validaData($data)) {
+    if (validaData($data))
+    {
 
         # Divide a data em dia, mes e ano
         $dt = explode('/', $data);
@@ -1378,7 +1534,8 @@ function dataExtenso2($data = null) {
         $mes = strtolower(get_nomeMes($dt[1]));
 
         # Inicio do texto
-        switch ($dt[0]) {
+        switch ($dt[0])
+        {
             case 1:
                 $inicio = "Ao primeiro dia";
                 break;
@@ -1402,7 +1559,8 @@ function dataExtenso2($data = null) {
         $dataExtenso = $inicio . ' de ' . $mes . ' de ' . numero_to_letra(intval($dt[2]));
 
         return $dataExtenso;
-    } else {
+    } else
+    {
         alert('Data Inválida');
         return false;
     }
@@ -1410,7 +1568,8 @@ function dataExtenso2($data = null) {
 
 ###########################################################
 
-function numero_to_letra($number) {
+function numero_to_letra($number)
+{
     /**
      * Converte um numero para palavra (exenso)
      *
@@ -1471,11 +1630,13 @@ function numero_to_letra($number) {
         1000000000000000000 => array('quinquilhão', 'quinquilhões')
     );
 
-    if (!is_numeric($number)) {
+    if (!is_numeric($number))
+    {
         return false;
     }
 
-    if (($number >= 0 && (int) $number < 0) || (int) $number < 0 - PHP_INT_MAX) {
+    if (($number >= 0 && (int) $number < 0) || (int) $number < 0 - PHP_INT_MAX)
+    {
         // overflow
         trigger_error(
                 'convert_number_to_words só aceita números entre ' . PHP_INT_MAX . ' à ' . PHP_INT_MAX,
@@ -1484,17 +1645,20 @@ function numero_to_letra($number) {
         return false;
     }
 
-    if ($number < 0) {
+    if ($number < 0)
+    {
         return $negative . numero_to_letra(abs($number));
     }
 
     $string = $fraction = null;
 
-    if (strpos($number, '.') !== false) {
+    if (strpos($number, '.') !== false)
+    {
         list($number, $fraction) = explode('.', $number);
     }
 
-    switch (true) {
+    switch (true)
+    {
         case $number < 21:
             $string = $dictionary[$number];
             break;
@@ -1502,7 +1666,8 @@ function numero_to_letra($number) {
             $tens = ((int) ($number / 10)) * 10;
             $units = $number % 10;
             $string = $dictionary[$tens];
-            if ($units) {
+            if ($units)
+            {
                 $string .= $conjunction . $dictionary[$units];
             }
             break;
@@ -1510,7 +1675,8 @@ function numero_to_letra($number) {
             $hundreds = floor($number / 100) * 100;
             $remainder = $number % 100;
             $string = $dictionary[$hundreds];
-            if ($remainder) {
+            if ($remainder)
+            {
                 $string .= $conjunction . numero_to_letra($remainder);
             }
             break;
@@ -1518,24 +1684,30 @@ function numero_to_letra($number) {
             $baseUnit = pow(1000, floor(log($number, 1000)));
             $numBaseUnits = (int) ($number / $baseUnit);
             $remainder = $number % $baseUnit;
-            if ($baseUnit == 1000) {
+            if ($baseUnit == 1000)
+            {
                 $string = numero_to_letra($numBaseUnits) . ' ' . $dictionary[1000];
-            } elseif ($numBaseUnits == 1) {
+            } elseif ($numBaseUnits == 1)
+            {
                 $string = numero_to_letra($numBaseUnits) . ' ' . $dictionary[$baseUnit][0];
-            } else {
+            } else
+            {
                 $string = numero_to_letra($numBaseUnits) . ' ' . $dictionary[$baseUnit][1];
             }
-            if ($remainder) {
+            if ($remainder)
+            {
                 $string .= $remainder < 100 ? $conjunction : $separator;
                 $string .= numero_to_letra($remainder);
             }
             break;
     }
 
-    if (null !== $fraction && is_numeric($fraction)) {
+    if (null !== $fraction && is_numeric($fraction))
+    {
         $string .= $decimal;
         $words = array();
-        foreach (str_split((string) $fraction) as $number) {
+        foreach (str_split((string) $fraction) as $number)
+        {
             $words[] = $dictionary[$number];
         }
         $string .= implode(' ', $words);
@@ -1546,7 +1718,8 @@ function numero_to_letra($number) {
 
 ###########################################################
 
-function addMeses($data, $meses) {
+function addMeses($data, $meses)
+{
     /**
      * Adiciona meses a uma data
      *
@@ -1563,14 +1736,16 @@ function addMeses($data, $meses) {
      *
      * @example exemplo.addMeses.php
      */
-    if (validaData($data)) {
+    if (validaData($data))
+    {
 
         # Divide a data em dia, mes e ano
         $dt = explode('/', $data);
 
         $dataFinal = date('d/m/Y', mktime(0, 0, 0, $dt[1] + $meses, $dt[0], $dt[2]));
         return $dataFinal;
-    } else {
+    } else
+    {
         alert('Data Inválida');
         return false;
     }
@@ -1578,7 +1753,8 @@ function addMeses($data, $meses) {
 
 ###########################################################
 
-function addAnos($data, $anos) {
+function addAnos($data, $anos)
+{
     /**
      * Função que adiciona anos a uma data
      *
@@ -1595,14 +1771,16 @@ function addAnos($data, $anos) {
      *
      * @example exemplo.addAnos.php
      */
-    if (validaData($data)) {
+    if (validaData($data))
+    {
 
         # Divide a data em dia, mes e ano
         $dt = explode('/', $data);
 
         $dataFinal = date('d/m/Y', mktime(0, 0, 0, $dt[1], $dt[0], $dt[2] + $anos));
         return $dataFinal;
-    } else {
+    } else
+    {
         alert('Data Inválida');
         return false;
     }
@@ -1610,7 +1788,8 @@ function addAnos($data, $anos) {
 
 ###########################################################
 
-function vazio($var) {
+function vazio($var)
+{
     /**
      * Verifica se o valor da variável é vazio ou nulo
      *
@@ -1624,12 +1803,16 @@ function vazio($var) {
      *
      * @example exemplo.vazio.php
      */
-    if (is_array($var)) {
-        if (is_null($var) OR ($var == '')) {
+    if (is_array($var))
+    {
+        if (is_null($var) OR ($var == ''))
+        {
             return true;
         }
-    } else {
-        if (is_null($var) OR (trim($var) == '')) {
+    } else
+    {
+        if (is_null($var) OR (trim($var) == ''))
+        {
             return true;
         }
     }
@@ -1637,7 +1820,8 @@ function vazio($var) {
 
 ###########################################################
 
-function get_mac($ip) {
+function get_mac($ip)
+{
     /**
      * Informa o valor do número MAC de um IP
      *
@@ -1657,7 +1841,8 @@ function get_mac($ip) {
 
 ###########################################################
 
-function validaCpf($cpf) {
+function validaCpf($cpf)
+{
     /**
      * Rotina de validação do CPF
      *
@@ -1673,18 +1858,23 @@ function validaCpf($cpf) {
     $cpf = str_replace('.', '', $cpf);      // retira o .
     $cpf = str_replace('-', '', $cpf);      // retira o -
     # Verifica se sobrou somente número
-    if (!is_numeric($cpf)) {  // Verifica se é número
+    if (!is_numeric($cpf))
+    {  // Verifica se é número
         $status = false;
-    } else {
+    } else
+    {
         # Verifica números que pelo padrão normal dão como válidos
         if (($cpf == '11111111111') || ($cpf == '22222222222') || ($cpf == '33333333333') || ($cpf == '44444444444') ||
                 ($cpf == '55555555555') || ($cpf == '66666666666') || ($cpf == '77777777777') || ($cpf == '88888888888') ||
-                ($cpf == '99999999999') || ($cpf == '00000000000')) {
+                ($cpf == '99999999999') || ($cpf == '00000000000'))
+        {
             $status = false;
-        } else {
+        } else
+        {
             $dv_informado = substr($cpf, 9, 2); // pega o digito verificador
 
-            for ($i = 0; $i <= 8; $i++) {
+            for ($i = 0; $i <= 8; $i++)
+            {
                 $digito[$i] = substr($cpf, $i, 1);
             }
 
@@ -1692,16 +1882,19 @@ function validaCpf($cpf) {
             $posicao = 10;
             $soma = 0;
 
-            for ($i = 0; $i <= 8; $i++) {
+            for ($i = 0; $i <= 8; $i++)
+            {
                 $soma = $soma + $digito[$i] * $posicao;
                 $posicao = $posicao - 1;
             }
 
             $digito[9] = $soma % 11;
 
-            if ($digito[9] < 2) {
+            if ($digito[9] < 2)
+            {
                 $digito[9] = 0;
-            } else {
+            } else
+            {
                 $digito[9] = 11 - $digito[9];
             }
 
@@ -1709,24 +1902,29 @@ function validaCpf($cpf) {
             $posicao = 11;
             $soma = 0;
 
-            for ($i = 0; $i <= 9; $i++) {
+            for ($i = 0; $i <= 9; $i++)
+            {
                 $soma = $soma + $digito[$i] * $posicao;
                 $posicao = $posicao - 1;
             }
 
             $digito[10] = $soma % 11;
 
-            if ($digito[10] < 2) {
+            if ($digito[10] < 2)
+            {
                 $digito[10] = 0;
-            } else {
+            } else
+            {
                 $digito[10] = 11 - $digito[10];
             }
 
             # VERIFICA SE O DV CALCULADO É IGUAL AO INFORMADO
             $dv = $digito[9] * 10 + $digito[10];
-            if ($dv != $dv_informado) {
+            if ($dv != $dv_informado)
+            {
                 $status = false;
-            } else {
+            } else
+            {
                 $status = true;
             }
         }
@@ -1736,7 +1934,8 @@ function validaCpf($cpf) {
 
 ###########################################################
 
-function idade($dataNascimento) {
+function idade($dataNascimento)
+{
     /**
      * Rotina que calcula a idade a partir de uma data de nascimento
      *
@@ -1749,13 +1948,17 @@ function idade($dataNascimento) {
      *
      */
     # Verifica se data é válida
-    if (is_null($dataNascimento)) {
+    if (is_null($dataNascimento))
+    {
         alert("Data em branco");
         return;
-    } else {
-        if (!validaData($dataNascimento)) {
+    } else
+    {
+        if (!validaData($dataNascimento))
+        {
             alert("Data inválida");
-        } else {
+        } else
+        {
             // Separa em dia, mês e ano
             list($dia, $mes, $ano) = explode('/', $dataNascimento);
 
@@ -1773,7 +1976,8 @@ function idade($dataNascimento) {
 
 ###########################################################
 
-function geraSenha($tamanho = 8, $maiusculas = true, $numeros = true, $simbolos = false) {
+function geraSenha($tamanho = 8, $maiusculas = true, $numeros = true, $simbolos = false)
+{
     /**
      * Rotina que gera uma senha forte
      *
@@ -1802,21 +2006,25 @@ function geraSenha($tamanho = 8, $maiusculas = true, $numeros = true, $simbolos 
     // Agrupamos todos os caracteres que poderão ser utilizados
     $caracteres .= $lmin;
 
-    if ($maiusculas) {
+    if ($maiusculas)
+    {
         $caracteres .= $lmai;
     }
 
-    if ($numeros) {
+    if ($numeros)
+    {
         $caracteres .= $num;
     }
 
-    if ($simbolos) {
+    if ($simbolos)
+    {
         $caracteres .= $simb;
     }
 
     // Calculamos o total de caracteres possíveis
     $len = strlen($caracteres);
-    for ($n = 1; $n <= $tamanho; $n++) {
+    for ($n = 1; $n <= $tamanho; $n++)
+    {
 
         // Criamos um número aleatório de 1 até $len para pegar um dos caracteres
         $rand = mt_rand(1, $len);
@@ -1829,7 +2037,8 @@ function geraSenha($tamanho = 8, $maiusculas = true, $numeros = true, $simbolos 
 
 ###########################################################
 
-function year($data) {
+function year($data)
+{
     /**
      * Função que retorna o ano de uma data
      *
@@ -1842,11 +2051,13 @@ function year($data) {
      *
      * @param $data data null A data a ser trabalhada
      */
-    if (validaData($data)) {
+    if (validaData($data))
+    {
         # Divide a data em dia, mes e ano
         $dt = explode('/', $data);
         return $dt[2];
-    } else {
+    } else
+    {
         alert('Data Inválida');
         return false;
     }
@@ -1854,7 +2065,8 @@ function year($data) {
 
 ###########################################################
 
-function day($data) {
+function day($data)
+{
     /**
      * Função que retorna o dia de uma data
      *
@@ -1867,11 +2079,13 @@ function day($data) {
      *
      * @param $data data null A data a ser trabalhada
      */
-    if (validaData($data)) {
+    if (validaData($data))
+    {
         # Divide a data em dia, mes e ano
         $dt = explode('/', $data);
         return $dt[0];
-    } else {
+    } else
+    {
         alert('Data Inválida');
         return false;
     }
@@ -1879,7 +2093,8 @@ function day($data) {
 
 ###########################################################
 
-function month($data) {
+function month($data)
+{
     /**
      * Função que retorna o mês de uma data
      *
@@ -1892,11 +2107,13 @@ function month($data) {
      *
      * @param $data data null A data a ser trabalhada
      */
-    if (validaData($data)) {
+    if (validaData($data))
+    {
         # Divide a data em dia, mes e ano
         $dt = explode('/', $data);
         return $dt[1];
-    } else {
+    } else
+    {
         alert('Data Inválida');
         return false;
     }
@@ -1904,7 +2121,8 @@ function month($data) {
 
 ###########################################################
 
-function createZip($path = 'arquivo.zip', $files = array()) {
+function createZip($path = 'arquivo.zip', $files = array())
+{
     /**
      * Cria arquivos compactados .zip
      *
@@ -1920,9 +2138,11 @@ function createZip($path = 'arquivo.zip', $files = array()) {
     $zip->open($path, ZipArchive::CREATE);
 
     # Checa se o array não está vazio e adiciona os arquivos
-    if (!empty($files)) {
+    if (!empty($files))
+    {
         # Loop do(s) arquivo(s) enviado(s)
-        foreach ($files as $file) {
+        foreach ($files as $file)
+        {
             # Adiciona os arquivos ao zip criado
             $zip->addFile($file, basename($file));
         }
@@ -1936,7 +2156,8 @@ function createZip($path = 'arquivo.zip', $files = array()) {
 #  Funções Estatísticas
 ###########################################################
 
-function media_aritmetica(array $valores) {
+function media_aritmetica(array $valores)
+{
     /**
      * Calcula a media de um array de numeros
      *
@@ -1950,7 +2171,8 @@ function media_aritmetica(array $valores) {
 
 ###########################################################
 
-function maiorValor(array $valores) {
+function maiorValor(array $valores)
+{
     /**
      * Obtem a maior valor de um array.
      *
@@ -1965,7 +2187,8 @@ function maiorValor(array $valores) {
 
 ###########################################################
 
-function menorValor(array $valores) {
+function menorValor(array $valores)
+{
     /**
      * Obtem o menor valor de um array.
      *
@@ -1980,7 +2203,8 @@ function menorValor(array $valores) {
 
 ###########################################################
 
-function arrayToString($valores) {
+function arrayToString($valores)
+{
     /**
      * Transforma um array em uma string com os valores separados por vírgula
      *
@@ -1988,7 +2212,8 @@ function arrayToString($valores) {
      * @return string dos valores separados por vírgulas
      */
     $resultado = null;
-    foreach ($valores as $stringArray) {
+    foreach ($valores as $stringArray)
+    {
         $resultado .= $stringArray . ",";
     }
 
@@ -2001,7 +2226,8 @@ function arrayToString($valores) {
 
 ###########################################################
 
-function arrayPreenche($valorInicial, $valorFinal, $ordem = "c") {
+function arrayPreenche($valorInicial, $valorFinal, $ordem = "c")
+{
     /**
      * Preenche um array numérico com uma faixa de valores
      *
@@ -2014,12 +2240,16 @@ function arrayPreenche($valorInicial, $valorFinal, $ordem = "c") {
     $resultado = array();
 
     # Preenche com os valores informados
-    if ($ordem == "c") {
-        for ($i = $valorInicial; $i <= $valorFinal; $i++) {
+    if ($ordem == "c")
+    {
+        for ($i = $valorInicial; $i <= $valorFinal; $i++)
+        {
             $resultado[] = $i;
         }
-    } elseif ($ordem == "d") {
-        for ($i = $valorInicial; $i >= $valorFinal; $i--) {
+    } elseif ($ordem == "d")
+    {
+        for ($i = $valorInicial; $i >= $valorFinal; $i--)
+        {
             $resultado[] = $i;
         }
     }
@@ -2029,7 +2259,8 @@ function arrayPreenche($valorInicial, $valorFinal, $ordem = "c") {
 
 ###########################################################
 
-function diaSemana($data) {
+function diaSemana($data)
+{
     /**
      * Informa o dia da dsemana de uma data
      *
@@ -2056,7 +2287,8 @@ function diaSemana($data) {
 
 ###########################################################
 
-function codificacao($string) {
+function codificacao($string)
+{
     /**
      * Retorna a codificação da string informada
      *
@@ -2070,7 +2302,8 @@ function codificacao($string) {
 
 ###########################################################
 
-function dias_to_diasMesAno($dias) {
+function dias_to_diasMesAno($dias)
+{
 
     /**
      * Transforma uma quantidade grande de dias em dias meses e anos
@@ -2087,14 +2320,16 @@ function dias_to_diasMesAno($dias) {
     $texto = null;
 
     # Calcula os anos
-    if ($dias > 364) {
+    if ($dias > 364)
+    {
         $anos = intval($dias / 365);      // Divide para descobrir a quantidade de anos
         $resto = resto($dias, 365);      // Pega o resto para calcular os meses e dias
         $dias = $resto;                 // Passa o resto para variável $dias
     }
 
     # Calcula os meses
-    if ($dias > 29) {
+    if ($dias > 29)
+    {
         $meses = intval($dias / 30);          // Divide para descobrir a quantidade de meses
         $resto = resto($dias, 30);          // Pega o resto para calcular os dias
         $dias = $resto;                     // Passa o resto para variável $dias
@@ -2102,17 +2337,20 @@ function dias_to_diasMesAno($dias) {
 
     # Monta o texto de retorno
     # Anos
-    if ($anos > 0) {
+    if ($anos > 0)
+    {
         $texto = $anos . "a ";
     }
 
     # Meses
-    if ($meses > 0) {
+    if ($meses > 0)
+    {
         $texto .= $meses . "m ";
     }
 
     # Dias
-    if ($dias > 0) {
+    if ($dias > 0)
+    {
         $texto .= $dias . "d ";
     }
 
@@ -2121,7 +2359,8 @@ function dias_to_diasMesAno($dias) {
 
 ###########################################################
 
-function resto($dividendo, $divisor) {
+function resto($dividendo, $divisor)
+{
 
     /**
      * Retorna o resto da divisão de 2 números inteiros
@@ -2141,7 +2380,8 @@ function resto($dividendo, $divisor) {
 
 ###########################################################
 
-function trataNulo($valor, $caractere = "--") {
+function trataNulo($valor, $caractere = "--")
+{
 
     /**
      * Transforma o valor null ou zero em outro caractere
@@ -2156,12 +2396,14 @@ function trataNulo($valor, $caractere = "--") {
     $retorno = $valor;
 
     # Verifica se é nulo
-    if (vazio($valor)) {
+    if (vazio($valor))
+    {
         $retorno = $caractere;
     }
 
     # Verifica se é 0
-    if ((is_numeric($valor)) AND ($valor == 0)) {
+    if ((is_numeric($valor)) AND ($valor == 0))
+    {
         $retorno = $caractere;
     }
 
@@ -2170,7 +2412,8 @@ function trataNulo($valor, $caractere = "--") {
 
 ###########################################################
 
-function ePar($valor) {
+function ePar($valor)
+{
 
     /**
      * TVerifica se numero e par
@@ -2186,9 +2429,11 @@ function ePar($valor) {
     # Inicia a variável de retorno
     $retorno = null;
 
-    if ($valor % 2 == 0) {
+    if ($valor % 2 == 0)
+    {
         $retorno = true;
-    } else {
+    } else
+    {
         $retorno = false;
     }
 
@@ -2197,7 +2442,8 @@ function ePar($valor) {
 
 ###########################################################
 
-function plm($texto) {
+function plm($texto)
+{
 
     /**
      * Passa o texto para minusculas com a primeira letra de cada palavra em maiusculas
@@ -2212,7 +2458,8 @@ function plm($texto) {
 
 ###########################################################
 
-function vazioPraNulo($valor = null) {
+function vazioPraNulo($valor = null)
+{
 
     /**
      * Passa o valor informado para nulo quando for vazio ou retorna a string enviada
@@ -2222,7 +2469,8 @@ function vazioPraNulo($valor = null) {
      *
      * @syntax vazioPraNulo($valor);
      */
-    if ($valor == "") {
+    if ($valor == "")
+    {
         $valor = null;
     }
 
@@ -2231,7 +2479,8 @@ function vazioPraNulo($valor = null) {
 
 ###########################################################
 
-function verificaSobreposicao($dtInicial1, $dtFinal1, $dtInicial2, $dtFinal2) {
+function verificaSobreposicao($dtInicial1, $dtFinal1, $dtInicial2, $dtFinal2)
+{
 
     /**
      * Verifica se os períodos estão com sobreposição de dias
@@ -2248,17 +2497,20 @@ function verificaSobreposicao($dtInicial1, $dtFinal1, $dtInicial2, $dtFinal2) {
     $retorno = false;
 
     # Verifica se data inicial do periodo1 está dentro do periodo2
-    if (entre($dtInicial1, $dtInicial2, $dtFinal2)) {
+    if (entre($dtInicial1, $dtInicial2, $dtFinal2))
+    {
         $retorno = true;
     }
 
     # Verifica se data final do periodo1 está dentro do periodo2
-    if (entre($dtFinal1, $dtInicial2, $dtFinal2)) {
+    if (entre($dtFinal1, $dtInicial2, $dtFinal2))
+    {
         $retorno = true;
     }
 
     # Verifica se o período1 "engole" o periodo2
-    if ((date_to_bd($dtInicial1) < date_to_bd($dtInicial2)) AND (date_to_bd($dtFinal1) > date_to_bd($dtFinal2))) {
+    if ((date_to_bd($dtInicial1) < date_to_bd($dtInicial2)) AND (date_to_bd($dtFinal1) > date_to_bd($dtFinal2)))
+    {
         $retorno = true;
     }
 
@@ -2267,7 +2519,8 @@ function verificaSobreposicao($dtInicial1, $dtFinal1, $dtInicial2, $dtFinal2) {
 
 ###########################################################
 
-function dataMaior($data1, $data2) {
+function dataMaior($data1, $data2)
+{
 
     /**
      * Retorna a data maior (mais nova)
@@ -2287,11 +2540,14 @@ function dataMaior($data1, $data2) {
     $dataAmericano2 = date_to_bd($data2);
 
     # Faz a Comparação
-    if (strtotime($dataAmericano1) > strtotime($dataAmericano2)) {
+    if (strtotime($dataAmericano1) > strtotime($dataAmericano2))
+    {
         $dataMaior = $data1;
-    } elseif (strtotime($dataAmericano1) == strtotime($dataAmericano2)) {
+    } elseif (strtotime($dataAmericano1) == strtotime($dataAmericano2))
+    {
         $dataMaior = $data1;
-    } else {
+    } else
+    {
         $dataMaior = $data2;
     }
 
@@ -2300,7 +2556,8 @@ function dataMaior($data1, $data2) {
 
 ###########################################################
 
-function get_post_action($name) {
+function get_post_action($name)
+{
 
     /**
      * Função curiosa que retorna o nome do botão de submit de um formulário que foi escolhido.
@@ -2316,8 +2573,10 @@ function get_post_action($name) {
      */
     $params = func_get_args();
 
-    foreach ($params as $name) {
-        if (isset($_POST[$name])) {
+    foreach ($params as $name)
+    {
+        if (isset($_POST[$name]))
+        {
             return $name;
         }
     }
@@ -2325,7 +2584,8 @@ function get_post_action($name) {
 
 ###########################################################
 
-function limpa_numero($str) {
+function limpa_numero($str)
+{
 
     /**
      * Função que limpa uma string com números e letras sobrando somente números
@@ -2341,7 +2601,8 @@ function limpa_numero($str) {
 
 ###########################################################
 
-function getMimeContentType($ext) {
+function getMimeContentType($ext)
+{
 
     $mime_types = array(
         'txt' => 'text/plain',
@@ -2392,7 +2653,8 @@ function getMimeContentType($ext) {
         'ods' => 'application/vnd.oasis.opendocument.spreadsheet',
     );
 
-    if (array_key_exists($ext, $mime_types)) {
+    if (array_key_exists($ext, $mime_types))
+    {
         return $mime_types[$ext];
     }
 }
