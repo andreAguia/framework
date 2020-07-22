@@ -8,7 +8,8 @@
  *
  * By Alat
  */
-class Modelo {
+class Modelo
+{
     # Nome do Modelo (aparecerá nos fildset e no caption da tabela)
 
     private $nome = null;
@@ -183,7 +184,8 @@ class Modelo {
      * @param     $metodo        O nome do metodo
      * @param     $parametros    Os parametros inseridos
      */
-    public function __call($metodo, $parametros) {
+    public function __call($metodo, $parametros)
+    {
         ## Se for set, atribui um valor para a propriedade
         if (substr($metodo, 0, 3) == 'set') {
             $var = substr($metodo, 4);
@@ -211,7 +213,8 @@ class Modelo {
      * @param     $excluirCondicao     string -> valor que exibe o botao de exclusao
      * @param     $excluirColuna         integer -> numero da coluna cujo valor sera comparado
      */
-    public function set_excluirCondicional($excluirCondicional, $excluirCondicao, $excluirColuna, $excluirOperador = null) {
+    public function set_excluirCondicional($excluirCondicional, $excluirCondicao, $excluirColuna, $excluirOperador = null)
+    {
         $this->excluirCondicional = $excluirCondicional;
         $this->excluirCondicao = $excluirCondicao;
         $this->excluirColuna = $excluirColuna;
@@ -231,7 +234,8 @@ class Modelo {
      * @param     $editarCondicao       string -> valor que exibe o botão de editar
      * @param     $editarColuna       integer -> número da coluna cujo valor será comparado
      */
-    public function set_editarCondicional($editarCondicional, $editarCondicao, $editarColuna, $editarOperador = null) {
+    public function set_editarCondicional($editarCondicional, $editarCondicao, $editarColuna, $editarOperador = null)
+    {
         $this->editarCondicional = $editarCondicional;
         $this->editarCondicao = $editarCondicao;
         $this->editarColuna = $editarColuna;
@@ -246,7 +250,8 @@ class Modelo {
      *
      * @param  $button    = objeto button
      */
-    public function set_botaoListarExtra($button) {
+    public function set_botaoListarExtra($button)
+    {
         $this->botaoListarExtra = $button;
     }
 
@@ -258,7 +263,8 @@ class Modelo {
      *
      * @param  $button    = objeto button
      */
-    public function set_funcao($funcao) {
+    public function set_funcao($funcao)
+    {
         $this->funcao = $funcao;
     }
 
@@ -269,7 +275,8 @@ class Modelo {
      * Exibe os registros em uma tabela
      *
      */
-    public function listar() {
+    public function listar()
+    {
         # Pega o time inicial
         if ($this->exibeTempoPesquisa) {
             $time_start = microtime(true);
@@ -627,7 +634,8 @@ class Modelo {
      *
      * @param $id        integer null  id se for para update null se for para insert
      */
-    public function ver($id = null) {
+    public function ver($id = null)
+    {
 
         # Cria o botão Editar
         $botaoEditar = new Button("Editar", "?fase=editar&id=$id");
@@ -645,7 +653,8 @@ class Modelo {
      * @param $id        integer null  id se for para update null se for para insert
      * @param $bloqueado bool    false Se está bloqueado para edição ou não
      */
-    public function editar($id = null, $bloqueado = false) {
+    public function editar($id = null, $bloqueado = false)
+    {
         # Limita o tamanho da tela
         $grid = new Grid();
         $grid->abreColuna(12);
@@ -1007,7 +1016,8 @@ class Modelo {
      *                                     se for nulo será insert
      * @param $validacaoExtra    string   rotina externa extra de validação
      */
-    public function gravar($id = null, $validacaoExtra = null, $rotinaPosGravacao = null) {
+    public function gravar($id = null, $validacaoExtra = null, $rotinaPosGravacao = null)
+    {
         # Variáveis sobre um erro fatal (que não pode prosseguir com ele)
         $erro = 0; // flag de erro: 1 - tem erro; 0 - não tem
         $msgErro = null; // repositório de mensagens de erro
@@ -1023,15 +1033,15 @@ class Modelo {
 //        );
         # percorre os dados digitados validando
         foreach ($this->campos as $campo) {
+            # Passa o nome dos campos para o array de gravação
+            $campoNome[$contador] = addslashes($campo['nome']);
 
-            /*
-             *  Passa o nome dos campos para o array de gravação
-             */
-            $campoNome[$contador] = addslashes($campo['nome']);    // nome do campo no banco
-            $campoValor[$contador] = post($campo['nome']);          // array dos valores
+            # Array com valores
+            $campoValor[$contador] = post($campo['nome']);
+
             # Transforma aspas simples para dupla
             $campoValor[$contador] = str_replace("'", '"', $campoValor[$contador]);
-            #$campoValor[$contador] = addcslashes($campoValor[$contador],'"');
+
             # Apaga as tags de php e html
             if ((isset($campo['tagHtml'])) and ($campo['tagHtml'])) {
                 $campoValor[$contador] = strip_tags($campoValor[$contador], TAGS);
@@ -1288,7 +1298,8 @@ class Modelo {
      *
      * @param $id    integer    - id da not�cia
      */
-    public function excluir($id) {
+    public function excluir($id)
+    {
 
         # Pega os dados caso seja tbpermissao
         if ($this->log) {
@@ -1324,7 +1335,8 @@ class Modelo {
      *
      * @param  $controle    = objeto controle
      */
-    public function add_objeto($imagem) {
+    public function add_objeto($imagem)
+    {
         $this->objetoForm[] = $imagem;
     }
 
@@ -1336,7 +1348,8 @@ class Modelo {
      *
      * @param  $id o id para se exibir o histórico
      */
-    public function exibeHistorico($id = null) {
+    public function exibeHistorico($id = null)
+    {
         echo '<div id="divHistorico">';
 
         $select = 'SELECT data,
@@ -1397,7 +1410,8 @@ class Modelo {
      *
      * @param  $id o id para se exibir o histórico
      */
-    public function CalculaTamanhoColuna($totalSize, $sizeColuna) {
+    public function CalculaTamanhoColuna($totalSize, $sizeColuna)
+    {
         return ((12 * $sizeColuna) / $totalSize); // faz a mágica
     }
 
