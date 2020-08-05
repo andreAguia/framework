@@ -810,10 +810,10 @@ class Input {
                 } else {
                     echo '>';
                 }
-                echo '<label class="switch-paddle" for="' . $this->nome . '">';
-                echo '<span class="show-for-sr"></span>';
-                echo '<span class="switch-active" aria-hidden="true">Sim</span>';
-                echo '<span class="switch-inactive" aria-hidden="true">Não</span>';
+                echo '<label class="switch-paddle" title="' . $this->title . '" for="' . $this->nome . '">';
+                echo '<span class="show-for-sr" title="' . $this->title . '"></span>';
+                echo '<span class="switch-active" aria-hidden="true" title="' . $this->title . '">Sim</span>';
+                echo '<span class="switch-inactive" aria-hidden="true" title="' . $this->title . '">Não</span>';
                 echo '</label></div>';
                 break;
 
