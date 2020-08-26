@@ -81,7 +81,7 @@ class Tabela {
     private $excluirCondicao = null;
     private $excluirColuna = null;
     private $excluirOperador = "==";
-    private $excluirBotao = 'lixo.png'; 
+    private $excluirBotao = 'lixo.png';
 
     # das rotinas de edição
     private $editar = null;
@@ -122,6 +122,7 @@ class Tabela {
     private $rowspan = null;            # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
     private $grupoCorColuna = null;     # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
     private $bordaInterna = false;  // Exibe ou não uma linha dentro da tabela entro os registros 
+
     //
     ###########################################################
 
@@ -290,6 +291,7 @@ class Tabela {
     }
 
     ###########################################################
+
     /**
      * Método show
      * 
@@ -610,30 +612,17 @@ class Tabela {
                         if (($this->editar <> null) and ($a == $colunaEdita)) {
                             $link = new Link(null, $this->editar . '&' . $this->nomeGetId . '=' . $id, $this->nomeColunaEditar . ': ' . $row[0]);
                             $link->set_imagem(PASTA_FIGURAS_GERAIS . $this->editarBotao, 20, 20);
-                            $link->show();
-
-                            #$botao = new BotaoGrafico();
-                            #$botao->set_url($this->editar.'&'.$this->nomeGetId.'='.$id);
-                            #$botao->set_imagem(PASTA_FIGURAS_GERAIS.$this->editarBotao,20,20);
-                            #$botao->set_title($this->nomeColunaEditar.': '.$row[0]);
-                            #$botao->show();                    
+                            $link->show();              
                         } elseif (($this->excluir <> null) and ($a == $colunaExcluir)) { // coluna de excluir
                             $link = new Link(null, $this->excluir . '&' . $this->nomeGetId . '=' . $id, $this->nomeColunaExcluir . ': ' . $row[0]);
                             $link->set_imagem(PASTA_FIGURAS_GERAIS . $this->excluirBotao, 20, 20);
                             $link->set_confirma('Deseja mesmo excluir?');
-                            $link->show();
-
-                            #$botao = new BotaoGrafico();
-                            #$botao->set_url($this->excluir.'&'.$this->nomeGetId.'='.$id);
-                            #$botao->set_imagemm(PASTA_FIGURAS_GERAIS.$this->excluirBotao,20,20);
-                            #$botao->set_title($this->nomeColunaExcluir.': '.$row[0]);
-                            #$botao->set_confirma('Deseja mesmo excluir?');
-                            #$botao->show();                    
+                            $link->show();                
                         } elseif (($this->editarCondicional <> null) and ($a == $colunaEditarCondicional)) { // coluna de editar_condicional
                             # Se o operador for igual
-                            if ($this->editarOperador == "==") {
+                            if (($this->editarOperador == "==") OR ($this->editarOperador == "=")) {
                                 if ($row[$this->editarColuna] == $this->editarCondicao) {
-                                    $link = new Link('Editar', $this->editarCondicional . '&' . $this->nomeGetId . '=' . $id);
+                                    $link = new Link(null, $this->editarCondicional . '&' . $this->nomeGetId . '=' . $id);
                                     $link->set_imagem(PASTA_FIGURAS_GERAIS . $this->editarBotao, 20, 20);
                                     $link->set_title($this->nomeColunaEditar . ': ' . $row[0]);
                                     $link->show();
@@ -651,7 +640,7 @@ class Tabela {
                             }
                         } elseif (($this->excluirCondicional <> null) AND ($a == $colunaExcluirCondicional)) { // coluna de excluir_condicional
                             # Se o operador for igual
-                            if ($this->excluirOperador == "==") {
+                            if (($this->excluirOperador == "==") OR ($this->excluirOperador == "=")) {
                                 if ($row[$this->excluirColuna] == $this->excluirCondicao) {
                                     $link = new Link(null, $this->excluirCondicional . '&' . $this->nomeGetId . '=' . $id, $this->nomeColunaExcluir . ': ' . $row[0]);
                                     $link->set_imagem(PASTA_FIGURAS_GERAIS . $this->excluirBotao, 20, 20);
