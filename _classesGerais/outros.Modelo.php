@@ -679,7 +679,7 @@ class Modelo
 
         # Botão histórico
         if ($this->botaoHistorico) {
-            if (Verifica::acesso($this->idUsuario, 1)) {
+            #if (Verifica::acesso($this->idUsuario, 1)) {
                 if (!is_null($id)) {
                     $linkBotaoHistorico = new Link("Histórico");
                     $linkBotaoHistorico->set_class('button success');
@@ -687,7 +687,7 @@ class Modelo
                     $linkBotaoHistorico->set_title('Exibe o histórico');
                     $menu->add_link($linkBotaoHistorico, "right");
                 }
-            }
+            #}
         }
 
         if (($this->botaoVoltarForm) or ($this->botaoEditarExtra) or ($this->botaoHistorico)) {
@@ -1354,7 +1354,7 @@ class Modelo
 
         $select = 'SELECT data,
                           usuario,
-                          atividade,
+                          idLog,
                           idValor
                      FROM tblog
                      LEFT JOIN tbusuario USING (idUsuario)
@@ -1369,18 +1369,15 @@ class Modelo
 
         if ($contadorHistorico > 0) {
 
-            # Parametros da tabela
-            $label = array("Data", "Usuário", "Atividade");
-            $align = array("center", "center", "left");
-            $funcao = array("datetime_to_php");
-
             # Monta a tabela
             $tabela = new Tabela();
             $tabela->set_conteudo($result);
-            $tabela->set_label($label);
-            $tabela->set_align($align);
-            $tabela->set_funcao($funcao);
+            $tabela->set_label(["Data", "Usuário", "Atividade"]);
+            $tabela->set_align(["center", "center", "left"]);
+            $tabela->set_funcao(["datetime_to_php"]);
             $tabela->set_titulo('Histórico de Alterações');
+            $tabela->set_classe([null,null,"Log"]);
+            $tabela->set_metodo([null,null,"getAtividades"]);
 
             $tabela->show();
         } else {
