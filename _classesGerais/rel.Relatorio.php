@@ -77,6 +77,7 @@ class Relatorio
     # do agrupamento
     private $subTotal = true;
     private $numGrupo = null;
+    private $numGrupoEnfeite = true;
     private $ocultaGrupo = true;
     private $saltoAposGrupo = false;
 
@@ -681,7 +682,12 @@ class Relatorio
                     }
 
                     # Exibe o subtitulo
-                    p(' == ' . $textoSubitulo . ' == ', "pRelatorioSubgrupo");
+                    if($this->numGrupoEnfeite){
+                        p(' == ' . $textoSubitulo . ' == ', "pRelatorioSubgrupo");
+                    }else{
+                        p($textoSubitulo, "pRelatorioSubgrupo");
+                    }
+                        
 
                     # atualiza a variavel que guarda o nome do agrupamento atual
                     $agrupa = $row[$this->numGrupo];
