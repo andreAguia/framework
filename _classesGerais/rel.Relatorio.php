@@ -1,7 +1,6 @@
 <?php
 
-class Relatorio
-{
+class Relatorio {
 
     /**
      * Classe para a criação de relatórios
@@ -99,7 +98,6 @@ class Relatorio
     private $espacamento = 0;                   // Espaçamento entre as linha. 0 - espacamento padrão
     private $cabecalhoRelatorio = true;         // Exibe ou não o cabeçalho do relatório
     private $botaoVoltar = null;  // Link do botão voltar
-    
     # do menu do relatório
     private $menuRelatorio = true;  // se coloca ou não o menu relatório
     private $formCampos = null;    // array com campos para o formulario
@@ -125,14 +123,12 @@ class Relatorio
     private $aviso = null;                          // Exibe um aviso que não será impresso, no cabeçalho
     private $rowspan = null;            # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
     private $grupoCorColuna = null;     # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
-    
     private $textoMensagemSemRegistro = "Não existe nenhum registro a ser exibido !";     # Mensagem de quando não tem registro a ser exibido.
     private $exibeMensagemNenhumRegistro = true; // Exibe ou não a mensagem de quando não tem registro a ser exibido
 
     ###########################################################
 
-    public function __construct($id = null)
-    {
+    public function __construct($id = null) {
         /**
          * Inicia o relatório
          * 
@@ -160,8 +156,7 @@ class Relatorio
      * @param 	$metodo		O nome do metodo
      * @param 	$parametros	Os parâmetros inseridos  
      */
-    public function __call($metodo, $parametros)
-    {
+    public function __call($metodo, $parametros) {
         ## Se for set, atribui um valor para a propriedade
         if (substr($metodo, 0, 3) == 'set') {
             $var = substr($metodo, 4);
@@ -182,8 +177,7 @@ class Relatorio
      * 
      * Exibe o cabeçalho
      */
-    public function exibeCabecalho()
-    {
+    public function exibeCabecalho() {
 
         $cabec = new Div('center');
         $cabec->abre();
@@ -200,8 +194,7 @@ class Relatorio
      * 
      * Exibe o cabeçalho
      */
-    public function exibeCabecalhoVelho1()
-    {
+    public function exibeCabecalhoVelho1() {
 
         $governo = "Governo do Estado do Rio de Janeiro";
         $universidade = "Universidade Estadual do Norte Fluminense Darcy Ribeiro";
@@ -224,8 +217,7 @@ class Relatorio
      * 
      * Exibe o cabeçalho
      */
-    public function exibeCabecalhoVelho2()
-    {
+    public function exibeCabecalhoVelho2() {
 
         $governo = "Governo do Estado do Rio de Janeiro";
         $universidade = "Fundação Estadual Norte Fluminense";
@@ -248,8 +240,7 @@ class Relatorio
      * 
      * @param 	$numGrupo		numero da coluna do agrupamento
      */
-    function set_numGrupo($numGrupo = null, $ocultaGrupo = true)
-    {
+    function set_numGrupo($numGrupo = null, $ocultaGrupo = true) {
         $this->numGrupo = $numGrupo;
         $this->ocultaGrupo = $ocultaGrupo;
     }
@@ -261,8 +252,7 @@ class Relatorio
      * 
      * Exibe o título do relatório
      */
-    private function exibeTitulo()
-    {
+    private function exibeTitulo() {
 
         # Objeto antes do título
         if (!is_null($this->objetoAntesTitulo)) {
@@ -324,8 +314,7 @@ class Relatorio
      * 
      * Exibe uma linha interna do relatório que separa os registros.
      */
-    private function exibeLinha($tamanhoLinha)
-    {
+    private function exibeLinha($tamanhoLinha) {
 
         # Verifica se tem coluna para numero de ordem
         if ($this->numeroOrdem) {
@@ -345,8 +334,7 @@ class Relatorio
      * 
      * Exibe o somatório de uma coluna no fim do relatório ou de um agrupamento
      */
-    private function exibeSomatorio($tamanho, $subSomatorio)
-    {
+    private function exibeSomatorio($tamanho, $subSomatorio) {
         # Exibe uma linha
         $this->exibeLinha($tamanho);
 
@@ -397,8 +385,7 @@ class Relatorio
      * 
      * Exibe o total de Registro
      */
-    private function totalRegistro($totalRegistros)
-    {
+    private function totalRegistro($totalRegistros) {
         p($totalRegistros . ' registros', "pRelatorioTotal");
     }
 
@@ -409,8 +396,7 @@ class Relatorio
      * 
      * Exibe o cabeçalho da tabela
      */
-    private function exibeCabecalhoTabela($tamanhoLinha, $tamanho, $grupo)
-    {
+    private function exibeCabecalhoTabela($tamanhoLinha, $tamanho, $grupo) {
         # Inicia a tabela
         echo '<table class="tabelaRelatorio" border="0"';
 
@@ -483,8 +469,7 @@ class Relatorio
      * 
      * Exibe o total de Registro
      */
-    private function exibeDataImpressao()
-    {
+    private function exibeDataImpressao() {
         # Pega o usuário
         $idUsuario = get_session('idUsuario');
 
@@ -500,8 +485,7 @@ class Relatorio
      * 
      * Exibe o relatório
      */
-    function show()
-    {
+    function show() {
         $contador = 0;  // contador de registros
         $subContador = 0; // contador de registros para grupo (zera a cada grupo)
         $agrupa = '#';       // guarda o nome do grupo
@@ -682,12 +666,12 @@ class Relatorio
                     }
 
                     # Exibe o subtitulo
-                    if($this->numGrupoEnfeite){
+                    if ($this->numGrupoEnfeite) {
                         p(' == ' . $textoSubitulo . ' == ', "pRelatorioSubgrupo");
-                    }else{
+                    } else {
                         p($textoSubitulo, "pRelatorioSubgrupo");
                     }
-                        
+
 
                     # atualiza a variavel que guarda o nome do agrupamento atual
                     $agrupa = $row[$this->numGrupo];
@@ -912,8 +896,10 @@ class Relatorio
 
             # Exibe a informação de que não tem nenhum resgistro
             if (($contador == 0) AND ($this->exibeMensagemNenhumRegistro)) {
-                p($this->textoMensagemSemRegistro, "pRelatorioNenhumItem");
                 br();
+                p($this->textoMensagemSemRegistro, "pRelatorioNenhumItem");
+                $this->totalRegistro = false;
+                hr();
             }
         } // se tem conteúdo (beta)
 
