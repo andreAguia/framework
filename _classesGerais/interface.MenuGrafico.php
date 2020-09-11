@@ -14,6 +14,7 @@ class MenuGrafico {
      */
     private $item = null;
     private $colunas = null;
+    private $espacoEntreLink = false;
 
 ###########################################################
 
@@ -26,6 +27,19 @@ class MenuGrafico {
          * @syntax $menu = new MenuGrafico($colunas);
          */
         $this->colunas = $colunas;
+    }
+
+###########################################################
+
+    public function set_espacoEntreLink($espacoEntreLink) {
+        /**
+         * nsere o dado em set_espacoEntreLink
+         *     
+         * @param $colunas integer null O Número de colunas dos menus
+         * 
+         * @syntax $menu = new MenuGrafico($colunas);
+         */
+        $this->espacoEntreLink = $espacoEntreLink;
     }
 
 ###########################################################
@@ -85,6 +99,10 @@ class MenuGrafico {
                 $contador++;
                 $grid->abreColuna("up-" . $tamColuna);
                 $objeto->show();
+
+                if ($this->espacoEntreLink) {
+                    br();
+                }
                 $grid->fechaColuna();
 
                 # Verifica se é fim da linha
