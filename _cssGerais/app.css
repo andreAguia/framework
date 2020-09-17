@@ -783,6 +783,14 @@ ul.menuProcedimentos li#titulo a{
     font-weight: bold;
 }
 
+ul.menuProcedimentos li#titulo1 a{
+    text-decoration:none;
+    color: #02548b;
+    margin: 0px 0px 0px -10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
 ul.menuProcedimentos li#link{
     padding: 0px 0px 0px 0px;    
     text-align: left;
