@@ -81,12 +81,12 @@ class Modelo
     # do somatório da tabela
     private $colunaSomatorio = null;        // coluna que terá somatório (por enquanto uma por relatório)
     private $textoSomatorio = 'Total:';     // texto a ser exibido na linha de totalização
-    # Da função
+    # Classes e Funções
     private $funcao = null;
+    private $funcaoDepoisClasse = null;
+    private $classe = null;
+    private $metodo = null;
 
-    # da Classe
-    private $classe = null;     // array de classes
-    private $metodo = null;     // array de metodo das classes
     # das rotinas de exclusão
     private $excluirCondicional = null;
     private $excluirCondicao = null;
@@ -159,6 +159,9 @@ class Modelo
     # Rotinas Extras Listar - > rotina extra que aparecerá na rotina de Lista
     private $rotinaExtraListar = null;
     private $rotinaExtraListarParametro = null;
+
+    # Formnulário Extra
+    private $formExtra = null;
 
     # Menu Lateral
     private $menuLateralEditar = null; //  Objeto menu a ser inserido ao lado do formulário de edição
@@ -353,6 +356,11 @@ class Modelo
             $menu->show();
         }
 
+        # Formulário Extra
+         if (!empty($this->formExtra)) { 
+             $this->formExtra->show();
+         }
+        
         # Rotina Extra
         if (!is_null($this->rotinaExtra)) {
             # Verifica se é array. Mais de uma função
@@ -528,6 +536,7 @@ class Modelo
         $tabela->set_linkCondicional($this->linkCondicional);
         $tabela->set_linkCondicionalOperador($this->linkCondicionalOperador);
         $tabela->set_funcao($this->funcao);
+        $tabela->set_funcaoDepoisClasse($this->funcaoDepoisClasse);
         $tabela->set_classe($this->classe);
         $tabela->set_metodo($this->metodo);
         $tabela->set_rowspan($this->rowspan);
@@ -680,13 +689,13 @@ class Modelo
         # Botão histórico
         if ($this->botaoHistorico) {
             #if (Verifica::acesso($this->idUsuario, 1)) {
-                if (!is_null($id)) {
-                    $linkBotaoHistorico = new Link("Histórico");
-                    $linkBotaoHistorico->set_class('button success');
-                    $linkBotaoHistorico->set_onClick("abreFechaDivId('divHistorico');");
-                    $linkBotaoHistorico->set_title('Exibe o histórico');
-                    $menu->add_link($linkBotaoHistorico, "right");
-                }
+            if (!is_null($id)) {
+                $linkBotaoHistorico = new Link("Histórico");
+                $linkBotaoHistorico->set_class('button success');
+                $linkBotaoHistorico->set_onClick("abreFechaDivId('divHistorico');");
+                $linkBotaoHistorico->set_title('Exibe o histórico');
+                $menu->add_link($linkBotaoHistorico, "right");
+            }
             #}
         }
 
@@ -1376,8 +1385,8 @@ class Modelo
             $tabela->set_align(["center", "center", "left"]);
             $tabela->set_funcao(["datetime_to_php"]);
             $tabela->set_titulo('Histórico de Alterações');
-            $tabela->set_classe([null,null,"Log"]);
-            $tabela->set_metodo([null,null,"getAtividades"]);
+            $tabela->set_classe([null, null, "Log"]);
+            $tabela->set_metodo([null, null, "getAtividades"]);
 
             $tabela->show();
         } else {

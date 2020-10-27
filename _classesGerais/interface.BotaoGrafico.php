@@ -338,7 +338,7 @@ class BotaoGrafico {
                                 echo " onClick=\"window.location='$this->url$valorId'\" />";
                             }
                         } else {
-                            echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=1000,height=700');\" />";
+                            echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=780,height=800');\" />";
                         }
                     }
                 }

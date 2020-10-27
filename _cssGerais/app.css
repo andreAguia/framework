@@ -291,6 +291,13 @@ td#textoSomatorio{
     text-align: left;
 }
 
+p#pmensagemPosTabela {
+    padding: 0px 0px 0px 0px;
+    text-align: right;
+    font-size: 10px;
+    margin: 0px;
+}
+
 /*******************************************
 * class titleBar
 *******************************************/

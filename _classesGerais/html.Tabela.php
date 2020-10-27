@@ -114,6 +114,7 @@ class Tabela {
     private $colunaTexto = 0;                   // coluna onde o texto será exibido;
     private $funcaoSomatorio = null;            // se executa alguma função no somatório
     private $exibeSomatorioGeral = true;        // se exibe o somatório geral ou somente o parcial
+    
     # outros
     private $textoRessaltado = null; # string que será ressaltada no resultado da tabela (usado para resaltar pesquisas)
     private $idCampo = null;
@@ -122,8 +123,19 @@ class Tabela {
     private $rowspan = null;            # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
     private $grupoCorColuna = null;     # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
     private $bordaInterna = false;  // Exibe ou não uma linha dentro da tabela entro os registros 
-
-    //
+    
+    /*
+     * Texto exibido em letras pequenas antes da tabela
+     * no lado direito
+     */
+    private $mensagemPreTabela = null;
+    
+     /*
+     * Texto exibido em letras pequenas ao pé da tabela
+     * no lado direito
+     */
+    private $mensagemPosTabela = null;
+    
     ###########################################################
 
     /**
@@ -365,6 +377,11 @@ class Tabela {
                 $colunaExcluirCondicional = $numColunas;
                 $numColunas++;
                 $this->label[$colunaExcluirCondicional] = 'Rotina de exclusão de registro';
+            }
+            
+            # Mensagem pré tabela
+            if(!empty($this->mensagemPreTabela)){
+                p($this->mensagemPreTabela,"pmensagemPosTabela");
             }
 
             # Início da Tabela
@@ -808,8 +825,12 @@ class Tabela {
                 echo '</td></tr>';
             }
 
-            echo '</tfoot>';
+            echo '</tfoot>';            
             echo '</table>';
+            
+            if(!empty($this->mensagemPosTabela)){
+                p($this->mensagemPosTabela,"pmensagemPosTabela");
+            }
 
             if ($this->scroll) {
                 echo '</div>';

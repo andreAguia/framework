@@ -611,3 +611,39 @@ p#rodape{
     font-size: 10px;
 }
 
+/*******************************************
+ * RPA
+ *******************************************/
+
+p#pRpaTitulo{
+    text-align: center;
+    font-size: 14px;
+    font-weight: bolder;
+    text-transform: capitalize;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+div#divRpaNumeroRecibo{
+    border:#000000 solid 10px;
+    padding: 0px;
+    margin: 20px;
+}
+
+hr#rpa{
+    padding: 0px;
+    margin: 0px;
+}
+
+p#pRpaLabel{
+    text-align: center;
+    font-size: 10px;
+    padding: 0px;
+    margin: 0px;
+}
+
+p#pRpaNumero{
+    text-align: center;
+    font-size: 20px;
+    padding-top: 10px;
+    margin: 0px;
+}

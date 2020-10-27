@@ -949,6 +949,33 @@ function formataMoeda($valor, $formato = 1)
 
 ###########################################################
 
+function formataMoeda2($valor)
+{
+    /**
+     * Função que retorna um valor no formato especificado
+     *
+     * @syntax formataMoeda($valor,[$formato]);
+     *
+     * @return string do valor em formato de moeda no padrão indicado no parâmetro $formato.
+     *
+     * @note Observe que o formato do parâmetro valor será entendido como o formato inverso ao indicado no parâmetro formato.
+     * @note Assim quando não for informado o formato o sistema irá entender que o valor que será inserido é o formato americano e será transformado para o formato brasileiro.
+     * @note Da mesma forma que quando o parâmetro formato for informado com 2. Entender-se-á que o formato do parâmetro $valor é o brasileiro e será convertido para o formato americano.
+     *
+     * @param $valor   string  null O valor a ser alterado
+     * @param $formato integer 1    O formato sendo: 1 - formato brasileiro | 2 - formato americano para gravação no bd
+     *
+     * @example exemplo.formataMoeda.php
+     */
+    if (empty($valor)) {
+         return "R$ 0,00";
+    } else {
+        return "R$ ".number_format($valor, 2, ',', '.');
+    }
+}
+
+###########################################################
+
 function formataNumLinha($numero)
 {
     /**
@@ -1479,7 +1506,7 @@ function dataExtenso2($data = null)
 function numero_to_letra($number)
 {
     /**
-     * Converte um numero para palavra (exenso)
+     * Converte um numero para palavra (extenso)
      *
      * @param $number integer null O numero a ser tratado
      *
@@ -2363,7 +2390,7 @@ function dataMaior($data1, $data2)
 {
 
     /**
-     * Retorna a data maior (mais nova)
+     * Retorna a data maior ou igual (mais nova)
      *
      * @param  $data1 data uma das datas
      * @param  $data2 data a outra datas
