@@ -58,6 +58,8 @@ class BotaoGrafico {
     
     private $bloqueadoMensagem = null;
     private $bloqueadoTipo = "warning";
+    
+    private $novo = false;
 
 ###########################################################
 
@@ -294,6 +296,20 @@ class BotaoGrafico {
 
 ###########################################################
 
+    public function set_novo($novo = null) {
+        /**
+         * Informa se a rotina que o botão acessa é uma nova rotina.
+         * Na verdade exibe a palavra novo em destaque no botão
+         * 
+         * @syntax $botao->set_novo($novo);
+         * 
+         * @param $novo bool false se é novo ou não
+         */
+        $this->novo = $novo;
+    }
+
+###########################################################
+
     public function show($valorId = null) {
         /**
          * Exibe o botão
@@ -316,6 +332,12 @@ class BotaoGrafico {
              $this->label .= "<br/><br/><span class='label {$this->bloqueadoTipo}'>{$this->bloqueadoMensagem}</span>";
              $this->url = '#';
         }
+        
+        # Verifica se o botão é novo
+        if($this->novo){
+             $this->label .= "<br/><br/><span class='label success'>Novo</span>";
+        }
+
 
         # Abre a div
         $div = new Div($this->id, $this->class);
