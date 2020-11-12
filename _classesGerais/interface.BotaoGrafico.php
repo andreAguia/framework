@@ -55,6 +55,9 @@ class BotaoGrafico {
     private $confirma = null;
     private $tabIndex = null;
     private $accessKey = null;
+    
+    private $bloqueadoMensagem = null;
+    private $bloqueadoTipo = "warning";
 
 ###########################################################
 
@@ -106,6 +109,21 @@ class BotaoGrafico {
          * @param $label string null Label ou texto que ficará embaixo do botão
          */
         $this->label = $label;
+    }
+
+###########################################################
+
+    public function set_bloqueado($mensagem,$tipo = "warning") {
+        /**
+         * Bloqueia o botão exibindo uma mensagem
+         * 
+         * @syntax $botao->set_bloqueado($mensagem, [$tipo]);
+         * 
+         * @param $mensagem string null     Pequeno texto que informa porque o botão estã bloqueado
+         * @param $tipo     string warning  A cor em que esse texto será exibido
+         */
+        $this->bloqueadoMensagem = $mensagem;
+        $this->bloqueadoTipo = $tipo;
     }
 
 ###########################################################
@@ -291,6 +309,12 @@ class BotaoGrafico {
             $atalho .= '<B><U>' . $this->accessKey . '</U></B>';
             $atalho .= substr($this->label, stripos($this->label, $this->accessKey) + 1);
             $this->label = $atalho;
+        }
+        
+        # Verifica se o botão estã bloqueado
+        if(!empty($this->bloqueadoMensagem)){
+             $this->label .= "<br/><br/><span class='label {$this->bloqueadoTipo}'>{$this->bloqueadoMensagem}</span>";
+             $this->url = '#';
         }
 
         # Abre a div

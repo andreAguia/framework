@@ -658,6 +658,7 @@ class Input {
                 echo '<INPUT';
                 break;
             case "sei":
+            case "seif":
                 echo '<div class="input-group">';
                 echo '<span class="input-group-label">SEI</span>';
                 echo '<input class="input-group-field"';
@@ -820,6 +821,9 @@ class Input {
             case "combo":
                 #echo ' size="'.($this->size).'"';
                 echo '>';
+
+                var_dump($this->array);
+
                 foreach ($this->array as $field) {
                     if (is_array($field)) {
                         echo '<option value="' . $field[0] . '"';
@@ -925,10 +929,22 @@ class Input {
                 echo '/>';
                 break;
 
-            case "sei":
+            case "sei":                
                 echo ' size="' . ($this->size) . '"';
                 echo ' type="text"';
                 echo ' value="' . $this->valor . '"';
+                echo '/>';
+                echo '</div>';
+                break;
+            
+            case "seif":
+                $mascara = '999999/999999/9999';
+                echo ' size="' . ($this->size) . '"';
+                echo ' type="text"';
+                echo ' value="' . $this->valor . '"';
+                echo ' onkeypress="mask(this, \'' . $mascara . '\',1,this)" ';
+                echo ' onkeyup="mask(this, \'' . $mascara . '\',1,this)" ';
+                echo ' onblur="mask(this, \'' . $mascara . '\',1,this)" ';
                 echo '/>';
                 echo '</div>';
                 break;
