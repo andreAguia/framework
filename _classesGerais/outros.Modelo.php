@@ -171,7 +171,7 @@ class Modelo
     private $comGridLista = true;
     private $rowspan = null; # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
     private $grupoCorColuna = null; # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
-
+    
     ###########################################################
 
     /**
@@ -299,8 +299,8 @@ class Modelo
         }
 
         # Conecta com o banco de dados
-        $objeto = new $this->classBd();
-
+        $objeto = new $this->classBd();      
+        
         # Cria um menu
         if (($this->botaoVoltarLista) or ($this->botaoListarExtra) or ($this->botaoIncluir)) {
             $menu = new MenuBar();
