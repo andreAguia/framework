@@ -55,10 +55,8 @@ class BotaoGrafico {
     private $confirma = null;
     private $tabIndex = null;
     private $accessKey = null;
-    
     private $bloqueadoMensagem = null;
     private $bloqueadoTipo = "warning";
-    
     private $novo = false;
 
 ###########################################################
@@ -115,7 +113,7 @@ class BotaoGrafico {
 
 ###########################################################
 
-    public function set_bloqueado($mensagem,$tipo = "warning") {
+    public function set_bloqueado($mensagem, $tipo = "warning") {
         /**
          * Bloqueia o botão exibindo uma mensagem
          * 
@@ -326,16 +324,16 @@ class BotaoGrafico {
             $atalho .= substr($this->label, stripos($this->label, $this->accessKey) + 1);
             $this->label = $atalho;
         }
-        
+
         # Verifica se o botão estã bloqueado
-        if(!empty($this->bloqueadoMensagem)){
-             $this->label .= "<br/><br/><span class='label {$this->bloqueadoTipo}'>{$this->bloqueadoMensagem}</span>";
-             $this->url = '#';
+        if (!empty($this->bloqueadoMensagem)) {
+            $this->label .= "<br/><br/><span class='label {$this->bloqueadoTipo}'>{$this->bloqueadoMensagem}</span>";
+            $this->url = '#';
         }
-        
+
         # Verifica se o botão é novo
-        if($this->novo){
-             $this->label .= "<br/><br/><span class='label success'>Novo</span>";
+        if ($this->novo) {
+            $this->label .= "<br/><br/><span class='label success'>Novo</span>";
         }
 
 
@@ -411,10 +409,9 @@ class BotaoGrafico {
                 break;
         }
 
-        br();
-
         # coloca o label
         if (!is_null($this->label)) {
+            br();
             echo $this->label;
         }
 

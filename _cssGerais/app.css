@@ -549,10 +549,38 @@ span.badge p{
     margin: 0px;
 }
 
+/*******************************************
+ * Função pLista
+ *******************************************/
+
+p#pLinha1{
+    font-size: 12px;
+    padding: 0px;
+    margin: 0px;
+}
+
+p#pLinha2{
+    font-size: 11px;
+    padding: 0px;
+    margin: 0px;
+    color: blue;
+}
+
+p#pLinha3{
+    font-size: 11px;
+    padding: 0px;
+    margin: 0px;
+    color: green;
+}
+
+p#pLinha4{
+    font-size: 11px;
+    padding: 0px;
+    margin: 0px;
+    color: navy;
+}
+
 /**** Outros  ****/
-
-
-
 a#aContatos {
     color: #000;
     text-decoration: none;    
