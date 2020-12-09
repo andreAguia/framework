@@ -325,7 +325,7 @@ class BotaoGrafico {
             $this->label = $atalho;
         }
 
-        # Verifica se o botão estã bloqueado
+        # Verifica se o botão está bloqueado
         if (!empty($this->bloqueadoMensagem)) {
             $this->label .= "<br/><br/><span class='label {$this->bloqueadoTipo}'>{$this->bloqueadoMensagem}</span>";
             $this->url = '#';

@@ -631,6 +631,7 @@ class Input {
         switch ($this->tipo) {
             case "processo":
             case "texto":
+            case "idFuncional":
             case "numero":
             case "patrimonio":
             case "cpf":
@@ -1063,6 +1064,17 @@ class Input {
                 echo '</div>';
                 break;
 
+            case "idFuncional":
+                $mascara = '9999999999';
+                echo ' size="' . $this->size . '"';
+                echo ' type="text"';
+                echo ' value="' . $this->valor . '"';
+                echo ' onkeypress="mask(this, \'' . $mascara . '\',1,this)" ';
+                echo ' onkeyup="mask(this, \'' . $mascara . '\',1,this)" ';
+                echo ' onblur="mask(this, \'' . $mascara . '\',1,this)" ';
+                echo '/>';
+                break;
+            
             default:
                 echo ' size="' . ($this->size) . '"';
                 echo ' type="text"';
