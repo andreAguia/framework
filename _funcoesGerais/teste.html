@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html class="no-js" lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Sistema de gestão dos recursos humanos da Universidade Estadual do Norte Fluminense">
+        <meta name="author" content="André Águia">
+        <title>Sistema de Pessoal</title>
+        <link rel="stylesheet" href="../../_framework/_cssGerais/foundation.css" />
+        <link rel="stylesheet" href="../../_framework/_cssGerais/foundation-icons.css" />
+        <link rel="stylesheet" href="../../_framework/_cssGerais/app.css" />
+        <link rel="stylesheet" href="../../_framework/_cssGerais/impressao.css" media="print"/>
+        <link rel="stylesheet" href="../_css/estilos.css" />
+        <link rel="shortcut icon" href="../_img/uenf.gif" />
+    </head>
+    <body>
+        <header>
+            <div id="center"><img alt="Uenf - Universidade Estadual do Norte Fluminense" title="Uenf - Universidade Estadual do Norte Fluminense" src="../_img/uenf.png" height="60" width="190"></div>
+        </header>
+        <div class="row align-left ">
+            <div class="small-12 columns">
+                <br />
+                <div id="titulo" title="CI dos Servidores que NÃO Fizeram o Sispatri">CI dos Servidores que NÃO Fizeram o Sispatri</div>
+                <br />
+                <form class="formPadrao" name="formPadrao" method="POST" action="../grhRelatorios/ciSispatri.php">
+                    <div class="row">
+                        <div class="large-3 medium-3 columns">
+                            <label id="labelci" for="ci">N° CI: * </label>
+                            <INPUT autocomplete="on" id="ci" tabindex="1" autofocus required title="O número da CI" maxlength="5" name="ci" size="5" type="text" value="" onFocus="this.select();"/>
+                        </div>
+                        <div class="large-9 medium-9 columns">
+                            <label id="labelchefia" for="chefia">Chefia Imediata:</label>
+                            <INPUT autocomplete="on" id="chefia" tabindex="2" title="O Destinatário da CI" maxlength="200" name="chefia" size="200" type="text" value="Renato Augusto Damatta" onFocus="this.select();"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="large-12 medium-12 columns">
+                            <label id="labeltextoCi" for="textoCi">Texto da CI:</label>
+                            <textarea id="textoCi" title="Texto da CI" name="textoCi" cols="90" rows="10">
+Conforme resolução conjunta CGE/SEFAZ no 01 de 15 de agosto de 2018, em
+cumprimento ao disposto no art. 9o do Decreto no 46.634, de 17 de julho de 2018,
+e tendo em vista o que consta no Processo Administrativo no E-32/001/100001/2018
+foi implantado o SISPATRI no âmbito do Poder Executivo Estadual. O agente público
+deve acessar www.servidor.rj.gov.br e fazer a declaração de bens e valores (DBV)
+on-line. Informamos abaixo em epígrafe relação dos agentes públicos da sua
+unidade administrativa que não entregaram a declaração até a presente data.
+Salientamos que o prazo encerra em 30 de junho de 2019. Conforme art.6o
+§2o a não apresentação por parte do agente público acarretará a abertura de
+Processo Administrativo Disciplinar
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="large-12 medium-12 columns">
+                            <INPUT id="submit" tabindex="3" name="submit" type="submit" value="Vizualizar" class="button" accesskey="E" onsubmit="if (this.getAttribute('submitted'))
+                    return false;
+                this.setAttribute('submitted', 'true');"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script language="JavaScript" src="../../_framework/_funcoesGerais/mascara.js"></script>
+        <script language="JavaScript" src="../../_framework/_funcoesGerais/mascaraMoeda.js"></script>
+        <script language="JavaScript" src="../../_framework/_funcoesGerais/funcoes.java.js"></script>
+        <script language="JavaScript" src="../../_framework/_funcoesGerais/jquery.js"></script>
+        <script language="JavaScript" src="../../_framework/_funcoesGerais/ckeditor/ckeditor.js"></script>
+        <script language="JavaScript" src="../../_framework/_funcoesGerais/foundation.js"></script>
+        <script>  CKEDITOR.replace( 'textoci' );</script>
+    </body><footer></footer></html>

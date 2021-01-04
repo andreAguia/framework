@@ -702,7 +702,7 @@ class Input {
         }
 
         # id
-        if (!is_null($this->id)) {
+        if (!empty($this->id)) {
             echo ' id="' . $this->id . '"';
         } else {
             echo ' id="' . $this->nome . '"';
@@ -710,11 +710,11 @@ class Input {
         }
 
         # class
-        if (!is_null($this->class)) {
+        if (!empty($this->class)) {
             echo ' class="' . $this->class . '"';
         }
         # tabulação
-        if (!is_null($this->tabindex)) {
+        if (!empty($this->tabindex)) {
             echo ' tabindex="' . $this->tabindex . '"';
         }
 
@@ -729,27 +729,27 @@ class Input {
         }
 
         # title
-        if (!is_null($this->title)) {
+        if (!empty($this->title)) {
             echo ' title="' . $this->title . '"';
         }
 
         # placeholder
-        if (!is_null($this->placeholder)) {
+        if (!empty($this->placeholder)) {
             echo ' placeholder="' . $this->placeholder . '"';
         }
 
         # formation
-        if (!is_null($this->formation)) {
+        if (!empty($this->formation)) {
             echo ' formation="' . $this->formation . '"';
         }
 
         # onChange	
-        if (!is_null($this->onChange)) {
+        if (!empty($this->onChange)) {
             echo ' onchange="' . $this->onChange . '"';
         }
 
         # onBlur	
-        if (!is_null($this->onBlur)) {
+        if (!empty($this->onBlur)) {
             echo ' onblur="' . $this->onBlur . '"';
         }
 
@@ -778,7 +778,7 @@ class Input {
         # dados do input
         echo ' name="' . $this->nome . '"'; # nome do controle (deve ser o mesmo que o do banco de dados)
         # Verifica se tem datalist
-        if (!is_null($this->datalist)) {
+        if (!empty($this->datalist)) {
             echo ' list="lista' . $this->nome . '"';
         }
 
@@ -796,8 +796,12 @@ class Input {
                 echo ' rows="' . $this->size[1] . '"';
                 echo '>';
                 echo $this->valor;
-                echo '</textarea> ';
-                echo "<script>CKEDITOR.replace('$this->id')</script>";
+                echo '</textarea>';
+                
+                /* Coloque no início do página para funcionar
+                 * $page = new Page();
+                 * $page->set_load('CKEDITOR.replace("ID_TEXTAREA");');
+                 */
                 break;
 
             case "hidden":
@@ -880,11 +884,11 @@ class Input {
             case "data":
                 echo ' type="date"';
                 echo ' value="' . $this->valor . '"';
-                if (!vazio($this->max)) {
+                if (!empty($this->max)) {
                     echo ' max="' . $this->max . '"';
                 }
 
-                if (!vazio($this->min)) {
+                if (!empty($this->min)) {
                     echo ' min="' . $this->min . '"';
                 }
                 echo '/>';
@@ -1090,7 +1094,7 @@ class Input {
         }
 
         # Fecha a div interna
-        if (!is_null($this->inLine)) {
+        if (!empty($this->inLine)) {
             echo '</div>';
         }
 
@@ -1103,7 +1107,7 @@ class Input {
         }
 
         # Coloca a lista quando tem datalist
-        if (!is_null($this->datalist)) {
+        if (!empty($this->datalist)) {
 
             echo '<datalist id="lista' . $this->nome . '">';
             foreach ($this->datalist as $field) {

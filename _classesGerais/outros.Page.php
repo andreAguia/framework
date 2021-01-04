@@ -174,7 +174,7 @@ class Page {
         echo '<link rel="shortcut icon" href="' . PASTA_FIGURAS . 'uenf.gif" />';
         echo '</head>';
 
-        if (is_null($this->bodyOnLoad)) {
+    if (is_null($this->bodyOnLoad)) {
             echo '<body>';
         } else {
             echo '<body onload=' . $this->bodyOnLoad . '>';
