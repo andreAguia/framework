@@ -12,7 +12,6 @@
     margin:0;
     padding: 0;    
     font-family: Tahoma;
-    color: #0000CC;
 }
 
 /******************************************* 
@@ -46,10 +45,6 @@ div#divRelatorioControles{
  *******************************************/
 div#divRelatorio{
     text-align: center;
-}
-
-div#divRelatorio hr{
-    margin: 0px;
 }
 
 p#pRelatorioTitulo{
@@ -142,7 +137,6 @@ table.tabelaRelatorio th{
 table.tabelaRelatorio td{
     font-size: 12px;
     padding: 0px 3px 0px 3px;
-    color: #000;
     vertical-align: middle;
 }
 
@@ -164,12 +158,10 @@ table#subRelatorioGeral{
 
 table#subRelatorioGeral th{
     background-color: #98AFC7;     
-} 
+}
 
 table.tabelaRelatorio hr{
-    color: #000;
-    background-color: #000;
-    height:1px;
+    border-top:#000 solid 1px;
 }
 
 tr#grupo1{

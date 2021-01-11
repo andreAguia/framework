@@ -323,7 +323,7 @@ class Relatorio {
 
         # Monta a linha
         echo '<tr><td colspan="' . $tamanhoLinha . '">';
-        hr();
+        hr("relatorio");
         echo '</td></tr>';
     }
 
@@ -703,7 +703,7 @@ class Relatorio {
 
                 #################
 
-                echo '<tr ';
+                echo '<tr';
 
                 # Cor de agrupamento
                 if (!is_null($this->grupoCorColuna)) {
