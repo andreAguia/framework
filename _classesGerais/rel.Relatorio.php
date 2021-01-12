@@ -255,12 +255,12 @@ class Relatorio {
     private function exibeTitulo() {
 
         # Objeto antes do título
-        if (!is_null($this->objetoAntesTitulo)) {
+        if (!empty($this->objetoAntesTitulo)) {
             $this->objetoAntesTitulo->show();
         }
 
         # Função antes do título
-        if (!is_null($this->funcaoAntesTitulo)) {
+        if (!empty($this->funcaoAntesTitulo)) {
             # Verifica se é array. Mais de uma função
             if (is_array($this->funcaoAntesTitulo)) {
                 # quantidade de itens
@@ -278,31 +278,31 @@ class Relatorio {
         }
 
         # Exibe o Título do relatório
-        if (!is_null($this->titulo)) {
+        if (!empty($this->titulo)) {
             p($this->titulo, "pRelatorioTitulo");
         }
 
         # Exibe a segunda linha do Título do relatório
-        if (!is_null($this->tituloLinha2)) {
+        if (!empty($this->tituloLinha2)) {
             p($this->tituloLinha2, "pRelatorioTitulo");
         }
 
         # Exibe a terceira linha do Título do relatório
-        if (!is_null($this->tituloLinha3)) {
+        if (!empty($this->tituloLinha3)) {
             p($this->tituloLinha3, "pRelatorioTitulo");
         }
 
         # Exibe o subtítulo (se houver))
-        if (!is_null($this->subtitulo)) {
+        if (!empty($this->subtitulo)) {
             p($this->subtitulo, "pRelatorioSubtitulo");
         }
 
-        if ((!is_null($this->titulo)) or (!is_null($this->tituloLinha2)) or (!is_null($this->tituloLinha3)) or (!is_null($this->subtitulo))) {
+        if ((!empty($this->titulo)) or (!empty($this->tituloLinha2)) or (!empty($this->tituloLinha3)) or (!empty($this->subtitulo))) {
             br();
         }
 
         # Exibe a mensagem depois do título (se houver))
-        if (!is_null($this->objetoDepoisTitulo)) {
+        if (!empty($this->objetoDepoisTitulo)) {
             $this->objetoDepoisTitulo->show();
         }
     }
@@ -357,7 +357,7 @@ class Relatorio {
                 # Se for a coluna do somatório exibe o somatório
                 if ($i == $this->colunaSomatorio) {
                     # Se tiver função no somatório executa
-                    if (is_null($this->funcaoSomatorio)) {
+                    if (empty($this->funcaoSomatorio)) {
                         echo '<td>' . $subSomatorio . '</td>';
                     } # Senão exibe o somatório
                     else {
@@ -401,12 +401,12 @@ class Relatorio {
         echo '<table class="tabelaRelatorio" border="0"';
 
         # Redefine algumas variáveis
-        if (is_null($this->numGrupo)) {
+        if (empty($this->numGrupo)) {
             $this->subTotal = false;
         }
 
         # id da tabela (se houver)
-        if (!is_null($this->id)) {
+        if (!empty($this->id)) {
             echo ' id="' . $this->id . '"';
         }
 
@@ -430,7 +430,7 @@ class Relatorio {
         echo '<thead>';
 
         # título
-        if (!is_null($this->tituloTabela)) {
+        if (!empty($this->tituloTabela)) {
             echo '<caption title="' . $this->tituloTabela . '">';
             echo $this->tituloTabela;
             echo '</caption>';
@@ -481,6 +481,38 @@ class Relatorio {
     ###########################################################
 
     /**
+     * Método gravaLog
+     * 
+     * Grava o Log
+     */
+    private function gravaLog() {
+
+        # Verifica se vai usar o título ou o legDetalhe 
+        if (empty($this->logDetalhe)) {
+            $atividade = 'Visualizou o(a) ' . $this->titulo;
+
+            # Verifica se tem segunda linha
+            if (!empty($this->tituloLinha2)) {
+                $atividade .= ' - ' . $this->tituloLinha2;
+            }
+
+            # Verifica se tem subtítulo
+            if (!empty($this->subtitulo)) {
+                $atividade .= ' - ' . $this->subtitulo;
+            }
+        } else {
+            $atividade = $this->logDetalhe;
+        }
+
+        $Objetolog = new Intra();
+        $idUsuario = get_session('idUsuario');
+        $data = date("Y-m-d H:i:s");
+        $Objetolog->registraLog($idUsuario, $data, $atividade, null, null, 4, $this->logServidor);
+    }
+
+    ###########################################################
+
+    /**
      * Método show
      * 
      * Exibe o relatório
@@ -501,7 +533,7 @@ class Relatorio {
         $exibeTd = true;
 
         # rowspan
-        if (!is_null($this->rowspan)) {
+        if (!empty($this->rowspan)) {
             $arrayRowspan = null;
             $rowspanAnterior = null;
             $rowspanAtual = null;
@@ -524,19 +556,19 @@ class Relatorio {
         }
 
         # Pega o tamanho da tabela
-        if (!vazio($this->label)) {
+        if (!empty($this->label)) {
             $tamanho = count($this->label);
         }
 
         # Alimenta a flag de grupo
-        if (is_null($this->numGrupo)) {
+        if (empty($this->numGrupo)) {
             $grupo = false;
         } else {
             $grupo = true;
         }
 
         # Tira uma coluna da linha quando tiver agrupamento com ocultação da culuna
-        if (!vazio($this->label)) {
+        if (!empty($this->label)) {
             if (($grupo) && ($this->ocultaGrupo)) {
                 $tamanhoLinha = $tamanho - 1;
             } else {
@@ -579,7 +611,7 @@ class Relatorio {
         $this->exibeTitulo();
 
         # Começa o conteúdo do relatório
-        if (!is_null($this->conteudo)) {
+        if (!empty($this->conteudo)) {
 
             # Percorre os registros
             foreach ($this->conteudo as $row) {
@@ -588,13 +620,13 @@ class Relatorio {
                 # Como a flag agrupa é mudada no início do loop verifica-se 
                 # a colocação do total do agrupamento anterior
                 # Verifica se tem agrupamento
-                if (!is_null($this->numGrupo)) {
+                if (!empty($this->numGrupo)) {
                     # Verifica se o valor na coluna de agrupamento é diferente da flag agrupa
                     if (($agrupa <> $row[$this->numGrupo]) && ($agrupa <> "#") && ($grupo)) {
                         # linha
                         #$this->exibeLinha($tamanhoLinha);
                         # Exibe o somatório quando estiver habilitado
-                        if (!is_null($this->colunaSomatorio)) {
+                        if (!empty($this->colunaSomatorio)) {
                             $this->exibeSomatorio($tamanho, $subSomatorio);
                             $subSomatorio = 0;  // Zera o somatório
                         }
@@ -614,7 +646,7 @@ class Relatorio {
                         }
 
                         # Executa a rotina no final de um grupo na forma de função
-                        if (!is_null($this->funcaoFinalGrupo)) {
+                        if (!empty($this->funcaoFinalGrupo)) {
                             # Verifica se é array. Mais de uma função
                             if (is_array($this->funcaoFinalGrupo)) {
                                 # quantidade de itens
@@ -706,7 +738,7 @@ class Relatorio {
                 echo '<tr';
 
                 # Cor de agrupamento
-                if (!is_null($this->grupoCorColuna)) {
+                if (!empty($this->grupoCorColuna)) {
                     if ($row[$this->grupoCorColuna] <> $valorGrupoCorColuna) {
 
                         $valorGrupoCorColuna = $row[$this->grupoCorColuna];
@@ -746,7 +778,7 @@ class Relatorio {
                         $exibeTd = true;
 
                         # Verifica se tem Rowlspan
-                        if (!is_null($this->rowspan)) {
+                        if (!empty($this->rowspan)) {
 
                             # Verifica se é essa coluna
                             if ($this->rowspan == $a) {
@@ -774,7 +806,7 @@ class Relatorio {
 
                             echo '<td ';
 
-                            if (!is_null($rowspanValor)) {
+                            if (!empty($rowspanValor)) {
                                 echo 'rowspan="' . $rowspanValor . '" ';
                             }
 
@@ -804,7 +836,7 @@ class Relatorio {
                             echo $row[$a];
 
                             # soma o valor quando o somatório estiver habilitado
-                            if (!is_null($this->colunaSomatorio)) {
+                            if (!empty($this->colunaSomatorio)) {
                                 if ($a == $this->colunaSomatorio) {
                                     $somatorio += $row[$a];
                                     $subSomatorio += $row[$a];
@@ -847,7 +879,7 @@ class Relatorio {
             }
 
             # Exibe a soma quando o somatório estiver habilitado
-            if ((!is_null($this->colunaSomatorio)) AND ($contador <> 0)) {
+            if ((!empty($this->colunaSomatorio)) AND ($contador <> 0)) {
                 $this->exibeSomatorio($tamanhoLinha, $subSomatorio);
                 $subSomatorio = 0;  // Zera o somatório
             }
@@ -873,7 +905,7 @@ class Relatorio {
             }
 
             # Executa a rotina no final de um grupo na forma de função
-            if (!is_null($this->funcaoFinalGrupo)) {
+            if (!empty($this->funcaoFinalGrupo)) {
                 # Verifica se é array. Mais de uma função
                 if (is_array($this->funcaoFinalGrupo)) {
                     # quantidade de itens
@@ -913,7 +945,7 @@ class Relatorio {
         }
 
         # Executa a rotina no final de um grupo na forma de função
-        if (!is_null($this->funcaoFinalRelatorio)) {
+        if (!empty($this->funcaoFinalRelatorio)) {
             # Verifica se é array. Mais de uma função
             if (is_array($this->funcaoFinalRelatorio)) {
                 # quantidade de itens
@@ -939,7 +971,7 @@ class Relatorio {
         }
 
         # Rodapé
-        if (!vazio($this->rodape)) {
+        if (!empty($this->rodape)) {
             echo "<footer>";
             echo $this->rodape;
             echo "</footer>";
@@ -954,24 +986,8 @@ class Relatorio {
 
         # Grava no log a atividade
         if ($this->log) {
-
-            if (is_null($this->logDetalhe)) {
-                $atividade = 'Visualizou o(a) ' . $this->titulo;
-
-                if (!is_null($this->tituloLinha2)) {
-                    $atividade .= ' - ' . $this->tituloLinha2;
-                }
-
-                if (!is_null($this->subtitulo)) {
-                    $atividade .= ' - ' . $this->subtitulo;
-                }
-            } else {
-                $atividade = $this->logDetalhe;
-            }
-
-            $Objetolog = new Intra();
-            $data = date("Y-m-d H:i:s");
-            $Objetolog->registraLog($idUsuario, $data, $atividade, null, null, 4, $this->logServidor);
+            # Rotina de gravação do log
+            $this->gravaLog();
         }
     }
 
