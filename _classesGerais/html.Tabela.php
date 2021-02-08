@@ -41,11 +41,11 @@ class Tabela {
      * 
      * @example exemplo.tabela.php
      */
-    # do css    
+# do css    
     private $class;
     private $id = null;
 
-    # da tabela
+# da tabela
     private $titulo = null;
     private $conteudo;
     private $label = null;
@@ -55,26 +55,26 @@ class Tabela {
     private $totalRegistro = true;
     private $totalRegistroTexto = "Total de Registros: ";
 
-    # do número de ordem
+# do número de ordem
     private $numeroOrdem = false;
     private $numeroOrdemTipo = 'c';
 
-    # do link
+# do link
     private $link = null;
     private $linkCondicional = null;
     private $linkCondicionalOperador = '=';
 
-    # das Classes e Funções
+# das Classes e Funções
     private $funcao = null;
     private $classe = null;
     private $metodo = null;
     private $funcaoDepoisClasse = null;
 
-    # condicional
+# condicional
     private $formatacaoCondicional = null;
     private $imagemCondicional = null;
 
-    # das rotinas de exclusão
+# das rotinas de exclusão
     private $excluir = null;
     private $nomeColunaExcluir = 'Excluir';     # Nome da Coluna
     private $excluirCondicional = null;
@@ -83,7 +83,7 @@ class Tabela {
     private $excluirOperador = "==";
     private $excluirBotao = 'lixo.png';
 
-    # das rotinas de edição
+# das rotinas de edição
     private $editar = null;
     private $nomeColunaEditar = 'Editar'; # Nome da Coluna
     private $editarCondicional = null;
@@ -92,30 +92,29 @@ class Tabela {
     private $editarOperador = "==";
     private $editarBotao = 'bullet_edit.png';
 
-    # do form de check
+# do form de check
     private $check = false;
     private $checkSubmit = null;
 
-    # da ordenação
+# da ordenação
     private $orderCampo = null;
     private $orderTipo = null;
     private $orderChamador;
 
-    # do link no título
+# do link no título
     private $linkTitulo = null;
     private $linkTituloImagem = PASTA_FIGURAS_GERAIS . 'plus.png';
     private $linkTituloImagemWidth = 15;
     private $linkTituloImagemHeight = 15;
     private $linkTituloTitle = null;
 
-    # do somatório
-    private $colunaSomatorio = null;            // coluna que terá somatório (por enquanto uma por relatório)
+# do somatório
+    private $colunaSomatorio = null;            // coluna que terá somatório (por enquanto uma por tabela)
     private $textoSomatorio = 'Total:';         // texto a ser exibido na linha de totalização
     private $colunaTexto = 0;                   // coluna onde o texto será exibido;
     private $funcaoSomatorio = null;            // se executa alguma função no somatório
     private $exibeSomatorioGeral = true;        // se exibe o somatório geral ou somente o parcial
-    
-    # outros
+# outros
     private $textoRessaltado = null; # string que será ressaltada no resultado da tabela (usado para resaltar pesquisas)
     private $idCampo = null;
     private $nomeGetId = "id";          # Nome do get do id. 
@@ -123,20 +122,20 @@ class Tabela {
     private $rowspan = null;            # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
     private $grupoCorColuna = null;     # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
     private $bordaInterna = false;  // Exibe ou não uma linha dentro da tabela entro os registros 
-    
+
     /*
      * Texto exibido em letras pequenas antes da tabela
      * no lado direito
      */
     private $mensagemPreTabela = null;
-    
-     /*
+
+    /*
      * Texto exibido em letras pequenas ao pé da tabela
      * no lado direito
      */
     private $mensagemPosTabela = null;
-    
-    ###########################################################
+
+###########################################################
 
     /**
      * método construtor
@@ -148,7 +147,7 @@ class Tabela {
         $this->class = $class;
     }
 
-    ###########################################################
+###########################################################
 
     /**
      * Métodos get e set construídos de forma automática pelo 
@@ -165,21 +164,21 @@ class Tabela {
      * @param 	$parametros	Os parâmetros inseridos  
      */
     public function __call($metodo, $parametros) {
-        ## Se for set, atribui um valor para a propriedade
+## Se for set, atribui um valor para a propriedade
         if (substr($metodo, 0, 3) == 'set') {
             $var = substr($metodo, 4);
             $this->$var = $parametros[0];
         }
 
-        # Se for Get, retorna o valor da propriedade
-        #if (substr($metodo, 0, 3) == 'get')
-        #{
-        #  $var = substr(strtolower(preg_replace('/([a-z])([A-Z])/', "$1_$2", $metodo)), 4);
-        #  return $this->$var;
-        #}
+# Se for Get, retorna o valor da propriedade
+#if (substr($metodo, 0, 3) == 'get')
+#{
+#  $var = substr(strtolower(preg_replace('/([a-z])([A-Z])/', "$1_$2", $metodo)), 4);
+#  return $this->$var;
+#}
     }
 
-    ###########################################################
+###########################################################
 
     /**
      * Método set_cabecalho
@@ -194,7 +193,7 @@ class Tabela {
         $this->align = $align;
     }
 
-    ###########################################################
+###########################################################
 
     /**
      * Método set_excluirCondicional
@@ -214,7 +213,7 @@ class Tabela {
         $this->excluirOperador = $excluirOperador;
     }
 
-    ###########################################################
+###########################################################
 
     /**
      * Método set_editarCondicional
@@ -234,7 +233,7 @@ class Tabela {
         $this->editarOperador = $editarOperador;
     }
 
-    ###########################################################
+###########################################################
 
     /**
      * Método set_order
@@ -251,7 +250,7 @@ class Tabela {
         $this->orderChamador = $orderChamador;
     }
 
-    ###########################################################
+###########################################################
 
     /**
      * Método exibeSomatorio
@@ -259,29 +258,33 @@ class Tabela {
      * Exibe o somatório de uma coluna no fim do relatório ou de um agrupamento
      */
     private function exibeSomatorio($tamanho, $somatorio) {
-        # Exibe uma linha
+# Exibe uma linha
         $this->exibeLinha($tamanho);
 
-        # Inicia a linha
+# Inicia a linha
         echo '<tr id="somatorio">';
 
-        # Percorre as colunas da tabela para chegar a coluna do somatório
+# Percorre as colunas da tabela para chegar a coluna do somatório
         for ($i = 0; $i < $tamanho; $i++) {
 
-            # Verifica se é a coluna onde terá o texto padrão a primeira coluna
+# Verifica se é a coluna onde terá o texto padrão a primeira coluna
             if ($i == $this->colunaTexto) {
                 echo '<td id="textoSomatorio">' . $this->textoSomatorio . '</td>';
+                continue;
             }
 
+            # soma o valor quando o somatório estiver habilitado
             if (is_array($this->colunaSomatorio)) {
-                # Em desenvolvimento
-                # Quando pronto possibilitará somatório 
-                # em mais de uma coluna
+                if (in_array($i, $this->colunaSomatorio)) {
+                    echo '<td>' . $somatorio[$i] . '</td>';
+                }else{
+                    echo '<td></td>';
+                }
             } else {
                 # Se for a coluna do somatório exibe o somatório
                 if ($i == $this->colunaSomatorio) {
                     # Se tiver função no somatório executa
-                    if (is_null($this->funcaoSomatorio)) {
+                    if (vazio($this->funcaoSomatorio)) {
                         echo '<td>' . $somatorio . '</td>';
                     } # Senão exibe o somatório
                     else {
@@ -289,12 +292,9 @@ class Tabela {
                         $subSomatorio = $nomedafuncao($somatorio);
                         echo '<td>' . $somatorio . '</td>';
                     }
+                }else{
+                    echo '<td></td>';
                 }
-            }
-
-            # Senão exibe coluna em branco
-            if (($i <> $this->colunaTexto) AND ($i <> $this->colunaSomatorio)) {
-                echo '<td></td>';
             }
         }
 
@@ -328,7 +328,14 @@ class Tabela {
         $exibeTd = true;
 
         # Somatório
-        $somatorio = 0;         // somatorio de colunas se houver
+        if (is_array($this->colunaSomatorio)) {
+            # cria um array de somas para cada coluna
+            $somatorio = array_fill(0, $numColunas, 0);
+        } else {
+            # somente uma variável é necessário
+            $somatorio = 0;
+        }
+
         # Verifica o tamanho da tabela
         $numLinhas = count($this->conteudo);
 
@@ -378,35 +385,35 @@ class Tabela {
                 $numColunas++;
                 $this->label[$colunaExcluirCondicional] = 'Rotina de exclusão de registro';
             }
-            
+
             # Mensagem pré tabela
-            if(!empty($this->mensagemPreTabela)){
-                p($this->mensagemPreTabela,"pmensagemPosTabela");
+            if (!empty($this->mensagemPreTabela)) {
+                p($this->mensagemPreTabela, "pmensagemPosTabela");
             }
 
             # Início da Tabela
             if ($this->scroll) {
-                echo '<div class="table-scroll">';
+                echo '<div class = "table-scroll">';
             }
 
             # Iniciando a tabela
-            echo '<table class="' . $this->class . '"';
+            echo '<table class = "' . $this->class . '"';
 
             # id
             if (!is_null($this->id)) {
-                echo ' id="' . $this->id . '"';
+                echo ' id = "' . $this->id . '"';
             }
 
             echo '>';
 
             # Colunas
             if ($this->numeroOrdem) {
-                echo '<col style="width:5%">';
+                echo '<col style = "width:5%">';
             }
 
             for ($a = 0; $a < $numColunas; $a += 1) {
                 if (isset($this->width[$a])) {
-                    echo '<col style="width:' . $this->width[$a] . '%">';
+                    echo '<col style = "width:' . $this->width[$a] . '%">';
                 }
             }
 
@@ -442,13 +449,13 @@ class Tabela {
 
             # Reserva uma coluna para o número de ordem (se tiver)
             if ($this->numeroOrdem) {
-                echo '<th title="Número de Ordem" id="numeroOrdem">#</th>';
+                echo '<th title = "Número de Ordem" id = "numeroOrdem">#</th>';
             }
 
             for ($a = 0; $a < $numColunas; $a += 1) {
                 echo '<th title="' . strip_tags($this->label[$a]) . '">';
 
-                # colunas
+# colunas
                 if (($this->editar <> null) and ($a == $colunaEdita)) {   // coluna de editar
                     echo $this->nomeColunaEditar . '</th>';
                 } elseif (($this->excluir <> null) and ($a == $colunaExcluir)) { // coluna de excluir
@@ -468,10 +475,10 @@ class Tabela {
             echo '</tr>';
             echo '</thead>';
 
-            # Corpo da Tabela
+# Corpo da Tabela
             echo '<tbody>';
 
-            # Coluna de ordem
+# Coluna de ordem
             if ($this->numeroOrdemTipo == 'c') {
                 $numOrdem = 1;  # Inicia o número de ordem quando tiver
             } else {
@@ -481,26 +488,26 @@ class Tabela {
             foreach ($this->conteudo as $row) {
                 echo '<tr ';
 
-                # Formatação condicional
+# Formatação condicional
                 if (!is_null($this->formatacaoCondicional)) {
                     $rowCondicional = $row;
                     for ($a = 0; $a < ($numColunasOriginal); $a++) {
                         foreach ($this->formatacaoCondicional as $condicional) {
                             if ($a == $condicional['coluna']) {
-                                # somente para nivel de comparação
-                                # Coloca a função (se tiver)
+# somente para nivel de comparação
+# Coloca a função (se tiver)
                                 if ((isset($this->funcao[$a])) and ($this->funcao[$a] <> null)) {
                                     $nomedafuncao = $this->funcao[$a];
                                     $rowCondicional[$a] = $nomedafuncao($row[$a]);
                                 }
 
-                                # Coloca a classe (se tiver)
+# Coloca a classe (se tiver)
                                 if ((isset($this->classe[$a])) and ($this->classe[$a] <> null)) {
                                     $instancia = new $this->classe[$a]();
                                     $metodoClasse = $this->metodo[$a];
                                     $rowCondicional[$a] = $instancia->$metodoClasse($row[$a]);
                                 }
-                                #echo "->".$condicional['valor'];
+#echo "->".$condicional['valor'];
                                 switch ($condicional['operador']) {
                                     case '=':
                                     case '==':
@@ -544,7 +551,7 @@ class Tabela {
                     }
                 }
 
-                # Cor de agrupamento
+# Cor de agrupamento
                 if (!is_null($this->grupoCorColuna)) {
                     if ($row[$this->grupoCorColuna] <> $valorGrupoCorColuna) {
 
@@ -573,26 +580,26 @@ class Tabela {
 
                 $numRegistros++;
 
-                # Pega o id do Banco de dados
+# Pega o id do Banco de dados
                 if (isset($this->idCampo)) {
                     $id = $row["$this->idCampo"];
                 }
 
-                # Percorre as colunas 
+# Percorre as colunas 
                 for ($a = 0; $a < ($numColunas); $a++) {
 
                     $rowspanValor = null;
                     $exibeTd = true;
 
-                    # Verifica se tem Rowlspan
+# Verifica se tem Rowlspan
                     if (!is_null($this->rowspan)) {
 
-                        # Verifica se é essa coluna
+# Verifica se é essa coluna
                         if ($this->rowspan == $a) {
 
                             $rowAtual = $row[$a];
 
-                            # Verifica se mudou o valor
+# Verifica se mudou o valor
                             if ($rowspanAnterior <> $rowAtual) {
                                 $rowspanAnterior = $rowAtual;  // habilita o novo valor anterior
 
@@ -615,7 +622,7 @@ class Tabela {
                             echo 'rowspan="' . $rowspanValor . '" ';
                         }
 
-                        # alinhamento
+# alinhamento
                         if ((isset($this->align[$a])) and ($this->align[$a] <> null)) {
                             echo 'id="' . $this->align[$a] . '"';
                         } else {
@@ -624,19 +631,19 @@ class Tabela {
 
                         echo '>';
 
-                        # colunas
-                        # Botão editar
+# colunas
+# Botão editar
                         if (($this->editar <> null) and ($a == $colunaEdita)) {
                             $link = new Link(null, $this->editar . '&' . $this->nomeGetId . '=' . $id, $this->nomeColunaEditar . ': ' . $row[0]);
                             $link->set_imagem(PASTA_FIGURAS_GERAIS . $this->editarBotao, 20, 20);
-                            $link->show();              
+                            $link->show();
                         } elseif (($this->excluir <> null) and ($a == $colunaExcluir)) { // coluna de excluir
                             $link = new Link(null, $this->excluir . '&' . $this->nomeGetId . '=' . $id, $this->nomeColunaExcluir . ': ' . $row[0]);
                             $link->set_imagem(PASTA_FIGURAS_GERAIS . $this->excluirBotao, 20, 20);
                             $link->set_confirma('Deseja mesmo excluir?');
-                            $link->show();                
+                            $link->show();
                         } elseif (($this->editarCondicional <> null) and ($a == $colunaEditarCondicional)) { // coluna de editar_condicional
-                            # Se o operador for igual
+# Se o operador for igual
                             if (($this->editarOperador == "==") OR ($this->editarOperador == "=")) {
                                 if ($row[$this->editarColuna] == $this->editarCondicao) {
                                     $link = new Link(null, $this->editarCondicional . '&' . $this->nomeGetId . '=' . $id);
@@ -646,7 +653,7 @@ class Tabela {
                                 }
                             }
 
-                            # Se o operador for diferente
+# Se o operador for diferente
                             if (($this->editarOperador == "<>") OR ($this->editarOperador == "!=")) {
                                 if ($row[$this->editarColuna] <> $this->editarCondicao) {
                                     $link = new Link('Editar', $this->editarCondicional . '&' . $this->nomeGetId . '=' . $id);
@@ -656,7 +663,7 @@ class Tabela {
                                 }
                             }
                         } elseif (($this->excluirCondicional <> null) AND ($a == $colunaExcluirCondicional)) { // coluna de excluir_condicional
-                            # Se o operador for igual
+# Se o operador for igual
                             if (($this->excluirOperador == "==") OR ($this->excluirOperador == "=")) {
                                 if ($row[$this->excluirColuna] == $this->excluirCondicao) {
                                     $link = new Link(null, $this->excluirCondicional . '&' . $this->nomeGetId . '=' . $id, $this->nomeColunaExcluir . ': ' . $row[0]);
@@ -667,7 +674,7 @@ class Tabela {
                                 }
                             }
 
-                            # Se o operador for diferente
+# Se o operador for diferente
                             if (($this->excluirOperador == "<>") OR ($this->excluirOperador == "!=")) {
                                 if ($row[$this->excluirColuna] <> $this->excluirCondicao) {
                                     $link = new Link('Excluir', $this->excluirCondicional . '&' . $this->nomeGetId . '=' . $id);
@@ -679,26 +686,26 @@ class Tabela {
                             }
                         }
 
-                        # Coloca a função (se tiver)
+# Coloca a função (se tiver)
                         if ((isset($this->funcao[$a])) and ($this->funcao[$a] <> null)) {
                             $nomedafuncao = $this->funcao[$a];
                             $row[$a] = $nomedafuncao($row[$a]);
                         }
 
-                        # Coloca a classe (se tiver)
+# Coloca a classe (se tiver)
                         if ((isset($this->classe[$a])) and ($this->classe[$a] <> null)) {
                             $instancia = new $this->classe[$a]();
                             $metodoClasse = $this->metodo[$a];
                             $row[$a] = $instancia->$metodoClasse($row[$a]);
                         }
 
-                        # Coloca a função (se tiver)
+# Coloca a função (se tiver)
                         if ((isset($this->funcaoDepoisClasse[$a])) and ($this->funcaoDepoisClasse[$a] <> null)) {
                             $nomedafuncao = $this->funcaoDepoisClasse[$a];
                             $row[$a] = $nomedafuncao($row[$a]);
                         }
 
-                        # Coloca o link (se tiver)
+# Coloca o link (se tiver)
                         if ((isset($this->linkCondicional[$a])) and ($this->linkCondicional[$a] <> null)) {
                             if ($this->linkCondicionalOperador == '=') {
                                 if ($this->linkCondicional[$a] == $row[$a]) {
@@ -720,11 +727,11 @@ class Tabela {
                             }
                         }
 
-                        # Se não é coluna de editar, nem de excluir, nem excluir condicional, nem de link etc
+# Se não é coluna de editar, nem de excluir, nem excluir condicional, nem de link etc
                         if (($a <> $colunaEdita) and ($a <> $colunaExcluir) and ($a <> $colunaExcluirCondicional) and ($a <> $colunaEditarCondicional)and ((!isset($this->link[$a])) or ($this->link[$a] == null))) {
-                            # verifica se tem imagem condicional, se tiver exibe o gráfico ao invel do valor                
+# verifica se tem imagem condicional, se tiver exibe o gráfico ao invel do valor                
                             if (!is_null($this->imagemCondicional)) {
-                                # pega as colunas que possuem imagens 
+# pega as colunas que possuem imagens 
                                 $colunasImagem = array();
                                 foreach ($this->imagemCondicional as $condicionalColuna) {
                                     array_push($colunasImagem, $condicionalColuna['coluna']);
@@ -769,7 +776,7 @@ class Tabela {
                                     } else {
                                         if ((!in_array($a, $colunasImagem)) and ($contadorRow == 0)) {
                                             if ((!is_null($this->textoRessaltado)) AND ($this->textoRessaltado <> "") AND ($a <> $colunaEdita)) {
-                                                #$row[$a] = get_bold($row[$a],$this->textoRessaltado);
+#$row[$a] = get_bold($row[$a],$this->textoRessaltado);
                                                 echo $row[$a];
                                             } else {
                                                 echo $row[$a];
@@ -788,9 +795,15 @@ class Tabela {
                             }
 
                             # soma o valor quando o somatório estiver habilitado
-                            if (!is_null($this->colunaSomatorio)) {
-                                if ($a == $this->colunaSomatorio) {
-                                    $somatorio += $row[$a];
+                            if (is_array($this->colunaSomatorio)) {
+                                if (in_array($a, $this->colunaSomatorio)) {
+                                    $somatorio[$a] += $row[$a];
+                                }
+                            } else {
+                                if (!empty($this->colunaSomatorio)) {
+                                    if ($a == $this->colunaSomatorio) {
+                                        $somatorio += $row[$a];
+                                    }
                                 }
                             }
                         }
@@ -800,7 +813,7 @@ class Tabela {
                 echo '</tr>';
             }
 
-            # Exibe a soma quando o somatório estiver habilitado
+# Exibe a soma quando o somatório estiver habilitado
             if ((!is_null($this->colunaSomatorio)) AND ($numRegistros <> 0)) {
                 $this->exibeSomatorio($numColunas, $somatorio);
             }
@@ -808,7 +821,7 @@ class Tabela {
 
             echo '</tbody>';
 
-            # Rotapé da Tabela
+# Rotapé da Tabela
             if (($this->totalRegistro) OR ($this->rodape)) {
                 echo '<tfoot>';
                 if ($this->numeroOrdem) {
@@ -825,11 +838,11 @@ class Tabela {
                 echo '</td></tr>';
             }
 
-            echo '</tfoot>';            
+            echo '</tfoot>';
             echo '</table>';
-            
-            if(!empty($this->mensagemPosTabela)){
-                p($this->mensagemPosTabela,"pmensagemPosTabela");
+
+            if (!empty($this->mensagemPosTabela)) {
+                p($this->mensagemPosTabela, "pmensagemPosTabela");
             }
 
             if ($this->scroll) {
@@ -846,5 +859,5 @@ class Tabela {
         }
     }
 
-    ###########################################################
+###########################################################
 }

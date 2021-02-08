@@ -1477,48 +1477,48 @@ function numero_to_letra($number) {
     $negative = 'menos ';
     $decimal = ' ponto ';
     $dictionary = array(
-        0                   => 'zero',
-        1                   => 'um',
-        2                   => 'dois',
-        3                   => 'três',
-        4                   => 'quatro',
-        5                   => 'cinco',
-        6                   => 'seis',
-        7                   => 'sete',
-        8                   => 'oito',
-        9                   => 'nove',
-        10                  => 'dez',
-        11                  => 'onze',
-        12                  => 'doze',
-        13                  => 'treze',
-        14                  => 'quatorze',
-        15                  => 'quinze',
-        16                  => 'dezesseis',
-        17                  => 'dezessete',
-        18                  => 'dezoito',
-        19                  => 'dezenove',
-        20                  => 'vinte',
-        30                  => 'trinta',
-        40                  => 'quarenta',
-        50                  => 'cinquenta',
-        60                  => 'sessenta',
-        70                  => 'setenta',
-        80                  => 'oitenta',
-        90                  => 'noventa',
-        100                 => 'cento',
-        200                 => 'duzentos',
-        300                 => 'trezentos',
-        400                 => 'quatrocentos',
-        500                 => 'quinhentos',
-        600                 => 'seiscentos',
-        700                 => 'setecentos',
-        800                 => 'oitocentos',
-        900                 => 'novecentos',
-        1000                => 'mil',
-        1000000             => array('milhão', 'milhões'),
-        1000000000          => array('bilhão', 'bilhões'),
-        1000000000000       => array('trilhão', 'trilhões'),
-        1000000000000000    => array('quatrilhão', 'quatrilhões'),
+        0 => 'zero',
+        1 => 'um',
+        2 => 'dois',
+        3 => 'três',
+        4 => 'quatro',
+        5 => 'cinco',
+        6 => 'seis',
+        7 => 'sete',
+        8 => 'oito',
+        9 => 'nove',
+        10 => 'dez',
+        11 => 'onze',
+        12 => 'doze',
+        13 => 'treze',
+        14 => 'quatorze',
+        15 => 'quinze',
+        16 => 'dezesseis',
+        17 => 'dezessete',
+        18 => 'dezoito',
+        19 => 'dezenove',
+        20 => 'vinte',
+        30 => 'trinta',
+        40 => 'quarenta',
+        50 => 'cinquenta',
+        60 => 'sessenta',
+        70 => 'setenta',
+        80 => 'oitenta',
+        90 => 'noventa',
+        100 => 'cento',
+        200 => 'duzentos',
+        300 => 'trezentos',
+        400 => 'quatrocentos',
+        500 => 'quinhentos',
+        600 => 'seiscentos',
+        700 => 'setecentos',
+        800 => 'oitocentos',
+        900 => 'novecentos',
+        1000 => 'mil',
+        1000000 => array('milhão', 'milhões'),
+        1000000000 => array('bilhão', 'bilhões'),
+        1000000000000 => array('trilhão', 'trilhões'),
+        1000000000000000 => array('quatrilhão', 'quatrilhões'),
         1000000000000000000 => array('quinquilhão', 'quinquilhões')
     );
 
@@ -2395,52 +2395,52 @@ function limpa_numero($str) {
 function getMimeContentType($ext) {
 
     $mime_types = array(
-        'txt'  => 'text/plain',
-        'htm'  => 'text/html',
+        'txt' => 'text/plain',
+        'htm' => 'text/html',
         'html' => 'text/html',
-        'php'  => 'text/html',
-        'css'  => 'text/css',
-        'js'   => 'application/javascript',
+        'php' => 'text/html',
+        'css' => 'text/css',
+        'js' => 'application/javascript',
         'json' => 'application/json',
-        'xml'  => 'application/xml',
-        'swf'  => 'application/x-shockwave-flash',
-        'flv'  => 'video/x-flv',
+        'xml' => 'application/xml',
+        'swf' => 'application/x-shockwave-flash',
+        'flv' => 'video/x-flv',
         // images
-        'png'  => 'image/png',
-        'jpe'  => 'image/jpeg',
+        'png' => 'image/png',
+        'jpe' => 'image/jpeg',
         'jpeg' => 'image/jpeg',
-        'jpg'  => 'image/jpeg',
-        'gif'  => 'image/gif',
-        'bmp'  => 'image/bmp',
-        'ico'  => 'image/vnd.microsoft.icon',
+        'jpg' => 'image/jpeg',
+        'gif' => 'image/gif',
+        'bmp' => 'image/bmp',
+        'ico' => 'image/vnd.microsoft.icon',
         'tiff' => 'image/tiff',
-        'tif'  => 'image/tiff',
-        'svg'  => 'image/svg+xml',
+        'tif' => 'image/tiff',
+        'svg' => 'image/svg+xml',
         'svgz' => 'image/svg+xml',
         // archives
-        'zip'  => 'application/zip',
-        'rar'  => 'application/x-rar-compressed',
-        'exe'  => 'application/x-msdownload',
-        'msi'  => 'application/x-msdownload',
-        'cab'  => 'application/vnd.ms-cab-compressed',
+        'zip' => 'application/zip',
+        'rar' => 'application/x-rar-compressed',
+        'exe' => 'application/x-msdownload',
+        'msi' => 'application/x-msdownload',
+        'cab' => 'application/vnd.ms-cab-compressed',
         // audio/video
-        'mp3'  => 'audio/mpeg',
-        'qt'   => 'video/quicktime',
-        'mov'  => 'video/quicktime',
+        'mp3' => 'audio/mpeg',
+        'qt' => 'video/quicktime',
+        'mov' => 'video/quicktime',
         // adobe
-        'pdf'  => 'application/pdf',
-        'psd'  => 'image/vnd.adobe.photoshop',
-        'ai'   => 'application/postscript',
-        'eps'  => 'application/postscript',
-        'ps'   => 'application/postscript',
+        'pdf' => 'application/pdf',
+        'psd' => 'image/vnd.adobe.photoshop',
+        'ai' => 'application/postscript',
+        'eps' => 'application/postscript',
+        'ps' => 'application/postscript',
         // ms office
-        'doc'  => 'application/msword',
-        'rtf'  => 'application/rtf',
-        'xls'  => 'application/vnd.ms-excel',
-        'ppt'  => 'application/vnd.ms-powerpoint',
+        'doc' => 'application/msword',
+        'rtf' => 'application/rtf',
+        'xls' => 'application/vnd.ms-excel',
+        'ppt' => 'application/vnd.ms-powerpoint',
         // open office
-        'odt'  => 'application/vnd.oasis.opendocument.text',
-        'ods'  => 'application/vnd.oasis.opendocument.spreadsheet',
+        'odt' => 'application/vnd.oasis.opendocument.text',
+        'ods' => 'application/vnd.oasis.opendocument.spreadsheet',
     );
 
     if (array_key_exists($ext, $mime_types)) {
@@ -2513,4 +2513,26 @@ function pLista($linha1 = null, $linha2 = null, $linha3 = null, $linha4 = null) 
     p($linha2, "pLinha2");
     p($linha3, "pLinha3");
     p($linha4, "pLinha4");
+}
+
+###########################################################
+
+function emConstrucao($texto = null,$brAntes = 3) {
+
+    /**
+     * Exibe uma mensagam padrão de área em construção
+     */
+    
+    $div = new Div("center");
+    $div->abre();
+    br($brAntes);
+    $Imagem = new Imagem(PASTA_FIGURAS_GERAIS . 'construcao.png', 'Esta área do sistema está em construção. Em Breve Estará Disponível.', 300, 300);
+    $Imagem->show();
+
+    if (!is_null($texto)) {
+        br(2);
+        p($texto, "center","f20");
+    }
+        
+    $div->fecha();
 }
