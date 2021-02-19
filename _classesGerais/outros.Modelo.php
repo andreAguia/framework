@@ -774,6 +774,8 @@ class Modelo
 
             # faz o select
             $row = $objeto->select($this->selectEdita, false);
+            
+           
         }
 
         $form = new Form($this->linkGravar . '&id=' . $id, $this->nomeForm);
@@ -1005,6 +1007,13 @@ class Modelo
             label("Campos marcados com (Aa) são passados para minusculas com primeira letra de cada palavra em maiusculas.", "warning", "f11");
             echo '</div>';
         }
+        
+        
+        if(!empty($id)){
+            br();
+            p($id,"f10","right");
+        }
+        
 
         if (!is_null($this->menuLateralEditar)) {
             $gridMenu->fechaColuna();
