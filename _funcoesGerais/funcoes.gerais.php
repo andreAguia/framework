@@ -23,20 +23,29 @@ function post($nome, $padrao = null) {
      */
     # Verifica se o post existe
     if (isset($_POST[$nome])) {
-        # Pega o valor desse post
-        $valor = filter_input(INPUT_POST, $nome); // Substitui o $_post
-        ## Obs:
-        ## O código abaixo foi retirado pois na rotina de pesquisa de servidor
-        ## e em outras rotinas de pesquisas é desejável o valor "" diferenciado
-        ## do valor nulo. Dessa forma essa "limpeza" de valor vazio foi retirada
-        ## da função post, mas continua na função get e get_session.
-        # Força a ser nulo quando for ""
-        #if(vazio($valor)){
-        #    $valor = null;
-        #}
-        # Retorna o valor padrão quando for nulo
-        if (is_null($valor)) {
-            $valor = $padrao;
+        if (is_array($_POST[$nome])) {
+            $valor = $_POST[$nome];
+
+            # Retorna o valor padrão quando for nulo
+            if (!$valor) {
+                $valor = $padrao;
+            }
+        } else {
+            # Pega o valor desse post
+            $valor = filter_input(INPUT_POST, $nome); // Substitui o $_post
+            ## Obs:
+            ## O código abaixo foi retirado pois na rotina de pesquisa de servidor
+            ## e em outras rotinas de pesquisas é desejável o valor "" diferenciado
+            ## do valor nulo. Dessa forma essa "limpeza" de valor vazio foi retirada
+            ## da função post, mas continua na função get e get_session.
+            # Força a ser nulo quando for ""
+            #if(vazio($valor)){
+            #    $valor = null;
+            #}
+            # Retorna o valor padrão quando for nulo
+            if (is_null($valor)) {
+                $valor = $padrao;
+            }
         }
 
         return $valor;
@@ -2517,12 +2526,11 @@ function pLista($linha1 = null, $linha2 = null, $linha3 = null, $linha4 = null) 
 
 ###########################################################
 
-function emConstrucao($texto = null,$brAntes = 3) {
+function emConstrucao($texto = null, $brAntes = 3) {
 
     /**
      * Exibe uma mensagam padrão de área em construção
      */
-    
     $div = new Div("center");
     $div->abre();
     br($brAntes);
@@ -2531,8 +2539,8 @@ function emConstrucao($texto = null,$brAntes = 3) {
 
     if (!is_null($texto)) {
         br(2);
-        p($texto, "center","f20");
+        p($texto, "center", "f20");
     }
-        
+
     $div->fecha();
 }

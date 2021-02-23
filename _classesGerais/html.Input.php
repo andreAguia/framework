@@ -89,7 +89,7 @@ class Input {
     private $formation = null;
     private $id = null;
     private $class = null;
-
+    private $multiple = false;       // aceita multiplas escolhas em um select (combo)
     # dos eventos
     private $onClick = null;        // Evento ao clicar
     private $onChange = null;       // Evento ao alterar. Obs não funciona corretamente em campos date
@@ -553,7 +553,20 @@ class Input {
         $this->tagHtml = $tagHtml;
     }
 
-##########################################################                                                   
+##########################################################       
+
+    public function set_multiple($multiple) {
+        /**
+         * Altera o atributo multiple do controle
+         * 
+         * @syntax $input->set_multiple($multiple);
+         * 
+         * @param $multiple true|false Se aceita ou não valores multiplos em um select 
+         */
+        $this->multiple = $multiple;
+    }
+
+##########################################################                                                              
 
     public function show() {
         /**
@@ -775,8 +788,15 @@ class Input {
             echo ' class="disabled" disabled ';
         }
 
-        # dados do input
-        echo ' name="' . $this->nome . '"'; # nome do controle (deve ser o mesmo que o do banco de dados)
+        # nome do controle (deve ser o mesmo que o do banco de dados)
+        if ($this->multiple) {
+            # Se for multiple é necessário informar (pelo nome) que o retorno é array
+            echo ' name="' . $this->nome . '[]"';
+        } else {
+            # Se não for multiple o nome fica normal
+            echo ' name="' . $this->nome . '"';
+        }
+
         # Verifica se tem datalist
         if (!empty($this->datalist)) {
             echo ' list="lista' . $this->nome . '"';
@@ -797,7 +817,7 @@ class Input {
                 echo '>';
                 echo $this->valor;
                 echo '</textarea>';
-                
+
                 /* Coloque no início do página para funcionar
                  * $page = new Page();
                  * $page->set_load('CKEDITOR.replace("ID_TEXTAREA");');
@@ -824,28 +844,46 @@ class Input {
                 break;
 
             case "combo":
-                #echo ' size="'.($this->size).'"';
-                echo '>';
-
-                var_dump($this->array);
-
+                if ($this->multiple) {
+                    echo ' multiple';
+                    echo ' size="' . ($this->size) . '"';
+                    echo '>';
+                } else {
+                    echo '>';
+                }
                 foreach ($this->array as $field) {
                     if (is_array($field)) {
                         echo '<option value="' . $field[0] . '"';
-                        if ($field[0] == $this->valor) {
-                            echo ' selected>';
+                        if (is_array($this->valor)) {
+                            if (in_array($field[0], $this->valor)) {
+                                echo ' selected>';
+                            } else {
+                                echo '>';
+                            }
                         } else {
-                            echo '>';
+                            if ($field[0] == $this->valor) {
+                                echo ' selected>';
+                            } else {
+                                echo '>';
+                            }
                         }
 
                         echo $field[1];
                         echo '</option>';
                     } else {
                         echo ' <option value="' . $field . '"';
-                        if ($field == $this->valor) {
-                            echo ' selected>';
+                        if (is_array($this->valor)) {
+                            if (in_array($field, $this->valor)) {
+                                echo ' selected>';
+                            } else {
+                                echo '>';
+                            }
                         } else {
-                            echo '>';
+                            if ($field == $this->valor) {
+                                echo ' selected>';
+                            } else {
+                                echo '>';
+                            }
                         }
 
                         echo $field;
@@ -934,14 +972,14 @@ class Input {
                 echo '/>';
                 break;
 
-            case "sei":                
+            case "sei":
                 echo ' size="' . ($this->size) . '"';
                 echo ' type="text"';
                 echo ' value="' . $this->valor . '"';
                 echo '/>';
                 echo '</div>';
                 break;
-            
+
             case "seif":
                 $mascara = '999999/999999/9999';
                 echo ' size="' . ($this->size) . '"';
@@ -1078,7 +1116,7 @@ class Input {
                 echo ' onblur="mask(this, \'' . $mascara . '\',1,this)" ';
                 echo '/>';
                 break;
-            
+
             default:
                 echo ' size="' . ($this->size) . '"';
                 echo ' type="text"';
