@@ -456,14 +456,14 @@ class Tabela {
             for ($a = 0; $a < $numColunas; $a += 1) {
                 echo '<th title="' . strip_tags($this->label[$a]) . '">';
 
-# colunas
+                # colunas
                 if (($this->editar <> null) and ($a == $colunaEdita)) {   // coluna de editar
                     echo $this->nomeColunaEditar . '</th>';
                 } elseif (($this->excluir <> null) and ($a == $colunaExcluir)) { // coluna de excluir
                     echo $this->nomeColunaExcluir . '</th>';
                 } elseif (($this->excluirCondicional <> null) and ($a == $colunaExcluirCondicional)) { // coluna de excluir_condicional
                     echo $this->nomeColunaExcluir . '</th>';
-                } elseif (($this->editarCondicional <> null) and ($a == $colunaEditarCondicional)) { // coluna de excluir_condicional
+                } elseif (($this->editarCondicional <> null) and ($a == $colunaEditarCondicional)) { // coluna de editar_condicional
                     echo $this->nomeColunaEditar . '</th>';
                 } elseif ($this->orderCampo <> null) {  // coloca um link no cabe�alho da coluna para ordenamento (quando tiver ordenamento)
                     $link = new Link($this->label[$a], $this->orderChamador . '&orderCampo=' . ($a + 1) . '&orderTipo=' . $this->orderTipo);
@@ -476,10 +476,10 @@ class Tabela {
             echo '</tr>';
             echo '</thead>';
 
-# Corpo da Tabela
+            # Corpo da Tabela
             echo '<tbody>';
 
-# Coluna de ordem
+            # Coluna de ordem
             if ($this->numeroOrdemTipo == 'c') {
                 $numOrdem = 1;  # Inicia o número de ordem quando tiver
             } else {
