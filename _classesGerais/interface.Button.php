@@ -193,6 +193,11 @@ class Button {
          * 
          * @param  $id integer null	Usado em links em tabelas para acrescentar o id do registro a url
          */
+        if($this->disabled){
+            $this->class .= " disabled";
+            $this->url = "#";
+        }
+        
         $link = new Link($this->label, $this->url, $this->title);
         $link->set_class($this->class);
         $link->set_id($this->id);
