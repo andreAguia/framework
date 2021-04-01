@@ -241,6 +241,7 @@ table.tabelaPadrao th{
     font-weight: normal;
     font-size: 12px;
     color: #fff;    
+    padding-bottom: 5px;
 }
 
 table.tabelaPadrao caption {
@@ -248,6 +249,7 @@ table.tabelaPadrao caption {
     font-weight: normal;
     color: #02548b;
     font-size: 16px;
+    padding-bottom: 3px;
 }
 
 table.tabelaPadrao tfoot td {
