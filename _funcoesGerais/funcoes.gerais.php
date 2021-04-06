@@ -2079,7 +2079,7 @@ function arrayPreenche($valorInicial, $valorFinal, $ordem = "c") {
             $resultado[] = $i;
         }
     } elseif ($ordem == "d") {
-        for ($i = $valorInicial; $i >= $valorFinal; $i--) {
+        for ($i = $valorFinal; $i >= $valorInicial; $i--) {
             $resultado[] = $i;
         }
     }
