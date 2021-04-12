@@ -925,15 +925,15 @@ class Relatorio {
             if ($this->linhaFinal) {
                 hr();
             }
-
+            
+        } else{ // se não tem conteúdo (beta)
             # Exibe a informação de que não tem nenhum resgistro
-            if (($contador == 0) AND ($this->exibeMensagemNenhumRegistro)) {
-                br();
+            if ($this->exibeMensagemNenhumRegistro) {
                 p($this->textoMensagemSemRegistro, "pRelatorioNenhumItem");
                 $this->totalRegistro = false;
-                hr();
+                hr("nenhumItem");
             }
-        } // se tem conteúdo (beta)
+        }
 
         echo '</table>';
 

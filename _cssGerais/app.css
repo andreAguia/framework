@@ -1059,10 +1059,18 @@ p#pRelatorioNenhumItem{
     color: #000;
 }
 
+hr#nenhumItem{
+    padding: 0px;
+    margin: 0px;
+    border: 1px solid #000;
+}
+
 p#pRelatorioTotal{
     text-align: right;
     font-size: 10px;
     color: #000;
+    margin: 0px;
+    padding: 0em;
 }
 
 p#pRelatorioDataImpressao{
