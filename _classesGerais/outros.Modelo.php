@@ -800,7 +800,12 @@ class Modelo {
         $ultimoFieldset = null; // Verifica se ultimo fieldset foi o de fechar
 
         foreach ($this->campos as $campo) {
-            $controle = new Input($campo['nome'], $campo['tipo'], $campo['label'], $this->formLabelTipo);
+            # Verifica o tipo do label
+            if(empty($campo['tipoLabel'])){
+                $campo['tipoLabel'] = $this->formLabelTipo;
+            }
+            
+            $controle = new Input($campo['nome'], $campo['tipo'], $campo['label'], $campo['tipoLabel']);
             $controle->set_linha($campo['linha']); // linha no form que vai ser colocado o controle
             $linhaAtual = $campo['linha'];
 
@@ -881,6 +886,11 @@ class Modelo {
             # Marca dagua o input
             if (isset($campo['placeholder'])) {
                 $controle->set_placeholder($campo['placeholder']);
+            }
+            
+            # helptext - texto embaixo do controle
+            if (isset($campo['helptext'])) {
+                $controle->set_helptext($campo['helptext']);
             }
 
             # texto no mouseover

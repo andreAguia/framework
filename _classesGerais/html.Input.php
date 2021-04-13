@@ -72,6 +72,7 @@ class Input {
     # da dica
     private $title = null;
     private $placeholder = null;
+    private $helptext = null;
 
     # outros
     private $readonly = false;
@@ -272,6 +273,19 @@ class Input {
          * @param $placeholder string null Informa texto a ser exibido dentro do controle quando não tiver valor
          */
         $this->placeholder = $placeholder;
+    }
+
+###########################################################       
+
+    public function set_helptext($helptext = null) {
+        /**
+         * Informa o texto a ser exibido embaixo do controle
+         * 
+         * @syntax $input->set_helptext($helptext);
+         * 
+         * @param $helptext string null Informa texto a ser exibido 
+         */
+        $this->helptext = $helptext;
     }
 
 ###########################################################       
@@ -696,6 +710,7 @@ class Input {
                 $this->tipo = 'password';
                 break;
             case "combo":
+            case "simnao2":
                 if ($this->pesquisa) {
                     echo '<div class="input-group" id="pesquisa">';
                     echo '<span class="input-group-label"><i class="fi-magnifying-glass"></i></span>';
@@ -843,6 +858,26 @@ class Input {
                 echo '</label></div>';
                 break;
 
+            case "simnao2":
+                $this->array = array(
+                    array(1, "Sim"), 
+                    array(0, "Não"),
+                    array(null,""));
+
+                echo '>';
+                foreach ($this->array as $field) {
+                    echo '<option value="' . $field[0] . '"';
+                    if ($field[0] == $this->valor) {
+                        echo ' selected>';
+                    } else {
+                        echo '>';
+                    }
+                    echo $field[1];
+                    echo '</option>';
+                }
+
+                echo '</select>';
+                break;
             case "combo":
                 if ($this->multiple) {
                     echo ' multiple';
@@ -1124,6 +1159,10 @@ class Input {
                 echo ' onFocus="this.select();"';
                 echo '/>';
                 break;
+        }
+
+        if (!empty($this->helptext)) {
+            echo '<p class="help-text" id="passwordHelpText">' . $this->helptext . '</p>';
         }
 
         # Fecha a div da pesquisa
