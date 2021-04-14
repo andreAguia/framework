@@ -12,6 +12,11 @@ html{
     margin-top: 3px;
 }
 
+hr#geral{
+    padding: 0px;
+    margin: 0px;
+}
+
 /******************************************* 
 * Define variáveis de cores e de erros 
 *******************************************/ 
