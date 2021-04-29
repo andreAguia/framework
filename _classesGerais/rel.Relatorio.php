@@ -401,7 +401,7 @@ class Relatorio {
         echo '<table class="tabelaRelatorio" border="0"';
 
         # Redefine algumas variáveis
-        if (empty($this->numGrupo)) {
+        if (is_null($this->numGrupo)) {
             $this->subTotal = false;
         }
 
@@ -533,7 +533,7 @@ class Relatorio {
         $exibeTd = true;
 
         # rowspan
-        if (!empty($this->rowspan)) {
+        if (!is_null($this->rowspan)) {
             $arrayRowspan = null;
             $rowspanAnterior = null;
             $rowspanAtual = null;
@@ -561,10 +561,11 @@ class Relatorio {
         }
 
         # Alimenta a flag de grupo
-        if (empty($this->numGrupo)) {
+        if (is_null($this->numGrupo)) {
             $grupo = false;
         } else {
             $grupo = true;
+            
         }
 
         # Tira uma coluna da linha quando tiver agrupamento com ocultação da culuna
@@ -620,13 +621,13 @@ class Relatorio {
                 # Como a flag agrupa é mudada no início do loop verifica-se 
                 # a colocação do total do agrupamento anterior
                 # Verifica se tem agrupamento
-                if (!empty($this->numGrupo)) {
+                if (!is_null($this->numGrupo)) {
                     # Verifica se o valor na coluna de agrupamento é diferente da flag agrupa
                     if (($agrupa <> $row[$this->numGrupo]) && ($agrupa <> "#") && ($grupo)) {
                         # linha
                         #$this->exibeLinha($tamanhoLinha);
                         # Exibe o somatório quando estiver habilitado
-                        if (!empty($this->colunaSomatorio)) {
+                        if (!is_null($this->colunaSomatorio)) {
                             $this->exibeSomatorio($tamanho, $subSomatorio);
                             $subSomatorio = 0;  // Zera o somatório
                         }
@@ -699,7 +700,8 @@ class Relatorio {
 
                     # Exibe o subtitulo
                     if ($this->numGrupoEnfeite) {
-                        p(' == ' . $textoSubitulo . ' == ', "pRelatorioSubgrupo");
+                        #p(' == ' . $textoSubitulo . ' == ', "pRelatorioSubgrupo");
+                        p($textoSubitulo, "pRelatorioSubgrupo");
                     } else {
                         p($textoSubitulo, "pRelatorioSubgrupo");
                     }
@@ -738,7 +740,7 @@ class Relatorio {
                 echo '<tr';
 
                 # Cor de agrupamento
-                if (!empty($this->grupoCorColuna)) {
+                if (!is_null($this->grupoCorColuna)) {
                     if ($row[$this->grupoCorColuna] <> $valorGrupoCorColuna) {
 
                         $valorGrupoCorColuna = $row[$this->grupoCorColuna];
@@ -778,7 +780,7 @@ class Relatorio {
                         $exibeTd = true;
 
                         # Verifica se tem Rowlspan
-                        if (!empty($this->rowspan)) {
+                        if (!is_null($this->rowspan)) {
 
                             # Verifica se é essa coluna
                             if ($this->rowspan == $a) {
@@ -836,7 +838,7 @@ class Relatorio {
                             echo $row[$a];
 
                             # soma o valor quando o somatório estiver habilitado
-                            if (!empty($this->colunaSomatorio)) {
+                            if (!is_null($this->colunaSomatorio)) {
                                 if ($a == $this->colunaSomatorio) {
                                     $somatorio += $row[$a];
                                     $subSomatorio += $row[$a];
@@ -879,7 +881,7 @@ class Relatorio {
             }
 
             # Exibe a soma quando o somatório estiver habilitado
-            if ((!empty($this->colunaSomatorio)) AND ($contador <> 0)) {
+            if ((!is_null($this->colunaSomatorio)) AND ($contador <> 0)) {
                 $this->exibeSomatorio($tamanhoLinha, $subSomatorio);
                 $subSomatorio = 0;  // Zera o somatório
             }
