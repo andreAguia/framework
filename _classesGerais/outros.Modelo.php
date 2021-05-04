@@ -859,6 +859,11 @@ class Modelo {
             if (isset($campo['disabled'])) {
                 $controle->set_disabled($campo['disabled']);
             }
+            
+            # optgroup
+            if (isset($campo['optgroup'])) {
+                $controle->set_optgroup($campo['optgroup']);
+            }
 
             # datalist
             if (isset($campo['datalist'])) {

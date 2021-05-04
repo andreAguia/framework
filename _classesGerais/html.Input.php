@@ -91,6 +91,7 @@ class Input {
     private $id = null;
     private $class = null;
     private $multiple = false;       // aceita multiplas escolhas em um select (combo)
+    private $optgroup = false;    // habilita ou não um grupo para uma combo (select)
     # dos eventos
     private $onClick = null;        // Evento ao clicar
     private $onChange = null;       // Evento ao alterar. Obs não funciona corretamente em campos date
@@ -580,7 +581,20 @@ class Input {
         $this->multiple = $multiple;
     }
 
-##########################################################                                                              
+##########################################################       
+
+    public function set_optgroup($optgroup) {
+        /**
+         * Altera o atributo optgroup do controle
+         * 
+         * @syntax $input->set_optgroup($optgroup);
+         * 
+         * @param $optgroup true|false Se tem ou não agrupamentos em uma combot 
+         */
+        $this->optgroup = $optgroup;
+    }
+
+##########################################################                                                                     
 
     public function show() {
         /**
@@ -860,9 +874,9 @@ class Input {
 
             case "simnao2":
                 $this->array = array(
-                    array(1, "Sim"), 
+                    array(1, "Sim"),
                     array(0, "Não"),
-                    array(null,""));
+                    array(null, ""));
 
                 echo '>';
                 foreach ($this->array as $field) {
@@ -886,8 +900,35 @@ class Input {
                 } else {
                     echo '>';
                 }
+
+                # Inicia o group (de tiver)
+                if ($this->optgroup) {
+                    $optgroupAnterior = null;
+                }
+
+                # Percorre p array
                 foreach ($this->array as $field) {
+
+                    # Verifica se é array multi
                     if (is_array($field)) {
+
+                        # Verifica se tem optgroup
+                        if ($this->optgroup) {
+
+                            # Verifica se mudou o grupo
+                            if ($optgroupAnterior <> $field[2]) {
+
+                                # Varifica se não é o prmeiro grupo                            
+                                if (is_null($optgroupAnterior)) {
+                                    echo '</optgroup>';
+                                }
+
+                                echo '<optgroup label="' . $field[2] . '">';
+
+                                $optgroupAnterior = $field[2];
+                            }
+                        }
+
                         echo '<option value="' . $field[0] . '"';
                         if (is_array($this->valor)) {
                             if (in_array($field[0], $this->valor)) {
