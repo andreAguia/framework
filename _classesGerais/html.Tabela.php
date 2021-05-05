@@ -278,7 +278,7 @@ class Tabela {
             if (is_array($this->colunaSomatorio)) {
                 if (in_array($i, $this->colunaSomatorio)) {
                     echo '<td>' . $somatorio[$i] . '</td>';
-                }else{
+                } else {
                     echo '<td></td>';
                 }
             } else {
@@ -293,7 +293,7 @@ class Tabela {
                         $subSomatorio = $nomedafuncao($somatorio);
                         echo '<td>' . $somatorio . '</td>';
                     }
-                }else{
+                } else {
                     echo '<td></td>';
                 }
             }
@@ -489,61 +489,67 @@ class Tabela {
             foreach ($this->conteudo as $row) {
                 echo '<tr ';
 
-# Formatação condicional
+                # Formatação condicional
                 if (!is_null($this->formatacaoCondicional)) {
                     $rowCondicional = $row;
                     for ($a = 0; $a < ($numColunasOriginal); $a++) {
                         foreach ($this->formatacaoCondicional as $condicional) {
                             if ($a == $condicional['coluna']) {
-# somente para nivel de comparação
-# Coloca a função (se tiver)
+                                # somente para nivel de comparação
+                                # Coloca a função (se tiver)
                                 if ((isset($this->funcao[$a])) and ($this->funcao[$a] <> null)) {
                                     $nomedafuncao = $this->funcao[$a];
                                     $rowCondicional[$a] = $nomedafuncao($row[$a]);
                                 }
 
-# Coloca a classe (se tiver)
+                                # Coloca a classe (se tiver)
                                 if ((isset($this->classe[$a])) and ($this->classe[$a] <> null)) {
                                     $instancia = new $this->classe[$a]();
                                     $metodoClasse = $this->metodo[$a];
                                     $rowCondicional[$a] = $instancia->$metodoClasse($row[$a]);
                                 }
-#echo "->".$condicional['valor'];
+                                #echo "->".$condicional['valor'];
                                 switch ($condicional['operador']) {
                                     case '=':
                                     case '==':
                                         if ($rowCondicional[$a] == $condicional['valor']) {
-                                            echo ' id="' . $condicional['id'] . '"';
+                                            echo 'id="' . $condicional['id'] . '"';
                                         }
                                         break;
 
                                     case '<>':
                                         if ($rowCondicional[$a] <> $condicional['valor']) {
-                                            echo ' id="' . $condicional['id'] . '"';
+                                            echo 'id="' . $condicional['id'] . '"';
                                         }
                                         break;
 
                                     case '>':
                                         if ($rowCondicional[$a] > $condicional['valor']) {
-                                            echo ' id="' . $condicional['id'] . '"';
+                                            echo 'id="' . $condicional['id'] . '"';
                                         }
                                         break;
 
                                     case '<':
                                         if ($rowCondicional[$a] < $condicional['valor']) {
-                                            echo ' id="' . $condicional['id'] . '"';
+                                            echo 'id="' . $condicional['id'] . '"';
                                         }
                                         break;
 
                                     case '>=':
                                         if ($rowCondicional[$a] >= $condicional['valor']) {
-                                            echo ' id="' . $condicional['id'] . '"';
+                                            echo 'id="' . $condicional['id'] . '"';
                                         }
                                         break;
 
                                     case '<=':
                                         if ($rowCondicional[$a] <= $condicional['valor']) {
-                                            echo ' id="' . $condicional['id'] . '"';
+                                            echo 'id="' . $condicional['id'] . '"';
+                                        }
+                                        break;
+
+                                    case 'is_null':
+                                        if (is_null($rowCondicional[$a])) {
+                                            echo 'id="' . $condicional['id'] . '"';
                                         }
                                         break;
                                 }
@@ -552,7 +558,7 @@ class Tabela {
                     }
                 }
 
-# Cor de agrupamento
+                # Cor de agrupamento
                 if (!is_null($this->grupoCorColuna)) {
                     if ($row[$this->grupoCorColuna] <> $valorGrupoCorColuna) {
 
@@ -581,26 +587,26 @@ class Tabela {
 
                 $numRegistros++;
 
-# Pega o id do Banco de dados
+                # Pega o id do Banco de dados
                 if (isset($this->idCampo)) {
                     $id = $row["$this->idCampo"];
                 }
 
-# Percorre as colunas 
+                # Percorre as colunas 
                 for ($a = 0; $a < ($numColunas); $a++) {
 
                     $rowspanValor = null;
                     $exibeTd = true;
 
-# Verifica se tem Rowlspan
+                    # Verifica se tem Rowlspan
                     if (!is_null($this->rowspan)) {
 
-# Verifica se é essa coluna
+                        # Verifica se é essa coluna
                         if ($this->rowspan == $a) {
 
                             $rowAtual = $row[$a];
 
-# Verifica se mudou o valor
+                            # Verifica se mudou o valor
                             if ($rowspanAnterior <> $rowAtual) {
                                 $rowspanAnterior = $rowAtual;  // habilita o novo valor anterior
 
@@ -623,7 +629,7 @@ class Tabela {
                             echo 'rowspan="' . $rowspanValor . '" ';
                         }
 
-# alinhamento
+                        # alinhamento
                         if ((isset($this->align[$a])) and ($this->align[$a] <> null)) {
                             echo 'id="' . $this->align[$a] . '"';
                         } else {

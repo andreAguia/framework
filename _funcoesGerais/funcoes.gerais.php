@@ -764,7 +764,7 @@ function p($mensagem = null, $id = null, $class = null, $title = null) {
      *
      * @example exemplo.p.php
      */
-    if (vazio($mensagem)) {
+    if (empty($mensagem)) {
         return null;
     } else {
         echo '<p';
