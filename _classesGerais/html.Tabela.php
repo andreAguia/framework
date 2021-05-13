@@ -122,7 +122,7 @@ class Tabela {
     private $rowspan = null;            # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
     private $grupoCorColuna = null;     # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
     private $bordaInterna = false;  // Exibe ou não uma linha dentro da tabela entro os registros 
-    private $mensagemTabelaVazia = "'Nenhum item encontrado !!'";
+    private $mensagemTabelaVazia = "Nenhum item encontrado !!";
 
     /*
      * Texto exibido em letras pequenas antes da tabela
