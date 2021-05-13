@@ -612,7 +612,7 @@ class Relatorio {
         $this->exibeTitulo();
 
         # Começa o conteúdo do relatório
-        if (!empty($this->conteudo)) {
+        if (count($this->conteudo) > 0) {
 
             # Percorre os registros
             foreach ($this->conteudo as $row) {
@@ -931,6 +931,7 @@ class Relatorio {
         } else{ // se não tem conteúdo (beta)
             # Exibe a informação de que não tem nenhum resgistro
             if ($this->exibeMensagemNenhumRegistro) {
+                br();
                 p($this->textoMensagemSemRegistro, "pRelatorioNenhumItem");
                 $this->totalRegistro = false;
                 hr("nenhumItem");
