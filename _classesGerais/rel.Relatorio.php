@@ -352,9 +352,16 @@ class Relatorio {
             $colVazia = true;
             if (is_array($this->colunaSomatorio)) {
                 foreach ($this->colunaSomatorio as $hh) {
-                    if ($i == $hh) {
-                        echo '<td>'.$subSomatorio[$i].'</td>';
-                        $colVazia = false;
+                    if ($this->numeroOrdem) {
+                        if ($i == $hh) {
+                            echo '<td>' . $subSomatorio[$i] . '</td>';
+                            $colVazia = false;
+                        }
+                    } else {
+                        if (($i + 1) == $hh) {
+                            echo '<td>' . $subSomatorio[$i + 1] . '</td>';
+                            $colVazia = false;
+                        }
                     }
                 }
 
@@ -364,18 +371,34 @@ class Relatorio {
                 }
             } else {
                 # Se for a coluna do somatório exibe o somatório
-                if ($i == $this->colunaSomatorio) {
-                    # Se tiver função no somatório executa
-                    if (empty($this->funcaoSomatorio)) {
-                        echo '<td>' . $subSomatorio . '</td>';
-                    } # Senão exibe o somatório
-                    else {
-                        $nomedafuncao = $this->funcaoSomatorio;
-                        $subSomatorio = $nomedafuncao($subSomatorio);
-                        echo '<td>' . $subSomatorio . '</td>';
+                if ($this->numeroOrdem) {
+                    if ($i == $this->colunaSomatorio) {
+                        # Se tiver função no somatório executa
+                        if (empty($this->funcaoSomatorio)) {
+                            echo '<td>' . $subSomatorio . '</td>';
+                        } # Senão exibe o somatório
+                        else {
+                            $nomedafuncao = $this->funcaoSomatorio;
+                            $subSomatorio = $nomedafuncao($subSomatorio);
+                            echo '<td>' . $subSomatorio . '</td>';
+                        }
+                    } else {
+                        echo '<td></td>';
                     }
                 } else {
-                    echo '<td></td>';
+                    if (($i + 1) == $this->colunaSomatorio) {
+                        # Se tiver função no somatório executa
+                        if (empty($this->funcaoSomatorio)) {
+                            echo '<td>' . $subSomatorio . '</td>';
+                        } # Senão exibe o somatório
+                        else {
+                            $nomedafuncao = $this->funcaoSomatorio;
+                            $subSomatorio = $nomedafuncao($subSomatorio);
+                            echo '<td>' . $subSomatorio . '</td>';
+                        }
+                    } else {
+                        echo '<td></td>';
+                    }
                 }
             }
         }
@@ -528,7 +551,6 @@ class Relatorio {
         $subContador = 0; // contador de registros para grupo (zera a cada grupo)
         $agrupa = '#';       // guarda o nome do grupo
         $grupo = null;  // flag de agrupamento ou não
-                
         #####
 
         $valorGrupoCorColuna = null;
@@ -564,12 +586,12 @@ class Relatorio {
         if (!empty($this->label)) {
             $tamanho = count($this->label);
         }
-        
+
         # Define as variáveis para o somatório (quando houver)
-        if(is_array($this->colunaSomatorio)){
-            $somatorio = array_fill(0,$tamanho,null);         // somatorio de colunas se houver
-            $subSomatorio = array_fill(0,$tamanho,null);       // somatório do grupo
-        }else{
+        if (is_array($this->colunaSomatorio)) {
+            $somatorio = array_fill(0, $tamanho, null);         // somatorio de colunas se houver
+            $subSomatorio = array_fill(0, $tamanho, null);       // somatório do grupo
+        } else {
             $somatorio = 0;         // somatorio de colunas se houver
             $subSomatorio = 0;      // somatório do grupo
         }
