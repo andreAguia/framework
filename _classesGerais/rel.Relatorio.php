@@ -349,10 +349,19 @@ class Relatorio {
                 echo '<td>' . $this->textoSomatorio . '</td>';
             }
 
+            $colVazia = true;
             if (is_array($this->colunaSomatorio)) {
-                # Em desenvolvimento
-                # Quando pronto possibilitará somatório 
-                # em mais de uma coluna
+                foreach ($this->colunaSomatorio as $hh) {
+                    if ($i == $hh) {
+                        echo '<td>'.$subSomatorio[$i].'</td>';
+                        $colVazia = false;
+                    }
+                }
+
+                # Verifica se teve somatório, senão poe coluna vazia
+                if ($colVazia) {
+                    echo '<td></td>';
+                }
             } else {
                 # Se for a coluna do somatório exibe o somatório
                 if ($i == $this->colunaSomatorio) {
@@ -365,12 +374,9 @@ class Relatorio {
                         $subSomatorio = $nomedafuncao($subSomatorio);
                         echo '<td>' . $subSomatorio . '</td>';
                     }
+                } else {
+                    echo '<td></td>';
                 }
-            }
-
-            # Senão exibe coluna em branco
-            if (($i <> $this->colunaTexto) AND ($i <> $this->colunaSomatorio)) {
-                echo '<td></td>';
             }
         }
 
@@ -522,8 +528,7 @@ class Relatorio {
         $subContador = 0; // contador de registros para grupo (zera a cada grupo)
         $agrupa = '#';       // guarda o nome do grupo
         $grupo = null;  // flag de agrupamento ou não
-        $somatorio = 0;         // somatorio de colunas se houver
-        $subSomatorio = 0;      // somatório do grupo
+                
         #####
 
         $valorGrupoCorColuna = null;
@@ -559,13 +564,21 @@ class Relatorio {
         if (!empty($this->label)) {
             $tamanho = count($this->label);
         }
+        
+        # Define as variáveis para o somatório (quando houver)
+        if(is_array($this->colunaSomatorio)){
+            $somatorio = array_fill(0,$tamanho,null);         // somatorio de colunas se houver
+            $subSomatorio = array_fill(0,$tamanho,null);       // somatório do grupo
+        }else{
+            $somatorio = 0;         // somatorio de colunas se houver
+            $subSomatorio = 0;      // somatório do grupo
+        }
 
         # Alimenta a flag de grupo
         if (is_null($this->numGrupo)) {
             $grupo = false;
         } else {
             $grupo = true;
-            
         }
 
         # Tira uma coluna da linha quando tiver agrupamento com ocultação da culuna
@@ -638,7 +651,6 @@ class Relatorio {
                         echo '</td></tr>';
                         echo '</tfoot>';
                         echo '</table>';
-
 
                         # Exibe o número de registros
                         if (($this->subTotal) AND ($contador > 0)) {
@@ -838,10 +850,19 @@ class Relatorio {
                             echo $row[$a];
 
                             # soma o valor quando o somatório estiver habilitado
-                            if (!is_null($this->colunaSomatorio)) {
-                                if ($a == $this->colunaSomatorio) {
-                                    $somatorio += $row[$a];
-                                    $subSomatorio += $row[$a];
+                            if (is_array($this->colunaSomatorio)) {
+                                foreach ($this->colunaSomatorio as $hh) {
+                                    if ($a == $hh) {
+                                        $somatorio[$a] += $row[$a];
+                                        $subSomatorio[$a] += $row[$a];
+                                    }
+                                }
+                            } else {
+                                if (!is_null($this->colunaSomatorio)) {
+                                    if ($a == $this->colunaSomatorio) {
+                                        $somatorio += $row[$a];
+                                        $subSomatorio += $row[$a];
+                                    }
                                 }
                             }
                             echo '</td>';
@@ -927,8 +948,7 @@ class Relatorio {
             if ($this->linhaFinal) {
                 hr();
             }
-            
-        } else{ // se não tem conteúdo (beta)
+        } else { // se não tem conteúdo (beta)
             # Exibe a informação de que não tem nenhum resgistro
             if ($this->exibeMensagemNenhumRegistro) {
                 br();
