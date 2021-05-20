@@ -352,7 +352,7 @@ class Tabela {
                 foreach ($this->conteudo as $itens) {
                     $arrayRowspan[] = $itens[$this->rowspan];
                 }
-
+                
                 # Conta quantos valores tem e guarda no array $arr
                 $arr = array_count_values($arrayRowspan);
             }
