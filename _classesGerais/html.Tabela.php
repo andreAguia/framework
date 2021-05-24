@@ -165,18 +165,18 @@ class Tabela {
      * @param 	$parametros	Os parâmetros inseridos  
      */
     public function __call($metodo, $parametros) {
-## Se for set, atribui um valor para a propriedade
+        ## Se for set, atribui um valor para a propriedade
         if (substr($metodo, 0, 3) == 'set') {
             $var = substr($metodo, 4);
             $this->$var = $parametros[0];
         }
 
-# Se for Get, retorna o valor da propriedade
-#if (substr($metodo, 0, 3) == 'get')
-#{
-#  $var = substr(strtolower(preg_replace('/([a-z])([A-Z])/', "$1_$2", $metodo)), 4);
-#  return $this->$var;
-#}
+        # Se for Get, retorna o valor da propriedade
+        #if (substr($metodo, 0, 3) == 'get')
+        #{
+        #  $var = substr(strtolower(preg_replace('/([a-z])([A-Z])/', "$1_$2", $metodo)), 4);
+        #  return $this->$var;
+        #}
     }
 
 ###########################################################
@@ -258,43 +258,82 @@ class Tabela {
      * 
      * Exibe o somatório de uma coluna no fim do relatório ou de um agrupamento
      */
-    private function exibeSomatorio($tamanho, $somatorio) {
-# Exibe uma linha
+    private function exibeSomatorio($tamanho, $subSomatorio) {
+        # Exibe uma linha
         $this->exibeLinha($tamanho);
 
-# Inicia a linha
+        # Verifica se tem numero de ordem
+        if (!$this->numeroOrdem) {
+            $tamanho--;
+        }
+
+        # Inicia a linha
         echo '<tr id="somatorio">';
 
-# Percorre as colunas da tabela para chegar a coluna do somatório
+        # Percorre as colunas
         for ($i = 0; $i < $tamanho; $i++) {
 
-# Verifica se é a coluna onde terá o texto padrão a primeira coluna
+            # Verifica se é a coluna onde terá do somatório
             if ($i == $this->colunaTexto) {
                 echo '<td id="textoSomatorio">' . $this->textoSomatorio . '</td>';
-                continue;
             }
 
-            # soma o valor quando o somatório estiver habilitado
+            # Inicia uma flag para saber se a coluna tem conteúdo ou não
+            $colVazia = true;
+
+            # Verifica se a coluna somatório é um array
             if (is_array($this->colunaSomatorio)) {
-                if (in_array($i, $this->colunaSomatorio)) {
-                    echo '<td>' . $somatorio[$i] . '</td>';
-                } else {
+                # Percorre o array so somatório
+                foreach ($this->colunaSomatorio as $hh) {
+                    # Se tem número de ordem 
+                    if ($this->numeroOrdem) {
+                        if ($i == $hh) {
+                            echo '<td>' . $subSomatorio[$i] . '</td>';
+                            $colVazia = false;
+                        }
+                    } else {
+                        if (($i + 1) == $hh) {
+                            echo '<td>' . $subSomatorio[$i + 1] . '</td>';
+                            $colVazia = false;
+                        }
+                    }
+                }
+
+                # Verifica se teve somatório, senão poe coluna vazia
+                if ($colVazia) {
                     echo '<td></td>';
                 }
-            } else {
+            } # quando a coluna somatório não é array 
+            else {
                 # Se for a coluna do somatório exibe o somatório
-                if ($i == $this->colunaSomatorio) {
-                    # Se tiver função no somatório executa
-                    if (vazio($this->funcaoSomatorio)) {
-                        echo '<td>' . $somatorio . '</td>';
-                    } # Senão exibe o somatório
-                    else {
-                        $nomedafuncao = $this->funcaoSomatorio;
-                        $subSomatorio = $nomedafuncao($somatorio);
-                        echo '<td>' . $somatorio . '</td>';
+                if ($this->numeroOrdem) {
+                    if ($i == $this->colunaSomatorio) {
+                        # Se tiver função no somatório executa
+                        if (empty($this->funcaoSomatorio)) {
+                            echo '<td>' . $subSomatorio . '</td>';
+                        } # Senão exibe o somatório
+                        else {
+                            $nomedafuncao = $this->funcaoSomatorio;
+                            $subSomatorio = $nomedafuncao($subSomatorio);
+                            echo '<td>' . $subSomatorio . '</td>';
+                        }
+                    } else {
+                        echo '<td></td>';
                     }
                 } else {
-                    echo '<td></td>';
+                    if (($i + 1) == $this->colunaSomatorio) {
+                        # Se tiver função no somatório executa
+                        if (empty($this->funcaoSomatorio)) {
+                            echo '<td>' . $subSomatorio . '</td>';
+                        } # Senão exibe o somatório
+                        else {
+                            $nomedafuncao = $this->funcaoSomatorio;
+                            $subSomatorio = $nomedafuncao($subSomatorio);
+                            echo '<td>' . $subSomatorio . '</td>';
+                        }
+                    } else {
+                        echo '<td></td>';
+                    }
                 }
             }
         }
@@ -332,9 +371,11 @@ class Tabela {
         if (is_array($this->colunaSomatorio)) {
             # cria um array de somas para cada coluna
             $somatorio = array_fill(0, $numColunas, 0);
+            $subSomatorio = array_fill(0, $numColunas, 0);
         } else {
             # somente uma variável é necessário
             $somatorio = 0;
+            $subSomatorio = 0;
         }
 
         # Verifica o tamanho da tabela
@@ -352,7 +393,7 @@ class Tabela {
                 foreach ($this->conteudo as $itens) {
                     $arrayRowspan[] = $itens[$this->rowspan];
                 }
-                
+
                 # Conta quantos valores tem e guarda no array $arr
                 $arr = array_count_values($arrayRowspan);
             }
@@ -803,13 +844,17 @@ class Tabela {
 
                             # soma o valor quando o somatório estiver habilitado
                             if (is_array($this->colunaSomatorio)) {
-                                if (in_array($a, $this->colunaSomatorio)) {
-                                    $somatorio[$a] += $row[$a];
+                                foreach ($this->colunaSomatorio as $hh) {
+                                    if ($a == $hh) {
+                                        $somatorio[$a] += $row[$a];
+                                        $subSomatorio[$a] += $row[$a];
+                                    }
                                 }
                             } else {
-                                if (!empty($this->colunaSomatorio)) {
+                                if (!is_null($this->colunaSomatorio)) {
                                     if ($a == $this->colunaSomatorio) {
                                         $somatorio += $row[$a];
+                                        $subSomatorio += $row[$a];
                                     }
                                 }
                             }

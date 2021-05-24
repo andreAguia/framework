@@ -85,12 +85,15 @@ class Relatorio {
     private $subSelect = null;                  // sql do subrelatorio
     private $subClasseBd = null;  // Classe do bd   
     private $subJoin = null;   // posição no array do join no primeiro relatório    
+    
     # do somatório
     private $colunaSomatorio = null;            // coluna que terá somatório (por enquanto uma por relatório)
     private $textoSomatorio = 'Total:';         // texto a ser exibido na linha de totalização
     private $colunaTexto = 0;                   // coluna onde o texto será exibido;
     private $funcaoSomatorio = null;            // se executa alguma função no somatório
     private $exibeSomatorioGeral = true;        // se exibe o somatório geral ou somente o parcial
+    
+    # Outros
     private $totalRegistro = true;  // se terá o número de registros no fim do relatório (e dos grupos))
     private $totalRegistroValor = null;  // Guarda o valor do toal para ser recuperado na rotina de relatório via get
     private $bordaInterna = false;  // Exibe ou não uma linha dentro da tabela entro os registros 
