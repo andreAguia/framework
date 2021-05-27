@@ -24,7 +24,8 @@ class Link {
 
 ###########################################################
 
-    public function __construct($label = null, // string O texto a ser exibido no link
+    public function __construct(
+            $label = null, // string O texto a ser exibido no link
             $url = null, // string A url do link
             $title = null) { // string O texto a ser exibido no mouseover
 
@@ -49,6 +50,18 @@ class Link {
          */
 
         $this->url = $url;
+    }
+
+###########################################################
+
+    public function get_url($url = null) {   // string O caminho do link do link
+        /**
+         * Informa a url
+         * 
+         * @syntax $link->set_url($url);
+         */
+
+       return $this->url;
     }
 
 ###########################################################
