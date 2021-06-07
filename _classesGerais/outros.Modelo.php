@@ -12,7 +12,7 @@ class Modelo {
     # Nome do Modelo (aparecerá nos fildset e no caption da tabela)
 
     private $nome = null;
-
+                            
     # id (para o fieldset)
     private $id = 'Padrao';
 
@@ -64,6 +64,7 @@ class Modelo {
 
     # Parametros da tabela
     private $label = null;
+    private $colspanLabel = null;
     private $width = null;
     private $align = null;
     private $idTabela = null;
@@ -523,6 +524,7 @@ class Modelo {
         $tabela->set_conteudo($result);
         $tabela->set_id($this->idTabela);
         $tabela->set_label($this->label);
+        $tabela->set_colspanLabel($this->colspanLabel);
         $tabela->set_align($this->align);
         $tabela->set_width($this->width);
         $tabela->set_link($this->link);
