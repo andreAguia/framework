@@ -700,7 +700,6 @@ class Input {
                 echo '<INPUT';
                 break;
             case "sei":
-            case "seif":
                 echo '<div class="input-group">';
                 echo '<span class="input-group-label">SEI</span>';
                 echo '<input class="input-group-field"';
@@ -1049,14 +1048,6 @@ class Input {
                 break;
 
             case "sei":
-                echo ' size="' . ($this->size) . '"';
-                echo ' type="text"';
-                echo ' value="' . $this->valor . '"';
-                echo '/>';
-                echo '</div>';
-                break;
-
-            case "seif":
                 $mascara = '999999/999999/9999';
                 echo ' size="' . ($this->size) . '"';
                 echo ' type="text"';
