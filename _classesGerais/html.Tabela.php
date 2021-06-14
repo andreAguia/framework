@@ -504,7 +504,7 @@ class Tabela {
                 if ($marcaColspan == 0) {
                     if ((isset($this->colspanLabel[$a])) AND ($this->colspanLabel[$a] <> null)AND ($this->colspanLabel[$a] > 1)) {
                         echo '<th colspan="' . $this->colspanLabel[$a] . '" title="' . strip_tags($this->label[$a]) . '">';
-                        $marcaColspan = $this->colspanLabel[$a] -1;
+                        $marcaColspan = $this->colspanLabel[$a] - 1;
                     } else {
                         echo '<th title="' . strip_tags($this->label[$a]) . '">';
                         $marcaColspan = 0;
@@ -526,7 +526,7 @@ class Tabela {
                         echo $this->label[$a] . '</th>';
                     }
                 } else {
-                    $marcaColspan --;
+                    $marcaColspan--;
                 }
             } // for
 
@@ -647,6 +647,8 @@ class Tabela {
                 # Pega o id do Banco de dados
                 if (isset($this->idCampo)) {
                     $id = $row["$this->idCampo"];
+                } else {
+                    $id = null;
                 }
 
                 # Percorre as colunas 
@@ -773,20 +775,30 @@ class Tabela {
                         if ((isset($this->linkCondicional[$a])) and ($this->linkCondicional[$a] <> null)) {
                             if ($this->linkCondicionalOperador == '=') {
                                 if ($this->linkCondicional[$a] == $row[$a]) {
-                                    if ((isset($this->link[$a])) and ($this->link[$a] <> null))
+                                    if ((isset($this->link[$a])) and ($this->link[$a] <> null)) {
+                                        if (is_null($id)) {
+                                            $id = $row[$a];
+                                        }
                                         $this->link[$a]->show($id);
+                                    }
                                 }
                             }
 
                             if ($this->linkCondicionalOperador == '<>') {
                                 if ($this->linkCondicional[$a] <> $row[$a]) {
                                     if ((isset($this->link[$a])) and ($this->link[$a] <> null)) {
+                                        if (is_null($id)) {
+                                            $id = $row[$a];
+                                        }
                                         $this->link[$a]->show($id);
                                     }
                                 }
                             }
                         } else {
                             if ((isset($this->link[$a])) and ($this->link[$a] <> null)) {
+                                if (is_null($id)) {
+                                    $id = $row[$a];
+                                }
                                 $this->link[$a]->show($id);
                             }
                         }

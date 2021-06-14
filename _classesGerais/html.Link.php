@@ -53,7 +53,7 @@ class Link {
     }
 
 ###########################################################
-
+    
     public function get_url($url = null) {   // string O caminho do link do link
         /**
          * Informa a url
