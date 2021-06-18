@@ -386,15 +386,22 @@ class Tabela {
 
             # rowspan
             if (!is_null($this->rowspan)) {
-                $arrayRowspan = null;
+                $arrayRowspan = [];
                 $rowspanAnterior = null;
                 $rowspanAtual = null;
 
                 # Passa os valores para o array
                 foreach ($this->conteudo as $itens) {
-                    $arrayRowspan[] = $itens[$this->rowspan];
+                    # A verificação abaixo evita o erro da função array_count_values()
+                    # que somente funciona com valores interiros e string. 
+                    # Transformando um null em string vazia. Dai não dá erro
+                    if (empty($itens[$this->rowspan])) {
+                        $arrayRowspan[] = "";
+                    } else {
+                        $arrayRowspan[] = $itens[$this->rowspan];
+                    }
                 }
-
+                
                 # Conta quantos valores tem e guarda no array $arr
                 $arr = array_count_values($arrayRowspan);
             }
@@ -673,7 +680,7 @@ class Tabela {
                                     $rowspanValor = $arr[$row[$a]];
                                 }
                             } else {
-                                if ($arr[$row[$a]] > 1) {
+                                if (!empty($arr[$row[$a]]) AND $arr[$row[$a]] > 1) {
                                     $exibeTd = false;
                                 }
                             }
