@@ -1014,11 +1014,10 @@ class Modelo {
             echo '</div>';
         }
 
-
-        if (!empty($id)) {
-            br();
-            p($id, "f10", "right");
-        }
+//        # Exibe o id quando for necessário
+//        if (!empty($id)) {
+//            p($id, "f10", "right");
+//        }
 
 
         if (!is_null($this->menuLateralEditar)) {
