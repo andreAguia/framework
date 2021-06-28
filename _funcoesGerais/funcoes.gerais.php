@@ -1805,8 +1805,6 @@ function idade($dataNascimento) {
      * @return integer
      *
      * @param $dataNascimento date	null A data de nascimento no formato dd/mm/aaaa
-     *
-     *
      */
     # Verifica se data é válida
     if (is_null($dataNascimento)) {
