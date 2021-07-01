@@ -858,21 +858,11 @@ class Tabela {
                                         }
                                     } else {
                                         if ((!in_array($a, $colunasImagem)) and ($contadorRow == 0)) {
-                                            if ((!is_null($this->textoRessaltado)) AND ($this->textoRessaltado <> "") AND ($a <> $colunaEdita)) {
-                                                #$row[$a] = get_bold($row[$a],$this->textoRessaltado);
-                                                echo $row[$a];
-                                            } else {
-                                                echo $row[$a];
-                                            }
+                                            echo $row[$a];
                                             $contadorRow++;
                                         }
                                     }
                                 }
-                            } elseif ((!is_null($this->textoRessaltado)) AND ($this->textoRessaltado <> "")) { # Verifica se tem negrito
-                                if ($a <> $colunaEdita) {
-                                    $row[$a] = bold($row[$a], $this->textoRessaltado);
-                                }
-                                echo $row[$a];
                             } else {
                                 echo $row[$a];
                             }
