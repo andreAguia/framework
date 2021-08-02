@@ -16,10 +16,11 @@ class Menu {
     private $item;
     private $tipo;
     private $classe = "menuVertical";
+    private $destaque = null;
 
     ###########################################################    
 
-    public function __construct($classe = "menuVertical") {
+    public function __construct($classe = "menuVertical", $destaque = null) {
         /**
          * Inicia a classe atribuindo um valor do formato do menu
          * 
@@ -27,14 +28,18 @@ class Menu {
          * 
          * @syntax $field = new Menu([$classe]);
          */
-        if (!is_null($classe)) {
+        if (!empty($classe)) {
             $this->classe = $classe;
+        }
+
+        if (!empty($destaque)) {
+            $this->destaque = $destaque;
         }
     }
 
 ###########################################################
 
-    public function add_item($tipo = 'link', $label = null, $url = '#', $title = null, $accessKey = null, $target = null, $bold = false) {
+    public function add_item($tipo = 'link', $label = null, $url = '#', $title = null, $accessKey = null, $target = null) {
         /**
          * Adiciona um item ao menu
          * 
@@ -49,16 +54,6 @@ class Menu {
          * 
          * @syntax $menu->add_item($tipo,$label,[$url],[$title],[$accessKey],[$target]); 
          */
-        # title
-        if (is_null($title)) {
-            $title = $label;
-        }
-
-        # bold
-        if ($bold) {
-            $label = '<b>' . $label . '</b>';
-        }
-
         switch ($tipo) {
             case "titulo" :
                 # titulo
@@ -165,6 +160,14 @@ class Menu {
 
         echo "<ul class='$this->classe'>";
         foreach ($this->item as $row) {
+
+            # Bold
+            if (!is_null($this->destaque)) {
+                if ($this->destaque == $contador) {
+                    $row->set_bold(true);
+                }
+            }
+
             switch ($this->tipo[$contador]) {
                 case "titulo" :
                     echo "<li id='titulo'>";

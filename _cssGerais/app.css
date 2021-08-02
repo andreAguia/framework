@@ -894,6 +894,96 @@ ul.menuProcedimentos a#link :hover {
     color: darkgray;
 }
 
+/* Tema Menu Aposentadoria */
+
+ul.menuAposentadoria li{ 
+    padding: 0px 0px 0px 0px;    
+    text-align: left;
+    font-size: 13px;
+    list-style-type: none;
+    margin: 0px 0px 0px 0px;
+}
+
+ul.menuAposentadoria hover {
+    color: darkgray;
+}
+
+ul.menuAposentadoria li#titulo{
+    padding: 0px 0px 0px 0px;    
+    text-align: left;
+    list-style-type: none;
+    margin: 15px 0px 0px -15px;
+    border-bottom: #bababa solid thin;
+}
+
+ul.menuAposentadoria li#titulo a{
+    text-decoration:none;
+    color: #02548b;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+ul.menuAposentadoria li#titulo1{
+    padding: 0px 0px 0px 0px;    
+    text-align: left;
+    list-style-type: none;    
+    margin: 5px 0px 0px -10px;
+}
+
+ul.menuAposentadoria li#titulo1 a{
+    text-decoration:none;
+    color: #8a8a8a;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+ul.menuAposentadoria li#link{
+    padding: 0px 0px 0px 0px;    
+    text-align: left;
+    list-style-type: none;
+    margin: 0px 0px 0px 5px;
+}
+
+ul.menuAposentadoria a#link{
+    text-decoration:none;
+    color: #02548b;    
+    font-size: 13px;
+}
+
+ul.menuAposentadoria li#linkWindow{
+    padding: 0px 0px 0px 0px;    
+    text-align: left;
+    list-style-type: none;
+    margin: 0px 0px 0px 0px;
+}
+
+ul.menuAposentadoria a#linkWindow{
+    text-decoration:none;
+    color: #02548b;    
+    font-size: 13px;
+}
+
+ul.menuAposentadoria li#sublink{
+    padding: 0px 0px 0px 0px;    
+    text-align: left;    
+    list-style-type: none;
+    margin: 0px 0px 0px 10px;
+}
+
+ul.menuAposentadoria a#sublink{
+    text-decoration:none;
+    color: #02548b;
+    font-size: 13px;
+}
+
+ul.menuAposentadoria li#titulo a :hover,
+ul.menuAposentadoria li#titulo1 a :hover,
+ul.menuAposentadoria a#sublink :hover,
+ul.menuAposentadoria a#link :hover {
+    color: darkgray;
+}
+
+
 span#novo{
     color:#9e0c0f;
     font-size: 10px;    

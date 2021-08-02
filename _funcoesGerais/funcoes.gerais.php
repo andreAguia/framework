@@ -2179,6 +2179,29 @@ function dias_to_diasMesAno($dias) {
 
 ###########################################################
 
+function dias_to_Ano($dias) {
+
+    /**
+     * Transforma uma quantidade grande de dias anos sem arredondar
+     *
+     * @param $dias integer null O número de dias a ser calculado
+     * @return integer com os anos calculados
+     *
+     * @syntax dias_to_Ano($dias);
+     */
+    # Inicia as variáveis
+    $dias = abs($dias); // retira o sinal de dias
+
+    # Calcula os anos
+    if ($dias > 364) {
+        return intval($dias / 365); 
+    }else{
+        return 0;
+    };
+}
+
+###########################################################
+
 function resto($dividendo, $divisor) {
 
     /**

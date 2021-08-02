@@ -21,6 +21,7 @@ class Link {
     private $imagem = null;     // string  O caminho e o nome da Imagem a ser exibida
     private $imagemWidth = 48;  // integer A largura da imagem
     private $imagemHeight = 48; // integer A altura da imagem
+    private $bold = false;      // bool Se o título do link foi selecionado. (bold)
 
 ###########################################################
 
@@ -53,7 +54,7 @@ class Link {
     }
 
 ###########################################################
-    
+
     public function get_url($url = null) {   // string O caminho do link do link
         /**
          * Informa a url
@@ -61,7 +62,7 @@ class Link {
          * @syntax $link->set_url($url);
          */
 
-       return $this->url;
+        return $this->url;
     }
 
 ###########################################################
@@ -86,6 +87,18 @@ class Link {
          */
 
         $this->id = $id;
+    }
+
+###########################################################
+
+    public function set_bold($bold = false) { // bool se tem ou não bold no título
+        /**
+         * Define se o título aparecerá com bold ou nẽo (selecionado ou não)
+         * 
+         * @syntax $link->set_bold($bold);
+         */
+
+        $this->bold = $bold;
     }
 
 ###########################################################
@@ -172,6 +185,16 @@ class Link {
          * 
          * @syntax $link->show([$id]); 
          */
+        
+        # title
+        if (is_null($this->title)) {
+            $this->title = $this->label;
+        }
+
+        # Bold (selecionado)
+        if ($this->bold) {
+            $this->label = "<b>{$this->label}</b>";
+        }
 
         # Atalho
         if ($this->accessKey <> null) {
