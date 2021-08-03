@@ -845,6 +845,7 @@ class Input {
                 echo '>';
                 echo $this->valor;
                 echo '</textarea>';
+                echo '<br/>';
 
                 /* Coloque no início do página para funcionar
                  * $page = new Page();
