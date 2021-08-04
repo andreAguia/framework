@@ -1021,6 +1021,43 @@ function callout($mensagem, $tipo = "warning") {
 
 ###########################################################
 
+function calloutAlert($mensagem, $tipo = "alert") {
+    /**
+     * Exibe um painel contendo um alerta
+     *
+     * @note Essa função é uma alternativa a função alert e utiliza a classe homônima.
+     * @note Foi criada para facilitar o código quando se quer somente exibir uma mensagem dentro de um painel colorido.
+     * @note Utiliza a funcionalidade callout do Foundation
+     *
+     * @param $mensagem string null    A mensagem a ser exibida
+     * @param $tipo     string warning O tipo do callout: secondary | primary | success | warning | alert
+     *
+     * @syntax callout($mensagem, [$tipo]);
+     *
+     * @example exemplo.callout.php
+     */
+    # Verifica se não está vazio
+    if (!vazio($mensagem)) {
+
+        # Chama a classe callout
+        $callout = new Callout($tipo);
+        $callout->abre();
+
+        # Verifica se é diversas mensagens
+        if (is_array($mensagem)) {
+            foreach ($mensagem as $mm) {
+                p($mm, "center");
+            }
+        } else {
+            p($mensagem, "center");
+        }
+
+        $callout->fecha();
+    }
+}
+
+###########################################################
+
 function label($mensagem, $tipo = "warning", $id = null, $title = null) {
     /**
      * Cria uma mensagem com fundo colorido.
