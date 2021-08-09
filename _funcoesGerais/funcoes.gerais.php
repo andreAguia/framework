@@ -1073,6 +1073,12 @@ function label($mensagem, $tipo = "warning", $id = null, $title = null) {
      *
      * @example exemplo.label.php
      */
+    
+    # Trata o title
+    if (empty($title)){
+        $title = $mensagem;
+    }
+    
     span($mensagem, $id, "label {$tipo}", $title);
 }
 
