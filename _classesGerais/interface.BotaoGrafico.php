@@ -371,7 +371,7 @@ class BotaoGrafico {
         # verifica o tipo de botão
         switch ($this->tipo) {
             case "link":
-                if (!is_null($this->url)) {
+                if (!empty($this->url)) {
                     if ((isset($this->confirma)) && ($this->confirma <> null)) {
                         echo " onclick='confirma(\"$this->url\",\"$this->confirma\")' />";
                     } else {

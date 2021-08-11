@@ -3478,7 +3478,7 @@ table.hover:not(.unstriped) tr:nth-of-type(even):hover {
   position: absolute;
   top: calc(100% + 0.6495rem);
   z-index: 1200;
-  max-width: 10rem;
+  max-width: 20rem;
   padding: 0.75rem;
   border-radius: 3px;
   background-color: #0a0a0a;
