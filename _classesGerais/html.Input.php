@@ -1187,7 +1187,7 @@ class Input {
 
             default:
                 echo ' size="' . ($this->size) . '"';
-                echo ' type="text"';
+                echo ' type="text"'; 
                 echo ' value="' . $this->valor . '"';
                 echo ' onFocus="this.select();"';
                 echo '/>';

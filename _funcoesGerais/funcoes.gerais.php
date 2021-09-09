@@ -516,7 +516,6 @@ function bold($texto, $destaque) {
         "<span id='ressaltado' class='warning label'>" . mb_strtoupper($destaqueSAcento) . "</span>"
     ];
 
-
     # Faz o texto ressaltado ficar em bold no texto
     return str_replace($arrayBusca, $arraySub, $texto);
 }
@@ -872,7 +871,7 @@ function botaoVoltar($url, $label = 'Voltar', $title = 'Volta para a página ant
 
 ###########################################################
 
-function aguarde($texto = null,$tamanho = 90) {
+function aguarde($texto = null, $tamanho = 90) {
 
     /**
      * Rotina que exibe uma animação sugerindo aguardar alguma tarefa ser concluída.
@@ -1073,12 +1072,11 @@ function label($mensagem, $tipo = "warning", $id = null, $title = null) {
      *
      * @example exemplo.label.php
      */
-    
     # Trata o title
-    if (empty($title)){
+    if (empty($title)) {
         $title = $mensagem;
     }
-    
+
     span($mensagem, $id, "label {$tipo}", $title);
 }
 
@@ -2102,7 +2100,7 @@ function arrayToString($valores) {
 
 ###########################################################
 
-function arrayPreenche($valorInicial, $valorFinal, $ordem = "c") {
+function arrayPreenche($valorInicial, $valorFinal, $ordem = "c", $salto = 1) {
     /**
      * Preenche um array numérico com uma faixa de valores
      *
@@ -2116,11 +2114,11 @@ function arrayPreenche($valorInicial, $valorFinal, $ordem = "c") {
 
     # Preenche com os valores informados
     if ($ordem == "c") {
-        for ($i = $valorInicial; $i <= $valorFinal; $i++) {
+        for ($i = $valorInicial; $i <= $valorFinal; $i += $salto) {
             $resultado[] = $i;
         }
     } elseif ($ordem == "d") {
-        for ($i = $valorFinal; $i >= $valorInicial; $i--) {
+        for ($i = $valorFinal; $i >= $valorInicial; $i -= $salto) {
             $resultado[] = $i;
         }
     }
@@ -2171,57 +2169,6 @@ function codificacao($string) {
 
 ###########################################################
 
-function dias_to_diasMesAno($dias) {
-
-    /**
-     * Transforma uma quantidade grande de dias em dias meses e anos
-     *
-     * @param $dias integer null O número de dias a ser calculado
-     * @return string com os dias meses e anos calculados
-     *
-     * @syntax dias_to_diasMesAno($dias);
-     */
-    # Inicia as variáveis
-    $anos = 0;
-    $meses = 0;
-    $dias = abs($dias); // retira o sinal de dias
-    $texto = null;
-
-    # Calcula os anos
-    if ($dias > 364) {
-        $anos = intval($dias / 365);      // Divide para descobrir a quantidade de anos
-        $resto = resto($dias, 365);      // Pega o resto para calcular os meses e dias
-        $dias = $resto;                 // Passa o resto para variável $dias
-    }
-
-    # Calcula os meses
-    if ($dias > 29) {
-        $meses = intval($dias / 30);          // Divide para descobrir a quantidade de meses
-        $resto = resto($dias, 30);          // Pega o resto para calcular os dias
-        $dias = $resto;                     // Passa o resto para variável $dias
-    }
-
-    # Monta o texto de retorno
-    # Anos
-    if ($anos > 0) {
-        $texto = $anos . "a ";
-    }
-
-    # Meses
-    if ($meses > 0) {
-        $texto .= $meses . "m ";
-    }
-
-    # Dias
-    if ($dias > 0) {
-        $texto .= $dias . "d ";
-    }
-
-    return $texto;
-}
-
-###########################################################
-
 function dias_to_Ano($dias) {
 
     /**
@@ -2234,11 +2181,10 @@ function dias_to_Ano($dias) {
      */
     # Inicia as variáveis
     $dias = abs($dias); // retira o sinal de dias
-
     # Calcula os anos
     if ($dias > 364) {
-        return intval($dias / 365); 
-    }else{
+        return intval($dias / 365);
+    } else {
         return 0;
     };
 }

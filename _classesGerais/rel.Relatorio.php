@@ -96,7 +96,7 @@ class Relatorio {
     # Outros
     private $totalRegistro = true;  // se terá o número de registros no fim do relatório (e dos grupos))
     private $totalRegistroValor = null;  // Guarda o valor do toal para ser recuperado na rotina de relatório via get
-    private $bordaInterna = false;  // Exibe ou não uma linha dentro da tabela entro os registros 
+    private $bordaInterna = false;  // Exibe ou não uma linha dentro da tabela entre os registros 
     private $dataImpressao = true;  // Exibe ou  não a Data de Impressão
     private $espacamento = 0;                   // Espaçamento entre as linha. 0 - espacamento padrão
     private $cabecalhoRelatorio = true;         // Exibe ou não o cabeçalho do relatório
