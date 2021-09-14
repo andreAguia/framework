@@ -2554,3 +2554,101 @@ function emConstrucao($texto = null, $brAntes = 3) {
 
     $div->fecha();
 }
+
+###########################################################
+
+function h1($mensagem) {
+    /**
+     * Insere uma mensagem h1
+     *
+     * @param $mensagem string null a mensagem a ser exibida
+     *
+     * @syntax h1($mensagem);
+     *
+     * @note Essa função apenas executa um echo <h1>
+     */
+    
+    echo "<h1>{$mensagem}</h1>";
+}
+
+###########################################################
+
+function h2($mensagem) {
+    /**
+     * Insere uma mensagem h2
+     *
+     * @param $mensagem string null a mensagem a ser exibida
+     *
+     * @syntax h2($mensagem);
+     *
+     * @note Essa função apenas executa um echo <h2>
+     */
+    
+    echo "<h2>{$mensagem}</h2>";
+}
+
+###########################################################
+
+function h3($mensagem) {
+    /**
+     * Insere uma mensagem h3
+     *
+     * @param $mensagem string null a mensagem a ser exibida
+     *
+     * @syntax h3($mensagem);
+     *
+     * @note Essa função apenas executa um echo <h3>
+     */
+    
+    echo "<h3>{$mensagem}</h3>";
+}
+
+###########################################################
+
+function h4($mensagem) {
+    /**
+     * Insere uma mensagem h4
+     *
+     * @param $mensagem string null a mensagem a ser exibida
+     *
+     * @syntax h4($mensagem);
+     *
+     * @note Essa função apenas executa um echo <h4>
+     */
+    
+    echo "<h4>{$mensagem}</h4>";
+}
+
+###########################################################
+
+function h5($mensagem) {
+    /**
+     * Insere uma mensagem h5
+     *
+     * @param $mensagem string null a mensagem a ser exibida
+     *
+     * @syntax h5($mensagem);
+     *
+     * @note Essa função apenas executa um echo <h5>
+     */
+    
+    echo "<h5>{$mensagem}</h5>";
+}
+
+###########################################################
+
+function h6($mensagem) {
+    /**
+     * Insere uma mensagem h6
+     *
+     * @param $mensagem string null a mensagem a ser exibida
+     *
+     * @syntax h6($mensagem);
+     *
+     * @note Essa função apenas executa um echo <h6>
+     */
+    
+    echo "<h6>{$mensagem}</h6>";
+}
+
+###########################################################
