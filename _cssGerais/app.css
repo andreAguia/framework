@@ -484,6 +484,15 @@ form.upload button:active, form.upload1 button:active{
     border:0;
 }
 
+p#puploadMensagem{
+    font-size: 14px;
+    padding: 0px;
+    margin: 0px;
+    font-weight: bold;
+    text-align: center;
+    color: red;  
+}
+
 /********************************
  *  class Input
  ********************************/
