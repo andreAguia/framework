@@ -9,51 +9,15 @@
  * By Alat
  */
 class Modelo {
+    /*
+     * Variáveis Gerais
+     */
     # Nome do Modelo (aparecerá nos fildset e no caption da tabela)
 
     private $nome = null;
-                            
+
     # id (para o fieldset)
     private $id = 'Padrao';
-
-    # botões de voltar da lista
-    private $botaoVoltarLista = true;
-    private $voltarLista = null;
-
-    # botão de voltar do formulário
-    private $voltarForm = '?';
-    private $botaoVoltarForm = true;
-
-    # botões Incluir e editar do list
-    private $botaoIncluir = true;
-    private $botaoIncluirNome = "Incluir";
-    private $botaoEditar = true; # esse flag é necessário pois o link de editar e incluir são os mesmos
-    # e pode-se querer ter o botão incluir mas não o botão editar.
-    private $botaoExcluir = true;
-
-    # botão de histórico
-    private $botaoHistorico = true;
-
-    # campo de pesquisa de um parâmetro na rotina de listar
-    private $parametroLabel = null;
-    private $parametroValue = null;
-    private $tipoCampoPesquisa = "texto"; // tipo do campo
-    private $arrayPesquisa = null; // Array quando combo
-    private $exibeTextoRessaltado = true; // Exibe texto ressaltado quando true
-    # Top bar
-    private $topBarListar = true; # Exibe ou  não a top bar na rotina de lista
-    private $topBarIncluir = true; # Exibe ou  não a top bar na rotina de inclusão
-    # ordem da lista
-    private $orderCampo = null;
-    private $orderTipo = null;
-    private $orderChamador = null;
-
-    # select da lista
-    private $selectLista;
-    private $selectEdita;
-
-    # Tempo de pesquisa
-    private $exibeTempoPesquisa = true;
 
     # Caminhos
     private $linkEditar = null;
@@ -62,6 +26,49 @@ class Modelo {
     private $linkGravar = null;
     private $linkListar = null;
 
+    # Rotinas Extras - > rotina extra que aparecerá nas rotinas de listar e editar
+    private $rotinaExtra = null;
+    private $rotinaExtraParametro = null;
+
+    ###########################################################
+
+    /*
+     * Rotina listar
+     */
+
+    # Top bar
+    private $topBarListar = true;
+
+    # select
+    private $selectLista;
+
+    # botão de voltar
+    private $botaoVoltarLista = true;
+    private $voltarLista = null;
+
+    # Array de objetos button para incluir no menu
+    private $botaoListarExtra;
+
+    # botão Incluir
+    private $botaoIncluir = true;
+    private $botaoIncluirNome = "Incluir";
+
+    # botão Editar
+    private $botaoEditar = true;
+
+    # campo de pesquisa
+    private $parametroLabel = null;
+    private $parametroValue = null;
+    private $tipoCampoPesquisa = "texto";
+    private $arrayPesquisa = null; // quando combo
+    private $exibeTextoRessaltado = true;
+    private $exibeTempoPesquisa = true;
+
+    # ordem da lista
+    private $orderCampo = null;
+    private $orderTipo = null;
+    private $orderChamador = null;
+
     # Parametros da tabela
     private $label = null;
     private $colspanLabel = null;
@@ -69,12 +76,22 @@ class Modelo {
     private $align = null;
     private $idTabela = null;
     private $totalRegistro = true;
+
+    # Define uma nova figura para os botões. Senão serã exibido a figura padrão
+    private $editarBotao = null;
+    private $excluirBotao = null;
+
+    # Rotinas Extras Listar - > rotina extra que aparecerá na rotina de Lista
+    private $rotinaExtraListar = null;
+    private $rotinaExtraListarParametro = null;
+
+    # link
     private $link = null; # array de objetos link correspondente a coluna em que ele aparece
     private $linkCondicional = null; # array com o valor que a coluna deve ter para ter o link
     private $imagemCondicional = null; # array com a imagem condicional
     private $linkImage = null;
     private $linkTitle = null;
-    private $linkCondicionalOperador = '='; // operador da compara��o. pode ser (=,<>, < ou >)
+    private $linkCondicionalOperador = '='; // operador da comparação. pode ser (=,<>, < ou >)
     private $formatacaoCondicional = null;  // Array com uma formata��o condicional de cores
     private $numeroOrdem = false;           // Exibe (qualdo true) uma numera��o das colunas
     private $numeroOrdemTipo = 'c';         // Informa que a ordena��o ser� 'c' crescente ou 'd' decrescente
@@ -104,17 +121,87 @@ class Modelo {
     private $nomeColunaExcluir = null;
     private $nomeColunaEditar = null;
 
-    # Define uma nova figura para os botões.
-    # Deixndo nulo serã exibido a figura padrão
-    private $editarBotao = null;
-    private $excluirBotao = null;
-
-    # Parâmetros da paginação da listagem
+    # Paginação
     private $paginacao = false; # Flag que indica se terá ou não paginação na lista
     private $paginacaoItens = 15; # Quantidade de registros por página.
     private $paginacaoInicial = 0; # A paginação inicial
     private $pagina = 1; # Página atual
     private $quantidadeMaxLinks = 10; # Quantidade Máximo de links de paginação a ser exibido na página
+    # Menu Lateral - Objeto menu a ser inserido ao lado da tabela de listagem
+    private $menuLateralListar = null;
+
+    # Se as linhas da tabela serão de cores diferentes
+    private $comGridLista = true;
+
+    # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
+    private $rowspan = null;
+
+    # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
+    private $grupoCorColuna = null;
+
+    ###########################################################
+
+    /*
+     * Rotina Editar e Incluir
+     */
+
+    # Top bar
+    private $topBarIncluir = true;
+
+    # select
+    private $selectEdita;
+
+    # botão de voltar do formulário
+    private $voltarForm = '?';
+    private $botaoVoltarForm = true;
+
+    # Array de objetos button para incluir no menu
+    private $botaoEditarExtra;
+
+    # botão de histórico (aparece no editar)
+    private $botaoHistorico = true;
+
+    # Nome (e id) do Formulário para o css e jscript
+    private $nomeForm = 'formPadrao';
+
+    # Tipo de label do formulário
+    private $formLabelTipo = 1;
+
+    # Campos para o formulario
+    private $campos = null;
+
+    # Insere objeto (Imagem) para o form
+    private $objetoForm = null;
+
+    # Rotinas Extras Editar - > rotina extra que aparecerá na rotina de editar
+    private $rotinaExtraEditar = null;
+    private $rotinaExtraEditarParametro = null;
+
+    # Formnulário Extra
+    private $formExtra = null;
+
+    # Menu Lateral - Objeto menu a ser inserido ao lado do formulário de edição
+    private $menuLateralEditar = null;
+
+    # Exibe um * quando o campo for obrigatório
+    private $exibeInfoObrigatoriedade = true;
+
+    ###########################################################
+
+    /*
+     * Rotina Excluir
+     */
+    private $botaoExcluir = true;
+
+    ###########################################################
+
+    /*
+     * Rotina Gravar
+     */
+
+    # Rotina que volta após gravar
+    private $linkAposGravar = null;
+
     # Valores antes da atualização
     private $oldValue = null;
 
@@ -124,53 +211,23 @@ class Modelo {
     # Nome da tabela
     private $tabela = null;
 
-    # Nome (e id) do Formulário para o css e jscript
-    private $nomeForm = 'formPadrao';
-
-    # Insere objeto (Imagem) para o form
-    private $objetoForm = null;
-
     # Nome do campo id
     private $idCampo = null;
 
-    # Tipo de label do formulário
-    private $formLabelTipo = 1;
+    # Parâmetros para o log - Usuário logado
+    private $idUsuario = null;
 
-    # Campos para o formulario
-    private $campos = null;
+    # Parâmetros para o log - Qual servidor teve os dados alterados
+    private $idServidorPesquisado = null;
 
-    # Parâmetros pra a rotina de Log
-    private $idUsuario = null; # Usuário logado
-    private $idServidorPesquisado = null; # Usado para informar qual servidor teve os dados alterados. Usado no sistema de pessoal
-    private $listaLog = 'listaLog.php'; # rotina externa para onde o botão levará
-    private $log = true; # Se grava ou não o log
-    private $logDescricao = true; # Define se no log grava a atividade (descrição do que foi gravado)
-    # Botões extra
-    private $botaoListarExtra; # Array de objetos button para fazer um menu na rotina de listar
-    private $botaoEditarExtra; # Array de objetos button para fazer um menu na rotina de editar
-    # Rotinas Extras - > rotina extra que aparecerá nas rotinas de listar e editar
-    private $rotinaExtra = null;
-    private $rotinaExtraParametro = null;
+    # Parâmetros para o log - Rotina externa para onde o botão levará
+    private $listaLog = 'listaLog.php';
 
-    # Rotinas Extras Editar - > rotina extra que aparecerá na rotina de editar
-    private $rotinaExtraEditar = null;
-    private $rotinaExtraEditarParametro = null;
+    # Parâmetros para o log - Se terá ou não log gravado
+    private $log = true;
 
-    # Rotinas Extras Listar - > rotina extra que aparecerá na rotina de Lista
-    private $rotinaExtraListar = null;
-    private $rotinaExtraListarParametro = null;
-
-    # Formnulário Extra
-    private $formExtra = null;
-
-    # Menu Lateral
-    private $menuLateralEditar = null; //  Objeto menu a ser inserido ao lado do formulário de edição
-    private $menuLateralListar = null; //  Objeto menu a ser inserido ao lado da tabela de listagem
-    # Outros
-    private $exibeInfoObrigatoriedade = true;
-    private $comGridLista = true;
-    private $rowspan = null; # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
-    private $grupoCorColuna = null; # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
+    # Parâmetros para o log - Define se no log grava a atividade (descrição do que foi gravado)
+    private $logDescricao = true;
 
     ###########################################################
 
@@ -803,10 +860,10 @@ class Modelo {
 
         foreach ($this->campos as $campo) {
             # Verifica o tipo do label
-            if(empty($campo['tipoLabel'])){
+            if (empty($campo['tipoLabel'])) {
                 $campo['tipoLabel'] = $this->formLabelTipo;
             }
-            
+
             $controle = new Input($campo['nome'], $campo['tipo'], $campo['label'], $campo['tipoLabel']);
             $controle->set_linha($campo['linha']); // linha no form que vai ser colocado o controle
             $linhaAtual = $campo['linha'];
@@ -861,7 +918,7 @@ class Modelo {
             if (isset($campo['disabled'])) {
                 $controle->set_disabled($campo['disabled']);
             }
-            
+
             # optgroup
             if (isset($campo['optgroup'])) {
                 $controle->set_optgroup($campo['optgroup']);
@@ -894,7 +951,7 @@ class Modelo {
             if (isset($campo['placeholder'])) {
                 $controle->set_placeholder($campo['placeholder']);
             }
-            
+
             # helptext - texto embaixo do controle
             if (isset($campo['helptext'])) {
                 $controle->set_helptext($campo['helptext']);
@@ -1274,12 +1331,6 @@ class Modelo {
                     $atividade = 'Incluiu: ' . $alteracoes;
                     $id = $objeto->get_lastId();
                     $tipoLog = 1;
-
-                    # Gambiarra do cadastroConcurso.php
-                    $origem = get_session("origem");
-                    if ($origem == "cadastroConcurso.php") {
-                        $this->linkListar .= "&id=$id";
-                    }
                 } else {
                     $atividade .= 'Alterou: ' . $alteracoes;
                     $tipoLog = 2;
@@ -1304,7 +1355,13 @@ class Modelo {
                 include_once $rotinaPosGravacao;
             }
 
-            loadPage($this->linkListar);
+            # Verifica onde vai retornar
+            if (empty($this->linkAposGravar)) {
+                loadPage($this->linkListar);
+            } else {
+                loadPage($this->linkAposGravar);
+            }
+            
             return true;
         } else {
             alert($msgErro);
