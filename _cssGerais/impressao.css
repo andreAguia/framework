@@ -50,58 +50,49 @@ div#divRelatorio{
 p#pRelatorioTitulo{
     text-align: center;
     font-size: 22px;
-    color: #000;
     margin: 0px;
 }
 
 p#pRelatorioSubtitulo{
     text-align: center;
     font-size: 16px;
-    color: #000;  
     margin: 0px;
 }
 
 p#pRelatorioSubtotal{
     text-align: right;
     font-size: 10px;
-    color: #000;
 }
 
 p#pRelatorioSubgrupo{
     text-align: center;
     font-size: 14px;
-    color: #000;
     margin: 0px;
 }
 
 p#pRelatorioLabel{
     text-align: center;
     font-size: 12px;
-    color: #000;
 }
 
 p#pRelatorioCabecalho{
     text-align: center;
     font-size: 12px;
-    color: #000;
 }
 
 p#pRelatorioNenhumItem{
     text-align: center;
     font-size: 12px;
-    color: #000;
 }
 
 p#pRelatorioTotal{
     text-align: right;
     font-size: 10px;
-    color: #000;
 }
 
 p#pRelatorioDataImpressao{
     text-align: right;
     font-size: 10px;
-    color: #000;
     margin: 0px;
     padding: 0em;
 }
@@ -129,7 +120,6 @@ table.tabelaRelatorio th{
     padding: 0px 3px 0px 3px;
     font-size: 12px;
     font-weight: normal;
-    color: #000;
     border-bottom:#000 solid 2px;
     border-top:#000 solid 2px;
 }
@@ -188,7 +178,6 @@ tr#grupo2{
 *******************************************/
 p.pMensagem{
     font-size: 13px;
-    color: #000099;
 }
 
 /*******************************************
@@ -210,7 +199,6 @@ p#divMensagemRamal{
     left: 10%;
     width: 80%;
     text-align: left;
-    color: #000000;
 }
 
 /* Relatório diária */
@@ -220,28 +208,24 @@ div#relatorioDiaria{
 }
 
 p#diariaAssunto{
-    color: #000000;
     text-align: left;
     font-size: 12px;
     font-family: serif; 
 }
 
 p#diariaData{
-    color: #000000;
     text-align: right;
     font-size: 12px;
     font-family: serif; 
 }
 
 p#diariaTexto{
-    color: #000000;
     text-align: justify;
     font-size: 12px;
     font-family: serif; 
 }
 
 p#diariaTabela{
-    color: #000000;
     text-align: center;
     font-size: 12px;
     font-family: serif; 
@@ -260,7 +244,6 @@ table#diariaTabelaServidor td{
 }
 
 p#diariaAssinatura{
-    color: #000000;
     text-align: center;
     font-size: 12px;
     font-family: serif; 
@@ -269,24 +252,20 @@ p#diariaAssinatura{
 /* Formulário de Avaliação Funcional Geral */
 
 p#pFAG{
-    color: #000000;
     font-size: 12px;
 }
 
 p#pFAGTitulo{
-    color: #000000;
     text-align: center;
     font-size: 22px;
 }
 
 p#pFAGLabel{
-    color: #000000;
     text-align: left;
     font-size: 10px;
 }
 
 p#pFAGItem{
-    color: #000000;
     text-align: left;
     font-size: 14px;
 }
@@ -294,13 +273,11 @@ p#pFAGItem{
 /* Pasta do Servidor */
 
 p#pPastaTitulo{
-    color: #000000;
     text-align: center;
     font-size: 22px;
 }
 
 p#pPastaItem{
-    color: #000000;
     text-align: center;
     font-size: 20px;
 
@@ -314,7 +291,6 @@ table#relatorioProcessosArquivados th{
 }
 
 p#pProcessoArquivadoCabecalho{
-    color: #000000;
     text-align: center;
     font-size: 14px;
 
@@ -323,7 +299,6 @@ p#pProcessoArquivadoCabecalho{
 /* Ficha de Avaliação Funcional (FAF) */
 
 p#pFafItem{
-    color: #000000;
     text-align: left;
     font-size: 12px;
 
@@ -346,13 +321,11 @@ table#tablePeriodoAvaliado td{
 
 table#tableFaf2 {
     border: 1px solid black;
-    color: #000000;
     border-collapse:collapse;
     width: 100%;
 }
 
 table#tableFaf2 th{
-    color: #000000;
     font-size: 12px;
     text-align: center;
     border: 1px solid black;
@@ -360,23 +333,20 @@ table#tableFaf2 th{
 }
 
 table#tableFaf2 td{
-    color: #000000;
     font-size: 12px;
     text-align: left;
     border: 1px solid black;
     height:40px;
 }
 
-table#tableFaf3 {     
-    color: #000000;
+table#tableFaf3 { 
     border-collapse:collapse;
     width: 50%;
     margin-left: 10px;
     text-align: center;
 }
 
-table#tableFaf3 td{    
-    color: #000000;
+table#tableFaf3 td{ 
     font-size: 12px;
     text-align: center;
     height:18px;
@@ -386,13 +356,11 @@ table#tableFaf3 td{
 
 table#tableFolhaPresenca {
     border: 1px solid black;
-    color: #000000;
     border-collapse:collapse;
     width: 100%;
 }
 
 table#tableFolhaPresenca th{
-    color: #000000;
     font-size: 12px;
     text-align: center;
     border: 1px solid black;
@@ -400,7 +368,6 @@ table#tableFolhaPresenca th{
 }
 
 table#tableFolhaPresenca td{
-    color: #000000;
     font-size: 12px;
     text-align: center;
     border: 1px solid black;
@@ -408,14 +375,12 @@ table#tableFolhaPresenca td{
 }
 
 table#tableFolhaPresenca2 td{
-    color: #000000;
     font-size: 12px;
     text-align: center;
     height: 20px;
 }
 
 p#pFolhaPresencaRodape{
-    color: #000000;
     text-align: left;
     font-size: 10px;     
 }
@@ -468,13 +433,11 @@ p#pCiAssinatura{
 
 table#tableFolhaPresenca {
     border: 1px solid black;
-    color: #000000;
     border-collapse:collapse;
     width: 100%;
 }
 
 table#tableFolhaPresenca th{
-    color: #000000;
     font-size: 14px;
     text-align: center;
     border: 2px solid black;
@@ -482,7 +445,6 @@ table#tableFolhaPresenca th{
 }
 
 table#tableFolhaPresenca td{
-    color: #000000;
     font-size: 12px;
     text-align: center;
     border: 2px solid black;
@@ -490,14 +452,12 @@ table#tableFolhaPresenca td{
 }
 
 table#tableFolhaPresenca2 td{
-    color: #000000;
     font-size: 12px;
     text-align: center;
     height: 20px;
 }
 
 p#pFolhaPresencaRodape{
-    color: #000000;
     text-align: left;
     font-size: 10px;     
 }
@@ -508,7 +468,6 @@ p#pFolhaPresencaRodape{
 
 table#tableRelatorioBalcao {
     border: 1px solid black;
-    color: #000000;
     border-collapse:collapse;
     width: 100%;
 }
@@ -522,14 +481,12 @@ table#tableRelatorioBalcao caption{
 }
 
 table#tableRelatorioBalcao th{
-    color: #000000;
     font-size: 18px;
     text-align: center;
     border: 1px solid black;
 }
 
 table#tableRelatorioBalcao td{
-    color: #000000;
     font-size: 18px;
     text-align: center;
     border: 1px solid black;
@@ -638,4 +595,23 @@ p#pRpaNumero{
     font-size: 20px;
     padding-top: 10px;
     margin: 0px;
+}
+
+/*******************************************
+ * Área Vacina
+ *******************************************/
+
+p#pVacinaNInformada{
+    font-size: 12px;
+    padding: 0px;
+    margin: 1px;
+    border: 2px solid black;
+    font-weight: bold;
+}
+
+p#pVacinaUmaDose{
+    font-size: 12px;
+    padding: 0px;
+    margin: 1px;
+    border: 2px solid black;
 }
