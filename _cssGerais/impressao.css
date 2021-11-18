@@ -605,7 +605,7 @@ p#pVacinaNInformada{
     font-size: 12px;
     padding: 0px;
     margin: 1px;
-    border: 2px solid black;
+    border: 0px;
     font-weight: bold;
 }
 
@@ -613,5 +613,5 @@ p#pVacinaUmaDose{
     font-size: 12px;
     padding: 0px;
     margin: 1px;
-    border: 2px solid black;
+    border: 0px;
 }
