@@ -385,25 +385,29 @@ class Tabela {
         if ($numLinhas > 0) {
 
             # rowspan
-            if (!is_null($this->rowspan)) {
-                $arrayRowspan = [];
-                $rowspanAnterior = null;
-                $rowspanAtual = null;
+            if (is_array($this->rowspan)) {
+                ## Fazer aqui a rotina com multiplos rowspans
+            } else {
+                if (!is_null($this->rowspan)) {
+                    $arrayRowspan = [];
+                    $rowspanAnterior = null;
+                    $rowspanAtual = null;
 
-                # Passa os valores para o array
-                foreach ($this->conteudo as $itens) {
-                    # A verificação abaixo evita o erro da função array_count_values()
-                    # que somente funciona com valores interiros e string. 
-                    # Transformando um null em string vazia. Dai não dá erro
-                    if (empty($itens[$this->rowspan])) {
-                        $arrayRowspan[] = "";
-                    } else {
-                        $arrayRowspan[] = $itens[$this->rowspan];
+                    # Passa os valores para o array
+                    foreach ($this->conteudo as $itens) {
+                        # A verificação abaixo evita o erro da função array_count_values()
+                        # que somente funciona com valores interiros e string. 
+                        # Transformando um null em string vazia. Dai não dá erro
+                        if (empty($itens[$this->rowspan])) {
+                            $arrayRowspan[] = "";
+                        } else {
+                            $arrayRowspan[] = $itens[$this->rowspan];
+                        }
                     }
+
+                    # Conta quantos valores tem e guarda no array $arr
+                    $arr = array_count_values($arrayRowspan);
                 }
-                
-                # Conta quantos valores tem e guarda no array $arr
-                $arr = array_count_values($arrayRowspan);
             }
 
             # Quando existir rotina de editar
@@ -664,24 +668,30 @@ class Tabela {
                     $rowspanValor = null;
                     $exibeTd = true;
 
-                    # Verifica se tem Rowlspan
-                    if (!is_null($this->rowspan)) {
+                    # rowspan
+                    if (is_array($this->rowspan)) {
+                        ## Fazer aqui a rotina com multiplos rowspans
+                    } else {
 
-                        # Verifica se é essa coluna
-                        if ($this->rowspan == $a) {
+                        # Verifica se tem Rowlspan
+                        if (!is_null($this->rowspan)) {
 
-                            $rowAtual = $row[$a];
+                            # Verifica se é essa coluna
+                            if ($this->rowspan == $a) {
 
-                            # Verifica se mudou o valor
-                            if ($rowspanAnterior <> $rowAtual) {
-                                $rowspanAnterior = $rowAtual;  // habilita o novo valor anterior
+                                $rowAtual = $row[$a];
 
-                                if ($arr[$row[$a]] > 1) {
-                                    $rowspanValor = $arr[$row[$a]];
-                                }
-                            } else {
-                                if (!empty($arr[$row[$a]]) AND $arr[$row[$a]] > 1) {
-                                    $exibeTd = false;
+                                # Verifica se mudou o valor
+                                if ($rowspanAnterior <> $rowAtual) {
+                                    $rowspanAnterior = $rowAtual;  // habilita o novo valor anterior
+
+                                    if ($arr[$row[$a]] > 1) {
+                                        $rowspanValor = $arr[$row[$a]];
+                                    }
+                                } else {
+                                    if (!empty($arr[$row[$a]]) AND $arr[$row[$a]] > 1) {
+                                        $exibeTd = false;
+                                    }
                                 }
                             }
                         }
