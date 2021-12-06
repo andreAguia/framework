@@ -86,7 +86,7 @@ class Tabela {
 
     # das rotinas de edição
     private $editar = null;
-    private $nomeColunaEditar = 'Editar'; # Nome da Coluna
+    private $nomeColunaEditar = 'Editar';       # Nome da Coluna
     private $editarCondicional = null;
     private $editarCondicao = null;
     private $editarColuna = null;
@@ -115,12 +115,13 @@ class Tabela {
     private $colunaTexto = 0;                   // coluna onde o texto será exibido;
     private $funcaoSomatorio = null;            // se executa alguma função no somatório
     private $exibeSomatorioGeral = true;        // se exibe o somatório geral ou somente o parcial
+    # Rowspan
+    private $rowspan = null;            # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
     # outros
     private $textoRessaltado = null; # string que será ressaltada no resultado da tabela (usado para resaltar pesquisas)
     private $idCampo = null;
     private $nomeGetId = "id";          # Nome do get do id. 
-    private $scroll = true;             # Habilita ou não o scrool horizontal da tabela
-    private $rowspan = null;            # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
+    private $scroll = true;             # Habilita ou não o scrool horizontal da tabela    
     private $grupoCorColuna = null;     # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
     private $bordaInterna = false;  // Exibe ou não uma linha dentro da tabela entro os registros 
     private $mensagemTabelaVazia = "Nenhum item encontrado !!";
@@ -365,9 +366,6 @@ class Tabela {
         $valorGrupoCorColuna = null;
         $corGrupo = "grupo1";
 
-        # usado no rowspan para se ocultar a td repetida
-        $exibeTd = true;
-
         # Somatório
         if (is_array($this->colunaSomatorio)) {
             # cria um array de somas para cada coluna
@@ -383,32 +381,6 @@ class Tabela {
         $numLinhas = count($this->conteudo);
 
         if ($numLinhas > 0) {
-
-            # rowspan
-            if (is_array($this->rowspan)) {
-                ## Fazer aqui a rotina com multiplos rowspans
-            } else {
-                if (!is_null($this->rowspan)) {
-                    $arrayRowspan = [];
-                    $rowspanAnterior = null;
-                    $rowspanAtual = null;
-
-                    # Passa os valores para o array
-                    foreach ($this->conteudo as $itens) {
-                        # A verificação abaixo evita o erro da função array_count_values()
-                        # que somente funciona com valores interiros e string. 
-                        # Transformando um null em string vazia. Dai não dá erro
-                        if (empty($itens[$this->rowspan])) {
-                            $arrayRowspan[] = "";
-                        } else {
-                            $arrayRowspan[] = $itens[$this->rowspan];
-                        }
-                    }
-
-                    # Conta quantos valores tem e guarda no array $arr
-                    $arr = array_count_values($arrayRowspan);
-                }
-            }
 
             # Quando existir rotina de editar
             # acrescenta colunas extras e calcula a posi��o na tabela
@@ -438,6 +410,67 @@ class Tabela {
                 $colunaExcluirCondicional = $numColunas;
                 $numColunas++;
                 $this->label[$colunaExcluirCondicional] = 'Rotina de exclusão de registro';
+            }
+
+            # Rowspan
+            if (is_array($this->rowspan)) {
+
+                # Cria um array com os valores da coluna do rowspan
+                $arrayRowspan = [];
+
+                # Preenche as variáveis de verificações que serão usadas mais na frente
+                $rowAnterior = array_fill(0, $numColunas, null);
+                $rowAtual = array_fill(0, $numColunas, null);
+
+                # contador
+                $cont = 0;
+
+                # Passa os valores para o array
+
+                foreach ($this->conteudo as $itens) {
+                    foreach ($this->rowspan as $colunas) {
+
+                        # A verificação abaixo evita o erro da função array_count_values()
+                        # que somente funciona com valores interiros e string. 
+                        # Transformando um null em string vazia. Dai não dá erro
+                        if (empty($itens[$colunas])) {
+                            $arrayRowspan[$colunas][] = "";
+                        } else {
+                            $arrayRowspan[$colunas][] = $itens[$colunas];
+                        }
+                    }
+                    $cont++;
+                }
+
+                # Conta quantos valores tem e guarda no array $arr
+                foreach ($this->rowspan as $colunas) {
+                    $arr[$colunas] = array_count_values($arrayRowspan[$colunas]);
+                }
+            } else {
+
+                if (!is_null($this->rowspan)) {
+                    # Cria um array com os valores da coluna do rowspan
+                    $arrayRowspan = [];
+
+                    # Preenche as variáveis de verificações que serão usadas mais na frente
+                    $rowAnterior = null;
+                    $rowAtual = null;
+
+                    # Passa os valores para o array
+                    foreach ($this->conteudo as $itens) {
+                        # A verificação abaixo evita o erro da função array_count_values()
+                        # que somente funciona com valores interiros e string. 
+                        # Transformando um null em string vazia. Dai não dá erro
+                        if (empty($itens[$this->rowspan])) {
+                            $arrayRowspan[] = "";
+                        } else {
+                            $arrayRowspan[] = $itens[$this->rowspan];
+                        }
+                    }
+
+                    # Conta quantos valores tem e guarda no array $arr
+                    $arr = array_count_values($arrayRowspan);
+                }
             }
 
             # Mensagem pré tabela
@@ -511,7 +544,7 @@ class Tabela {
 
             for ($a = 0; $a < $numColunas; $a += 1) {
 
-                # Verifica se tem scolspan aberto e pula
+                # Verifica se tem colspan aberto e pula
                 if ($marcaColspan == 0) {
                     if ((isset($this->colspanLabel[$a])) AND ($this->colspanLabel[$a] <> null)AND ($this->colspanLabel[$a] > 1)) {
                         echo '<th colspan="' . $this->colspanLabel[$a] . '" title="' . strip_tags($this->label[$a]) . '">';
@@ -666,12 +699,41 @@ class Tabela {
                 for ($a = 0; $a < ($numColunas); $a++) {
 
                     $rowspanValor = null;
-                    $exibeTd = true;
 
                     # rowspan
                     if (is_array($this->rowspan)) {
-                        ## Fazer aqui a rotina com multiplos rowspans
+                        
+                        # Exibe ou não a td
+                        $exibeTd = true;
+
+                        # contador
+                        $cont = 0;
+
+                        foreach ($this->rowspan as $colunas) {
+
+                            # Verifica se é essa coluna
+                            if ($colunas == $a) {
+
+                                $rowAtual[$a] = $row[$a];
+
+                                # Verifica se mudou o valor
+                                if ($rowAnterior[$a] <> $rowAtual[$a]) {
+                                    $rowAnterior[$a] = $rowAtual[$a];  // habilita o novo valor anterior
+
+                                    if ($arr[$a][$row[$a]] > 1) {
+                                        $rowspanValor[$a] = $arr[$a][$row[$a]];
+                                    }
+                                } else {
+                                    if (!empty($arr[$a][$row[$a]]) AND $arr[$a][$row[$a]] > 1) {
+                                        $exibeTd = false;
+                                    }
+                                }
+                                $cont++;
+                            }
+                        }
                     } else {
+                        # Exibe ou não a td
+                        $exibeTd = true;
 
                         # Verifica se tem Rowlspan
                         if (!is_null($this->rowspan)) {
@@ -682,8 +744,8 @@ class Tabela {
                                 $rowAtual = $row[$a];
 
                                 # Verifica se mudou o valor
-                                if ($rowspanAnterior <> $rowAtual) {
-                                    $rowspanAnterior = $rowAtual;  // habilita o novo valor anterior
+                                if ($rowAnterior <> $rowAtual) {
+                                    $rowAnterior = $rowAtual;  // habilita o novo valor anterior
 
                                     if ($arr[$row[$a]] > 1) {
                                         $rowspanValor = $arr[$row[$a]];
@@ -701,8 +763,14 @@ class Tabela {
 
                         echo '<td ';
 
-                        if (!is_null($rowspanValor)) {
-                            echo 'rowspan="' . $rowspanValor . '" ';
+                        if (is_array($rowspanValor)) {
+                            if (!is_null($rowspanValor[$a])) {
+                                echo 'rowspan="' . $rowspanValor[$a] . '" ';
+                            }
+                        } else {
+                            if (!is_null($rowspanValor)) {
+                                echo 'rowspan="' . $rowspanValor . '" ';
+                            }
                         }
 
                         # alinhamento
