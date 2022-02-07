@@ -85,14 +85,12 @@ class Relatorio {
     private $subSelect = null;                  // sql do subrelatorio
     private $subClasseBd = null;  // Classe do bd   
     private $subJoin = null;   // posição no array do join no primeiro relatório    
-    
     # do somatório
     private $colunaSomatorio = null;            // coluna que terá somatório (por enquanto uma por relatório)
     private $textoSomatorio = 'Total:';         // texto a ser exibido na linha de totalização
     private $colunaTexto = 0;                   // coluna onde o texto será exibido;
     private $funcaoSomatorio = null;            // se executa alguma função no somatório
     private $exibeSomatorioGeral = true;        // se exibe o somatório geral ou somente o parcial
-    
     # Outros
     private $totalRegistro = true;  // se terá o número de registros no fim do relatório (e dos grupos))
     private $totalRegistroValor = null;  // Guarda o valor do toal para ser recuperado na rotina de relatório via get
@@ -573,8 +571,27 @@ class Relatorio {
                 $arrayRowspan[] = $itens[$this->rowspan];
             }
 
-            # Conta quantos valores tem e guarda no array $arr
-            $arr = array_count_values($arrayRowspan);
+            # Verifica se o array tem conteúdo
+            if (count($this->conteudo) > 0) {
+
+                # Conta quantos valores tem e guarda no array $arr
+                $arr = array_count_values($arrayRowspan);
+
+                # Acrescenta mais linhas ao rowspan para quando se tem borda interna
+                # Pois a borda interna ocupa uma linha toda
+                if ($this->bordaInterna) {
+
+
+                    # Cria a função
+
+                    function alteraArr(&$array) {
+                        $array = $array + ($array - 1);
+                    }
+
+                    # Executa a função para cada item
+                    array_walk($arr, 'alteraArr');
+                }
+            }
         }
 
         #####
