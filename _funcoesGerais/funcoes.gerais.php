@@ -2211,7 +2211,7 @@ function resto($dividendo, $divisor) {
 
 ###########################################################
 
-function trataNulo($valor, $caractere = "--") {
+function trataNulo($valor, $caractere = "---") {
 
     /**
      * Transforma o valor null ou zero em outro caractere
@@ -2226,7 +2226,7 @@ function trataNulo($valor, $caractere = "--") {
     $retorno = $valor;
 
     # Verifica se é nulo
-    if (vazio($valor)) {
+    if (empty($valor)) {
         $retorno = $caractere;
     }
 
