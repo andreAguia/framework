@@ -469,9 +469,14 @@ function retiraAspas($texto) {
      *
      * @example exemplo.retiraAspas.php
      */
-    $troca1 = str_replace("'", '"', $texto);
-    $parametro = str_replace('"', '', $troca1);
-    return $parametro;
+    # Verifica se veio o texto
+    if(empty($texto)) {
+        return null;
+    } else {
+        $troca1 = str_replace("'", '"', $texto);
+        $parametro = str_replace('"', '', $troca1);
+        return $parametro;
+    }
 }
 
 ###########################################################
@@ -2567,7 +2572,6 @@ function h1($mensagem) {
      *
      * @note Essa função apenas executa um echo <h1>
      */
-    
     echo "<h1>{$mensagem}</h1>";
 }
 
@@ -2583,7 +2587,6 @@ function h2($mensagem) {
      *
      * @note Essa função apenas executa um echo <h2>
      */
-    
     echo "<h2>{$mensagem}</h2>";
 }
 
@@ -2599,7 +2602,6 @@ function h3($mensagem) {
      *
      * @note Essa função apenas executa um echo <h3>
      */
-    
     echo "<h3>{$mensagem}</h3>";
 }
 
@@ -2615,7 +2617,6 @@ function h4($mensagem) {
      *
      * @note Essa função apenas executa um echo <h4>
      */
-    
     echo "<h4>{$mensagem}</h4>";
 }
 
@@ -2631,7 +2632,6 @@ function h5($mensagem) {
      *
      * @note Essa função apenas executa um echo <h5>
      */
-    
     echo "<h5>{$mensagem}</h5>";
 }
 
@@ -2647,7 +2647,6 @@ function h6($mensagem) {
      *
      * @note Essa função apenas executa um echo <h6>
      */
-    
     echo "<h6>{$mensagem}</h6>";
 }
 

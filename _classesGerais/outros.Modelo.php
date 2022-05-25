@@ -30,6 +30,9 @@ class Modelo {
     private $rotinaExtra = null;
     private $rotinaExtraParametro = null;
 
+    # Modo Somente Leitura. Não exibe os botões de inclusão, edição nem exclusão
+    private $modoLeitura = false;
+
     ###########################################################
 
     /*
@@ -398,11 +401,13 @@ class Modelo {
             }
 
             # Botão incluir
-            if ($this->botaoIncluir) {
-                $linkBotaoIncluir = new Button($this->botaoIncluirNome, $this->linkIncluir);
-                $linkBotaoIncluir->set_title('Incluir um Registro');
-                $linkBotaoIncluir->set_accessKey('I');
-                $menu->add_link($linkBotaoIncluir, "right");
+            if (!$this->modoLeitura) {
+                if ($this->botaoIncluir) {
+                    $linkBotaoIncluir = new Button($this->botaoIncluirNome, $this->linkIncluir);
+                    $linkBotaoIncluir->set_title('Incluir um Registro');
+                    $linkBotaoIncluir->set_accessKey('I');
+                    $menu->add_link($linkBotaoIncluir, "right");
+                }
             }
             $menu->show();
         }
@@ -629,7 +634,9 @@ class Modelo {
 
         # se tem botão excluir
         if ($this->botaoExcluir) {
-            $tabela->set_excluir($this->linkExcluir);
+            if (!$this->modoLeitura) {
+                $tabela->set_excluir($this->linkExcluir);
+            }
         }
 
         # coloca no rodapé a paginação (quando houver)
@@ -718,6 +725,11 @@ class Modelo {
         $grid = new Grid();
         $grid->abreColuna(12);
 
+        # Passa para bloqueado quando for modo leitura
+        if ($this->modoLeitura) {
+            $bloqueado = true;
+        }
+
         # Cria um menu
         $menu = new MenuBar();
 
@@ -738,15 +750,15 @@ class Modelo {
 
         # Botão histórico
         if ($this->botaoHistorico) {
-            #if (Verifica::acesso($this->idUsuario, 1)) {
-            if (!is_null($id)) {
-                $linkBotaoHistorico = new Link("Histórico");
-                $linkBotaoHistorico->set_class('button success');
-                $linkBotaoHistorico->set_onClick("abreFechaDivId('divHistorico');");
-                $linkBotaoHistorico->set_title('Exibe o histórico');
-                $menu->add_link($linkBotaoHistorico, "right");
+            if (!$this->modoLeitura) {
+                if (!is_null($id)) {
+                    $linkBotaoHistorico = new Link("Histórico");
+                    $linkBotaoHistorico->set_class('button success');
+                    $linkBotaoHistorico->set_onClick("abreFechaDivId('divHistorico');");
+                    $linkBotaoHistorico->set_title('Exibe o histórico');
+                    $menu->add_link($linkBotaoHistorico, "right");
+                }
             }
-            #}
         }
 
         if (($this->botaoVoltarForm) or ($this->botaoEditarExtra) or ($this->botaoHistorico)) {
@@ -1361,7 +1373,7 @@ class Modelo {
             } else {
                 loadPage($this->linkAposGravar);
             }
-            
+
             return true;
         } else {
             alert($msgErro);
