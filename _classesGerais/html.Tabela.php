@@ -145,7 +145,7 @@ class Tabela {
      *  
      * @param 	$nome	string	-> nome da classe da tabela para o css
      */
-    public function __construct($id = null, $class = 'tabelaPadrao table-scroll') {
+    public function __construct($id = null, $class = 'tabelaPadrao') {
         $this->id = $id;
         $this->class = $class;
     }
@@ -479,9 +479,9 @@ class Tabela {
             }
 
             # Início da Tabela
-            if ($this->scroll) {
-                echo '<div class = "table-scroll">';
-            }
+//            if ($this->scroll) {
+//                echo '<div class = "table-scroll">';
+//            }
 
             # Iniciando a tabela
             echo '<table class = "' . $this->class . '"';
@@ -1000,9 +1000,9 @@ class Tabela {
                 p($this->mensagemPosTabela, "pmensagemPosTabela");
             }
 
-            if ($this->scroll) {
-                echo '</div>';
-            }
+//            if ($this->scroll) {
+//                echo '</div>';
+//            }
         } else {
             if ($this->titulo) {
                 tituloTable($this->titulo);
