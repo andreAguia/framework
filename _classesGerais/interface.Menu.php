@@ -188,7 +188,7 @@ class Menu {
                     break;
 
                 case "link" :
-                    echo "<li id='link'>";
+                    echo "<li class='$this->classe'>";
                     $row->show();
                     echo "</li>";
                     break;
