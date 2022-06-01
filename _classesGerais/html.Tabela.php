@@ -702,7 +702,7 @@ class Tabela {
 
                     # rowspan
                     if (is_array($this->rowspan)) {
-                        
+
                         # Exibe ou não a td
                         $exibeTd = true;
 
@@ -807,7 +807,7 @@ class Tabela {
                             # Se o operador for diferente
                             if (($this->editarOperador == "<>") OR ($this->editarOperador == "!=")) {
                                 if ($row[$this->editarColuna] <> $this->editarCondicao) {
-                                    $link = new Link('Editar', $this->editarCondicional . '&' . $this->nomeGetId . '=' . $id);
+                                    $link = new Link(null, $this->editarCondicional . '&' . $this->nomeGetId . '=' . $id);
                                     $link->set_imagem(PASTA_FIGURAS_GERAIS . $this->editarBotao, 20, 20);
                                     $link->set_title($this->nomeColunaEditar . ': ' . $row[0]);
                                     $link->show();
@@ -828,7 +828,7 @@ class Tabela {
                             # Se o operador for diferente
                             if (($this->excluirOperador == "<>") OR ($this->excluirOperador == "!=")) {
                                 if ($row[$this->excluirColuna] <> $this->excluirCondicao) {
-                                    $link = new Link('Excluir', $this->excluirCondicional . '&' . $this->nomeGetId . '=' . $id);
+                                    $link = new Link(null, $this->excluirCondicional . '&' . $this->nomeGetId . '=' . $id);
                                     $link->set_imagem(PASTA_FIGURAS_GERAIS . $this->excluirBotao, 20, 20);
                                     $link->set_title('Exclui: ' . $row[0]);
                                     $link->set_confirma('Deseja mesmo excluir?');
