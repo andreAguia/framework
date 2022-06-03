@@ -95,9 +95,9 @@ class Modelo {
     private $linkImage = null;
     private $linkTitle = null;
     private $linkCondicionalOperador = '='; // operador da comparação. pode ser (=,<>, < ou >)
-    private $formatacaoCondicional = null;  // Array com uma formata��o condicional de cores
-    private $numeroOrdem = false;           // Exibe (qualdo true) uma numera��o das colunas
-    private $numeroOrdemTipo = 'c';         // Informa que a ordena��o ser� 'c' crescente ou 'd' decrescente
+    private $formatacaoCondicional = null;  // Array com uma formatação condicional de cores
+    private $numeroOrdem = false;           // Exibe (qualdo true) uma numeração das colunas
+    private $numeroOrdemTipo = 'c';         // Informa que a ordenação ser� 'c' crescente ou 'd' decrescente
     # do somatório da tabela
     private $colunaSomatorio = null;        // coluna que terá somatório (por enquanto uma por relatório)
     private $textoSomatorio = 'Total:';     // texto a ser exibido na linha de totalização
