@@ -559,12 +559,14 @@ class Relatorio {
 
         # usado no rowspan para se ocultar a td repetida
         $exibeTd = true;
+        
+        # Inicia o marcados para borda interna quando se tem rowspan
+        $marcadorLinha = 1;
 
         # rowspan
         if (!is_null($this->rowspan)) {
             $arrayRowspan = null;
             $rowspanAnterior = null;
-            $rowspanAtual = null;
 
             # Passa os valores para o array
             foreach ($this->conteudo as $itens) {
@@ -580,8 +582,6 @@ class Relatorio {
                 # Acrescenta mais linhas ao rowspan para quando se tem borda interna
                 # Pois a borda interna ocupa uma linha toda
                 if ($this->bordaInterna) {
-
-
                     # Cria a função
 
                     function alteraArr(&$array) {
@@ -592,6 +592,9 @@ class Relatorio {
                     array_walk($arr, 'alteraArr');
                 }
             }
+            
+            var_dump($arrayRowspan);
+            var_dump($arr);
         }
 
         #####
@@ -679,8 +682,7 @@ class Relatorio {
                 if (!is_null($this->numGrupo)) {
                     # Verifica se o valor na coluna de agrupamento é diferente da flag agrupa
                     if (($agrupa <> $row[$this->numGrupo]) && ($agrupa <> "#") && ($grupo)) {
-                        # linha
-                        #$this->exibeLinha($tamanhoLinha);
+
                         # Exibe o somatório quando estiver habilitado
                         if (!is_null($this->colunaSomatorio)) {
                             $this->exibeSomatorio($tamanho, $subSomatorio);
@@ -831,7 +833,7 @@ class Relatorio {
                         #################
 
                         $rowspanValor = null;
-                        $exibeTd = true;
+                        $exibeTd = true;                 
 
                         # Verifica se tem Rowlspan
                         if (!is_null($this->rowspan)) {
@@ -847,10 +849,15 @@ class Relatorio {
 
                                     if ($arr[$row[$a]] > 1) {
                                         $rowspanValor = $arr[$row[$a]];
+                                        $marcadorLinha = $arr[$row[$a]];
+                                        $marcadorLinha--;
+                                    }else{
+                                        $marcadorLinha = $arr[$row[$a]];
                                     }
                                 } else {
                                     if ($arr[$row[$a]] > 1) {
                                         $exibeTd = false;
+                                        $marcadorLinha--;
                                     }
                                 }
                             }
@@ -939,7 +946,9 @@ class Relatorio {
                 }
 
                 if ($this->bordaInterna) {
-                    $this->exibeLinha($tamanhoLinha);
+                    if ($marcadorLinha == 1) {
+                        $this->exibeLinha($tamanhoLinha);
+                    }
                 }
             }
 
