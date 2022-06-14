@@ -592,9 +592,6 @@ class Relatorio {
                     array_walk($arr, 'alteraArr');
                 }
             }
-            
-            var_dump($arrayRowspan);
-            var_dump($arr);
         }
 
         #####
