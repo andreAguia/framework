@@ -561,7 +561,7 @@ class Relatorio {
         $exibeTd = true;
 
         # Inicia o marcados para borda interna quando se tem rowspan
-        $marcadorLinha = 1;
+        $marcadorLinha = 0;
 
         # rowspan
         if (!is_null($this->rowspan)) {
