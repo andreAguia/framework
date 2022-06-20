@@ -559,7 +559,7 @@ class Relatorio {
 
         # usado no rowspan para se ocultar a td repetida
         $exibeTd = true;
-        
+
         # Inicia o marcados para borda interna quando se tem rowspan
         $marcadorLinha = 1;
 
@@ -578,19 +578,6 @@ class Relatorio {
 
                 # Conta quantos valores tem e guarda no array $arr
                 $arr = array_count_values($arrayRowspan);
-
-                # Acrescenta mais linhas ao rowspan para quando se tem borda interna
-                # Pois a borda interna ocupa uma linha toda
-                if ($this->bordaInterna) {
-                    # Cria a função
-
-                    function alteraArr(&$array) {
-                        $array = $array + ($array - 1);
-                    }
-
-                    # Executa a função para cada item
-                    array_walk($arr, 'alteraArr');
-                }
             }
         }
 
@@ -830,7 +817,7 @@ class Relatorio {
                         #################
 
                         $rowspanValor = null;
-                        $exibeTd = true;                 
+                        $exibeTd = true;
 
                         # Verifica se tem Rowlspan
                         if (!is_null($this->rowspan)) {
@@ -844,15 +831,15 @@ class Relatorio {
                                 if ($rowspanAnterior <> $rowAtual) {
                                     $rowspanAnterior = $rowAtual;  // habilita o novo valor anterior
 
-                                    if ($arr[$row[$a]] > 1) {
+                                    if ($arr[$row[$a]] > 0) {
                                         $rowspanValor = $arr[$row[$a]];
                                         $marcadorLinha = $arr[$row[$a]];
                                         $marcadorLinha--;
-                                    }else{
+                                    } else {
                                         $marcadorLinha = $arr[$row[$a]];
                                     }
                                 } else {
-                                    if ($arr[$row[$a]] > 1) {
+                                    if ($arr[$row[$a]] > 0) {
                                         $exibeTd = false;
                                         $marcadorLinha--;
                                     }
@@ -942,8 +929,8 @@ class Relatorio {
                     echo '</td></tr>';
                 }
 
-                if ($this->bordaInterna) {
-                    if ($marcadorLinha == 1) {
+                if ($this->bordaInterna) {                    
+                    if ($marcadorLinha == 0) {
                         $this->exibeLinha($tamanhoLinha);
                     }
                 }
