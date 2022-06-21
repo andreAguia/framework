@@ -342,6 +342,15 @@ div#pesquisa{
     margin-bottom: 0px;
     margin-left: 5px;    
 }
+
+p#pexibeId{
+    font-size: 10px;
+    padding: 0px;
+    text-align: right;
+    float: left;
+    margin-top: -10px;
+    margin-right: 0px;
+}
 /*******************************************
 * classe BotaoGrafico
 *******************************************/

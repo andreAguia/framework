@@ -1072,8 +1072,13 @@ class Modelo {
         $box = new Callout();
         $box->abre();
         $form->show();
-        $box->fecha();
-
+        $box->fecha();        
+        
+        # Exibe o id quando for necessário
+        if (!empty($id)) {
+            p($id, "pexibeId");
+        }        
+        
         # Exibe informação de obrigatoriedade de certos campos
         if ($this->exibeInfoObrigatoriedade) {
             echo '<div id="right">';
@@ -1082,12 +1087,8 @@ class Modelo {
             label("Campos marcados com (Aa) são passados para minusculas com primeira letra de cada palavra em maiusculas.", "warning", "f11");
             echo '</div>';
         }
-
-//        # Exibe o id quando for necessário
-//        if (!empty($id)) {
-//            p($id, "f10", "right");
-//        }
-
+        
+             
 
         if (!is_null($this->menuLateralEditar)) {
             $gridMenu->fechaColuna();
@@ -1387,7 +1388,7 @@ class Modelo {
      * método excluir
      * Método de exclusão de registro
      *
-     * @param $id    integer    - id da not�cia
+     * @param $id    integer    - o id 
      */
     public function excluir($id) {
 
