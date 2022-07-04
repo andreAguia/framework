@@ -62,6 +62,7 @@ class Relatorio {
     private $tituloLinha3 = null;
     private $subtitulo = null;
     private $tituloTabela = null;
+    private $topico = null;
 
     # do número de ordem
     private $numeroOrdem = false;
@@ -427,6 +428,12 @@ class Relatorio {
      * Exibe o cabeçalho da tabela
      */
     private function exibeCabecalhoTabela($tamanhoLinha, $tamanho, $grupo) {
+        
+        # topico
+        if (!empty($this->topico)) {
+            tituloRelatorio($this->topico);
+        }
+        
         # Inicia a tabela
         echo '<table class="tabelaRelatorio" border="0"';
 
