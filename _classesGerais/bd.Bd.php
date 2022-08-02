@@ -14,7 +14,6 @@ abstract class Bd {
     private $pass = null;   // string O password (senha) para o login no servidor de banco de dados
     private $name = null;   // string O nome do Banco de dados
     private $type = null;   // string O tipo do SGDB: pgsql | mysql | sqlite | ibase | oci8 | mssql
-    
     private $conn = null;   // object O objeto de conexão
     private $lastId = null; // string Guarda o último id de uma gravação
 
@@ -81,7 +80,7 @@ abstract class Bd {
 ###########################################################
 
     public function select($select = null, // string O select do banco de dados
-            $many = true,                  // bool   Se true retorna uma array com vários registros, se falso retorna um array simples com apenas um registro
+            $many = true, // bool   Se true retorna uma array com vários registros, se falso retorna um array simples com apenas um registro
             $assoc = false) {              // bool   Se o retorno é somente associativo  
         /**
          * Retorna um array multidimenssional, se many is true, com os registros do banco de dados, ou um valor único dependendo do formato do campo no banco de dados, quando $many is false.
@@ -93,15 +92,15 @@ abstract class Bd {
             $this->conecta();
 
             if ($many) {
-                if($assoc){
-                    $row = $this->conn->query($select)->fetchall(PDO::FETCH_ASSOC);                    
-                }else{
+                if ($assoc) {
+                    $row = $this->conn->query($select)->fetchall(PDO::FETCH_ASSOC);
+                } else {
                     $row = $this->conn->query($select)->fetchall();
                 }
             } else {
-                if($assoc){
-                    $row = $this->conn->query($select)->fetch(PDO::FETCH_ASSOC);                    
-                }else{
+                if ($assoc) {
+                    $row = $this->conn->query($select)->fetch(PDO::FETCH_ASSOC);
+                } else {
                     $row = $this->conn->query($select)->fetch();
                 }
             }
@@ -186,7 +185,7 @@ abstract class Bd {
 
                 $sql .= ' WHERE ' . $idCampo . ' = ' . $idValor;
             }
-            #alert($sql);
+            #echo $sql,"<br>";
             # Executa o sql
             $this->conn->exec($sql);
             $this->lastId = $this->conn->lastInsertId();
@@ -243,7 +242,6 @@ abstract class Bd {
             $num_rows = $this->conn->query($select)->rowCount();
 
             $this->conn = null;
-
 
             return $num_rows;
         } catch (PDOException $e) {
