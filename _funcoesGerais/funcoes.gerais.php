@@ -2651,3 +2651,16 @@ function h6($mensagem) {
 }
 
 ###########################################################
+
+function iframe($scr) {
+    /**
+     * Insere um iframe
+     *
+     * @param $scr string null o arquivo a ser aberto dentro do iframe
+     *
+     * @syntax iframe($scr);
+     */
+    echo "<iframe src='{$scr}' width='100%' height='900' style='border: none;'></iframe>";
+}
+
+###########################################################
