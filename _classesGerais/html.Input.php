@@ -704,6 +704,11 @@ class Input {
                 echo '<span class="input-group-label">SEI</span>';
                 echo '<input class="input-group-field"';
                 break;
+            case "processoAntigo":
+                echo '<div class="input-group">';
+                echo '<span class="input-group-label">E-26/009/</span>';
+                echo '<input class="input-group-field"';
+                break;
             case "porcentacem":
             case "percentagem":
                 echo '<div class="input-group">';
@@ -1050,6 +1055,18 @@ class Input {
 
             case "sei":
                 $mascara = '999999/999999/9999';
+                echo ' size="' . ($this->size) . '"';
+                echo ' type="text"';
+                echo ' value="' . $this->valor . '"';
+                echo ' onkeypress="mask(this, \'' . $mascara . '\',1,this)" ';
+                echo ' onkeyup="mask(this, \'' . $mascara . '\',1,this)" ';
+                echo ' onblur="mask(this, \'' . $mascara . '\',1,this)" ';
+                echo '/>';
+                echo '</div>';
+                break;
+            
+            case "processoAntigo":
+                $mascara = '999.999/9999';
                 echo ' size="' . ($this->size) . '"';
                 echo ' type="text"';
                 echo ' value="' . $this->valor . '"';
