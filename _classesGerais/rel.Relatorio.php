@@ -18,8 +18,8 @@ class Relatorio {
      * 
      * @group do título
      * @var private $titulo              string null O título do relatório. Texto que irá apacerer logo após o cabeçalho.
-     * @var private $tituloLinha2        string null Segunda linha d título do relatório.
-     * @var private $tituloLinha3        string null Terceira linha d título do relatório.
+     * @var private $tituloLinha2        string null Segunda linha do título do relatório.
+     * @var private $tituloLinha3        string null Terceira linha do título do relatório.
      * @var private $subtitulo           string null Subtítulo. Texto que irá apacerer logo após as linhas de título.
      * @var private $tituloTabela        string null Texto que aparecerá no caption da tabela.
      * @var private $objetoAntesTitulo   string null Envia um objeto para ser exibida no alto do relatório antes do título(usado na listagem de ramal)
@@ -61,6 +61,7 @@ class Relatorio {
     private $tituloLinha2 = null;
     private $tituloLinha3 = null;
     private $subtitulo = null;
+    private $subtitulo2 = null;
     private $tituloTabela = null;
     private $topico = null;
 
@@ -295,8 +296,13 @@ class Relatorio {
         }
 
         # Exibe o subtítulo (se houver))
-        if (!empty($this->subtitulo)) {
+        if (!empty($this->subtitulo)) {            
             p($this->subtitulo, "pRelatorioSubtitulo");
+        }
+        
+        # Exibe o subtítulo2 (se houver))
+        if (!empty($this->subtitulo2)) {           
+            p($this->subtitulo2, "pRelatorioTitulo");
         }
 
         if ((!empty($this->titulo)) or (!empty($this->tituloLinha2)) or (!empty($this->tituloLinha3)) or (!empty($this->subtitulo))) {
