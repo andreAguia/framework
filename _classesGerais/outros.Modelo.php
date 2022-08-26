@@ -1072,13 +1072,13 @@ class Modelo {
         $box = new Callout();
         $box->abre();
         $form->show();
-        $box->fecha();        
-        
+        $box->fecha();
+
         # Exibe o id quando for necessário
         if (!empty($id)) {
             p($id, "pexibeId");
-        }        
-        
+        }
+
         # Exibe informação de obrigatoriedade de certos campos
         if ($this->exibeInfoObrigatoriedade) {
             echo '<div id="right">';
@@ -1087,8 +1087,8 @@ class Modelo {
             label("Campos marcados com (Aa) são passados para minusculas com primeira letra de cada palavra em maiusculas.", "warning", "f11");
             echo '</div>';
         }
-        
-             
+
+
 
         if (!is_null($this->menuLateralEditar)) {
             $gridMenu->fechaColuna();
@@ -1131,14 +1131,17 @@ class Modelo {
             # Array com valores
             $campoValor[$contador] = post($campo['nome']);
 
-            # Transforma aspas simples para dupla
-            $campoValor[$contador] = str_replace("'", '"', $campoValor[$contador]);
+            # Promove higienização nos dados digitados
+            if (!empty($campoValor[$contador])) {
+                # Transforma aspas simples para dupla
+                $campoValor[$contador] = str_replace("'", '"', $campoValor[$contador]);
 
-            # Apaga as tags de php e html
-            if ((isset($campo['tagHtml'])) and ($campo['tagHtml'])) {
-                $campoValor[$contador] = strip_tags($campoValor[$contador], TAGS);
-            } else {
-                $campoValor[$contador] = strip_tags($campoValor[$contador]);
+                # Apaga as tags de php e html
+                if ((isset($campo['tagHtml'])) and ($campo['tagHtml'])) {
+                    $campoValor[$contador] = strip_tags($campoValor[$contador], TAGS);
+                } else {
+                    $campoValor[$contador] = strip_tags($campoValor[$contador]);
+                }
             }
 
             # Compara o valor antigo com o novo
