@@ -470,7 +470,7 @@ function retiraAspas($texto) {
      * @example exemplo.retiraAspas.php
      */
     # Verifica se veio o texto
-    if(empty($texto)) {
+    if (empty($texto)) {
         return null;
     } else {
         $troca1 = str_replace("'", '"', $texto);
@@ -2662,5 +2662,26 @@ function iframe($scr) {
      */
     echo "<iframe src='{$scr}' width='100%' height='900' style='border: none;'></iframe>";
 }
+
+###########################################################
+
+//function str_contains($string = null, $search = null) {
+//    /**
+//     * Procura uma string dentro de outra string maior
+//     */
+//    if (empty($string)) {
+//        return false;
+//    }
+//
+//    if (empty($search)) {
+//        return false;
+//    }
+//
+//    if (preg_match("/{$search}/", $string)) {
+//        return true;
+//    } else {
+//        return false;
+//    }
+//}
 
 ###########################################################
