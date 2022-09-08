@@ -820,6 +820,30 @@ function titulo($mensagem = null, $title = null) {
 
 ###########################################################
 
+function titulo2($mensagem = null, $title = null) {
+    /**
+     * Exibe um texto centralizado dentro de um painel com fundo azul escuro. Utilizado para títulos de páginas.
+     *
+     * @syntax titulo($mensagem, [$title]);
+     *
+     * @param $titulo string null O Título a ser exibido
+     *
+     * @example exemplo.titulo.php
+     */
+    if (is_null($title)) {
+        $title = $mensagem;
+    }
+
+    # cria a div
+    $div = new Div("titulo2");
+    $div->set_title($title);
+    $div->abre();
+    echo $mensagem;
+    $div->fecha();
+}
+
+###########################################################
+
 function tituloTable($mensagem = null, $title = null) {
     /**
      * Exibe um texto centralizado dentro de um painel com fundo igual ao titulo da tabela
