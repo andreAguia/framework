@@ -554,6 +554,16 @@ div#titulo{
     font-weight: normal;
 }
 
+div#titulo2{     
+    background-color: #2ba6cb;
+    border: 1px solid #fff;
+    padding: 5px 5px 5px 0px;    
+    text-align: center;
+    color: #fff;
+    font-size: 14px;     
+    font-weight: bold;
+}
+
 /*******************************************
  * Função tituloTable
  *******************************************/
