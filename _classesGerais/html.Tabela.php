@@ -47,6 +47,7 @@ class Tabela {
 
     # da tabela
     private $titulo = null;
+    private $subtitulo = null;
     private $conteudo;
     private $label = null;
     private $colspanLabel = null;
@@ -511,6 +512,10 @@ class Tabela {
             if ($this->titulo) {
                 echo '<caption>';
                 echo $this->titulo;
+                
+                if(!empty($this->subtitulo)){
+                    echo "<p id='psubtitulo'>{$this->subtitulo}</p>";                    
+                }
 
                 # Verifica se tem link no título
                 if (!is_null($this->linkTitulo)) {
