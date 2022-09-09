@@ -305,6 +305,14 @@ p#pmensagemPosTabela {
     margin: 0px;
 }
 
+p#psubtitulo{
+    font-size: 10px;
+    padding: 0px;
+    margin: 0px;
+    color: red;
+}
+
+
 /*******************************************
 * class titleBar
 *******************************************/
