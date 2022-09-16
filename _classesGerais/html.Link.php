@@ -185,7 +185,7 @@ class Link {
          * 
          * @syntax $link->show([$id]); 
          */
-        
+
         # title
         if (is_null($this->title)) {
             $this->title = $this->label;
@@ -220,11 +220,20 @@ class Link {
 
         # target
         if (!is_null($this->target)) {
-            if ($this->target == '_blank') {
-                echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=780,height=800');\" ";
-                $this->url = "#";
-            } else {
-                echo ' target="' . $this->target . '"';
+            switch ($this->target) {
+                case '_blank':
+                    echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=780,height=800');\" ";
+                    $this->url = "#";
+                    break;
+
+                case '_blank2':
+                    echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=780,height=300');\" ";
+                    $this->url = "#";
+                    break;
+
+                default :
+                    echo ' target="' . $this->target . '"';
+                    break;
             }
         }
 

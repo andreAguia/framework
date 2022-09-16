@@ -638,6 +638,13 @@ p#pLinha4{
     color: navy;
 }
 
+p#pLinha5{
+    font-size: 11px;
+    padding: 0px;
+    margin: 0px;
+    color: red;
+}
+
 /**** Outros  ****/
 a#aContatos {
     color: #000;

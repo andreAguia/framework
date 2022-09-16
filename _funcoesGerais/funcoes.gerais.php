@@ -481,7 +481,7 @@ function retiraAspas($texto) {
 
 ###########################################################
 
-function bold($texto, $destaque) {
+function destaque($texto, $destaque) {
     /**
      * Retorna uma string com um trecho em destaque (bold).
      *
@@ -540,6 +540,21 @@ function del($texto) {
      * @example exemplo.del.php
      */
     return "<del>" . $texto . "</del";
+}
+
+############################################################
+
+function bold($texto) {
+    /**
+     * Retorna uma string com um trecho em negrito (bold em html).
+     *
+     * @syntax bold($texto);
+     *
+     * @return string do texto em negrito
+     *
+     * @param $texto    string null O a ser negritado
+     */
+    return "<b>{$texto}</b>";
 }
 
 ###########################################################
@@ -2550,7 +2565,7 @@ function ultimoDiaMes($newData) {
 
 ###########################################################
 
-function pLista($linha1 = null, $linha2 = null, $linha3 = null, $linha4 = null) {
+function pLista($linha1 = null, $linha2 = null, $linha3 = null, $linha4 = null, $linha5 = null) {
 
     /**
      * Lista informações padrinizadas em 3 linhas com tamanho e cores diferentes
@@ -2561,6 +2576,7 @@ function pLista($linha1 = null, $linha2 = null, $linha3 = null, $linha4 = null) 
     p($linha2, "pLinha2");
     p($linha3, "pLinha3");
     p($linha4, "pLinha4");
+    p($linha5, "pLinha5");
 }
 
 ###########################################################
