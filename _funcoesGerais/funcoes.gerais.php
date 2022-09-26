@@ -2725,3 +2725,11 @@ function iframe($scr) {
 //}
 
 ###########################################################
+
+function anoBissexto($ano = NULL) {
+    /*
+     * Informa se o ano é bissexto
+     */
+     $year = is_numeric($ano) ? $ano : date('Y');
+     return cal_days_in_month(CAL_GREGORIAN, 2, $ano) === 29;
+}
