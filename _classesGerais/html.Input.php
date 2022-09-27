@@ -700,13 +700,18 @@ class Input {
                 echo '<INPUT';
                 break;
             case "sei":
-                echo '<div class="input-group">';
+                echo '<div id="div'.$this->nome.'" class="input-group">';
                 echo '<span class="input-group-label">SEI</span>';
                 echo '<input class="input-group-field"';
                 break;
             case "processoAntigo":
-                echo '<div class="input-group">';
+                echo '<div id="div'.$this->nome.'" class="input-group">';
                 echo '<span class="input-group-label">E-26/009/</span>';
+                echo '<input class="input-group-field"';
+                break;
+            case "processoAntigo2":
+                echo '<div id="div'.$this->nome.'" class="input-group">';
+                echo '<span class="input-group-label">E-26</span>';
                 echo '<input class="input-group-field"';
                 break;
             case "porcentacem":
@@ -1066,6 +1071,7 @@ class Input {
                 break;
             
             case "processoAntigo":
+            case "processoAntigo2":
                 $mascara = '999.999/9999';
                 echo ' size="' . ($this->size) . '"';
                 echo ' type="text"';
