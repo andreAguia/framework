@@ -228,7 +228,7 @@ class PHPMailer {
      * @var int
      */
     //public $Port = 25;
-    public $Port = 587;
+    public $Port = 465;
 
     /**
      * Sets the SMTP HELO of the message (Default is $Hostname).
@@ -258,7 +258,7 @@ class PHPMailer {
      * Sets SMTP password.
      * @var string
      */
-    public $Password = '';
+    public $Password = 'flatronw1643c';
 
     /**
      *  Sets SMTP auth type. Options are LOGIN | PLAIN | NTLM  (default LOGIN)
