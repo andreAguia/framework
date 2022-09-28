@@ -227,8 +227,7 @@ class PHPMailer {
      * Sets the default SMTP server port.
      * @var int
      */
-    //public $Port = 25;
-    public $Port = 587;
+    public $Port = 25;
 
     /**
      * Sets the SMTP HELO of the message (Default is $Hostname).
@@ -240,7 +239,7 @@ class PHPMailer {
      * Sets connection prefix. Options are "", "ssl" or "tls"
      * @var string
      */
-    public $SMTPSecure = 'tls';
+    public $SMTPSecure = '';
 
     /**
      * Sets SMTP authentication. Utilizes the Username and Password variables.
@@ -252,13 +251,13 @@ class PHPMailer {
      * Sets SMTP username.
      * @var string
      */
-    public $Username = 'sistemagrh@uenf.br';
+    public $Username = '';
 
     /**
      * Sets SMTP password.
      * @var string
      */
-    public $Password = 'syncmaster940bplus';
+    public $Password = '';
 
     /**
      *  Sets SMTP auth type. Options are LOGIN | PLAIN | NTLM  (default LOGIN)
@@ -2850,5 +2849,3 @@ class phpmailerException extends Exception {
     }
 
 }
-
-?>
