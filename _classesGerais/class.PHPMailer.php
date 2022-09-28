@@ -240,7 +240,7 @@ class PHPMailer {
      * Sets connection prefix. Options are "", "ssl" or "tls"
      * @var string
      */
-    public $SMTPSecure = '';
+    public $SMTPSecure = 'tls';
 
     /**
      * Sets SMTP authentication. Utilizes the Username and Password variables.
@@ -252,13 +252,13 @@ class PHPMailer {
      * Sets SMTP username.
      * @var string
      */
-    public $Username = '';
+    public $Username = 'sistemager@uenf.br';
 
     /**
      * Sets SMTP password.
      * @var string
      */
-    public $Password = '';
+    public $Password = 'syncmaster940bplus';
 
     /**
      *  Sets SMTP auth type. Options are LOGIN | PLAIN | NTLM  (default LOGIN)
