@@ -157,7 +157,7 @@ class PHPMailer {
      * Method to send mail: ("mail", "sendmail", or "smtp").
      * @var string
      */
-    public $Mailer = 'smtp';
+    public $Mailer = 'mail';
 
     /**
      * Sets the path of the sendmail program.
@@ -227,8 +227,7 @@ class PHPMailer {
      * Sets the default SMTP server port.
      * @var int
      */
-    //public $Port = 25;
-    public $Port = 465;
+    public $Port = 25;
 
     /**
      * Sets the SMTP HELO of the message (Default is $Hostname).
@@ -252,13 +251,13 @@ class PHPMailer {
      * Sets SMTP username.
      * @var string
      */
-    public $Username = 'sistemagrh@uenf.br';
+    public $Username = '';
 
     /**
      * Sets SMTP password.
      * @var string
      */
-    public $Password = 'flatronw1643c';
+    public $Password = '';
 
     /**
      *  Sets SMTP auth type. Options are LOGIN | PLAIN | NTLM  (default LOGIN)
