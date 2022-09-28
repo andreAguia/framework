@@ -252,7 +252,7 @@ class PHPMailer {
      * Sets SMTP username.
      * @var string
      */
-    public $Username = 'sistemager@uenf.br';
+    public $Username = 'sistemagrh@uenf.br';
 
     /**
      * Sets SMTP password.
