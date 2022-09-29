@@ -82,8 +82,8 @@ class menuRelatorio {
             foreach ($this->formCampos as $campo) {
                 $controle = new Input($campo['nome'], $campo['tipo'], $campo['label'], 1);
                 $controle->set_linha($campo['linha']); // linha no form que vai ser colocado o controle
-                $controle->set_tabindex($contador);   // tabulador (ordem de navega��o com a tecla tab)
-                if (isset($campo['maxLength'])) {   // quantidade m�xima de caracteres
+                $controle->set_tabindex($contador);   // tabulador (ordem de navegação com a tecla tab)
+                if (isset($campo['maxLength'])) {   // quantidade máxima de caracteres
                     $controle->set_size($campo['size'], $campo['maxLength']);   // tamanho do campos
                 } else {
                     $controle->set_size($campo['size']);   // tamanho do campos
