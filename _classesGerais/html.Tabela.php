@@ -512,9 +512,9 @@ class Tabela {
             if ($this->titulo) {
                 echo '<caption>';
                 echo $this->titulo;
-                
-                if(!empty($this->subtitulo)){
-                    echo "<p id='psubtitulo'>{$this->subtitulo}</p>";                    
+
+                if (!empty($this->subtitulo)) {
+                    echo "<p id='psubtitulo'>{$this->subtitulo}</p>";
                 }
 
                 # Verifica se tem link no título
@@ -614,7 +614,7 @@ class Tabela {
                                     $metodoClasse = $this->metodo[$a];
                                     $rowCondicional[$a] = $instancia->$metodoClasse($row[$a]);
                                 }
-                                
+
                                 switch ($condicional['operador']) {
                                     case '=':
                                     case '==':
@@ -630,25 +630,25 @@ class Tabela {
                                         break;
 
                                     case '>':
-                                        if ($rowCondicional[$a] > $condicional['valor']) {
+                                        if (is_numeric($rowCondicional[$a]) AND $rowCondicional[$a] > $condicional['valor']) {
                                             echo ' id="' . $condicional['id'] . '"';
                                         }
                                         break;
 
                                     case '<':
-                                        if ($rowCondicional[$a] < $condicional['valor']) {
+                                        if (is_numeric($rowCondicional[$a]) AND $rowCondicional[$a] < $condicional['valor']) {
                                             echo ' id="' . $condicional['id'] . '"';
                                         }
                                         break;
 
                                     case '>=':
-                                        if ($rowCondicional[$a] >= $condicional['valor']) {
+                                        if (is_numeric($rowCondicional[$a]) AND $rowCondicional[$a] >= $condicional['valor']) {
                                             echo ' id="' . $condicional['id'] . '"';
                                         }
                                         break;
 
                                     case '<=':
-                                        if ($rowCondicional[$a] <= $condicional['valor']) {
+                                        if (is_numeric($rowCondicional[$a]) AND $rowCondicional[$a] <= $condicional['valor']) {
                                             echo ' id="' . $condicional['id'] . '"';
                                         }
                                         break;
@@ -920,22 +920,22 @@ class Tabela {
                                                 break;
 
                                             case '>':
-                                                if ($row[$a] > $condicionalImagem['valor'])
+                                                if (is_numeric($row[$a]) AND $row[$a] > $condicionalImagem['valor'])
                                                     $condicionalImagem['imagem']->show();
                                                 break;
 
                                             case '<':
-                                                if ($row[$a] < $condicionalImagem['valor'])
+                                                if (is_numeric($row[$a]) AND $row[$a] < $condicionalImagem['valor'])
                                                     $condicionalImagem['imagem']->show();
                                                 break;
 
                                             case '>=':
-                                                if ($row[$a] >= $condicionalImagem['valor'])
+                                                if (is_numeric($row[$a]) AND $row[$a] >= $condicionalImagem['valor'])
                                                     $condicionalImagem['imagem']->show();
                                                 break;
 
                                             case '<=':
-                                                if ($row[$a] <= $condicionalImagem['valor'])
+                                                if (is_numeric($row[$a]) AND $row[$a] <= $condicionalImagem['valor'])
                                                     $condicionalImagem['imagem']->show();
                                                 break;
                                         }
