@@ -11,12 +11,19 @@ class Tab {
      */
     private $tabs = array();         // array O texto das tabs
     private $contadorConteudo = 1;
+    private $ativo = 1;
 
 ###########################################################    
 
-    public function __construct($tabs = null) {
+    public function __construct($tabs = null, $ativo = 1) {
 
+        # Guarda o array de abas 
         $this->tabs = $tabs;
+        
+        # Guarda o número da aba ativa
+        $this->ativo = $ativo;
+        
+        # Inicia o código das abas
         echo "<div class='row'>";
         echo "<div class='columns'>";
 
@@ -27,7 +34,7 @@ class Tab {
         foreach ($tabs as $item) {
             echo "<li ";
 
-            if ($contador == 1) {
+            if ($contador == $ativo) {
                 echo "class='tabs-title is-active'>";
             } else {
                 echo "class='tabs-title'>";
@@ -35,7 +42,7 @@ class Tab {
 
             echo "<a href='#panel{$contador}'";
 
-            if ($contador == 1) {
+            if ($contador == $ativo) {
                 echo "aria-selected='true'";
             }
 
@@ -57,13 +64,13 @@ class Tab {
 
     public function abreConteudo() {
 
-        echo "<div ";
+        echo "<div class='tabs-panel";
 
-        if ($this->contadorConteudo == 1) {
-            echo "class='tabs-panel is-active' id='panel1'>";
-        } else {
-            echo "class='tabs-panel' id='panel{$this->contadorConteudo}'>";
+        if ($this->contadorConteudo == $this->ativo) {
+            echo " is-active'";
         }
+        
+        echo "' id='panel{$this->contadorConteudo}'>";
 
         $this->contadorConteudo++;
     }
