@@ -1222,6 +1222,11 @@ function validaData($data) {
      *
      * @example exemplo.validaData.php
      */
+    # Verifica se a data foi enviada
+    if(empty($data)){
+        return false;
+    }
+    
     # Verifica se o tamanho da data é menor que 8
     if (strlen($data) < 8) {
         return false;
