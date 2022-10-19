@@ -1223,10 +1223,10 @@ function validaData($data) {
      * @example exemplo.validaData.php
      */
     # Verifica se a data foi enviada
-    if(empty($data)){
+    if (empty($data)) {
         return false;
     }
-    
+
     # Verifica se o tamanho da data é menor que 8
     if (strlen($data) < 8) {
         return false;
@@ -1820,67 +1820,74 @@ function validaCpf($cpf) {
      * @example exemplo.validaCpf.php
      */
     # Retira os caracteres . e -
-    $cpf = str_replace('.', '', $cpf);      // retira o .
-    $cpf = str_replace('-', '', $cpf);      // retira o -
-    # Verifica se sobrou somente número
-    if (!is_numeric($cpf)) {  // Verifica se é número
+    $cpf = str_replace('.', '', $cpf);
+    $cpf = str_replace('-', '', $cpf);
+
+    # Verifica se o tamanho do CPF é de 
+    if (strlen($cpf) <> 11) {
+        return false;
+    }
+
+    # Verifica é somente número
+    if (!is_numeric($cpf)) {
+        return false;
+    }
+
+    # Verifica números que pelo padrão normal dão como válidos
+    if (($cpf == '11111111111') || ($cpf == '22222222222') || ($cpf == '33333333333') || ($cpf == '44444444444') ||
+            ($cpf == '55555555555') || ($cpf == '66666666666') || ($cpf == '77777777777') || ($cpf == '88888888888') ||
+            ($cpf == '99999999999') || ($cpf == '00000000000')) {
         $status = false;
     } else {
-        # Verifica números que pelo padrão normal dão como válidos
-        if (($cpf == '11111111111') || ($cpf == '22222222222') || ($cpf == '33333333333') || ($cpf == '44444444444') ||
-                ($cpf == '55555555555') || ($cpf == '66666666666') || ($cpf == '77777777777') || ($cpf == '88888888888') ||
-                ($cpf == '99999999999') || ($cpf == '00000000000')) {
+        $dv_informado = substr($cpf, 9, 2); // pega o digito verificador
+
+        for ($i = 0; $i <= 8; $i++) {
+            $digito[$i] = substr($cpf, $i, 1);
+        }
+
+        # CALCULA O VALOR DO 10º DIGITO DE VERIFICAÇÂO
+        $posicao = 10;
+        $soma = 0;
+
+        for ($i = 0; $i <= 8; $i++) {
+            $soma = $soma + $digito[$i] * $posicao;
+            $posicao = $posicao - 1;
+        }
+
+        $digito[9] = $soma % 11;
+
+        if ($digito[9] < 2) {
+            $digito[9] = 0;
+        } else {
+            $digito[9] = 11 - $digito[9];
+        }
+
+        # CALCULA O VALOR DO 11º DIGITO DE VERIFICAÇÃO
+        $posicao = 11;
+        $soma = 0;
+
+        for ($i = 0; $i <= 9; $i++) {
+            $soma = $soma + $digito[$i] * $posicao;
+            $posicao = $posicao - 1;
+        }
+
+        $digito[10] = $soma % 11;
+
+        if ($digito[10] < 2) {
+            $digito[10] = 0;
+        } else {
+            $digito[10] = 11 - $digito[10];
+        }
+
+        # VERIFICA SE O DV CALCULADO É IGUAL AO INFORMADO
+        $dv = $digito[9] * 10 + $digito[10];
+        if ($dv != $dv_informado) {
             $status = false;
         } else {
-            $dv_informado = substr($cpf, 9, 2); // pega o digito verificador
-
-            for ($i = 0; $i <= 8; $i++) {
-                $digito[$i] = substr($cpf, $i, 1);
-            }
-
-            # CALCULA O VALOR DO 10º DIGITO DE VERIFICAÇÂO
-            $posicao = 10;
-            $soma = 0;
-
-            for ($i = 0; $i <= 8; $i++) {
-                $soma = $soma + $digito[$i] * $posicao;
-                $posicao = $posicao - 1;
-            }
-
-            $digito[9] = $soma % 11;
-
-            if ($digito[9] < 2) {
-                $digito[9] = 0;
-            } else {
-                $digito[9] = 11 - $digito[9];
-            }
-
-            # CALCULA O VALOR DO 11º DIGITO DE VERIFICAÇÃO
-            $posicao = 11;
-            $soma = 0;
-
-            for ($i = 0; $i <= 9; $i++) {
-                $soma = $soma + $digito[$i] * $posicao;
-                $posicao = $posicao - 1;
-            }
-
-            $digito[10] = $soma % 11;
-
-            if ($digito[10] < 2) {
-                $digito[10] = 0;
-            } else {
-                $digito[10] = 11 - $digito[10];
-            }
-
-            # VERIFICA SE O DV CALCULADO É IGUAL AO INFORMADO
-            $dv = $digito[9] * 10 + $digito[10];
-            if ($dv != $dv_informado) {
-                $status = false;
-            } else {
-                $status = true;
-            }
+            $status = true;
         }
     }
+
     return $status;
 }
 
@@ -2728,13 +2735,12 @@ function iframe($scr) {
 //        return false;
 //    }
 //}
-
 ###########################################################
 
 function anoBissexto($ano = NULL) {
     /*
      * Informa se o ano é bissexto
      */
-     $year = is_numeric($ano) ? $ano : date('Y');
-     return cal_days_in_month(CAL_GREGORIAN, 2, $ano) === 29;
+    $year = is_numeric($ano) ? $ano : date('Y');
+    return cal_days_in_month(CAL_GREGORIAN, 2, $ano) === 29;
 }
