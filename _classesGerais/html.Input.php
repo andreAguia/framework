@@ -859,7 +859,7 @@ class Input {
 
                 /* Coloque no início do página para funcionar
                  * $page = new Page();
-                 * $page->set_load('CKEDITOR.replace("ID_TEXTAREA");');
+                 * $page->set_jscript('<script>CKEDITOR.replace("***textareaid***");</script>');
                  */
                 break;
 

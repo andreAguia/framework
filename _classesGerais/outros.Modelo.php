@@ -1088,8 +1088,6 @@ class Modelo {
             echo '</div>';
         }
 
-
-
         if (!is_null($this->menuLateralEditar)) {
             $gridMenu->fechaColuna();
             $gridMenu->abreColuna(9);
