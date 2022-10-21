@@ -224,7 +224,7 @@ class Page {
         if (!is_null($this->ready)) {
             echo "<script language='JavaScript'>   
             $(document).ready(function(){
-                " . $this->ready . "  
+                {$this->ready}  
             });
             </script>
             ";
@@ -234,7 +234,7 @@ class Page {
         if (!is_null($this->onLoad)) {
             echo "<script language='JavaScript'>   
             $(windows).load(function(){
-                " . $this->onLoad . "  
+                {$this->onLoad} 
             });
             </script>
             ";
