@@ -232,7 +232,7 @@ class Link {
                     break;
                 
                 case '_blank3':
-                    echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=850,height=800');\" ";
+                    echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=900,height=700');\" ";
                     $this->url = "#";
                     break;
 
