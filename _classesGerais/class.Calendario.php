@@ -128,14 +128,14 @@ class Calendario {
 
                         # Verifica se é hoje
                         if (($this->ano == date('Y')) and ($this->mes == date('m')) and ($dia == date('d'))) {
-                            echo " id='hoje'";
+                            echo " id='hoje' title='Hoje'";
                         } else {
                             # Verifica se é feriado
                             if (!is_null($feriado)) {
-                                echo " id='feriado' title='$feriado'";
+                                echo " id='feriado' title='{$feriado}'";
                             } elseif (($i == 1) or ($i == 7)) {
                                 # Verifica se é Sábado ou Domingo       
-                                echo " id='domingo' title='$feriado'";
+                                echo " id='domingo' title='{$feriado}'";
                             }
                         }
 
@@ -148,7 +148,7 @@ class Calendario {
                         echo "<td align='center'";
                         # Verifica se é Sábado ou Domingo                                                
                         if (($i == 1) or ($i == 7)) {
-                            echo " id='domingo' title='$feriado'";
+                            echo " id='domingo' title='{$feriado}'";
                         }
                         echo "> --- </td>";
                     }
@@ -158,14 +158,14 @@ class Calendario {
 
                         # Verifica se é hoje
                         if (($this->ano == date('Y')) and ($this->mes == date('m')) and ($dia == date('d'))) {
-                            echo " id='hoje'";
+                            echo " id='hoje' title='Hoje'";
                         } else {
                             # Verifica se é feriado
                             if (!is_null($feriado)) {
-                                echo " id='feriado' title='$feriado'";
+                                echo " id='feriado' title='{$feriado}'";
                             } elseif (($i == 1) or ($i == 7)) {
                                 # Verifica se é Sábado ou Domingo       
-                                echo " id='domingo' title='$feriado'";
+                                echo " id='domingo' title='{$feriado}'";
                             }
                         }
 
@@ -178,7 +178,7 @@ class Calendario {
                         echo "<td align='center'";
                         # Verifica se é Sábado ou Domingo                                                
                         if (($i == 1) or ($i == 7)) {
-                            echo " id='domingo' title='$feriado'";
+                            echo " id='domingo' title='{$feriado}'";
                         }
                         echo "> --- </td>";
                     }
