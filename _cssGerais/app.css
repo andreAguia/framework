@@ -403,22 +403,23 @@ td#domingo {
     background-color:#D7D7D7;
 }
 
+td#feriado {
+    background-color:#98AFC7;
+}
+
 td#hoje {
     background-color: #99ccff;
-}    
+}   
+
+tr#calendario {
+    margin: 10px 0px 0px 0px;
+}   
 
 p#pferiado {
     padding: 0px 0px 0px 0px;
     text-align: center;
     font-size: 8px;
     margin: 0px;
-}
-
-img#imgcalendario{
-    float: right;
-    margin-top: -20px;
-    margin-left: -1px;
-    position: absolute;
 }
 
 /********************************
@@ -922,7 +923,7 @@ ul.menuProcedimentos li#sublink{
     padding: 0px 0px 0px 0px;    
     text-align: left;    
     list-style-type: none;
-    margin: 0px 0px 0px 10px;
+    margin: -2px 0px 0px 15px;
 }
 
 ul.menuProcedimentos a#sublink{

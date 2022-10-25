@@ -113,7 +113,7 @@ class Calendario {
         $dia = 1;
 
         # Corpo do calendário
-        echo '<tr>';
+        echo '<tr id="calendario">';
         do {
             for ($i = 1; $i <= 7; $i++) {
                 # Verifica se nesta data existe um feriado
@@ -130,27 +130,18 @@ class Calendario {
                         if (($this->ano == date('Y')) and ($this->mes == date('m')) and ($dia == date('d'))) {
                             echo " id='hoje'";
                         } else {
-                            # Verifica se é Sábado ou Domeingo                                                
-                            if (($i == 1) or ($i == 7)) {
-                                echo " id='domingo'";
-                            } elseif (!is_null($feriado)) {
+                            # Verifica se é feriado
+                            if (!is_null($feriado)) {
+                                echo " id='feriado' title='$feriado'";
+                            } elseif (($i == 1) or ($i == 7)) {
+                                # Verifica se é Sábado ou Domingo       
                                 echo " id='domingo' title='$feriado'";
                             }
                         }
 
                         # Exibe o dia
                         echo ">";
-
-                        # Exibe o Feriado (caso tenha)
-                        if (!is_null($feriado)) {     // verifica se tem feriado
-                            echo $dia;
-                            $figura = new Imagem(PASTA_FIGURAS_GERAIS . 'info.png', $feriado, 25, 25);
-                            $figura->set_id("imgcalendario");
-                            $figura->show();
-                        } else {
-                            echo $dia;
-                        }
-
+                        echo $dia;
                         echo "</td>";
                         $dia++;
                     } else {
@@ -169,25 +160,18 @@ class Calendario {
                         if (($this->ano == date('Y')) and ($this->mes == date('m')) and ($dia == date('d'))) {
                             echo " id='hoje'";
                         } else {
-                            # Verifica se é Sábado ou Domingo                                                
-                            if (($i == 1) or ($i == 7) or (!is_null($feriado))) {
+                            # Verifica se é feriado
+                            if (!is_null($feriado)) {
+                                echo " id='feriado' title='$feriado'";
+                            } elseif (($i == 1) or ($i == 7)) {
+                                # Verifica se é Sábado ou Domingo       
                                 echo " id='domingo' title='$feriado'";
                             }
                         }
 
                         # Exibe o dia
                         echo ">";
-
-                        # Exibe o Feriado (caso tenha)
-                        if (!is_null($feriado)) {     // verifica se tem feriado
-                            echo $dia;
-                            $figura = new Imagem(PASTA_FIGURAS_GERAIS . 'info.png', $feriado, 25, 25);
-                            $figura->set_id("imgcalendario");
-                            $figura->show();
-                        } else {
-                            echo $dia;
-                        }
-
+                        echo $dia;
                         echo "</td>";
                         $dia++;
                     } else {
