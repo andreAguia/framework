@@ -81,7 +81,7 @@ class PHPMailer {
      * Sets the From email address for the message.
      * @var string
      */
-    public $From = 'sistemagrh@uenf';
+    public $From = 'sistemagrh@uenf.br';
 
     /**
      * Sets the From name of the message.
@@ -94,7 +94,7 @@ class PHPMailer {
      * will be sent via -f to sendmail or as 'MAIL FROM' in smtp mode.
      * @var string
      */
-    public $Sender = 'sistemagrh@uenf';
+    public $Sender = 'sistemagrh@uenf.br';
 
     /**
      * Sets the Return-Path of the message.  If empty, it will
