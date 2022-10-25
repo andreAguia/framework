@@ -9,8 +9,8 @@ class Calendario {
      * 
      * @example exemplo.calendario.php 
      */
-    private $mes = null;    // integer O mês a ser exibido. 1 a 12.
-    private $ano = null;    // integer O ano do calandário com 4 dígitos
+    private $mes = null;        // integer O mês a ser exibido. 1 a 12.
+    private $ano = null;        // integer O ano do calandário com 4 dígitos
     private $tamanho = "p";     // string  O tamanho do calendário: p | g
 
     ###########################################################    
@@ -63,12 +63,55 @@ class Calendario {
 
     ###########################################################
 
-    public function show() {
+    public function show($submit = null) {
         /**
          * Exibe o Calendário
          * 
          * @syntax $calendario->show();
+         * 
+         * submit string  Se nulo não exibe o formulário de pesquisa
          */
+        # Cria array dos meses
+        if (!empty($submit)) {
+            $mes = array(
+                array("1", "Janeiro"),
+                array("2", "Fevereiro"),
+                array("3", "Março"),
+                array("4", "Abril"),
+                array("5", "Maio"),
+                array("6", "Junho"),
+                array("7", "Julho"),
+                array("8", "Agosto"),
+                array("9", "Setembro"),
+                array("10", "Outubro"),
+                array("11", "Novembro"),
+                array("12", "Dezembro"));
+
+            # Monta o formulário
+            $form = new Form($submit);
+
+            $controle = new Input('ano', 'texto', 'Ano:', 1);
+            $controle->set_size(4);
+            $controle->set_title('Filtra por Ano');
+            $controle->set_valor($this->ano);
+            $controle->set_onChange('formPadrao.submit();');
+            $controle->set_linha(1);
+            $controle->set_col(5);
+            $form->add_item($controle);
+
+            $controle = new Input('mes', 'combo', 'Mês:', 1);
+            $controle->set_size(10);
+            $controle->set_title('Filtra por Mês');
+            $controle->set_valor($this->mes);
+            $controle->set_onChange('formPadrao.submit();');
+            $controle->set_array($mes);
+            $controle->set_linha(1);
+            $controle->set_col(7);
+            $form->add_item($controle);
+
+            $form->show();
+        }
+
         # Verifica quantos dias tem o mês específico
         $dias = date("j", mktime(0, 0, 0, $this->mes + 1, 0, $this->ano));
 
