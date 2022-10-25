@@ -94,7 +94,7 @@ class PHPMailer {
      * will be sent via -f to sendmail or as 'MAIL FROM' in smtp mode.
      * @var string
      */
-    public $Sender = '';
+    public $Sender = 'sistemagrh@uenf';
 
     /**
      * Sets the Return-Path of the message.  If empty, it will
