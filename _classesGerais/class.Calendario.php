@@ -71,8 +71,11 @@ class Calendario {
          * 
          * submit string  Se nulo não exibe o formulário de pesquisa
          */
-        # Cria array dos meses
         if (!empty($submit)) {
+            # Monta o formulário
+            $form = new Form($submit);
+
+            # Cria array dos meses
             $mes = array(
                 array("1", "Janeiro"),
                 array("2", "Fevereiro"),
@@ -87,19 +90,7 @@ class Calendario {
                 array("11", "Novembro"),
                 array("12", "Dezembro"));
 
-            # Monta o formulário
-            $form = new Form($submit);
-
-            $controle = new Input('ano', 'texto', 'Ano:', 1);
-            $controle->set_size(4);
-            $controle->set_title('Filtra por Ano');
-            $controle->set_valor($this->ano);
-            $controle->set_onChange('formPadrao.submit();');
-            $controle->set_linha(1);
-            $controle->set_col(5);
-            $form->add_item($controle);
-
-            $controle = new Input('mes', 'combo', 'Mês:', 1);
+            $controle = new Input('mes', 'combo');
             $controle->set_size(10);
             $controle->set_title('Filtra por Mês');
             $controle->set_valor($this->mes);
@@ -107,6 +98,19 @@ class Calendario {
             $controle->set_array($mes);
             $controle->set_linha(1);
             $controle->set_col(7);
+            $form->add_item($controle);
+
+            # Cria um array com os anos
+            $ano = arrayPreenche(date('Y') - 4, date('Y') + 1, "d");
+
+            $controle = new Input('ano', 'combo');
+            $controle->set_size(4);
+            $controle->set_title('Filtra por Ano');
+            $controle->set_valor($this->ano);
+            $controle->set_array($ano);
+            $controle->set_onChange('formPadrao.submit();');
+            $controle->set_linha(1);
+            $controle->set_col(5);
             $form->add_item($controle);
 
             $form->show();
