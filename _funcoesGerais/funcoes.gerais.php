@@ -2548,12 +2548,12 @@ function getNumDias($dtInicial, $dtFinal, $primeiroDia = true) {
     
     # Pega o intervalo    
     $intervalo = $d1->diff($d2);
-    $dias = $intervalo->d;
+    $dias = $intervalo->days;
     
-    # Conta o primeiro dia?
-    if ($primeiroDia) {
+    # Verifica se conta o primeiro dia
+    if($primeiroDia){
         $dias++;
-    }    
+    }
     
     return $dias;
 }
