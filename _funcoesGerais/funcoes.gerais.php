@@ -2529,11 +2529,15 @@ function getNumDias($dtInicial, $dtFinal, $primeiroDia = true) {
     /**
      * Informa o número de dias entre 2 datas
      *
+     * @param  $dtInicial string data inicial no formato dd/mm/aaaa
+     * @param  $dtFinal string data final no formato dd/mm/aaaa
+     * 
      * @syntax getNumDias($dtInicial,$dtFinal)
      *
      * @return integer com o número de dias
      * 
      */
+        
 // transforma a data do formato BR para o formato americano, ANO-MES-DIA
     $dtInicial = implode('-', array_reverse(explode('/', $dtInicial)));
     $dtFinal = implode('-', array_reverse(explode('/', $dtFinal)));
