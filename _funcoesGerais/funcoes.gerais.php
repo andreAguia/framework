@@ -2537,29 +2537,25 @@ function getNumDias($dtInicial, $dtFinal, $primeiroDia = true) {
      * @return integer com o número de dias
      * 
      */
-        
-// transforma a data do formato BR para o formato americano, ANO-MES-DIA
-    $dtInicial = implode('-', array_reverse(explode('/', $dtInicial)));
-    $dtFinal = implode('-', array_reverse(explode('/', $dtFinal)));
-
-// converte as datas para o formato timestamp
-    $d1 = strtotime($dtInicial);
-    $d2 = strtotime($dtFinal);
-
-// verifica a diferença em segundos entre as duas datas e divide pelo número de segundos que um dia possui
-    $numDias = ($d2 - $d1) / 86400;
-
-// caso a data 2 seja menor que a data 1, multiplica o resultado por -1
-    if ($numDias < 0) {
-        $numDias *= -1;
-    }
-
-    // Verifica se calculoa o promeiro dia
+    
+    # passa para o formado do banco de dados
+    $dtInicial = date_to_bd($dtInicial);
+    $dtFinal = date_to_bd($dtFinal);
+    
+    # Instancia as data
+    $d1 = new DateTime($dtInicial);
+    $d2 = new DateTime($dtFinal);
+    
+    # Pega o intervalo    
+    $intervalo = $d1->diff($d2);
+    $dias = $intervalo->d;
+    
+    # Conta o primeiro dia?
     if ($primeiroDia) {
-        $numDias++;
-    }
-
-    return intval($numDias);
+        $dias++;
+    }    
+    
+    return $dias;
 }
 
 ###########################################################
