@@ -1298,6 +1298,28 @@ table#subRelatorioGeral th{
 table.tabelaRelatorio hr{
     border-top:#000 solid 1px;
 }
+
+/*******************************************
+* Tabela relatorio tipo ficha
+*******************************************/
+
+table.tabelaRelatorioFicha{
+    margin: 2px 1px 1px 1px;
+    width: 100%;  
+}
+
+table.tabelaRelatorioFicha tr{
+    background-color: #FFF;
+    text-align: center;
+}
+
+table.tabelaRelatorioFicha td{
+    font-size: 12px;
+    padding: 3px 3px 3px 3px;
+    color: #000;
+    vertical-align: middle;
+    border: solid 2px;
+}
 /*******************************************
 * Rodapé
 *******************************************/
