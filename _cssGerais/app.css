@@ -1320,6 +1320,15 @@ table.tabelaRelatorioFicha td{
     vertical-align: middle;
     border: solid 2px;
 }
+
+table.tabelaRelatorioFicha th{
+    font-size: 12px;
+    padding: 3px 3px 3px 3px;
+    color: #000;
+    vertical-align: middle;
+    border: solid 2px;
+    font-weight: normal;
+}
 /*******************************************
 * Rodapé
 *******************************************/
