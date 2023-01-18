@@ -2426,6 +2426,39 @@ function dataMaior($data1, $data2) {
 
 ###########################################################
 
+function dataMaiorArray($datas) {
+
+    /**
+     * Retorna a maior data de um array de datas
+     *
+     * @param  $datas array o array de datas
+     * 
+     * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
+     * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
+     * 
+     * @return data a data maior
+     *
+     * @syntax dataMaior($datas);
+     */
+    $dataMaior = "1000-01-01";
+
+    foreach ($datas as $item) {
+        # Verifica a validade da data
+        if (validaData($item)) {
+            # Passa para o modo americano
+            $item = date_to_bd($item);
+
+            # Faz a comparação
+            if (strtotime($item) > strtotime($dataMaior)) {
+                $dataMaior = $item;
+            }
+        }
+    }
+    return date_to_php($dataMaior);
+}
+
+###########################################################
+
 function get_post_action($name) {
 
     /**
@@ -2537,24 +2570,23 @@ function getNumDias($dtInicial, $dtFinal, $primeiroDia = true) {
      * @return integer com o número de dias
      * 
      */
-    
     # passa para o formado do banco de dados
     $dtInicial = date_to_bd($dtInicial);
     $dtFinal = date_to_bd($dtFinal);
-    
+
     # Instancia as data
     $d1 = new DateTime($dtInicial);
     $d2 = new DateTime($dtFinal);
-    
+
     # Pega o intervalo    
     $intervalo = $d1->diff($d2);
     $dias = $intervalo->days;
-    
+
     # Verifica se conta o primeiro dia
-    if($primeiroDia){
+    if ($primeiroDia) {
         $dias++;
     }
-    
+
     return $dias;
 }
 
@@ -2600,13 +2632,13 @@ function emConstrucao($texto = null, $brAntes = 3) {
      */
     $div = new Div("center");
     $div->abre();
+    
     br($brAntes);
     $Imagem = new Imagem(PASTA_FIGURAS_GERAIS . 'construcao.png', 'Esta área do sistema está em construção. Em Breve Estará Disponível.', 300, 300);
     $Imagem->show();
 
-    if (!is_null($texto)) {
-        br(2);
-        p($texto, "center", "f20");
+    if (!is_null($texto)) {        
+        p($texto, "center", "f16");
     }
 
     $div->fecha();

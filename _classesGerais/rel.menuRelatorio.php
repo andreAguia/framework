@@ -140,6 +140,11 @@ class menuRelatorio {
                 if (isset($campo['valor'])) {
                     $controle->set_valor($campo['valor']);
                 }
+                
+                # optgroup
+                if (isset($campo['optgroup'])) {
+                    $controle->set_optgroup($campo['optgroup']);
+                }
 
                 # Coloca o foco no primeiro controle
                 if ($contador == 1) {
