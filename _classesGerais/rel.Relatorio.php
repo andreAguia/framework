@@ -296,12 +296,12 @@ class Relatorio {
         }
 
         # Exibe o subtítulo (se houver))
-        if (!empty($this->subtitulo)) {            
+        if (!empty($this->subtitulo)) {
             p($this->subtitulo, "pRelatorioSubtitulo");
         }
-        
+
         # Exibe o subtítulo2 (se houver))
-        if (!empty($this->subtitulo2)) {           
+        if (!empty($this->subtitulo2)) {
             p($this->subtitulo2, "pRelatorioTitulo");
         }
 
@@ -429,17 +429,29 @@ class Relatorio {
     ###########################################################
 
     /**
+     * Método exibeTituloTabela
+     * 
+     * Exibe o total de Registro
+     */
+    private function exibeTituloTabela($texto) {
+
+        echo "<caption title='{$texto}'>{$texto}</caption>";
+    }
+
+    ###########################################################
+
+    /**
      * Método exibecabecalhoTabela
      * 
      * Exibe o cabeçalho da tabela
      */
     private function exibeCabecalhoTabela($tamanhoLinha, $tamanho, $grupo) {
-        
+
         # topico
         if (!empty($this->topico)) {
             tituloRelatorio($this->topico);
         }
-        
+
         # Inicia a tabela
         echo '<table class="tabelaRelatorio" border="0"';
 
@@ -472,11 +484,9 @@ class Relatorio {
         # começa o cabeçalho                
         echo '<thead>';
 
-        # título
+        # títuloTabela
         if (!empty($this->tituloTabela)) {
-            echo '<caption title="' . $this->tituloTabela . '">';
-            echo $this->tituloTabela;
-            echo '</caption>';
+            $this->exibeTituloTabela($this->tituloTabela);
         }
 
         echo '<tr>';
@@ -942,7 +952,7 @@ class Relatorio {
                     echo '</td></tr>';
                 }
 
-                if ($this->bordaInterna) {                    
+                if ($this->bordaInterna) {
                     if ($marcadorLinha == 0) {
                         $this->exibeLinha($tamanhoLinha);
                     }
