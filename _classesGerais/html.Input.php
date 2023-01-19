@@ -714,7 +714,7 @@ class Input {
                 echo '<span class="input-group-label">E-26</span>';
                 echo '<input class="input-group-field"';
                 break;
-            case "porcentacem":
+            case "porcentagem":
             case "percentagem":
                 echo '<div class="input-group">';
                 echo '<input class="input-group-field"';
@@ -1186,7 +1186,7 @@ class Input {
                 echo '/>';
                 break;
 
-            case "porcentacem":
+            case "porcentagem":
             case "percentagem":
                 echo ' size="' . ($this->size) . '"';
                 echo ' type="text"';
