@@ -306,10 +306,10 @@ p#pmensagemPosTabela {
 }
 
 p#psubtitulo{
-    font-size: 10px;
+    font-size: 12px;
     padding: 0px;
     margin: 0px;
-    color: red;
+    color: green;
 }
 
 

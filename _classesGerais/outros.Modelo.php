@@ -73,6 +73,8 @@ class Modelo {
     private $orderChamador = null;
 
     # Parametros da tabela
+    private $titulo = null;
+    private $subtitulo = null;
     private $label = null;
     private $colspanLabel = null;
     private $width = null;
@@ -582,7 +584,12 @@ class Modelo {
 
         # Monta a tabela
         $tabela = new Tabela();
-        $tabela->set_titulo($this->nome);
+        if(empty($this->nome)) {
+            $tabela->set_titulo($this->titulo);
+        } else {
+            $tabela->set_titulo($this->nome);
+        }
+        $tabela->set_subtitulo($this->subtitulo);
         $tabela->set_conteudo($result);
         $tabela->set_id($this->idTabela);
         $tabela->set_label($this->label);
