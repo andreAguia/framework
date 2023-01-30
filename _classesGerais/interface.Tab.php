@@ -3,11 +3,9 @@
 class Tab {
 
     /**
-     * Cria um fieldset. 
+     * Cria uma tab de conteúdo. 
      * 
      * @author André Águia (Alat) - alataguia@gmail.com
-     * 
-     * @example exemplo.fieldset.php
      */
     private $tabs = array();         // array O texto das tabs
     private $contadorConteudo = 1;
