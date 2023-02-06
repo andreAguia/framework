@@ -20,7 +20,7 @@ class Callout {
 ###########################################################
 
     public function __construct($tipo = "secondary", // string O tipo do callout: secondary | primary | success | warning | alert
-            $id = null) {            // string O id para o css
+            $id = null) {        // string O id para o css
         /**
          * Inicia o Callout informando o tipo
          * 

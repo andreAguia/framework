@@ -1027,7 +1027,7 @@ function formataNumLinha($numero) {
 
 ###########################################################
 
-function callout($mensagem, $tipo = "warning") {
+function callout($mensagem, $tipo = "warning", $id = "funcaoCallout") {
     /**
      * Exibe um painel contendo uma mensagem.
      *
@@ -1052,10 +1052,10 @@ function callout($mensagem, $tipo = "warning") {
         # Verifica se é diversas mensagens
         if (is_array($mensagem)) {
             foreach ($mensagem as $mm) {
-                p($mm, "funcaoCallout");
+                p($mm, $id);
             }
         } else {
-            p($mensagem, "funcaoCallout");
+            p($mensagem, $id);
         }
 
         $callout->fecha();
@@ -2632,12 +2632,12 @@ function emConstrucao($texto = null, $brAntes = 3) {
      */
     $div = new Div("center");
     $div->abre();
-    
+
     br($brAntes);
     $Imagem = new Imagem(PASTA_FIGURAS_GERAIS . 'construcao.png', 'Esta área do sistema está em construção. Em Breve Estará Disponível.', 300, 300);
     $Imagem->show();
 
-    if (!is_null($texto)) {        
+    if (!is_null($texto)) {
         p($texto, "center", "f16");
     }
 
