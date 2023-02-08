@@ -17,6 +17,18 @@ hr#geral{
     margin: 0px;
 }
 
+hr#grosso{
+    padding: 0px;
+    margin: 0px;
+    border: 1px solid #000;
+}
+
+hr#superGrosso{
+    padding: 0px;
+    margin: 0px;
+    border: 2px solid #000;
+}
+
 /******************************************* 
 * Define variáveis de cores e de erros 
 *******************************************/ 
