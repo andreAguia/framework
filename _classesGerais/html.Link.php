@@ -236,6 +236,11 @@ class Link {
                     $this->url = "#";
                     break;
 
+                case '_blank4':
+                    echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=1000,height=700');\" ";
+                    $this->url = "#";
+                    break;
+                
                 default :
                     echo ' target="' . $this->target . '"';
                     break;
