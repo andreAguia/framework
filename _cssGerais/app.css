@@ -31,7 +31,7 @@ hr#superGrosso{
 
 /******************************************* 
 * Define variáveis de cores e de erros 
-*******************************************/ 
+*******************************************/
 
 :root {
     --fsphp: #1F2026;
@@ -77,7 +77,7 @@ hr#superGrosso{
 
 /******************************************* 
 * Define o alinhamento pelo id
-*******************************************/ 
+*******************************************/
 
 #center{
     text-align: center;
@@ -97,7 +97,7 @@ hr#superGrosso{
 
 /******************************************* 
  * Define o alinhamento pela classe
- *******************************************/ 
+ *******************************************/
 
 .center{
     text-align: center;
@@ -119,114 +119,114 @@ hr#superGrosso{
  * Muda o tamanho da fonte de um <p> pelo id
  *******************************************/
 #f8{
-    font-size: 8px;   
+    font-size: 8px;
 }
 
 #f9{
-    font-size: 9px;   
+    font-size: 9px;
 }
 
 #f10{
-    font-size: 10px;   
+    font-size: 10px;
 }
 
 #f11{
-    font-size: 11px;   
+    font-size: 11px;
 }
 
 #f12{
-    font-size: 12px;   
+    font-size: 12px;
 }
 
 #f13{
-    font-size: 13px;   
+    font-size: 13px;
 }
 
 #f14{
-    font-size: 14px;   
+    font-size: 14px;
 }
 
 #f16{
-    font-size: 16px;   
+    font-size: 16px;
 }
 
 #f18{
-    font-size: 18px;   
+    font-size: 18px;
 }
 
 #f20{
-    font-size: 20px;   
+    font-size: 20px;
 }
 
 #f22{
-    font-size: 22px;   
+    font-size: 22px;
 }
 
 #f24{
-    font-size: 24px;   
+    font-size: 24px;
 }
 
 #f26{
-    font-size: 26px;   
+    font-size: 26px;
 }
 
 #f28{
-    font-size: 28px;   
+    font-size: 28px;
 }
 
 /*******************************************
 * Muda o tamanho da fonte de um elemento pela classe
 *******************************************/
 .f8{
-    font-size: 8px;   
+    font-size: 8px;
 }
 
 .f10{
-    font-size: 10px;   
+    font-size: 10px;
 }
 
 .f11{
-    font-size: 11px;   
+    font-size: 11px;
 }
 
 .f12{
-    font-size: 12px;   
+    font-size: 12px;
 }
 
 .f13{
-    font-size: 13px;   
+    font-size: 13px;
 }
 
 .f14{
-    font-size: 14px;   
+    font-size: 14px;
 }
 
 .f16{
-    font-size: 16px;   
+    font-size: 16px;
 }
 
 .f18{
-    font-size: 18px;   
+    font-size: 18px;
 }
 
 .f20{
-    font-size: 20px;   
+    font-size: 20px;
 }
 
 .f22{
-    font-size: 22px;   
+    font-size: 22px;
 }
 
 .f24{
-    font-size: 24px;   
+    font-size: 24px;
 }
 
 .f26{
-    font-size: 26px;   
+    font-size: 26px;
 }
 
 .f28{
-    font-size: 28px;   
+    font-size: 28px;
 }
 
 /*******************************************
@@ -235,7 +235,7 @@ hr#superGrosso{
 
 footer {
     font-size: 10px;
-    padding: 1px;   
+    padding: 1px;
 }
 
 /**** Classes  ****/
@@ -247,7 +247,7 @@ footer {
 table.tabelaPadrao{
     border-collapse: separate;
     border-spacing: 2pt;
-    border-color: #007095;    
+    border-color: #007095;
     font-size: 12px;
     width: 100%;
 }
@@ -257,7 +257,7 @@ table.tabelaPadrao th{
     text-align: center;
     font-weight: normal;
     font-size: 12px;
-    color: #fff;    
+    color: #fff;
     padding-bottom: 5px;
 }
 
@@ -324,6 +324,56 @@ p#psubtitulo{
     color: green;
 }
 
+/*******************************************
+ * rotinas
+ *******************************************/
+
+p#rotinaTitulo{
+    font-size: 22px;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+}
+
+p#rotinaDescricao{
+    font-size: 11px;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+}
+
+/*******************************************
+ *  class tabela rotina
+ *******************************************/
+
+table.tabelaRotina{
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-size: 14px;
+    width: 100%;
+}
+
+table.tabelaRotina th{
+    background-color: #cccccc;
+    text-align: center;
+    font-weight: normal;
+    font-size: 14px;
+    color: #000;
+    padding-bottom: 5px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table.tabelaRotina td, tr {
+    color: #000;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table.tabelaRotina p {
+    padding: 0px;
+    margin: 0px;
+}
 
 /*******************************************
 * class titleBar
@@ -355,12 +405,12 @@ div#paginacao{
 
 select#controlePesquisa,
 input#controlePesquisa{
-    margin-bottom: 0px; 
+    margin-bottom: 0px;
 }
 
 div#pesquisa{
     margin-bottom: 0px;
-    margin-left: 5px;    
+    margin-left: 5px;
 }
 
 p#pexibeId{
@@ -374,7 +424,7 @@ p#pexibeId{
 /*******************************************
 * classe BotaoGrafico
 *******************************************/
-div.botaoGrafico{    
+div.botaoGrafico{
     font-size: 11px;
     text-align: center;
     display: table;
@@ -399,10 +449,10 @@ fieldset.fieldset{
 
 .top-bar,
 .top-bar ul {
-    background-color: #02548b;   
+    background-color: #02548b;
     text-align: left;
     color: #fff;
-    font-size: 14px;     
+    font-size: 14px;
     font-weight: normal;
     padding: 2px;
 }
@@ -421,11 +471,11 @@ td#feriado {
 
 td#hoje {
     background-color: #99ccff;
-}   
+}
 
 tr#calendario {
     margin: 10px 0px 0px 0px;
-}   
+}
 
 p#pferiado {
     padding: 0px 0px 0px 0px;
@@ -437,9 +487,9 @@ p#pferiado {
 /********************************
  *  class Form
  ********************************/
-form.formPadrao input:focus, 
-form.formPadrao select:focus, 
-form.formPadrao textarea:focus, 
+form.formPadrao input:focus,
+form.formPadrao select:focus,
+form.formPadrao textarea:focus,
 form.formPadrao input:focus{
     background:#C6E2FF;
 }
@@ -520,7 +570,7 @@ p#puploadMensagem{
     margin: 0px;
     font-weight: bold;
     text-align: center;
-    color: red;  
+    color: red;
 }
 
 /********************************
@@ -565,23 +615,23 @@ p#puploadMensagem{
 /*******************************************
  * Função titulo
  *******************************************/
-div#titulo{     
-    background-color: #02548b;    
+div#titulo{
+    background-color: #02548b;
     border: 1px solid #fff;
-    padding: 5px 5px 5px 0px;    
+    padding: 5px 5px 5px 0px;
     text-align: center;
     color: #fff;
-    font-size: 14px;     
+    font-size: 14px;
     font-weight: normal;
 }
 
-div#titulo2{     
+div#titulo2{
     background-color: #2ba6cb;
     border: 1px solid #fff;
-    padding: 5px 5px 5px 0px;    
+    padding: 5px 5px 5px 0px;
     text-align: center;
     color: #fff;
-    font-size: 14px;     
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -661,7 +711,7 @@ p#pLinha5{
 /**** Outros  ****/
 a#aContatos {
     color: #000;
-    text-decoration: none;    
+    text-decoration: none;
 }
 
 /*******************************************
@@ -670,8 +720,8 @@ a#aContatos {
 
 /* Tema Padrão */
 
-ul.menuVertical li{ 
-    padding: 1px 0px 1px 0px;    
+ul.menuVertical li{
+    padding: 1px 0px 1px 0px;
     text-align: left;
     font-size: 13px;
     list-style-type: none;
@@ -719,7 +769,7 @@ ul.menuVertical li#titulo a{
     color: #8a8a8a;
 }
 
-ul.menuVertical a { 
+ul.menuVertical a {
     text-decoration:none;
     color: #02548b;
 }
@@ -734,8 +784,8 @@ ul.menuVertical2 {
     margin: 10px 0px 0px 20px;
 }
 
-ul.menuVertical2 li{ 
-    padding: 1px 0px 1px 0px;    
+ul.menuVertical2 li{
+    padding: 1px 0px 1px 0px;
     text-align: left;
     font-size: 13px;
     list-style-type: none;
@@ -751,11 +801,11 @@ ul.menuVertical2 li#titulo{
     margin: 0px 0px 0px -20px;
 }
 
-ul.menuVertical2 li#titulo a {    
-    background-color: #e6e6e6;   
-    display: block;             
-    padding:10px;               
-    text-decoration: none;      
+ul.menuVertical2 li#titulo a {
+    background-color: #e6e6e6;
+    display: block;
+    padding:10px;
+    text-decoration: none;
 }
 
 ul.menuVertical2 li#titulo1{
@@ -766,7 +816,7 @@ ul.menuVertical2 li#titulo1{
     border-bottom: 2px #D7D7D7 solid;
 }
 
-ul.menuVertical2 a {    
+ul.menuVertical2 a {
     background-color: #eee;     /* Grey background color */
     color: black;               /* Black text color */
     display: block;             /* Make the links appear below each other */
@@ -798,8 +848,8 @@ a#sublink{
 
 /* Tema Menu Servidor */
 
-ul.menuServidor li{ 
-    padding: 1px 0px 1px 0px;    
+ul.menuServidor li{
+    padding: 1px 0px 1px 0px;
     text-align: left;
     font-size: 12px;
     list-style-type: none;
@@ -811,10 +861,10 @@ ul.menuServidor li#titulo{
     margin: 0px 0px 0px -10px;
     text-align: left;
     font-size: 14px;
-    list-style-type: none;    
+    list-style-type: none;
 }
 
-ul.menuServidor a { 
+ul.menuServidor a {
     text-decoration: none;
     color: #02548b;
 }
@@ -831,15 +881,15 @@ div#figuraMenuServidor{
 
 /* Tema Menu Documentos */
 
-ul.menuDocumentos li{ 
-    padding: 0px 0px 0px 0px;    
+ul.menuDocumentos li{
+    padding: 0px 0px 0px 0px;
     text-align: left;
     font-size: 12px;
     list-style-type: none;
     margin: 0px 0px 0px 0px;
 }
 
-ul.menuDocumentos a { 
+ul.menuDocumentos a {
     text-decoration: none;
     color: #000;
 }
@@ -850,15 +900,15 @@ ul.menuDocumentos a:hover {
 
 /* Tema Menu Beneficios */
 
-ul.menuBeneficios li{ 
-    padding: 0px 0px 0px 0px;    
+ul.menuBeneficios li{
+    padding: 0px 0px 0px 0px;
     text-align: left;
     font-size: 12px;
     list-style-type: none;
     margin: 0px 0px 0px -20px;
 }
 
-ul.menuBeneficios a { 
+ul.menuBeneficios a {
     text-decoration: none;
     color: #000;
 }
@@ -869,8 +919,8 @@ ul.menuBeneficios a:hover {
 
 /* Tema Menu Procedimentos */
 
-ul.menuProcedimentos li{ 
-    padding: 0px 0px 0px 0px;    
+ul.menuProcedimentos li{
+    padding: 0px 0px 0px 0px;
     text-align: left;
     font-size: 13px;
     list-style-type: none;
@@ -882,7 +932,7 @@ ul.menuProcedimentos hover {
 }
 
 ul.menuProcedimentos li#titulo{
-    padding: 0px 0px 0px 0px;    
+    padding: 0px 0px 0px 0px;
     text-align: left;
     list-style-type: none;
     margin: 15px 0px 0px -15px;
@@ -905,7 +955,7 @@ ul.menuProcedimentos li#titulo1 a{
 }
 
 ul.menuProcedimentos li#link{
-    padding: 0px 0px 0px 0px;    
+    padding: 0px 0px 0px 0px;
     text-align: left;
     list-style-type: none;
     margin: 0px 0px 0px -5px;
@@ -913,12 +963,12 @@ ul.menuProcedimentos li#link{
 
 ul.menuProcedimentos a#link{
     text-decoration:none;
-    color: #02548b;    
+    color: #02548b;
     font-size: 13px;
 }
 
 ul.menuProcedimentos li#linkWindow{
-    padding: 0px 0px 0px 0px;    
+    padding: 0px 0px 0px 0px;
     text-align: left;
     list-style-type: none;
     margin: 0px 0px 0px 0px;
@@ -927,13 +977,13 @@ ul.menuProcedimentos li#linkWindow{
 
 ul.menuProcedimentos a#linkWindow{
     text-decoration:none;
-    color: #02548b;    
+    color: #02548b;
     font-size: 13px;
 }
 
 ul.menuProcedimentos li#sublink{
-    padding: 0px 0px 0px 0px;    
-    text-align: left;    
+    padding: 0px 0px 0px 0px;
+    text-align: left;
     list-style-type: none;
     margin: -2px 0px 0px 15px;
 }
@@ -952,8 +1002,8 @@ ul.menuProcedimentos a#link :hover {
 
 /* Tema Menu Aposentadoria */
 
-ul.menuAposentadoria li{ 
-    padding: 0px 0px 0px 0px;    
+ul.menuAposentadoria li{
+    padding: 0px 0px 0px 0px;
     text-align: left;
     font-size: 13px;
     list-style-type: none;
@@ -965,7 +1015,7 @@ ul.menuAposentadoria hover {
 }
 
 ul.menuAposentadoria li#titulo{
-    padding: 0px 0px 0px 0px;    
+    padding: 0px 0px 0px 0px;
     text-align: left;
     list-style-type: none;
     margin: 15px 0px 0px -15px;
@@ -980,9 +1030,9 @@ ul.menuAposentadoria li#titulo a{
 }
 
 ul.menuAposentadoria li#titulo1{
-    padding: 0px 0px 0px 0px;    
+    padding: 0px 0px 0px 0px;
     text-align: left;
-    list-style-type: none;    
+    list-style-type: none;
     margin: 5px 0px 0px -10px;
 }
 
@@ -994,7 +1044,7 @@ ul.menuAposentadoria li#titulo1 a{
 }
 
 ul.menuAposentadoria li#link{
-    padding: 0px 0px 0px 0px;    
+    padding: 0px 0px 0px 0px;
     text-align: left;
     list-style-type: none;
     margin: 0px 0px 0px 5px;
@@ -1002,12 +1052,12 @@ ul.menuAposentadoria li#link{
 
 ul.menuAposentadoria a#link{
     text-decoration:none;
-    color: #02548b;    
+    color: #02548b;
     font-size: 13px;
 }
 
 ul.menuAposentadoria li#linkWindow{
-    padding: 0px 0px 0px 0px;    
+    padding: 0px 0px 0px 0px;
     text-align: left;
     list-style-type: none;
     margin: 0px 0px 0px 0px;
@@ -1015,13 +1065,13 @@ ul.menuAposentadoria li#linkWindow{
 
 ul.menuAposentadoria a#linkWindow{
     text-decoration:none;
-    color: #02548b;    
+    color: #02548b;
     font-size: 13px;
 }
 
 ul.menuAposentadoria li#sublink{
-    padding: 0px 0px 0px 0px;    
-    text-align: left;    
+    padding: 0px 0px 0px 0px;
+    text-align: left;
     list-style-type: none;
     margin: 0px 0px 0px 10px;
 }
@@ -1042,7 +1092,7 @@ ul.menuAposentadoria a#link :hover {
 
 span#novo{
     color:#9e0c0f;
-    font-size: 10px;    
+    font-size: 10px;
     font-weight: bold;
     font-variant-position: sub;
     cursor:pointer;
@@ -1053,8 +1103,8 @@ span#novo{
  * Menu Horizontal
  *******************************************/
 
-ul.menuHorizontal li{ 
-    padding: 0px 10px 0px 10px;    
+ul.menuHorizontal li{
+    padding: 0px 10px 0px 10px;
     text-align: center;
     font-size: 14px;
     list-style-type: none;
@@ -1086,7 +1136,7 @@ ul.menuHorizontal li#titulo a{
     color: #02548b;
 }
 
-ul.menuHorizontal a { 
+ul.menuHorizontal a {
     text-decoration:none;
     color: #076cba;
 
@@ -1109,7 +1159,7 @@ ul.menuHorizontal {
     margin: 0;
     border: 1px solid #bababa;
     background: #fefefe;
-    list-style-type: none; 
+    list-style-type: none;
 }
 
 .tabs::before, .tabs::after {
@@ -1118,11 +1168,11 @@ ul.menuHorizontal {
     -ms-flex-preferred-size: 0;
     flex-basis: 0;
     -ms-flex-order: 1;
-    order: 1; 
+    order: 1;
 }
 
 .tabs::after {
-    clear: both; 
+    clear: both;
 }
 
 .tabs-title {
@@ -1154,7 +1204,7 @@ ul.menuHorizontal {
     border-top: 0;
     background: #fefefe;
     color: #0a0a0a;
-    transition: all 0.5s ease; 
+    transition: all 0.5s ease;
 }
 
 .tabs-content.vertical {
@@ -1190,7 +1240,7 @@ p#pRelatorioTitulo{
 p#pRelatorioSubtitulo{
     text-align: center;
     font-size: 16px;
-    color: #000;  
+    color: #000;
     margin: 0px;
 }
 
@@ -1253,9 +1303,9 @@ p#pRelatorioDataImpressao{
 
 table.tabelaRelatorio{
     border-collapse: separate;
-    border-spacing: 1px;     
+    border-spacing: 1px;
     margin: 2px 1px 1px 1px;
-    width: 100%;  
+    width: 100%;
 }
 
 table.tabelaRelatorio tr{
@@ -1304,8 +1354,8 @@ table#subRelatorioGeral{
 }
 
 table#subRelatorioGeral th{
-    background-color: #98AFC7;     
-} 
+    background-color: #98AFC7;
+}
 
 table.tabelaRelatorio hr{
     border-top:#000 solid 1px;
@@ -1317,7 +1367,7 @@ table.tabelaRelatorio hr{
 
 table.tabelaRelatorioFicha{
     margin: 2px 1px 1px 1px;
-    width: 100%;  
+    width: 100%;
 }
 
 table.tabelaRelatorioFicha tr{
