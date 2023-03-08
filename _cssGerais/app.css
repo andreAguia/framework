@@ -356,7 +356,7 @@ table.tabelaRotina{
 table.tabelaRotina th{
     background-color: #cccccc;
     text-align: center;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 14px;
     color: #000;
     padding-bottom: 5px;
