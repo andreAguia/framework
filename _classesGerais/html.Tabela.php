@@ -551,7 +551,7 @@ class Tabela {
 
                 # Verifica se tem colspan aberto e pula
                 if ($marcaColspan == 0) {
-                    if ((isset($this->colspanLabel[$a])) AND ($this->colspanLabel[$a] <> null)AND ($this->colspanLabel[$a] > 1)) {
+                    if ((isset($this->colspanLabel[$a])) AND ($this->colspanLabel[$a] <> null) AND ($this->colspanLabel[$a] > 1)) {
                         echo '<th colspan="' . $this->colspanLabel[$a] . '" title="' . strip_tags($this->label[$a]) . '">';
                         $marcaColspan = $this->colspanLabel[$a] - 1;
                     } else {
@@ -894,7 +894,7 @@ class Tabela {
                         }
 
                         # Se não é coluna de editar, nem de excluir, nem excluir condicional, nem de link etc
-                        if (($a <> $colunaEdita) and ($a <> $colunaExcluir) and ($a <> $colunaExcluirCondicional) and ($a <> $colunaEditarCondicional)and ((!isset($this->link[$a])) or ($this->link[$a] == null))) {
+                        if (($a <> $colunaEdita) and ($a <> $colunaExcluir) and ($a <> $colunaExcluirCondicional) and ($a <> $colunaEditarCondicional) and ((!isset($this->link[$a])) or ($this->link[$a] == null))) {
                             # verifica se tem imagem condicional, se tiver exibe o gráfico ao invel do valor                
                             if (!is_null($this->imagemCondicional)) {
                                 # pega as colunas que possuem imagens 
@@ -1010,7 +1010,11 @@ class Tabela {
             }
         } else {
             if ($this->titulo) {
-                tituloTable($this->titulo);
+                if (!empty($this->subtitulo)) {
+                    tituloTable($this->titulo . "<p id='psubtitulo'>{$this->subtitulo}</p>");
+                } else {
+                    tituloTable($this->titulo);
+                }
             }
             $callout = new Callout();
             $callout->abre();
