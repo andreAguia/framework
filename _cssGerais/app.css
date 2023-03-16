@@ -714,6 +714,13 @@ a#aContatos {
     text-decoration: none;
 }
 
+p#pBotaoRelatorio {
+    font-size: 10px;
+    padding: 0px;
+    margin: 0px;
+    color: White;
+}
+
 /*******************************************
  * Menu Vertical
  *******************************************/
