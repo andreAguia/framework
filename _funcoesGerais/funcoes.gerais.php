@@ -2396,7 +2396,7 @@ function verificaSobreposicao($dtInicial1, $dtFinal1, $dtInicial2, $dtFinal2) {
 function dataMaior($data1, $data2) {
 
     /**
-     * Retorna a data maior ou igual (mais nova)
+     * Retorna a data maior ou igual (mais recente)
      *
      * @param  $data1 data uma das datas
      * @param  $data2 data a outra datas
@@ -2409,13 +2409,13 @@ function dataMaior($data1, $data2) {
      * @syntax dataMaior($data1, $data2);
      */
     # Passa para formato americano
-    $dataAmericano1 = date_to_bd($data1);
-    $dataAmericano2 = date_to_bd($data2);
+    $dataAmericano1 = date_to_bd(strtotime($data1));
+    $dataAmericano2 = date_to_bd(strtotime($data2));
 
     # Faz a Comparação
-    if (strtotime($dataAmericano1) > strtotime($dataAmericano2)) {
+    if ($dataAmericano1 > $dataAmericano2) {
         $dataMaior = $data1;
-    } elseif (strtotime($dataAmericano1) == strtotime($dataAmericano2)) {
+    } elseif ($dataAmericano1 == $dataAmericano2) {
         $dataMaior = $data1;
     } else {
         $dataMaior = $data2;

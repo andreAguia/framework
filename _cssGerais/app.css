@@ -74,6 +74,19 @@ hr#superGrosso{
     color: var(--red);
     border-color: var(--red);
 }
+/******************************************* 
+* Define a cor pelo id
+*******************************************/
+
+#vermelho{
+    color: red;
+    font-weight: bold; 
+}
+
+#verde{
+    color: green;
+    font-weight: bold; 
+}
 
 /******************************************* 
 * Define o alinhamento pelo id
