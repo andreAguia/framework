@@ -17,7 +17,7 @@ class Div {
 ###########################################################
 
     public function __construct($id = null, // string O id para o css.
-            $class = null) {     // string A classe para o css.
+                                $class = null) {     // string A classe para o css.
         /**
          * Inicia a div informando o id e a classe para o css
          * 
