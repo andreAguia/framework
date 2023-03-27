@@ -205,7 +205,6 @@ function date_to_bd($data, $separador = '/') {
     if (empty($data)) {
         return false;
     } else {
-
         $dt1 = explode($separador, $data);
         $dt2 = $dt1[2] . '-' . $dt1[1] . '-' . $dt1[0];
         return $dt2;
