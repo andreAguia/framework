@@ -203,16 +203,11 @@ function date_to_bd($data, $separador = '/') {
      * @example exemplo.date_to_bd.php
      */
     if (empty($data)) {
-        return null;
+        return false;
     } else {
-        # Verifica se é uma data
-        if (str_contains($data, '/')) {
-            $dt1 = explode($separador, $data);
-            $dt2 = $dt1[2] . '-' . $dt1[1] . '-' . $dt1[0];
-            return $dt2;
-        } else {
-            return null;
-        }
+        $dt1 = explode($separador, $data);
+        $dt2 = $dt1[2] . '-' . $dt1[1] . '-' . $dt1[0];
+        return $dt2;
     }
 }
 
@@ -2401,7 +2396,7 @@ function verificaSobreposicao($dtInicial1, $dtFinal1, $dtInicial2, $dtFinal2) {
 function dataMaior($data1, $data2) {
 
     /**
-     * Retorna a data maior - data mais recente passada
+     * Retorna a data maior ou igual (mais recente)
      *
      * @param  $data1 data uma das datas
      * @param  $data2 data a outra datas
@@ -2413,10 +2408,9 @@ function dataMaior($data1, $data2) {
      *
      * @syntax dataMaior($data1, $data2);
      */
-    
     # Passa para formato americano
-    $dataAmericano1 = strtotime(date_to_bd($data1));
-    $dataAmericano2 = strtotime(date_to_bd($data2));
+    $dataAmericano1 = date_to_bd(strtotime($data1));
+    $dataAmericano2 = date_to_bd(strtotime($data2));
 
     # Faz a Comparação
     if ($dataAmericano1 > $dataAmericano2) {
@@ -2428,40 +2422,6 @@ function dataMaior($data1, $data2) {
     }
 
     return $dataMaior;
-}
-
-###########################################################
-
-function dataMenor($data1, $data2) {
-
-    /**
-     * Retorna a data menor - Data mais recente Futura
-     *
-     * @param  $data1 data uma das datas
-     * @param  $data2 data a outra datas
-     * 
-     * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
-     * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
-     * 
-     * @return data a data maior
-     *
-     * @syntax dataMaior($data1, $data2);
-     */
-    
-    # Passa para formato americano
-    $dataAmericano1 = strtotime(date_to_bd($data1));
-    $dataAmericano2 = strtotime(date_to_bd($data2));
-
-    # Faz a Comparação
-    if ($dataAmericano1 < $dataAmericano2) {
-        $dataMenor = $data1;
-    } elseif ($dataAmericano1 == $dataAmericano2) {
-        $dataMenor = $data1;
-    } else {
-        $dataMenor = $data2;
-    }
-
-    return $dataMenor;
 }
 
 ###########################################################
@@ -2495,39 +2455,6 @@ function dataMaiorArray($datas) {
         }
     }
     return date_to_php($dataMaior);
-}
-
-###########################################################
-
-function dataMenorArray($datas) {
-
-    /**
-     * Retorna a maior data de um array de datas
-     *
-     * @param  $datas array o array de datas
-     * 
-     * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
-     * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
-     * 
-     * @return data a data maior
-     *
-     * @syntax dataMaior($datas);
-     */
-    $dataMenor = "1000-01-01";
-
-    foreach ($datas as $item) {
-        # Verifica a validade da data
-        if (validaData($item)) {
-            # Passa para o modo americano
-            $item = date_to_bd($item);
-
-            # Faz a comparação
-            if (strtotime($item) < strtotime($dataMaior)) {
-                $dataMenor = $item;
-            }
-        }
-    }
-    return date_to_php($dataMenor);
 }
 
 ###########################################################
