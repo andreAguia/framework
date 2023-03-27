@@ -205,14 +205,10 @@ function date_to_bd($data, $separador = '/') {
     if (empty($data)) {
         return false;
     } else {
-        # Verifica se é uma data
-        if (str_contains($data, '/')) {
-            $dt1 = explode($separador, $data);
-            $dt2 = $dt1[2] . '-' . $dt1[1] . '-' . $dt1[0];
-            return $dt2;
-        } else {
-            return null;
-        }
+
+        $dt1 = explode($separador, $data);
+        $dt2 = $dt1[2] . '-' . $dt1[1] . '-' . $dt1[0];
+        return $dt2;
     }
 }
 
@@ -2413,7 +2409,6 @@ function dataMaior($data1, $data2) {
      *
      * @syntax dataMaior($data1, $data2);
      */
-    
     # Passa para formato americano
     $dataAmericano1 = strtotime(date_to_bd($data1));
     $dataAmericano2 = strtotime(date_to_bd($data2));
@@ -2447,7 +2442,6 @@ function dataMenor($data1, $data2) {
      *
      * @syntax dataMaior($data1, $data2);
      */
-    
     # Passa para formato americano
     $dataAmericano1 = strtotime(date_to_bd($data1));
     $dataAmericano2 = strtotime(date_to_bd($data2));
@@ -2531,7 +2525,6 @@ function dataMenorArray($datas) {
 }
 
 ###########################################################
-
 
 function get_post_action($name) {
 
