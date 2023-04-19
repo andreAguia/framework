@@ -122,9 +122,9 @@ class Menu {
                 # Resolvendo o bug do firefox que ia para uma pagina em branco
                 #  toda vez que se abria-se um relatorio
                 if (BROWSER_NAME == "FIREFOX") {
-                    $linkWindow->set_onClick("window.open('" . $url . "','_blank','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600');history.go(1);");
+                    $linkWindow->set_onClick("window.open('" . $url . "','_blank','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=780,height=800');history.go(1);");
                 } else {
-                    $linkWindow->set_onClick("window.open('" . $url . "','_blank','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=750,height=600');");
+                    $linkWindow->set_onClick("window.open('" . $url . "','_blank','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=780,height=800');");
                 }
 
                 # Joga o objeto para o array
