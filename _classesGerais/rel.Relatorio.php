@@ -128,6 +128,7 @@ class Relatorio {
     private $grupoCorColuna = null;     # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
     private $textoMensagemSemRegistro = "Não existe nenhum registro a ser exibido !";     # Mensagem de quando não tem registro a ser exibido.
     private $exibeMensagemNenhumRegistro = true; // Exibe ou não a mensagem de quando não tem registro a ser exibido
+    private $exibeLinhaFinal = true;
 
     ###########################################################
 
@@ -973,10 +974,12 @@ class Relatorio {
             }
 
             # Fecha a tabela
-            echo '<tfoot>';
-            echo '<tr><td colspan="' . ($tamanhoLinha) . '" title="Total de itens da tabela">';
-            echo '</td></tr>';
-            echo '</tfoot>';
+            if ($this->exibeLinhaFinal) { // Exibe a linha no final da tabela
+                echo '<tfoot>';
+                echo '<tr><td colspan="' . ($tamanhoLinha) . '">';
+                echo '</td></tr>';
+                echo '</tfoot>';
+            }
             echo '</table>';
 
             # Exibe o número de registros
