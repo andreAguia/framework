@@ -80,12 +80,16 @@ hr#superGrosso{
 
 #vermelho{
     color: red;
-    font-weight: bold; 
+    font-weight: bold;
+    padding: 0px;
+    margin: 0px;
 }
 
 #verde{
     color: green;
-    font-weight: bold; 
+    font-weight: bold;
+    padding: 0px;
+    margin: 0px;
 }
 
 /******************************************* 
