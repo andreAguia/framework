@@ -88,7 +88,7 @@ class Relatorio {
     private $subClasseBd = null;  // Classe do bd   
     private $subJoin = null;   // posição no array do join no primeiro relatório    
     # do somatório
-    private $colunaSomatorio = null;            // coluna que terá somatório (por enquanto uma por relatório)
+    private $colunaSomatorio = null;            // coluna que terá somatório
     private $textoSomatorio = 'Total:';         // texto a ser exibido na linha de totalização
     private $colunaTexto = 0;                   // coluna onde o texto será exibido;
     private $funcaoSomatorio = null;            // se executa alguma função no somatório
