@@ -92,6 +92,20 @@ hr#superGrosso{
     margin: 0px;
 }
 
+#azul{
+    color: blue;
+    font-weight: bold;
+    padding: 0px;
+    margin: 0px;
+}
+
+#roxo{
+    color: purple;
+    font-weight: bold;
+    padding: 0px;
+    margin: 0px;
+}
+
 /******************************************* 
 * Define o alinhamento pelo id
 *******************************************/
