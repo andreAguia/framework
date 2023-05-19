@@ -50,6 +50,7 @@ class Tabela {
     private $subtitulo = null;
     private $conteudo;
     private $label = null;
+    private $title = null;
     private $colspanLabel = null;
     private $align = null;
     private $width = null;
@@ -552,10 +553,18 @@ class Tabela {
                 # Verifica se tem colspan aberto e pula
                 if ($marcaColspan == 0) {
                     if ((isset($this->colspanLabel[$a])) AND ($this->colspanLabel[$a] <> null) AND ($this->colspanLabel[$a] > 1)) {
-                        echo '<th colspan="' . $this->colspanLabel[$a] . '" title="' . strip_tags($this->label[$a]) . '">';
+                        if (empty($this->title[$a])) {
+                            echo '<th colspan="' . $this->colspanLabel[$a] . '" title="' . strip_tags($this->label[$a]) . '">';
+                        } else {
+                            echo '<th colspan="' . $this->colspanLabel[$a] . '" title="' . strip_tags($this->title[$a]) . '">';
+                        }
                         $marcaColspan = $this->colspanLabel[$a] - 1;
                     } else {
-                        echo '<th title="' . strip_tags($this->label[$a]) . '">';
+                        if (empty($this->title[$a])) {
+                            echo '<th title="' . $this->label[$a] . '">';
+                        } else {
+                            echo '<th title="' . $this->title[$a] . '">';
+                        }
                         $marcaColspan = 0;
                     }
 
