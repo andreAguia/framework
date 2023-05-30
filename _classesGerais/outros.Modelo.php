@@ -1116,18 +1116,24 @@ class Modelo {
      */
     public function gravar($id = null, $validacaoExtra = null, $rotinaPosGravacao = null) {
         # Variáveis sobre um erro fatal (que não pode prosseguir com ele)
-        $erro = 0; // flag de erro: 1 - tem erro; 0 - não tem
-        $msgErro = null; // repositório de mensagens de erro
+        # flag de erro: 1 - tem erro; 0 - não tem
+        $erro = 0;
+        
+        # repositório de mensagens de erro
+        $msgErro = null;
 
-        $contador = 0; // contador para os arrays $campo_nome e $campo_valor
-        $alteracoes = null; // informa as alteraçõs dos valores antigos com os novos
-        $atividade = null; // Variavel que informa ao log o que foi feito
+        # contador para os arrays $campo_nome e $campo_valor
+        $contador = 0;
+        
+        # informa as alteraçõs dos valores antigos com os novos
+        $alteracoes = null;
+        
+        # informa ao log o que foi feito
+        $atividade = null;
+        
         # Pega o valor antigo
         $oldValue = get_session('oldValue' . $this->tabela);
-
-//        var_dump(
-//                $oldValue                
-//        );
+        
         # percorre os dados digitados validando
         foreach ($this->campos as $campo) {
             # Passa o nome dos campos para o array de gravação
@@ -1153,10 +1159,10 @@ class Modelo {
             if ($oldValue[$contador] != $campoValor[$contador]) {
 
                 # formata a data
-                if (($campo['tipo'] == 'date') or ($campo['tipo'] == 'data')) {
-                    $alteracoes .= '[' . $campo['label'] . '] ' . date_to_php($oldValue[$contador]) . '->' . date_to_php($campoValor[$contador]) . '; ';
+                if (($campo['tipo'] == 'date') OR ($campo['tipo'] == 'data')) {
+                    $alteracoes .= '[' . $campo['label'] . '] ' . date_to_php($oldValue[$contador]) . '->' . date_to_php($campoValor[$contador]) . ';<br/>';
                 } else {
-                    $alteracoes .= '[' . $campo['label'] . '] ' . $oldValue[$contador] . '->' . $campoValor[$contador] . '; ';
+                    $alteracoes .= "[{$campo['label']}] {$oldValue[$contador]} -> {$campoValor[$contador]};<br/>";
                 }
             }
 
@@ -1349,11 +1355,11 @@ class Modelo {
 
                 # preenche atividade de inclusão
                 if (empty($id) or ($id == "")) {
-                    $atividade = 'Incluiu: ' . $alteracoes;
+                    $atividade .= "Incluiu:<br/>{$alteracoes}";
                     $id = $objeto->get_lastId();
                     $tipoLog = 1;
                 } else {
-                    $atividade .= 'Alterou: ' . $alteracoes;
+                    $atividade .= "Alterou:<br/>{$alteracoes}";
                     $tipoLog = 2;
                 }
 
