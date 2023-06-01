@@ -584,7 +584,7 @@ class Modelo {
 
         # Monta a tabela
         $tabela = new Tabela();
-        if(empty($this->nome)) {
+        if (empty($this->nome)) {
             $tabela->set_titulo($this->titulo);
         } else {
             $tabela->set_titulo($this->nome);
@@ -636,7 +636,9 @@ class Modelo {
 
         # se tem botão editar
         if ($this->botaoEditar) {
-            $tabela->set_editar($this->linkEditar);
+            if (!$this->modoLeitura) {
+                $tabela->set_editar($this->linkEditar);
+            }
         }
 
         # se tem botão excluir
@@ -1118,22 +1120,22 @@ class Modelo {
         # Variáveis sobre um erro fatal (que não pode prosseguir com ele)
         # flag de erro: 1 - tem erro; 0 - não tem
         $erro = 0;
-        
+
         # repositório de mensagens de erro
         $msgErro = null;
 
         # contador para os arrays $campo_nome e $campo_valor
         $contador = 0;
-        
+
         # informa as alteraçõs dos valores antigos com os novos
         $alteracoes = null;
-        
+
         # informa ao log o que foi feito
         $atividade = null;
-        
+
         # Pega o valor antigo
         $oldValue = get_session('oldValue' . $this->tabela);
-        
+
         # percorre os dados digitados validando
         foreach ($this->campos as $campo) {
             # Passa o nome dos campos para o array de gravação
