@@ -543,7 +543,7 @@ class Relatorio {
 
         # Verifica se vai usar o título ou o legDetalhe 
         if (empty($this->logDetalhe)) {
-            $atividade = 'Visualizou o(a) ' . $this->titulo;
+            $atividade = "Visualizou o <br/>{$this->titulo}";
 
             # Verifica se tem segunda linha
             if (!empty($this->tituloLinha2)) {
