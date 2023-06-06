@@ -547,12 +547,22 @@ class Relatorio {
 
             # Verifica se tem segunda linha
             if (!empty($this->tituloLinha2)) {
-                $atividade .= ' - ' . $this->tituloLinha2;
+                $atividade .= "<br/>{$this->tituloLinha2}";
+            }
+            
+            # Verifica se tem terceira linha
+            if (!empty($this->tituloLinha3)) {
+                $atividade .= "<br/>{$this->tituloLinha3}";
             }
 
             # Verifica se tem subtítulo
             if (!empty($this->subtitulo)) {
-                $atividade .= ' - ' . $this->subtitulo;
+                $atividade .= "<br/>{$this->subtitulo}";
+            }
+            
+            # Verifica se tem subtítulo
+            if (!empty($this->subtitulo2)) {
+                $atividade .= "<br/>{$this->subtitulo2}";
             }
         } else {
             $atividade = $this->logDetalhe;

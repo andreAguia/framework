@@ -701,7 +701,7 @@ class Input {
                 break;
             case "sei":
                 echo '<div id="div'.$this->nome.'" class="input-group">';
-                echo '<span class="input-group-label">SEI</span>';
+                echo '<span class="input-group-label">SEI-</span>';
                 echo '<input class="input-group-field"';
                 break;
             case "processoAntigo":
