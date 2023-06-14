@@ -1819,6 +1819,11 @@ function validaCpf($cpf) {
      *
      * @example exemplo.validaCpf.php
      */
+    # Verifica se temos cpf
+    if (empty($cpf)) {
+        return false;
+    }
+
     # Retira os caracteres . e -
     $cpf = str_replace('.', '', $cpf);
     $cpf = str_replace('-', '', $cpf);
