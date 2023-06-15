@@ -195,7 +195,7 @@ class Button {
          */
         if($this->disabled){
             $this->class .= " disabled";
-            $this->url = "#";
+            $this->url = "#";            
         }
         
         $link = new Link($this->label, $this->url, $this->title);

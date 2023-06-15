@@ -185,6 +185,9 @@ class Link {
          * 
          * @syntax $link->show([$id]); 
          */
+        
+        # informa se define explicitamente a url ou não
+        $apagaUrl = false;
 
         # title
         if (is_null($this->title)) {
@@ -223,22 +226,22 @@ class Link {
             switch ($this->target) {
                 case '_blank':
                     echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=780,height=800');\" ";
-                    $this->url = "#";
+                    $apagaUrl = true;
                     break;
 
                 case '_blank2':
                     echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=780,height=300');\" ";
-                    $this->url = "#";
+                    $apagaUrl = true;
                     break;
                 
                 case '_blank3':
                     echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=900,height=700');\" ";
-                    $this->url = "#";
+                    $apagaUrl = true;
                     break;
 
                 case '_blank4':
                     echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=1000,height=700');\" ";
-                    $this->url = "#";
+                    $apagaUrl = true;
                     break;
                 
                 default :
@@ -254,10 +257,8 @@ class Link {
             } else {
                 echo " onclick='confirma(\"$this->url$id\",\"$this->confirma\")'";
             }
-
-            echo ' href="#"';
         } else {    // sem confirmação
-            if (is_null($this->onClick)) {
+            if (is_null($this->onClick) AND !$apagaUrl) {
                 if (is_null($id)) { // Exibe ou não o id
                     echo ' href="' . $this->url . '"';
                 } else {
