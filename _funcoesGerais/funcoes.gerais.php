@@ -276,6 +276,39 @@ function datetime_to_php($data, $separadorData = '-', $separadorHora = ':') {
 
 ###########################################################
 
+function datetime_to_bd($data, $separadorData = '/', $separadorHora = ':') {
+    /**
+     * Transforma uma data com hora do formato americano AAAA/MM/DD HH:MM:SS para o formato brasileiro DD/MM/AAAA HH:MM:SS.
+     *
+     * @syntax datetime_to_php($data,[$separadorData],[$separadorHora]);
+     *
+     * @category Data
+     *
+     * @return string com a data no formato DD/MM/AAAA HH:MM:SS
+     *
+     * @note Utilizado para recuperar datas com horas do banco de dados.
+     *
+     * @param $data          date   null A data a ser transformada
+     * @param $separadorData string -    O separador da data
+     * @param $separadorHora string :    O separador da hora
+     *
+     * @example exemplo.datetime_to_php.php
+     */
+    if (is_null($data) or ($data == "")) {
+        return null;
+    } else {
+        # Separa data da hora
+        $dt1 = explode($separadorData, $data);
+        $espaco = explode(' ', $dt1[2]);
+        $hora = explode($separadorHora, $espaco[1]);
+
+        $dt2 = $espaco[0] . '-' . $dt1[1] . '-' . $dt1[0] . ' ' . $hora[0] . ':' . $hora[1] . ':' . $hora[2];
+        return $dt2;
+    }
+}
+
+###########################################################
+
 function back($numPaginas) {
     /**
      * Retorna um número de páginas a partir do histórico do browser.
