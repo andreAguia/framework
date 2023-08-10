@@ -1023,7 +1023,11 @@ class Modelo {
                 } else { // se aceitar tags html
                     if ((isset($campo['tagHtml'])) and ($campo['tagHtml'] == true)) {
                         $valorCampo = $row[$campo['nome']];
-                        $valorControle = htmlentities($valorCampo);
+                        if (empty($valorCampo)) {
+                            $valorControle = $valorCampo;
+                        } else {
+                            $valorControle = htmlentities($valorCampo);
+                        }
                         $controle->set_valor($valorControle);
                     } else {
                         $controle->set_valor($row[$campo['nome']]);
