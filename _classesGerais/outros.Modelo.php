@@ -1157,6 +1157,13 @@ class Modelo {
                 }
             }
 
+            # troca a vírgula pelo ponto no campo tipo Porcentagem / Percentagem
+            if ($campo['tipo'] == 'porcentagem' OR $campo['tipo'] == 'percentagem') {
+                if (!is_null($campoValor[$contador])) {
+                    $campoValor[$contador] = str_replace(',', '.', str_replace('.', '', $campoValor[$contador]));
+                }
+            }
+
             # Compara o valor antigo com o novo
             if ($oldValue[$contador] != $campoValor[$contador]) {
 
@@ -1515,5 +1522,4 @@ class Modelo {
     public function CalculaTamanhoColuna($totalSize, $sizeColuna) {
         return ((12 * $sizeColuna) / $totalSize); // faz a mágica
     }
-
 }
