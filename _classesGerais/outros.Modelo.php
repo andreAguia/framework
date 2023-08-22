@@ -1150,8 +1150,9 @@ class Modelo {
 
             # Promove higienização nos dados digitados
             if (!empty($campoValor[$contador])) {
-                # Transforma aspas simples para dupla
-                $campoValor[$contador] = str_replace("'", '"', $campoValor[$contador]);
+                
+                # HTML-encode '"<>& and characters with ASCII value less than 32, optionally strip or encode other special characters.
+                $campoValor[$contador] = filter_var($campoValor[$contador], FILTER_SANITIZE_SPECIAL_CHARS);
 
                 # Apaga as tags de php e html
                 if ((isset($campo['tagHtml'])) and ($campo['tagHtml'])) {
