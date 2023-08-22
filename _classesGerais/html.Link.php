@@ -244,6 +244,11 @@ class Link {
                     $apagaUrl = true;
                     break;
                 
+                case '_blank5':
+                    echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=1200,height=700');\" ";
+                    $apagaUrl = true;
+                    break;
+                
                 default :
                     echo ' target="' . $this->target . '"';
                     break;

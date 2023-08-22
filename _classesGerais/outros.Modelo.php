@@ -1150,9 +1150,11 @@ class Modelo {
 
             # Promove higienização nos dados digitados
             if (!empty($campoValor[$contador])) {
-                
+
                 # HTML-encode '"<>& and characters with ASCII value less than 32, optionally strip or encode other special characters.
-                $campoValor[$contador] = filter_var($campoValor[$contador], FILTER_SANITIZE_SPECIAL_CHARS);
+                if ($campo['tipo'] <> 'editor') {
+                    $campoValor[$contador] = filter_var($campoValor[$contador], FILTER_SANITIZE_SPECIAL_CHARS);
+                }
 
                 # Apaga as tags de php e html
                 if ((isset($campo['tagHtml'])) and ($campo['tagHtml'])) {
@@ -1433,7 +1435,7 @@ class Modelo {
                 $atividade = 'Excluiu';
             }
         }
-
+echo "oi";
         # Conecta com o banco de dados
         $objeto = new $this->classBd();
         $objeto->set_tabela($this->tabela); # a tabela
@@ -1443,6 +1445,7 @@ class Modelo {
                 $intra->registraLog($this->idUsuario, $data, $atividade, $this->tabela, $id, 3, $this->idServidorPesquisado);
             }
         }
+        echo "->".$this->linkListar;
         loadPage($this->linkListar);
     }
 
