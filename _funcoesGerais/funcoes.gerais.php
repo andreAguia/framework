@@ -990,7 +990,7 @@ function formataMoeda($valor, $formato = 1) {
      *
      * @example exemplo.formataMoeda.php
      */
-    if (empty($valor)) {
+    if (is_null($valor)) {
         return null;
     } else {
         if ($formato == 1) {

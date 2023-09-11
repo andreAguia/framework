@@ -1167,7 +1167,7 @@ class Modelo {
             # troca a vírgula pelo ponto no campo tipo Porcentagem / Percentagem
             if ($campo['tipo'] == 'porcentagem' OR $campo['tipo'] == 'percentagem') {
                 if (!is_null($campoValor[$contador])) {
-                    $campoValor[$contador] = str_replace(',', '.', str_replace('.', '', $campoValor[$contador]));
+                    $campoValor[$contador] = strtr($campoValor[$contador], ',', '.');
                 }
             }
 
