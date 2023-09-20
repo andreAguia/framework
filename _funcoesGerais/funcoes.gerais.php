@@ -2880,3 +2880,23 @@ function anoBissexto($ano = NULL) {
     $year = is_numeric($ano) ? $ano : date('Y');
     return cal_days_in_month(CAL_GREGORIAN, 2, $ano) === 29;
 }
+############################################################
+
+    /**
+     * Método get_dataIdade
+     * informa a data em que terá a idade informada
+     * 
+     * @param data    $dtNasc data de nascimento
+     * @param integer $idade  a idade
+     */
+    function get_dataIdade($dtNasc, $idade) {
+
+        # Calcula a data da idade
+        $dia = substr($dtNasc, 0, 2);
+        $mes = substr($dtNasc, 3, 2);
+        $ano = substr($dtNasc, 6, 4);
+        
+        return $dia . "/" . $mes . "/" . $ano + $idade;
+    }
+
+    ###########################################################
