@@ -12,6 +12,10 @@ html{
     margin-top: 3px;
 }
 
+/******************************************* 
+* Define or hrs
+*******************************************/
+
 hr#geral{
     padding: 0px;
     margin: 0px;
@@ -26,6 +30,23 @@ hr#grosso{
 hr#superGrosso{
     padding: 0px;
     margin: 0px;
+    border: 2px solid #000;
+}
+
+hr#geral1{
+    padding: 0px;
+    margin: 3px;
+}
+
+hr#grosso1{
+    padding: 0px;
+    margin: 3px;
+    border: 1px solid #000;
+}
+
+hr#superGrosso1{
+    padding: 0px;
+    margin: 3px;
     border: 2px solid #000;
 }
 
