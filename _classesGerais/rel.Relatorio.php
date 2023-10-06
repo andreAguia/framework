@@ -185,8 +185,11 @@ class Relatorio {
 
         $cabec = new Div('center');
         $cabec->abre();
-        $imagem = new Imagem(PASTA_FIGURAS . 'novoTimbre.png', null, 120, 90);
+        $imagem = new Imagem(PASTA_FIGURAS . 'timbre2023.png', null, 80, 55);
         $imagem->show();
+        p("Governo do Estado do Rio de Janeiro","pRelatorioSubgrupo");
+        p("Universidade Estadual do Norte Fluminense Darcy Ribeiro - UENF","pRelatorioSubgrupo");
+        p("Diretoria Geral Administrativa","pRelatorioSubgrupo");
         $cabec->fecha();
         br();
     }
