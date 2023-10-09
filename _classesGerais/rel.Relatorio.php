@@ -185,7 +185,7 @@ class Relatorio {
 
         $cabec = new Div('center');
         $cabec->abre();
-        $imagem = new Imagem(PASTA_FIGURAS . 'novoTimbre.png', null, 80, 55);
+        $imagem = new Imagem(PASTA_FIGURAS . 'timbre2023.png', null, 80, 55);
         $imagem->show();
         p("Governo do Estado do Rio de Janeiro","pRelatorioCabecalho");
         p("Universidade Estadual do Norte Fluminense Darcy Ribeiro - UENF","pRelatorioCabecalho");
