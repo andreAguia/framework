@@ -187,9 +187,10 @@ class Relatorio {
         $cabec->abre();
         $imagem = new Imagem(PASTA_FIGURAS . 'timbre2023.png', null, 80, 55);
         $imagem->show();
-        p("Governo do Estado do Rio de Janeiro","pRelatorioSubgrupo");
-        p("Universidade Estadual do Norte Fluminense Darcy Ribeiro - UENF","pRelatorioSubgrupo");
-        p("Diretoria Geral Administrativa","pRelatorioSubgrupo");
+        p("Governo do Estado do Rio de Janeiro","pRelatorioCabecalho");
+        p("Universidade Estadual do Norte Fluminense Darcy Ribeiro - UENF","pRelatorioCabecalho");
+        p("Diretoria Geral Administrativa","pRelatorioCabecalho");
+        p("Gerência de Recursos Humanos","pRelatorioCabecalho");
         $cabec->fecha();
         br();
     }
