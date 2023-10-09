@@ -78,6 +78,9 @@ p#pRelatorioLabel{
 p#pRelatorioCabecalho{
     text-align: center;
     font-size: 12px;
+    color: #000;
+    margin: 0px;
+    padding: 0em;
 }
 
 p#pRelatorioNenhumItem{
