@@ -2891,8 +2891,6 @@ function anoBissexto($ano = NULL) {
  * @param integer $idade  a idade
  */
 function get_dataIdade($dtNasc, $idade) {
-    
-    echo $dtNasc;
 
     # Calcula a data da idade
     $dia = substr($dtNasc, 0, 2);
@@ -2900,6 +2898,7 @@ function get_dataIdade($dtNasc, $idade) {
     $ano = substr($dtNasc, 6, 4);
 
     echo $dia . "/" . $mes . "/" . $ano + $idade;
+    br();
     return $dia . "/" . $mes . "/" . $ano + $idade;
 }
 
