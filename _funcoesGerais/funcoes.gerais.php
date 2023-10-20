@@ -2898,11 +2898,7 @@ function get_dataIdade($dtNasc, $idade) {
     $ano = substr($dtNasc, 6, 4);
 
     $anoSaida = $ano + $idade;
-
-    echo $anoSaida . '-' . $mes . '-' . $dia;
-    echo date_to_php($anoSaida . '-' . $mes . '-' . $dia);
-    br();
-    return $dia . "/" . $mes . "/" . $ano + $idade;
+    return date_to_php($anoSaida . '-' . $mes . '-' . $dia);
 }
 
 ###########################################################
