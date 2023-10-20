@@ -135,6 +135,11 @@ class Modelo {
     # Menu Lateral - Objeto menu a ser inserido ao lado da tabela de listagem
     private $menuLateralListar = null;
 
+    # objeto Lateral - Objeto menu a ser inserido ao lado da tabela de listagem
+    private $objetoLateralListar = null;
+    private $objetoLateralListarMetodo = null;
+    private $objetoLateralListarParametro = null;
+
     # Se as linhas da tabela serão de cores diferentes
     private $comGridLista = true;
 
@@ -573,6 +578,19 @@ class Modelo {
             $gridMenu->abreColuna(3);
 
             $this->menuLateralListar->show();
+
+            $gridMenu->fechaColuna();
+            $gridMenu->abreColuna(9);
+        }
+
+        # Exibe o objeto Lateral (quando tem)
+        if (!is_null($this->objetoLateralListar)) {
+            $gridMenu = new Grid();
+            $gridMenu->abreColuna(3);
+
+            $instancia = new $this->objetoLateralListar();
+            $metodoClasse = $this->objetoLateralListarMetodo;
+            $instancia->$metodoClasse($this->objetoLateralListarParametro);
 
             $gridMenu->fechaColuna();
             $gridMenu->abreColuna(9);
@@ -1435,7 +1453,7 @@ class Modelo {
                 $atividade = 'Excluiu';
             }
         }
-echo "oi";
+        echo "oi";
         # Conecta com o banco de dados
         $objeto = new $this->classBd();
         $objeto->set_tabela($this->tabela); # a tabela
@@ -1445,7 +1463,7 @@ echo "oi";
                 $intra->registraLog($this->idUsuario, $data, $atividade, $this->tabela, $id, 3, $this->idServidorPesquisado);
             }
         }
-        echo "->".$this->linkListar;
+        echo "->" . $this->linkListar;
         loadPage($this->linkListar);
     }
 
