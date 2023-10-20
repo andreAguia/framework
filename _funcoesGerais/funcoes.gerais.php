@@ -2899,6 +2899,7 @@ function get_dataIdade($dtNasc, $idade) {
     $mes = substr($dtNasc, 3, 2);
     $ano = substr($dtNasc, 6, 4);
 
+    echo $dia . "/" . $mes . "/" . $ano + $idade;
     return $dia . "/" . $mes . "/" . $ano + $idade;
 }
 
