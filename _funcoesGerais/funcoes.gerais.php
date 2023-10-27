@@ -1097,7 +1097,7 @@ function callout($mensagem, $tipo = "warning", $id = "funcaoCallout") {
 
 ###########################################################
 
-function calloutAlert($mensagem, $tipo = "alert") {
+function calloutAlert($mensagem, $titulo = null,$tipo = "alert") {
     /**
      * Exibe um painel contendo um alerta
      *
@@ -1114,6 +1114,11 @@ function calloutAlert($mensagem, $tipo = "alert") {
      */
     # Verifica se não está vazio
     if (!vazio($mensagem)) {
+        
+        # Coloca um título (se tiver)
+        if(!empty($titulo)){
+            tituloTable($titulo);
+        }
 
         # Chama a classe callout
         $callout = new Callout($tipo);
