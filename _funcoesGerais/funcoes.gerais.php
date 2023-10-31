@@ -1097,7 +1097,7 @@ function callout($mensagem, $tipo = "warning", $id = "funcaoCallout") {
 
 ###########################################################
 
-function calloutAlert($mensagem, $titulo = null,$tipo = "alert") {
+function calloutAlert($mensagem, $titulo = null, $tipo = "alert") {
     /**
      * Exibe um painel contendo um alerta
      *
@@ -1114,9 +1114,9 @@ function calloutAlert($mensagem, $titulo = null,$tipo = "alert") {
      */
     # Verifica se não está vazio
     if (!vazio($mensagem)) {
-        
+
         # Coloca um título (se tiver)
-        if(!empty($titulo)){
+        if (!empty($titulo)) {
             tituloTable($titulo);
         }
 
@@ -2920,6 +2920,22 @@ function nl2br2($string) {
     } else {
         $string = str_replace(["\r\n", "\r", "\n", "&#13;&#10;"], "<br />", $string);
         return $string;
+    }
+}
+
+###########################################################
+/**
+ * Método espaco2br
+ * troca o espaço por br
+ * 
+ * @param $string $texto o texto a ser alterado
+ */
+
+function espaco2br($string) {
+    if (empty($string)) {
+        return $string;
+    } else {
+        return str_replace(" ", "<br/>", $string);
     }
 }
 
