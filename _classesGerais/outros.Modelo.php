@@ -1453,7 +1453,7 @@ class Modelo {
                 $atividade = 'Excluiu';
             }
         }
-        echo "oi";
+        
         # Conecta com o banco de dados
         $objeto = new $this->classBd();
         $objeto->set_tabela($this->tabela); # a tabela
@@ -1463,7 +1463,6 @@ class Modelo {
                 $intra->registraLog($this->idUsuario, $data, $atividade, $this->tabela, $id, 3, $this->idServidorPesquisado);
             }
         }
-        echo "->" . $this->linkListar;
         loadPage($this->linkListar);
     }
 
