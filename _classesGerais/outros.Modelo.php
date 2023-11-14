@@ -386,7 +386,7 @@ class Modelo {
                 $controle->set_onChange('formPadrao.submit();');
                 $controle->set_id("controlePesquisa");
                 $controle->set_pesquisa(true);
-                $controle->set_col(8);
+                $controle->set_col(12);
 
                 # Oculta o texto ressaltado quando for combo
                 if ($this->tipoCampoPesquisa == "combo") {
