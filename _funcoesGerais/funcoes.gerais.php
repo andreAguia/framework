@@ -2043,7 +2043,7 @@ function year($data) {
     if (validaData($data)) {
         # Divide a data em dia, mes e ano
         $dt = explode('/', $data);
-        return $dt[2];
+        return substr($dt[2], 0, 4);
     } else {
         alert('Data Inválida');
         return false;

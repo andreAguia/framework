@@ -186,6 +186,7 @@ abstract class Bd {
                 $sql .= ' WHERE ' . $idCampo . ' = ' . $idValor;
             }
             #echo $sql,"<br>";
+            
             # Executa o sql
             $this->conn->exec($sql);
             $this->lastId = $this->conn->lastInsertId();
