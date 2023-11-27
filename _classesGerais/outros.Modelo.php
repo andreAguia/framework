@@ -12,8 +12,8 @@ class Modelo {
     /*
      * Variáveis Gerais
      */
-    # Nome do Modelo (aparecerá nos fildset e no caption da tabela)
 
+    # Nome do Modelo (aparecerá nos fildset e no caption da tabela)
     private $nome = null;
 
     # id (para o fieldset)
@@ -1453,7 +1453,7 @@ class Modelo {
                 $atividade = 'Excluiu';
             }
         }
-        
+
         # Conecta com o banco de dados
         $objeto = new $this->classBd();
         $objeto->set_tabela($this->tabela); # a tabela
