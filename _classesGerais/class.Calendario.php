@@ -12,6 +12,8 @@ class Calendario {
     private $mes = null;        // integer O mês a ser exibido. 1 a 12.
     private $ano = null;        // integer O ano do calandário com 4 dígitos
     private $tamanho = "p";     // string  O tamanho do calendário: p | g
+    private $anoMaximo = null;  // integer O ano máximo na combo ano
+    private $anoMinimo = null;  // integer O ano mínimo na combo ano
 
     ###########################################################    
 
@@ -45,6 +47,9 @@ class Calendario {
 
         $this->mes = $mes;
         $this->ano = $ano;
+
+        $this->anoMaximo = date('Y') + 1;
+        $this->anoMinimo = date('Y') - 4;
     }
 
     ###########################################################
@@ -59,6 +64,30 @@ class Calendario {
          */
 
         $this->tamanho = $tamanho;
+    }
+
+    ###########################################################
+
+    public function set_anoMaximo($ano = null) { // integer O ano máximo
+        /**
+         * Informa o ano máximo na combo de ano
+         * 
+         * @syntax $calendario->set_anoMaximo($ano);
+         */
+
+        $this->anoMaximo = $ano;
+    }
+
+    ###########################################################
+
+    public function set_anoMinimo($ano = null) { // integer O ano máximo
+        /**
+         * Informa o ano máximo na combo de ano
+         * 
+         * @syntax $calendario->set_anoMinimo($ano);
+         */
+
+        $this->anoMinimo = $ano;
     }
 
     ###########################################################
@@ -101,7 +130,7 @@ class Calendario {
             $form->add_item($controle);
 
             # Cria um array com os anos
-            $ano = arrayPreenche(date('Y') - 4, date('Y') + 1, "d");
+            $ano = arrayPreenche($this->anoMinimo, $this->anoMaximo, "d");
 
             $controle = new Input('ano', 'combo');
             $controle->set_size(4);
@@ -238,5 +267,4 @@ class Calendario {
         # termina a tabela
         echo '</table>';
     }
-
 }
