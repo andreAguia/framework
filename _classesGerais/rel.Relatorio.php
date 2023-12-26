@@ -104,7 +104,6 @@ class Relatorio {
     # do menu do relatório
     private $menuRelatorio = true;  // se coloca ou não o menu relatório
     private $formCampos = null;    // array com campos para o formulario
-    private $formFocus = null;     // Campos a receber foco no form
     private $formLink = null;    // para onde vai o post
     private $brHr = 1;                          // quantidade de saltos de linha antes do hr do menu
     # especiais
@@ -667,7 +666,6 @@ class Relatorio {
             $menuRelatorio = new menuRelatorio();
             $menuRelatorio->set_botaoVoltar($this->botaoVoltar);
             $menuRelatorio->set_formCampos($this->formCampos);
-            $menuRelatorio->set_formFocus($this->formFocus);
             $menuRelatorio->set_formLink($this->formLink);
             $menuRelatorio->set_brHr($this->brHr);
             $menuRelatorio->set_aviso($this->aviso);

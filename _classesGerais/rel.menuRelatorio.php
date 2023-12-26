@@ -10,26 +10,26 @@ class menuRelatorio {
 
     private $formCampos = null;         # array com campos para o formulario    
     private $formLink = null;           # para onde vai o post
-    private $botaoVoltar = null;         # define o link do bot�o voltar
+    private $botaoVoltar = null;        # define o link do botão voltar
     private $aviso = null;
     private $brHr = 1;                  # numeros de salto de linha antes do hr
 
-    // usado quando se tem muitos controles e n�o se quer a 
-    // div dos controles por cima do relat�rio
+    // usado quando se tem muitos controles e não se quer a 
+    // div dos controles por cima do relatório
     ###########################################################
 
     /**
-     * Métodos get e set constru�dos de forma autom�tica pelo 
-     * metodo m�gico __call.
-     * Esse m�todo cria um set e um get para todas as propriedades da classe.
-     * Um m�todo existente tem prioridade sobre os m�todos criados pelo __call.
+     * Métodos get e set construídos de forma automática pelo 
+     * metodo mãgico __call.
+     * Esse método cria um set e um get para todas as propriedades da classe.
+     * Um método existente tem prioridade sobre os métodos criados pelo __call.
      * 
-     * O formato dos m�todos devem ser:
+     * O formato dos métodos devem ser:
      * 	set_propriedade
      * 	get_propriedade
      * 
      * @param 	$metodo		O nome do metodo
-     * @param 	$parametros	Os par�metros inseridos  
+     * @param 	$parametros	Os parâmetros inseridos  
      */
     public function __call($metodo, $parametros) {
         ## Se for set, atribui um valor para a propriedade
@@ -140,7 +140,7 @@ class menuRelatorio {
                 if (isset($campo['valor'])) {
                     $controle->set_valor($campo['valor']);
                 }
-                
+
                 # optgroup
                 if (isset($campo['optgroup'])) {
                     $controle->set_optgroup($campo['optgroup']);
@@ -175,5 +175,4 @@ class menuRelatorio {
         }
         $div->fecha(); // menuTopo
     }
-
 }
