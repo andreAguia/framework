@@ -2040,13 +2040,18 @@ function year($data) {
      *
      * @param $data data null A data a ser trabalhada
      */
-    if (validaData($data)) {
-        # Divide a data em dia, mes e ano
-        $dt = explode('/', $data);
-        return substr($dt[2], 0, 4);
+    if (empty($data)) {
+        return null;
     } else {
-        alert('Data Inválida');
-        return false;
+
+        if (validaData($data)) {
+            # Divide a data em dia, mes e ano
+            $dt = explode('/', $data);
+            return substr($dt[2], 0, 4);
+        } else {
+            alert('Data Inválida');
+            return false;
+        }
     }
 }
 
@@ -2545,7 +2550,7 @@ function dataMenorArray($datas) {
      * @note Observe que o formato de entrada da data é o brasileiro e o divisor é o /.
      * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
      * 
-     * @return data a data maior
+     * @return data a data menor
      *
      * @syntax dataMaior($datas);
      */
