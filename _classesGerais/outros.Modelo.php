@@ -1438,7 +1438,7 @@ class Modelo {
      *
      * @param $id    integer    - o id 
      */
-    public function excluir($id) {
+    public function excluir($id, $detalheLog = null) {
 
         # Pega os dados caso seja tbpermissao
         if ($this->log) {
@@ -1450,7 +1450,11 @@ class Modelo {
                 $permissao = $intra->get_permissao($id);
                 $atividade = "Exclui a permissao $id ($permissao) do servidor $this->idServidorPesquisado (" . $pessoal->get_nome($this->idServidorPesquisado) . ")";
             } else {
-                $atividade = 'Excluiu';
+                if (empty($detalheLog)) {
+                    $atividade = 'Excluiu';
+                } else {
+                    $atividade = $detalheLog;
+                }
             }
         }
 
