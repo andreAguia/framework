@@ -148,6 +148,10 @@ class Modelo {
 
     # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
     private $grupoCorColuna = null;
+    
+    # Rotinas Antes da Tabela
+    private $rotinaExtraAntesTabela = null;
+    private $rotinaExtraAntesTabelaParametro = null;
 
     ###########################################################
 
@@ -195,6 +199,11 @@ class Modelo {
 
     # Exibe um * quando o campo for obrigatório
     private $exibeInfoObrigatoriedade = true;
+    
+    # objeto Lateral - Objeto menu a ser inserido ao lado da tabela de listagem
+    private $objetoLateralEditar = null;
+    private $objetoLateralEditarMetodo = null;
+    private $objetoLateralEditarParametro = null;
 
     ###########################################################
 
@@ -595,6 +604,24 @@ class Modelo {
             $gridMenu->fechaColuna();
             $gridMenu->abreColuna(9);
         }
+        
+        # Rotina Extra Antes da Tabela
+        if (!is_null($this->rotinaExtraAntesTabela)) {
+            # Verifica se é array. Mais de uma função
+            if (is_array($this->rotinaExtraAntesTabela)) {
+                # quantidade de itens
+                $quantidade = count($this->rotinaExtraAntesTabela);
+
+                # Percorre o array executando as funções na ordem do array
+                for ($i = 0; $i < $quantidade; $i++) {
+                    $nomedafuncao = $this->rotinaExtraAntesTabela[$i];
+                    $nomedafuncao($this->rotinaExtraAntesTabelaParametro[$i]);
+                }
+            } else {
+                $nomedafuncao = $this->rotinaExtraAntesTabela;
+                $nomedafuncao($this->rotinaExtraAntesTabelaParametro);
+            }
+        }
 
         # Pega a lista em definitivo
         #echo $this->selectLista;
@@ -839,6 +866,19 @@ class Modelo {
             $gridMenu->abreColuna(3);
 
             $this->menuLateralEditar->show();
+
+            $gridMenu->fechaColuna();
+            $gridMenu->abreColuna(9);
+        }
+        
+        # Exibe o objeto Lateral (quando tem)
+        if (!is_null($this->objetoLateralEditar)) {
+            $gridMenu = new Grid();
+            $gridMenu->abreColuna(3);
+
+            $instancia = new $this->objetoLateralEditar();
+            $metodoClasse = $this->objetoLateralEditarMetodo;
+            $instancia->$metodoClasse($this->objetoLateralEditarParametro);
 
             $gridMenu->fechaColuna();
             $gridMenu->abreColuna(9);
