@@ -1535,7 +1535,7 @@ class Modelo {
 
         $select = 'SELECT data,
                           usuario,
-                          idLog,
+                          atividade,
                           idValor
                      FROM tblog
                      LEFT JOIN tbusuario USING (idUsuario)
@@ -1557,9 +1557,6 @@ class Modelo {
             $tabela->set_align(["center", "center", "left"]);
             $tabela->set_funcao(["datetime_to_php"]);
             $tabela->set_titulo('Histórico de Alterações');
-            $tabela->set_classe([null, null, "Log"]);
-            $tabela->set_metodo([null, null, "getAtividades"]);
-
             $tabela->show();
         } else {
             tituloTable('Histórico de Alterações');
