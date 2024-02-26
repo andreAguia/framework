@@ -162,8 +162,10 @@ class Menu {
         foreach ($this->item as $row) {
 
             # Bold
-            if ($this->destaque == $contador) {
-                $row->set_bold(true);
+            if (!is_null($this->destaque)) {
+                if ($this->destaque == $contador) {
+                    $row->set_bold(true);
+                }
             }
 
             switch ($this->tipo[$contador]) {
