@@ -162,10 +162,8 @@ class Menu {
         foreach ($this->item as $row) {
 
             # Bold
-            if (!is_null($this->destaque)) {
-                if ($this->destaque == $contador) {
-                    $row->set_bold(true);
-                }
+            if ($this->destaque == $contador) {
+                $row->set_bold(true);
             }
 
             switch ($this->tipo[$contador]) {
@@ -208,5 +206,4 @@ class Menu {
         }
         echo "</ul>";
     }
-
 }
