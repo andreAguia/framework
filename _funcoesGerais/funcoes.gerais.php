@@ -892,7 +892,7 @@ function titulo2($mensagem = null, $title = null) {
 
 ###########################################################
 
-function tituloTable($mensagem = null, $title = null) {
+function tituloTable($mensagem = null, $title = null, $subtitulo = null) {
     /**
      * Exibe um texto centralizado dentro de um painel com fundo igual ao titulo da tabela
      *
@@ -911,6 +911,41 @@ function tituloTable($mensagem = null, $title = null) {
     $div->set_title($title);
     $div->abre();
     echo $mensagem;
+    if (!empty($subtitulo)) {
+        echo "<p id='psubtitulo'>{$subtitulo}</p>";
+    }
+    $div->fecha();
+}
+
+###########################################################
+
+function linkTituloTable($mensagem = null, $title = null, $link = null, $subtitulo = null) {
+    /**
+     * Exibe um texto centralizado dentro de um painel com fundo igual ao titulo da tabela
+     *
+     * @syntax titulo($mensagem, [$title]);
+     *
+     * @param $titulo string null O Título a ser exibido
+     *
+     * @example exemplo.titulo.php
+     */
+    if (is_null($title)) {
+        $title = $mensagem;
+    }
+
+    # cria a div
+    $div = new Div("tituloTable");
+    $div->set_title($title);
+    $div->abre();
+
+    $link = new Link($mensagem, $link);
+    $link->set_id("linkTituloTabela");
+    $link->show();
+
+    if (!empty($subtitulo)) {
+        echo "<p id='psubtitulo'>{$subtitulo}</p>";
+    }
+
     $div->fecha();
 }
 
