@@ -185,7 +185,7 @@ class Link {
          * 
          * @syntax $link->show([$id]); 
          */
-        
+
         # informa se define explicitamente a url ou não
         $apagaUrl = false;
 
@@ -233,7 +233,7 @@ class Link {
                     echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=780,height=300');\" ";
                     $apagaUrl = true;
                     break;
-                
+
                 case '_blank3':
                     echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=900,height=700');\" ";
                     $apagaUrl = true;
@@ -243,17 +243,17 @@ class Link {
                     echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=1000,height=700');\" ";
                     $apagaUrl = true;
                     break;
-                
+
                 case '_blank5':
                     echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=1200,height=700');\" ";
                     $apagaUrl = true;
                     break;
-                
+
                 case '_calenmdario':
                     echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=500,height=400');\" ";
                     $apagaUrl = true;
                     break;
-                
+
                 default :
                     echo ' target="' . $this->target . '"';
                     break;
@@ -269,15 +269,18 @@ class Link {
             }
         } else {    // sem confirmação
             if (is_null($this->onClick) AND !$apagaUrl) {
-                if (is_null($id)) { // Exibe ou não o id
-                    echo ' href="' . $this->url . '"';
-                } else {
-                    echo ' href="' . $this->url . $id . '"';
+                if (!empty($this->url)) {
+                    if (is_null($id)) { // Exibe ou não o id
+                        echo ' href="' . $this->url . '"';
+                    } else {
+                        echo ' href="' . $this->url . $id . '"';
+                    }
                 }
             } else {
                 echo ' href="javascript:' . $this->onClick . '"';
             }
         }
+
 
         if (!is_null($this->accessKey)) {
             echo ' accesskey="' . $this->accessKey . '"';
@@ -306,5 +309,4 @@ class Link {
         }
         echo '</a>';
     }
-
 }
