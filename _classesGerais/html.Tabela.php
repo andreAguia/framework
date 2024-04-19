@@ -510,7 +510,7 @@ class Tabela {
             echo '<thead>';
 
             # título
-            if ($this->titulo) {
+            if (!empty($this->titulo) OR !empty($this->subtitulo)) {
                 echo '<caption>';
                 echo $this->titulo;
 
