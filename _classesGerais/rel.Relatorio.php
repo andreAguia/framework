@@ -64,6 +64,7 @@ class Relatorio {
     private $subtitulo2 = null;
     private $tituloTabela = null;
     private $topico = null;
+    private $mensagemGeral = null;
 
     # do número de ordem
     private $numeroOrdem = false;
@@ -316,6 +317,11 @@ class Relatorio {
         # Exibe a mensagem depois do título (se houver))
         if (!empty($this->objetoDepoisTitulo)) {
             $this->objetoDepoisTitulo->show();
+        }
+        
+        # Exibe a mensagem depois do título (se houver))
+        if (!empty($this->mensagemGeral)) {
+            p($this->mensagemGeral, "center","f14");
         }
     }
 

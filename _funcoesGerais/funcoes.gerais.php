@@ -1364,6 +1364,7 @@ function addDias($data = null, $dias = 0, $primeiroDia = true) {
      *
      * @example exemplo.addDias.php
      */
+    # Reduz um dia caso conte com o promeiro dia
     if ($primeiroDia) {
         $dias--;
     }
@@ -1769,7 +1770,7 @@ function numero_to_letra($number) {
 
 ###########################################################
 
-function addMeses($data, $meses) {
+function addMeses($data, $meses, $primeiroMes = true) {
     /**
      * Adiciona meses a uma data
      *
@@ -1787,6 +1788,11 @@ function addMeses($data, $meses) {
      * @example exemplo.addMeses.php
      */
     if (validaData($data)) {
+
+        # Reduz um mês caso conte o primeiro mês
+        if ($primeiroMes) {
+            $meses--;
+        }
 
         # Divide a data em dia, mes e ano
         $dt = explode('/', $data);
