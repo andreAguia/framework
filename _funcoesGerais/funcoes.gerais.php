@@ -1770,7 +1770,7 @@ function numero_to_letra($number) {
 
 ###########################################################
 
-function addMeses($data, $meses, $primeiroMes = true) {
+function addMeses($data, $meses) {
     /**
      * Adiciona meses a uma data
      *
@@ -1788,11 +1788,6 @@ function addMeses($data, $meses, $primeiroMes = true) {
      * @example exemplo.addMeses.php
      */
     if (validaData($data)) {
-
-        # Reduz um mês caso conte o primeiro mês
-        if ($primeiroMes) {
-            $meses--;
-        }
 
         # Divide a data em dia, mes e ano
         $dt = explode('/', $data);
