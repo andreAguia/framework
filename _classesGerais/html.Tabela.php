@@ -667,6 +667,17 @@ class Tabela {
                                             echo 'id="' . $condicional['id'] . '"';
                                         }
                                         break;
+
+                                    case 'in':
+                                        if (strpos($rowCondicional[$a], $condicional['valor'] === false)) {
+                                            // Fiz dessa forma pois o true não
+                                            // estava funcionando. 
+                                            // Mas o false está
+                                            // Então...
+                                        }else{
+                                            echo ' id="' . $condicional['id'] . '"';
+                                        }
+                                        break;
                                 }
                             }
                         }
