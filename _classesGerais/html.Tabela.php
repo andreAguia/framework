@@ -368,6 +368,8 @@ class Tabela {
         $valorGrupoCorColuna = null;
         $corGrupo = "grupo1";
 
+        $primeiraLinha = true;
+
         # Somatório
         if (is_array($this->colunaSomatorio)) {
             # cria um array de somas para cada coluna
@@ -602,6 +604,20 @@ class Tabela {
             }
 
             foreach ($this->conteudo as $row) {
+                if ($this->bordaInterna) {
+                    if ($primeiraLinha) {
+                        $primeiraLinha = false;
+                    } else {
+                        if ($this->numeroOrdem) {
+                            echo '<tr><td colspan="' . ($numColunas + 1) . '">';
+                        } else {
+                            echo '<tr><td colspan="' . ($numColunas) . '">';
+                        }
+
+                        echo hr("grosso");
+                        echo '</td></tr>';
+                    }
+                }
                 echo '<tr ';
 
                 # Formatação condicional
@@ -674,7 +690,7 @@ class Tabela {
                                             // estava funcionando. 
                                             // Mas o false está
                                             // Então...
-                                        }else{
+                                        } else {
                                             echo ' id="' . $condicional['id'] . '"';
                                         }
                                         break;
