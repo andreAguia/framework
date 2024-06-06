@@ -53,6 +53,7 @@ class Tabela {
     private $title = null;
     private $colspanLabel = null;
     private $align = null;
+    private $valign = null;
     private $width = null;
     private $rodape = null;
     private $totalRegistro = true;
@@ -192,10 +193,11 @@ class Tabela {
      * @param 	$width	array	-> array com o tamanho de cada coluna em %
      * @param 	$align	array	-> array com o alinhamento da coluna pode ser center, left, right ou justify
      */
-    public function set_cabecalho($label = null, $width = null, $align = null) {
+    public function set_cabecalho($label = null, $width = null, $align = null, $valign = null) {
         $this->label = $label;
         $this->width = $width;
         $this->align = $align;
+        $this->valign = $valign;
     }
 
 ###########################################################
@@ -814,11 +816,18 @@ class Tabela {
                             }
                         }
 
-                        # alinhamento
+                        # Alinhamento
                         if ((isset($this->align[$a])) and ($this->align[$a] <> null)) {
-                            echo 'id="' . $this->align[$a] . '"';
+                            echo 'align="' . $this->align[$a] . '"';
                         } else {
-                            echo 'id="center"';
+                            echo 'align="center"';
+                        }
+                        
+                        # Alinhamento Vertical
+                        if ((isset($this->valign[$a])) and ($this->valign[$a] <> null)) {
+                            echo ' valign="' . $this->valign[$a] . '"';
+                        } else {
+                            echo ' valign="center"';
                         }
 
                         echo '>';
