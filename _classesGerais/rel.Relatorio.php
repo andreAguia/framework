@@ -47,7 +47,9 @@ class Relatorio {
      * @example exemplo.relatorio.php
      * 
      */
-    # do relatório
+    /*
+     * do relatório
+     */
     private $conteudo = null;
     private $label = null;
     private $width = null;
@@ -56,7 +58,16 @@ class Relatorio {
     private $classe = null;
     private $metodo = null;
 
-    # do título
+    /*
+     * do cabeçalho e rodapé
+     */
+    private $cabecalhoRelatorio = true;         // Exibe ou não o cabeçalho do relatório
+    private $cabecalhoRelatorioGeral = false;   // Exibe ou não o cabeçalho do relatório
+    private $rodape = null;
+
+    /*
+     *  do título
+     */
     private $titulo = null;
     private $tituloLinha2 = null;
     private $tituloLinha3 = null;
@@ -66,68 +77,82 @@ class Relatorio {
     private $topico = null;
     private $mensagemGeral = null;
 
-    # do número de ordem
+    /*
+     *  do número de ordem
+     */
     private $numeroOrdem = false;
     private $numeroOrdemTipo = 'c';
 
-    # Rotinas Extras
+    /*
+     *  Rotinas Extras
+     */
     private $funcaoAntesTitulo = null;
     private $funcaoAntesTituloParametro = null;
     private $objetoAntesTitulo = null;
     private $objetoDepoisTitulo = null;
 
-    # do agrupamento
+    /*
+     *  do agrupamento
+     */
     private $subTotal = true;
     private $numGrupo = null;
     private $numGrupoEnfeite = true;
     private $ocultaGrupo = true;
     private $saltoAposGrupo = false;
 
-    # do subrelatório
-    private $subRelatorio = null;               // Objeto relatório que na verdade é um subrelatório
-    private $subSelect = null;                  // sql do subrelatorio
-    private $subClasseBd = null;  // Classe do bd   
-    private $subJoin = null;   // posição no array do join no primeiro relatório    
-    # do somatório
+    /*
+     *  do subrelatório
+     */
+    private $subRelatorio = null;   // Objeto relatório que na verdade é um subrelatório
+    private $subSelect = null;      // sql do subrelatorio
+    private $subClasseBd = null;    // Classe do bd   
+    private $subJoin = null;        // posição no array do join no primeiro relatório 
+
+    /*
+     *  do somatório
+     */
     private $colunaSomatorio = null;            // coluna que terá somatório
     private $textoSomatorio = 'Total:';         // texto a ser exibido na linha de totalização
     private $colunaTexto = 0;                   // coluna onde o texto será exibido;
     private $funcaoSomatorio = null;            // se executa alguma função no somatório
-    private $exibeSomatorioGeral = true;        // se exibe o somatório geral ou somente o parcial
-    # Outros
-    private $totalRegistro = true;  // se terá o número de registros no fim do relatório (e dos grupos))
-    private $totalRegistroValor = null;  // Guarda o valor do toal para ser recuperado na rotina de relatório via get
-    private $bordaInterna = false;  // Exibe ou não uma linha dentro da tabela entre os registros 
-    private $dataImpressao = true;  // Exibe ou  não a Data de Impressão
-    private $espacamento = 0;                   // Espaçamento entre as linha. 0 - espacamento padrão
-    private $cabecalhoRelatorio = true;         // Exibe ou não o cabeçalho do relatório
-    private $botaoVoltar = null;  // Link do botão voltar
-    # do menu do relatório
-    private $menuRelatorio = true;  // se coloca ou não o menu relatório
-    private $formCampos = null;    // array com campos para o formulario
-    private $formLink = null;    // para onde vai o post
-    private $brHr = 1;                          // quantidade de saltos de linha antes do hr do menu
-    # especiais
-    private $linhaNomeColuna = false;           // exibe (ou não) a linha entre o nome das colunas
-    private $id = null;                         // id do css para alterações
-    # do log
+    private $exibeSomatorioGeral = true;        // se exibe o somatório geral ou somente o parcial                      
+    
+    /*
+     *  do menu do relatório
+     */
+    private $menuRelatorio = true;      // se coloca ou não o menu relatório
+    private $formCampos = null;         // array com campos para o formulario
+    private $formLink = null;           // para onde vai o post
+    private $brHr = 1;                  // quantidade de saltos de linha antes do hr do menu
+        
+    /*
+     *  do log
+     */
     private $log = true;            // informa se gerará log ou não
     private $logDetalhe = null;     // detalhamento do log
-    private $logServidor = null;    // o idServidor para quando o relatório for de um único servidor
-    # do Rodapé
-    private $rodape = null;
+    private $logServidor = null;    // o idServidor para quando o relatório for de um único servidor    
 
-    # Outros
-    private $linhaFinal = false;                // Exibe linha final
+    /*
+     *  Outros
+     */
+    private $totalRegistro = true;      // se terá o número de registros no fim do relatório (e dos grupos))
+    private $totalRegistroValor = null; // Guarda o valor do toal para ser recuperado na rotina de relatório via get
+    private $bordaInterna = false;      // Exibe ou não uma linha dentro da tabela entre os registros 
+    private $dataImpressao = true;      // Exibe ou  não a Data de Impressão
+    private $espacamento = 0;           // Espaçamento entre as linha. 0 - espacamento padrão
+    private $botaoVoltar = null;        // Link do botão voltar
+    private $linhaNomeColuna = false;   // exibe (ou não) a linha entre o nome das colunas
+    private $id = null;                 // id do css para alterações
+    private $linhaFinal = false;        // Exibe linha final
     private $funcaoFinalGrupo = null;           // Executa uma rotina ao fim de cada agrupamento na forma de função
     private $funcaoFinalGrupoParametro = null;  // Usado na escala anual de férias para exibir texto.
-    private $funcaoFinalRelatorio = null;           // Executa uma rotina ao fim do Relatorio
+    private $funcaoFinalRelatorio = null;               // Executa uma rotina ao fim do Relatorio
     private $funcaoFinalRelatorioParametro = null;
-    private $aviso = null;                          // Exibe um aviso que não será impresso, no cabeçalho
-    private $rowspan = null;            # Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
-    private $grupoCorColuna = null;     # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
-    private $textoMensagemSemRegistro = "Não existe nenhum registro a ser exibido !";     # Mensagem de quando não tem registro a ser exibido.
-    private $exibeMensagemNenhumRegistro = true; // Exibe ou não a mensagem de quando não tem registro a ser exibido
+    private $aviso = null;                              // Exibe um aviso que não será impresso, no cabeçalho
+    private $rowspan = null;                            // Coluna onde o código fará automaticamente rowspan de valores iguais (colocar na ordenação esta coluna)
+    private $grupoCorColuna = null;                     // Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
+    private $textoMensagemSemRegistro = "Não existe nenhum registro a ser exibido !";     // Mensagem de quando não tem registro a ser exibido.
+    private $exibeMensagemNenhumRegistro = true;        // Exibe ou não a mensagem de quando não tem registro a ser exibido
     private $exibeLinhaFinal = true;
 
     ###########################################################
@@ -187,10 +212,24 @@ class Relatorio {
         $cabec->abre();
         $imagem = new Imagem(PASTA_FIGURAS . 'timbre2023.png', null, 70, 55);
         $imagem->show();
-        p("Governo do Estado do Rio de Janeiro","pRelatorioCabecalho");
-        p("Universidade Estadual do Norte Fluminense Darcy Ribeiro - UENF","pRelatorioCabecalho");
-        p("Diretoria Geral Administrativa","pRelatorioCabecalho");
-        p("Gerência de Recursos Humanos","pRelatorioCabecalho");
+        p("Governo do Estado do Rio de Janeiro", "pRelatorioCabecalho");
+        p("Universidade Estadual do Norte Fluminense Darcy Ribeiro - UENF", "pRelatorioCabecalho");
+        p("Diretoria Geral Administrativa", "pRelatorioCabecalho");
+        p("Gerência de Recursos Humanos", "pRelatorioCabecalho");
+        $cabec->fecha();
+        br();
+    }
+
+    ###########################################################
+
+    public function exibeCabecalhoGeral() {
+
+        $cabec = new Div('center');
+        $cabec->abre();
+        $imagem = new Imagem(PASTA_FIGURAS . 'timbre2023.png', null, 70, 55);
+        $imagem->show();
+        p("Governo do Estado do Rio de Janeiro", "pRelatorioCabecalho");
+        p("Universidade Estadual do Norte Fluminense Darcy Ribeiro - UENF", "pRelatorioCabecalho");
         $cabec->fecha();
         br();
     }
@@ -318,10 +357,10 @@ class Relatorio {
         if (!empty($this->objetoDepoisTitulo)) {
             $this->objetoDepoisTitulo->show();
         }
-        
+
         # Exibe a mensagem depois do título (se houver))
         if (!empty($this->mensagemGeral)) {
-            p($this->mensagemGeral, "center","f14");
+            p($this->mensagemGeral, "center", "f14");
         }
     }
 
@@ -558,7 +597,7 @@ class Relatorio {
             if (!empty($this->tituloLinha2)) {
                 $atividade .= "<br/>{$this->tituloLinha2}";
             }
-            
+
             # Verifica se tem terceira linha
             if (!empty($this->tituloLinha3)) {
                 $atividade .= "<br/>{$this->tituloLinha3}";
@@ -568,7 +607,7 @@ class Relatorio {
             if (!empty($this->subtitulo)) {
                 $atividade .= "<br/>{$this->subtitulo}";
             }
-            
+
             # Verifica se tem subtítulo
             if (!empty($this->subtitulo2)) {
                 $atividade .= "<br/>{$this->subtitulo2}";
@@ -681,6 +720,11 @@ class Relatorio {
         # Exibe o cabeçalho
         if ($this->cabecalhoRelatorio) {
             $this->exibeCabecalho();
+        }
+        
+        # Exibe o cabeçalho Geral
+        if ($this->cabecalhoRelatorioGeral) {
+            $this->exibeCabecalhoGeral();
         }
 
         # Abre a div do relatório
@@ -1092,5 +1136,4 @@ class Relatorio {
             $this->gravaLog();
         }
     }
-
 }
