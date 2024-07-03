@@ -13,7 +13,7 @@ class menuRelatorio {
     private $botaoVoltar = null;        # define o link do botão voltar
     private $aviso = null;
     private $brHr = 1;                  # numeros de salto de linha antes do hr
-
+    
     // usado quando se tem muitos controles e não se quer a 
     // div dos controles por cima do relatório
     ###########################################################
