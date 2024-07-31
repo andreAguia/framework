@@ -56,7 +56,7 @@ class Historico {
         $contadorHistorico = $intra->count($select);
 
         function separaLog($texto) {
-            return str_replace(";", ";<br/>", $texto);
+            return str_replace(";", ";<br/>", str_replace("<br/>", " ", $texto));
         }
 
         if ($contadorHistorico > 0) {
