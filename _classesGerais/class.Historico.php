@@ -41,7 +41,7 @@ class Historico {
 
         $select = 'SELECT idValor,
                           data,
-                          idLog,
+                          atividade,
                           usuario,                          
                           ip
                      FROM tblog
@@ -55,6 +55,10 @@ class Historico {
         $result = $intra->select($select);
         $contadorHistorico = $intra->count($select);
 
+        function separaLog($texto) {
+            return str_replace(";", ";<br/>", $texto);
+        }
+
         if ($contadorHistorico > 0) {
 
             # Monta a tabela
@@ -62,11 +66,11 @@ class Historico {
             $tabela->set_conteudo($result);
             $tabela->set_label(["Id", "Data", "Atividade", "Usuário", "IP"]);
             $tabela->set_align(["center", "center", "left"]);
-            $tabela->set_funcao([null, "datetime_to_php"]);
+            $tabela->set_funcao([null, "datetime_to_php", "separaLog"]);
             $tabela->set_titulo($this->titulo);
-            $tabela->set_classe([null, null, "Log"]);
-            $tabela->set_metodo([null, null, "getAtividades"]);
-            $tabela->set_width([15, 25, 30, 15, 15]);
+//            $tabela->set_classe([null, null, "Log"]);
+//            $tabela->set_metodo([null, null, "getAtividades"]);
+            $tabela->set_width([10, 15, 45, 15, 15]);
             $tabela->set_rowspan(0);
             $tabela->set_grupoCorColuna(0);
 
