@@ -73,6 +73,19 @@ class Imagem {
 
     ###########################################################
 
+    public function set_title($title = null) {
+        /**
+         * Informa o texto a ser exibido no mouseOver
+         * 
+         * @syntax $botao->set_title($title);
+         * 
+         * @param $title string null O nome do id
+         */
+        $this->title = $title;
+    }
+
+###########################################################
+
     public function show() {
         /**
          * Exibe a imagem
