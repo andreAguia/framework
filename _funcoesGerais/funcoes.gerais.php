@@ -1388,7 +1388,7 @@ function addDias($data = null, $dias = 0, $primeiroDia = true) {
 
 ###########################################################
 
-function entre($data, $dtInicial, $dtFinal) {
+function entre($data = null, $dtInicial = null, $dtFinal = null, $inclusivo = 1) {
     /**
      * Verifica se a data está entre duas datas.
      *
@@ -1404,18 +1404,43 @@ function entre($data, $dtInicial, $dtFinal) {
      * @param $data      date null A data a ser verificada.
      * @param $dtInicial date null A data inicial do período.
      * @param $dtFinal   date null A data final do período.
+     * @param $inclusivo bool true Verifica incluindo as datas inicial e final
      *
      * @example exemplo.entre.php
      */
+    # Verifica a data
     if (validaData($data)) {
-        if ((date_to_bd($data) < date_to_bd($dtInicial)) or (date_to_bd($data) > date_to_bd($dtFinal))) {
-            return false;
-        } else {
-            return true;
-        }
+        $data = strtotime(date_to_bd($data));
     } else {
-        alert('Data Inválida');
-        return false;
+        return "Erro";
+    }
+
+    # Verifica a Datat Inicial
+    if (validaData($dtInicial)) {
+        $dtInicial = strtotime(date_to_bd($dtInicial));
+    } else {
+        return "Erro";
+    }
+
+    # Verifica a Datat Final
+    if (validaData($dtFinal)) {
+        $dtFinal = strtotime(date_to_bd($dtFinal));
+    } else {
+        return "Erro";
+    }
+
+    if ($inclusivo) {
+        if ($dtInicial <= $data AND $dtFinal >= $data) {
+            return true;
+        } else {
+            return false;
+        }
+    }else{
+         if ($dtInicial < $data AND $dtFinal > $data) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
