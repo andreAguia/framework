@@ -1435,8 +1435,8 @@ function entre($data = null, $dtInicial = null, $dtFinal = null, $inclusivo = 1)
         } else {
             return false;
         }
-    }else{
-         if ($dtInicial < $data AND $dtFinal > $data) {
+    } else {
+        if ($dtInicial < $data AND $dtFinal > $data) {
             return true;
         } else {
             return false;
@@ -3006,3 +3006,38 @@ function espaco2br($string) {
 }
 
 ###########################################################
+/**
+ * função get_arquivoDivisor
+ * troca o espaço por br
+ * 
+ * @param $string $texto o texto a ser alterado
+ */
+
+function get_arquivoDivisor($arquivo_recebido, $verificar_linhas = 2) {
+    $arquivo_recebido = new SplFileObject($arquivo_recebido);
+
+    $delimitadores = array(',', "\t", ';', '|', ':');
+
+    $resultado = array();
+
+    for ($i = 0; $i < $verificar_linhas; $i++) {
+        $linha = $arquivo_recebido->fgets();
+        foreach ($delimitadores as $delimitador) {
+            $regExp = '/[' . $delimitador . ']/';
+
+            $fields = preg_split($regExp, $linha);
+
+            if (count($fields) > 1) {
+                if (!empty($resultado[$delimitador])) {
+                    $resultado[$delimitador]++;
+                } else {
+                    $resultado[$delimitador] = 1;
+                }
+            }
+        }
+    }
+
+    $resultado = array_keys($resultado, max($resultado));
+
+    return $resultado[0];
+}
