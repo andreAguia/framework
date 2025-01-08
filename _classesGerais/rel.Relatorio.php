@@ -116,7 +116,7 @@ class Relatorio {
     private $colunaTexto = 0;                   // coluna onde o texto será exibido;
     private $funcaoSomatorio = null;            // se executa alguma função no somatório
     private $exibeSomatorioGeral = true;        // se exibe o somatório geral ou somente o parcial                      
-    
+
     /*
      *  do menu do relatório
      */
@@ -124,7 +124,7 @@ class Relatorio {
     private $formCampos = null;         // array com campos para o formulario
     private $formLink = null;           // para onde vai o post
     private $brHr = 1;                  // quantidade de saltos de linha antes do hr do menu
-        
+
     /*
      *  do log
      */
@@ -154,6 +154,9 @@ class Relatorio {
     private $textoMensagemSemRegistro = "Não existe nenhum registro a ser exibido !";     // Mensagem de quando não tem registro a ser exibido.
     private $exibeMensagemNenhumRegistro = true;        // Exibe ou não a mensagem de quando não tem registro a ser exibido
     private $exibeLinhaFinal = true;
+
+    # Cabeçalho
+    private $cabecalho_exibeDiretoriaGerencia = true;
 
     ###########################################################
 
@@ -214,8 +217,13 @@ class Relatorio {
         $imagem->show();
         p("Governo do Estado do Rio de Janeiro", "pRelatorioCabecalho");
         p("Universidade Estadual do Norte Fluminense Darcy Ribeiro - UENF", "pRelatorioCabecalho");
-        p("Diretoria Geral Administrativa", "pRelatorioCabecalho");
-        p("Gerência de Recursos Humanos", "pRelatorioCabecalho");
+
+        # Verifica se exibe a diretoria
+        if ($this->cabecalho_exibeDiretoriaGerencia) {
+            p("Diretoria Geral Administrativa", "pRelatorioCabecalho");
+            p("Gerência de Recursos Humanos", "pRelatorioCabecalho");
+        }
+        
         $cabec->fecha();
         br();
     }
@@ -721,7 +729,7 @@ class Relatorio {
         if ($this->cabecalhoRelatorio) {
             $this->exibeCabecalho();
         }
-        
+
         # Exibe o cabeçalho Geral
         if ($this->cabecalhoRelatorioGeral) {
             $this->exibeCabecalhoGeral();
