@@ -157,6 +157,8 @@ class Relatorio {
 
     # Cabeçalho
     private $cabecalho_exibeDiretoriaGerencia = true;
+    private $cabecalhoDiretoria = "Diretoria Geral Administrativa";
+    private $cabecalhoGerencia = "Gerência de Recursos Humanos";
 
     ###########################################################
 
@@ -220,8 +222,8 @@ class Relatorio {
 
         # Verifica se exibe a diretoria
         if ($this->cabecalho_exibeDiretoriaGerencia) {
-            p("Diretoria Geral Administrativa", "pRelatorioCabecalho");
-            p("Gerência de Recursos Humanos", "pRelatorioCabecalho");
+            p($this->cabecalhoDiretoria, "pRelatorioCabecalho");
+            p($this->cabecalhoGerencia, "pRelatorioCabecalho");
         }
         
         $cabec->fecha();
@@ -638,10 +640,10 @@ class Relatorio {
      * Exibe o relatório
      */
     function show() {
-        $contador = 0;  // contador de registros
-        $subContador = 0; // contador de registros para grupo (zera a cada grupo)
-        $agrupa = '#';       // guarda o nome do grupo
-        $grupo = null;  // flag de agrupamento ou não
+        $contador = 0;      // contador de registros
+        $subContador = 0;   // contador de registros para grupo (zera a cada grupo)
+        $agrupa = '#';      // guarda o nome do grupo
+        $grupo = null;      // flag de agrupamento ou não
         #####
 
         $valorGrupoCorColuna = null;
