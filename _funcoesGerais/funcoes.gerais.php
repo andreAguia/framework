@@ -2244,6 +2244,42 @@ function menorValor(array $valores) {
 
 ###########################################################
 
+function moda(array $valores) {
+    /**
+     * Obtem a moda de um array de valores.
+     *
+     * @syntax moda($valores);
+     *
+     * @param $valores array null Array de numeros
+     * @return number a moda de um array
+     */
+    $a_freq = [];
+    foreach ($valores as $v) {
+        if (!isset($a_freq[$v])) {
+            $a_freq[$v] = 0;
+        }
+        $a_freq[$v]++;
+    }
+    
+    array_count_values($valores);
+    br();
+    $a_maxs = array_keys($a_freq, max($a_freq));
+    $return = null;
+
+    if (count($a_maxs) == 1) {
+        $return = $a_maxs[0];
+    } else {
+        foreach ($a_maxs as $item) {
+            $return .= $item . ", ";
+        }
+    }
+
+    return $return;
+}
+
+###########################################################
+###########################################################
+
 function arrayToString($valores) {
     /**
      * Transforma um array em uma string com os valores separados por vírgula
