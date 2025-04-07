@@ -734,6 +734,7 @@ class Input {
                 break;
             case "combo":
             case "simnao2":
+            case "simnao3":
                 if ($this->pesquisa) {
                     echo '<div class="input-group" id="pesquisa">';
                     echo '<span class="input-group-label"><i class="fi-magnifying-glass"></i></span>';
@@ -883,6 +884,10 @@ class Input {
                 break;
 
             case "simnao2":
+                /* 
+                 * Neste controle o Sim e Não é representado por 1 e 0 (true e false)
+                 * Mas esse formato costuma dar problebas podendo o nulo ser entendido como falso
+                 */
                 $this->array = array(
                     array(1, "Sim"),
                     array(0, "Não"),
@@ -902,6 +907,31 @@ class Input {
 
                 echo '</select>';
                 break;
+                
+            case "simnao3":
+                /* 
+                 * Neste controle o Sim e não é representado por uma letra
+                 */
+                $this->array = array(
+                    array("s", "Sim"),
+                    array("n", "Não"),
+                    array(null, ""));
+
+                echo '>';
+                foreach ($this->array as $field) {
+                    echo '<option value="' . $field[0] . '"';
+                    if ($field[0] == $this->valor) {
+                        echo ' selected>';
+                    } else {
+                        echo '>';
+                    }
+                    echo $field[1];
+                    echo '</option>';
+                }
+
+                echo '</select>';
+                break;
+                
             case "combo":
                 if ($this->multiple) {
                     echo ' multiple';
