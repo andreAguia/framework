@@ -2483,6 +2483,21 @@ function plm($texto) {
 
 ###########################################################
 
+function maiuscula($texto) {
+
+    /**
+     * Passa o texto para minusculas com a primeira letra de cada palavra em maiusculas
+     *
+     * @param  $texto STRING null O texto a ser transformado
+     * @return string O texto modificado
+     *
+     * @syntax plm($texto);
+     */
+    return mb_convert_case($texto, MB_CASE_UPPER);
+}
+
+###########################################################
+
 function vazioPraNulo($valor = null) {
 
     /**
