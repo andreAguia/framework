@@ -249,7 +249,7 @@ class Link {
                     $apagaUrl = true;
                     break;
 
-                case '_calenmdario':
+                case '_calendario':
                     echo " onClick=\"window.open('$this->url','$this->target','menubar=no,scrollbars=yes,location=no,directories=no,status=no,width=500,height=400');\" ";
                     $apagaUrl = true;
                     break;
