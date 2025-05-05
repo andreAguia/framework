@@ -182,6 +182,9 @@ class Page {
 
         # Define o timezone
         date_default_timezone_set('America/Sao_Paulo');
+        
+        # Define que a página deverá seguir a codificação utf-8
+        ini_set('default_charset','UTF-8');
     }
 
 ###########################################################
