@@ -711,7 +711,7 @@ function moedaExtenso($valor = 0, $maiusculas = false) {
         }
 
         if ($r) {
-            $rt = $rt . ((($i > 0) && ($i <= $fim) && ($inteiro[0] > 0) && ($z < 1)) ? ( ($i < $fim) ? ", " : " e ") : " ") . $r;
+            $rt = $rt . ((($i > 0) && ($i <= $fim) && ($inteiro[0] > 0) && ($z < 1)) ? (($i < $fim) ? ", " : " e ") : " ") . $r;
         }
     }
 
@@ -2260,7 +2260,7 @@ function moda(array $valores) {
         }
         $a_freq[$v]++;
     }
-    
+
     array_count_values($valores);
     br();
     $a_maxs = array_keys($a_freq, max($a_freq));
@@ -2478,7 +2478,11 @@ function plm($texto) {
      *
      * @syntax plm($texto);
      */
-    return mb_convert_case($texto, MB_CASE_TITLE);
+    if (empty($texto)) {
+        return null;
+    } else {
+        return mb_convert_case($texto, MB_CASE_TITLE);
+    }
 }
 
 ###########################################################
