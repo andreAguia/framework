@@ -143,6 +143,11 @@ class Menu {
                 $this->item[] = $linkAjax;
                 $this->tipo[] = 'item';
                 break;
+            
+            case "br" :
+                $this->item[] = null;
+                $this->tipo[] = 'br';
+                break;
         }
     }
 
@@ -197,6 +202,10 @@ class Menu {
                     echo "<li id='sublink'>";
                     $row->show();
                     echo "</li>";
+                    break;
+                
+                case "br" :
+                    br();
                     break;
 
                 default :
