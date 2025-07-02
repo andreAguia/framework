@@ -3096,3 +3096,22 @@ function get_arquivoDivisor($arquivo_recebido, $verificar_linhas = 2) {
 
     return $resultado[0];
 }
+
+###########################################################
+
+/**
+* Função que ressalta o sim ou não
+*/
+function ressaltaSimNao($texto) {
+
+    if ($texto == "Sim" OR $texto == "s") {
+        p("Sim", "verde");
+    } elseif ($texto == "Não" OR $texto == "n") {
+        p("Não", "vermelho");
+    } else {
+        echo $texto;
+    }
+}
+
+###########################################################
+
