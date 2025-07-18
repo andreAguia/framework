@@ -1008,6 +1008,31 @@ function aguarde($texto = null, $tamanho = 90) {
 
 ###########################################################
 
+function construcao($texto = null) {
+
+    /**
+     * Rotina que exibe tela de em manutenção
+     *
+     * @syntax aguarde();
+     *
+     * @example exemplo.aguarde.php
+     */
+    # Monta a div com a animação
+    $div = new Div("center");
+    $div->abre();
+    br();
+    $Imagem = new Imagem(PASTA_FIGURAS_GERAIS . 'construcao.png', $texto, 200, 80);
+    $Imagem->show();
+
+    if (!is_null($texto)) {
+        br(2);
+        p($texto, "center");
+    }
+    $div->fecha();
+}
+
+###########################################################
+
 function formataMoeda($valor, $formato = 1) {
     /**
      * Função que retorna um valor no formato especificado
@@ -3100,8 +3125,8 @@ function get_arquivoDivisor($arquivo_recebido, $verificar_linhas = 2) {
 ###########################################################
 
 /**
-* Função que ressalta o sim ou não
-*/
+ * Função que ressalta o sim ou não
+ */
 function ressaltaSimNao($texto) {
 
     if ($texto == "Sim" OR $texto == "s") {

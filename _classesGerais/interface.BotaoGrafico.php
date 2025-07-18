@@ -333,7 +333,7 @@ class BotaoGrafico {
 
         # Verifica se o botão é novo
         if ($this->novo) {
-            $this->label .= "<br/><br/><span class='label success'>Novo</span>";
+            $this->label .= "<span class='label secondary'>Novo</span>";
         }
 
 
