@@ -376,7 +376,7 @@ class Modelo {
             $menu = new MenuBar();
 
             # Botão voltar
-            if ($this->botaoVoltarLista) {
+            if ($this->botaoVoltarLista AND !is_null($this->voltarLista)) {
                 $linkBotaoVoltar = new Button("Voltar", $this->voltarLista);
                 $linkBotaoVoltar->set_title('Volta para a página anterior');
                 $linkBotaoVoltar->set_accessKey('V');
