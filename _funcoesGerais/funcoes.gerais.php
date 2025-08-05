@@ -2585,7 +2585,7 @@ function verificaSobreposicao($dtInicial1, $dtFinal1, $dtInicial2, $dtFinal2) {
 function dataMaior($data1, $data2) {
 
     /**
-     * Retorna a data maior ou igual (mais recente)
+     * Retorna a data maior mais nova
      *
      * @param  $data1 data uma das datas
      * @param  $data2 data a outra datas
@@ -2618,7 +2618,7 @@ function dataMaior($data1, $data2) {
 function dataMenor($data1, $data2) {
 
     /**
-     * Retorna a data menor - Data mais recente Futura
+     * Retorna a data menor - Data mais antiga
      *
      * @param  $data1 data uma das datas
      * @param  $data2 data a outra datas
