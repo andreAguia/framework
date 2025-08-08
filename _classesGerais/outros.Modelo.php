@@ -987,6 +987,11 @@ class Modelo {
             if (isset($campo['array'])) {
                 $controle->set_array($campo['array']);
             }
+            
+            # Se aceita multiplos valores
+            if (isset($campo['multiple'])) {
+                $controle->set_multiple($campo['multiple']);
+            }
 
             # Somente leitura
             if (isset($campo['readOnly'])) {
@@ -1458,7 +1463,7 @@ class Modelo {
 
             # Verifica onde vai retornar
             if (empty($this->linkAposGravar)) {
-                loadPage($this->linkListar);
+               loadPage($this->linkListar);
             } else {
                 loadPage($this->linkAposGravar);
             }
