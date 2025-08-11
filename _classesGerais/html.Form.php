@@ -278,7 +278,7 @@ class Form {
                 $linhaAtual = $objeto1->get_linha();
             }
 
-            # define o tamnho da coluna e exibe o controle
+            # define o tamanho da coluna e exibe o controle
             echo '<div class="large-' . $objeto1->get_col() . ' medium-' . $objeto1->get_col() . ' columns">';
 
             # Exibe o objeto (controle)
