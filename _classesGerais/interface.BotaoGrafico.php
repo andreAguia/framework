@@ -57,7 +57,7 @@ class BotaoGrafico {
     private $accessKey = null;
     private $bloqueadoMensagem = null;
     private $bloqueadoTipo = "warning";
-    private $novo = false;
+    private $etiqueta = null;
 
 ###########################################################
 
@@ -294,16 +294,15 @@ class BotaoGrafico {
 
 ###########################################################
 
-    public function set_novo($novo = null) {
+    public function set_etiqueta($etiqueta = null) {
         /**
-         * Informa se a rotina que o botão acessa é uma nova rotina.
-         * Na verdade exibe a palavra novo em destaque no botão
+         * Exibe uma etiqueta abaico do botão
          * 
-         * @syntax $botao->set_novo($novo);
+         * @syntax $botao->set_etiqueta($etiqueta);
          * 
-         * @param $novo bool false se é novo ou não
+         * @param $etiqueta string null a string a ser exibida
          */
-        $this->novo = $novo;
+        $this->etiqueta = $etiqueta;
     }
 
 ###########################################################
@@ -331,9 +330,9 @@ class BotaoGrafico {
             $this->url = '#';
         }
 
-        # Verifica se o botão é novo
-        if ($this->novo) {
-            $this->label .= "<span class='label secondary'>Novo</span>";
+        # Verifica se tem etiqueta
+        if (!is_null($this->etiqueta)) {
+            $this->label .= "<span class='label secondary'>{$this->etiqueta}</span>";
         }
 
 

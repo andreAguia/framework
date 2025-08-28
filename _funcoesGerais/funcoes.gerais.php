@@ -983,6 +983,38 @@ function botaoVoltar($url, $label = 'Voltar', $title = 'Volta para a página ant
 
 ###########################################################
 
+function botao($url, $label, $title = null) {
+    /**
+     * Rotina que exibe o botão de Voltar
+     *
+     * @syntax botaoVoltar($url, [$label], [$title] );
+     *
+     * @param $url   string null     A url do botão
+     * @param $label string	'Voltar' O texto que aparecerá no botão
+     * @param $title string TEXTO    A mensagem no mouseover
+     */
+    # Botão voltar
+    $grid = new Grid();
+    $grid->abreColuna(12);
+    $menu = new MenuBar();
+
+    # Botão Administração
+    $linkBotaoVoltar = new Button($label);
+    $linkBotaoVoltar->set_title($title);
+    $linkBotaoVoltar->set_url($url);
+    if ($label == 'Voltar') {
+        $linkBotaoVoltar->set_accessKey('V');
+    }
+    $menu->add_link($linkBotaoVoltar, "left");
+
+    $menu->show();
+
+    $grid->fechaColuna();
+    $grid->fechaGrid();
+}
+
+###########################################################
+
 function aguarde($texto = null, $tamanho = 90) {
 
     /**
