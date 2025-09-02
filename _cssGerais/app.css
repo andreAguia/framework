@@ -394,6 +394,10 @@ p#rotinaDescricao{
     text-align: center;
 }
 
+tr#calendarioPgto{
+    background-color:#99ccff;
+}
+
 /*******************************************
  *  class tabela rotina
  *******************************************/
