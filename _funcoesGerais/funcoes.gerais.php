@@ -1189,7 +1189,7 @@ function callout($mensagem, $tipo = "warning", $id = "funcaoCallout") {
 
 ###########################################################
 
-function calloutAlert($mensagem, $titulo = "Atenção", $tipo = "alert") {
+function calloutAlert($mensagem, $titulo = "Atenção", $tipo = "alert", $align = "left") {
     /**
      * Exibe um painel contendo um alerta
      *
@@ -1219,10 +1219,10 @@ function calloutAlert($mensagem, $titulo = "Atenção", $tipo = "alert") {
         # Verifica se é diversas mensagens
         if (is_array($mensagem)) {
             foreach ($mensagem as $mm) {
-                p($mm, "center");
+                p($mm, "{$align}");
             }
         } else {
-            p($mensagem, "center");
+            p($mensagem, "{$align}");
         }
 
         $callout->fecha();
