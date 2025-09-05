@@ -1189,7 +1189,7 @@ function callout($mensagem, $tipo = "warning", $id = "funcaoCallout") {
 
 ###########################################################
 
-function calloutAlert($mensagem, $titulo = null, $tipo = "alert") {
+function calloutAlert($mensagem, $titulo = "Atenção", $tipo = "alert") {
     /**
      * Exibe um painel contendo um alerta
      *
