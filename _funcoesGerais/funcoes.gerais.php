@@ -1189,7 +1189,7 @@ function callout($mensagem, $tipo = "warning", $id = "funcaoCallout") {
 
 ###########################################################
 
-function calloutAlert($mensagem, $titulo = "Atenção", $tipo = "alert", $align = "left") {
+function calloutAlert($mensagem, $titulo = "Atenção", $align = "left") {
     /**
      * Exibe um painel contendo um alerta
      *
@@ -1213,16 +1213,58 @@ function calloutAlert($mensagem, $titulo = "Atenção", $tipo = "alert", $align 
         }
 
         # Chama a classe callout
-        $callout = new Callout($tipo);
+        $callout = new Callout("alert");
         $callout->abre();
 
         # Verifica se é diversas mensagens
         if (is_array($mensagem)) {
             foreach ($mensagem as $mm) {
-                p($mm, "{$align}");
+                p($mm, "{$align}", "f14");
             }
         } else {
-            p($mensagem, "{$align}");
+            p($mensagem, "{$align}", "f14");
+        }
+
+        $callout->fecha();
+    }
+}
+
+###########################################################
+
+function calloutWarning($mensagem, $titulo = "Atenção", $align = "left") {
+    /**
+     * Exibe um painel contendo um alerta
+     *
+     * @note Essa função é uma alternativa a função alert e utiliza a classe homônima.
+     * @note Foi criada para facilitar o código quando se quer somente exibir uma mensagem dentro de um painel colorido.
+     * @note Utiliza a funcionalidade callout do Foundation
+     *
+     * @param $mensagem string null    A mensagem a ser exibida
+     * @param $tipo     string warning O tipo do callout: secondary | primary | success | warning | alert
+     *
+     * @syntax callout($mensagem, [$tipo]);
+     *
+     * @example exemplo.callout.php
+     */
+    # Verifica se não está vazio
+    if (!vazio($mensagem)) {
+
+        # Coloca um título (se tiver)
+        if (!empty($titulo)) {
+            tituloTable($titulo);
+        }
+
+        # Chama a classe callout
+        $callout = new Callout("warning");
+        $callout->abre();
+
+        # Verifica se é diversas mensagens
+        if (is_array($mensagem)) {
+            foreach ($mensagem as $mm) {
+                p($mm, "{$align}", "f14");
+            }
+        } else {
+            p($mensagem, "{$align}", "f14");
         }
 
         $callout->fecha();
@@ -3176,7 +3218,7 @@ function formatCnpjCpf($value) {
 
     # O tamanho normal de um cpf
     $CPF_LENGTH = 11;
-    
+
     # Preenche com Zeros
     $value = str_pad($value, $CPF_LENGTH, "0", STR_PAD_LEFT);
 
