@@ -1219,10 +1219,10 @@ function calloutAlert($mensagem, $titulo = "Atenção", $align = "left") {
         # Verifica se é diversas mensagens
         if (is_array($mensagem)) {
             foreach ($mensagem as $mm) {
-                p($mm, "{$align}", "f14");
+                p($mm, "{$align}", "f13");
             }
         } else {
-            p($mensagem, "{$align}", "f14");
+            p($mensagem, "{$align}", "f13");
         }
 
         $callout->fecha();
@@ -1261,10 +1261,10 @@ function calloutWarning($mensagem, $titulo = "Atenção", $align = "left") {
         # Verifica se é diversas mensagens
         if (is_array($mensagem)) {
             foreach ($mensagem as $mm) {
-                p($mm, "{$align}", "f14");
+                p($mm, "{$align}", "f13");
             }
         } else {
-            p($mensagem, "{$align}", "f14");
+            p($mensagem, "{$align}", "f13");
         }
 
         $callout->fecha();
