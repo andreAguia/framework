@@ -977,6 +977,10 @@ class Modelo {
             if (isset($campo['plm'])) {
                 $controle->set_plm($campo['plm']);
             }
+            
+            if (isset($campo['trim'])) {
+                $controle->set_trim($campo['trim']);
+            }
 
             # Faz o controle exibir o html
             if (isset($campo['tagHtml'])) {
@@ -1364,6 +1368,17 @@ class Modelo {
 
                 # passa para plm com a função plm
                 $campoValor[$contador] = plm($campoValor[$contador]);
+            }
+            
+            /*
+             * TRIM (Retira os espaçoes no inicio e no fim da string
+             */
+
+            # trim
+            if ((isset($campo['trim'])) and ($campo['trim'])) {
+
+                # usa a função
+                $campoValor[$contador] = trim($campoValor[$contador]);
             }
 
             /*
