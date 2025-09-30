@@ -104,6 +104,7 @@ class Input {
 
     # Rotinas para modificar valores digitados antes da gravaçao
     private $plm = false;     # Primeira Letra Maiusculas - Habilita, se true, a converter o digitado a minusculas com as primeiras letras de cada palavra maiusculas.
+    private $trim = false;    # Retira os espaçoes antes e depois da string
 
 ###########################################################
 
@@ -504,6 +505,19 @@ class Input {
     }
 
 ##########################################################       
+
+    public function set_trim($trim) {
+        /**
+         * Habilita, se true, a retirar os espaços antes e depois da string
+         * 
+         * @syntax $input->set_trim($trim);
+         * 
+         * @param $trim BOLL false true ou false - Habilita ou nao o trim
+         */
+        $this->trim = $trim;
+    }
+
+##########################################################              
 
     public function set_datalist($datalist) {
         /**
