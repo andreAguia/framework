@@ -1926,7 +1926,7 @@ function addMeses($data, $meses) {
 
 ###########################################################
 
-function addAnos($data, $anos) {
+function addAnos($data = null, $anos = null, $consideraBissexto = true) {
     /**
      * Função que adiciona anos a uma data
      *
@@ -1938,8 +1938,9 @@ function addAnos($data, $anos) {
      * @note Se a data estiver no formato americano ou o divisor for diferente, a data deverá ser convertida.
      * @note Se o parâmetro $anos for negativo a data será retroagida.
      *
-     * @param $data string  null A data inicial
-     * @param $anos integer null A quantidade de anos a serem adicionados
+     * @param $data              string  null A data inicial
+     * @param $anos              integer null A quantidade de anos a serem adicionados
+     * @param $consideraBissexto bool    true Considera ou não os anos bissextos
      *
      * @example exemplo.addAnos.php
      */
@@ -1948,7 +1949,12 @@ function addAnos($data, $anos) {
         # Divide a data em dia, mes e ano
         $dt = explode('/', $data);
 
-        $dataFinal = date('d/m/Y', mktime(0, 0, 0, $dt[1], $dt[0], $dt[2] + $anos));
+        if ($consideraBissexto) {
+            $dataFinal = date('d/m/Y', mktime(0, 0, 0, $dt[1], $dt[0], $dt[2] + $anos));
+        } else {
+            $dt[2] = $dt[2] + $anos;
+            $dataFinal = "{$dt[0]}/{$dt[1]}/{$dt[2]}";
+        }
         return $dataFinal;
     } else {
         alert('Data Inválida');
