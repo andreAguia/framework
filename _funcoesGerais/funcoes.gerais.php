@@ -868,7 +868,7 @@ function titulo($mensagem = null, $title = null) {
 
 ###########################################################
 
-function titulo2($mensagem = null, $title = null) {
+function etiqueta($mensagem = null, $title = null, $cor = "primary") {
     /**
      * Exibe um texto centralizado dentro de um painel com fundo azul escuro. Utilizado para títulos de páginas.
      *
@@ -883,7 +883,7 @@ function titulo2($mensagem = null, $title = null) {
     }
 
     # cria a div
-    $div = new Div("titulo2");
+    $div = new Div("etiqueta{$cor}");
     $div->set_title($title);
     $div->abre();
     echo $mensagem;
