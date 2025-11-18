@@ -686,8 +686,9 @@ div#etiquetawarning{
     border: 1px solid #fff;
     padding: 5px 5px 5px 0px;
     text-align: center;
-    color: #fff;
+    color: #000;
     font-size: 12px;
+    font-weight: bold;
 }
 
 div#etiquetaprimary{
@@ -697,6 +698,7 @@ div#etiquetaprimary{
     text-align: center;
     color: #fff;
     font-size: 12px;
+    font-weight: bold;
 }
 
 div#etiquetasecondary{
@@ -706,6 +708,7 @@ div#etiquetasecondary{
     text-align: center;
     color: #000;
     font-size: 12px;
+    font-weight: bold;
 }
 
 div#etiquetaalert{
@@ -715,6 +718,7 @@ div#etiquetaalert{
     text-align: center;
     color: #fff;
     font-size: 12px;
+    font-weight: bold;
 }
 
 div#etiquetasuccess{
@@ -724,6 +728,7 @@ div#etiquetasuccess{
     text-align: center;
     color: #fff;
     font-size: 12px;
+    font-weight: bold;
 }
 
 /*******************************************
