@@ -219,6 +219,7 @@ class Relatorio {
         $imagem = new Imagem(PASTA_FIGURAS . 'timbre2023.png', null, 70, 55);
         $imagem->show();
         p("Governo do Estado do Rio de Janeiro", "pRelatorioCabecalho");
+        p("Secretaria de Estado de Ciência, Tecnologia e Inovação", "pRelatorioCabecalho");
         p("Universidade Estadual do Norte Fluminense Darcy Ribeiro - UENF", "pRelatorioCabecalho");
 
         # Verifica se exibe a diretoria
