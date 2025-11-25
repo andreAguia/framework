@@ -695,6 +695,11 @@ class Tabela {
                                         } else {
                                             echo ' id="' . $condicional['id'] . '"';
                                         }
+                                        
+                                        case 'in_array':
+                                        if (in_array($rowCondicional[$a], $condicional['valor'])) {
+                                            echo ' id="' . $condicional['id'] . '"';
+                                        }
                                         break;
                                 }
                             }
