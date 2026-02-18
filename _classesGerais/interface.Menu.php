@@ -39,7 +39,7 @@ class Menu {
 
 ###########################################################
 
-    public function add_item($tipo = 'link', $label = null, $url = '#', $title = null, $accessKey = null, $target = null) {
+    public function add_item($tipo = 'link', $label = null, $url = '#', $title = null, $accessKey = null, $target = null, $confirma = null) {
         /**
          * Adiciona um item ao menu
          * 
@@ -49,6 +49,7 @@ class Menu {
          * @param $title     string null O texto que irá aparecer no mouseover
          * @param $accessKey string null A letra para o atalho do link
          * @param $target    string null O nome da janela ou div quando é do tipo linkWindow ou linkAjax 
+         * @param $confirma  string null O Texto da pergunta de confirmação
          * 
          * @note os tipos de item: titulo -> será exibido com título; link -> é um link normal que abrirá na mesma janela; linkWindow -> link que abrirá em uma janela. Normalmente usado em relatórios; linkAjax -> usado para chamar uma rotina a ser aberta dentro de uma div sem reload.
          * 
@@ -60,6 +61,7 @@ class Menu {
                 $link = new Link($label, $url);
                 $link->set_title($title);
                 $link->set_target($target);
+                $link->set_confirma($confirma);
 
                 # Joga o objeto para o array
                 $this->item[] = $link;
@@ -71,6 +73,7 @@ class Menu {
                 $link = new Link($label, $url);
                 $link->set_title($title);
                 $link->set_target($target);
+                $link->set_confirma($confirma);
 
                 # Joga o objeto para o array
                 $this->item[] = $link;
@@ -83,6 +86,7 @@ class Menu {
                 $link->set_title($title);
                 $link->set_target($target);
                 $link->set_id('titulo2');
+                $link->set_confirma($confirma);
 
                 # Joga o objeto para o array
                 $this->item[] = $link;
@@ -96,6 +100,7 @@ class Menu {
                 $link->set_target($target);
                 $link->set_accessKey($accessKey);
                 $link->set_id('link');
+                $link->set_confirma($confirma);
 
                 $this->item[] = $link;
                 $this->tipo[] = 'link';
@@ -108,6 +113,7 @@ class Menu {
                 $link->set_target($target);
                 $link->set_accessKey($accessKey);
                 $link->set_id('sublink');
+                $link->set_confirma($confirma);
 
                 $this->item[] = $link;
                 $this->tipo[] = 'sublink';
@@ -118,6 +124,8 @@ class Menu {
                 $linkWindow = new Link($label);
                 $linkWindow->set_title($title);
                 $linkWindow->set_id('linkWindow');
+                $linkWindow->set_confirma($confirma);
+                
                 #$linkWindow->set_cursor('pointer');
                 # Resolvendo o bug do firefox que ia para uma pagina em branco
                 #  toda vez que se abria-se um relatorio
@@ -136,6 +144,7 @@ class Menu {
                 # linkAjax
                 $linkAjax = new Link($label);
                 $linkAjax->set_title($title);
+                $linkAjax->set_confirma($confirma);
                 $linkAjax->set_onClick("ajaxLoadPage('$url','$target','');");
                 #$linkAjax->set_textAlign('left');
                 #$linkAjax->set_cursor('pointer');
