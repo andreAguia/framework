@@ -3242,3 +3242,12 @@ function formatCnpjCpf($value) {
 function isBissexto($ano) {
     return (($ano % 4 == 0) && ($ano % 100 != 0)) || ($ano % 400 == 0);
 }
+
+###########################################################
+/*
+ * Retira as letras de um texto deixando somente números
+ */
+
+function retiraLetras($texto){ 
+  return preg_replace("/[^0-9]/", "", $texto); 
+}
