@@ -50,6 +50,7 @@ class Tabela {
     private $subtitulo = null;
     private $conteudo;
     private $label = null;
+    private $label2 = null;
     private $title = null;
     private $colspanLabel = null;
     private $align = null;
@@ -591,6 +592,15 @@ class Tabela {
                     $marcaColspan--;
                 }
             } // for
+            # Se tiver label2
+            if ($this->label2 <> null) {
+                echo '</tr>';
+                echo '<tr>';
+                for ($a = 0; $a < $numColunas; $a += 1) {
+                    echo '<th title="' . $this->label2[$a] . '">';
+                    echo $this->label2[$a] . '</th>';
+                }
+            }
 
             echo '</tr>';
             echo '</thead>';
@@ -695,8 +705,8 @@ class Tabela {
                                         } else {
                                             echo ' id="' . $condicional['id'] . '"';
                                         }
-                                        
-                                        case 'in_array':
+
+                                    case 'in_array':
                                         if (in_array($rowCondicional[$a], $condicional['valor'])) {
                                             echo ' id="' . $condicional['id'] . '"';
                                         }
@@ -827,7 +837,7 @@ class Tabela {
                         } else {
                             echo 'align="center"';
                         }
-                        
+
                         # Alinhamento Vertical
                         if ((isset($this->valign[$a])) and ($this->valign[$a] <> null)) {
                             echo ' valign="' . $this->valign[$a] . '"';
