@@ -113,7 +113,7 @@ class Tabela {
     private $linkTituloTitle = null;
 
     # do somatório
-    private $colunaSomatorio = null;            // coluna que terá somatório (por enquanto uma por tabela)
+    private $colunaSomatorio = null;            // coluna que terá somatório 
     private $textoSomatorio = 'Total:';         // texto a ser exibido na linha de totalização
     private $colunaTexto = 0;                   // coluna onde o texto será exibido;
     private $funcaoSomatorio = null;            // se executa alguma função no somatório

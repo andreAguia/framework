@@ -2546,6 +2546,26 @@ function trataNulo($valor, $caractere = "---") {
 
 ###########################################################
 
+function trataNuloZero($valor = null) {
+
+    /**
+     * Transforma o valor null em zero
+     *
+     * @param  $valor     mixed  null O valor a ser conferido
+     * @return mixed O valor ou -- quando o valor for zero ou nullo
+     *
+     * @syntax trataNulo($valor,[$caractere]);
+     */
+    # Verifica se é nulo
+    if (empty($valor)) {
+        return 0;
+    } else {
+        return $valor;
+    }
+}
+
+###########################################################
+
 function ePar($valor) {
 
     /**
@@ -3248,6 +3268,6 @@ function isBissexto($ano) {
  * Retira as letras de um texto deixando somente números
  */
 
-function retiraLetras($texto){ 
-  return preg_replace("/[^0-9]/", "", $texto); 
+function retiraLetras($texto) {
+    return preg_replace("/[^0-9]/", "", $texto);
 }
