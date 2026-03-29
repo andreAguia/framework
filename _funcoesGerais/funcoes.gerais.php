@@ -3271,3 +3271,25 @@ function isBissexto($ano) {
 function retiraLetras($texto) {
     return preg_replace("/[^0-9]/", "", $texto);
 }
+
+###########################################################
+/*
+ * Exibe uma mensagem padrão - igual a da tabela sem registro
+ */
+
+function mensagem($mensagem = null, $titulo = null, $subtitulo = null) {
+
+    # Título
+    if (!empty($titulo)) {
+        if (empty($subtitulo)) {
+            tituloTable($titulo);
+        } else {
+            tituloTable($titulo,$subtitulo);
+        }
+    }
+
+    $callout = new Callout();
+    $callout->abre();
+    p($mensagem, 'f14', 'center');
+    $callout->fecha();
+}
