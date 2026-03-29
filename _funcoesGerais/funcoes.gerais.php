@@ -3287,7 +3287,13 @@ function mensagem($mensagem = null, $titulo = null, $subtitulo = null) {
             tituloTable($titulo,$subtitulo);
         }
     }
+    
+    # Trata a Mensagem
+    if(empty($mensagem)){
+        $mensagem = "Nenhum item encontrado !!";
+    }
 
+    # Executa de fato a rotina
     $callout = new Callout();
     $callout->abre();
     p($mensagem, 'f14', 'center');
