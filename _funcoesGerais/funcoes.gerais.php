@@ -2980,7 +2980,7 @@ function pLista($linha1 = null, $linha2 = null, $linha3 = null, $linha4 = null, 
 
 ###########################################################
 
-function emConstrucao($texto = null, $brAntes = 3) {
+function emConstrucao($texto = null, $brAntes = 3, $figura = PASTA_FIGURAS_GERAIS . 'construcao.png') {
 
     /**
      * Exibe uma mensagam padrão de área em construção
@@ -2989,7 +2989,7 @@ function emConstrucao($texto = null, $brAntes = 3) {
     $div->abre();
 
     br($brAntes);
-    $Imagem = new Imagem(PASTA_FIGURAS_GERAIS . 'construcao.png', 'Esta área do sistema está em construção. Em Breve Estará Disponível.', 300, 300);
+    $Imagem = new Imagem($figura, 'Esta área do sistema está em construção. Em Breve Estará Disponível.', 300, 300);
     $Imagem->show();
 
     if (!is_null($texto)) {
