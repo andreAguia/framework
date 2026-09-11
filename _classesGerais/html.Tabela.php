@@ -51,6 +51,7 @@ class Tabela {
     private $conteudo;
     private $label = null;
     private $label2 = null;
+    private $sublabel = null;
     private $title = null;
     private $colspanLabel = null;
     private $align = null;
@@ -586,7 +587,12 @@ class Tabela {
                         $link = new Link($this->label[$a], $this->orderChamador . '&orderCampo=' . ($a + 1) . '&orderTipo=' . $this->orderTipo);
                         $link->show();
                     } else {
-                        echo $this->label[$a] . '</th>';
+
+                        echo $this->label[$a];
+                        if (!empty($this->sublabel)) {
+                            echo "<p id='psublabel'>{$this->sublabel[$a]}</p>";
+                        }
+                        echo '</th>';
                     }
                 } else {
                     $marcaColspan--;
