@@ -14,6 +14,7 @@ class Modelo {
      */
 
     # Nome do Modelo (aparecerá nos fildset e no caption da tabela)
+
     private $nome = null;
 
     # id (para o fieldset)
@@ -148,7 +149,7 @@ class Modelo {
 
     # Indica se haverá colorização de um grupo por valores diferentes. Usado para diferenciar um grupo de linhas de outro grupo.
     private $grupoCorColuna = null;
-    
+
     # Rotinas Antes da Tabela
     private $rotinaExtraAntesTabela = null;
     private $rotinaExtraAntesTabelaParametro = null;
@@ -199,7 +200,7 @@ class Modelo {
 
     # Exibe um * quando o campo for obrigatório
     private $exibeInfoObrigatoriedade = true;
-    
+
     # objeto Lateral - Objeto menu a ser inserido ao lado da tabela de listagem
     private $objetoLateralEditar = null;
     private $objetoLateralEditarMetodo = null;
@@ -604,7 +605,7 @@ class Modelo {
             $gridMenu->fechaColuna();
             $gridMenu->abreColuna(9);
         }
-        
+
         # Rotina Extra Antes da Tabela
         if (!is_null($this->rotinaExtraAntesTabela)) {
             # Verifica se é array. Mais de uma função
@@ -870,7 +871,7 @@ class Modelo {
             $gridMenu->fechaColuna();
             $gridMenu->abreColuna(9);
         }
-        
+
         # Exibe o objeto Lateral (quando tem)
         if (!is_null($this->objetoLateralEditar)) {
             $gridMenu = new Grid();
@@ -977,7 +978,7 @@ class Modelo {
             if (isset($campo['plm'])) {
                 $controle->set_plm($campo['plm']);
             }
-            
+
             if (isset($campo['trim'])) {
                 $controle->set_trim($campo['trim']);
             }
@@ -991,7 +992,7 @@ class Modelo {
             if (isset($campo['array'])) {
                 $controle->set_array($campo['array']);
             }
-            
+
             # Se aceita multiplos valores
             if (isset($campo['multiple'])) {
                 $controle->set_multiple($campo['multiple']);
@@ -1241,11 +1242,20 @@ class Modelo {
             # Compara o valor antigo com o novo
             if ($oldValue[$contador] != $campoValor[$contador]) {
 
-                # formata a data
-                if (($campo['tipo'] == 'date') OR ($campo['tipo'] == 'data')) {
-                    $alteracoes .= '[' . $campo['label'] . '] ' . date_to_php($oldValue[$contador]) . '->' . date_to_php($campoValor[$contador]) . ';<br/>';
+                # Se tiver label usa ele, senão usa o nome
+                if (empty($campo['label'])) {
+                    if (($campo['tipo'] == 'date') OR ($campo['tipo'] == 'data')) {
+                        $alteracoes .= '[' . $campo['nome'] . '] ' . date_to_php($oldValue[$contador]) . '->' . date_to_php($campoValor[$contador]) . ';<br/>';
+                    } else {
+                        $alteracoes .= "[{$campo['nome']}] {$oldValue[$contador]} -> {$campoValor[$contador]};<br/>";
+                    }
                 } else {
-                    $alteracoes .= "[{$campo['label']}] {$oldValue[$contador]} -> {$campoValor[$contador]};<br/>";
+                    # formata a data
+                    if (($campo['tipo'] == 'date') OR ($campo['tipo'] == 'data')) {
+                        $alteracoes .= '[' . $campo['label'] . '] ' . date_to_php($oldValue[$contador]) . '->' . date_to_php($campoValor[$contador]) . ';<br/>';
+                    } else {
+                        $alteracoes .= "[{$campo['label']}] {$oldValue[$contador]} -> {$campoValor[$contador]};<br/>";
+                    }
                 }
             }
 
@@ -1369,7 +1379,7 @@ class Modelo {
                 # passa para plm com a função plm
                 $campoValor[$contador] = plm($campoValor[$contador]);
             }
-            
+
             /*
              * TRIM (Retira os espaçoes no inicio e no fim da string
              */
@@ -1478,7 +1488,7 @@ class Modelo {
 
             # Verifica onde vai retornar
             if (empty($this->linkAposGravar)) {
-               loadPage($this->linkListar);
+                loadPage($this->linkListar);
             } else {
                 loadPage($this->linkAposGravar);
             }
