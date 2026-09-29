@@ -2122,9 +2122,13 @@ function idade($dataNascimento) {
         } else {
             // Separa em dia, mês e ano
             list($dia, $mes, $ano) = explode('/', $dataNascimento);
+            
+            // Retira um dia para considerar o dia do aniversário já com a idade nova
+            $dia--;
 
             // Descobre que dia é hoje e retorna a unix timestamp
             $hoje = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
+            
             // Descobre a unix timestamp da data de nascimento do fulano
             $nascimento = mktime(0, 0, 0, $mes, $dia, $ano);
 
