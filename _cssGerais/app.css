@@ -38,6 +38,11 @@ hr#geral1{
     margin: 3px;
 }
 
+hr#geral2{
+    padding: 0px;
+    margin: 6px;
+}
+
 hr#grosso1{
     padding: 0px;
     margin: 3px;
