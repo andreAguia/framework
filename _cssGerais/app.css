@@ -318,6 +318,10 @@ table.tabelaPadrao th{
     padding-bottom: 5px;
 }
 
+table.tabelaPadrao tr:hover {
+    background: #cccccc;
+}
+
 table.tabelaPadrao caption {
     background-color: #e6e6e6;
     font-weight: normal;
