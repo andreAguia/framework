@@ -711,6 +711,7 @@ class Tabela {
                                         } else {
                                             echo ' id="' . $condicional['id'] . '"';
                                         }
+                                        break;
 
                                     case 'in_array':
                                         if (in_array($rowCondicional[$a], $condicional['valor'])) {
