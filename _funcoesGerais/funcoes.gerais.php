@@ -816,29 +816,34 @@ function p($mensagem = null, $id = null, $class = null, $title = null) {
      *
      * @example exemplo.p.php
      */
+    # Inicia a variável de retorno
+    $retorno = null;
+
     if (empty($mensagem)) {
         return null;
     } else {
-        echo '<p';
+        $retorno = "<p";
 
         # id
         if (!is_null($id)) {
-            echo ' id="' . $id . '"';
+            $retorno .= " id='{$id}'";
         }
 
         # class
         if (!is_null($class)) {
-            echo ' class="' . $class . '"';
+            $retorno .= " class='{$class}'";
         }
 
         # title
         if (!is_null($title)) {
-            echo ' title="' . $title . '"';
+            $retorno .= " title='{$title}'";
         }
 
-        echo '>';
-        echo $mensagem;
-        echo '</p>';
+        # Mensagem
+        $retorno .= ">{$mensagem}</p>";
+
+        # Retorna
+        echo $retorno;
     }
 }
 
@@ -2122,13 +2127,13 @@ function idade($dataNascimento) {
         } else {
             // Separa em dia, mês e ano
             list($dia, $mes, $ano) = explode('/', $dataNascimento);
-            
+
             // Retira um dia para considerar o dia do aniversário já com a idade nova
             $dia--;
 
             // Descobre que dia é hoje e retorna a unix timestamp
             $hoje = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
-            
+
             // Descobre a unix timestamp da data de nascimento do fulano
             $nascimento = mktime(0, 0, 0, $mes, $dia, $ano);
 
@@ -3288,12 +3293,12 @@ function mensagem($mensagem = null, $titulo = null, $subtitulo = null) {
         if (empty($subtitulo)) {
             tituloTable($titulo);
         } else {
-            tituloTable($titulo,$subtitulo);
+            tituloTable($titulo, $subtitulo);
         }
     }
-    
+
     # Trata a Mensagem
-    if(empty($mensagem)){
+    if (empty($mensagem)) {
         $mensagem = "Nenhum item encontrado !!";
     }
 
