@@ -56,7 +56,7 @@ abstract class Bd {
                 $this->conn = new PDO("pgsql:dbname={$this->name};user={$this->user}; password={$this->pass};host=$this->host");
                 break;
             case 'mysql':
-                $this->conn = new PDO("mysql:host={$this->host};port=3306;dbname={$this->name};charset=UTF8", $this->user, $this->pass);
+                $this->conn = new PDO("mysql:host={$this->host};port=3306;dbname={$this->name};charset=UTF8", $this->user, $this->pass, array(PDO::ATTR_PERSISTENT => true));
                 $this->conn->exec("SET sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));");
                 break;
             case 'sqlite':
