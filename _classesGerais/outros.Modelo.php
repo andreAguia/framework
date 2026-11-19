@@ -174,7 +174,8 @@ class Modelo {
     private $botaoEditarExtra;
 
     # botão de histórico (aparece no editar)
-    private $botaoHistorico = true;
+    # Retirei pois estava afetando o desempenho do sistema --- resolver isso
+    private $botaoHistorico = false;
 
     # Nome (e id) do Formulário para o css e jscript
     private $nomeForm = 'formPadrao';
