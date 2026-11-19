@@ -1210,7 +1210,7 @@ function calloutAlert($mensagem, $titulo = "Atenção", $align = "left") {
      * @example exemplo.callout.php
      */
     # Verifica se não está vazio
-    if (!vazio($mensagem)) {
+    if (!empty($mensagem)) {
 
         # Coloca um título (se tiver)
         if (!empty($titulo)) {
