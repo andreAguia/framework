@@ -31,7 +31,7 @@ class Page {
     private $title = null;                  # O title da página (mensagem do topo no browser)
     # refresh
     private $refresh = false;   # Se a página terá refresh automático
-    private $refreshTime = 30;  # O tempo para esse refresh em segundos    
+    private $refreshTime = 30;  # O tempo para esse refresh em segundos
     # javaScript
     private $jscript = null;    # acrescenta uma rotina jscript extra;
     private $bodyOnLoad = null; # acrescenta rotina no onload do body;
@@ -40,6 +40,7 @@ class Page {
     private $onLoad = null;     # inicia a rotina quando toda a página terminar de carregar
     # css
     private $css = "foundation";    # Escolhe qual framework css vai carregar: foundation ou w3c
+    private $cssExtra;        # acrescenta um estilo extra
 
 ###########################################################
 
@@ -123,6 +124,19 @@ class Page {
 
 ###########################################################
 
+    public function set_cssExtra($cssExtra = null) {
+        /**
+         * Acrescenta um css extra. Usado na rotina dos fogos
+         * 
+         * @syntax $page->set_cssExtra($cssExtra);
+         * 
+         * @param $cssExtra string null Css a ser acrescentado
+         */
+        $this->cssExtra = $cssExtra;
+    }
+
+###########################################################
+
     public function iniciaPagina() {
         /**
          * Inicia a página
@@ -170,11 +184,15 @@ class Page {
         echo '<link rel="stylesheet" href="' . PASTA_ESTILOS_GERAIS . 'app.css" />';
         echo '<link rel="stylesheet" href="' . PASTA_ESTILOS_GERAIS . 'impressao.css" media="print"/>';
         echo '<link rel="stylesheet" href="' . PASTA_ESTILOS . 'estilos.css" />';
+        
+        if (!is_null($this->cssExtra)) {
+            echo $this->cssExtra;
+        }
 
         echo '<link rel="shortcut icon" href="' . PASTA_FIGURAS . 'uenf.gif" />';
         echo '</head>';
 
-    if (is_null($this->bodyOnLoad)) {
+        if (is_null($this->bodyOnLoad)) {
             echo '<body>';
         } else {
             echo '<body onload=' . $this->bodyOnLoad . '>';
@@ -182,9 +200,9 @@ class Page {
 
         # Define o timezone
         date_default_timezone_set('America/Sao_Paulo');
-        
+
         # Define que a página deverá seguir a codificação utf-8
-        ini_set('default_charset','UTF-8');
+        ini_set('default_charset', 'UTF-8');
     }
 
 ###########################################################
@@ -251,5 +269,4 @@ class Page {
         # Termina o buffer de saída
         ob_end_flush();
     }
-
 }
